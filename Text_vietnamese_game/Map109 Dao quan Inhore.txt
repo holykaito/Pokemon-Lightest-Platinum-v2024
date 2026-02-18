@@ -1,0 +1,62 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map109]
+!!!
+!!!
+\bYou think you're ready for this challenge? I'll make sure this won't be an easy victory!
+\bYou think you're ready for this challenge? I'll make sure this won't be an easy victory!
+\bI can't believe it... You're really strong! But next time, I won't go down so easily!
+\bI can't believe it... You're really strong! But next time, I won't go down so easily!
+\bStep forward, if you dare! My Pokémon and I will give you a battle to remember!
+\bStep forward, if you dare! My Pokémon and I will give you a battle to remember!
+\bYou’ve proven your strength today. But next time, you’ll find me even more formidable!
+\bYou’ve proven your strength today. But next time, you’ll find me even more formidable!
+\rThis gym is a true test of strength and strategy. Show me what you’ve got!
+\rThis gym is a true test of strength and strategy. Show me what you’ve got!
+\rEven the best fall sometimes. You’ve earned this win, but I won’t stay down for long!
+\rEven the best fall sometimes. You’ve earned this win, but I won’t stay down for long!
+\rYou’ve conquered this challenge, but remember, true strength lies in how you grow from here.
+\rYou’ve conquered this challenge, but remember, true strength lies in how you grow from here.
+\r\ff[leaderjessica]You must defeat the Assistants first!
+\r\ff[leaderjessica]You must defeat the Assistants first!
+\r\ff[leaderjessica]You're really skilled, but there are other gyms to visit in Zhery, and they're even stronger.
+\r\ff[leaderjessica]You're really skilled, but there are other gyms to visit in Zhery, and they're even stronger.
+\r\ff[leaderjessica]Welcome to the Inhore City Gym. I will defend my Gym with all the power my Pokémon possess!
+\r\ff[leaderjessica]Welcome to the Inhore City Gym. I will defend my Gym with all the power my Pokémon possess!
+\r\ff[leaderjessica]That was really incredible, \pn. Congratulations!
+\r\ff[leaderjessica]That was really incredible, \pn. Congratulations!
+\me[Badge get]\r\ff[leaderjessica]You've earned the Plain Badge.
+\me[Badge get]\r\ff[leaderjessica]You've earned the Plain Badge.
+\r\ff[leaderjessica]With the Plain Badge, you can use HM01 CUT outside of battle to cut down trees.
+\r\ff[leaderjessica]With the Plain Badge, you can use HM01 CUT outside of battle to cut down trees.
+\r\ff[leaderjessica]Here, have this TM too.
+\r\ff[leaderjessica]Here, have this TM too.
+\r\ff[leaderjessica]That TM contains Struggle Bug, a very efficient bug move.
+\r\ff[leaderjessica]That TM contains Struggle Bug, a very efficient bug move.
+\r\ff[leaderjessica]I still have much to learn when it comes to battling Pokémon. That awareness makes me love battling all that much more!
+\r\ff[leaderjessica]I still have much to learn when it comes to battling Pokémon. That awareness makes me love battling all that much more!
+\rI'm Assistant Gym. My Pokémon and I have trained in harmony for years. Let’s see how well you’ve bonded with yours!
+\rI'm Assistant Gym. My Pokémon and I have trained in harmony for years. Let’s see how well you’ve bonded with yours!
+\rYour connection with your Pokémon is strong… You’ve bested us this time.
+\rYour connection with your Pokémon is strong… You’ve bested us this time.
+\rYour bond with your Pokémon shines brightly. Take this badge as a symbol of your strength.
+\rYour bond with your Pokémon shines brightly. Take this badge as a symbol of your strength.
+Bzbzbzbzbzbzbzbzbz...
+Bzbzbzbzbzbzbzbzbz...
+\bHi, I'm Assistant Gym. Every battle is a new chapter in the story of a trainer. Let’s see what you’ll write today!
+\bHi, I'm Assistant Gym. Every battle is a new chapter in the story of a trainer. Let’s see what you’ll write today!
+\bYou’ve written a powerful chapter today. I’ll remember this battle.
+\bYou’ve written a powerful chapter today. I’ll remember this battle.
+\bThis badge marks the end of our battle, but the beginning of your next challenge. Wear it with pride!
+\bThis badge marks the end of our battle, but the beginning of your next challenge. Wear it with pride!
+\bOnly the toughest trainers can make it this far. Let’s see if you’ve got what it takes.
+\bOnly the toughest trainers can make it this far. Let’s see if you’ve got what it takes.
+\bImpressive… You’ve earned this win. But remember, I'll be training hard for our next encounter!
+\bImpressive… You’ve earned this win. But remember, I'll be training hard for our next encounter!
+\rThe path to victory is paved with fierce battles. Are you prepared to take the next step?
+\rThe path to victory is paved with fierce battles. Are you prepared to take the next step?
+\rYour skills are undeniable. You've earned your place among the strong!
+\rYour skills are undeniable. You've earned your place among the strong!
+\rToday, you've claimed the badge, but never forget the journey that brought you here.
+\rToday, you've claimed the badge, but never forget the journey that brought you here.

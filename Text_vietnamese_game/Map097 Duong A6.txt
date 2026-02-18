@@ -1,0 +1,92 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map097]
+\bThis sort of distance. You should just swim it!
+\bThis sort of distance. You should just swim it!
+\bOh, that's good going!
+\bOh, that's good going!
+\bOh, I understand where you're coming from now.
+\bOh, I understand where you're coming from now.
+\bIf I had a POKéMON that trusty, I'd want to SURF on it, too!
+\bIf I had a POKéMON that trusty, I'd want to SURF on it, too!
+\rFinally! A trainer to battle!
+\rFinally! A trainer to battle!
+\rYou surprised me with your powerful POKéMON!
+\rYou surprised me with your powerful POKéMON!
+\rAll POKéMON can be powerful when used well by a good trainer.
+\rAll POKéMON can be powerful when used well by a good trainer.
+\bA fight before leaving on a ship is always exciting.
+\bA fight before leaving on a ship is always exciting.
+\bI lost to you, but everything happens for a reason.
+\bI lost to you, but everything happens for a reason.
+\bI've seen many beaches like this. POKéMON take care of them.
+\bI've seen many beaches like this. POKéMON take care of them.
+\b\GA trip across the lake costs $600. Would you like to board the ferry?
+\b\GA trip across the lake costs $600. Would you like to board the ferry?
+\bLet's go! Time to board now.
+\bLet's go! Time to board now.
+\b\GSorry, but you've got to pay $600 for a ticket, or else I won't take you to the other side of the lake.
+\b\GSorry, but you've got to pay $600 for a ticket, or else I won't take you to the other side of the lake.
+\bAlright, come back whenever you want.
+\bAlright, come back whenever you want.
+\rPlease, allow me to evaluate if you have raised your POKéMON properly.
+\rPlease, allow me to evaluate if you have raised your POKéMON properly.
+\rI'm glad I met a superb TRAINER in you. I hope to see you again.
+\rI'm glad I met a superb TRAINER in you. I hope to see you again.
+\bNow you'll know the power of BUG POKéMON!
+\bNow you'll know the power of BUG POKéMON!
+\bEveryone deserves a chance to win!
+\bEveryone deserves a chance to win!
+\rI've spotted some LEDYBA on this ROUTE before, but they're rare.
+\rI've spotted some LEDYBA on this ROUTE before, but they're rare.
+\rTo get a good POKéMON, you must train and battle wild POKéMON every day.
+\rTo get a good POKéMON, you must train and battle wild POKéMON every day.
+\rI lost to you, but everything happens for a reason.
+\rI lost to you, but everything happens for a reason.
+\rI like cute POKéMON. They're all I've been catching lately!
+\rI like cute POKéMON. They're all I've been catching lately!
+\bI love taking a snack with me on my daily walk. It always gives me a boost of energy. Take this item for your POKéMON.
+\bI love taking a snack with me on my daily walk. It always gives me a boost of energy. Take this item for your POKéMON.
+\bLEFTOVERS is used to gradually heal your POKéMON in battle. It'll be useful, don't you think?
+\bLEFTOVERS is used to gradually heal your POKéMON in battle. It'll be useful, don't you think?
+\rSome POKéMON evolve differently depending on whether it's night or day. EEVEE evolves into ESPEON or UMBREON at different times.
+\rSome POKéMON evolve differently depending on whether it's night or day. EEVEE evolves into ESPEON or UMBREON at different times.
+\bFinally! A trainer to battle!
+\bFinally! A trainer to battle!
+\bHowdy, trainer! Ranch life, Pokémon style. Yeehaw!
+\bHowdy, trainer! Ranch life, Pokémon style. Yeehaw!
+\bHey! Don't sneak up behind me like that!
+\bHey! Don't sneak up behind me like that!
+\bI lost! Drat!
+\bI lost! Drat!
+\bFishing is all about concentration. You have to focus on the floater.
+\bFishing is all about concentration. You have to focus on the floater.
+\bGah! My fishing line's all snarled up! I'm getting frustrated and mean! That's it! Battle me!
+\bGah! My fishing line's all snarled up! I'm getting frustrated and mean! That's it! Battle me!
+\bGah! Lost it! I'm even more annoyed now!
+\bGah! Lost it! I'm even more annoyed now!
+\bGah, I'm still boiling mad. Grrrrr!
+\bGah, I'm still boiling mad. Grrrrr!
+\rI love walking down this route. I always see beautiful POKéMON.
+\rI love walking down this route. I always see beautiful POKéMON.
+\bFor FISHERMEN, equipment is the key. But for TRAINERS, the key ingredients are POKéMON and heart, of course!
+\bFor FISHERMEN, equipment is the key. But for TRAINERS, the key ingredients are POKéMON and heart, of course!
+\bI was beaten in heart?
+\bI was beaten in heart?
+\bCome to think of it, fishing is a battle between a FISHERMAN and a POKéMON.
+\bCome to think of it, fishing is a battle between a FISHERMAN and a POKéMON.
+\rWatch where you're going! We're going to crash!
+\rWatch where you're going! We're going to crash!
+\rGroan.
+\rGroan.
+\rI'm a poor swimmer so I was practicing. Sorry for almost crashing into you.
+\rI'm a poor swimmer so I was practicing. Sorry for almost crashing into you.
+\bMany POKéMON live in these bushes to hide from humans. They're afraid of getting caught.
+\bMany POKéMON live in these bushes to hide from humans. They're afraid of getting caught.
+\rI love walking on the beach. It's always nice to see the water, and the breeze feels great.
+\rI love walking on the beach. It's always nice to see the water, and the breeze feels great.
+Yes
+Yes
+No
+No

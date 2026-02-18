@@ -1,0 +1,66 @@
+How it works
+When you start the game (not in debug mode), the two splash screens will appear, your custom video will play and then the title screen will appear.
+
+Plugin Steps:
+1-Extract the plugin into your game. 
+2-Place your custom .ogv video in Movies folder
+3-Within the config settings set the name of the video (do not include extension, it assumes the video is .ogv)
+4-IMPORTANT!! Compile your game in debug mode every time you make changes
+5-Play Game (DO NOT PLAY DEBUG MODE! It skips the opening)
+
+*Included test opening (VideoOut.ogv), so you can plug, compile and play to make sure everything is working before replacing it with your own custom opening. 
+
+*Update 11/13: This plugin is now compatible with Luka's Modular Title Screen 2.2.2 using Essentials v21.1. 
+-------------------------------------------------------------------------------------------------------------------
+
+
+– Video Prepping –
+Before converting to .ogv, your video needs to be prepped. In essentials 21.1, the video playback is being processed by your cpu, 
+so your results will vary depending on the original quality of the media and of course, your cpu. When you export your media for
+the first time, you will want to avoid high bitrates, frame rates and resolutions. I have experienced a lot of wonkiness when testing 
+with higher quality videos. The bugs range from game crashing with no errors, game lag, video lag/ crashing, no audio/ not in sync.  
+
+Before creating your video, you will need a few things. 
+Access your devices command prompt
+A video editor that allows you to export your video as a .avi format using a low quality encoder
+Installation of ffmpeg (Recommendation: use gyan ffmpeg)
+
+
+Create your video using whatever video editing software you are using; I am using premiere pro. 
+The settings don’t have to be exact but frame size dimensions should be common sizes (no 546x329). 
+If you find other settings that work, make sure to share with the community. REMEMBER: Do not export media with  high bitrates, 
+frame rates and resolutions; Doing so may result in bugs/ weird issues that I cannot help with 
+
+Recommended Media Export settings:
+Format: .avi 
+Video codec: Microsoft RLE or Microsoft Video 1
+Frame Size: 640 x 480 
+Frame Rate: 24 or below
+
+
+Take your new .avi and drop in a folder. Preferably, one easy to find via command window
+
+--------------------------------------------------------------------------------
+—Video Conversion—
+Next, you will need to convert your media into an .ogv. I’m sure there are various ways to accomplish this, 
+but I strictly use ffmpeg for conversion (it's free). If you use another method and experience bugs, I cannot help. 
+I won’t go over how to find or install ffmpeg, but I will recommend installing gyan’s ffmpeg. Once installed, 
+make sure to open the command window and verify installation by checking what version you have
+
+Paste the following command to check the ffmpeg version:  
+ffmpeg -version
+
+Once ffmpeg is ready, locate the folder where you put your .avi video via the command window.
+
+Paste the following command (do not hit enter until you change names): 
+ffmpeg -i VideoIn.avi -b:a 128K -q:v 7 -pix_fmt yuv420p VideoOut.ogv
+
+* Change VideoIn to your created videos name; Change VideoOut to whatever you want output video name to be (or leave it to keep name)
+
+* If you wish to use the .ogg format, change the VideoOut extension to .ogg. Within plugin (line 47) change 
+extension to .ogg; Warning: I have not tested .ogg as long as .ogv for bugs/errors. 
+If you have issues, switch to .ogv (so far I have had none)
+
+Once it is done converting, place video into your Game -> Movies folder, configure your settings and you're good to go!
+
+

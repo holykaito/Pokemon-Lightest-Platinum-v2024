@@ -1,0 +1,148 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map048]
+\b\ff[oldman]You're a trainer. I think this will be of use to you.
+\b\ff[oldman]You're a trainer. I think this will be of use to you.
+\b\ff[oldman]High level Pokemon will be difficult to capture. You must first weaken them, and then use the Ultra Ball.
+\b\ff[oldman]High level Pokemon will be difficult to capture. You must first weaken them, and then use the Ultra Ball.
+Contest Hall
+Contest Hall
+\bThis is the Safari Zone of Central City. Inside, there are many ways to catch Pokemon! This place is currently under repair, please come back later.
+\bThis is the Safari Zone of Central City. Inside, there are many ways to catch Pokemon! This place is currently under repair, please come back later.
+\bHey, you! Don't go on this route, it has many strong and dangerous Pokemon on it!
+\bHey, you! Don't go on this route, it has many strong and dangerous Pokemon on it!
+\bWhen I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
+\bWhen I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
+\bYou can tell hust by looking at some trainers that they have the capacity to train certain Pokemon really well. I'm willing to give you a great Pokemon.
+\bYou can tell hust by looking at some trainers that they have the capacity to train certain Pokemon really well. I'm willing to give you a great Pokemon.
+\bDo you want to get a EGG?
+\bDo you want to get a EGG?
+\pn received the Egg.\wt[80]
+\pn received the Egg.\wt[80] 
+\bTake good care of it!
+\bTake good care of it!
+\bYou can go back to get it if you want.
+\bYou can go back to get it if you want.
+\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle.
+\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle. 
+\bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
+\bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
+\bI enjoy strolling through the city, admiring the scenery, and meeting new people. Let's share stories, expand knowledge, and discover new interests together. Life is not just about work, but also about memorable moments. Embrace each day and create cherished memories!
+\bI enjoy strolling through the city, admiring the scenery, and meeting new people. Let's share stories, expand knowledge, and discover new interests together. Life is not just about work, but also about memorable moments. Embrace each day and create cherished memories!
+Safari Zone
+Safari Zone
+\bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
+\bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
+\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion.
+\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion. 
+Radio & TV Tower
+Radio & TV Tower
+\bThis is Central City's Train Station. This place is currently under repair, please come back later.
+\bThis is Central City's Train Station. This place is currently under repair, please come back later.
+\bThis is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
+\bThis is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
+\rIn this city, there are many buildings that are important throughout the Zhery region and the world.
+\rIn this city, there are many buildings that are important throughout the Zhery region and the world.
+Train Station
+Train Station
+\bYesterday I saw a Combee in Inhore Woods. It looked very pretty, but I was still scared.
+\bYesterday I saw a Combee in Inhore Woods. It looked very pretty, but I was still scared.
+\bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
+\bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
+\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it.
+\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it. 
+\r\ff[profjasmine]Hello, \PN! I asked for help from Ash Ketchum and Kaori for this study because it is very hazardous. If something goes wrong, everyone on this planet would be in danger!
+\r\ff[profjasmine]Hello, \PN! I asked for help from Ash Ketchum and Kaori for this study because it is very hazardous. If something goes wrong, everyone on this planet would be in danger!
+\pg\ff[boy]I'll be careful, Professor.
+\pg\ff[boy]I'll be careful, Professor.
+\pg\ff[girl]I'll be careful, Professor.
+\pg\ff[girl]I'll be careful, Professor.
+\b\ff[ash]Hi. I am the current World Champion of the Pokemon League.
+\b\ff[ash]Hi. I am the current World Champion of the Pokemon League.
+\pg\ff[boy]I already know who you are, I've seen you on TV all my life! I was very impressed with the match between you and Leon, the match against Cynthia and Steven too!
+\pg\ff[boy]I already know who you are, I've seen you on TV all my life! I was very impressed with the match between you and Leon, the match against Cynthia and Steven too!
+\pg\ff[girl]I already know who you are, I've seen you on TV all my life! I was very impressed with the match between you and Leon, the match against Cynthia and Steven too!
+\pg\ff[girl]I already know who you are, I've seen you on TV all my life! I was very impressed with the match between you and Leon, the match against Cynthia and Steven too!
+\r\ff[profjasmine]Okay, \PN, I called you here to decipher these ancient inscriptions written in the Alpha language.
+\r\ff[profjasmine]Okay, \PN, I called you here to decipher these ancient inscriptions written in the Alpha language.
+\pg\ff[boy]Hmmm...
+\pg\ff[boy]Hmmm...
+\pg\ff[girl]Hmmm...
+\pg\ff[girl]Hmmm...
+\pg\ff[boy]Wow, these inscription talk about the creation of the universe! It was made by Arceus, who created the other Pokemon along with the rest of existence, but it seems that the balance of his power will gradually be broken, and the world will pass through times difficult and dangerous for humanity!
+\pg\ff[boy]Wow, these inscription talk about the creation of the universe! It was made by Arceus, who created the other Pokemon along with the rest of existence, but it seems that the balance of his power will gradually be broken, and the world will pass through times difficult and dangerous for humanity!
+\pg\ff[girl]Wow, these inscription talk about the creation of the universe! It was made by Arceus, who created the other Pokemon along with the rest of existence, but it seems that the balance of his power will gradually be broken, and the world will pass through times difficult and dangerous for humanity!
+\pg\ff[girl]Wow, these inscription talk about the creation of the universe! It was made by Arceus, who created the other Pokemon along with the rest of existence, but it seems that the balance of his power will gradually be broken, and the world will pass through times difficult and dangerous for humanity!
+\pg
+\pg
+\r\ff[profjasmine]...
+\r\ff[profjasmine]...
+\b\ff[Kaori]...
+\b\ff[Kaori]...
+\b\ff[ash]...
+\b\ff[ash]...
+\b\ff[Kaori]Okay, Fennel, I will destroy this old document now!
+\b\ff[Kaori]Okay, Fennel, I will destroy this old document now!
+\r\ff[profjasmine]I think I should do the same...
+\r\ff[profjasmine]I think I should do the same...
+\b\ff[Kaori]Rampados, use Zen Headbutt to destroy these writings!
+\b\ff[Kaori]Rampados, use Zen Headbutt to destroy these writings!
+\b\ff[Kaori]Go on, use Rain Dance!
+\b\ff[Kaori]Go on, use Rain Dance!
+\b\ff[Kaori]Okay, good job! Comeback!
+\b\ff[Kaori]Okay, good job! Comeback!
+\b\ff[Kaori]Fennel, now I have to deal with the Zhery League's issues.
+\b\ff[Kaori]Fennel, now I have to deal with the Zhery League's issues.
+\b\ff[Kaori]Ash and \PN..., I bid your farewell!
+\b\ff[Kaori]Ash and \PN..., I bid your farewell!
+\b\ff[Kaori]Goodbye!
+\b\ff[Kaori]Goodbye!
+\b\ff[ash]I am also going now, too. Goodbye, professor. If there are any problems, let me know immediately!
+\b\ff[ash]I am also going now, too. Goodbye, professor. If there are any problems, let me know immediately!
+\r\ff[profjasmine]Haha, champions are always busy! Let's go back to the institute, I also have a special gift for you.
+\r\ff[profjasmine]Haha, champions are always busy! Let's go back to the institute, I also have a special gift for you.
+\b\ff[steamgruntm]Well, well, professor! I was waiting for those two strong trainer to go away so that I could force you to give me the secrets of the universe's creation.
+\b\ff[steamgruntm]Well, well, professor! I was waiting for those two strong trainer to go away so that I could force you to give me the secrets of the universe's creation.
+\r\ff[profjasmine]You'll never learn it!
+\r\ff[profjasmine]You'll never learn it!
+\b\ff[steamgruntm]Prepare to face the fury of Team Steam! Go, Poochyena!!!
+\b\ff[steamgruntm]Prepare to face the fury of Team Steam! Go, Poochyena!!!
+\r\ff[profjasmine]Hey \PN, I'm busy keeping research papers at the moment. Take a Pokeball from my bag and use it to fight him!
+\r\ff[profjasmine]Hey \PN, I'm busy keeping research papers at the moment. Take a Pokeball from my bag and use it to fight him!
+\pg\ff[boy]...(-_-)
+\pg\ff[boy]...(-_-)
+\pg\ff[girl]...(-_-)
+\pg\ff[girl]...(-_-)
+\r\ff[profjasmine]Quickly, \PN! Get one of those Pokeballs!
+\r\ff[profjasmine]Quickly, \PN! Get one of those Pokeballs!
+\r\ff[profjasmine]It's a powerful pokemon, use it to fight. I believe in you.
+\r\ff[profjasmine]It's a powerful pokemon, use it to fight. I believe in you.
+\b\ff[steamgruntm]Well, professor, this time you were lucky, but next time I'll kidnap you! And from this point on, \PN is on Team Steam's hitlist!
+\b\ff[steamgruntm]Well, professor, this time you were lucky, but next time I'll kidnap you! And from this point on, \PN is on Team Steam's hitlist!
+\r\ff[profjasmine]Thank you very much, but now Team Steam will be after you, so I'll give you this Pokemon to protect yourself. Take care and train hard to challenge the Zhery League, and always be ready to fight Team Steam!
+\r\ff[profjasmine]Thank you very much, but now Team Steam will be after you, so I'll give you this Pokemon to protect yourself. Take care and train hard to challenge the Zhery League, and always be ready to fight Team Steam!
+\r\ff[profjasmine]Okay, \PN, let's go back to my lab in our town.
+\r\ff[profjasmine]Okay, \PN, let's go back to my lab in our town.
+Yes
+Yes
+No
+No
+Paldea
+Paldea
+Galar
+Galar
+Alola
+Alola
+Kalos
+Kalos
+Unova
+Unova
+Sinnoh
+Sinnoh
+Hoenn
+Hoenn
+Johto
+Johto
+Kanto
+Kanto

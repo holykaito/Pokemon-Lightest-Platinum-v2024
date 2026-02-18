@@ -1,0 +1,8 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map002]
+\bThese doors are examples of good, solid door events.
+\bThese doors are examples of good, solid door events.
+\bWhen the player goes outside, be sure to transfer the player onto the door rather than next to it. It looks better that way.
+\bWhen the player goes outside, be sure to transfer the player onto the door rather than next to it.  It looks better that way.

@@ -1,0 +1,11 @@
+﻿Name       = Innate Abilities
+Version    = 1.1
+Essentials = 21.1
+Optional   = Generation 9 Pack,1.0
+Website    = https://reliccastle.com/resources/1233/
+Credits    = DemICE
+#Honestly credits entirely to DemICE for making the All Abilities Mutation. I just made a separate ability list
+#Cangelog
+#=================v1.1=============
+#*Fixed the problem with the gen 9 pack having moves learned at -1 level. Now -1 levels are an accpeted value
+#*Fixed damage altering abilities that use the DamageCalcFromTarget and DamageCalcFromTargetNonIgnorable flag

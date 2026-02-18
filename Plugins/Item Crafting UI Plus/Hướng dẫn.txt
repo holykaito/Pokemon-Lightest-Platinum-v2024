@@ -1,0 +1,31 @@
+//Xác định một Công thức
+recipes.txt bao gồm một số thành phần
+
+[BreakMaxRevive]
+Item=REVIVE
+Yield=5
+Ingredients=MAXREVIVE,1
+Flags=Crafting
+
+//Một công thức bao gồm tên của nó (BreakMaxRevive), mặt hàng được sản xuất ( REVIVE), số lượng mặt hàng được sản xuất từ ​​1 bộ nguyên liệu (mặc định là 1 nếu không được bao gồm), thành phần (ID mặt hàng hoặc flag và số lượng) và một flag.
+Nếu Thành phần là ID mặt hàng hợp lệ thì nó được coi là một mặt hàng, nếu không thì nó được coi là cờ mặt hàng (từ items.txt)
+
+INI:
+[BerryJuice]
+Item=BERRYJUICE
+Ingredients=Berry,1
+Flags=Cooking
+
+//Một thành phần chung được tiêu thụ theo thứ tự giá rẻ nhất và nếu hai mặt hàng tiềm năng có cùng mức giá thì thành phần đó sẽ được tiêu thụ theo thứ tự được xác định trong items.txt (với những mặt hàng được xác định trước đó sẽ được tiêu thụ trước).
+
+//Công thức mở khóa & khóa
+Công thức nấu ăn có thể được mở khóa bằng pbUnlockRecipe(recipe_id), recipe_id tên món từ đâu recipes.txt. pbUnlockRecipe(:BerryJuice)mở khóa công thức BerryJuice.
+Công thức nấu ăn có thể bị khóa bằng cách sử dụng pbLockRecipe(recipe_id). pbLockRecipe(:BerryJuice)khóa Công thức BerryJuice.
+
+//Sử dụng Item Crafter
+Hình thức gọi đơn giản nhất của Item Crafter là pbItemCrafter(pbGetRecipes). pbGetRecipestrả về một mảng gồm tất cả các ID Công thức đã được mở khóa. Nó cũng có thể được gọi bằng một chuỗi cờ pbGetRecipes("Cooking"), để chỉ lọc các Công thức nấu ăn có cờ Nấu ăn.
+
+//Thành phần chung
+Thành phần chung sử dụng cờ vật phẩm thay vì vật phẩm thông thường. Để tạo điều kiện thuận lợi cho việc này, một self.flag_icon_filenamephương thức mới được thêm vào GameData::Item, phương thức này sẽ kéo một hình ảnh có tên là cờ tương ứng (bằng chữ thường) từ Graphics\Items\Category. Vì vậy thành phần Berry chung sẽ sử dụng tên tệp Graphics\Items\Category\berry.
+
+//Các thành phần chung theo mặc định sử dụng cờ làm tên của thành phần. Nếu điều này không phù hợp, bạn có thể thêm cờ (bằng chữ thường) vào FLAG_TO_TEXTin 001_UI_ItemCrafting.rb, để xác định tên người dùng khác, chẳng hạn như "Any Berry" cho Berry.

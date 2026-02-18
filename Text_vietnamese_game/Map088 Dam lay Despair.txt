@@ -1,0 +1,46 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map088]
+\bFinally, someone came to this swamp! I challenge you to battle!
+\bFinally, someone came to this swamp! I challenge you to battle!
+\bTrainers overcome their limitations by using ever more powerful techniques.
+\bTrainers overcome their limitations by using ever more powerful techniques.
+\bI've lost many battles, but I want to show the world that anyone can be a good a trainer.
+\bI've lost many battles, but I want to show the world that anyone can be a good a trainer.
+\b\ff[blue]It's been a while! I was lost in this swamp, running around in circles, and I ended up here.
+\b\ff[blue]It's been a while! I was lost in this swamp, running around in circles, and I ended up here.
+\b\ff[blue]There are many strong Pokémon, though, and I trained a lot. I'll show you!
+\b\ff[blue]There are many strong Pokémon, though, and I trained a lot. I'll show you!
+\b\ff[blue]Well, you seem to have the same amount of badges that I do. Let's go to the second GYM soon!
+\b\ff[blue]Well, you seem to have the same amount of badges that I do. Let's go to the second GYM soon!
+\bTo lurk in shadows, and live in darkness. That is my destiny. I emerge to challenge you!
+\bTo lurk in shadows, and live in darkness. That is my destiny. I emerge to challenge you!
+\bI admit defeat!
+\bI admit defeat!
+\bThose defeated in battle withdraw quietly back into the shadows. That, too, is destiny.
+\bThose defeated in battle withdraw quietly back into the shadows. That, too, is destiny.
+\bOn this route, CROAGUNK are frequently sighted because they love the constant rainfall here.
+\bOn this route, CROAGUNK are frequently sighted because they love the constant rainfall here.
+\bI'll heal your Pokémon, but battle me first.
+\bI'll heal your Pokémon, but battle me first.
+\bI have to practice now.
+\bI have to practice now.
+\bI will quickly heal your Pokémon.
+\bI will quickly heal your Pokémon.
+\bDone, remember to take good care of them, come back when needed.
+\bDone, remember to take good care of them, come back when needed.
+\bIt's not uncommon to see MAGIKARP in these wetlands.
+\bIt's not uncommon to see MAGIKARP in these wetlands.
+\bBattling is a true work of art. Get ready to lose.
+\bBattling is a true work of art. Get ready to lose.
+\bI see. My failure is your success.
+\bI see. My failure is your success.
+\bMany items will make your Pokémon get stronger, like Protein.
+\bMany items will make your Pokémon get stronger, like Protein.
+\rI'll show you the result of my Pokémon's special training.
+\rI'll show you the result of my Pokémon's special training.
+\rAll those attacks show that you know lots about Pokémon
+\rAll those attacks show that you know lots about Pokémon
+\rAt the end, everyone should know that a good Pokémon is one that has the love of its trainer.
+\rAt the end, everyone should know that a good Pokémon is one that has the love of its trainer.

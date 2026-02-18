@@ -1,0 +1,72 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map086]
+\rHey, you! Watch out for these Munchlax. They seem to have been asleep for a long time.
+\rHey, you! Watch out for these Munchlax. They seem to have been asleep for a long time.
+\rThey'll only wake up to the smell of food, and this Pokémon's favorite food is the HONEY sold in Inhore City.
+\rThey'll only wake up to the smell of food, and this Pokémon's favorite food is the HONEY sold in Inhore City.
+\rI'm the owner of the shop that sells honey in the city. Come back with me to buy some so that you can awaken these slumbering Munchlax.
+\rI'm the owner of the shop that sells honey in the city. Come back with me to buy some so that you can awaken these slumbering Munchlax.
+\b\ff[hilbert]It's been a while, \pn! Finally, I've found you again! Let's have a Pokémon battle!
+\b\ff[hilbert]It's been a while, \pn! Finally, I've found you again! Let's have a Pokémon battle!
+\b\ff[hilbert]Another victory for you! I think you're getting really good!
+\b\ff[hilbert]Another victory for you! I think you're getting really good!
+\b\ff[hilbert]Very good, \pn! Since I still need the first badge, I'm going to go back to Inhore City and get it. When I went through the first time, the gym was closed. Good luck, I'm off!
+\b\ff[hilbert]Very good, \pn! Since I still need the first badge, I'm going to go back to Inhore City and get it. When I went through the first time, the gym was closed. Good luck, I'm off!
+\rWe battle together as one team.
+\rWe battle together as one team.
+\rOh, we lost!
+\rOh, we lost!
+\rWe work perfectly together, me and my big sister. But we still lost.
+\rWe work perfectly together, me and my big sister. But we still lost.
+Do you want to use Honey to wake up Munchlax?
+Do you want to use Honey to wake up Munchlax?
+... ... ...
+... ... ...
+Snorlax has woken up!
+Snorlax has woken up!
+Munchlax is sleeping...
+Munchlax is sleeping...
+\rLet's fight. I've been waiting for a trainer for hours!
+\rLet's fight. I've been waiting for a trainer for hours!
+\rKnowing when to admit defeat is a way to learn how to improve.
+\rKnowing when to admit defeat is a way to learn how to improve.
+\rMy friend has many cute Pokémon. I'm so jealous!
+\rMy friend has many cute Pokémon. I'm so jealous!
+\bI've lived here for more than twenty years and I've always enjoyed the wildlife. MILTANKS always appear calm and content, eating grass.
+\bI've lived here for more than twenty years and I've always enjoyed the wildlife. MILTANKS always appear calm and content, eating grass.
+\bThose Snorlaxs were blocking the way across Nyan Bridge. I was worried because they seemed too strong to be defeated.
+\bThose Snorlaxs were blocking the way across Nyan Bridge. I was worried because they seemed too strong to be defeated.
+\rYou can tour this farm. Come in!
+\rYou can tour this farm. Come in!
+\rRoute A6 is a large swamp. Be careful. Many trainers have gotten lost in there.
+\rRoute A6 is a large swamp. Be careful. Many trainers have gotten lost in there.
+\rI'm expecting a good harvest this year, as we've had a lot of rain in recent months.
+\rI'm expecting a good harvest this year, as we've had a lot of rain in recent months.
+\bThe country is a great place to live in harmony with nature and learn the meanings of peace and harmony.
+\bThe country is a great place to live in harmony with nature and learn the meanings of peace and harmony.
+"Cow's milk can help Pokemon restore HP, and it is very cheap."
+"Cow's milk can help Pokemon restore HP, and it is very cheap."
+\bLet's fight. I've been waiting for a trainer for hours!
+\bLet's fight. I've been waiting for a trainer for hours!
+\bIt's not always possible to win. I know this because there are even stronger trainers out there.
+\bIt's not always possible to win. I know this because there are even stronger trainers out there.
+\bI've won more than one hundred battles againd wild Pokémon, but trainers always seem more and more difficult to beat.
+\bI've won more than one hundred battles againd wild Pokémon, but trainers always seem more and more difficult to beat.
+\rExploring a cave isn't like walking on a road. You never know when wild Pokémon will appear. It's full of suspense.
+\rExploring a cave isn't like walking on a road. You never know when wild Pokémon will appear. It's full of suspense.
+Route A6 - Lactescent Field
+Route A6 - Lactescent Field
+\rThe atmosphere here is great for painting and fighting, isn't it?
+\rThe atmosphere here is great for painting and fighting, isn't it?
+\rAfter all I did to paint it!
+\rAfter all I did to paint it!
+\rI think I should focus on drawing more.
+\rI think I should focus on drawing more.
+\rWe work perfectly together, me and my little sister. But we still lost.
+\rWe work perfectly together, me and my little sister. But we still lost.
+Yes
+Yes
+No
+No

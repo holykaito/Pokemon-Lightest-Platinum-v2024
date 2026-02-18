@@ -1,0 +1,38 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[TRAINER_SPEECHES_LOSE]
+I will take revenge next time!
+I will take revenge next time!
+Very good.
+Very good.
+A very good battle, indeed!
+A very good battle, indeed!
+Ôi không... bọ của tớ bị đè bẹp rồi...
+Ôi không... bọ của tớ bị đè bẹp rồi...
+Ơ... Không thể nào! Tớ đã luyện chăm lắm mà!
+Ơ... Không thể nào! Tớ đã luyện chăm lắm mà!
+Ối... Lũ bọ của tớ bị cho ra rìa rồi...
+Ối... Lũ bọ của tớ bị cho ra rìa rồi...
+You are lucky!
+You are lucky!
+What a beautiful victory! You're a great trainer.
+What a beautiful victory! You're a great trainer.
+Tch! I took you too lightly!
+Tch! I took you too lightly!
+Uww... I blew it.
+Uww... I blew it.
+Pretty impressive! I'm sure you can go anywhere with that skill!
+Pretty impressive! I'm sure you can go anywhere with that skill!
+Oh... I lost...
+Oh... I lost...
+Argh, I can't do anymore...
+Argh, I can't do anymore...
+Wow, you're too good!
+Wow, you're too good!
+Heh, I guess I didn't try hard enough.
+Heh, I guess I didn't try hard enough.
+Gwa ha ha! I lost.
+Gwa ha ha! I lost.
+I should've guessed you would cheat.
+I should've guessed you would cheat.

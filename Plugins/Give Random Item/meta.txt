@@ -1,0 +1,5 @@
+Name         = Give Random Item
+Version      = 1.0.0
+Essentials   = 20.1
+Optional     = Give Random Item
+Credits      = Kobi2604

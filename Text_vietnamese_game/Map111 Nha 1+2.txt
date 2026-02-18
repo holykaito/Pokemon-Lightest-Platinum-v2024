@@ -1,0 +1,14 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map111]
+\bThere are rumors that Team Steam is after legendary Pokémon.
+\bThere are rumors that Team Steam is after legendary Pokémon.
+\bBug-catching boils down to just how skilled your Pokémon is. It can be very complex.
+\bBug-catching boils down to just how skilled your Pokémon is. It can be very complex.
+\bI like to watch Pokémon Tournaments on TV.
+\bI like to watch Pokémon Tournaments on TV.
+\bLook! Cynthia is so beautiful when she battles.
+\bLook! Cynthia is so beautiful when she battles.
+\rI'm sure I'll find a good Pokémon trainer to battle someday!
+\rI'm sure I'll find a good Pokémon trainer to battle someday!

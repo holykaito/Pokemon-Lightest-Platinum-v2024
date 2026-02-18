@@ -1,0 +1,592 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[TEAMSTEAMGRUNT_M,Talor]
+LoseText = I will take revenge next time!
+Pokemon = ZIGZAGOON,2
+    Form = 1
+#-------------------------------
+[STEAMADMIN_Shirley,Shirley]
+LoseText = I will take revenge next time!
+Pokemon = ARCANINE,60
+    Form = 1
+    Moves = FLAREBLITZ,HEADSMASH
+    IV = 25,25,25,25,25,25
+    EV = 0,100,0,100,100,0
+    TeraType = FIRE
+#-------------------------------
+[LEADER_Esmaralda,Esmaralda]
+Items = SUPERPOTION
+LoseText = Very good.
+Pokemon = MARACTUS,25
+    Moves = NEEDLEARM,DRAINPUNCH,COTTONSPORE,GRASSWHISTLE
+    AbilityIndex = 2
+    IV = 20,20,20,20,20,20
+Pokemon = QUILLADIN,25
+    Moves = GRASSYGLIDE,ROCKTOMB,LOWSWEEP,PINMISSILE
+    AbilityIndex = 1
+    IV = 20,20,20,20,20,20
+Pokemon = CHERRIM,26
+    Form = 1
+    Moves = GIGADRAIN,SLEEPPOWDER,DRAININGKISS,WEATHERBALL
+    AbilityIndex = 0
+    IV = 20,20,20,20,20,20
+Pokemon = ROSERADE,27
+    Moves = GIGADRAIN,VENOSHOCK,ANCIENTPOWER,GRASSWHISTLE
+    AbilityIndex = 4
+    Item = SITRUSBERRY
+    IV = 20,20,20,20,20,20
+    Ball = SAFARIBALL
+    TeraType = GRASS
+#-------------------------------
+[COOLTRAINER_M,Year]
+Items = MEGARING
+LoseText = Very good.
+Pokemon = GYARADOS,60
+    Moves = CRUNCH,WATERFALL,EARTHQUAKE,THRASH
+    AbilityIndex = 0
+    Item = CHOICEBAND
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+Pokemon = HOUNDOOM,60
+    Moves = SLUDGEBOMB,SOLARBEAM,INFERNO,DESTINYBOND
+    AbilityIndex = 0
+    Item = SITRUSBERRY
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = VENUSAUR,60
+    Moves = SLEEPPOWDER,SLUDGEBOMB,SOLARBEAM,EARTHQUAKE
+    AbilityIndex = 0
+    Item = VENUSAURITE
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = ESPEON,60
+    Moves = SHADOWBALL,PSYCHIC,DAZZLINGGLEAM,MORNINGSUN
+    AbilityIndex = 0
+    Item = PSYCHICGEM
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = FEAROW,60
+    Name = Fero
+    Moves = DRILLRUN,DRILLPECK,QUICKATTACK,FOCUSENERGY
+    AbilityIndex = 4
+    Item = SCOPELENS
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+    Shiny = true
+    TeraType = FLYING
+Pokemon = SCOLIPEDE,60
+    Moves = SWORDSDANCE,MEGAHORN,ROLLOUT,PROTECT
+    AbilityIndex = 4
+    Item = LIFEORB
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+#-------------------------------
+[COOLTRAINER_M,Akashi]
+Items = MEGARING
+LoseText = Very good.
+Pokemon = DRAGAPULT,60
+    Moves = DRAGONDANCE,DRAGONDARTS,SUCKERPUNCH,PHANTOMFORCE
+    AbilityIndex = 0
+    Item = MUSCLEBAND
+    Nature = ADAMANT
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+Pokemon = FERROTHORN,60
+    Moves = STEALTHROCK,LEECHSEED,GYROBALL,KNOCKOFF
+    AbilityIndex = 0
+    Item = ROCKYHELMET
+    Nature = RELAXED
+    IV = 25,25,25,25,25,25
+    EV = 0,0,252,0,0,252
+Pokemon = DRAGONITE,60
+    Moves = DRAGONDANCE,EXTREMESPEED,OUTRAGE,DUALWINGBEAT
+    AbilityIndex = 4
+    Item = WEAKNESSPOLICY
+    Nature = ADAMANT
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+    NoDynamax = true
+    TeraType = NORMAL
+Pokemon = AZUMARILL,60
+    Moves = AQUAJET,AQUATAIL,PLAYROUGH,SUPERPOWER
+    AbilityIndex = 1
+    Item = SITRUSBERRY
+    Nature = ADAMANT
+    IV = 25,25,25,25,25,25
+    EV = 152,252,0,100,0,0
+Pokemon = SCIZOR,60
+    Moves = BULLETPUNCH,ROOST,SWORDSDANCE,KNOCKOFF
+    AbilityIndex = 0
+    Item = SCIZORITE
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+Pokemon = STARAPTOR,60
+    Moves = BRAVEBIRD,CLOSECOMBAT,DOUBLEEDGE,FINALGAMBIT
+    AbilityIndex = 4
+    Item = LIFEORB
+    Nature = ADAMANT
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+#-------------------------------
+[COOLTRAINER_M,SamNau]
+Items = MEGARING
+LoseText = Very good.
+Pokemon = PELIPPER,60
+    Moves = HURRICANE,HYDROPUMP,UTURN,SEEDBOMB
+    AbilityIndex = 1
+    Item = CHOICESCARF
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = SWAMPERT,60
+    Moves = WATERFALL,FLIPTURN,ICEPUNCH,EARTHQUAKE
+    AbilityIndex = 0
+    Item = SWAMPERTITE
+    Nature = ADAMANT
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+Pokemon = SCIZOR,60
+    Moves = BULLETPUNCH,XSCISSOR,WINGATTACK,SWORDSDANCE
+    AbilityIndex = 4
+    Item = ROCKYHELMET
+    IV = 25,25,25,25,25,25
+    EV = 0,252,152,0,0,100
+Pokemon = MILOTIC,60
+    Moves = SCALD,RECOVER,ICEBEAM,DRAGONTAIL
+    AbilityIndex = 0
+    Item = FLAMEORB
+    IV = 25,25,25,25,25,25
+    EV = 152,252,0,100,0,0
+Pokemon = LINOONE,60
+    Name = Arceus
+    Moves = CUT,ROCKSMASH,STRENGTH,SURF
+    AbilityIndex = 4
+    Item = SITRUSBERRY
+    IV = 25,25,25,25,25,25
+    EV = 252,0,0,252,0,0
+    Happiness = 255
+Pokemon = SALAMENCE,60
+    Moves = DRAGONCLAW,FLAMETHROWER,DRAGONDANCE,ZENHEADBUTT
+    AbilityIndex = 4
+    Item = DRAGONGEM
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+#-------------------------------
+[COOLTRAINER_F,Vthun]
+Items = MEGARING
+LoseText = Very good.
+Pokemon = MAGNEZONE,60
+    Moves = THUNDERWAVE
+    AbilityIndex = 0
+    Item = REPEL
+    IV = 31,30,31,30,30,31
+    EV = 252,0,0,252,4,0
+Pokemon = LEAFEON,60
+    Moves = LEAFBLADE,SWORDSDANCE,SYNTHESIS,KNOCKOFF
+    AbilityIndex = 0
+    Item = LEFTOVERS
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+Pokemon = GALLADE,60
+    Moves = CLOSECOMBAT,PSYCHOCUT,KNOCKOFF,SWORDSDANCE
+    Ability = JUSTIFIED
+    Item = GALLADITE
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+Pokemon = TYPHLOSION,60
+    Moves = ERUPTION,FOCUSBLAST,EXTRASENSORY,HIDDENPOWER
+    AbilityIndex = 0
+    Item = CHOICESCARF
+    IV = 30,31,31,31,30,31
+    EV = 0,0,0,252,252,0
+Pokemon = SWELLOW,60
+    Moves = BRAVEBIRD,FACADE,UTURN,PROTECT
+    Ability = GUTS
+    Item = TOXICORB
+    IV = 25,25,25,25,25,25
+    EV = 0,252,0,252,0,0
+Pokemon = PROBOPASS,60
+    Moves = POWERGEM,FLASHCANNON,EARTHPOWER,MIRRORCOAT
+    Ability = MAGNETPULL
+    Item = LEFTOVERS
+    IV = 25,25,25,25,25,25
+    EV = 0,0,100,0,152,252
+#-------------------------------
+[COOLTRAINER_M,Vincent]
+Items = MEGARING
+LoseText = A very good battle, indeed!
+Pokemon = GRENINJA,60
+    Moves = SURF,ICEBEAM,DARKPULSE,HYDROPUMP
+    Item = LIFEORB
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = AEGISLASH,60
+    Moves = SHADOWSNEAK,KINGSSHIELD,SACREDSWORD,SWORDSDANCE
+    AbilityIndex = 0
+    Item = LEFTOVERS
+    IV = 25,25,25,25,25,25
+    EV = 252,252,0,0,0,0
+Pokemon = ZOROARK,60
+    Moves = NIGHTDAZE,COUNTER,NASTYPLOT,TAUNT
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = HARIYAMA,60
+    Moves = FAKEOUT,SEISMICTOSS,DIZZYPUNCH,CLOSECOMBAT
+    Item = BLACKBELT
+    IV = 25,25,25,25,25,25
+    EV = 252,252,0,0,0,0
+Pokemon = NOIVERN,60
+    Moves = DRACOMETEOR,HURRICANE,BOOMBURST,FIREBLAST
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = GARDEVOIR,60
+    Moves = PSYCHIC,DRAININGKISS,DOUBLETEAM,SHADOWBALL
+    Item = GARDEVOIRITE
+    IV = 25,25,25,25,25,25
+    EV = 0,0,0,252,252,0
+Pokemon = ZIGZAGOON,2
+    Form = 1
+#-------------------------------
+[BUGCATCHER,Jose]
+LoseText = Ôi không... bọ của tớ bị đè bẹp rồi...
+Pokemon = CATERPIE,2
+Pokemon = WURMPLE,2
+Pokemon = SCATTERBUG,2
+#-------------------------------
+[YOUNGSTER,Juan]
+LoseText = Ơ... Không thể nào! Tớ đã luyện chăm lắm mà!
+Pokemon = PIDGEY,2
+Pokemon = ELECTRIKE,2
+Pokemon = BLITZLE,2
+#-------------------------------
+[BUGCATCHER,Matt]
+LoseText = Ối... Lũ bọ của tớ bị cho ra rìa rồi...
+Pokemon = KRICKETOT,3
+Pokemon = CATERPIE,3
+Pokemon = WURMPLE,3
+#-------------------------------
+[LASS,Adele]
+LoseText = A very good battle, indeed!
+Pokemon = SPRITZEE,4
+Pokemon = CETODDLE,4
+Pokemon = PACHIRISU,4
+#-------------------------------
+[YOUNGSTER,Timmy]
+LoseText = A very good battle, indeed!
+Pokemon = DUCKLETT,5
+Pokemon = FIDOUGH,5
+Pokemon = CACNEA,5
+#-------------------------------
+[BUGCATCHER,Vicky]
+LoseText = A very good battle, indeed!
+Pokemon = VENONAT,6
+Pokemon = SURSKIT,6
+Pokemon = DOTTLER,6
+#-------------------------------
+[AROMALADY,Kathy]
+LoseText = A very good battle, indeed!
+Pokemon = AXEW,6
+Pokemon = ZIGZAGOON,6
+    Form = 1
+Pokemon = FLITTLE,6
+#-------------------------------
+[LASS,Elisa]
+LoseText = A very good battle, indeed!
+Pokemon = SKITTY,7
+Pokemon = FERROSEED,7
+Pokemon = GOSSIFLEUR,7
+#-------------------------------
+[HIKER,Nicole]
+LoseText = A very good battle, indeed!
+Pokemon = TIMBURR,7
+Pokemon = SMOOCHUM,7
+Pokemon = SALANDIT,7
+#-------------------------------
+[POKEMONTRAINER_Blue,Blue,1]
+LoseText = You are lucky!
+Pokemon = NIDORANmA,9
+Pokemon = GROWLITHE,9
+Pokemon = EEVEE,10
+Pokemon = SQUIRTLE,11
+#-------------------------------
+[BUGCATCHER,Raymond]
+LoseText = A very good battle, indeed!
+Pokemon = CASCOON,8
+Pokemon = KRICKETOT,8
+Pokemon = BURMY,8
+#-------------------------------
+[RICHBOY,Spencer]
+LoseText = A very good battle, indeed!
+Pokemon = HATENNA,9
+Pokemon = PHANPY,9
+Pokemon = HOOTHOOT,9
+#-------------------------------
+[BACKPACKER_M,Brent]
+LoseText = A very good battle, indeed!
+Pokemon = SKWOVET,9
+Pokemon = MISDREAVUS,9
+Pokemon = DUNSPARCE,9
+#-------------------------------
+[BUGCATCHER,Lamar]
+LoseText = A very good battle, indeed!
+Pokemon = COMBEE,10
+Pokemon = GRUBBIN,10
+Pokemon = SURSKIT,10
+#-------------------------------
+[BUGCATCHER,Cameron]
+LoseText = A very good battle, indeed!
+Pokemon = SPINARAK,10
+Pokemon = BURMY,10
+Pokemon = NYMBLE,10
+#-------------------------------
+[YOUNGSTER,Felipe]
+LoseText = A very good battle, indeed!
+Pokemon = PATRAT,11
+Pokemon = PIKIPEK,11
+Pokemon = ARON,11
+#-------------------------------
+[BEAUTY,Margarita]
+LoseText = A very good battle, indeed!
+Pokemon = SHUPPET,11
+Pokemon = SWIRLIX,11
+Pokemon = CUBONE,11
+#-------------------------------
+[BUGCATCHER,Ramiro]
+LoseText = A very good battle, indeed!
+Pokemon = NINCADA,11
+Pokemon = VENONAT,11
+Pokemon = BUTTERFREE,11
+#-------------------------------
+[TEAMSTEAMGRUNT_M,Senth]
+LoseText = I will take revenge next time!
+Pokemon = DUSKULL,13
+Pokemon = MANKEY,13
+Pokemon = REMORAID,13
+#-------------------------------
+[TEAMSTEAMGRUNT_F,Lesla]
+LoseText = I will take revenge next time!
+Pokemon = VULPIX,13
+Pokemon = TANGELA,13
+Pokemon = TIMBURR,13
+#-------------------------------
+[TEAMSTEAMGRUNT_M,Nikon]
+LoseText = I will take revenge next time!
+Pokemon = LECHONK,13
+Pokemon = KLINK,13
+Pokemon = SNORUNT,13
+#-------------------------------
+[STEAMADMIN_Sheila,Sheila]
+LoseText = I will take revenge next time!
+Pokemon = SKITTY,15
+Pokemon = SHELLOS_1,15
+Pokemon = GOTHITA,16
+Pokemon = TREVENANT,18
+#-------------------------------
+[POKEMONTRAINER_Blue,Blue]
+LoseText = A very good battle, indeed!
+Pokemon = PIDGEY,17
+Pokemon = EEVEE,18
+Pokemon = GROWLITHE,17
+Pokemon = WARTORTLE,18
+#-------------------------------
+[YOUNGSTER,Joel]
+LoseText = A very good battle, indeed!
+Pokemon = CRABRAWLER,18
+Pokemon = FRIGIBAX,18
+Pokemon = CUFANT,18
+#-------------------------------
+[POKEMONTRAINER_Brendan,Brendan]
+LoseText = A very good battle, indeed!
+Pokemon = MIGHTYENA,20
+Pokemon = ARON,20
+Pokemon = GROVYLE,21
+#-------------------------------
+[POKEMONTRAINER_May,May]
+LoseText = A very good battle, indeed!
+Pokemon = BEAUTIFLY,20
+Pokemon = SKITTY,20
+Pokemon = COMBUSKEN,21
+#-------------------------------
+[LASS,Colleen]
+LoseText = A very good battle, indeed!
+Pokemon = NOSEPASS,18
+Pokemon = RIOLU,18
+Pokemon = BUNEARY,18
+#-------------------------------
+[BIRDKEEPER,Lester]
+LoseText = A very good battle, indeed!
+Pokemon = FLETCHLING,19
+Pokemon = STARAVIA,19
+Pokemon = RUFFLET,19
+#-------------------------------
+[ROCKER,Elvin]
+LoseText = A very good battle, indeed!
+Pokemon = VOLTORB,19
+Pokemon = TADBULB,19
+Pokemon = MINUN,19
+#-------------------------------
+[COWGIRL,Sue]
+LoseText = A very good battle, indeed!
+Pokemon = SKIPLOOM,20
+Pokemon = GLAMEOW,20
+Pokemon = CHINCHOU,20
+#-------------------------------
+[POKEMONTRAINER_Hilbert,Hilbert,2]
+LoseText = A very good battle, indeed!
+Pokemon = RUFFLET,20
+Pokemon = ROGGENROLA,20
+Pokemon = JOLTIK,20
+Pokemon = MUSHARNA,21
+Pokemon = PIGNITE,22
+#-------------------------------
+[YOUNGSTER,Horace]
+LoseText = A very good battle, indeed!
+Pokemon = ELGYEM,20
+Pokemon = CAPSAKID,20
+Pokemon = SALANDIT,20
+#-------------------------------
+[PAINTER,Clara]
+LoseText = A very good battle, indeed!
+Pokemon = NICKIT,20
+Pokemon = SPOINK,20
+Pokemon = DUSTOX,20
+#-------------------------------
+[TWINS,Kelly&Eula]
+LoseText = A very good battle, indeed!
+Pokemon = STEENEE,20
+Pokemon = MISDREAVUS,20
+Pokemon = CLEFFA,20
+Pokemon = BARBOACH,20
+#-------------------------------
+[POKEMONTRAINER_Selene,Selene]
+LoseText = A very good battle, indeed!
+Pokemon = GRIMER,22
+    Form = 1
+Pokemon = CHARJABUG,22
+Pokemon = MAREANIE,22
+Pokemon = DARTRIX,23
+#-------------------------------
+[POKEMONTRAINER_Blue,Blue,2]
+LoseText = What a beautiful victory! You're a great trainer.
+Pokemon = PIDGEOTTO,23
+Pokemon = GROWLITHE,23
+Pokemon = KADABRA,23
+Pokemon = EEVEE,23
+Pokemon = WARTORTLE,24
+#-------------------------------
+[NINJABOY,Tyrone]
+LoseText = A very good battle, indeed!
+Pokemon = DREEPY,21
+Pokemon = GULPIN,21
+Pokemon = FARFETCHD,21
+#-------------------------------
+[COOLTRAINER_M,Ernest]
+LoseText = A very good battle, indeed!
+Pokemon = ARROKUDA,21
+Pokemon = FERROSEED,21
+Pokemon = CORVISQUIRE,21
+Pokemon = PANCHAM,21
+Pokemon = GUMSHOOS,21
+#-------------------------------
+[YOUNGSTER,Darin]
+LoseText = A very good battle, indeed!
+Pokemon = PIKACHU,21
+Pokemon = MACHOP,21
+Pokemon = SANDYGAST,21
+#-------------------------------
+[DOCTOR,Emilio]
+LoseText = A very good battle, indeed!
+Pokemon = NIDORINO,22
+Pokemon = PORYGON,22
+Pokemon = CARBINK,22
+#-------------------------------
+[COOLTRAINER_F,Tina]
+LoseText = A very good battle, indeed!
+Pokemon = FINNEON,21
+Pokemon = DWEBBLE,21
+Pokemon = VENONAT,21
+Pokemon = SWABLU,21
+Pokemon = SABLEYE,21
+#-------------------------------
+[PICNICKER,Sofia]
+LoseText = A very good battle, indeed!
+Pokemon = BELLSPROUT,23
+Pokemon = GRIMER,23
+Pokemon = SKARMORY,23
+#-------------------------------
+[BUGCATCHER,Noah]
+LoseText = A very good battle, indeed!
+Pokemon = YANMA,23
+Pokemon = VOLBEAT,23
+Pokemon = DEWPIDER,23
+#-------------------------------
+[RANCHER,Gabriel]
+LoseText = A very good battle, indeed!
+Pokemon = CLOBBOPUS,23
+Pokemon = VESPIQUEN,23
+Pokemon = MUNCHLAX,23
+#-------------------------------
+[LASS,Isabella]
+LoseText = A very good battle, indeed!
+Pokemon = INKAY,23
+Pokemon = SWINUB,23
+Pokemon = LARVESTA,23
+#-------------------------------
+[FISHERMAN,Collins]
+LoseText = A very good battle, indeed!
+Pokemon = SEAKING,38
+Pokemon = MARSHTOMP,38
+Pokemon = LUVDISC,38
+#-------------------------------
+[FISHERMAN,Samuel]
+LoseText = A very good battle, indeed!
+Pokemon = SEADRA,38
+Pokemon = DRIZZILE,38
+Pokemon = CORSOLA,38
+#-------------------------------
+[FISHERMAN,Davis]
+LoseText = A very good battle, indeed!
+Pokemon = PALPITOAD,38
+Pokemon = SLOWBRO,38
+Pokemon = DEWOTT,38
+#-------------------------------
+[SWIMMER_F,Emily]
+LoseText = A very good battle, indeed!
+Pokemon = VAPOREON,38
+Pokemon = DREDNAW,38
+Pokemon = AZUMARILL,38
+#-------------------------------
+[SWIMMER_M,Miller]
+LoseText = A very good battle, indeed!
+Pokemon = GYARADOS,38
+Pokemon = BRUXISH,38
+Pokemon = QUAGSIRE,38
+#-------------------------------
+[YOUNGSTER,Christopher]
+LoseText = A very good battle, indeed!
+Pokemon = TYNAMO,24
+Pokemon = DEERLING,24
+Pokemon = SPHEAL,24
+#-------------------------------
+[POKEMONRANGER_F,Olivia]
+LoseText = A very good battle, indeed!
+Pokemon = LOUDRED,24
+Pokemon = BOLTUND,24
+Pokemon = WORMADAM,24
+#-------------------------------
+[POKEMONRANGER_F,Eva]
+LoseText = A very good battle, indeed!
+Pokemon = DOLLIV,24
+Pokemon = JIGGLYPUFF,24
+Pokemon = BEAUTIFLY,24
+#-------------------------------
+[YOUNGSTER,Test]
+Items = MEGARING
+LoseText = A very good battle, indeed!
+Pokemon = DRAMPA,60
+    Item = DRAMPANITE
+#-------------------------------
+[MAGE_Frieren,Frieren]
+Items = MEGARING
+LoseText = A very good battle, indeed!
+Pokemon = AMPHAROS,60
+    Item = AMPHAROSITE

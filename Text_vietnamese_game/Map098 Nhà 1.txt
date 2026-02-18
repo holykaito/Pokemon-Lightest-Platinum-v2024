@@ -1,0 +1,10 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map098]
+\bThere's a show about POKéMON on TV.
+\bThere's a show about POKéMON on TV.
+\bI learned that FIRE POKéMON are strong against GRASS types, but have a weakness to WATER types, which in turn have a weakness to GRASS.
+\bI learned that FIRE POKéMON are strong against GRASS types, but have a weakness to WATER types, which in turn have a weakness to GRASS.
+\rTo become a MASTER, you have to be skilled, and capture many POKéMON from all over ZHERY.
+\rTo become a MASTER, you have to be skilled, and capture many POKéMON from all over ZHERY.

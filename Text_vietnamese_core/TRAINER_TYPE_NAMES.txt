@@ -1,0 +1,100 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[TRAINER_TYPE_NAMES]
+Pokémon Trainer
+Huấn luyện viên 
+Rival
+Đối thủ
+Aroma Lady
+Quý cô hương hoa
+Beauty
+Người đẹp
+Biker
+Dân mô tô
+Bird Keeper
+Người nuôi chim
+Bug Catcher
+Người bắt côn trùng
+Burglar
+Kẻ trộm
+Channeler
+Bà đồng
+Cue Ball
+Tên trọc
+Engineer
+Kỹ sư
+Fisherman
+Ngư dân
+Gambler
+Con bạc
+Gentleman
+Quý ông
+Hiker
+Dân đi bộ
+Juggler
+Nghệ sĩ tung hứng
+Lady
+Tiểu thư
+Painter
+Họa sĩ
+Poké Maniac
+Kẻ cuồng PKM
+Pokémon Breeder
+Người gây giống PKM
+Professor
+Giáo sư
+Rocker
+Dân Rock
+Ruin Maniac
+Kẻ cuồng khám phá
+Sailor
+Thủy thủ
+Scientist
+Nhà khoa học
+Super Nerd
+Siêu mọt sách
+Tamer
+Người thuần hóa
+Black Belt
+Võ sư đai đen
+Crush Girl
+Cô nàng võ sĩ
+Camper
+Người cắm trại
+Picnicker
+Người dã ngoại
+Cool Trainer
+Huấn luyện viên lão luyện
+Youngster
+Nhóc con
+Lass
+Cô bé
+Pokémon Ranger
+Kiểm lâm PKM
+Psychic
+Nhà ngoại cảm
+Swimmer
+Vận động viên bơi lội
+Tuber
+Nhóc nghịch nước
+Cool Couple
+Cặp đôi sành điệu
+Crush Kin
+Cặp võ sĩ
+Sis and Bro
+Cặp chị em
+Twins
+Cặp bé gái
+Young Couple
+Cặp đôi trẻ
+Team Rocket
+Tổ chức Rocket
+Rocket Boss
+Trùm Rocket
+Gym Leader
+Chủ Hội Quán
+Elite Four
+Tứ Thiên Vương
+Champion
+Nhà Vô Địch

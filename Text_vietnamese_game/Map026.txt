@@ -1,0 +1,98 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map026]
+\rI'm looking for a female Dragonair.
+\rI'm looking for a female Dragonair.
+\rWant to trade it for my Dodrio?
+\rWant to trade it for my Dodrio?
+\rYou don't want to trade? Aww...
+\rYou don't want to trade?  Aww...
+\rOK, let's get started.
+\rOK, let's get started.
+Doris
+Doris
+Ayana
+Ayana
+\PN traded Dragonair for Dodrio!
+\PN traded Dragonair for Dodrio!
+\rThanks!
+\rThanks!
+\rAre you taking good care of Doris?
+\rAre you taking good care of Doris?
+\bMy Shuckie is a great Pokémon, but I can't train it anymore.
+\bMy Shuckie is a great Pokémon, but I can't train it anymore.
+\bWould you take Shuckie and raise it like it deserves?
+\bWould you take Shuckie and raise it like it deserves?
+Kirk
+Kirk
+Shuckie
+Shuckie
+\bTake good care of Shuckie!
+\bTake good care of Shuckie!
+\bOh, you don't have any space for it.
+\bOh, you don't have any space for it.
+\bOh, that's a shame.
+\bOh, that's a shame.
+\bAre you raising my Shuckie well?
+\bAre you raising my Shuckie well?
+\bOh, hi!
+\bOh, hi!
+\bWould you like this Pokémon Egg?
+\bWould you like this Pokémon Egg?
+Fan Club President
+Fan Club President
+\me[Egg get]\PN received the Egg from the Fan Club President.
+\me[Egg get]\PN received the Egg from the Fan Club President.
+\bTake good care of it!
+\bTake good care of it!
+\bOh, you can't carry it with you.
+\bOh, you can't carry it with you.
+\bMake some space in your party and come back.
+\bMake some space in your party and come back.
+\bOh. Will I ever find someone to take this Egg?
+\bOh. Will I ever find someone to take this Egg?
+\bI wonder what that Egg will hatch into?
+\bI wonder what that Egg will hatch into?
+\bI'm looking for a Rattata.
+\bI'm looking for a Rattata.
+\bWant to trade it for my Haunter?
+\bWant to trade it for my Haunter?
+\bYou don't want to trade? Aww...
+\bYou don't want to trade? Aww...
+\bOK, let's get started.
+\bOK, let's get started.
+HaHa
+HaHa
+Andy
+Andy
+\PN traded Rattata for Haunter!
+\PN traded Rattata for Haunter!
+\bThanks!
+\bThanks!
+\bThanks for trading with me!
+\bThanks for trading with me!
+There's no more room for Pokémon!
+There's no more room for Pokémon!
+The Pokémon Boxes are full and can't accept any more!
+The Pokémon Boxes are full and can't accept any more!
+\rI have a rather special Bulbasaur! Its ability is something I could only dream of.
+\rI have a rather special Bulbasaur! Its ability is something I could only dream of.
+\rI can't look after it, though. Would you like Bulbasaur?
+\rI can't look after it, though. Would you like Bulbasaur?
+Dorima
+Dorima
+Sauri
+Sauri
+\rTake good care of Sauri!
+\rTake good care of Sauri!
+\rOh, you don't have any space.
+\rOh, you don't have any space.
+\rOh, that's a shame.
+\rOh, that's a shame.
+\rI hope you're taking good care of my Sauri!
+\rI hope you're taking good care of my Sauri!
+Yes
+Yes
+No
+No

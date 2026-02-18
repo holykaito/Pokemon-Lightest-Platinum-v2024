@@ -1,0 +1,4152 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[SCRIPT_TEXTS]
+Kanto Pokédex
+Kanto Pokédex
+Johto Pokédex
+Johto Pokédex
+My Game by:
+My Game by:
+Also involved were:
+Also involved were:
+Special thanks to:
+Special thanks to:
+Field '{1}' is not an integer.
+Field '{1}' is not an integer.
+Field '{1}' is not a positive integer or 0.
+Field '{1}' is not a positive integer or 0.
+Field '{1}' is not a positive integer.
+Field '{1}' is not a positive integer.
+Field '{1}' must be greater than 0.
+Field '{1}' must be greater than 0.
+Field '{1}' is not a hexadecimal number.
+Field '{1}' is not a hexadecimal number.
+Field '{1}' is not a number.
+Field '{1}' is not a number.
+Field '{1}' is not a Boolean value (true, false, 1, 0).
+Field '{1}' is not a Boolean value (true, false, 1, 0).
+Field '{1}' must contain only letters, digits, and<<n>>underscores and can't begin with a number.
+Field '{1}' must contain only letters, digits, and<<n>>underscores and can't begin with a number.
+{1}' is not a defined type (type {2}, Weaknesses).
+{1}' is not a defined type (type {2}, Weaknesses).
+{1}' is not a defined type (type {2}, Resistances).
+{1}' is not a defined type (type {2}, Resistances).
+{1}' is not a defined type (type {2}, Immunities).
+{1}' is not a defined type (type {2}, Immunities).
+Check Moves
+Check Moves
+Remember Moves
+Remember Moves
+Forget Moves
+Forget Moves
+Use TM's
+Use TM's
+Nickname
+Nickname
+{1} forgot how to use {2}.
+{1} forgot how to use {2}.
+Set the Pokémon's #{status} count.
+Set the Pokémon's #{status} count.
+Set {1}'s #{status} count (0-99).
+Set {1}'s #{status} count (0-99).
+{1} was freed from the jagged splinters!
+{1} was freed from the jagged splinters!
+{1} was freed from the sticky candy syrup!
+{1} was freed from the sticky candy syrup!
+{1} is hurt by the jagged splinters!
+{1} is hurt by the jagged splinters!
+{1} is hurt by Salt Cure!
+{1} is hurt by Salt Cure!
+{1} was revived and is ready to fight again!
+{1} was revived and is ready to fight again!
+{1}'s Ability is protected by the effects of its Ability Shield!
+{1}'s Ability is protected by the effects of its Ability Shield!
+{1} comes out of {2}'s mouth!
+{1} comes out of {2}'s mouth!
+{1} was shocked wide awake!
+{1} was shocked wide awake!
+{1} warmed up!
+{1} warmed up!
+{1} can't be used twice in a row!
+{1} can't be used twice in a row!
+Drowsy
+Drowsy
+Frostbite
+Frostbite
+Snow is falling.
+Snow is falling.
+A harsh hailstorm bellows!
+A harsh hailstorm bellows!
+It started to snow!
+It started to snow!
+The hailstorm ended.
+The hailstorm ended.
+The snow stopped.
+The snow stopped.
+{1} is already drowsy!
+{1} is already drowsy!
+{1} is already frostbitten!
+{1} is already frostbitten!
+But the uproar kept {1} alert!
+But the uproar kept {1} alert!
+{1} stays alert!
+{1} stays alert!
+{1} cannot be frostbitten!
+{1} cannot be frostbitten!
+{1} stays alert because of {2}'s {3}!
+{1} stays alert because of {2}'s {3}!
+{1} cannot be frostbitten because of {2}'s {3}!
+{1} cannot be frostbitten because of {2}'s {3}!
+{1}'s {2} prevents drowsiness!
+{1}'s {2} prevents drowsiness!
+{1}'s {2} prevents frostbites!
+{1}'s {2} prevents frostbites!
+{1} grew drowsy!<<n>>It may be too sleepy to move!
+{1} grew drowsy!<<n>>It may be too sleepy to move!
+{1} was frostbitten!
+{1} was frostbitten!
+{1} became alert again.
+{1} became alert again.
+{1}'s frostbite was healed.
+{1}'s frostbite was healed.
+{1} is too drowsy to move!
+{1} is too drowsy to move!
+{1} was hurt by its frostbite!
+{1} was hurt by its frostbite!
+Being hit by Tailwind charged {1} with power!
+Being hit by Tailwind charged {1} with power!
+{1} cut its own HP and minimized its Attack!
+{1} cut its own HP and minimized its Attack!
+{1} cut its own HP and maximized its Attack!
+{1} cut its own HP and maximized its Attack!
+Jagged splinters dug into {1}!
+Jagged splinters dug into {1}!
+{1} used up all its electricity!
+{1} used up all its electricity!
+{1} is being salt cured!
+{1} is being salt cured!
+The pointed stones disappeared from around {1}!
+The pointed stones disappeared from around {1}!
+The pointed steel disappeared from around {1}!
+The pointed steel disappeared from around {1}!
+The spikes disappeared from the ground around {1}!
+The spikes disappeared from the ground around {1}!
+The poison spikes disappeared from the ground around {1}!
+The poison spikes disappeared from the ground around {1}!
+The sticky web has disappeared from the ground around {1}!
+The sticky web has disappeared from the ground around {1}!
+Tidying up complete!
+Tidying up complete!
+{1} blew away the pointed steel!
+{1} blew away the pointed steel!
+{1} is preparing to tell a chillingly bad joke!
+{1} is preparing to tell a chillingly bad joke!
+{1} shed its tail to create a decoy!
+{1} shed its tail to create a decoy!
+{1} got covered in sticky candy syrup!
+{1} got covered in sticky candy syrup!
+{1} absorbed electricity!
+{1} absorbed electricity!
+{1} is going all out for this attack!
+{1} is going all out for this attack!
+{1} is already pumped!
+{1} is already pumped!
+{1}'s {2} made it alert again!
+{1}'s {2} made it alert again!
+{1}'s {2} healed its frostbite!
+{1}'s {2} healed its frostbite!
+{1}'s {2} made its partner alert again!
+{1}'s {2} made its partner alert again!
+{1}'s {2} healed its partner's frostbite!
+{1}'s {2} healed its partner's frostbite!
+{1}'s {2} made {3} drowsy! It may be too sleepy to move!
+{1}'s {2} made {3} drowsy! It may be too sleepy to move!
+{1}'s {2} caused {3} to become frostbitten!
+{1}'s {2} caused {3} to become frostbitten!
+A lingering aroma clings to {1}!
+A lingering aroma clings to {1}!
+{1}'s Ability is protected by the effects of its {2}!
+{1}'s Ability is protected by the effects of its {2}!
+{1} gained strength from the fallen!
+{1} gained strength from the fallen!
+Being hit by {1} charged {2} with power!
+Being hit by {1} charged {2} with power!
+Poison spikes were scattered on the ground all around {1}!
+Poison spikes were scattered on the ground all around {1}!
+{1} underwent a heroic transformation!
+{1} underwent a heroic transformation!
+{1} goes inside the mouth of {2}!
+{1} goes inside the mouth of {2}!
+{1}'s {2} weakened the {3} of all surrounding Pokémon!
+{1}'s {2} weakened the {3} of all surrounding Pokémon!
+{1} basked in the sunlight, sending its ancient pulse into a frenzy!
+{1} basked in the sunlight, sending its ancient pulse into a frenzy!
+{1} turned the sunlight harsh, sending its ancient pulse into a frenzy!
+{1} turned the sunlight harsh, sending its ancient pulse into a frenzy!
+{1} used the Electric Terrain to energize its futuristic engine!
+{1} used the Electric Terrain to energize its futuristic engine!
+{1} turned the ground into Electric Terrain, energizing its futuristic engine!
+{1} turned the ground into Electric Terrain, energizing its futuristic engine!
+The effects of {1}'s {2} wore off!
+The effects of {1}'s {2} wore off!
+The #{cause} activated {1}'s {2}!
+The #{cause} activated {1}'s {2}!
+{1} used its {2} to activate its {3}!
+{1} used its {2} to activate its {3}!
+{1}'s {2} was heightened!
+{1}'s {2} was heightened!
+A supersweet aroma is wafting from the syrup covering {1}!
+A supersweet aroma is wafting from the syrup covering {1}!
+{1} drank down all the matcha that {2} made!
+{1} drank down all the matcha that {2} made!
+The {1} worn by {2} shone brilliantly!
+The {1} worn by {2} shone brilliantly!
+{1} made its shell gleam! It's distorting type matchups!
+{1} made its shell gleam! It's distorting type matchups!
+The harsh sunlight faded!
+The harsh sunlight faded!
+The heavy rain has lifted!
+The heavy rain has lifted!
+The mysterious air current has dissipated!
+The mysterious air current has dissipated!
+The weather returned to normal.
+The weather returned to normal.
+The battlefield returned to normal.
+The battlefield returned to normal.
+{1} used its {2} to mirror its opponent's stat changes!
+{1} used its {2} to mirror its opponent's stat changes!
+{1}'s base points were all reset to zero!
+{1}'s base points were all reset to zero!
+Normal Forme
+Normal Forme
+Attack Forme
+Attack Forme
+Defense Forme
+Defense Forme
+Speed Forme
+Speed Forme
+Which form should {1} change into?
+Which form should {1} change into?
+{1}'s effort values were reset.
+{1}'s effort values were reset.
+Begin mining mini-game.
+Begin mining mini-game.
+Remember Move
+Remember Move
+Forget Move
+Forget Move
+#{cmd}
+#{cmd}
+Graphics/UI/Pokedex/bg_#{suffix}
+Graphics/UI/Pokedex/bg_#{suffix}
+{1} is completely immune to being copied!
+{1} is completely immune to being copied!
+{1} is completely immune to one-hit KO's!
+{1} is completely immune to one-hit KO's!
+#{msg}
+#{msg}
+{1} transformed into the {2}-type!
+{1} transformed into the {2}-type!
+{1} put on its {2}!
+{1} put on its {2}!
+{1} is weak!<<n>>Throw a Poké Ball now!
+{1} is weak!<<n>>Throw a Poké Ball now!
+But there is no room left in the PC!
+But there is no room left in the PC!
+#{@introText}
+#{@introText}
+{1}
+{1}
+{1} is completely immune to being put to sleep!
+{1} is completely immune to being put to sleep!
+{1} is completely immune to poisoning!
+{1} is completely immune to poisoning!
+{1} is completely immune to burns!
+{1} is completely immune to burns!
+{1} is completely immune to paralysis!
+{1} is completely immune to paralysis!
+{1} is completely immune to being frozen!
+{1} is completely immune to being frozen!
+{1} is completely immune to frostbite!
+{1} is completely immune to frostbite!
+{1} is completely immune to becoming drowsy!
+{1} is completely immune to becoming drowsy!
+{1} is completely immune to confusion!
+{1} is completely immune to confusion!
+{1} is completely immune to infatuation!
+{1} is completely immune to infatuation!
+{1} is completely immune to having its stats lowered!
+{1} is completely immune to having its stats lowered!
+{1} is completely immune to effects that may disable its moves!
+{1} is completely immune to effects that may disable its moves!
+Deluxe plugin settings...
+Deluxe plugin settings...
+Settings added by the Deluxe Battle Kit and other add-on plugins.
+Settings added by the Deluxe Battle Kit and other add-on plugins.
+Toggle Mega Evolution
+Toggle Mega Evolution
+Toggles the availability of Mega Evolution functionality.
+Toggles the availability of Mega Evolution functionality.
+Mega Evolution {1}.
+Mega Evolution {1}.
+{1} radiates with Mega energy!
+{1} radiates with Mega energy!
+{1}'s {2} radiates with Mega energy!
+{1}'s {2} radiates with Mega energy!
+#{param}
+#{param}
+{1}'s held {2} was removed!
+{1}'s held {2} was removed!
+{1} obtained {2} {3}!
+{1} obtained {2} {3}!
+{1}'s stat changes returned to normal!
+{1}'s stat changes returned to normal!
+{1}'s raised stats returned to normal!
+{1}'s raised stats returned to normal!
+{1}'s lowered stats returned to normal!
+{1}'s lowered stats returned to normal!
+The weather cleared.
+The weather cleared.
+{1} emited a powerful magnetic pulse!
+{1} emited a powerful magnetic pulse!
+Your Poké Balls short-circuited!<<n>>They cannot be used this battle!
+Your Poké Balls short-circuited!<<n>>They cannot be used this battle!
+{1} possessed a new appliance!
+{1} possessed a new appliance!
+{1} equipped a {2} it found in the appliance!
+{1} equipped a {2} it found in the appliance!
+{1} emited an electrical pulse out of desperation!
+{1} emited an electrical pulse out of desperation!
+The cave ceiling begins to crumble down all around you!
+The cave ceiling begins to crumble down all around you!
+I am not letting you escape!
+I am not letting you escape!
+I don't care if this whole cave collapses down on the both of us...haha!
+I don't care if this whole cave collapses down on the both of us...haha!
+Defeat your opponent before time runs out!
+Defeat your opponent before time runs out!
+The cave continues to collapse all around you!
+The cave continues to collapse all around you!
+{1} was struck on the head by a falling rock!
+{1} was struck on the head by a falling rock!
+You're running out of time!
+You're running out of time!
+You need to escape immediately!
+You need to escape immediately!
+You failed to defeat your opponent in time!
+You failed to defeat your opponent in time!
+You were forced to flee the battle!
+You were forced to flee the battle!
+My {1} will never give up!
+My {1} will never give up!
+{1} is standing its ground!
+{1} is standing its ground!
+Haha...you'll never make it out alive!
+Haha...you'll never make it out alive!
+{1}'s Mega Evolution faded!<<n>>It may now be captured!
+{1}'s Mega Evolution faded!<<n>>It may now be captured!
+Shiny leaf
+Shiny leaf
+Has shiny crown.
+Has shiny crown.
+Has shiny leaf x#{pkmn.shiny_leaf}.
+Has shiny leaf x#{pkmn.shiny_leaf}.
+Set leaf count
+Set leaf count
+Set crown
+Set crown
+Set {1}'s leaf count (max. 6).
+Set {1}'s leaf count (max. 6).
+Gym Leader
+Gym Leader
+View Legacy
+View Legacy
+General
+General
+Total time in party:
+Total time in party:
+Items consumed:
+Items consumed:
+Moves learned:
+Moves learned:
+Eggs produced:
+Eggs produced:
+Number of times traded:
+Number of times traded:
+Battle History
+Battle History
+Opponents defeated:
+Opponents defeated:
+Number of times fainted:
+Number of times fainted:
+Supereffective hits dealt:
+Supereffective hits dealt:
+Critical hits dealt:
+Critical hits dealt:
+Total number of retreats:
+Total number of retreats:
+Team History
+Team History
+Trainer battle victories:
+Trainer battle victories:
+Gym Leader battle victories:
+Gym Leader battle victories:
+Wild legendary battle victories:
+Wild legendary battle victories:
+Total Hall of Fame inductions:
+Total Hall of Fame inductions:
+Total draws or losses:
+Total draws or losses:
+{1}'S LEGACY
+{1}'S LEGACY
+|
+|
+EV/IV Total
+EV/IV Total
+EV's Remaining:
+EV's Remaining:
+Hidden Power Type:
+Hidden Power Type:
+{1}' is not a defined memento ({2}, PreviousRanks).
+{1}' is not a defined memento ({2}, PreviousRanks).
+Bad size: {1} (must be 0-255).<<n>>{2}
+Bad size: {1} (must be 0-255).<<n>>{2}
+Size
+Size
+Size variance of the Pokémon (0-255).
+Size variance of the Pokémon (0-255).
+Memento
+Memento
+The memento adorned on the Pokémon. This determines its title.
+The memento adorned on the Pokémon. This determines its title.
+Mementos...
+Mementos...
+Set Ribbons/Marks
+Set Ribbons/Marks
+Mementos:<<n>>{1}
+Mementos:<<n>>{1}
+Set Memento/Title
+Set Memento/Title
+{1} doesn't have any mementos that may grant it a title.
+{1} doesn't have any mementos that may grant it a title.
+<<[>>Random<<]>>
+<<[>>Random<<]>>
+<<[>>Remove<<]>>
+<<[>>Remove<<]>>
+Memento:<<n>>{1}.
+Memento:<<n>>{1}.
+{1} already has the title granted by that memento.
+{1} already has the title granted by that memento.
+Cleared {1}'s memento and title.
+Cleared {1}'s memento and title.
+{1} will now be known as<<n>>{2}.
+{1} will now be known as<<n>>{2}.
+Set size
+Set size
+Scale the Pokémon's size (max. 255).
+Scale the Pokémon's size (max. 255).
+{1} is now considered {2} in size.
+{1} is now considered {2} in size.
+Set player birthday
+Set player birthday
+Sets the month and day of the player's birthday.
+Sets the month and day of the player's birthday.
+The player's birthdate was set to {1} {2}.
+The player's birthdate was set to {1} {2}.
+#{new_title}
+#{new_title}
+#{title.first.upcase + title[1..title.length]}
+#{title.first.upcase + title[1..title.length]}
+Which month is your birthday in?
+Which month is your birthday in?
+Which day in {1} is your birthday?
+Which day in {1} is your birthday?
+So, your birthday is {1} {2}{3}, correct?
+So, your birthday is {1} {2}{3}, correct?
+{1}'
+{1}'
+Type:
+Type:
+ID No.:
+ID No.:
+#{idnum}
+#{idnum}
+Rank:
+Rank:
+Name:
+Name:
+#{name}
+#{name}
+Title Conferred:
+Title Conferred:
+#{title}
+#{title}
+View mementos:
+View mementos:
+#{type}
+#{type}
+#{rank}
+#{rank}
+#{count}
+#{count}
+#{header}
+#{header}
+Confer title
+Confer title
+Remove title
+Remove title
+Sort mementos
+Sort mementos
+Would you like to remove {1}'s attached memento and conferred title?
+Would you like to remove {1}'s attached memento and conferred title?
+{1}'s memento and any associated titles were removed.
+{1}'s memento and any associated titles were removed.
+Only highest rank
+Only highest rank
+Only ribbons
+Only ribbons
+Only marks
+Only marks
+Only contest ribbons
+Only contest ribbons
+Only league ribbons
+Only league ribbons
+Only frontier ribbons
+Only frontier ribbons
+Only memorial ribbons
+Only memorial ribbons
+Only special ribbons
+Only special ribbons
+All mementos
+All mementos
+This memento has multiple ranks.<<n>>Which title should be conferred?
+This memento has multiple ranks.<<n>>Which title should be conferred?
+{1} has already been conferred with this title...
+{1} has already been conferred with this title...
+Would you like to remove this attached memento from {1}?
+Would you like to remove this attached memento from {1}?
+{1} will now be known as<<n>>{2}!
+{1} will now be known as<<n>>{2}!
+Would you like to attach this memento and confer its title to {1}?
+Would you like to attach this memento and confer its title to {1}?
+This memento doesn't have any associated title to confer...
+This memento doesn't have any associated title to confer...
+Toggle Terastallization
+Toggle Terastallization
+Toggles the availability of Terastallization functionality.
+Toggles the availability of Terastallization functionality.
+Terastallization {1}.
+Terastallization {1}.
+Terastal settings...
+Terastal settings...
+Edit the player's Tera Orb and Pokémon Tera types.
+Edit the player's Tera Orb and Pokémon Tera types.
+Player's Tera Orb is charged [{1}]
+Player's Tera Orb is charged [{1}]
+Tera Orb has infinite charge [{1}]
+Tera Orb has infinite charge [{1}]
+Randomize Pokémon Tera types [{1}]
+Randomize Pokémon Tera types [{1}]
+The player's Tera Orb is now {1}.
+The player's Tera Orb is now {1}.
+The player's Tera Orb now requires {1} between uses.
+The player's Tera Orb now requires {1} between uses.
+New Pokémon will now generate with {1} Tera types.
+New Pokémon will now generate with {1} Tera types.
+Plugin attributes...
+Plugin attributes...
+Terastal...
+Terastal...
+Eligible: {1}<<n>>Tera type: {2}<<n>>Terastallized: {3}
+Eligible: {1}<<n>>Tera type: {2}<<n>>Terastallized: {3}
+Set eligibility
+Set eligibility
+Set Tera type
+Set Tera type
+Set Terastallized
+Set Terastallized
+Reset All
+Reset All
+{1} belongs to a species or form that cannot currently Terastallize.<<n>>Eligibility cannot be changed.
+{1} belongs to a species or form that cannot currently Terastallize.<<n>>Eligibility cannot be changed.
+{1} is no longer able to Terastallize.
+{1} is no longer able to Terastallize.
+{1} is now able to Terastallize.
+{1} is now able to Terastallize.
+{1}'s Tera type cannot be changed.
+{1}'s Tera type cannot be changed.
+{1}'s Tera type is now {2}.
+{1}'s Tera type is now {2}.
+Can't edit Terastal values on that Pokémon.
+Can't edit Terastal values on that Pokémon.
+{1} changes form when Terastallized.<<n>>This may only occur in battle.
+{1} changes form when Terastallized.<<n>>This may only occur in battle.
+{1} is no longer Terastallized.
+{1} is no longer Terastallized.
+{1} is now Terastallized.
+{1} is now Terastallized.
+All Terastal settings restored to default.
+All Terastal settings restored to default.
+Terastallization
+Terastallization
+Whether each trainer is allowed to Terastallize.
+Whether each trainer is allowed to Terastallize.
+Choose trainer to toggle whether they can Terastallize.
+Choose trainer to toggle whether they can Terastallize.
+Not enough {1} remaining...
+Not enough {1} remaining...
+You don't have enough {1}...<<n>>You need {2} shards to change a Pokémon's Tera type.
+You don't have enough {1}...<<n>>You need {2} shards to change a Pokémon's Tera type.
+UNABLE
+UNABLE
+You don't have enough {1}...
+You don't have enough {1}...
+Select a new Tera type for {1}.
+Select a new Tera type for {1}.
+You don't have a {1} to charge!
+You don't have a {1} to charge!
+You can't use this item while issuing orders at the same time!
+You can't use this item while issuing orders at the same time!
+You don't need to recharge your {1} yet!
+You don't need to recharge your {1} yet!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Terastallization again!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Terastallization again!
+No Tera
+No Tera
+If set to true, the trainer will never Terastallize this Pokémon.
+If set to true, the trainer will never Terastallize this Pokémon.
+Tera Type
+Tera Type
+Tera type of the Pokémon.
+Tera type of the Pokémon.
+{1}'s Tera Jewel shattered!<<n>>It may now be captured!
+{1}'s Tera Jewel shattered!<<n>>It may now be captured!
+Tera Orb
+Tera Orb
+{1} Terastallized into the {2}-type!
+{1} Terastallized into the {2}-type!
+{1} surrounded itself in Terastal energy!
+{1} surrounded itself in Terastal energy!
+{1} is reacting to {2}'s {3}!
+{1} is reacting to {2}'s {3}!
+Choose a map number.
+Choose a map number.
+<<[>>ADD ENCOUNTER<<]>>
+<<[>>ADD ENCOUNTER<<]>>
+Choose a species, encounter type and map ID.
+Choose a species, encounter type and map ID.
+Choose an encounter type.
+Choose an encounter type.
+Do what with this encounter?
+Do what with this encounter?
+Change encounter type
+Change encounter type
+Change map number
+Change map number
+Choose a type of {1}.
+Choose a type of {1}.
+Set an encounter chance.
+Set an encounter chance.
+{1}: {2}, {3}, {4}, {5}
+{1}: {2}, {3}, {4}, {5}
+Choose a species, encounter chance, time of day, battle condition, and type of condition.
+Choose a species, encounter chance, time of day, battle condition, and type of condition.
+Choose a time of day.
+Choose a time of day.
+Choose a battle condition.
+Choose a battle condition.
+Change encounter chance
+Change encounter chance
+Change battle condition
+Change battle condition
+Change condition type
+Change condition type
+No specific battle condition has been set.
+No specific battle condition has been set.
+Toggle SOS battles
+Toggle SOS battles
+Toggles SOS call functionality for wild Pokémon.
+Toggles SOS call functionality for wild Pokémon.
+SOS calls {1}.
+SOS calls {1}.
+Species that this wild Pokémon will prioritize attacking, even if on the same side.
+Species that this wild Pokémon will prioritize attacking, even if on the same side.
+Species that may appear when this wild Pokémon calls for help.
+Species that may appear when this wild Pokémon calls for help.
+Conditional species that may appear when this wild Pokémon calls for help.
+Conditional species that may appear when this wild Pokémon calls for help.
+Base odds of this wild Pokémon calling for help.
+Base odds of this wild Pokémon calling for help.
+Exclusive SOS encounters found on this map.
+Exclusive SOS encounters found on this map.
+The {1} makes the wild Pokémon nervous!
+The {1} makes the wild Pokémon nervous!
+{1}'s aura flared to life!
+{1}'s aura flared to life!
+{1} called its ally Pokémon!
+{1} called its ally Pokémon!
+{1} called for help!
+{1} called for help!
+... ... ...
+... ... ...
+{1} appeared!
+{1} appeared!
+Its help didn't appear!
+Its help didn't appear!
+Totem {1}
+Totem {1}
+{1} joined the battle!
+{1} joined the battle!
+Choose tile(s) to swap
+Choose tile(s) to swap
+Choose tile(s) to cut
+Choose tile(s) to cut
+Choose row(s) to move
+Choose row(s) to move
+Insert new row
+Insert new row
+Erase tile(s)
+Erase tile(s)
+Delete row
+Delete row
+Tileset Rearranger
+Tileset Rearranger
+Mode: Swap tiles
+Mode: Swap tiles
+Mode: Cut/insert tiles
+Mode: Cut/insert tiles
+Mode: Move rows
+Mode: Move rows
+Mode: Insert new row
+Mode: Insert new row
+Mode: Erase unused tiles
+Mode: Erase unused tiles
+Mode: Delete row
+Mode: Delete row
+Height: {1}/{2} rows [!]
+Height: {1}/{2} rows [!]
+Height: {1}/{2} rows
+Height: {1}/{2} rows
+C: Swap tiles
+C: Swap tiles
+X: Cancel tile swap
+X: Cancel tile swap
+C: Insert tiles here
+C: Insert tiles here
+X: Cancel tile(s) insert
+X: Cancel tile(s) insert
+ARROWS: Select multiple tiles
+ARROWS: Select multiple tiles
+RELEASE C: Finish selection
+RELEASE C: Finish selection
+C: Select tile
+C: Select tile
+HOLD C: Select multiple tiles
+HOLD C: Select multiple tiles
+C: Move rows here
+C: Move rows here
+X: Cancel row moving
+X: Cancel row moving
+ARROWS: Select multiple rows
+ARROWS: Select multiple rows
+C: Select row
+C: Select row
+HOLD C: Select multiple rows
+HOLD C: Select multiple rows
+C: Insert row of tiles
+C: Insert row of tiles
+RELEASE C: Erase tiles
+RELEASE C: Erase tiles
+C: Erase tile
+C: Erase tile
+HOLD C: Erase multiple tiles
+HOLD C: Erase multiple tiles
+C: Delete row of tiles
+C: Delete row of tiles
+A/S: Jump up/down tileset
+A/S: Jump up/down tileset
+Z: Change mode to cut/insert
+Z: Change mode to cut/insert
+Z: Change mode to swap
+Z: Change mode to swap
+Z: Change mode
+Z: Change mode
+D: Open menu
+D: Open menu
+Q: Undo ({1}) - W: Redo ({2})
+Q: Undo ({1}) - W: Redo ({2})
+Q: Undo ({1})
+Q: Undo ({1})
+W: Redo ({1})
+W: Redo ({1})
+This tileset is too tall ({1} rows) and cannot be saved. Please shrink it to at most {2} rows tall.
+This tileset is too tall ({1} rows) and cannot be saved. Please shrink it to at most {2} rows tall.
+Changes saved. To ensure that they are applied properly, close and reopen RPG Maker XP.
+Changes saved. To ensure that they are applied properly, close and reopen RPG Maker XP.
+Choose tileset to load
+Choose tileset to load
+Rearrange tiles in tilesets.
+Rearrange tiles in tilesets.
+Clear all unused tiles
+Clear all unused tiles
+Delete all unused rows
+Delete all unused rows
+List maps using this tileset
+List maps using this tileset
+Maps using tileset {1:03d}: {2:s}:
+Maps using tileset {1:03d}: {2:s}:
+No maps use tileset {1:03d}: {2:s}.
+No maps use tileset {1:03d}: {2:s}.
+Search for what?
+Search for what?
+No results found.
+No results found.
+Skill 1
+Skill 1
+Skill 2
+Skill 2
+Skill 3
+Skill 3
+Turn {1}
+Turn {1}
+Used: {1}
+Used: {1}
+Abil.
+Abil.
+Accuracy
+Accuracy
+Evasion
+Evasion
+Crit. Hit
+Crit. Hit
+The Pokémon is in the Dynamax state.
+The Pokémon is in the Dynamax state.
+Dynamax
+Dynamax
+The Pokémon is Terastallized into the {1} type.
+The Pokémon is Terastallized into the {1} type.
+Non-Ice types take damage each turn. Blizzard always hits.
+Non-Ice types take damage each turn. Blizzard always hits.
+Boosts Def of Ice types. Blizzard always hits.
+Boosts Def of Ice types. Blizzard always hits.
+Hailstorm
+Hailstorm
+Combined effects of both Hail and Snow.
+Combined effects of both Hail and Snow.
+Boosts Fire moves and weakens Water moves.
+Boosts Fire moves and weakens Water moves.
+Boosts Fire moves and negates Water moves.
+Boosts Fire moves and negates Water moves.
+Boosts Water moves and weakens Fire moves.
+Boosts Water moves and weakens Fire moves.
+Boosts Water moves and negates Fire moves.
+Boosts Water moves and negates Fire moves.
+Boosts Rock type Sp. Def. Damages unless Rock/Ground/Steel.
+Boosts Rock type Sp. Def. Damages unless Rock/Ground/Steel.
+Flying types won't take super effective damage.
+Flying types won't take super effective damage.
+Boosts Shadow moves. Non-Shadow Pokémon damaged each turn.
+Boosts Shadow moves. Non-Shadow Pokémon damaged each turn.
+{1} Terrain
+{1} Terrain
+Grounded Pokémon immune to sleep. Boosts Electric moves.
+Grounded Pokémon immune to sleep. Boosts Electric moves.
+Grounded Pokémon recover HP each turn. Boosts Grass moves.
+Grounded Pokémon recover HP each turn. Boosts Grass moves.
+Priority moves fail on grounded targets. Boosts Psychic moves.
+Priority moves fail on grounded targets. Boosts Psychic moves.
+Status can't be changed when grounded. Weakens Dragon moves.
+Status can't be changed when grounded. Weakens Dragon moves.
+Pokémon can't use moves known by the {1} user.
+Pokémon can't use moves known by the {1} user.
+Pokémon cannot fall asleep during an uproar.
+Pokémon cannot fall asleep during an uproar.
+No Escape
+No Escape
+The Pokémon can't flee or be switched out.
+The Pokémon can't flee or be switched out.
+The Pokémon regains some HP at the end of each turn.
+The Pokémon regains some HP at the end of each turn.
+The Pokémon regains some HP every turn, but cannot switch out.
+The Pokémon regains some HP every turn, but cannot switch out.
+The Pokémon's HP is leeched every turn to heal the opponent.
+The Pokémon's HP is leeched every turn to heal the opponent.
+The Pokémon takes damage at the end of each turn.
+The Pokémon takes damage at the end of each turn.
+The Pokémon takes damage each turn it spends asleep.
+The Pokémon takes damage each turn it spends asleep.
+The Pokémon's Attack stat increases whenever it's hit.
+The Pokémon's Attack stat increases whenever it's hit.
+The Pokémon can't use the same move twice in a row.
+The Pokémon can't use the same move twice in a row.
+The Pokémon's next Electric move will double in power.
+The Pokémon's next Electric move will double in power.
+The Pokémon shrunk and now takes more damage when squished.
+The Pokémon shrunk and now takes more damage when squished.
+The Pokémon has been made weaker to Fire moves.
+The Pokémon has been made weaker to Fire moves.
+The Pokémon in this spot restores HP on the next turn.
+The Pokémon in this spot restores HP on the next turn.
+The Pokémon's Ghost immunities and evasion boosts are ignored.
+The Pokémon's Ghost immunities and evasion boosts are ignored.
+The Pokémon's evasion boosts are ignored.
+The Pokémon's evasion boosts are ignored.
+The Pokémon's Dark immunities and evasion boosts are ignored.
+The Pokémon's Dark immunities and evasion boosts are ignored.
+Stockpiling increases the Pokémon's defensive stats.
+Stockpiling increases the Pokémon's defensive stats.
+Grounded Pokémon that switch into battle will take damage.
+Grounded Pokémon that switch into battle will take damage.
+Grounded Pokémon that switch into battle will be poisoned.
+Grounded Pokémon that switch into battle will be poisoned.
+1
+1
+Pokémon that switch into battle will take damage.
+Pokémon that switch into battle will take damage.
+Pokémon that switch into battle will have their Speed lowered.
+Pokémon that switch into battle will have their Speed lowered.
+The Pokémon's next attack is a guaranteed critical hit.
+The Pokémon's next attack is a guaranteed critical hit.
+Any move used against a locked-on target will be sure to hit.
+Any move used against a locked-on target will be sure to hit.
+The Pokémon can't use any sound-based moves.
+The Pokémon can't use any sound-based moves.
+No Pokémon can flee.
+No Pokémon can flee.
+The Pokémon has been made airborne, but it cannot evade attacks.
+The Pokémon has been made airborne, but it cannot evade attacks.
+Due to {1}, the Pokémon can only use {2}.
+Due to {1}, the Pokémon can only use {2}.
+The Pokémon can only use moves that deal damage.
+The Pokémon can only use moves that deal damage.
+The Pokémon's Speed stat is doubled.
+The Pokémon's Speed stat is doubled.
+Pokémon that are not Grass types take damage every turn.
+Pokémon that are not Grass types take damage every turn.
+Pokémon that are not Fire types take damage every turn.
+Pokémon that are not Fire types take damage every turn.
+Pokémon that are not Water types take damage every turn.
+Pokémon that are not Water types take damage every turn.
+Pokémon that are not Rock types take damage every turn.
+Pokémon that are not Rock types take damage every turn.
+The Pokémon is airborne and immune to Ground moves.
+The Pokémon is airborne and immune to Ground moves.
+The Pokémon's HP cannot be restored by healing effects.
+The Pokémon's HP cannot be restored by healing effects.
+Items cannot be used on or by the Pokémon.
+Items cannot be used on or by the Pokémon.
+The power of Electric moves is reduced.
+The power of Electric moves is reduced.
+The power of Fire moves is reduced.
+The power of Fire moves is reduced.
+The Pokémon takes half damage from physical and special moves.
+The Pokémon takes half damage from physical and special moves.
+The Pokémon takes half damage from physical moves.
+The Pokémon takes half damage from physical moves.
+The Pokémon takes half damage from special moves.
+The Pokémon takes half damage from special moves.
+The Pokémon is protected from status conditions.
+The Pokémon is protected from status conditions.
+The Pokémon's stats cannot be lowered.
+The Pokémon's stats cannot be lowered.
+The Pokémon is immune to critical hits.
+The Pokémon is immune to critical hits.
+Grounds Pokémon. Prevents midair actions. Increases accuracy.
+Grounds Pokémon. Prevents midair actions. Increases accuracy.
+No Pokémon can use their held items.
+No Pokémon can use their held items.
+All Pokémon swap their Def and Sp. Def stats.
+All Pokémon swap their Def and Sp. Def stats.
+Slower Pokémon get to move first.
+Slower Pokémon get to move first.
+Bound
+Bound
+The Pokémon is bound and takes damage every turn.
+The Pokémon is bound and takes damage every turn.
+Badly Poisoned
+Badly Poisoned
+Damage the Pokémon takes from its poison worsens every turn.
+Damage the Pokémon takes from its poison worsens every turn.
+Confusion
+Confusion
+The Pokémon may hurt itself in its confusion.
+The Pokémon may hurt itself in its confusion.
+Rampaging
+Rampaging
+The Pokémon rampages for 2-3 turns. It then becomes confused.
+The Pokémon rampages for 2-3 turns. It then becomes confused.
+No Ability
+No Ability
+The Pokémon's Ability loses its effect.
+The Pokémon's Ability loses its effect.
+Critical Hit Boost
+Critical Hit Boost
+The Pokémon is more likely to land critical hits.
+The Pokémon is more likely to land critical hits.
+Infatuation
+Infatuation
+The Pokémon is less likely to attack {1} Pokémon.
+The Pokémon is less likely to attack {1} Pokémon.
+Z-Healing
+Z-Healing
+A Pokémon switching into this spot will recover its HP.
+A Pokémon switching into this spot will recover its HP.
+Counting Down
+Counting Down
+All Pokémon in this battle state will faint after 3 turns.
+All Pokémon in this battle state will faint after 3 turns.
+Future Attack
+Future Attack
+The Pokémon in this spot will be attacked in 2 turns.
+The Pokémon in this spot will be attacked in 2 turns.
+Speed Down
+Speed Down
+The Pokémon's Speed is lowered for 3 turns.
+The Pokémon's Speed is lowered for 3 turns.
+Slow Start
+Slow Start
+The Pokémon gets its act together in 5 turns.
+The Pokémon gets its act together in 5 turns.
+The Pokémon will fall asleep at the end of the next turn.
+The Pokémon will fall asleep at the end of the next turn.
+Recharging
+Recharging
+The Pokémon cannot move until it recharges from its last attack.
+The Pokémon cannot move until it recharges from its last attack.
+Vulnerable
+Vulnerable
+The Pokémon cannot evade and takes double damage.
+The Pokémon cannot evade and takes double damage.
+Splinters
+Splinters
+Move Disabled
+Move Disabled
+{1} has been disabled and cannot be used.
+{1} has been disabled and cannot be used.
+Rainbow
+Rainbow
+The additional effects of moves are more likely to occur.
+The additional effects of moves are more likely to occur.
+Swamp
+Swamp
+Speed is reduced by 75% in swampy conditions.
+Speed is reduced by 75% in swampy conditions.
+Sea of Fire
+Sea of Fire
+Semi-Invulnerable
+Semi-Invulnerable
+The Pokémon cannot be hit by most attacks.
+The Pokémon cannot be hit by most attacks.
+Pow:
+Pow:
+Acc:
+Acc:
+Effct:
+Effct:
+Fully restores the user's HP.
+Fully restores the user's HP.
+Fully restores an incoming Pokémon's HP.
+Fully restores an incoming Pokémon's HP.
+Raises the user's critical hit rate.
+Raises the user's critical hit rate.
+Resets the user's lowered stat stages.
+Resets the user's lowered stat stages.
+The user becomes the center of attention.
+The user becomes the center of attention.
+Drastically raises the user's {1}.
+Drastically raises the user's {1}.
+Sharply raises the user's {1}.
+Sharply raises the user's {1}.
+Raises the user's {1}.
+Raises the user's {1}.
+Z-Power: #{text}
+Z-Power: #{text}
+Tera Type: Move boosted by Terastallization.
+Tera Type: Move boosted by Terastallization.
+After consuming the [placeholder], {1} has awakened its untapped potential!
+After consuming the [placeholder], {1} has awakened its untapped potential!
+After consuming the gene, {1} has awakened its untapped potential!
+After consuming the gene, {1} has awakened its untapped potential!
+Abilities the pokemon always had
+Abilities the pokemon always had
+Set innate
+Set innate
+Set possible innate
+Set possible innate
+Set any innate
+Set any innate
+Innate is {1} (index {2}).
+Innate is {1} (index {2}).
+Choose an innate.
+Choose an innate.
+Battle
+Battle
+{1} is holding a round object...
+{1} is holding a round object...
+What would you like to do?
+What would you like to do?
+Play
+Play
+Talk
+Talk
+{1} is shivering with the effects of being poisoned.
+{1} is shivering with the effects of being poisoned.
+{1}'s burn looks painful.
+{1}'s burn looks painful.
+{1} seems very cold. It's frozen solid!
+{1} seems very cold. It's frozen solid!
+{1} seems really tired.
+{1} seems really tired.
+{1} is standing still and twitching.
+{1} is standing still and twitching.
+{1} is touching some kind of switch.
+{1} is touching some kind of switch.
+{1} has a cord in its mouth!
+{1} has a cord in its mouth!
+{1} seems to want to touch the machinery.
+{1} seems to want to touch the machinery.
+{1} is sniffing around the room.
+{1} is sniffing around the room.
+{1} noticed {2}'s mom is nearby.
+{1} noticed {2}'s mom is nearby.
+{1} seems to want to settle down at home.
+{1} seems to want to settle down at home.
+{1} looks happy to see the nurse.
+{1} looks happy to see the nurse.
+{1} looks a little better just being in the Pokémon Center.
+{1} looks a little better just being in the Pokémon Center.
+{1} seems fascinated by the healing machinery.
+{1} seems fascinated by the healing machinery.
+{1} looks like it wants to take a nap.
+{1} looks like it wants to take a nap.
+{1} chirped a greeting at the nurse.
+{1} chirped a greeting at the nurse.
+{1} is watching {2} with a playful gaze.
+{1} is watching {2} with a playful gaze.
+{1} seems to be completely at ease.
+{1} seems to be completely at ease.
+{1} is making itself comfortable.
+{1} is making itself comfortable.
+There's a content expression on {1}'s face.
+There's a content expression on {1}'s face.
+{1} looks eager to battle!
+{1} looks eager to battle!
+{1} is looking at {2} with a determined gleam in its' eye.
+{1} is looking at {2} with a determined gleam in its' eye.
+{1} is trying to intimidate the other trainers.
+{1} is trying to intimidate the other trainers.
+{1} trusts {2} to come up with a winning strategy.
+{1} trusts {2} to come up with a winning strategy.
+{1} is keeping an eye on the gym leader.
+{1} is keeping an eye on the gym leader.
+{1} is ready to pick a fight with someone.
+{1} is ready to pick a fight with someone.
+{1} looks like it might be preparing for a big showdown!
+{1} looks like it might be preparing for a big showdown!
+{1} wants to show off how strong it is!
+{1} wants to show off how strong it is!
+{1} is...doing warm-up exercises?
+{1} is...doing warm-up exercises?
+{1} is growling quietly in contemplation...
+{1} is growling quietly in contemplation...
+{1} is staring up at the sky.
+{1} is staring up at the sky.
+The storm seems to be making {1} excited.
+The storm seems to be making {1} excited.
+{1} looked up at the sky and shouted loudly!
+{1} looked up at the sky and shouted loudly!
+The storm only seems to be energizing {1}!
+The storm only seems to be energizing {1}!
+{1} is happily zapping and jumping in circles!
+{1} is happily zapping and jumping in circles!
+The lightning doesn't bother {1} at all.
+The lightning doesn't bother {1} at all.
+The storm seems to be making {1} a bit nervous.
+The storm seems to be making {1} a bit nervous.
+The lightning startled {1}!
+The lightning startled {1}!
+The rain doesn't seem to bother {1} much.
+The rain doesn't seem to bother {1} much.
+The weather seems to be putting {1} on edge.
+The weather seems to be putting {1} on edge.
+{1} was startled by the lightning and snuggled up to {2}!
+{1} was startled by the lightning and snuggled up to {2}!
+{1} is watching the snow fall.
+{1} is watching the snow fall.
+{1} is thrilled by the snow!
+{1} is thrilled by the snow!
+{1} is staring up at the sky with a smile.
+{1} is staring up at the sky with a smile.
+The snow seems to have put {1} in a good mood.
+The snow seems to have put {1} in a good mood.
+{1} is cheerful because of the cold!
+{1} is cheerful because of the cold!
+{1} is nipping at the falling snowflakes.
+{1} is nipping at the falling snowflakes.
+{1} wants to catch a snowflake in its' mouth.
+{1} wants to catch a snowflake in its' mouth.
+{1} is fascinated by the snow.
+{1} is fascinated by the snow.
+{1}'s teeth are chattering!
+{1}'s teeth are chattering!
+{1} made its body slightly smaller because of the cold...
+{1} made its body slightly smaller because of the cold...
+{1} is watching the hail fall.
+{1} is watching the hail fall.
+{1} isn't bothered at all by the hail.
+{1} isn't bothered at all by the hail.
+The hail seems to have put {1} in a good mood.
+The hail seems to have put {1} in a good mood.
+{1} is gnawing on a piece of hailstone.
+{1} is gnawing on a piece of hailstone.
+{1} is getting pelted by hail!
+{1} is getting pelted by hail!
+{1} wants to avoid the hail.
+{1} wants to avoid the hail.
+The hail is hitting {1} painfully.
+The hail is hitting {1} painfully.
+{1} looks unhappy.
+{1} looks unhappy.
+{1} is shaking like a leaf!
+{1} is shaking like a leaf!
+{1} is coated in sand.
+{1} is coated in sand.
+The weather doesn't seem to bother {1} at all!
+The weather doesn't seem to bother {1} at all!
+The sand can't slow {1} down!
+The sand can't slow {1} down!
+{1} is enjoying the weather.
+{1} is enjoying the weather.
+{1} is coated in sand, but doesn't seem to mind.
+{1} is coated in sand, but doesn't seem to mind.
+{1} seems unbothered by the sandstorm.
+{1} seems unbothered by the sandstorm.
+The sand doesn't slow {1} down.
+The sand doesn't slow {1} down.
+{1} doesn't seem to mind the weather.
+{1} doesn't seem to mind the weather.
+{1} is covered in sand...
+{1} is covered in sand...
+{1} spat out a mouthful of sand!
+{1} spat out a mouthful of sand!
+{1} is squinting through the sandstorm.
+{1} is squinting through the sandstorm.
+The sand seems to be bothering {1}.
+The sand seems to be bothering {1}.
+{1} seems highly interested in the trees.
+{1} seems highly interested in the trees.
+{1} seems to enjoy the buzzing of the bug Pokémon.
+{1} seems to enjoy the buzzing of the bug Pokémon.
+{1} is jumping around restlessly in the forest.
+{1} is jumping around restlessly in the forest.
+{1} is wandering around and listening to the different sounds.
+{1} is wandering around and listening to the different sounds.
+{1} is munching at the grass.
+{1} is munching at the grass.
+{1} is wandering around and enjoying the forest scenery.
+{1} is wandering around and enjoying the forest scenery.
+{1} is playing around, plucking bits of grass.
+{1} is playing around, plucking bits of grass.
+{1} is staring at the light coming through the trees.
+{1} is staring at the light coming through the trees.
+{1} is playing around with a leaf!
+{1} is playing around with a leaf!
+{1} seems to be listening to the sound of rustling leaves.
+{1} seems to be listening to the sound of rustling leaves.
+{1} is standing perfectly still and might be imitating a tree...
+{1} is standing perfectly still and might be imitating a tree...
+{1} got tangled in the branches and almost fell down!
+{1} got tangled in the branches and almost fell down!
+{1} was surprised when it got hit by a branch!
+{1} was surprised when it got hit by a branch!
+{1} seems very upset the weather.
+{1} seems very upset the weather.
+{1} is shivering...
+{1} is shivering...
+{1} doesn't seem to like being all wet...
+{1} doesn't seem to like being all wet...
+{1} keeps trying to shake itself dry...
+{1} keeps trying to shake itself dry...
+{1} moved closer to {2} for comfort.
+{1} moved closer to {2} for comfort.
+{1} is looking up at the sky and scowling.
+{1} is looking up at the sky and scowling.
+{1} seems to be having difficulty moving its body.
+{1} seems to be having difficulty moving its body.
+{1} seems to be enjoying the weather.
+{1} seems to be enjoying the weather.
+{1} seems to be happy about the rain!
+{1} seems to be happy about the rain!
+{1} seems to be very surprised that it's raining!
+{1} seems to be very surprised that it's raining!
+{1} beamed happily at {2}!
+{1} beamed happily at {2}!
+{1} is gazing up at the rainclouds.
+{1} is gazing up at the rainclouds.
+Raindrops keep falling on {1}.
+Raindrops keep falling on {1}.
+{1} is looking up with its mouth gaping open.
+{1} is looking up with its mouth gaping open.
+{1} looks a bit surprised to see rain.
+{1} looks a bit surprised to see rain.
+{1} keeps trying to shake itself dry.
+{1} keeps trying to shake itself dry.
+{1} is playing in a puddle!
+{1} is playing in a puddle!
+{1} is slipping in the water and almost fell over!
+{1} is slipping in the water and almost fell over!
+{1} seems to be enjoying the scenery.
+{1} seems to be enjoying the scenery.
+{1} seems to enjoy the sound of the waves moving the sand.
+{1} seems to enjoy the sound of the waves moving the sand.
+{1} looks like it wants to swim!
+{1} looks like it wants to swim!
+{1} can barely look away from the ocean.
+{1} can barely look away from the ocean.
+{1} is staring longingly at the water.
+{1} is staring longingly at the water.
+{1} keeps trying to shove {2} towards the water.
+{1} keeps trying to shove {2} towards the water.
+{1} is excited to be looking at the sea!
+{1} is excited to be looking at the sea!
+{1} is happily watching the waves!
+{1} is happily watching the waves!
+{1} is playing on the sand!
+{1} is playing on the sand!
+{1} is staring at {2}'s footprints in the sand.
+{1} is staring at {2}'s footprints in the sand.
+{1} is rolling around in the sand.
+{1} is rolling around in the sand.
+{1} seems pleased to be out in the sunshine.
+{1} seems pleased to be out in the sunshine.
+{1} is soaking up the sunshine.
+{1} is soaking up the sunshine.
+The bright sunlight doesn't seem to bother {1} at all.
+The bright sunlight doesn't seem to bother {1} at all.
+{1} sent a ring-shaped cloud of spores into the air!
+{1} sent a ring-shaped cloud of spores into the air!
+{1} is stretched out its body and is relaxing in the sunshine.
+{1} is stretched out its body and is relaxing in the sunshine.
+{1} is giving off a floral scent.
+{1} is giving off a floral scent.
+{1} seems to be happy about the great weather!
+{1} seems to be happy about the great weather!
+{1} looks thrilled by the sunshine!
+{1} looks thrilled by the sunshine!
+{1} blew out a fireball.
+{1} blew out a fireball.
+{1} is breathing out fire!
+{1} is breathing out fire!
+{1} is hot and cheerful!
+{1} is hot and cheerful!
+{1} is glaring up at the sky.
+{1} is glaring up at the sky.
+{1} seems personally offended by the sunshine.
+{1} seems personally offended by the sunshine.
+The bright sunshine seems to bothering {1}.
+The bright sunshine seems to bothering {1}.
+{1} looks upset for some reason.
+{1} looks upset for some reason.
+{1} is trying to stay in {2}'s shadow.
+{1} is trying to stay in {2}'s shadow.
+{1} keeps looking for shelter from the sunlight.
+{1} keeps looking for shelter from the sunlight.
+{1} is squinting in the bright sunshine.
+{1} is squinting in the bright sunshine.
+{1} is starting to sweat.
+{1} is starting to sweat.
+{1} seems a little uncomfortable in this weather.
+{1} seems a little uncomfortable in this weather.
+{1} looks a little overheated.
+{1} looks a little overheated.
+{1} seems very hot...
+{1} seems very hot...
+{1} shielded its vision against the sparkling light!
+{1} shielded its vision against the sparkling light!
+{1} seems to want to play with {2}.
+{1} seems to want to play with {2}.
+{1} is singing and humming.
+{1} is singing and humming.
+{1} is looking up at {2} with a happy expression.
+{1} is looking up at {2} with a happy expression.
+{1} swayed and danced around as it pleased.
+{1} swayed and danced around as it pleased.
+{1} is jumping around in a carefree way!
+{1} is jumping around in a carefree way!
+{1} is showing off its agility!
+{1} is showing off its agility!
+{1} is moving around happily!
+{1} is moving around happily!
+Whoa! {1} suddenly started dancing in happiness!
+Whoa! {1} suddenly started dancing in happiness!
+{1} is steadily keeping up with {2}!
+{1} is steadily keeping up with {2}!
+{1} is happy skipping about.
+{1} is happy skipping about.
+{1} is playfully nibbling at the ground.
+{1} is playfully nibbling at the ground.
+{1} is playfully nipping at {2}'s feet!
+{1} is playfully nipping at {2}'s feet!
+{1} is following {2} very closely!
+{1} is following {2} very closely!
+{1} turns around and looks at {2}.
+{1} turns around and looks at {2}.
+{1} is working hard to show off its mighty power!
+{1} is working hard to show off its mighty power!
+{1} looks like it wants to run around!
+{1} looks like it wants to run around!
+{1} is wandering around enjoying the scenery.
+{1} is wandering around enjoying the scenery.
+{1} seems to be enjoying this a little bit!
+{1} seems to be enjoying this a little bit!
+{1} is cheerful!
+{1} is cheerful!
+{1} seems to be singing something?
+{1} seems to be singing something?
+{1} is dancing around happily!
+{1} is dancing around happily!
+{1} is having fun dancing a lively jig!
+{1} is having fun dancing a lively jig!
+{1} is so happy, it started singing!
+{1} is so happy, it started singing!
+{1} looked up and howled!
+{1} looked up and howled!
+{1} seems to be feeling optimistic.
+{1} seems to be feeling optimistic.
+It looks like {1} feels like dancing!
+It looks like {1} feels like dancing!
+{1} suddenly started to sing! It seems to be feeling great.
+{1} suddenly started to sing! It seems to be feeling great.
+It looks like {1} wants to dance with {2}!
+It looks like {1} wants to dance with {2}!
+{1} let out a roar!
+{1} let out a roar!
+{1} is making a face like it's angry!
+{1} is making a face like it's angry!
+{1} seems to be angry for some reason.
+{1} seems to be angry for some reason.
+{1} chewed on {2}'s feet.
+{1} chewed on {2}'s feet.
+{1} turned to face the other way, showing a defiant expression.
+{1} turned to face the other way, showing a defiant expression.
+{1} is trying to intimidate {2}'s foes!
+{1} is trying to intimidate {2}'s foes!
+{1} wants to pick a fight!
+{1} wants to pick a fight!
+{1} is ready to fight!
+{1} is ready to fight!
+It looks like {1} will fight just about anyone right now!
+It looks like {1} will fight just about anyone right now!
+{1} is growling in a way that sounds almost like speech...
+{1} is growling in a way that sounds almost like speech...
+{1} is looking down steadily.
+{1} is looking down steadily.
+{1} is sniffing around.
+{1} is sniffing around.
+{1} is concentrating deeply.
+{1} is concentrating deeply.
+{1} faced {2} and nodded.
+{1} faced {2} and nodded.
+{1} is glaring straight into {2}'s eyes.
+{1} is glaring straight into {2}'s eyes.
+{1} is surveying the area.
+{1} is surveying the area.
+{1} focused with a sharp gaze!
+{1} focused with a sharp gaze!
+{1} is looking around absentmindedly.
+{1} is looking around absentmindedly.
+{1} yawned very loudly!
+{1} yawned very loudly!
+{1} is relaxing comfortably.
+{1} is relaxing comfortably.
+{1} is focusing its attention on {2}.
+{1} is focusing its attention on {2}.
+{1} is staring intently at nothing.
+{1} is staring intently at nothing.
+{1} is concentrating.
+{1} is concentrating.
+{1} is looking at {2}'s footprints.
+{1} is looking at {2}'s footprints.
+{1} seems to want to play and is gazing at {2} expectedly.
+{1} seems to want to play and is gazing at {2} expectedly.
+{1} seems to be thinking deeply about something.
+{1} seems to be thinking deeply about something.
+{1} isn't paying attention to {2}...Seems it's thinking about something else.
+{1} isn't paying attention to {2}...Seems it's thinking about something else.
+{1} seems to be feeling serious.
+{1} seems to be feeling serious.
+{1} seems disinterested.
+{1} seems disinterested.
+{1}'s mind seems to be elsewhere.
+{1}'s mind seems to be elsewhere.
+{1} seems to be observing the surroundings instead of watching {2}.
+{1} seems to be observing the surroundings instead of watching {2}.
+{1} looks a bit bored.
+{1} looks a bit bored.
+{1} has an intense look on its face.
+{1} has an intense look on its face.
+{1} is staring off into the distance.
+{1} is staring off into the distance.
+{1} seems to be carefully examining {2}'s face.
+{1} seems to be carefully examining {2}'s face.
+{1} seems to be trying to communicate with its eyes.
+{1} seems to be trying to communicate with its eyes.
+... {1} seems to have sneezed!
+... {1} seems to have sneezed!
+... {1} noticed that {2}'s shoes are a bit dirty.
+... {1} noticed that {2}'s shoes are a bit dirty.
+Seems {1} ate something strange, it's making an odd face...
+Seems {1} ate something strange, it's making an odd face...
+{1} seems to be smelling something good.
+{1} seems to be smelling something good.
+{1} noticed that {2}'s Bag has a little dirt on it...
+{1} noticed that {2}'s Bag has a little dirt on it...
+...... ...... ...... ...... ...... ...... ...... ...... ...... ...... ...... {1} silently nodded!
+...... ...... ...... ...... ...... ...... ...... ...... ...... ...... ...... {1} silently nodded!
+{1} began poking {2}.
+{1} began poking {2}.
+{1} looks very happy.
+{1} looks very happy.
+{1} happily cuddled up to {2}.
+{1} happily cuddled up to {2}.
+{1} is so happy that it can't stand still.
+{1} is so happy that it can't stand still.
+{1} looks like it wants to lead!
+{1} looks like it wants to lead!
+{1} is coming along happily.
+{1} is coming along happily.
+{1} seems to be feeling great about walking with {2}!
+{1} seems to be feeling great about walking with {2}!
+{1} is glowing with health.
+{1} is glowing with health.
+{1} put in extra effort just for {2}!
+{1} put in extra effort just for {2}!
+{1} is smelling the scents of the surounding air.
+{1} is smelling the scents of the surounding air.
+{1} is jumping with joy!
+{1} is jumping with joy!
+{1} is still feeling great!
+{1} is still feeling great!
+{1} stretched out its body and is relaxing.
+{1} stretched out its body and is relaxing.
+{1} is doing its best to keep up with {2}.
+{1} is doing its best to keep up with {2}.
+{1} is happily cuddling up to {2}!
+{1} is happily cuddling up to {2}!
+{1} is full of energy!
+{1} is full of energy!
+{1} is so happy that it can't stand still!
+{1} is so happy that it can't stand still!
+{1} gives {2} a happy look and a smile.
+{1} gives {2} a happy look and a smile.
+{1} started breathing roughly through its nose in excitement!
+{1} started breathing roughly through its nose in excitement!
+{1} is trembling with eagerness!
+{1} is trembling with eagerness!
+{1} is so happy, it started rolling around.
+{1} is so happy, it started rolling around.
+{1} looks thrilled at getting attention from {2}.
+{1} looks thrilled at getting attention from {2}.
+{1} seems very pleased that {2} is noticing it!
+{1} seems very pleased that {2} is noticing it!
+{1} started wriggling its entire body with excitement!
+{1} started wriggling its entire body with excitement!
+It seems like {1} can barely keep itself from hugging {2}!
+It seems like {1} can barely keep itself from hugging {2}!
+{1} is keeping close to {2}'s feet.
+{1} is keeping close to {2}'s feet.
+{1} suddenly started walking closer to {2}.
+{1} suddenly started walking closer to {2}.
+Woah! {1} suddenly hugged {2}.
+Woah! {1} suddenly hugged {2}.
+{1} is rubbing up against {2}.
+{1} is rubbing up against {2}.
+{1} is keeping close to {2}.
+{1} is keeping close to {2}.
+{1} blushed.
+{1} blushed.
+{1} loves spending time with {2}!
+{1} loves spending time with {2}!
+{1} is suddenly playful!
+{1} is suddenly playful!
+{1} is rubbing against {2}'s legs!
+{1} is rubbing against {2}'s legs!
+{1} is regarding {2} with adoration!
+{1} is regarding {2} with adoration!
+{1} seems to want some affection from {2}.
+{1} seems to want some affection from {2}.
+{1} seems to want some attention from {2}.
+{1} seems to want some attention from {2}.
+{1} seems happy travelling with {2}.
+{1} seems happy travelling with {2}.
+{1} seems to be feeling affectionate towards {2}.
+{1} seems to be feeling affectionate towards {2}.
+{1} is looking at {2} with loving eyes.
+{1} is looking at {2} with loving eyes.
+{1} looks like it wants a treat from {2}.
+{1} looks like it wants a treat from {2}.
+{1} looks like it wants {2} to pet it!
+{1} looks like it wants {2} to pet it!
+{1} is rubbing itself against {2} affectionately.
+{1} is rubbing itself against {2} affectionately.
+{1} bumps its head gently against {2}'s hand.
+{1} bumps its head gently against {2}'s hand.
+{1} rolls over and looks at {2} expectantly.
+{1} rolls over and looks at {2} expectantly.
+{1} is looking at {2} with trusting eyes.
+{1} is looking at {2} with trusting eyes.
+{1} seems to be begging {2} for some affection!
+{1} seems to be begging {2} for some affection!
+{1} mimicked {2}!
+{1} mimicked {2}!
+{1} spun around in a circle!
+{1} spun around in a circle!
+{1} let out a battle cry.
+{1} let out a battle cry.
+{1} is on the lookout!
+{1} is on the lookout!
+{1} is standing patiently.
+{1} is standing patiently.
+{1} is looking around restlessly.
+{1} is looking around restlessly.
+{1} is wandering around.
+{1} is wandering around.
+{1} yawned loudly!
+{1} yawned loudly!
+{1} is steadily poking at the ground around {2}'s feet.
+{1} is steadily poking at the ground around {2}'s feet.
+{1} is looking at {2} and smiling.
+{1} is looking at {2} and smiling.
+{1} is staring intently into the distance.
+{1} is staring intently into the distance.
+{1} is keeping up with {2}.
+{1} is keeping up with {2}.
+{1} looks pleased with itself.
+{1} looks pleased with itself.
+{1} is still going strong!
+{1} is still going strong!
+{1} is walking in sync with {2}.
+{1} is walking in sync with {2}.
+{1} started spinning around in circles.
+{1} started spinning around in circles.
+{1} looks at {2} with anticipation.
+{1} looks at {2} with anticipation.
+{1} fell down and looks a little embarrassed.
+{1} fell down and looks a little embarrassed.
+{1} is waiting to see what {2} will do.
+{1} is waiting to see what {2} will do.
+{1} is calmly watching {2}.
+{1} is calmly watching {2}.
+{1} is looking to {2} for some kind of cue.
+{1} is looking to {2} for some kind of cue.
+{1} is staying in place, waiting for {2} to make a move.
+{1} is staying in place, waiting for {2} to make a move.
+{1} obediently sat down at {2}'s feet.
+{1} obediently sat down at {2}'s feet.
+{1} jumped in surprise!
+{1} jumped in surprise!
+{1} jumped a little!
+{1} jumped a little!
+{1} seems to be holding something...
+{1} seems to be holding something...
+\me[{1}]{3} found some \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found some \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{4} found \c[1]{2} {3}\c[0]!\wtnp[30]
+\me[{1}]{4} found \c[1]{2} {3}\c[0]!\wtnp[30]
+\me[{1}]{4} found {2} \c[1]{3}\c[0]!\wtnp[30]
+\me[{1}]{4} found {2} \c[1]{3}\c[0]!\wtnp[30]
+\me[{1}]{3} found an \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found an \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found a \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found a \c[1]{2}\c[0]!\wtnp[30]
+You put the {1} away\<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
+You put the {1} away\<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
+{1} found some \c[1]{2}\c[0]!\wtnp[30]
+{1} found some \c[1]{2}\c[0]!\wtnp[30]
+{1} found \c[1]{2}\c[0]!\wtnp[30]
+{1} found \c[1]{2}\c[0]!\wtnp[30]
+{1} found \c[1]{2} {3}\c[0]!\wtnp[30]
+{1} found \c[1]{2} {3}\c[0]!\wtnp[30]
+{1} found {2} \c[1]{3}\c[0]!\wtnp[30]
+{1} found {2} \c[1]{3}\c[0]!\wtnp[30]
+{1} found an \c[1]{2}\c[0]!\wtnp[30]
+{1} found an \c[1]{2}\c[0]!\wtnp[30]
+{1} found a \c[1]{2}\c[0]!\wtnp[30]
+{1} found a \c[1]{2}\c[0]!\wtnp[30]
+Following Pokemon
+Following Pokemon
+Let the first Pokemon in your party follow you in the overworld.
+Let the first Pokemon in your party follow you in the overworld.
+<ac>Choose a Pokémon.</ac>
+<ac>Choose a Pokémon.</ac>
+<ac>Will you choose #{@pkmnname}, <br>the dual-type #{type1}/#{type2} Pokémon?</ac>
+<ac>Will you choose #{@pkmnname}, <br>the dual-type #{type1}/#{type2} Pokémon?</ac>
+<ac>Will you choose #{@pkmnname}, <br>the #{type1}-type Pokémon?</ac>
+<ac>Will you choose #{@pkmnname}, <br>the #{type1}-type Pokémon?</ac>
+Speed Up Settings
+Speed Up Settings
+Always
+Always
+Only Battles
+Only Battles
+Choose which aspect is sped up.
+Choose which aspect is sped up.
+Battle Speed
+Battle Speed
+x#{SPEEDUP_STAGES[0]}
+x#{SPEEDUP_STAGES[0]}
+x#{SPEEDUP_STAGES[1]}
+x#{SPEEDUP_STAGES[1]}
+x#{SPEEDUP_STAGES[2]}
+x#{SPEEDUP_STAGES[2]}
+Choose the battle speed when the battle speed-up is set to 'Battles Only'.
+Choose the battle speed when the battle speed-up is set to 'Battles Only'.
+How many Pokemons should {1} have? (max. #{party_params.maxNumber})
+How many Pokemons should {1} have? (max. #{party_params.maxNumber})
+Set the default Pokemon level for {1}'s party (max. #{level_params.maxNumber}).
+Set the default Pokemon level for {1}'s party (max. #{level_params.maxNumber}).
+{1}?
+{1}?
+The Trainer's data was added to the list of battles and in PBS/trainers_generated.txt.
+The Trainer's data was added to the list of battles and in PBS/trainers_generated.txt.
+No difficulty with id "{1}" was provided in the DIFFICULTIES Hash of Settings.
+No difficulty with id "{1}" was provided in the DIFFICULTIES Hash of Settings.
+{1} requires an integer value, but {2} was provided.
+{1} requires an integer value, but {2} was provided.
+{1} requires a boolean value, but {2} was provided.
+{1} requires a boolean value, but {2} was provided.
+{1} is not a defined setting name.
+{1} is not a defined setting name.
+{1} drained HP with {2}!
+{1} drained HP with {2}!
+{1} leads the pack!
+{1} leads the pack!
+{1} is moving in an elusive way!
+{1} is moving in an elusive way!
+{1}'s rage is out of control!
+{1}'s rage is out of control!
+{1} can only use {2} due to its Encore!
+{1} can only use {2} due to its Encore!
+Terastal values
+Terastal values
+{1} Terastallize <<[>>Type: {2}<<]>><<n>>{3} currently Terastallized.
+{1} Terastallize <<[>>Type: {2}<<]>><<n>>{3} currently Terastallized.
+Set Terastal state
+Set Terastal state
+Z-Crystals
+Z-Crystals
+Toggle Z-Moves
+Toggle Z-Moves
+Toggles the availability of Z-Move functionality.
+Toggles the availability of Z-Move functionality.
+Z-Moves {1}.
+Z-Moves {1}.
+Toggle Ultra Burst
+Toggle Ultra Burst
+Toggles the availability of Ultra Burst functionality.
+Toggles the availability of Ultra Burst functionality.
+Ultra Burst {1}.
+Ultra Burst {1}.
+Z-Moves
+Z-Moves
+Whether each trainer is allowed to use Z-Moves.
+Whether each trainer is allowed to use Z-Moves.
+Choose trainer to toggle whether they can use Z-Moves.
+Choose trainer to toggle whether they can use Z-Moves.
+Ultra Burst
+Ultra Burst
+Whether each trainer is allowed to Ultra Burst.
+Whether each trainer is allowed to Ultra Burst.
+Choose trainer to toggle whether they can Ultra Burst.
+Choose trainer to toggle whether they can Ultra Burst.
+The move taught by a TM/HM/TR, or a Z-Move linked to a Z-Crystal.
+The move taught by a TM/HM/TR, or a Z-Move linked to a Z-Crystal.
+Alternate description of this item while it's being held by a Pokémon.
+Alternate description of this item while it's being held by a Pokémon.
+A move ID followed by any number of species ID's.
+A move ID followed by any number of species ID's.
+{1} is a Z-Crystal, but missing a Z-Move in the 'Move' field.<<n>>{2}
+{1} is a Z-Crystal, but missing a Z-Move in the 'Move' field.<<n>>{2}
+{1} is a Z-Crystal, but the 'ZCombo' field is missing a move or a species.<<n>>{2}
+{1} is a Z-Crystal, but the 'ZCombo' field is missing a move or a species.<<n>>{2}
+{1} is already holding a piece of {2}.
+{1} is already holding a piece of {2}.
+{1} cannot currently use this crystal's Z-Power. Is that OK?
+{1} cannot currently use this crystal's Z-Power. Is that OK?
+The piece of {1} will be given to {2} so that it may use its Z-Power!
+The piece of {1} will be given to {2} so that it may use its Z-Power!
+{1} is already holding {2} {3}.<<1>>
+{1} is already holding {2} {3}.<<1>>
+You took {1}'s {2} and gave it a piece of {3}.
+You took {1}'s {2} and gave it a piece of {3}.
+{1} is now holding a piece of {2}!
+{1} is now holding a piece of {2}!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Z-Moves again!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Z-Moves again!
+The Z-Power healed {1}!
+The Z-Power healed {1}!
+{1} couldn't fully protect itself and got hurt!
+{1} couldn't fully protect itself and got hurt!
+{1} surrounded itself with its Z-Power!
+{1} surrounded itself with its Z-Power!
+{1} unleashed its full force Z-Move!
+{1} unleashed its full force Z-Move!
+{1} restored its HP using its Z-Power!
+{1} restored its HP using its Z-Power!
+{1} boosted its critical hit ratio using its Z-Power!
+{1} boosted its critical hit ratio using its Z-Power!
+{1} returned its decreased stats to normal using its Z-Power!
+{1} returned its decreased stats to normal using its Z-Power!
+{1} became the center of attention using its Z-Power!
+{1} became the center of attention using its Z-Power!
+{1} boosted its {2} using its Z-Power!
+{1} boosted its {2} using its Z-Power!
+{1}'s Z-Power was replenished by its aura!
+{1}'s Z-Power was replenished by its aura!
+{1}'s aura faded!<<n>>It may now be captured!
+{1}'s aura faded!<<n>>It may now be captured!
+Z-Ring
+Z-Ring
+{1} is not compatible with {2}!
+{1} is not compatible with {2}!
+{1}'s Ultra Burst faded!<<n>>It may now be captured!
+{1}'s Ultra Burst faded!<<n>>It may now be captured!
+Bright light is about to burst out of {1}!
+Bright light is about to burst out of {1}!
+{1} regained its true power with Ultra Burst!
+{1} regained its true power with Ultra Burst!
+Add new foe
+Add new foe
+Add or replace a foe on the opposing side.
+Add or replace a foe on the opposing side.
+<<[>>{1}<<]>> {2} {3}
+<<[>>{1}<<]>> {2} {3}
+Choose an index for the new foe.
+Choose an index for the new foe.
+Set {1}'s level (max. {2}).
+Set {1}'s level (max. {2}).
+<<[>>{1}<<]>> ---
+<<[>>{1}<<]>> ---
+Pokémon can't use moves known by an opposing {1} user.
+Pokémon can't use moves known by an opposing {1} user.
+A save file is corrupt, or is incompatible with this game.
+A save file is corrupt, or is incompatible with this game.
+Do you want to delete that save file? The game will exit afterwards either way.
+Do you want to delete that save file? The game will exit afterwards either way.
+The save data was deleted.
+The save data was deleted.
+The save data could not be deleted.
+The save data could not be deleted.
+Save to #{$player.save_slot}
+Save to #{$player.save_slot}
+Save to another file
+Save to another file
+Quit without saving
+Quit without saving
+Are you sure you want to overwrite the save in #{slot}?
+Are you sure you want to overwrite the save in #{slot}?
+Are you sure you want to quit without saving?
+Are you sure you want to quit without saving?
+Which slot to save in?
+Which slot to save in?
+<ac><c3=3050C8,D0D0C8>(empty)</c3></ac>
+<ac><c3=3050C8,D0D0C8>(empty)</c3></ac>
+%I:%M%p
+%I:%M%p
+<ac>(old save)</ac>
+<ac>(old save)</ac>
+Time<r>{1}h {2}m<br>
+Time<r>{1}h {2}m<br>
+Time<r>{1}m<br>
+Time<r>{1}m<br>
+Unknown interpolation type {1}.
+Unknown interpolation type {1}.
+Frame
+Frame
+Blending
+Blending
+Flip
+Flip
+Priority
+Priority
+Zoom X
+Zoom X
+Zoom Y
+Zoom Y
+Angle
+Angle
+Visible
+Visible
+Opacity
+Opacity
+Color Red
+Color Red
+Color Green
+Color Green
+Color Blue
+Color Blue
+Color Alpha
+Color Alpha
+Tone Red
+Tone Red
+Tone Green
+Tone Green
+Tone Blue
+Tone Blue
+Tone Gray
+Tone Gray
+New animation
+New animation
+<<[>>Move<<]>>
+<<[>>Move<<]>>
+<<[>>Foe Move<<]>>
+<<[>>Foe Move<<]>>
+<<[>>Common<<]>>
+<<[>>Common<<]>>
+<<[>>Foe Common<<]>>
+<<[>>Foe Common<<]>>
+Unknown animation type.
+Unknown animation type.
+Compiling animation PBS files...
+Compiling animation PBS files...
+Expected a section at the beginning of the file.
+Expected a section at the beginning of the file.
+Particle hasn't been defined yet!
+Particle hasn't been defined yet!
+Animation has more than 1 "{1}" particle, which isn't allowed.
+Animation has more than 1 "{1}" particle, which isn't allowed.
+Can't define a "User" particle and also set property "NoUser" to true.
+Can't define a "User" particle and also set property "NoUser" to true.
+Can't define a "Target" particle and also set property "NoTarget" to true.
+Can't define a "Target" particle and also set property "NoTarget" to true.
+Particle "{1}" has a command that isn't a "Play"-type command.
+Particle "{1}" has a command that isn't a "Play"-type command.
+Particle "{1}" has a "Play" command but shouldn't.
+Particle "{1}" has a "Play" command but shouldn't.
+Particle "{1}" has a "PlayUserCry" command but shouldn't.
+Particle "{1}" has a "PlayUserCry" command but shouldn't.
+Particle "{1}" has a "PlayTargetCry" command but shouldn't.
+Particle "{1}" has a "PlayTargetCry" command but shouldn't.
+Particle "{1}" can't have a "Focus" that involves a user if property "NoUser" is set to true.
+Particle "{1}" can't have a "Focus" that involves a user if property "NoUser" is set to true.
+Particle "{1}" can't have a "Graphic" that involves a user if property "NoUser" is set to true.
+Particle "{1}" can't have a "Graphic" that involves a user if property "NoUser" is set to true.
+Animation can't play the user's cry if property "NoUser" is set to true.
+Animation can't play the user's cry if property "NoUser" is set to true.
+Particle "{1}" can't have a "Focus" that involves a target if property "NoTarget" is set to true.
+Particle "{1}" can't have a "Focus" that involves a target if property "NoTarget" is set to true.
+Particle "{1}" can't have a "Graphic" that involves a target if property "NoTarget" is set to true.
+Particle "{1}" can't have a "Graphic" that involves a target if property "NoTarget" is set to true.
+Animation can't play the target's cry if property "NoTarget" is set to true.
+Animation can't play the target's cry if property "NoTarget" is set to true.
+Particle "{1}" can't set "FoeInvertX" if its focus isn't exactly 1 thing.
+Particle "{1}" can't set "FoeInvertX" if its focus isn't exactly 1 thing.
+Particle "{1}" can't set "FoeInvertY" if its focus isn't exactly 1 thing.
+Particle "{1}" can't set "FoeInvertY" if its focus isn't exactly 1 thing.
+Particle "{1}" can't set "FoeFlip" if its focus isn't exactly 1 thing.
+Particle "{1}" can't set "FoeFlip" if its focus isn't exactly 1 thing.
+Particle "{1}" can't have any "Frame" commands if its graphic is a Pokémon's sprite.
+Particle "{1}" can't have any "Frame" commands if its graphic is a Pokémon's sprite.
+SE "{1}" should not play twice in the same frame ({2}).
+SE "{1}" should not play twice in the same frame ({2}).
+User's cry should not play twice in the same frame ({1}).
+User's cry should not play twice in the same frame ({1}).
+Target's cry should not play twice in the same frame ({1}).
+Target's cry should not play twice in the same frame ({1}).
+Animation has overlapping commands for the {1} property.
+Animation has overlapping commands for the {1} property.
+Animation has multiple "Set" commands in the same keyframe for the {1} property.
+Animation has multiple "Set" commands in the same keyframe for the {1} property.
+Invalid blend value: {1} (must be 0, 1 or 2).<<n>>{2}
+Invalid blend value: {1} (must be 0, 1 or 2).<<n>>{2}
+Checking new animations data
+Checking new animations data
+New animations data were not compiled
+New animations data were not compiled
+Writing all animation PBS files
+Writing all animation PBS files
+Successfully rewrote all animation PBS files
+Successfully rewrote all animation PBS files
+Write all animation PBS files
+Write all animation PBS files
+Write all animation PBS files.
+Write all animation PBS files.
+Color/Tone
+Color/Tone
+Animation properties
+Animation properties
+Can be used in battle?
+Can be used in battle?
+Animation type
+Animation type
+Common
+Common
+User is opposing?
+User is opposing?
+PBS filepath
+PBS filepath
+Involves a user?
+Involves a user?
+Involves a target?
+Involves a target?
+Editor settings
+Editor settings
+Side sizes
+Side sizes
+vs.
+vs.
+User index
+User index
+Target indices
+Target indices
+Background graphic
+Background graphic
+User graphic
+User graphic
+Target graphic
+Target graphic
+Choose a file
+Choose a file
+Volume
+Volume
+Pitch
+Pitch
+Common animation
+Common animation
+Do you want to save changes to the animation?
+Do you want to save changes to the animation?
+<<[>><<[>>Target's sprite<<]>><<]>>
+<<[>><<[>>Target's sprite<<]>><<]>>
+<<[>><<[>>Target's other side sprite<<]>><<]>>
+<<[>><<[>>Target's other side sprite<<]>><<]>>
+<<[>><<[>>Target's front sprite<<]>><<]>>
+<<[>><<[>>Target's front sprite<<]>><<]>>
+<<[>><<[>>Target's back sprite<<]>><<]>>
+<<[>><<[>>Target's back sprite<<]>><<]>>
+<<[>><<[>>User's sprite<<]>><<]>>
+<<[>><<[>>User's sprite<<]>><<]>>
+<<[>><<[>>User's other side sprite<<]>><<]>>
+<<[>><<[>>User's other side sprite<<]>><<]>>
+<<[>><<[>>User's front sprite<<]>><<]>>
+<<[>><<[>>User's front sprite<<]>><<]>>
+<<[>><<[>>User's back sprite<<]>><<]>>
+<<[>><<[>>User's back sprite<<]>><<]>>
+<<[>><<[>>Target's cry<<]>><<]>>
+<<[>><<[>>Target's cry<<]>><<]>>
+<<[>><<[>>User's cry<<]>><<]>>
+<<[>><<[>>User's cry<<]>><<]>>
+Edit particle at keyframe
+Edit particle at keyframe
+Additive
+Additive
+Subtractive
+Subtractive
+Edit sound effects at keyframe
+Edit sound effects at keyframe
+Add
+Add
+Edit particle properties
+Edit particle properties
+Graphic
+Graphic
+Change
+Change
+Focus
+Focus
+Foreground
+Foreground
+Midground
+Midground
+Background
+Background
+In front of user's side
+In front of user's side
+Behind user's side
+Behind user's side
+In front of target's side
+In front of target's side
+Behind target's side
+Behind target's side
+If on opposing side...
+If on opposing side...
+Invert X
+Invert X
+Invert Y
+Invert Y
+Flip Sprite
+Flip Sprite
+Duplicate this particle
+Duplicate this particle
+Delete this particle
+Delete this particle
+Are you sure you want to delete this particle?
+Are you sure you want to delete this particle?
+New
+New
+Anim types
+Anim types
+Moves
+Moves
+Animations
+Animations
+Edit animation
+Edit animation
+Copy animation
+Copy animation
+Delete animation
+Delete animation
+Filter text
+Filter text
+<<[>>Foe<<]>>
+<<[>>Foe<<]>>
+Common animations
+Common animations
+(copy)
+(copy)
+New Animation Editor
+New Animation Editor
+Open the new animation editor.
+Open the new animation editor.
+Couldn't get default value for property {1} for particle {2}.
+Couldn't get default value for property {1} for particle {2}.
+No default value for property {1} in PARTICLE_KEYFRAME_DEFAULT_VALUES.
+No default value for property {1} in PARTICLE_KEYFRAME_DEFAULT_VALUES.
+Couldn't get default value for property {1}.
+Couldn't get default value for property {1}.
+Unhandled property {1} for SE particle found.
+Unhandled property {1} for SE particle found.
+(volume: {1})
+(volume: {1})
+(pitch: {1})
+(pitch: {1})
+New particle
+New particle
+Sprite for particle {1} not found somehow (battler index {2}).
+Sprite for particle {1} not found somehow (battler index {2}).
+Sprite for particle "{1}" not found somehow.
+Sprite for particle "{1}" not found somehow.
+Slowdown factor
+Slowdown factor
+Duration
+Duration
+{1}s
+{1}s
+Unknown interpolation method {1}.
+Unknown interpolation method {1}.
+Graphics/UI/Battle/male_icon
+Graphics/UI/Battle/male_icon
+Graphics/UI/Battle/female_icon
+Graphics/UI/Battle/female_icon
+Infertile
+Infertile
+Aquatic
+Aquatic
+Insect
+Insect
+Avian
+Avian
+Animalia
+Animalia
+Pixie
+Pixie
+Plant
+Plant
+Primordial
+Primordial
+Inanimate
+Inanimate
+Marine
+Marine
+Replica
+Replica
+Draconic
+Draconic
+????
+????
+{1}{2}
+{1}{2}
+near a {1}
+near a {1}
+near an {1}
+near an {1}
+in a {1}
+in a {1}
+{1} trigger a special event
+{1} trigger a special event
+Trade {1}
+Trade {1}
+Or trade
+Or trade
+{1} conclude a battle
+{1} conclude a battle
+Level up {1}
+Level up {1}
+Or level up
+Or level up
+{1} reach level {2} or higher
+{1} reach level {2} or higher
+May be left behind in an empty party slot after {1}
+May be left behind in an empty party slot after {1}
+{1} through unknown means
+{1} through unknown means
+#{@description}
+#{@description}
+{1} {2}.
+{1} {2}.
+{1}.
+{1}.
+in the day
+in the day
+at night
+at night
+in the morning
+in the morning
+in the afternoon
+in the afternoon
+during the evening
+during the evening
+while the weather is clear
+while the weather is clear
+while the sunlight is harsh
+while the sunlight is harsh
+while it's raining
+while it's raining
+while it's snowing
+while it's snowing
+during a sandstorm
+during a sandstorm
+while traveling by bicycle
+while traveling by bicycle
+while traveling over water
+while traveling over water
+while traveling underwater
+while traveling underwater
+while traveling in darkness
+while traveling in darkness
+while there's a {1}-type in the party
+while there's a {1}-type in the party
+while its {1} is higher than its {2}
+while its {1} is higher than its {2}
+while its {2} is higher than its {1}
+while its {2} is higher than its {1}
+while its {1} and {2} are equal
+while its {1} and {2} are equal
+- results may vary
+- results may vary
+- this may leave behind a husk afterwards
+- this may leave behind a husk afterwards
+while it's happy
+while it's happy
+while it's the happiest it can be
+while it's the happiest it can be
+in the day while it's happy
+in the day while it's happy
+at night while it's happy
+at night while it's happy
+while it's happy and knows the move {1}
+while it's happy and knows the move {1}
+while it's happy and knows {1}-type move
+while it's happy and knows {1}-type move
+while it's happy and holds {1}
+while it's happy and holds {1}
+while its beauty is high
+while its beauty is high
+while it holds {1}
+while it holds {1}
+in the day while it holds {1}
+in the day while it holds {1}
+at night while it holds {1}
+at night while it holds {1}
+while it knows the move {1}
+while it knows the move {1}
+while it knows {1}-type move
+while it knows {1}-type move
+while {1} is in the party
+while {1} is in the party
+while located in {1}
+while located in {1}
+while {1}
+while {1}
+while located in the {1} region
+while located in the {1} region
+for {1}
+for {1}
+where it landed {1} or more critical hits
+where it landed {1} or more critical hits
+after losing at least 49 HP
+after losing at least 49 HP
+after walking {1} steps with it as party leader
+after walking {1} steps with it as party leader
+while you are partnered with another trainer
+while you are partnered with another trainer
+after it has used the move {1} 20 times
+after it has used the move {1} 20 times
+after losing at least {1} HP to recoil
+after losing at least {1} HP to recoil
+after it beats 3 of its own kind that held {1}
+after it beats 3 of its own kind that held {1}
+with atleast 999x {2} in the bag
+with atleast 999x {2} in the bag
+Zen Mode
+Zen Mode
+Abilities
+Abilities
+Jump to <c2=043c3aff>{1}</c2>'s entry page?
+Jump to <c2=043c3aff>{1}</c2>'s entry page?
+View only <c2=043c3aff>compatible species</c2> that know the move <c2=65467b14>{1}</c2>?
+View only <c2=043c3aff>compatible species</c2> that know the move <c2=65467b14>{1}</c2>?
+No compatible species found.
+No compatible species found.
+View <c2=043c3aff>all species</c2> that know the move <c2=65467b14>{1}</c2>?
+View <c2=043c3aff>all species</c2> that know the move <c2=65467b14>{1}</c2>?
+No species found.
+No species found.
+Return
+Return
+All species that learn this move:
+All species that learn this move:
+Graphics/UI/Pokedex/icon_own
+Graphics/UI/Pokedex/icon_own
+Compatible species that learn this move:
+Compatible species that learn this move:
+Graphics/Pokemon/Eggs/000_icon
+Graphics/Pokemon/Eggs/000_icon
+LEVEL-UP
+LEVEL-UP
+TM/TUTOR
+TM/TUTOR
+INHERIT
+INHERIT
+Z-MOVES
+Z-MOVES
+MAX MOVES
+MAX MOVES
+Graphics/Items/#{item.id}
+Graphics/Items/#{item.id}
+View Compatible
+View Compatible
+View Details
+View Details
+Total: {1:3d}
+Total: {1:3d}
+{1:3d}
+{1:3d}
+View Family
+View Family
+Toggle Dynamax
+Toggle Dynamax
+Toggles the availability of Dynamax functionality.
+Toggles the availability of Dynamax functionality.
+Dynamax {1}.
+Dynamax {1}.
+Dynamax settings...
+Dynamax settings...
+Edit when and where Dynamax is able to be used.
+Edit when and where Dynamax is able to be used.
+Dynamax usable on every map [{1}]
+Dynamax usable on every map [{1}]
+Dynamax usable in wild battles [{1}]
+Dynamax usable in wild battles [{1}]
+Dynamax is now usable on every map.
+Dynamax is now usable on every map.
+Dynamax is now only usable on maps with the 'PowerSpot' flag.
+Dynamax is now only usable on maps with the 'PowerSpot' flag.
+Dynamax is now also usable in wild battles.
+Dynamax is now also usable in wild battles.
+Dynamax is now only usable in trainer battles.
+Dynamax is now only usable in trainer battles.
+Dynamax metrics...
+Dynamax metrics...
+Reposition Pokémon Dynamax sprites displayed in battle.
+Reposition Pokémon Dynamax sprites displayed in battle.
+Edit Dynamax metrics
+Edit Dynamax metrics
+Auto-set Dynamax metrics
+Auto-set Dynamax metrics
+All sprites
+All sprites
+Gigantamax sprites
+Gigantamax sprites
+Sprites by generation...
+Sprites by generation...
+Which sprites do you want to edit?
+Which sprites do you want to edit?
+Select a generation.
+Select a generation.
+Half back sprites (Gen 4 style)
+Half back sprites (Gen 4 style)
+Full back sprites (Gen 5 style)
+Full back sprites (Gen 5 style)
+What style of back sprites are you using?
+What style of back sprites are you using?
+Are you sure you want to automatically reposition all Dynamax sprites?
+Are you sure you want to automatically reposition all Dynamax sprites?
+Repositioning all Dynamax sprites. Please wait.
+Repositioning all Dynamax sprites. Please wait.
+SHOW_DYNAMAX_SIZE is set to 'false', so no Dynamax metrics need to be set.
+SHOW_DYNAMAX_SIZE is set to 'false', so no Dynamax metrics need to be set.
+Dynamax...
+Dynamax...
+Eligible: {1}<<n>>Dynamax Level: {2}<<n>>G-Max Factor: {3}<<n>>Dynamaxed: {4}
+Eligible: {1}<<n>>Dynamax Level: {2}<<n>>G-Max Factor: {3}<<n>>Dynamaxed: {4}
+Set Dynamax Level
+Set Dynamax Level
+Set G-Max Factor
+Set G-Max Factor
+Set Dynamax
+Set Dynamax
+{1} belongs to a species or form that cannot currently use Dynamax.<<n>>Eligibility cannot be changed.
+{1} belongs to a species or form that cannot currently use Dynamax.<<n>>Eligibility cannot be changed.
+{1} is no longer able to use Dynamax.
+{1} is no longer able to use Dynamax.
+{1} is now able to use Dynamax.
+{1} is now able to use Dynamax.
+Set {1}'s Dynamax level (max. 10).
+Set {1}'s Dynamax level (max. 10).
+Can't edit Dynamax values on that Pokémon.
+Can't edit Dynamax values on that Pokémon.
+Gigantamax factor was removed from {1}.
+Gigantamax factor was removed from {1}.
+Gigantamax factor was given to {1}.
+Gigantamax factor was given to {1}.
+{1} doesn't have a Gigantamax form.<<n>>Give it Gigantamax factor anyway?
+{1} doesn't have a Gigantamax form.<<n>>Give it Gigantamax factor anyway?
+{1} is no longer Dynamaxed.
+{1} is no longer Dynamaxed.
+{1} is now Dynamaxed.
+{1} is now Dynamaxed.
+All Dynamax settings restored to default.
+All Dynamax settings restored to default.
+Whether each trainer is allowed to Dynamax.
+Whether each trainer is allowed to Dynamax.
+Choose trainer to toggle whether they can Dynamax.
+Choose trainer to toggle whether they can Dynamax.
+Dynamax values
+Dynamax values
+{1} Dynamax <<[>>Lvl: {2}<<]>> <<[>>G-Max: {3}<<]>><<n>>{4} currently Dynamaxed.
+{1} Dynamax <<[>>Lvl: {2}<<]>> <<[>>G-Max: {3}<<]>><<n>>{4} currently Dynamaxed.
+Set Dynamax Lvl
+Set Dynamax Lvl
+Set Dynamax state
+Set Dynamax state
+No Dynamax
+No Dynamax
+If set to true, the trainer will never Dynamax this Pokémon.
+If set to true, the trainer will never Dynamax this Pokémon.
+Dynamax Lv
+Dynamax Lv
+Dynamax level of the Pokémon (0-10).
+Dynamax level of the Pokémon (0-10).
+Gigantamax
+Gigantamax
+If set to true, the Pokémon will have G-Max Factor.
+If set to true, the Pokémon will have G-Max Factor.
+Dynamax Lv.
+Dynamax Lv.
+{1}'s Dynamax level was increased to 10!
+{1}'s Dynamax level was increased to 10!
+{1}'s Dynamax level was increased by 1!
+{1}'s Dynamax level was increased by 1!
+{1} lost its Gigantamax energy.
+{1} lost its Gigantamax energy.
+{1} is now bursting with Gigantamax energy!
+{1} is now bursting with Gigantamax energy!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Dynamax again!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Dynamax again!
+{1}'s Dynamax energy faded!<<n>>It may now be captured!
+{1}'s Dynamax energy faded!<<n>>It may now be captured!
+Dynamax Band
+Dynamax Band
+{1} surrounded itself in {2} energy!
+{1} surrounded itself in {2} energy!
+{1} recalled {2}!
+{1} recalled {2}!
+{1}'s ball surges with {2} energy!
+{1}'s ball surges with {2} energy!
+The sharp steel bit into {1}!
+The sharp steel bit into {1}!
+{1} is hurt by {2}'s ferocious beating!
+{1} is hurt by {2}'s ferocious beating!
+{1} is burning up within {2}'s flames!
+{1} is burning up within {2}'s flames!
+{1} is hurt by {2}'s vortex!
+{1} is hurt by {2}'s vortex!
+{1} is hurt by the rocks thrown out by {2}!
+{1} is hurt by the rocks thrown out by {2}!
+{1} was released from {2}'s beating!
+{1} was released from {2}'s beating!
+{1} was released from {2}'s flames!
+{1} was released from {2}'s flames!
+{1} was released from {2}'s vortex!
+{1} was released from {2}'s vortex!
+Rocks stopped being thrown out by {1} on {2}!
+Rocks stopped being thrown out by {1} on {2}!
+{1} became drowsy!
+{1} became drowsy!
+{1} got trapped with vines!
+{1} got trapped with vines!
+{1} were surrounded by fire!
+{1} were surrounded by fire!
+{1} got caught in a vortex of water!
+{1} got caught in a vortex of water!
+{1} became surrounded by rocks!
+{1} became surrounded by rocks!
+Sharp-pointed pieces of steel started floating around {1}!
+Sharp-pointed pieces of steel started floating around {1}!
+{1} became stronger against physical and special moves!
+{1} became stronger against physical and special moves!
+{1} became trapped in the watery vortex!
+{1} became trapped in the watery vortex!
+{1}'s PP was reduced!
+{1}'s PP was reduced!
+Any Berry
+Any Berry
+Would you like to craft {1} {2}?
+Would you like to craft {1} {2}?
+You put {1} {2} away\<<n>>in the <icon=bagPocket{3}>\c<<[>>1<<]>>{4} Pocket\c<<[>>0<<]>>.
+You put {1} {2} away\<<n>>in the <icon=bagPocket{3}>\c<<[>>1<<]>>{4} Pocket\c<<[>>0<<]>>.
+You lack the necessary ingredients.
+You lack the necessary ingredients.
+Invalid Recipe ID {1}.
+Invalid Recipe ID {1}.
+You don't have any recipes to use here.
+You don't have any recipes to use here.
+Would you like to craft something?
+Would you like to craft something?
+Let's get started!
+Let's get started!
+Come back soon!
+Come back soon!
+The entry 'Ingredients' is required in recipes.txt section {1}.<<n>>{2}
+The entry 'Ingredients' is required in recipes.txt section {1}.<<n>>{2}
+Tera Type: Power boosted by Terastallization.
+Tera Type: Power boosted by Terastallization.
+Z: Hide
+Z: Hide
+Z: Details
+Z: Details
+Return to the command menu.
+Return to the command menu.
+C: Use
+C: Use
+Cheer
+Cheer
+Launch
+Launch
+{1} used the {2} on {3}.
+{1} used the {2} on {3}.
+{1} used the {2}.
+{1} used the {2}.
+Items can't be used in this battle.
+Items can't be used in this battle.
+{1} is losing health due to Showdown Mode!
+{1} is losing health due to Showdown Mode!
+{1}'s stats rose due to its Showdown Mode!
+{1}'s stats rose due to its Showdown Mode!
+{1} makes other Pokémon dance to a frantic beat!
+{1} makes other Pokémon dance to a frantic beat!
+{1}'s {2} raised its {3} due to Cat's Luck!
+{1}'s {2} raised its {3} due to Cat's Luck!
+Still
+Still
+Normal
+Normal
+Slowest
+Slowest
+Both
+Both
+Ally
+Ally
+Enemy
+Enemy
+Set Animation Speed
+Set Animation Speed
+Set Super Shiny Hue
+Set Super Shiny Hue
+Search for a specific species.
+Search for a specific species.
+{1}'s {2} shared {3} HP with {4}!
+{1}'s {2} shared {3} HP with {4}!
+{1} is ready to take half damage from {2}!
+{1} is ready to take half damage from {2}!
+{1}'s {2} allows it to rampage and skip the recharge!
+{1}'s {2} allows it to rampage and skip the recharge!
+{1}'s {2} restores 3 PP to {3}!
+{1}'s {2} restores 3 PP to {3}!
+{1}'s {2} frostbitten {3}!
+{1}'s {2} frostbitten {3}!
+{1}'s {2} lowered {3}'s Defense!
+{1}'s {2} lowered {3}'s Defense!
+Actually, this should not be possible
+Actually, this should not be possible
+{1} is summoning the winds!
+{1} is summoning the winds!
+Pokémon Animations
+Pokémon Animations
+Choose whether Pokémon sprites should be animated.
+Choose whether Pokémon sprites should be animated.
+: A
+: A
+: S
+: S
+The Pokémon's HP is leeched every turn to heal {1}.
+The Pokémon's HP is leeched every turn to heal {1}.
+The Pokémon's damage output is being increased.
+The Pokémon's damage output is being increased.
+The Pokémon's Atk and Def are swapped.
+The Pokémon's Atk and Def are swapped.
+The Pokémon's next move will be Electric type.
+The Pokémon's next move will be Electric type.
+The Pokémon's Normal type moves become Electric type.
+The Pokémon's Normal type moves become Electric type.
+The Pokémon is being lifted in the air by {1}.
+The Pokémon is being lifted in the air by {1}.
+The Pokémon has been made weaker to Fire type moves.
+The Pokémon has been made weaker to Fire type moves.
+The Pokémon takes damage when it uses a Fire type move.
+The Pokémon takes damage when it uses a Fire type move.
+Fully heals a Pokémon switching into this spot.
+Fully heals a Pokémon switching into this spot.
+The Pokémon will survive all incoming attacks with 1 HP.
+The Pokémon will survive all incoming attacks with 1 HP.
+The Pokémon's substitute will take any incoming moves.
+The Pokémon's substitute will take any incoming moves.
+The Pokémon bounces back any incoming status moves.
+The Pokémon bounces back any incoming status moves.
+The Pokémon is protected from all status moves.
+The Pokémon is protected from all status moves.
+The Pokémon is protected from all priority moves.
+The Pokémon is protected from all priority moves.
+The Pokémon is protected from all spread moves.
+The Pokémon is protected from all spread moves.
+The Pokémon is grounded and its Flying immunities are ignored.
+The Pokémon is grounded and its Flying immunities are ignored.
+The Pokémon is grounded.
+The Pokémon is grounded.
+The Pokémon is less likely to attack {1}.
+The Pokémon is less likely to attack {1}.
+Weight Changed
+Weight Changed
+The Pokémon's weight has been {1}.
+The Pokémon's weight has been {1}.
+Full Protect
+Full Protect
+The Pokémon is protected from all incoming moves.
+The Pokémon is protected from all incoming moves.
+Damage Protect
+Damage Protect
+The Pokémon is protected from all incoming damage.
+The Pokémon is protected from all incoming damage.
+Pow
+Pow
+Pri
+Pri
+Eff
+Eff
+Type changed by the {1} ability.
+Type changed by the {1} ability.
+Power boosted by the {1} ability.
+Power boosted by the {1} ability.
+Power weakened by the {1} ability.
+Power weakened by the {1} ability.
+Accuracy boosted by the {1} ability.
+Accuracy boosted by the {1} ability.
+Accuracy lowered by the {1} ability.
+Accuracy lowered by the {1} ability.
+Priority boosted by the {1} ability.
+Priority boosted by the {1} ability.
+Priority lowered by the {1} ability.
+Priority lowered by the {1} ability.
+Effect chance boosted by the {1} ability.
+Effect chance boosted by the {1} ability.
+Healing boosted by the {1} ability.
+Healing boosted by the {1} ability.
+Power boosted by Terastallization.
+Power boosted by Terastallization.
+Z-Power: Fully restores the user's HP.
+Z-Power: Fully restores the user's HP.
+Z-Power: Fully restores an incoming Pokémon's HP.
+Z-Power: Fully restores an incoming Pokémon's HP.
+Z-Power: Raises the user's critical hit rate.
+Z-Power: Raises the user's critical hit rate.
+Z-Power: Resets the user's lowered stat stages.
+Z-Power: Resets the user's lowered stat stages.
+Z-Power: The user becomes the center of attention.
+Z-Power: The user becomes the center of attention.
+Z-Power: Drastically raises the user's {1}.
+Z-Power: Drastically raises the user's {1}.
+Z-Power: Sharply raises the user's {1}.
+Z-Power: Sharply raises the user's {1}.
+Z-Power: Raises the user's {1}.
+Z-Power: Raises the user's {1}.
+Graphics/Pictures/Location/icon_numbers
+Graphics/Pictures/Location/icon_numbers
+Atras
+Atras
+Equipo: {1}
+Equipo: {1}
+Salir
+Salir
+Sin habilidad
+Sin habilidad
+Sin objeto
+Sin objeto
+¡Llevas un Pokémon!
+¡Llevas un Pokémon!
+¿Continuar operaciones?
+¿Continuar operaciones?
+¿Salir del PC?
+¿Salir del PC?
+Has seleccionado a {1}.
+Has seleccionado a {1}.
+Cambiar
+Cambiar
+Dejar
+Dejar
+Movimientos
+Movimientos
+Datos
+Datos
+Guardar
+Guardar
+Sacar
+Sacar
+Objeto
+Objeto
+Marcar
+Marcar
+Liberar
+Liberar
+Cancelar
+Cancelar
+¿Continuar con las operaciones?
+¿Continuar con las operaciones?
+¿Cuál quieres coger?
+¿Cuál quieres coger?
+Marcas
+Marcas
+¿Continuar con las operacions?
+¿Continuar con las operacions?
+No se puede sacar del equipo...
+No se puede sacar del equipo...
+¡Tu equipo está lleno!
+¡Tu equipo está lleno!
+No se puede depositar...
+No se puede depositar...
+¡Es tu último Pokémon!
+¡Es tu último Pokémon!
+Debes retirar la carta que lleva.
+Debes retirar la carta que lleva.
+¡{1} no quiere quedarse en el PC!
+¡{1} no quiere quedarse en el PC!
+¿Dejar en qué caja?
+¿Dejar en qué caja?
+La Caja está llena.
+La Caja está llena.
+La posición {1},{2} no está vacía...
+La posición {1},{2} no está vacía...
+La posición {1},{2} está vacía...
+La posición {1},{2} está vacía...
+No puedes liberar un Huevo.
+No puedes liberar un Huevo.
+¡{1} no quiere separarse de ti!
+¡{1} no quiere separarse de ti!
+¿Liberar este Pokémon?
+¿Liberar este Pokémon?
+Si
+Si
+Has liberado a {1}.
+Has liberado a {1}.
+¡Adiós, {1}!
+¡Adiós, {1}!
+Los Huevos no pueden llevar objetos.
+Los Huevos no pueden llevar objetos.
+¿Coger {1}?
+¿Coger {1}?
+Has cogido {1}.
+Has cogido {1}.
+No se puede guardar {1}.
+No se puede guardar {1}.
+Has equipado {1}.
+Has equipado {1}.
+Saltar
+Saltar
+Fondo
+Fondo
+Nombre
+Nombre
+¿Qué hacer con?
+¿Qué hacer con?
+¿Saltar a qué Caja?
+¿Saltar a qué Caja?
+Elige un fondo.
+Elige un fondo.
+¿Nombre de la caja?
+¿Nombre de la caja?
+¿Salir de la Caja
+¿Salir de la Caja
+Seleccionar
+Seleccionar
+Objetos
+Objetos
+Graphics/Items/{1}_key
+Graphics/Items/{1}_key
+Graphics/Items/{1}
+Graphics/Items/{1}
+Innate 1
+Innate 1
+Innate 2
+Innate 2
+Innate 3
+Innate 3
+{1} has shuffled it's innates!
+{1} has shuffled it's innates!
+{1} has shuffled its innates!
+{1} has shuffled its innates!
+Do you want to shuffle {1}'s Innates?
+Do you want to shuffle {1}'s Innates?
+One or more specified innate abilities are not defined.<<n>>{1}
+One or more specified innate abilities are not defined.<<n>>{1}
+Set Innates
+Set Innates
+Set Innate Abilities.
+Set Innate Abilities.
+Randomize Defined Innates
+Randomize Defined Innates
+Reset Innates
+Reset Innates
+Innates are: {1}
+Innates are: {1}
+How many Innates Max?
+How many Innates Max?
+{1} ability has been set as the {2} Innate!
+{1} ability has been set as the {2} Innate!
+How many innates should this Pokémon have?
+How many innates should this Pokémon have?
+Set Innate Abilities
+Set Innate Abilities
+Randomize Innates MAX
+Randomize Innates MAX
+Current innates for form {1}: {2}
+Current innates for form {1}: {2}
+Set the max number of innates for form {1}:
+Set the max number of innates for form {1}:
+{1} set as innate {2} for form {3}.
+{1} set as innate {2} for form {3}.
+Reset innates for form {1} to how many?
+Reset innates for form {1} to how many?
+Quests
+Quests
+The 'quest' argument should be a symbol, e.g. ':Quest1'.
+The 'quest' argument should be a symbol, e.g. ':Quest1'.
+\se[{1}]<ac><c2=#{colorQuest(
+\se[{1}]<ac><c2=#{colorQuest(
+{1} tasks
+{1} tasks
+Pet
+Pet
+Feed
+Feed
+Swap with team
+Swap with team
+You gently pet the Pokémon. It seems to enjoy that!
+You gently pet the Pokémon. It seems to enjoy that!
+You give the Pokémon some food. It eats happily!
+You give the Pokémon some food. It eats happily!
+You play with the Pokémon for a while. It has fun!
+You play with the Pokémon for a while. It has fun!
+Swap not possible. Player data not available.
+Swap not possible. Player data not available.
+Swap not possible. Event ID missing.
+Swap not possible. Event ID missing.
+Swap not possible. Box Ranch not initialized.
+Swap not possible. Box Ranch not initialized.
+Swap not possible. Pokémon not found.
+Swap not possible. Pokémon not found.
+Swap not possible for unknown reason.
+Swap not possible for unknown reason.
+You have no Pokémon in your team to swap with.
+You have no Pokémon in your team to swap with.
+Choose a Pokémon from your team to swap with.
+Choose a Pokémon from your team to swap with.
+Swap cancelled.
+Swap cancelled.
+Do you want to swap {1} (Lv. {2}) with {3} (Lv. {4})?
+Do you want to swap {1} (Lv. {2}) with {3} (Lv. {4})?
+Swap successful! {1} is now in your team, and {2} is on the Ranch.
+Swap successful! {1} is now in your team, and {2} is on the Ranch.
+NHIỆM VỤ {1}
+NHIỆM VỤ {1}
+Average
+Average
+Very Fast
+Very Fast
+Can't mix old and new formats.<<n>>{1}
+Can't mix old and new formats.<<r>><<n>>{1}
+Item ID '{1}' is used twice.<<n>>{2}
+Item ID '{1}' is used twice.<<r>><<n>>{2}
+Undefined berry constant name: {1}<<n>>Make sure the berry is defined in PBS/berry_data.txt.<<n>>{2}
+Undefined berry constant name: {1}<<r>><<n>>Make sure the berry is defined in PBS/berry_data.txt.<<r>><<n>>{2}
+Berrydex list number {1} has berry {2} listed twice.<<n>>{3}
+Berrydex list number {1} has berry {2} listed twice.<<r>><<n>>{3}
+You don't have any Berries registered.
+You don't have any Berries registered.
+$player.has_berrydex is currently false
+$player.has_berrydex is currently false
+Switch #{Settings::ACCESS_BERRYDEX_SWITCH_ID} is currently false
+Switch #{Settings::ACCESS_BERRYDEX_SWITCH_ID} is currently false
+Berrydex
+Berrydex
+Toggle Berrydex
+Toggle Berrydex
+Toggle possession of the Berrydex
+Toggle possession of the Berrydex
+Gave Berrydex.
+Gave Berrydex.
+Lost Berrydex.
+Lost Berrydex.
+Gathered:
+Gathered:
+Planted:
+Planted:
+Graphics/#{@file_location}/Berrydex/plant_dirt
+Graphics/#{@file_location}/Berrydex/plant_dirt
+Graphics/#{@file_location}/Berrydex/preferred_weather_box_split
+Graphics/#{@file_location}/Berrydex/preferred_weather_box_split
+Graphics/#{@file_location}/Berrydex/preferred_weather_box
+Graphics/#{@file_location}/Berrydex/preferred_weather_box
+Graphics/#{@file_location}/Berrydex/bar_mutations_info
+Graphics/#{@file_location}/Berrydex/bar_mutations_info
+Graphics/#{@file_location}/Berrydex/mutation_titles
+Graphics/#{@file_location}/Berrydex/mutation_titles
+Graphics/#{@file_location}/Berrydex/mutation_pageindicator
+Graphics/#{@file_location}/Berrydex/mutation_pageindicator
+Graphics/#{@file_location}/Berrydex/mutation_row
+Graphics/#{@file_location}/Berrydex/mutation_row
+Graphics/#{@file_location}/Berrydex/mutation_row2
+Graphics/#{@file_location}/Berrydex/mutation_row2
+Graphics/#{@file_location}/Berrydex/mutation_none
+Graphics/#{@file_location}/Berrydex/mutation_none
+Graphics/#{@file_location}/Berrydex/flavor_selected
+Graphics/#{@file_location}/Berrydex/flavor_selected
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_info
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_info
+Graphics/#{@file_location}/Berrydex/bar_battle_info
+Graphics/#{@file_location}/Berrydex/bar_battle_info
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_battle_plant
+Graphics/#{@file_location}/Berrydex/bar_battle_plant
+Graphics/#{@file_location}/Berrydex/bar_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_mutations_battle
+Graphics/#{@file_location}/Berrydex/bar_mutations_battle
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}_graph
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}_graph
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}
+Firm
+Firm
+{1:.1f}"
+{1:.1f}"
+{1:.1f} cm
+{1:.1f} cm
+Graphics/#{@file_location}/Berrydex/bg_plant
+Graphics/#{@file_location}/Berrydex/bg_plant
+Graphics/#{@file_location}/Berrydex/plant_dirt#{Settings::BERRY_SOIL_DEFINITIONS[berry_data.preferred_soil][:dex_graphic_ext]}
+Graphics/#{@file_location}/Berrydex/plant_dirt#{Settings::BERRY_SOIL_DEFINITIONS[berry_data.preferred_soil][:dex_graphic_ext]}
+Growth Time
+Growth Time
+Harvest
+Harvest
+Dry Rate
+Dry Rate
+{1:d} hrs
+{1:d} hrs
+{1:d} - {2:d}
+{1:d} - {2:d}
+Ideal Weather
+Ideal Weather
+Ideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Ideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Unideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Unideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Graphics/#{@file_location}/Berrydex/bg_battle
+Graphics/#{@file_location}/Berrydex/bg_battle
+Fling
+Fling
+Natural Gift
+Natural Gift
+Power
+Power
+Graphics/#{@file_location}/types
+Graphics/#{@file_location}/types
+Graphics/#{@file_location}/Berrydex/bg_mutation
+Graphics/#{@file_location}/Berrydex/bg_mutation
+{1}/{2}
+{1}/{2}
+Parents
+Parents
+Offspring
+Offspring
+???
+???
+Multiple
+Multiple
+No Mutation Data
+No Mutation Data
+You don't have any berries!
+You don't have any berries!
+Choose this berry?
+Choose this berry?
+Choose these berries?
+Choose these berries?
+Stop choosing a berry?
+Stop choosing a berry?
+Stop choosing berries?
+Stop choosing berries?
+You don't have any more of these to choose.
+You don't have any more of these to choose.
+Choose
+Choose
+Choose {1}?
+Choose {1}?
+There is something unique about it...
+There is something unique about it...
+Zones
+Zones
+Loamy
+Loamy
+soft, loamy
+soft, loamy
+soft and loamy
+soft and loamy
+Sandy
+Sandy
+coarse, sandy
+coarse, sandy
+coarse and sandy
+coarse and sandy
+Clay
+Clay
+dense, heavy
+dense, heavy
+dense and heavy
+dense and heavy
+Marshy
+Marshy
+wet, marshy
+wet, marshy
+wet and marshy
+wet and marshy
+Rocky
+Rocky
+uneven, gravelly
+uneven, gravelly
+uneven and gravelly
+uneven and gravelly
+Fertile
+Fertile
+rich, fertile
+rich, fertile
+rich and fertile
+rich and fertile
+It's {1} soil.
+It's {1} soil.
+soft, earthy
+soft, earthy
+Plant #{(Settings::BERRY_USE_BERRY_SEEDS ?
+Plant #{(Settings::BERRY_USE_BERRY_SEEDS ?
+It's {1} soil. Want to plant a #{(Settings::BERRY_USE_BERRY_SEEDS ?
+It's {1} soil. Want to plant a #{(Settings::BERRY_USE_BERRY_SEEDS ?
+Want to plant a #{(Settings::BERRY_USE_BERRY_SEEDS ?
+Want to plant a #{(Settings::BERRY_USE_BERRY_SEEDS ?
+The {1} was planted in the {2} soil.
+The {1} was planted in the {2} soil.
+{1} planted an {2} in the {3} soil.
+{1} planted an {2} in the {3} soil.
+{1} planted a {2} in the {3} soil.
+{1} planted a {2} in the {3} soil.
+Want to sprinkle some water on it?
+Want to sprinkle some water on it?
+The {1} is empty!
+The {1} is empty!
+The {1} is now empty.
+The {1} is now empty.
+Plant Info
+Plant Info
+Make Fully Grown
+Make Fully Grown
+Reset Plant
+Reset Plant
+View info about the plant event.
+View info about the plant event.
+Make the plant fully grown and ready to harvest.
+Make the plant fully grown and ready to harvest.
+Reset the entire plant (will clear all data).
+Reset the entire plant (will clear all data).
+Continue.
+Continue.
+Zone: {1}
+Zone: {1}
+Map Location: {1}
+Map Location: {1}
+Soil: {1} | Mulch: {2}
+Soil: {1}  |  Mulch: {2}
+Mulch: {1}
+Mulch: {1}
+Seed: {1}
+Seed: {1}
+Current Yield: {1}
+Current Yield: {1}
+Berry: {1}
+Berry: {1}
+Stage: {1}
+Stage: {1}
+Hrs per stage: {1}
+Hrs per stage: {1}
+Max replants: {1}
+Max replants: {1}
+Moisture: {1}% | Dry rate: {2}%/hr
+Moisture: {1}%  |  Dry rate: {2}%/hr
+Fully grown stage count: {1}
+Fully grown stage count: {1}
+Exposed to Pref Weather?: {1}
+Exposed to Pref Weather?: {1}
+In Pref Zone?: {1}
+In Pref Zone?: {1}
+In Unpref Zone?: {1}
+In Unpref Zone?: {1}
+In Pref Soil?: {1}
+In Pref Soil?: {1}
+Weed chance: {1}%
+Weed chance: {1}%
+Pest chance: {1}%
+Pest chance: {1}%
+Mutation chance: {1}%
+Mutation chance: {1}%
+Mutation: {1} [{2}]
+Mutation: {1} [{2}]
+Propagation chance: {1}%
+Propagation chance: {1}%
+Watering cans (with traits) used: None
+Watering cans (with traits) used: None
+Watering cans (with traits) used:
+Watering cans (with traits) used:
+The berry plant is ready to harvest.
+The berry plant is ready to harvest.
+Are you sure you want to reset all data for this plant?
+Are you sure you want to reset all data for this plant?
+Berry plant reset.
+Berry plant reset.
+The {1} seemed happy to be planted here!
+The {1} seemed happy to be planted here!
+The {1} didn't seem happy to be planted here...
+The {1} didn't seem happy to be planted here...
+There are {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> and {3} \c<<[>>1<<]>>{4}\c<<[>>0<<]>>! <<1>>Want to pick them?
+There are {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> and {3} \c<<[>>1<<]>>{4}\c<<[>>0<<]>>! <<1>>Want to pick them?
+There are {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> and 1 \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Want to pick them?
+There are {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> and 1 \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Want to pick them?
+There is 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> and {2} \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Want to pick them?
+There is 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> and {2} \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Want to pick them?
+There is 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> and 1 \c<<[>>1<<]>>{2}\c<<[>>0<<]>>! <<1>>Want to pick them?
+There is 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> and 1 \c<<[>>1<<]>>{2}\c<<[>>0<<]>>! <<1>>Want to pick them?
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and {3} \c[1]{4}\c[0].\wtnp[30]
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and {3} \c[1]{4}\c[0].\wtnp[30]
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and {2} \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and {2} \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and \c[1]{2}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and \c[1]{2}\c[0].\wtnp[30]
+{1} put them in\<<n>>your Bag's <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> Pocket.<<1>>
+{1} put them in\<<n>>your Bag's <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> Pocket.<<1>>
+The soil returned to its {1} state.
+The soil returned to its {1} state.
+soft and earthy
+soft and earthy
+A Pokémon jumped out, but the repellent made it run away!
+A Pokémon jumped out, but the repellent made it run away!
+A Pokémon jumped out at you!
+A Pokémon jumped out at you!
+You may be able to dig up the seed. Dig up the {1}?
+You may be able to dig up the seed. Dig up the {1}?
+The dug up {1} was in good enough condition to keep.
+The dug up {1} was in good enough condition to keep.
+The dug up {1} broke apart in your hands.
+The dug up {1} broke apart in your hands.
+You may be able to dig up the berry. Dig up the {1}?
+You may be able to dig up the berry. Dig up the {1}?
+Weeds are growing here. Pull out the weeds?
+Weeds are growing here. Pull out the weeds?
+{1} pulled out the weeds!
+{1} pulled out the weeds!
+There's something on the ground...
+There's something on the ground...
+BerryPlant Event #{info[0][1]} on map #{pbGetBasicMapNameFromId(info[0][0])}[#{info[0][0]}] has no map(region,x,y) defined.
+BerryPlant Event #{info[0][1]} on map #{pbGetBasicMapNameFromId(info[0][0])}[#{info[0][0]}] has no map(region,x,y) defined.
+Oh, something dropped!
+Oh, something dropped!
+The composter cannot be used.
+The composter cannot be used.
+It's a composter.<<n>>Compost some Berries to make Mulch?
+It's a composter.<<n>>Compost some Berries to make Mulch?
+Read lid
+Read lid
+It's a composter!<<n>>The instructions are written on the lid...
+It's a composter!<<n>>The instructions are written on the lid...
+Do you want to compost some Berries to make Mulch?
+Do you want to compost some Berries to make Mulch?
+{1} put {2} into the composter!
+{1} put {2} into the composter!
+\w[signskin]Put {1} Berries in, and you can make Mulch.
+\w[signskin]Put {1} Berries in, and you can make Mulch.
+\w[signskin]Using Mulch on the soil before planting a Berry helps the Berries grow.
+\w[signskin]Using Mulch on the soil before planting a Berry helps the Berries grow.
+Autoplanting cannot be done.
+Autoplanting cannot be done.
+Oh I don't know how to plant seeds yet. Maybe one day.
+Oh I don't know how to plant seeds yet. Maybe one day.
+I can plant some Berries for you!
+I can plant some Berries for you!
+Do you want me to plant some of your Berries?
+Do you want me to plant some of your Berries?
+Let me know if you change your mind!
+Let me know if you change your mind!
+I wasn't able to plant the Berries. Here, have them back!
+I wasn't able to plant the Berries. Here, have them back!
+I planted some of the Berries, but not all of them. Here are the ones left over!
+I planted some of the Berries, but not all of them. Here are the ones left over!
+I've planted all of the Berries you gave me!
+I've planted all of the Berries you gave me!
+Event #{event} doesn't have BerryPlantData.
+Event #{event} doesn't have BerryPlantData.
+{1} watered the plant.\wtnp[40]
+{1} watered the plant.\wtnp[40]
+Graphics/UI/Berry Improvements/potsWaterBg
+Graphics/UI/Berry Improvements/potsWaterBg
+Graphics/UI/Berry Improvements/potsWaterGauge
+Graphics/UI/Berry Improvements/potsWaterGauge
+Graphics/Pictures/Berry Improvements/potsWaterBg
+Graphics/Pictures/Berry Improvements/potsWaterBg
+Graphics/Pictures/Berry Improvements/potsWaterGauge
+Graphics/Pictures/Berry Improvements/potsWaterGauge
+Remove
+Remove
+Do what with this rule?
+Do what with this rule?
+There are no remaining battle rules to add.
+There are no remaining battle rules to add.
+Selected battle rule is invalid.
+Selected battle rule is invalid.
+Battle rule inverted.
+Battle rule inverted.
+Set battle rules...
+Set battle rules...
+Set battle rules to apply to the next encounter.
+Set battle rules to apply to the next encounter.
+Set partner trainer
+Set partner trainer
+Set a partner trainer to accompany the player in battle.
+Set a partner trainer to accompany the player in battle.
+Replace
+Replace
+Do what with the player's existing partner? ({1})
+Do what with the player's existing partner? ({1})
+Removed {1} as partner.
+Removed {1} as partner.
+Choose a new partner.
+Choose a new partner.
+PARTNER TRAINER
+PARTNER TRAINER
+Registered {1} as partner.
+Registered {1} as partner.
+Trainer is missing a back sprite.<<n>>Unable to set as partner.
+Trainer is missing a back sprite.<<n>>Unable to set as partner.
+Toggle battle gimmicks...
+Toggle battle gimmicks...
+Toggles for various battle gimmicks such as Mega Evolution.
+Toggles for various battle gimmicks such as Mega Evolution.
+<<[>>ADD NEW RULE<<]>>
+<<[>>ADD NEW RULE<<]>>
+Select a new battle rule to apply.
+Select a new battle rule to apply.
+<<[>>CLEAR ALL RULES<<]>>
+<<[>>CLEAR ALL RULES<<]>>
+Clear all active battle rules.
+Clear all active battle rules.
+No battle active battle rules to clear.
+No battle active battle rules to clear.
+Are you sure you want to clear all active battle rules?
+Are you sure you want to clear all active battle rules?
+Determines the number of battlers on each side of the field.
+Determines the number of battlers on each side of the field.
+Set the battle size.
+Set the battle size.
+The player's partner trainer will not participate in battle.
+The player's partner trainer will not participate in battle.
+The game will continue even if the player loses the battle.
+The game will continue even if the player loses the battle.
+The player will be unable to select the Run command.
+The player will be unable to select the Run command.
+Wild Pokémon will always attempt to flee as their first action.
+Wild Pokémon will always attempt to flee as their first action.
+Trainers will be unable to manually switch out Pokémon.
+Trainers will be unable to manually switch out Pokémon.
+Determines whether or not switch mode is enabled.
+Determines whether or not switch mode is enabled.
+Set whether switch mode should be enabled. (Trainer battles only)
+Set whether switch mode should be enabled. (Trainer battles only)
+The player's Pokémon will not gain any experience.
+The player's Pokémon will not gain any experience.
+The player will not lose or receive any prize money.
+The player will not lose or receive any prize money.
+Determines the default battle weather.
+Determines the default battle weather.
+Set the default battle weather.
+Set the default battle weather.
+Determines the default battle terrain.
+Determines the default battle terrain.
+Set the default battle terrain.
+Set the default battle terrain.
+Determines the battle environment.
+Determines the battle environment.
+Set the battle environment.
+Set the battle environment.
+Poké Balls will be unable to be selected from the bag.
+Poké Balls will be unable to be selected from the bag.
+Any captured Pokémon must be added to the party.
+Any captured Pokémon must be added to the party.
+Determines whether or not battle animations are enabled.
+Determines whether or not battle animations are enabled.
+Set whether battle animations should be enabled.
+Set whether battle animations should be enabled.
+Determines the graphic used for the battle background.
+Determines the graphic used for the battle background.
+Set the name of the background graphic.
+Set the name of the background graphic.
+Determines the graphics used for the battle bases.
+Determines the graphics used for the battle bases.
+Set the name of the battle base graphics.
+Set the name of the battle base graphics.
+The variable number used to store the battle outcome.
+The variable number used to store the battle outcome.
+Set a variable number.
+Set a variable number.
+Determines temporary player attributes.
+Determines temporary player attributes.
+Enter the player's temporary display name.
+Enter the player's temporary display name.
+Set the player's temporary outfit number.
+Set the player's temporary outfit number.
+Determines the player's temporary party.
+Determines the player's temporary party.
+Add a temporary party member (slot {1}).<<n>>(Exit menu to end early)
+Add a temporary party member (slot {1}).<<n>>(Exit menu to end early)
+Set a level for {1}.
+Set a level for {1}.
+Set a temporary party of {1}.
+Set a temporary party of {1}.
+Determines the player's temporary inventory.
+Determines the player's temporary inventory.
+Add a new item to the temporary bag.<<n>>(Exit menu to end)
+Add a new item to the temporary bag.<<n>>(Exit menu to end)
+Set the number of {1} to add.
+Set the number of {1} to add.
+Set a temporary inventory of {1} items.
+Set a temporary inventory of {1} items.
+Trainers are unable to use any items from their inventories.
+Trainers are unable to use any items from their inventories.
+Determines which side Mega Evolution is disabled for.
+Determines which side Mega Evolution is disabled for.
+Choose a side to disable Mega Evolution for.
+Choose a side to disable Mega Evolution for.
+The AI will control the player's commands.
+The AI will control the player's commands.
+The battle functions like a Battle Tower or PvP battle.
+The battle functions like a Battle Tower or PvP battle.
+Type effectiveness will be inverted.
+Type effectiveness will be inverted.
+Determines a battle gimmick to be used by wild Pokémon.
+Determines a battle gimmick to be used by wild Pokémon.
+Choose a battle gimmick for wild Pokémon to use.
+Choose a battle gimmick for wild Pokémon to use.
+Determines whether Poké Balls always succeeed or fail.
+Determines whether Poké Balls always succeeed or fail.
+Set whether Poké Balls will always succeed or fail.
+Set whether Poké Balls will always succeed or fail.
+Captured Pokémon will not be kept or registered in the Pokédex.
+Captured Pokémon will not be kept or registered in the Pokédex.
+You're prompted to capture a wild Pokémon when its HP drops to zero.
+You're prompted to capture a wild Pokémon when its HP drops to zero.
+Determines the music effect upon capturing a Pokémon.
+Determines the music effect upon capturing a Pokémon.
+Set the music effect that plays upon capturing a Pokémon.
+Set the music effect that plays upon capturing a Pokémon.
+Determines the battle background music.
+Determines the battle background music.
+Set the battle background music. (Set to None to disable)
+Set the battle background music. (Set to None to disable)
+Determines the battle victory music.
+Determines the battle victory music.
+Set the battle victory music. (Set to None to disable)
+Set the battle victory music. (Set to None to disable)
+Determines the low HP background music.
+Determines the low HP background music.
+Set the low HP background music. (Set to None to disable)
+Set the low HP background music. (Set to None to disable)
+Determines the text displayed at the start of an encounter.
+Determines the text displayed at the start of an encounter.
+Set the displayed encounter text.
+Set the displayed encounter text.
+Determines the opposing trainer's win speech.
+Determines the opposing trainer's win speech.
+Set the opposing trainer's win speech. (PvP-style battles only)
+Set the opposing trainer's win speech. (PvP-style battles only)
+Determines the opposing trainer's lose speech.
+Determines the opposing trainer's lose speech.
+Set the opposing trainer's lose speech.
+Set the opposing trainer's lose speech.
+Determines the way opponents slide on screen when encountered.
+Determines the way opponents slide on screen when encountered.
+Set the way opponents slide on screen.
+Set the way opponents slide on screen.
+Determines the style of the displayed databoxes.
+Determines the style of the displayed databoxes.
+Set the databox style to display.
+Set the databox style to display.
+Determines which mid-battle script to run.
+Determines which mid-battle script to run.
+No valid midbattle scripts found.
+No valid midbattle scripts found.
+Set a mid-battle script to run.
+Set a mid-battle script to run.
+#{g}You don't have enough Pokémon in your party that can participate...
+#{g}You don't have enough Pokémon in your party that can participate...
+#{g}Come back when you have enough Pokémon to battle with.
+#{g}Come back when you have enough Pokémon to battle with.
+#{g}Huh? Changed your mind?
+#{g}Huh? Changed your mind?
+#{g}Come back when you have the right Pokéméon you want to battle with.
+#{g}Come back when you have the right Pokéméon you want to battle with.
+{1} evolved into {2}!
+{1} evolved into {2}!
+Capture {1}?
+Capture {1}?
+{1} is completely immune to indirect damage!
+{1} is completely immune to indirect damage!
+Basic
+Basic
+Long
+Long
+Graphics/Items/#{@battler.item_id}
+Graphics/Items/#{@battler.item_id}
+{1} reverted to its original typing!
+{1} reverted to its original typing!
+Determines which side Dynamax is disabled for.
+Determines which side Dynamax is disabled for.
+Choose a side to disable Dynamax for.
+Choose a side to disable Dynamax for.
+Other plugin settings...
+Other plugin settings...
+Settings for various features implemented by add-on plugins.
+Settings for various features implemented by add-on plugins.
+Dynamax species metrics...
+Dynamax species metrics...
+Determines which side Terastallization is disabled for.
+Determines which side Terastallization is disabled for.
+Choose a side to disable Terastallization for.
+Choose a side to disable Terastallization for.
+Determines which side Z-Moves are disabled for.
+Determines which side Z-Moves are disabled for.
+Choose a side to disable Z-Moves for.
+Choose a side to disable Z-Moves for.
+Determines which side Ultra Burst is disabled for.
+Determines which side Ultra Burst is disabled for.
+Choose a side to disable Ultra Burst for.
+Choose a side to disable Ultra Burst for.
+This is a working Menu Entry for Voltseon's Pause Menu.
+This is a working Menu Entry for Voltseon's Pause Menu.
+Set Menu Theme
+Set Menu Theme
+Change the Menu Theme for Voltseon's Pause Menu...
+Change the Menu Theme for Voltseon's Pause Menu...
+Set the menu theme. (1 - {1})
+Set the menu theme. (1 - {1})
+The menu theme has been set to {1}.
+The menu theme has been set to {1}.
+Menu Theme
+Menu Theme
+Set pause menu theme.
+Set pause menu theme.
+Steps: {1}/{2}
+Steps: {1}/{2}
+Caught: {1}
+Caught: {1}
+Level: {1}
+Level: {1}
+Caught: None
+Caught: None
+{1} {2} {3}
+{1} {2} {3}
+You have {1} new quest!
+You have {1} new quest!
+You have {1} new quests!
+You have {1} new quests!
+The Pokémon's HP won't fall below {1}% when attacked.
+The Pokémon's HP won't fall below {1}% when attacked.
+Damage Gate
+Damage Gate
+Unknown weather.
+Unknown weather.
+Unknown terrain.
+Unknown terrain.
+Offense Cheer 1
+Offense Cheer 1
+The Pokémon's attacks deal increased damage.
+The Pokémon's attacks deal increased damage.
+Offense Cheer 2
+Offense Cheer 2
+The Pokémon's attacks will trigger effects & critically hit.
+The Pokémon's attacks will trigger effects & critically hit.
+Offense Cheer 3
+Offense Cheer 3
+The Pokémon's attacks bypass effects like Protect & Substitute.
+The Pokémon's attacks bypass effects like Protect & Substitute.
+Defense Cheer 1
+Defense Cheer 1
+The Pokémon takes reduced damage from attacks.
+The Pokémon takes reduced damage from attacks.
+Defense Cheer 2
+Defense Cheer 2
+The Pokémon is immune to critical hits and move effects.
+The Pokémon is immune to critical hits and move effects.
+Defense Cheer 3
+Defense Cheer 3
+Accuracy boosted by the held {1}.
+Accuracy boosted by the held {1}.
+Accuracy lowered by the held {1}.
+Accuracy lowered by the held {1}.
+Power boosted by the held {1}.
+Power boosted by the held {1}.
+Power weakened by the held {1}.
+Power weakened by the held {1}.
+Storm
+Storm
+Blizzard
+Blizzard
+Heavy rain
+Heavy rain
+Fog
+Fog
+The weather on the zone has been {1}, with chance of some places having {2}, since {3}:{4}.
+The weather on the zone has been {1}, with chance of some places having {2}, since {3}:{4}.
+The weather will change at {1}:{2} to {3} with chance of {4} on some places.
+The weather will change at {1}:{2} to {3} with chance of {4} on some places.
+Summer grass
+Summer grass
+Summer tall grass
+Summer tall grass
+Autumn grass
+Autumn grass
+Autumn tall grass
+Autumn tall grass
+Winter grass
+Winter grass
+Winter tall grass
+Winter tall grass
+Spring grass
+Spring grass
+Spring tall grass
+Spring tall grass
+Graphics/Pictures/WeatherSystem/Seasons/
+Graphics/Pictures/WeatherSystem/Seasons/
+Graphics/UI/WeatherSystem/Seasons/
+Graphics/UI/WeatherSystem/Seasons/
+Não tem PP suficiente...
+Não tem PP suficiente...
+{1} não pode usar {2} em si mesmo
+{1} não pode usar {2} em si mesmo
+{1} não pode ser usado em ovos!
+{1} não pode ser usado em ovos!
+{1} não pode ser usado nesse Pokémon.
+{1} não pode ser usado nesse Pokémon.
+{1} curou o HP em {2} pontos.
+{1} curou o HP em {2} pontos.
+Selecione um Pokémon?
+Selecione um Pokémon?
+{1} só pode ser usado em alvos dormindo.
+{1} só pode ser usado em alvos dormindo.
+{1} curou o HP em {2} pontos e causou dano em {3}.
+{1} curou o HP em {2} pontos e causou dano em {3}.
+{1} não pode ser usado nesse Pokémon pois possue a Ability Telepathy.
+{1} não pode ser usado nesse Pokémon pois possue a Ability Telepathy.
+{1} não pode ser usado nesse Pokémon pois possue a Ability Bulletproof.
+{1} não pode ser usado nesse Pokémon pois possue a Ability Bulletproof.
+{1} não pode ser usado.
+{1} não pode ser usado.
+Os pokemon do seu time foram curados!
+Os pokemon do seu time foram curados!
+Nenhum pokemon do seu time foi curado!
+Nenhum pokemon do seu time foi curado!
+{1} não pode usar {2} em si mesmo.
+{1} não pode usar {2} em si mesmo.
+{1} foi revivido pelo Revival Blessing.
+{1} foi revivido pelo Revival Blessing.
+{1} foi revivido pelo Revival Blessing e {2} desmaiou.
+{1} foi revivido pelo Revival Blessing e {2} desmaiou.
+{1} foi revivido pelo Lunar Dance, curou {2} por completo e desmaiou.
+{1} foi revivido pelo Lunar Dance, curou {2} por completo e desmaiou.
+{1} can't be used.
+{1} can't be used.
+Restaure os PPS...
+Restaure os PPS...
+Not enough PP...
+Not enough PP...
+{1} restaurou 100% do seu HP e dormiu.
+{1} restaurou 100% do seu HP e dormiu.
+{1} curou o HP em {2} pontos e curou efeito negativo de #{newpkmn.name}.
+{1} curou o HP em {2} pontos e curou efeito negativo de #{newpkmn.name}.
+Seus status foram curados!
+Seus status foram curados!
+Você não tem nenhum status valido!
+Você não tem nenhum status valido!
+Ninguém tem nenhum efeito de status!
+Ninguém tem nenhum efeito de status!
+Os efeitos de status de todos foram curados!
+Os efeitos de status de todos foram curados!
+Os Pokémon do seu time foram curados!
+Os Pokémon do seu time foram curados!
+Nenhum Pokémon do seu time foi curado!
+Nenhum Pokémon do seu time foi curado!
+{1} is immune to {2}'s magic!
+{1} is immune to {2}'s magic!
+{1} can't use {2} after tampering!
+{1} can't use {2} after tampering!
+{1} hurt itself from being brittle!
+{1} hurt itself from being brittle!
+{1} was hurt by the thorns in the rose garden!
+{1} was hurt by the thorns in the rose garden!
+{1}'s magic is back!
+{1}'s magic is back!
+{1}'s gold hoard wore off!
+{1}'s gold hoard wore off!
+{1} is starting to feel the fatigue
+{1} is starting to feel the fatigue
+{1} became confused due to vertigo!
+{1} became confused due to vertigo!
+{1} got scared and switched out!
+{1} got scared and switched out!
+{1} is exhausted from breaking it's limits!
+{1} is exhausted from breaking it's limits!
+{1} was freed from the restrictive vines!
+{1} was freed from the restrictive vines!
+{1} caught the ball attack with {2}!
+{1} caught the ball attack with {2}!
+{1} is scratching its itch and can't move!
+{1} is scratching its itch and can't move!
+{1} is idolizing!
+{1} is idolizing!
+Set the Pokémon's winded count.
+Set the Pokémon's winded count.
+Set the Pokémon's blinded count.
+Set the Pokémon's blinded count.
+Set {1}'s winded count (0-99).
+Set {1}'s winded count (0-99).
+Set {1}'s blinded count (0-99).
+Set {1}'s blinded count (0-99).
+{1} set up a magical barrier!
+{1} set up a magical barrier!
+{1} barrier was broken and a curse was placed!
+{1} barrier was broken and a curse was placed!
+Magical miasma is in the air around {1}!
+Magical miasma is in the air around {1}!
+{1} began to gather fighting energy!
+{1} began to gather fighting energy!
+This sudden energy is pumping {1} up!
+This sudden energy is pumping {1} up!
+{1} threw Poison spikes across the battle field!
+{1} threw Poison spikes across the battle field!
+{1} feels energised after being pollenised!
+{1} feels energised after being pollenised!
+{1} snuffed out its Tailwind!
+{1} snuffed out its Tailwind!
+{1} snuffed out the foe's Tailwind!
+{1} snuffed out the foe's Tailwind!
+{1} shattered the Trick Room!
+{1} shattered the Trick Room!
+{1} shattered the Wonder Room!
+{1} shattered the Wonder Room!
+{1} shattered the Magic Room!
+{1} shattered the Magic Room!
+{1} got captured by {2}'s vines and can't escape!
+{1} got captured by {2}'s vines and can't escape!
+{1} set up a gold hoard, boosting {2}'s Dragon moves!
+{1} set up a gold hoard, boosting {2}'s Dragon moves!
+{1} had its magic tampered!
+{1} had its magic tampered!
+{1}'s {2} makes it act like it's in the sun!
+{1}'s {2} makes it act like it's in the sun!
+{1}'s {2} froze everything on the battlefield
+{1}'s {2} froze everything on the battlefield
+{1}'s {2} shocked everything on the battlefield
+{1}'s {2} shocked everything on the battlefield
+{1}'s {2} burned everything on the battlefield
+{1}'s {2} burned everything on the battlefield
+Small electric shock came from the attack hitting {1}!
+Small electric shock came from the attack hitting {1}!
+{1} is enraged at its fallen ally!
+{1} is enraged at its fallen ally!
+{1} won't leave until it has won!
+{1} won't leave until it has won!
+{1} is no longer vengeful!
+{1} is no longer vengeful!
+{1} is radiating a bursting aura, gaining the {2} type!
+{1} is radiating a bursting aura, gaining the {2} type!
+{1} is radiating a blazing aura, gaining the {2} type!
+{1} is radiating a blazing aura, gaining the {2} type!
+{1} is radiating a blazing aura
+{1} is radiating a blazing aura
+{1}'s spirit ignited giving it the {2} type!
+{1}'s spirit ignited giving it the {2} type!
+{1} is feeling very sick due to the weather!
+{1} is feeling very sick due to the weather!
+{1}'s {2} made the field spooky!
+{1}'s {2} made the field spooky!
+{1} gained the {2} type!
+{1} gained the {2} type!
+Fatigue
+Fatigue
+Winded
+Winded
+Vertigo
+Vertigo
+Splinter
+Splinter
+Pester
+Pester
+Scared
+Scared
+Brittle
+Brittle
+Drenched
+Drenched
+Allergies
+Allergies
+Migraine
+Migraine
+Opulent
+Opulent
+Blinded
+Blinded
+Idolize
+Idolize
+{1} is already fatigue!
+{1} is already fatigue!
+{1} is already winded!
+{1} is already winded!
+{1} already has vertigo!
+{1} already has vertigo!
+{1} already has splinters!
+{1} already has splinters!
+{1} is already being pestered!
+{1} is already being pestered!
+{1} is already scared!
+{1} is already scared!
+{1} is already brittle!
+{1} is already brittle!
+{1} is already drenched!
+{1} is already drenched!
+{1} already has allergies!
+{1} already has allergies!
+{1} already has a migraine!
+{1} already has a migraine!
+{1} is already being greedy!
+{1} is already being greedy!
+{1} is already blinded!
+{1} is already blinded!
+{1} is already infatuated!
+{1} is already infatuated!
+{1} cannot get fatigued!
+{1} cannot get fatigued!
+{1} cannot be winded!
+{1} cannot be winded!
+{1} keeps its balance!
+{1} keeps its balance!
+{1} cannot get splinters!
+{1} cannot get splinters!
+{1} cannot be pestered!
+{1} cannot be pestered!
+{1} cannot get scared!
+{1} cannot get scared!
+{1} cannot be brittle!
+{1} cannot be brittle!
+{1} cannot be drenched!
+{1} cannot be drenched!
+{1} cannot get allergies!
+{1} cannot get allergies!
+{1} cannot get migraines!
+{1} cannot get migraines!
+{1} cannot get greedy!
+{1} cannot get greedy!
+{1} cannot get blinded!
+{1} cannot get blinded!
+{1} cannot idolize the opponent!
+{1} cannot idolize the opponent!
+{1} isn't fatigued because of {2}'s {3}!
+{1} isn't fatigued because of {2}'s {3}!
+{1} cannot be winded because of {2}'s {3}!
+{1} cannot be winded because of {2}'s {3}!
+{1} kept its balance because of {2}'s {3}!
+{1} kept its balance because of {2}'s {3}!
+{1} cannot get splinters because of {2}'s {3}!
+{1} cannot get splinters because of {2}'s {3}!
+{1} cannot be pestered because of {2}'s {3}!
+{1} cannot be pestered because of {2}'s {3}!
+{1} cannot get scared because of {2}'s {3}!
+{1} cannot get scared because of {2}'s {3}!
+{1} cannot be brittle because of {2}'s {3}!
+{1} cannot be brittle because of {2}'s {3}!
+{1} cannot get drenched because of {2}'s {3}!
+{1} cannot get drenched because of {2}'s {3}!
+{1} cannot get allergies because of {2}'s {3}!
+{1} cannot get allergies because of {2}'s {3}!
+{1} cannot get migraines because of {2}'s {3}!
+{1} cannot get migraines because of {2}'s {3}!
+{1} cannot get greedy because of {2}'s {3}!
+{1} cannot get greedy because of {2}'s {3}!
+{1} cannot get blinded because of {2}'s {3}!
+{1} cannot get blinded because of {2}'s {3}!
+{1} cannot idolize because of {2}'s {3}!
+{1} cannot idolize because of {2}'s {3}!
+{1}'s {2} prevents fatigue!
+{1}'s {2} prevents fatigue!
+{1}'s {2} prevents getting winded!
+{1}'s {2} prevents getting winded!
+{1}'s {2} prevents vertigo!
+{1}'s {2} prevents vertigo!
+{1}'s {2} prevents splinters!
+{1}'s {2} prevents splinters!
+{1}'s {2} prevents pestering!
+{1}'s {2} prevents pestering!
+{1}'s {2} prevents getting scared!
+{1}'s {2} prevents getting scared!
+{1}'s {2} prevents getting brittle!
+{1}'s {2} prevents getting brittle!
+{1}'s {2} prevents getting drecnhed!
+{1}'s {2} prevents getting drecnhed!
+{1}'s {2} prevents allergies!
+{1}'s {2} prevents allergies!
+{1}'s {2} prevents migraine!
+{1}'s {2} prevents migraine!
+{1}'s {2} prevents greed!
+{1}'s {2} prevents greed!
+{1}'s {2} prevents blinding!
+{1}'s {2} prevents blinding!
+{1}'s {2} prevents idolization!
+{1}'s {2} prevents idolization!
+{1} feels fatigued!
+{1} feels fatigued!
+{1} had the wind knocked out of it!
+{1} had the wind knocked out of it!
+{1} cannot stand up straight!
+{1} cannot stand up straight!
+Stoney splinters have dug into {1}!
+Stoney splinters have dug into {1}!
+{1} is feeling very itchy!
+{1} is feeling very itchy!
+{1} joints feel very brittle!
+{1} joints feel very brittle!
+{1} got drenched!
+{1} got drenched!
+{1} is starting to sneeze due to allergies!
+{1} is starting to sneeze due to allergies!
+{1} started to have a migraine!
+{1} started to have a migraine!
+{1} is getting too greedy and leaking power!
+{1} is getting too greedy and leaking power!
+{1} has lost it's sight and cannot see!
+{1} has lost it's sight and cannot see!
+{1} began to idolize the opponent's team!
+{1} began to idolize the opponent's team!
+{1}'s fatigue has worn off!
+{1}'s fatigue has worn off!
+{1} got its breath back.
+{1} got its breath back.
+{1} got its balance!
+{1} got its balance!
+{1} removed its splinters.
+{1} removed its splinters.
+{1} is no longer itchy.
+{1} is no longer itchy.
+{1} is no longer scared!
+{1} is no longer scared!
+{1} feels strong again!
+{1} feels strong again!
+{1} has finally dried off!
+{1} has finally dried off!
+{1} got over its allergies!
+{1} got over its allergies!
+{1} recovered from its migraine.
+{1} recovered from its migraine.
+{1} got over its greed.
+{1} got over its greed.
+{1} can see again!
+{1} can see again!
+{1} got over the other team!
+{1} got over the other team!
+{1} is still tired from being fatigued!
+{1} is still tired from being fatigued!
+{1} is winded and is catching its breath!
+{1} is winded and is catching its breath!
+{1} still can't get its balance!
+{1} still can't get its balance!
+{1} was hurt by its splinters!
+{1} was hurt by its splinters!
+{1} was hurt due to itching too hard!
+{1} was hurt due to itching too hard!
+{1} got too scared and switched out!
+{1} got too scared and switched out!
+{1} was too brittle to defend!
+{1} was too brittle to defend!
+{1} was hurt due to being drenched!
+{1} was hurt due to being drenched!
+{1} is szeezing due to allergies!
+{1} is szeezing due to allergies!
+{1} was hurt due to it's migraine!
+{1} was hurt due to it's migraine!
+{1} is still leaking power!
+{1} is still leaking power!
+{1} still can't see!
+{1} still can't see!
+{1} is too busy idolizing!
+{1} is too busy idolizing!
+An ice ring has been frozen over at {1}'s feet!
+An ice ring has been frozen over at {1}'s feet!
+The Dragon Force opened up under {1}!
+The Dragon Force opened up under {1}!
+{1} blew away the damaged terrain!
+{1} blew away the damaged terrain!
+{1} blew away restictive winds!
+{1} blew away restictive winds!
+{1} blew away haunted orbs!
+{1} blew away haunted orbs!
+{1} blew away burning debris!
+{1} blew away burning debris!
+{1} blew away water channel!
+{1} blew away water channel!
+{1} blew away rose field!
+{1} blew away rose field!
+{1} blew away the electric charge!
+{1} blew away the electric charge!
+{1} blew away mind field!
+{1} blew away mind field!
+{1} blew away ice ring!
+{1} blew away ice ring!
+{1} sealed away the Dragon Force!
+{1} sealed away the Dragon Force!
+{1} blew away dark mist!
+{1} blew away dark mist!
+{1} blew away mana flux!
+{1} blew away mana flux!
+The terrain debris disappeared from around {1}!
+The terrain debris disappeared from around {1}!
+The harsh wind disappeared from around {1}!
+The harsh wind disappeared from around {1}!
+The haunted orbs disappeared from around {1}!
+The haunted orbs disappeared from around {1}!
+The burning debris disappeared from around {1}!
+The burning debris disappeared from around {1}!
+The rose field disappeared from around {1}!
+The rose field disappeared from around {1}!
+The electric charge disappeared from around {1}!
+The electric charge disappeared from around {1}!
+The mind field disappeared from around {1}!
+The mind field disappeared from around {1}!
+The ice ring disappeared from around {1}!
+The ice ring disappeared from around {1}!
+The Dragon Forze was sealed around {1}!
+The Dragon Forze was sealed around {1}!
+The dark mist disappeared from around {1}!
+The dark mist disappeared from around {1}!
+The mana flux disappeared from around {1}!
+The mana flux disappeared from around {1}!
+{1} absorbed the electric charge!
+{1} absorbed the electric charge!
+{1} absorbed the crashing waves!
+{1} absorbed the crashing waves!
+{1} was hurt due to its dry skin!
+{1} was hurt due to its dry skin!
+{1} absorbed the burning debris!
+{1} absorbed the burning debris!
+{1} ate the rose field!
+{1} ate the rose field!
+{1} absorbed a large amount of poison spikes!
+{1} absorbed a large amount of poison spikes!
+The terrain is too strong for {1} to smash it!
+The terrain is too strong for {1} to smash it!
+The terrain was smashed and debris now covers {1}'s feet!
+The terrain was smashed and debris now covers {1}'s feet!
+The terrain is too smashed to set up the terrain!
+The terrain is too smashed to set up the terrain!
+A harsh wind now restricts {1}'s movements!
+A harsh wind now restricts {1}'s movements!
+Haunted Orbs are know haunting {1}'s side!
+Haunted Orbs are know haunting {1}'s side!
+Sharp steel start floating around {1}!
+Sharp steel start floating around {1}!
+Burning rocks and charcol were scattered around {1}'s feet!
+Burning rocks and charcol were scattered around {1}'s feet!
+A wave channel appeared on {1}'s feet!
+A wave channel appeared on {1}'s feet!
+A beautiful rose garden grew at {1}'s feet!
+A beautiful rose garden grew at {1}'s feet!
+An electric charge has been set on {1}'s feet!
+An electric charge has been set on {1}'s feet!
+A field of psychic orbs has been set up around {1}!
+A field of psychic orbs has been set up around {1}!
+A dark smog now surrounds {1}'s feet!
+A dark smog now surrounds {1}'s feet!
+A magical circle appeared under {1}'s feet!
+A magical circle appeared under {1}'s feet!
+{1} is struggling agaisnt the restrictive winds!
+{1} is struggling agaisnt the restrictive winds!
+A haunted orb attacked {1}!
+A haunted orb attacked {1}!
+The sharp steel dug into {1}!
+The sharp steel dug into {1}!
+{1} was burnt by the smouldering rocks!
+{1} was burnt by the smouldering rocks!
+A rough wave crashed into {1}!
+A rough wave crashed into {1}!
+{1} was paralyzed by the energized field!
+{1} was paralyzed by the energized field!
+{1} was hit by a mind bomb!
+{1} was hit by a mind bomb!
+{1} can freely move around on the ice!
+{1} can freely move around on the ice!
+{1} slipped on the ice!
+{1} slipped on the ice!
+{1} sealed up the Dragon Force!
+{1} sealed up the Dragon Force!
+{1} was hurt by the Dragon Force!
+{1} was hurt by the Dragon Force!
+The smog crawled up and scared {1}!
+The smog crawled up and scared {1}!
+{1} was disrupted by the magic!
+{1} was disrupted by the magic!
+{1} was burnt by the magical miasma!
+{1} was burnt by the magical miasma!
+{1} was paralyzed by the magical miasma!
+{1} was paralyzed by the magical miasma!
+{1} was poisoned by the magical miasma!
+{1} was poisoned by the magical miasma!
+Set Badges
+Set Badges
+Update PBS from module
+Update PBS from module
+The badges data was added to PBS/badges.txt.
+The badges data was added to PBS/badges.txt.
+Create PBS File(s)
+Create PBS File(s)
+The entry {1} is required in {2} section {3}.
+The entry {1} is required in {2} section {3}.
+BADGE INFO
+BADGE INFO
+Obtained At
+Obtained At
+Main Type
+Main Type
+Location
+Location
+Leader
+Leader
+ACE
+ACE
+POKEMON
+POKEMON
+Not Obtained
+Not Obtained
+Bạn có {1} nhiệm vụ mới!
+Bạn có {1} nhiệm vụ mới!
+Đã dùng: {1}
+Đã dùng: {1}
+Lượt {1}
+Lượt {1}
+HP của Pokémon sẽ không giảm xuống dưới {1}% khi bị tấn công.
+HP của Pokémon sẽ không giảm xuống dưới {1}% khi bị tấn công.
+Pokémon đang ở trạng thái Dynamax.
+Pokémon đang ở trạng thái Dynamax.
+Pokémon này được Terastallized thành hệ {1}.
+Pokémon này được Terastallized thành hệ {1}.
+Tăng Def của hệ Ice. Blizzard luôn trúng.
+Tăng Def của hệ Ice. Blizzard luôn trúng.
+Kết hợp hiệu ứng của Hail và Snow.
+Kết hợp hiệu ứng của Hail và Snow.
+Không phải hệ Ice sẽ chịu sát thương mỗi lượt. Blizzard luôn trúng.
+Không phải hệ Ice sẽ chịu sát thương mỗi lượt. Blizzard luôn trúng.
+Đòn hệ Fire mạnh lên và đòn hệ Water yếu đi.
+Đòn hệ Fire mạnh lên và đòn hệ Water yếu đi.
+Đòn hệ Water mạnh lên và đòn hệ Fire yếu đi.
+Đòn hệ Water mạnh lên và đòn hệ Fire yếu đi.
+Tăng Sp.Def của hệ Rock. Chịu dame nếu không phải hệ Rock/Ground/Steel.
+Tăng Sp.Def của hệ Rock. Chịu dame nếu không phải hệ Rock/Ground/Steel.
+Hệ Flying không có điểm yếu
+Hệ Flying không có điểm yếu
+Đòn bóng tối mạnh hơn. Chịu dame nếu không phải là Shadow
+Đòn bóng tối mạnh hơn. Chịu dame nếu không phải là Shadow
+Không rõ thời tiết
+Không rõ thời tiết
+Z: Ẩn
+Z: Ẩn
+Z: Chi tiết
+Z: Chi tiết
+Trở về
+Trở về
+Quay lại menu.
+Quay lại menu.
+C: Dùng
+C: Dùng
+Tribe:
+Tribe:
+{1} Pokémon required - {2}
+{1} Pokémon required - {2}
+Progress: {1}/{2} in party
+Progress: {1}/{2} in party
+{1}/{2} Pokémon
+{1}/{2} Pokémon
+You got ${1} because of Good Luck!
+You got ${1} because of Good Luck!
+With some Good Luck you also got ${1}!
+With some Good Luck you also got ${1}!
+{1} was freed from the rage bait!
+{1} was freed from the rage bait!
+{1} became confused due to its concussion!
+{1} became confused due to its concussion!
+{1} was called safe!
+{1} was called safe!
+{1}'s type changed to {2} and healed from a {3}!
+{1}'s type changed to {2} and healed from a {3}!
+{1} is immune to Arcane Magic!
+{1} is immune to Arcane Magic!
+{1} is focusing!
+{1} is focusing!
+{1} is relaxed!
+{1} is relaxed!
+{1} is relaxed by {2}'s {3}!
+{1} is relaxed by {2}'s {3}!
+{1} was healed by Solar Field!
+{1} was healed by Solar Field!
+{1} created a scarecrow!
+{1} created a scarecrow!
+{1} is baited into a rage!
+{1} is baited into a rage!
+{1} was ignited!
+{1} was ignited!
+{1} was extinguished!
+{1} was extinguished!

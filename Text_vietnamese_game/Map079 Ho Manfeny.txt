@@ -1,0 +1,72 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map079]
+\rPOKéMON should always be fit and\n ready for battle!
+\rPOKéMON should always be fit and\n ready for battle!
+\rYou're a great battler! You use sound tactics in your fights.
+\rYou're a great battler! You use sound tactics in your fights.
+\rVictories are won with the sweat of training each day. This is the real way to become a good POKéMON trainer.
+\rVictories are won with the sweat of training each day. This is the real way to become a good POKéMON trainer.
+Marfeny Lake
+Marfeny Lake
+\b\ff[blue]Wow! Amazing, professor! I've fallen in love with these POKéMON. I'll catch one right now!
+\b\ff[blue]Wow! Amazing, professor! I've fallen in love with these POKéMON. I'll catch one right now!
+\b\ff[blue]Wow, I captured a Feebas! It looks like a good Pokémon!
+\b\ff[blue]Wow, I captured a Feebas! It looks like a good Pokémon!
+\b\ff[prooak]What? This FEEBAS is attacking me!!!
+\b\ff[prooak]What? This FEEBAS is attacking me!!!
+\pg\ff[boy]Professor, I'll save you!
+\pg\ff[boy]Professor, I'll save you!
+\pg\ff[girl]Professor, I'll save you!
+\pg\ff[girl]Professor, I'll save you!
+\bThank you...
+\bThank you...
+\pg\ff[boy]I'm \PN! Prof. Jasmine asked me to tell you that she is doing important research on the creation of the universe and needs your help.
+\pg\ff[boy]I'm \PN! Prof. Jasmine asked me to tell you that she is doing important research on the creation of the universe and needs your help.
+\pg\ff[girl]I'm \PN! Prof. Jasmine asked me to tell you that she is doing important research on the creation of the universe and needs your help.
+\pg\ff[girl]I'm \PN! Prof. Jasmine asked me to tell you that she is doing important research on the creation of the universe and needs your help.
+\pg\ff[boy]She wants to show you her results. She's in her lab in YELLOW TOWN.
+\pg\ff[boy]She wants to show you her results. She's in her lab in YELLOW TOWN.
+\pg\ff[girl]She wants to show you her results. She's in her lab in YELLOW TOWN.
+\pg\ff[girl]She wants to show you her results. She's in her lab in YELLOW TOWN.
+\b\ff[prooak]Thank you, \PN! I'll head there right away. Oh, and this is my nephew, Blue.
+\b\ff[prooak]Thank you, \PN! I'll head there right away. Oh, and this is my nephew, Blue.
+\b\ff[blue]Nice to meet you, \PN. You look like a skilled Pokémon trainer. I hope I'll face you myself some day.
+\b\ff[blue]Nice to meet you, \PN. You look like a skilled Pokémon trainer. I hope I'll face you myself some day.
+\pg\ff[boy]I'll say the same thing to you!
+\pg\ff[boy]I'll say the same thing to you!
+\pg\ff[girl]I'll say the same thing to you!
+\pg\ff[girl]I'll say the same thing to you!
+\bWell, I'll be on my way now. Thanks, \PN]! Goodbye!
+\bWell, I'll be on my way now. Thanks, \PN]! Goodbye!
+\rIn MARFENY LAKE there are unusual POKéMON, like MAGIKARP and FEEBAS.
+\rIn MARFENY LAKE there are unusual POKéMON, like MAGIKARP and FEEBAS.
+Central City - Marfeny Lake
+Central City - Marfeny Lake
+\bWow! Amazing, professor! I've fallen in love with these POKéMON. I'll catch one right now!
+\bWow! Amazing, professor! I've fallen in love with these POKéMON. I'll catch one right now!
+\bWow, I captured a FEEBAS! It looks like a good POKéMON!
+\bWow, I captured a FEEBAS! It looks like a good POKéMON!
+\bWhat? This FEEBAS is attacking me!!!
+\bWhat? This FEEBAS is attacking me!!!
+\pgProfessor, I'll save you!
+\pgProfessor, I'll save you!
+\pnIt's \PN! Prof. Jasmine asked me to tell you that she is doing important research on the creation of the universe and needs your help.
+\pnIt's \PN! Prof. Jasmine asked me to tell you that she is doing important research on the creation of the universe and needs your help.
+\pgShe wants to show you her results. She's in her lab in YELLOW TOWN.
+\pgShe wants to show you her results. She's in her lab in YELLOW TOWN.
+\bThank you, \PN! I'll head there right away. Oh, and this is my nephew, Blue.
+\bThank you, \PN! I'll head there right away. Oh, and this is my nephew, Blue.
+\bNice to meet you, \PN. You look like a skilled Pokémon trainer. I hope I'll face you myself some day.
+\bNice to meet you, \PN. You look like a skilled Pokémon trainer. I hope I'll face you myself some day.
+\pgI'll say the same thing to you!
+\pgI'll say the same thing to you!
+\bLook at this beautiful lake! I love it!
+\bLook at this beautiful lake! I love it!
+\bBeing a trainer means being prepared for a battle at any time! I hope you're ready now!
+\bBeing a trainer means being prepared for a battle at any time! I hope you're ready now!
+\bYou're a great battler! You use sound tactics in your fights.
+\bYou're a great battler! You use sound tactics in your fights.
+\bA good team of POKéMON has different types, to make it balanced.
+\bA good team of POKéMON has different types, to make it balanced.

@@ -1,0 +1,18 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map075]
+\bThis is the Tiall Region.
+\bThis is the Tiall Region.
+\bDo you want to go back to the Essen Region?
+\bDo you want to go back to the Essen Region?
+\bLet me know if you do.
+\bLet me know if you do.
+<fn=.VnArial>Nh­ engsub µ =)))) món nghe th× nghe, k nghe th× bÊm A :v</fn>
+<fn=.VnArial>Nh­ engsub µ =)))) món nghe th× nghe, k nghe th× bÊm A :v</fn>
+<fn=Barlow Condensed Medium>You can have an event page that depends on both Switch 14 and Switch 19, and that page will only be usable during the daytime of Tuesdays, Thursdays and Saturdays.
+<fn=Barlow Condensed Medium>You can have an event page that depends on both Switch 14 and Switch 19, and that page will only be usable during the daytime of Tuesdays, Thursdays and Saturdays.
+Yes
+Yes
+No
+No

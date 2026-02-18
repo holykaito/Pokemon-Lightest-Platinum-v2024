@@ -1,0 +1,38 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map113]
+If your Pokémon trust you, they’ll fight with everything they’ve got. Don’t forget to take good care of them!
+If your Pokémon trust you, they’ll fight with everything they’ve got. Don’t forget to take good care of them!
+Did you know? There's a really strong trainer waiting for a challenge in the forest over there!
+Did you know? There's a really strong trainer waiting for a challenge in the forest over there!
+Look at the sky today! I heard Flying-type Pokémon often show up on days like this.
+Look at the sky today! I heard Flying-type Pokémon often show up on days like this.
+\rI'm going to keep winning and aim to be the best TRAINER. Help me further my career!
+\rI'm going to keep winning and aim to be the best TRAINER. Help me further my career!
+\rI ended up furthering your career.
+\rI ended up furthering your career.
+Ah, hello there! You seem like a dedicated trainer!
+Ah, hello there! You seem like a dedicated trainer!
+I think you could use a little help to make your Pokémon grow faster. Here, take this gift!
+I think you could use a little help to make your Pokémon grow faster. Here, take this gift!
+This is a Lucky Egg. If your Pokémon holds it during battles, they’ll gain more experience. Use it wisely!
+This is a Lucky Egg. If your Pokémon holds it during battles, they’ll gain more experience. Use it wisely!
+Make sure your Pokémon make the most of it. Experience is one of the most valuable things on a trainer's journey.
+Make sure your Pokémon make the most of it. Experience is one of the most valuable things on a trainer's journey.
+Feel free to come back anytime if you want to share exciting stories from your adventure. I’d love to hear them!
+Feel free to come back anytime if you want to share exciting stories from your adventure. I’d love to hear them!
+Sometimes, just sitting still and watching Pokémon in the wild is an amazing experience.
+Sometimes, just sitting still and watching Pokémon in the wild is an amazing experience.
+I've spent the whole week searching for a Shiny Pokémon, but no luck so far!
+I've spent the whole week searching for a Shiny Pokémon, but no luck so far!
+<b><< Bramboach Town >>
+<b><< Bramboach Town >>
+Bramboach Town is very clean and unpolluted because we are eco-friendly.
+Bramboach Town is very clean and unpolluted because we are eco-friendly.
+<b><< Bramboach Airport >>
+<b><< Bramboach Airport >>
+Yesterday, I caught an Eevee. Now I’m torn about which evolution I should choose!
+Yesterday, I caught an Eevee. Now I’m torn about which evolution I should choose!
+Bramboach Town is a very calm village and it has a small Airport for plane landings.
+Bramboach Town is a very calm village and it has a small Airport for plane landings.

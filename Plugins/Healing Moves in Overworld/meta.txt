@@ -1,0 +1,4 @@
+﻿Name      = Healing Moves in Overworld
+Version   = 1.0.1
+Essentials = 21.1
+Credits   = TechSkylander1518, MakerBlack

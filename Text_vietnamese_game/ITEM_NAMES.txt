@@ -1,0 +1,720 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[ITEM_NAMES]
+Black Augurite
+Black Augurite
+Peat Block
+Peat Block
+Linking Cord
+Linking Cord
+Adamant Crystal
+Adamant Crystal
+Lustrous Globe
+Lustrous Globe
+Legend Plate
+Legend Plate
+Blank Plate
+Blank Plate
+Hopo Berry
+Hopo Berry
+Griseous Core
+Griseous Core
+Feather Ball
+Feather Ball
+Wing Ball
+Wing Ball
+Jet Ball
+Jet Ball
+Leaden Ball
+Leaden Ball
+Gigaton Ball
+Gigaton Ball
+Origin Ball
+Origin Ball
+Strange Ball
+Strange Ball
+Auspicious Armor
+Auspicious Armor
+Malicious Armor
+Malicious Armor
+Scroll of Darkness
+Scroll of Darkness
+Scroll of Waters
+Scroll of Waters
+Leader's Crest
+Leader's Crest
+Booster Energy
+Booster Energy
+Ability Shield
+Ability Shield
+Clear Amulet
+Clear Amulet
+Mirror Herb
+Mirror Herb
+Punching Glove
+Punching Glove
+Covert Cloak
+Covert Cloak
+Loaded Dice
+Loaded Dice
+Gimmighoul Coin
+Gimmighoul Coin
+Tiny Bamboo Shoot
+Tiny Bamboo Shoot
+Big Bamboo Shoot
+Big Bamboo Shoot
+Rotom Phone
+Rotom Phone
+Scarlet Book
+Scarlet Book
+Violet Book
+Violet Book
+Health Mochi
+Health Mochi
+Muscle Mochi
+Muscle Mochi
+Resist Mochi
+Resist Mochi
+Genius Mochi
+Genius Mochi
+Clever Mochi
+Clever Mochi
+Swift Mochi
+Swift Mochi
+Fresh-Start Mochi
+Fresh-Start Mochi
+Fairy Feather
+Fairy Feather
+Syrupy Apple
+Syrupy Apple
+Unremarkable Teacup
+Unremarkable Teacup
+Masterpiece Teacup
+Masterpiece Teacup
+Wellspring Mask
+Wellspring Mask
+Hearthflame Mask
+Hearthflame Mask
+Cornerstone Mask
+Cornerstone Mask
+Teal Mask
+Teal Mask
+Metal Alloy
+Metal Alloy
+Indigo Disk
+Indigo Disk
+Mythical Pecha Berry
+Mythical Pecha Berry
+Synchro Machine
+Synchro Machine
+Meteorite
+Meteorite
+Briar's Book
+Briar's Book
+TM001
+TM001
+TM002
+TM002
+TM003
+TM003
+TM004
+TM004
+TM005
+TM005
+TM006
+TM006
+TM007
+TM007
+TM008
+TM008
+TM009
+TM009
+TM010
+TM010
+TM011
+TM011
+TM012
+TM012
+TM013
+TM013
+TM014
+TM014
+TM015
+TM015
+TM016
+TM016
+TM017
+TM017
+TM018
+TM018
+TM019
+TM019
+TM020
+TM020
+TM021
+TM021
+TM022
+TM022
+TM023
+TM023
+TM024
+TM024
+TM025
+TM025
+TM026
+TM026
+TM027
+TM027
+TM028
+TM028
+TM029
+TM029
+TM030
+TM030
+TM031
+TM031
+TM032
+TM032
+TM033
+TM033
+TM034
+TM034
+TM035
+TM035
+TM036
+TM036
+TM037
+TM037
+TM038
+TM038
+TM039
+TM039
+TM040
+TM040
+TM041
+TM041
+TM042
+TM042
+TM043
+TM043
+TM044
+TM044
+TM045
+TM045
+TM046
+TM046
+TM047
+TM047
+TM048
+TM048
+TM049
+TM049
+TM050
+TM050
+TM051
+TM051
+TM052
+TM052
+TM053
+TM053
+TM054
+TM054
+TM055
+TM055
+TM056
+TM056
+TM057
+TM057
+TM058
+TM058
+TM059
+TM059
+TM060
+TM060
+TM061
+TM061
+TM062
+TM062
+TM063
+TM063
+TM064
+TM064
+TM065
+TM065
+TM066
+TM066
+TM067
+TM067
+TM068
+TM068
+TM069
+TM069
+TM070
+TM070
+TM071
+TM071
+TM072
+TM072
+TM073
+TM073
+TM074
+TM074
+TM075
+TM075
+TM076
+TM076
+TM077
+TM077
+TM078
+TM078
+TM079
+TM079
+TM080
+TM080
+TM081
+TM081
+TM082
+TM082
+TM083
+TM083
+TM084
+TM084
+TM085
+TM085
+TM086
+TM086
+TM087
+TM087
+TM088
+TM088
+TM089
+TM089
+TM090
+TM090
+TM091
+TM091
+TM092
+TM092
+TM093
+TM093
+TM094
+TM094
+TM095
+TM095
+TM096
+TM096
+TM097
+TM097
+TM098
+TM098
+TM099
+TM099
+TM101
+TM101
+TM102
+TM102
+TM103
+TM103
+TM104
+TM104
+TM105
+TM105
+TM106
+TM106
+TM107
+TM107
+TM108
+TM108
+TM109
+TM109
+TM110
+TM110
+TM111
+TM111
+TM112
+TM112
+TM113
+TM113
+TM114
+TM114
+TM115
+TM115
+TM116
+TM116
+TM117
+TM117
+TM118
+TM118
+TM119
+TM119
+TM120
+TM120
+TM121
+TM121
+TM122
+TM122
+TM123
+TM123
+TM124
+TM124
+TM125
+TM125
+TM126
+TM126
+TM127
+TM127
+TM128
+TM128
+TM129
+TM129
+TM130
+TM130
+TM131
+TM131
+TM132
+TM132
+TM133
+TM133
+TM134
+TM134
+TM135
+TM135
+TM136
+TM136
+TM137
+TM137
+TM138
+TM138
+TM139
+TM139
+TM140
+TM140
+TM141
+TM141
+TM142
+TM142
+TM143
+TM143
+TM144
+TM144
+TM145
+TM145
+TM146
+TM146
+TM147
+TM147
+TM148
+TM148
+TM149
+TM149
+TM150
+TM150
+TM151
+TM151
+TM152
+TM152
+TM153
+TM153
+TM154
+TM154
+TM155
+TM155
+TM156
+TM156
+TM157
+TM157
+TM158
+TM158
+TM159
+TM159
+TM160
+TM160
+TM161
+TM161
+TM162
+TM162
+TM163
+TM163
+TM164
+TM164
+TM165
+TM165
+TM166
+TM166
+TM167
+TM167
+TM168
+TM168
+TM169
+TM169
+TM170
+TM170
+TM172
+TM172
+TM173
+TM173
+TM174
+TM174
+TM175
+TM175
+TM176
+TM176
+TM177
+TM177
+TM178
+TM178
+TM179
+TM179
+TM180
+TM180
+TM181
+TM181
+TM182
+TM182
+TM183
+TM183
+TM184
+TM184
+TM185
+TM185
+TM186
+TM186
+TM187
+TM187
+TM188
+TM188
+TM189
+TM189
+TM190
+TM190
+TM191
+TM191
+TM192
+TM192
+TM193
+TM193
+TM194
+TM194
+TM195
+TM195
+TM196
+TM196
+TM197
+TM197
+TM198
+TM198
+TM199
+TM199
+TM200
+TM200
+TM201
+TM201
+TM202
+TM202
+TM203
+TM203
+TM204
+TM204
+TM205
+TM205
+TM206
+TM206
+TM207
+TM207
+TM208
+TM208
+TM209
+TM209
+TM210
+TM210
+TM211
+TM211
+TM212
+TM212
+TM213
+TM213
+TM214
+TM214
+TM215
+TM215
+TM216
+TM216
+TM217
+TM217
+TM218
+TM218
+TM219
+TM219
+TM220
+TM220
+TM221
+TM221
+TM222
+TM222
+TM223
+TM223
+TM224
+TM224
+TM225
+TM225
+TM226
+TM226
+TM227
+TM227
+TM228
+TM228
+TM229
+TM229
+Innate Shuffler
+Innate Shuffler
+Dragoninite
+Dragoninite
+Drampanite
+Drampanite
+Dynamax Band
+Dynamax Band
+Wishing Star
+Wishing Star
+Dynamax Candy
+Dynamax Candy
+Dynamax Candy XL
+Dynamax Candy XL
+Max Soup
+Max Soup
+Mark Charm
+Mark Charm
+Surprise Mulch
+Surprise Mulch
+Allure Mulch
+Allure Mulch
+Rich Mulch
+Rich Mulch
+Boost Mulch
+Boost Mulch
+Amaze Mulch
+Amaze Mulch
+Tera Orb
+Tera Orb
+Normal Tera Shard
+Normal Tera Shard
+Fire Tera Shard
+Fire Tera Shard
+Water Tera Shard
+Water Tera Shard
+Electric Tera Shard
+Electric Tera Shard
+Grass Tera Shard
+Grass Tera Shard
+Ice Tera Shard
+Ice Tera Shard
+Fighting Tera Shard
+Fighting Tera Shard
+Poison Tera Shard
+Poison Tera Shard
+Ground Tera Shard
+Ground Tera Shard
+Flying Tera Shard
+Flying Tera Shard
+Psychic Tera Shard
+Psychic Tera Shard
+Bug Tera Shard
+Bug Tera Shard
+Rock Tera Shard
+Rock Tera Shard
+Ghost Tera Shard
+Ghost Tera Shard
+Dragon Tera Shard
+Dragon Tera Shard
+Dark Tera Shard
+Dark Tera Shard
+Steel Tera Shard
+Steel Tera Shard
+Fairy Tera Shard
+Fairy Tera Shard
+Stellar Tera Shard
+Stellar Tera Shard
+Mystery Tera Jewel
+Mystery Tera Jewel
+Master Tera Jewel
+Master Tera Jewel
+Radiant Tera Jewel
+Radiant Tera Jewel
+Glimmering Charm
+Glimmering Charm
+Z-Ring
+Z-Ring
+Z-Power Ring
+Z-Power Ring
+Z-Booster
+Z-Booster
+Normalium Z
+Normalium Z
+Fightinium Z
+Fightinium Z
+Flyinium Z
+Flyinium Z
+Poisonium Z
+Poisonium Z
+Groundium Z
+Groundium Z
+Rockium Z
+Rockium Z
+Buginium Z
+Buginium Z
+Ghostium Z
+Ghostium Z
+Steelium Z
+Steelium Z
+Firium Z
+Firium Z
+Waterium Z
+Waterium Z
+Grassium Z
+Grassium Z
+Electrium Z
+Electrium Z
+Psychium Z
+Psychium Z
+Icium Z
+Icium Z
+Dragonium Z
+Dragonium Z
+Darkinium Z
+Darkinium Z
+Fairium Z
+Fairium Z
+Pikanium Z
+Pikanium Z
+Pikashunium Z
+Pikashunium Z
+Aloraichium Z
+Aloraichium Z
+Eevium Z
+Eevium Z
+Snorlium Z
+Snorlium Z
+Mewnium Z
+Mewnium Z
+Decidium Z
+Decidium Z
+Incinium Z
+Incinium Z
+Primarium Z
+Primarium Z
+Lycanium Z
+Lycanium Z
+Mimikium Z
+Mimikium Z
+Kommonium Z
+Kommonium Z
+Tapunium Z
+Tapunium Z
+Solganium Z
+Solganium Z
+Lunalium Z
+Lunalium Z
+Marshadium Z
+Marshadium Z
+Ultranecrozium Z
+Ultranecrozium Z

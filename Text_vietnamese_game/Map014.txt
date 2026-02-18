@@ -1,0 +1,8 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map014]
+\sign[signskin]1F: Service Counter
+\sign[signskin]1F: Service Counter
+\rHello! Welcome to Cedolan Dept. Store.
+\rHello! Welcome to Cedolan Dept. Store.

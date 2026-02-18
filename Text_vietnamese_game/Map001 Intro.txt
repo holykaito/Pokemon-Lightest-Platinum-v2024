@@ -1,0 +1,48 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map001]
+\rHello! Sorry to keep you waiting!
+\rHello! Sorry to keep you waiting!
+\rWelcome to the world of Pokémon.
+\rWelcome to the world of Pokémon.
+\rMy name is Fennel.
+\rMy name is Fennel.
+\rI'm a Pokémon Professor of Zhery region.
+\rI'm a Pokémon Professor of Zhery region.
+\rThis world is inhabited by creatures we call Pokémon.
+\rThis world is inhabited by creatures we call Pokémon.
+\rPeople and Pokémon live together by supporting each other.
+\rPeople and Pokémon live together by supporting each other.
+\rSome people play with Pokémon, some battle with them.
+\rSome people play with Pokémon, some battle with them.
+\rBut we don't know everything about Pokémon yet.
+\rBut we don't know everything about Pokémon yet.
+\rThere are still many mysteries to solve.
+\rThere are still many mysteries to solve.
+\rThat's why I study Pokémon every day.
+\rThat's why I study Pokémon every day.
+\rAre you a boy or a girl?
+\rAre you a boy or a girl?
+\rNow what did you say your name was?
+\rNow what did you say your name was?
+\rSo you're \PN?
+\rSo you're \PN?
+\rWhat is your name?
+\rWhat is your name?
+\r\PN, are you ready?
+\r\PN, are you ready?
+\rYour very own Pokémon story is about to unfold.
+\rYour very own Pokémon story is about to unfold.
+\rYou'll face fun times and tough challenges.
+\rYou'll face fun times and tough challenges.
+\rA world of dreams and adventures with Pokémon awaits! Let's go!
+\rA world of dreams and adventures with Pokémon awaits! Let's go!
+Boy
+Boy
+Girl
+Girl
+Yes
+Yes
+No
+No

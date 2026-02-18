@@ -1,0 +1,16 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map112]
+\bWhere is this place? Sounds like a dream... Or some kind of messed up world?
+\bWhere is this place? Sounds like a dream... Or some kind of messed up world?
+\rWhere is this place? Sounds like a dream... Or some kind of messed up world?
+\rWhere is this place? Sounds like a dream... Or some kind of messed up world?
+\bThis is... Arceus?
+\bThis is... Arceus?
+\rThis is... Arceus?
+\rThis is... Arceus?
+\bWhat's going on? I've got to be having a nightmare!
+\bWhat's going on? I've got to be having a nightmare!
+\rWhat's going on? I've got to be having a nightmare!
+\rWhat's going on? I've got to be having a nightmare!

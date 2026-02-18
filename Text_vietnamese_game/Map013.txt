@@ -1,0 +1,208 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map013]
+\rIf you win, I'll give you an Arceus card!
+\rIf you win, I'll give you an Arceus card!
+\rOh, you don't have enough cards to play. You need at least 5.
+\rOh, you don't have enough cards to play. You need at least 5.
+\bMr. Game: Show me how you play and make my heart pound with excitement!
+\bMr. Game: Show me how you play and make my heart pound with excitement!
+\rI'm here to explain the rules of Triple Triad.
+\rI'm here to explain the rules of Triple Triad.
+\rWhich topic do you want to learn about?
+\rWhich topic do you want to learn about?
+\rTriple Triad is a game played with special cards placed on a 3x3 board.
+\rTriple Triad is a game played with special cards placed on a 3x3 board.
+\rEach card has 4 numbers on it, one per side. These numbers are so-called stats.
+\rEach card has 4 numbers on it, one per side.  These numbers are so-called stats.
+\rPlayers take turns placing cards on the board. As they do so, they try to capture and gain control of their opponent's cards.
+\rPlayers take turns placing cards on the board. As they do so, they try to capture and gain control of their opponent's cards.
+\rThat's where the numbers come in. If a player places a card with a higher number next to a card with a lower number, the player captures that card.
+\rThat's where the numbers come in. If a player places a card with a higher number next to a card with a lower number, the player captures that card.
+\rThus, the goal of the game is to gain control of more cards than the other player by the end of the game.
+\rThus, the goal of the game is to gain control of more cards than the other player by the end of the game.
+\rThere are a number of optional game rules you can apply to individual games.
+\rThere are a number of optional game rules you can apply to individual games.
+\rThey can affect card stats, how cards capture each other, the scoring and the prizes.
+\rThey can affect card stats, how cards capture each other, the scoring and the prizes.
+\rWhen you win a game, you will recive 1 random card from your opponent from their Deck.
+\rWhen you win a game, you will recive 1 random card from your opponent from their Deck.
+\rThis also works the other way around: if you lose, you have to give your opponent one of your cards, chosen at random.
+\rThis also works the other way around: if you lose, you have to give your opponent one of your cards, chosen at random.
+\rYou can change what you win or lose from a game by using an optional game rule.
+\rYou can change what you win or lose from a game by using an optional game rule.
+\rThis is the Pokémon Lottery Corner. I'm Felicity, your attendant today.
+\rThis is the Pokémon Lottery Corner. I'm Felicity, your attendant today.
+\rIf the drawn number matches the ID No. of any of your Pokémon, you could win fabulous gifts.
+\rIf the drawn number matches the ID No. of any of your Pokémon, you could win fabulous gifts.
+\rWould you like to check today's lucky number?
+\rWould you like to check today's lucky number?
+\rFirst, I'll look up today's Pokémon Lottery Corner lucky number.
+\rFirst, I'll look up today's Pokémon Lottery Corner lucky number.
+...
+...
+\rYour Loto Ticket number is \v[1].
+\rYour Loto Ticket number is \v[1].
+\rNow, let's see if it matches the ID No. of any of your Pokémon.
+\rNow, let's see if it matches the ID No. of any of your Pokémon.
+\rI'm sorry. You didn't get a match...
+\rI'm sorry. You didn't get a match...
+\rPlease do visit again.
+\rPlease do visit again.
+\rCongratulations!
+\rCongratulations!
+\rThe ID number of your team's \v[2] matches your Loto Ticket number!
+\rThe ID number of your team's \v[2] matches your Loto Ticket number!
+\rThe ID number of your PC-boxed \v[2] matches your Loto Ticket number!
+\rThe ID number of your PC-boxed \v[2] matches your Loto Ticket number!
+\rOh my goodness, all five digits matched!
+\rOh my goodness, all five digits matched!
+\rYou've won the jackpot prize!
+\rYou've won the jackpot prize!
+\rPlease do visit again! Good-bye from Felicity, your attendant!
+\rPlease do visit again! Good-bye from Felicity, your attendant!
+\rYou have no room left. Make room, then come see me.
+\rYou have no room left. Make room, then come see me.
+\rThe last four digits matched, so you win the first prize!
+\rThe last four digits matched, so you win the first prize!
+\rThe last three digits matched, so you win the second prize!
+\rThe last three digits matched, so you win the second prize!
+\rThe last two digits matched, so you win the third prize!
+\rThe last two digits matched, so you win the third prize!
+\rThe last digit matched, so you win the fourth prize!
+\rThe last digit matched, so you win the fourth prize!
+\rOh, I see.\nPlease do visit us again.
+\rOh, I see.\nPlease do visit us again.
+\rYou've already drawn a Loto Ticket today. Please come back tomorrow.
+\rYou've already drawn a Loto Ticket today. Please come back tomorrow.
+\rI've been waiting for you. Here's the item you won.
+\rI've been waiting for you. Here's the item you won.
+\CN\bWe exchange your coins for prizes.
+\CN\bWe exchange your coins for prizes.
+\CN\bWhich prize would you like?
+\CN\bWhich prize would you like?
+\CN\bPlease save your Coins and come again!
+\CN\bPlease save your Coins and come again!
+\CN\bSo, you want the \v[3]?
+\CN\bSo, you want the \v[3]?
+\CN\bSorry, you'll need more coins than that.
+\CN\bSorry, you'll need more coins than that.
+\CN\bHere you go!\1
+\CN\bHere you go!\1
+\CN\bYou have no room in your Bag.
+\CN\bYou have no room in your Bag.
+\bWelcome to the Triad Card Shop.
+\bWelcome to the Triad Card Shop.
+\bAnything else I can do for you?
+\bAnything else I can do for you?
+\bHere is where you can purchase new cards for Triple Triad duels.
+\bHere is where you can purchase new cards for Triple Triad duels.
+\bThe selection grows as you catch and find new Pokémon, so check often.
+\bThe selection grows as you catch and find new Pokémon, so check often.
+\bAnd, of course, stronger Pokémon cards cost more than weaker cards.
+\bAnd, of course, stronger Pokémon cards cost more than weaker cards.
+\bYou don't have to use this shop in your game. It's just an example of how the player could gain Triple Triad cards. You could implement other ways.
+\bYou don't have to use this shop in your game. It's just an example of how the player could gain Triple Triad cards. You could implement other ways.
+\bPlease come again.
+\bPlease come again.
+\CN\bYour party's full!\nPlease make some room before you come back.
+\CN\bYour party's full!\nPlease make some room before you come back.
+\CN\bWould you like \v[3]?
+\CN\bWould you like \v[3]?
+\CN\PN received the \v[3]!
+\CN\PN received the \v[3]!
+\bMy name is Mr. Game!
+\bMy name is Mr. Game!
+\bMy heart pounds with excitement when people enjoy my Coin game!
+\bMy heart pounds with excitement when people enjoy my Coin game!
+\bIn fact, that's what I live for!\nGo ahead and play it!
+\bIn fact, that's what I live for!\nGo ahead and play it!
+\bMake my heart pound with excitement!
+\bMake my heart pound with excitement!
+\bGo ahead and play my Coin game!
+\bGo ahead and play my Coin game!
+\bI'm ready to duel with you.
+\bI'm ready to duel with you.
+\bOh, you don't have enough cards to play. You need at least 5.
+\bOh, you don't have enough cards to play. You need at least 5.
+\G\CN\bWelcome to Rocket Game Corner!
+\G\CN\bWelcome to Rocket Game Corner!
+\G\CN\bDo you need some game coins?\nWould you like to buy some?
+\G\CN\bDo you need some game coins?\nWould you like to buy some?
+\G\CN\bYou don't have a Coin Case.
+\G\CN\bYou don't have a Coin Case.
+\G\CN\bWhoops!\nYour Coin Case is full.
+\G\CN\bWhoops!\nYour Coin Case is full.
+\G\CN\bYou can't afford the coins.
+\G\CN\bYou can't afford the coins.
+\G\CN\bThank you\nHere are your coins!
+\G\CN\bThank you\nHere are your coins!
+\G\CN\bNo?\nPlease come play sometime!
+\G\CN\bNo?\nPlease come play sometime!
+\rReady for a real rule duel?
+\rReady for a real rule duel?
+\bI built my deck specially for this!
+\bI built my deck specially for this!
+\rWelcome!
+\rWelcome!
+\rOh, you don't have a Coin Case? Here.
+\rOh, you don't have a Coin Case? Here.
+\rYou can exchange your coins for fabulous prizes next door.
+\rYou can exchange your coins for fabulous prizes next door.
+\rYou don't have any room for it. Come back when you do.
+\rYou don't have any room for it. Come back when you do.
+Basics
+Basics
+Game rules
+Game rules
+Prizes
+Prizes
+Exit
+Exit
+Yes
+Yes
+No
+No
+Smoke Ball - 800 coins
+Smoke Ball - 800 coins
+Miracle Seed - 1000 coins
+Miracle Seed - 1000 coins
+Charcoal - 1000 coins
+Charcoal - 1000 coins
+Mystic Water - 1000 coins
+Mystic Water - 1000 coins
+Yellow Flute - 1600 coins
+Yellow Flute - 1600 coins
+No thanks
+No thanks
+Buy Cards
+Buy Cards
+Sell Cards
+Sell Cards
+Information
+Information
+Abra - 180 coins
+Abra - 180 coins
+Clefairy - 500 coins
+Clefairy - 500 coins
+Dratini - 2800 coins
+Dratini - 2800 coins
+Scyther - 5500 coins
+Scyther - 5500 coins
+Porygon - 9999 coins
+Porygon - 9999 coins
+TM13 - 4000 coins
+TM13 - 4000 coins
+TM23 - 3500 coins
+TM23 - 3500 coins
+TM24 - 4000 coins
+TM24 - 4000 coins
+TM30 - 4500 coins
+TM30 - 4500 coins
+TM35 - 4000 coins
+TM35 - 4000 coins
+50 coins [$1,000]
+50 coins [$1,000]
+500 coins [$10,000]
+500 coins [$10,000]

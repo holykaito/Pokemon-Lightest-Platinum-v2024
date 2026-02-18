@@ -1,0 +1,44 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map043]
+\bHey, the professor is looking for you!
+\bHey, the professor is looking for you!
+\r\ff[profjasmine]Hi, \PN! Welcom to my lab! Now that you have your first Pokemon, I think you should train to become a Pokemon Master by challenging the Zhery League and its eight gyms.
+\r\ff[profjasmine]Hi, \PN! Welcom to my lab! Now that you have your first Pokemon, I think you should train to become a Pokemon Master by challenging the Zhery League and its eight gyms.
+\rYes! I've dreamed of this all my life, and now I'll make my dreams come true!
+\rYes! I've dreamed of this all my life, and now I'll make my dreams come true!
+\r\ff[profjasmine]Right! But first, I have one last request of you. To the east of Central City lies Marfeny Lake. Pro. Oak is at the lake, and I urgently need to speak with him. Can I ask you to get him to contact me?
+\r\ff[profjasmine]Right! But first, I have one last request of you. To the east of Central City lies Marfeny Lake. Pro. Oak is at the lake, and I urgently need to speak with him. Can I ask you to get him to contact me?
+\rOkay! I'll go right away!
+\rOkay! I'll go right away!
+\r\ff[profjasmine]Before you leave, here's a little gift from me! Pokeballs. These Pokeballls will capture many Pokemon. Good luck on yur journey!
+\r\ff[profjasmine]Before you leave, here's a little gift from me! Pokeballs. These Pokeballls will capture many Pokemon. Good luck on yur journey!
+\r\ff[profjasmine]These Pokeballls will capture many Pokemon. Good luck on yur journey!
+\r\ff[profjasmine]These Pokeballls will capture many Pokemon. Good luck on yur journey!
+\r\ff[profjasmine]It seems like you were born to become a legendary trainer! I'll be following your journey from here.
+\r\ff[profjasmine]It seems like you were born to become a legendary trainer! I'll be following your journey from here.
+\bWe are working at full steam on new research into Arceus and the other mysteries we have yet to uncover in the Pokemon World
+\bWe are working at full steam on new research into Arceus and the other mysteries we have yet to uncover in the Pokemon World
+\bPokemon always have some mystery to be solved, and the best scientists in the world work to unravel them.
+\bPokemon always have some mystery to be solved, and the best scientists in the world work to unravel them.
+\bI'm always excited to share my findings and contribute to the development of the Pokemon trainer community. Let's explore together!
+\bI'm always excited to share my findings and contribute to the development of the Pokemon trainer community. Let's explore together!
+\r\ff[profjasmine]Hi, Prof.Oak! Welcom to my lab!
+\r\ff[profjasmine]Hi, Prof.Oak! Welcom to my lab!
+\b\ff[prooak]Thanks, Prof.Fennel! \PN told me I had to come here quickly, so I'm here to learn about your research!
+\b\ff[prooak]Thanks, Prof.Fennel! \PN told me I had to come here quickly, so I'm here to learn about your research!
+\r\ff[profjasmine]Yes, professor! With \PN's help, I've been studying ancient writings about the creation of the universe! They said the Arceus created the world and all the Pokémon.
+\r\ff[profjasmine]Yes, professor! With \PN's help, I've been studying ancient writings about the creation of the universe! They said the Arceus created the world and all the Pokémon.
+\b\ff[prooak]Incredible! This is actually related to my latest research into Pokémon DNA. It seems all species have the same small trait in common!
+\b\ff[prooak]Incredible! This is actually related to my latest research into Pokémon DNA. It seems all species have the same small trait in common!
+\r\ff[profjasmine]Yes, professor, right now that's all I know. I'll send you the full document on a CD.
+\r\ff[profjasmine]Yes, professor, right now that's all I know. I'll send you the full document on a CD.
+\b\ff[prooak]Okay, Prof.Fennel. I'm going to my research center in Zhery, Central City's Radio Tower. Let me know immediately if you have any problems.
+\b\ff[prooak]Okay, Prof.Fennel. I'm going to my research center in Zhery, Central City's Radio Tower. Let me know immediately if you have any problems.
+\r\ff[profjasmine]Okay!
+\r\ff[profjasmine]Okay!
+\r\ff[profjasmine]Good job, \PN. I've registered you in the Zhery league. Now you can fight the gym leaders and become a powerful trainer. Congratulations and take care, Team Steam still be after you!
+\r\ff[profjasmine]Good job, \PN. I've registered you in the Zhery league. Now you can fight the gym leaders and become a powerful trainer. Congratulations and take care, Team Steam still be after you!
+\bI delve into the lives, powers, and evolutions of various Pokemon species. Each Pokemon is a complex system, and I am always excited to uncover their mysteries.
+\bI delve into the lives, powers, and evolutions of various Pokemon species. Each Pokemon is a complex system, and I am always excited to uncover their mysteries.

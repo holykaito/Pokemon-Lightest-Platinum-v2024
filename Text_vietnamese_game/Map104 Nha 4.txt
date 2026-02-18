@@ -1,0 +1,10 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map104]
+\rThese cowboy clothes I'm wearing are the latest fashion trend.
+\rThese cowboy clothes I'm wearing are the latest fashion trend.
+\rThe current Champion of Zhery is KAORI. She was born here in Central City, and is now one of the best trainers in the world!
+\rThe current Champion of Zhery is KAORI. She was born here in Central City, and is now one of the best trainers in the world!
+\bIn Inhore, there's a place called Sunset Farms. It's where I work but right now I'm taking a long vacation.
+\bIn Inhore, there's a place called Sunset Farms. It's where I work but right now I'm taking a long vacation.

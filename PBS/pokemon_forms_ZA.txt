@@ -1,0 +1,24 @@
+﻿#-------------------------------
+[DRAGONITE,1]
+FormName = Mega Dragonite
+MegaStone = DRAGONINITE
+BaseStats = 91,124,115,100,145,125
+BaseExp = 270
+Abilities = INNERFOCUS
+HiddenAbilities = MULTISCALE
+Height = 2.2
+Weight = 290.0
+Pokedex = It finishes off its opponents with mercy in its heart. It manipulates the atmosphere to summon storms.
+Generation = 10
+#-------------------------------
+[DRAMPA,1]
+FormName = Mega Drampa
+MegaStone = DRAMPANITE
+BaseStats = 78,85,110,36,160,116
+BaseExp = 117
+Abilities = BERSERK,SAPSIPPER
+HiddenAbilities = CLOUDNINE
+Height = 3.0
+Weight = 240.5
+Pokedex = Drampa's cells have been invigorated, allowing it to regain its youth. It manipulates the atmosphere to summon storms.
+Generation = 10

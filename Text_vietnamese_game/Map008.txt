@@ -1,0 +1,112 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map008]
+\rHi! I'm the Contest Lady!
+\rHi! I'm the Contest Lady!
+\rI give out contest ribbons. Do you want one?
+\rI give out contest ribbons. Do you want one?
+\rSorry, your \v[2] already has the highest ranked Cool Ribbon.
+\rSorry, your \v[2] already has the highest ranked Cool Ribbon.
+\PN received the \v[3]. \me[Item get]\wtnp[40]
+\PN received the \v[3]. \me[Item get]\wtnp[40]
+\PN put the \v[3] on \v[2].
+\PN put the \v[3] on \v[2].
+\rThat's your choice.
+\rThat's your choice.
+\bIf you'd like, I could judge the intriguing potential of your Pokémon.
+\bIf you'd like, I could judge the intriguing potential of your Pokémon.
+\bWhich Pokémon would you like me to judge?
+\bWhich Pokémon would you like me to judge?
+\b...Oh? You don't need me to judge. I get it.
+\b...Oh? You don't need me to judge. I get it.
+\bI see, I see...
+\bI see, I see...
+\bThis Pokémon's potential is outstanding overall.
+\bThis Pokémon's potential is outstanding overall.
+\bThis Pokémon's potential is relatively superior overall.
+\bThis Pokémon's potential is relatively superior overall.
+\bThis Pokémon's potential is above average overall.
+\bThis Pokémon's potential is above average overall.
+\bThis Pokémon's potential is decent overall.
+\bThis Pokémon's potential is decent overall.
+\bThat's my determination, and it's final.
+\bThat's my determination, and it's final.
+\bIncidentally, I would say the best potential lies in its \v[4] stat.
+\bIncidentally, I would say the best potential lies in its \v[4] stat.
+\bAnd its Attack stat is also good.
+\bAnd its Attack stat is also good.
+\bI see, its Defense stat is also good.
+\bI see, its Defense stat is also good.
+\bWell, its Speed stat is also good.
+\bWell, its Speed stat is also good.
+\bIts Special Attack stat is equally good.
+\bIts Special Attack stat is equally good.
+\bIts Special Defense stat is good as well.
+\bIts Special Defense stat is good as well.
+\bIt can't be better in that regard. That's how I judged it.
+\bIt can't be better in that regard. That's how I judged it.
+\bIt's fantastic in that regard. That's how I judged it.
+\bIt's fantastic in that regard. That's how I judged it.
+\bIt's very good in that regard. That's how I judged it.
+\bIt's very good in that regard. That's how I judged it.
+\bIt's rather decent in that regard. That's how I judged it.
+\bIt's rather decent in that regard. That's how I judged it.
+\rDaisy: Hi, \PN!
+\rDaisy: Hi, \PN!
+\rDaisy: Would you like me to groom one of your Pokémon?
+\rDaisy: Would you like me to groom one of your Pokémon?
+\rDaisy: Which Pokémon do you want me to groom?
+\rDaisy: Which Pokémon do you want me to groom?
+\rDaisy: Oh, okay then.
+\rDaisy: Oh, okay then.
+\rDaisy: There! \v[2] looks a lot happier and prettier now!
+\rDaisy: There! \v[2] looks a lot happier and prettier now!
+\bDr. Footstep: Hi! I rate the footprints of Pokémon!
+\bDr. Footstep: Hi! I rate the footprints of Pokémon!
+\bDr. Footstep: Can I rate your Pokémon for you?
+\bDr. Footstep: Can I rate your Pokémon for you?
+\bDr. Footstep: Which Pokémon do you want me to rate?
+\bDr. Footstep: Which Pokémon do you want me to rate?
+\bDr. Footstep: Maybe next time, then.
+\bDr. Footstep: Maybe next time, then.
+\bDr. Footstep: By any chance, you... Are you a very strict person? I feel that your \v[2] really doesn't like you...
+\bDr. Footstep: By any chance, you... Are you a very strict person? I feel that your \v[2] really doesn't like you...
+\bDr. Footstep: Hmmm... Your \v[2] may not like you very much.
+\bDr. Footstep: Hmmm... Your \v[2] may not like you very much.
+\bDr. Footstep: The relationship is neither good nor bad... Your \v[2] looks neutral.
+\bDr. Footstep: The relationship is neither good nor bad... Your \v[2] looks neutral.
+\bDr. Footstep: Your \v[2] is a little friendly to you... That's what I'm getting.
+\bDr. Footstep: Your \v[2] is a little friendly to you...  That's what I'm getting.
+\bDr. Footstep: Your \v[2] is friendly to you. It must be happy with you.
+\bDr. Footstep: Your \v[2] is friendly to you. It must be happy with you.
+\bDr. Footstep: Your \v[2] is quite friendly to you! You must be a kind person!
+\bDr. Footstep: Your \v[2] is quite friendly to you! You must be a kind person!
+\bDr. Footstep: Your \v[2] is super friendly to you! I'm a bit jealous!
+\bDr. Footstep: Your \v[2] is super friendly to you! I'm a bit jealous!
+\bDr. Footstep: I shall reward your \v[2] with a ribbon!
+\bDr. Footstep: I shall reward your \v[2] with a ribbon!
+\PN received the Footprint Ribbon. \me[Item get]\wtnp[20]
+\PN received the Footprint Ribbon. \me[Item get]\wtnp[20]
+\PN put the Footprint Ribbon on \v[2].
+\PN put the Footprint Ribbon on \v[2].
+\rOh?\nYour \v[1]...
+\rOh?\nYour \v[1]...
+\rOh! Your \v[1], that Effort Ribbon looks good on it!
+\rOh! Your \v[1], that Effort Ribbon looks good on it!
+\rWent for it stupendously!
+\rWent for it stupendously!
+\rAs its reward, please give it this Effort Ribbon.
+\rAs its reward, please give it this Effort Ribbon.
+\PN received the Effort Ribbon. \me[Item get]\wtnp[20]
+\PN received the Effort Ribbon. \me[Item get]\wtnp[20]
+\PN put the Effort Ribbon on \v[1].
+\PN put the Effort Ribbon on \v[1].
+\rYou have to go for it a little harder.
+\rYou have to go for it a little harder.
+\rIf you do, I'll give your Pokémon something nice.
+\rIf you do, I'll give your Pokémon something nice.
+Yes
+Yes
+No
+No

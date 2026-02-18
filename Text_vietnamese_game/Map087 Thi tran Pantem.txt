@@ -1,0 +1,30 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map087]
+\r\ff[selene]Hello, \pn! I'm Selene from Alola Region. I'm looking for a trainer to practice battling, but the trainers in Pokemon Center look so weak... You look strong! Get ready to face my mighty Datrix!
+\r\ff[selene]Hello, \pn! I'm Selene from Alola Region. I'm looking for a trainer to practice battling, but the trainers in Pokemon Center look so weak... You look strong! Get ready to face my mighty Datrix!
+\r\ff[selene]Well, you sure know how to fight with style. I like that about you, and hope to you meet you again, so take a break for now, and enjoy your visit to this village.
+\r\ff[selene]Well, you sure know how to fight with style. I like that about you, and hope to you meet you again, so take a break for now, and enjoy your visit to this village.
+\r\ff[selene]Goodbye, see you later!
+\r\ff[selene]Goodbye, see you later!
+Pantam Town - Route A6
+Pantam Town - Route A6
+\rPokémon always like people who treat them well, causing them to be happy, and to build a greater connection with their Pokémon trainer.
+\rPokémon always like people who treat them well, causing them to be happy, and to build a greater connection with their Pokémon trainer.
+\bLet's say you have six Pokémon. If you catch another one. It is automatically sent to a Storage Box over a PC connection.
+\bLet's say you have six Pokémon. If you catch another one. It is automatically sent to a Storage Box over a PC connection.
+PANTEM TOWN
+PANTEM TOWN
+\rWild Pokémon will jump out at you in tall grass. If you want to catch Pokémon, you have to go into the tall grass and search.
+\rWild Pokémon will jump out at you in tall grass. If you want to catch Pokémon, you have to go into the tall grass and search.
+\bFishing is an art that should always be taken very seriously.
+\bFishing is an art that should always be taken very seriously.
+\bI've always liked Electric Pokémon because they can be very fast and strong.
+\bI've always liked Electric Pokémon because they can be very fast and strong.
+Toed..toed...
+Toed..toed...
+\rAny Pokémon you get in a trade, you can't change its nickname. The original Trainer's love for that Pokémon is in the nickname.
+\rAny Pokémon you get in a trade, you can't change its nickname. The original Trainer's love for that Pokémon is in the nickname.
+\bMany VILEPLUME live in the center of botanical research in Esmarald City. It's a very beautiful place, with many plants.
+\bMany VILEPLUME live in the center of botanical research in Esmarald City. It's a very beautiful place, with many plants.

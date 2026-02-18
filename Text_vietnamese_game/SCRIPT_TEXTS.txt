@@ -1,0 +1,4152 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[SCRIPT_TEXTS]
+Kanto Pokédex
+Pokédex vùng Kanto
+Johto Pokédex
+Pokédex vùng Johto
+My Game by:
+Trò chơi của tôi do:
+Also involved were:
+Những người khác tham gia bao gồm:
+Special thanks to:
+Xin chân thành cảm ơn:
+Field '{1}' is not an integer.
+Trường '{1}' không phải là số nguyên.
+Field '{1}' is not a positive integer or 0.
+Trường '{1}' không phải là số nguyên dương hoặc 0.
+Field '{1}' is not a positive integer.
+Trường '{1}' không phải là số nguyên dương.
+Field '{1}' must be greater than 0.
+Trường '{1}' phải lớn hơn 0.
+Field '{1}' is not a hexadecimal number.
+Trường '{1}' không phải là số thập lục phân.
+Field '{1}' is not a number.
+Trường '{1}' không phải là số.
+Field '{1}' is not a Boolean value (true, false, 1, 0).
+Trường '{1}' không phải là giá trị Boolean (đúng, sai, 1, 0).
+Field '{1}' must contain only letters, digits, and<<n>>underscores and can't begin with a number.
+Trường '{1}' chỉ được chứa các chữ cái, chữ số và dấu gạch dưới <<n>> và không được bắt đầu bằng số.
+{1}' is not a defined type (type {2}, Weaknesses).
+{1}' không phải là một hệ được định nghĩa (hệ {2}, Điểm yếu).
+{1}' is not a defined type (type {2}, Resistances).
+{1}' không phải là một hệ được định nghĩa (hệ {2}, Kháng).
+{1}' is not a defined type (type {2}, Immunities).
+{1}' không phải là một hệ được định nghĩa (hệ {2}, Miễn dịch).
+Check Moves
+Kiểm tra chiêu thức
+Remember Moves
+Nhớ chiêu thức
+Forget Moves
+Quên chiêu thức
+Use TM's
+Dùng TM
+Nickname
+Biệt danh
+{1} forgot how to use {2}.
+{1} quên cách sử dụng {2}.
+Set the Pokémon's #{status} count.
+Đặt số lượng #{status} của Pokémon.
+Set {1}'s #{status} count (0-99).
+Đặt số lượng trạng thái {status} của {1} (0-99).
+{1} was freed from the jagged splinters!
+{1} đã được giải thoát khỏi những mảnh vụn sắc nhọn!
+{1} was freed from the sticky candy syrup!
+{1} đã được giải thoát khỏi lớp siro kẹo dính!
+{1} is hurt by the jagged splinters!
+{1} bị thương bởi những mảnh vụn sắc nhọn!
+{1} is hurt by Salt Cure!
+{1} bị thương bởi Salt Cure!
+{1} was revived and is ready to fight again!
+{1} đã được hồi sinh và sẵn sàng chiến đấu trở lại!
+{1}'s Ability is protected by the effects of its Ability Shield!
+Khả năng của {1} được bảo vệ bởi hiệu ứng Ability Shield!
+{1} comes out of {2}'s mouth!
+{1} phát ra từ miệng của {2}!
+{1} was shocked wide awake!
+{1} đã giật mình tỉnh giấc!
+{1} warmed up!
+{1} đã khởi động!
+{1} can't be used twice in a row!
+{1} không thể được sử dụng hai lần liên tiếp!
+Drowsy
+Buồn ngủ
+Frostbite
+Bỏng lạnh
+Snow is falling.
+Tuyết đang rơi.
+A harsh hailstorm bellows!
+Một trận mưa đá dữ dội đang gầm rú!
+It started to snow!
+Trời bắt đầu đổ tuyết!
+The hailstorm ended.
+Trận mưa đá đã kết thúc.
+The snow stopped.
+Tuyết đã ngừng rơi.
+{1} is already drowsy!
+{1} đã buồn ngủ rồi!
+{1} is already frostbitten!
+{1} đã bị bỏng lạnh rồi!
+But the uproar kept {1} alert!
+Nhưng sự náo động đã khiến {1} phải cảnh giác!
+{1} stays alert!
+{1} luôn cảnh giác!
+{1} cannot be frostbitten!
+{1} không thể bị bỏng lạnh!
+{1} stays alert because of {2}'s {3}!
+{1} luôn cảnh giác nhờ {3} của {2}!
+{1} cannot be frostbitten because of {2}'s {3}!
+{1} không thể bị bỏng lạnh vì {3} của {2}!
+{1}'s {2} prevents drowsiness!
+{1} của {2} ngăn ngừa buồn ngủ!
+{1}'s {2} prevents frostbites!
+{1} của {2} ngăn ngừa bỏng lạnh!
+{1} grew drowsy!<<n>>It may be too sleepy to move!
+{1} trở nên buồn ngủ!<<n>>Có thể nó quá buồn ngủ để di chuyển!
+{1} was frostbitten!
+{1} bị bỏng lạnh!
+{1} became alert again.
+{1} đã tỉnh táo trở lại.
+{1}'s frostbite was healed.
+Vết bỏng lạnh của {1} đã lành.
+{1} is too drowsy to move!
+{1} quá buồn ngủ không thể cử động!
+{1} was hurt by its frostbite!
+{1} bị thương do bị bỏng lạnh!
+Being hit by Tailwind charged {1} with power!
+Bị Tailwind tấn công và tích lũy {1} năng lượng!
+{1} cut its own HP and minimized its Attack!
+{1} tự giảm HP của mình và giảm thiểu Attack!
+{1} cut its own HP and maximized its Attack!
+{1} tự giảm HP của mình và tối đa hóa Attack!
+Jagged splinters dug into {1}!
+Những mảnh vụn sắc nhọn găm vào {1}!
+{1} used up all its electricity!
+{1} đã dùng hết điện!
+{1} is being salt cured!
+{1} đang bị ướp muối!
+The pointed stones disappeared from around {1}!
+Những viên đá nhọn đã biến mất khỏi khoảng {1}!
+The pointed steel disappeared from around {1}!
+Thép nhọn đã biến mất khỏi khoảng {1}!
+The spikes disappeared from the ground around {1}!
+Những chiếc gai biến mất khỏi mặt đất vào khoảng {1}!
+The poison spikes disappeared from the ground around {1}!
+Những gai độc biến mất khỏi mặt đất xung quanh {1}!
+The sticky web has disappeared from the ground around {1}!
+Mạng nhện dính đã biến mất khỏi mặt đất xung quanh {1}!
+Tidying up complete!
+Dọn dẹp xong!
+{1} blew away the pointed steel!
+{1} đã thổi bay mũi thép nhọn!
+{1} is preparing to tell a chillingly bad joke!
+{1} đang chuẩn bị kể một câu chuyện cười tệ đến rợn người!
+{1} shed its tail to create a decoy!
+{1} rụng đuôi để tạo thành mồi nhử!
+{1} got covered in sticky candy syrup!
+{1} bị dính đầy siro kẹo!
+{1} absorbed electricity!
+{1} hấp thụ điện!
+{1} is going all out for this attack!
+{1} đang dốc toàn lực cho cuộc tấn công này!
+{1} is already pumped!
+{1} đã được bơm đầy!
+{1}'s {2} made it alert again!
+{1} của {2} đã khiến nó báo động trở lại!
+{1}'s {2} healed its frostbite!
+{1} của {2} đã chữa lành vết bỏng lạnh của nó!
+{1}'s {2} made its partner alert again!
+{1} của {2} đã báo động cho đối tác của nó một lần nữa!
+{1}'s {2} healed its partner's frostbite!
+{1}'s {2} đã chữa lành vết bỏng lạnh cho bạn đời của nó!
+{1}'s {2} made {3} drowsy! It may be too sleepy to move!
+{1} đã khiến {3} buồn ngủ! Nó có thể quá buồn ngủ để cử động!
+{1}'s {2} caused {3} to become frostbitten!
+{1} của {2} đã khiến {3} bị bỏng lạnh!
+A lingering aroma clings to {1}!
+Một mùi hương còn vương vấn trên {1}!
+{1}'s Ability is protected by the effects of its {2}!
+Đặc tính của {1} được bảo vệ bởi hiệu ứng của {2}!
+{1} gained strength from the fallen!
+{1} đã hấp thụ sức mạnh từ những kẻ ngã xuống!
+Being hit by {1} charged {2} with power!
+Bị đánh trúng bởi {1} đã nạp năng lượng cho {2}!
+Poison spikes were scattered on the ground all around {1}!
+Gai độc rải rác trên mặt đất xung quanh {1}!
+{1} underwent a heroic transformation!
+{1} đã trải qua một sự biến đổi anh hùng!
+{1} goes inside the mouth of {2}!
+{1} đi vào bên trong miệng của {2}!
+{1}'s {2} weakened the {3} of all surrounding Pokémon!
+{1} của {2} đã làm suy yếu {3} của tất cả Pokémon xung quanh!
+{1} basked in the sunlight, sending its ancient pulse into a frenzy!
+{1} đắm mình trong ánh nắng mặt trời, khiến nhịp đập cổ xưa của nó trở nên cuồng nhiệt!
+{1} turned the sunlight harsh, sending its ancient pulse into a frenzy!
+{1} đã biến ánh nắng mặt trời trở nên gay gắt, khiến xung động cổ xưa của nó trở nên điên cuồng!
+{1} used the Electric Terrain to energize its futuristic engine!
+{1} đã sử dụng Địa hình Điện để cung cấp năng lượng cho động cơ tương lai của nó!
+{1} turned the ground into Electric Terrain, energizing its futuristic engine!
+{1} đã biến mặt đất thành Địa hình Điện, tiếp thêm năng lượng cho động cơ tương lai của nó!
+The effects of {1}'s {2} wore off!
+Tác dụng của {1} của {2} đã hết!
+The #{cause} activated {1}'s {2}!
+The #{cause} đã kích hoạt {1} của {2}!
+{1} used its {2} to activate its {3}!
+{1} đã sử dụng {2} của nó để kích hoạt {3} của nó!
+{1}'s {2} was heightened!
+{1} của {2} đã được nâng cao!
+A supersweet aroma is wafting from the syrup covering {1}!
+Một mùi thơm ngọt ngào đang lan tỏa từ lớp siro bao phủ {1}!
+{1} drank down all the matcha that {2} made!
+{1} đã uống hết chỗ matcha mà {2} pha!
+The {1} worn by {2} shone brilliantly!
+Chiếc {1} mà {2} mặc đã tỏa sáng rực rỡ!
+{1} made its shell gleam! It's distorting type matchups!
+{1} làm cho lớp vỏ của nó sáng bóng! Nó đang làm sai lệch các tương khắc hệ!
+The harsh sunlight faded!
+Ánh nắng gay gắt đã dịu đi!
+The heavy rain has lifted!
+Cơn mưa lớn đã tạnh!
+The mysterious air current has dissipated!
+Luồng không khí bí ẩn đã tan biến!
+The weather returned to normal.
+Thời tiết đã trở lại bình thường.
+The battlefield returned to normal.
+Chiến trường đã trở lại trạng thái bình thường.
+{1} used its {2} to mirror its opponent's stat changes!
+{1} đã sử dụng {2} của nó để phản chiếu những thay đổi về chỉ số của đối thủ!
+{1}'s base points were all reset to zero!
+Tất cả điểm cơ sở của {1} đều được đặt lại về 0!
+Normal Forme
+Dạng thường
+Attack Forme
+Dạng tấn công
+Defense Forme
+Dạng phòng thủ
+Speed Forme
+Dạng tốc độ
+Which form should {1} change into?
+{1} nên chuyển sang dạng nào?
+{1}'s effort values were reset.
+Điểm nỗ lực của {1} đã được đặt lại.
+Begin mining mini-game.
+Bắt đầu mimi-game khai thác mỏ.
+Remember Move
+Nhớ chiêu thức
+Forget Move
+Quên chiêu thức
+#{cmd}
+#{cmd}
+Graphics/UI/Pokedex/bg_#{suffix}
+Graphics/UI/Pokedex/bg_#{suffix}
+{1} is completely immune to being copied!
+{1} hoàn toàn không thể bị sao chép!
+{1} is completely immune to one-hit KO's!
+{1} hoàn toàn miễn nhiễm với đòn hạ gục tức thì!
+#{msg}
+#{msg}
+{1} transformed into the {2}-type!
+{1} được chuyển đổi thành hệ {2}!
+{1} put on its {2}!
+{1} đặt lên {2}!
+{1} is weak!<<n>>Throw a Poké Ball now!
+{1} đang yếu rồi!<<n>>Ném quả cầu Poké ngay!
+But there is no room left in the PC!
+Nhưng máy tính đã hết dung lượng rồi!
+#{@introText}
+#{@introText}
+{1}
+{1}
+{1} is completely immune to being put to sleep!
+{1} hoàn toàn miễn nhiễm với việc bị gây mê!
+{1} is completely immune to poisoning!
+{1} hoàn toàn miễn nhiễm với chất độc!
+{1} is completely immune to burns!
+{1} hoàn toàn miễn nhiễm với bỏng!
+{1} is completely immune to paralysis!
+{1} hoàn toàn miễn nhiễm với tê liệt!
+{1} is completely immune to being frozen!
+{1} hoàn toàn miễn nhiễm với đóng băng!
+{1} is completely immune to frostbite!
+{1} hoàn toàn miễn nhiễm với bỏng lạnh!
+{1} is completely immune to becoming drowsy!
+{1} hoàn toàn miễn nhiễm với việc buồn ngủ!
+{1} is completely immune to confusion!
+{1} hoàn toàn miễn nhiễm với hỗn loạn!
+{1} is completely immune to infatuation!
+{1} hoàn toàn miễn nhiễm với sự quyến rũ!
+{1} is completely immune to having its stats lowered!
+{1} hoàn toàn miễn nhiễm với việc bị giảm chỉ số!
+{1} is completely immune to effects that may disable its moves!
+{1} hoàn toàn miễn nhiễm với các hiệu ứng có thể vô hiệu hóa các chiêu thức của nó!
+Deluxe plugin settings...
+Cài đặt plugin cao cấp...
+Settings added by the Deluxe Battle Kit and other add-on plugins.
+Các thiết lập được thêm vào bởi Deluxe Battle Kit và các plugin bổ sung khác.
+Toggle Mega Evolution
+Bật/tắt Tiến hóa Mega
+Toggles the availability of Mega Evolution functionality.
+Bật/tắt chức năng Tiến hóa Mega.
+Mega Evolution {1}.
+Tiến hóa Mega {1}.
+{1} radiates with Mega energy!
+{1} tỏa ra năng lượng cực mạnh!
+{1}'s {2} radiates with Mega energy!
+{1} của {2} tỏa ra năng lượng cực mạnh!
+#{param}
+#{param}
+{1}'s held {2} was removed!
+{1} được giữ bởi {2} đã bị loại bỏ!
+{1} obtained {2} {3}!
+{1} đã nhận được {2} {3}!
+{1}'s stat changes returned to normal!
+Chỉ số của {1} đã trở lại bình thường!
+{1}'s raised stats returned to normal!
+Chỉ số đã tăng của {1} đã trở lại bình thường!
+{1}'s lowered stats returned to normal!
+Chỉ số đã giảm của {1} đã trở lại bình thường!
+The weather cleared.
+Thời tiết đã quang đãng.
+{1} emited a powerful magnetic pulse!
+{1} phát ra xung từ mạnh!
+Your Poké Balls short-circuited!<<n>>They cannot be used this battle!
+Bóng Poké của bạn bị chập mạch!<<n>>Không thể sử dụng chúng trong trận chiến này!
+{1} possessed a new appliance!
+{1} sở hữu một thiết bị mới!
+{1} equipped a {2} it found in the appliance!
+{1} được trang bị một {2} nó được tìm thấy trong thiết bị!
+{1} emited an electrical pulse out of desperation!
+{1} đã phát ra một xung điện trong lúc tuyệt vọng!
+The cave ceiling begins to crumble down all around you!
+Trần hang động bắt đầu sụp đổ xung quanh bạn!
+I am not letting you escape!
+Tôi sẽ không để bạn trốn thoát!
+I don't care if this whole cave collapses down on the both of us...haha!
+Tôi không quan tâm nếu cả hang động này sụp đổ xuống đè lên cả hai chúng ta... haha!
+Defeat your opponent before time runs out!
+Hãy đánh bại đối thủ trước khi hết thời gian!
+The cave continues to collapse all around you!
+Hang động tiếp tục sụp đổ xung quanh bạn!
+{1} was struck on the head by a falling rock!
+{1} bị đá rơi trúng đầu!
+You're running out of time!
+Bạn sắp hết thời gian rồi!
+You need to escape immediately!
+Bạn cần phải trốn thoát ngay lập tức!
+You failed to defeat your opponent in time!
+Bạn đã không kịp đánh bại đối thủ trong thời gian quy định!
+You were forced to flee the battle!
+Bạn đã bị buộc phải tháo chạy khỏi trận chiến!
+My {1} will never give up!
+Tôi {1} sẽ không bao giờ bỏ cuộc!
+{1} is standing its ground!
+{1} đang giữ vững lập trường!
+Haha...you'll never make it out alive!
+Haha... bạn sẽ không bao giờ thoát chết đâu!
+{1}'s Mega Evolution faded!<<n>>It may now be captured!
+Quá trình tiến hóa Mega của {1} đã biến mất!<<n>>Giờ đây nó có thể bị bắt!
+Shiny leaf
+Lá sáng bóng
+Has shiny crown.
+Có vương miện sáng bóng.
+Has shiny leaf x#{pkmn.shiny_leaf}.
+Có lá bóng x#{pkmn.shiny_leaf}.
+Set leaf count
+Đặt số lượng lá
+Set crown
+Đặt vương miện
+Set {1}'s leaf count (max. 6).
+Đặt số lá của {1} (tối đa 6).
+Gym Leader
+Chủ Hội Quán
+View Legacy
+Xem Di sản
+General
+Tổng quan
+Total time in party:
+Tổng thời gian trong đội hình:
+Items consumed:
+Các vật phẩm đã dùng:
+Moves learned:
+Các chiêu thức đã học:
+Eggs produced:
+Số trứng thu được:
+Number of times traded:
+Số lần giao dịch:
+Battle History
+Lịch sử trận chiến
+Opponents defeated:
+Các đối thủ bị đánh bại:
+Number of times fainted:
+Số lần ngất xỉu:
+Supereffective hits dealt:
+Số đòn siêu hiệu quả được tung ra:
+Critical hits dealt:
+Số đòn chí mạng gây ra:
+Total number of retreats:
+Tổng số lần rút:
+Team History
+Lịch sử đội hình
+Trainer battle victories:
+Chiến thắng các trận đấu huấn luyện viên:
+Gym Leader battle victories:
+Chiến thắng các trận đấu Chủ Hội Quán:
+Wild legendary battle victories:
+Chiến thắng huyền thoại hoang dã:
+Total Hall of Fame inductions:
+Số lần vào Đại sảnh Danh vọng:
+Total draws or losses:
+Tổng số trận hòa hoặc thua:
+{1}'S LEGACY
+DI SẢN CỦA {1}
+|
+|
+EV/IV Total
+Tổng EV/IV
+EV's Remaining:
+EV còn lại:
+Hidden Power Type:
+Hệ Hidden Power:
+{1}' is not a defined memento ({2}, PreviousRanks).
+{1}' không phải là một memento được xác định ({2}, PreviousRanks).
+Bad size: {1} (must be 0-255).<<n>>{2}
+Kích thước không hợp lệ: {1} (phải nằm trong khoảng 0-255).<<n>>{2}
+Size
+Kích cỡ
+Size variance of the Pokémon (0-255).
+Sự khác biệt về kích thước của Pokémon (0-255).
+Memento
+Kỷ vật...
+The memento adorned on the Pokémon. This determines its title.
+Kỷ vật được gắn trên Pokémon, quyết định danh hiệu của nó.
+Mementos...
+Kỷ vật...
+Set Ribbons/Marks
+Đặt ruy băng/dấu hiệu
+Mementos:<<n>>{1}
+Vật kỷ niệm:<<n>>{1}
+Set Memento/Title
+Đặt kỷ vật/Tiêu đề
+{1} doesn't have any mementos that may grant it a title.
+{1} không có bất kỳ kỷ vật nào có thể mang lại cho nó danh hiệu.
+<<[>>Random<<]>>
+<<[>>Random<<]>>
+<<[>>Remove<<]>>
+<<[>>Remove<<]>>
+Memento:<<n>>{1}.
+Memento:<<n>>{1}.
+{1} already has the title granted by that memento.
+{1} đã có danh hiệu được trao bởi kỷ vật đó.
+Cleared {1}'s memento and title.
+Đã xóa kỷ vật và danh hiệu của {1}.
+{1} will now be known as<<n>>{2}.
+{1} giờ sẽ được gọi là<<n>>{2}.
+Set size
+Đặt kích thước
+Scale the Pokémon's size (max. 255).
+Điều chỉnh kích thước của Pokémon (tối đa 255).
+{1} is now considered {2} in size.
+{1} hiện được coi là có kích thước {2}.
+Set player birthday
+Đặt sinh nhật của người chơi
+Sets the month and day of the player's birthday.
+Đặt tháng và ngày sinh nhật của người chơi.
+The player's birthdate was set to {1} {2}.
+Ngày sinh của người chơi được đặt là {1} {2}.
+#{new_title}
+#{new_title}
+#{title.first.upcase + title[1..title.length]}
+#{title.first.upcase + title[1..title.length]}
+Which month is your birthday in?
+Sinh nhật của bạn vào tháng nào?
+Which day in {1} is your birthday?
+Ngày nào trong {1} là ngày sinh nhật của bạn?
+So, your birthday is {1} {2}{3}, correct?
+Vậy, ngày sinh nhật của bạn là {1} {2}{3}, đúng không?
+{1}'
+{1}'
+Type:
+Hệ:
+ID No.:
+Số ID:
+#{idnum}
+#{idnum}
+Rank:
+Hạng:
+Name:
+Tên:
+#{name}
+#{name}
+Title Conferred:
+Danh hiệu trao tặng:
+#{title}
+#{title}
+View mementos:
+Xem những kỷ vật:
+#{type}
+#{type}
+#{rank}
+#{rank}
+#{count}
+#{count}
+#{header}
+#{header}
+Confer title
+Trao tặng danh hiệu
+Remove title
+Xóa tiêu đề
+Sort mementos
+Sắp xếp kỷ vật
+Would you like to remove {1}'s attached memento and conferred title?
+Bạn có muốn xóa kỷ vật đính kèm và danh hiệu được trao cho {1} không?
+{1}'s memento and any associated titles were removed.
+Kỷ vật của {1} và bất kỳ danh hiệu liên quan nào đã bị xóa.
+Only highest rank
+Chỉ hạng cao nhất
+Only ribbons
+Chỉ có ruy băng
+Only marks
+Chỉ có dấu
+Only contest ribbons
+Chỉ có ruy băng cuộc thi
+Only league ribbons
+Chỉ có ruy băng giải đấu
+Only frontier ribbons
+Chỉ có ruy băng frontier
+Only memorial ribbons
+Chỉ có những dải ruy băng kỷ niệm
+Only special ribbons
+Chỉ những loại ruy băng đặc biệt
+All mementos
+Tất cả kỷ vật
+This memento has multiple ranks.<<n>>Which title should be conferred?
+Kỷ vật này có nhiều cấp bậc.<<n>>Nên trao tặng danh hiệu nào?
+{1} has already been conferred with this title...
+{1} đã được trao tặng danh hiệu này...
+Would you like to remove this attached memento from {1}?
+Bạn có muốn xóa kỷ vật đính kèm này khỏi {1} không?
+{1} will now be known as<<n>>{2}!
+{1} giờ sẽ được gọi là<<n>>{2}!
+Would you like to attach this memento and confer its title to {1}?
+Bạn có muốn đính kèm kỷ vật này và trao quyền sở hữu cho {1} không?
+This memento doesn't have any associated title to confer...
+Vật kỷ niệm này không có bất kỳ danh hiệu nào đi kèm...
+Toggle Terastallization
+Bật/tắt Terastalization
+Toggles the availability of Terastallization functionality.
+Bật/tắt chức năng Terastallization.
+Terastallization {1}.
+Terastallization {1}.
+Terastal settings...
+Các thiết lập Terastal...
+Edit the player's Tera Orb and Pokémon Tera types.
+Chỉnh sửa Tera Orb và loại Tera của người chơi.
+Player's Tera Orb is charged [{1}]
+Quả cầu Tera của người chơi đã được sạc [{1}]
+Tera Orb has infinite charge [{1}]
+Tera Orb có điện tích vô hạn [{1}]
+Randomize Pokémon Tera types [{1}]
+Ngẫu nhiên hóa các loại Pokémon Tera [{1}]
+The player's Tera Orb is now {1}.
+Tera Orb của người chơi hiện là {1}.
+The player's Tera Orb now requires {1} between uses.
+Quả cầu Tera của người chơi hiện yêu cầu {1} giữa các lần sử dụng.
+New Pokémon will now generate with {1} Tera types.
+Pokémon mới giờ sẽ được tạo ra với loại {1} Tera.
+Plugin attributes...
+Thuộc tính plugin...
+Terastal...
+Terastal...
+Eligible: {1}<<n>>Tera type: {2}<<n>>Terastallized: {3}
+Đủ điều kiện: {1}<<n>> Loại Tera: {2}<<n>> Đã được Terastal hóa: {3}
+Set eligibility
+Thiết lập điều kiện đủ điều kiện
+Set Tera type
+Đặt loại Tera
+Set Terastallized
+Đã thiết lập Terastalized
+Reset All
+Đặt lại tất cả
+{1} belongs to a species or form that cannot currently Terastallize.<<n>>Eligibility cannot be changed.
+{1} thuộc về một loài hoặc dạng hiện không thể Terastallize.<<n>>Điều kiện đủ điều kiện không thể thay đổi.
+{1} is no longer able to Terastallize.
+{1} không còn khả năng Terastalize nữa.
+{1} is now able to Terastallize.
+{1} hiện đã có thể Terastalize.
+{1}'s Tera type cannot be changed.
+Hệ Tera của {1} không thể thay đổi.
+{1}'s Tera type is now {2}.
+Hệ Tera của {1} hiện là {2}.
+Can't edit Terastal values on that Pokémon.
+Không thể chỉnh sửa giá trị Terastal trên Pokémon đó.
+{1} changes form when Terastallized.<<n>>This may only occur in battle.
+{1} đổi dạng khi Tera.<<n>>Điều này chỉ có thể xảy ra trong trận chiến.
+{1} is no longer Terastallized.
+{1} không còn Tera nữa.
+{1} is now Terastallized.
+{1} hiện đã Tera.
+All Terastal settings restored to default.
+Tất cả cài đặt Terastal đã được khôi phục về mặc định.
+Terastallization
+Terastallization
+Whether each trainer is allowed to Terastallize.
+Các huấn luyện viên có được phép sử dụng Terastallize hay không.
+Choose trainer to toggle whether they can Terastallize.
+Chọn huấn luyện viên để bật/tắt khả năng Terastalze của họ.
+Not enough {1} remaining...
+Không đủ {1} còn lại...
+You don't have enough {1}...<<n>>You need {2} shards to change a Pokémon's Tera type.
+Bạn không có đủ {1}...<<n>>Bạn cần {2} mảnh để thay đổi loại Tera của Pokémon.
+UNABLE
+KHÔNG THỂ
+You don't have enough {1}...
+Bạn không có đủ {1}...
+Select a new Tera type for {1}.
+Chọn hệ Tera mới cho {1}.
+You don't have a {1} to charge!
+Bạn không có {1} để nạp năng lượng!
+You can't use this item while issuing orders at the same time!
+Bạn không thể sử dụng vật phẩm này trong khi đang thực hiện các lệnh!
+You don't need to recharge your {1} yet!
+Bạn chưa cần nạp lại năng lượng {1}!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Terastallization again!
+{1} đã nạp đầy năng lượng {2} của {3}!<<n>>{2} có thể sử dụng Tera một lần nữa!
+No Tera
+Không Tera
+If set to true, the trainer will never Terastallize this Pokémon.
+Nếu đặt thành true, người huấn luyện sẽ không bao giờ sử dụng Terastallize lên Pokémon này.
+Tera Type
+Hệ Tera
+Tera type of the Pokémon.
+Hệ Tera của Pokémon.
+{1}'s Tera Jewel shattered!<<n>>It may now be captured!
+Viên ngọc Tera của {1} đã vỡ!<<n>>Giờ đây nó có thể bị bắt giữ!
+Tera Orb
+Quả cầu Tera
+{1} Terastallized into the {2}-type!
+{1} Được chuyển đổi thành hệ {2}!
+{1} surrounded itself in Terastal energy!
+{1} tự bao quanh mình bằng năng lượng Tera!
+{1} is reacting to {2}'s {3}!
+{1} đang phản ứng với {3} của {2}!
+Choose a map number.
+Chọn một số của bản đồ.
+<<[>>ADD ENCOUNTER<<]>>
+<<[>>ADD ENCOUNTER<<]>>
+Choose a species, encounter type and map ID.
+Chọn loài, loại chạm trán và ID bản đồ.
+Choose an encounter type.
+Chọn loại cuộc gặp gỡ.
+Do what with this encounter?
+Bạn nên làm gì với cuộc gặp gỡ này?
+Change encounter type
+Thay đổi loại cuộc gặp
+Change map number
+Thay đổi số bản đồ
+Choose a type of {1}.
+Chọn một loại {1}.
+Set an encounter chance.
+Thiết lập xác suất gặp gỡ.
+{1}: {2}, {3}, {4}, {5}
+{1}: {2}, {3}, {4}, {5}
+Choose a species, encounter chance, time of day, battle condition, and type of condition.
+Chọn loài, xác suất chạm trán, thời gian trong ngày, điều kiện chiến đấu và loại điều kiện.
+Choose a time of day.
+Chọn một thời điểm trong ngày.
+Choose a battle condition.
+Chọn điều kiện chiến đấu.
+Change encounter chance
+Thay đổi cơ hội gặp gỡ
+Change battle condition
+Thay đổi điều kiện chiến đấu
+Change condition type
+Thay đổi loại điều kiện
+No specific battle condition has been set.
+Chưa có điều kiện chiến đấu cụ thể nào được thiết lập.
+Toggle SOS battles
+Bật/tắt chế độ chiến đấu SOS
+Toggles SOS call functionality for wild Pokémon.
+Bật/tắt chức năng gọi khẩn cấp (SOS) cho Pokémon hoang dã.
+SOS calls {1}.
+Cuộc gọi SOS {1}.
+Species that this wild Pokémon will prioritize attacking, even if on the same side.
+Các loài mà Pokémon hoang dã này sẽ ưu tiên tấn công, ngay cả khi chúng cùng phe.
+Species that may appear when this wild Pokémon calls for help.
+Các loài có thể xuất hiện khi Pokémon hoang dã này kêu cứu.
+Conditional species that may appear when this wild Pokémon calls for help.
+Loài Pokémon này có thể xuất hiện khi nó kêu cứu.
+Base odds of this wild Pokémon calling for help.
+Xác suất cơ bản của Pokémon hoang dã này kêu cứu.
+Exclusive SOS encounters found on this map.
+Tìm thấy các cuộc chạm trán SOS độc quyền trên bản đồ này.
+The {1} makes the wild Pokémon nervous!
+{1} khiến Pokémon hoang dã lo lắng!
+{1}'s aura flared to life!
+Hào quang của {1} bỗng bừng sáng!
+{1} called its ally Pokémon!
+{1} đã gọi đồng minh Pokémon của nó!
+{1} called for help!
+{1} đã kêu cứu!
+... ... ...
+... ... ...
+{1} appeared!
+{1} đã xuất hiện!
+Its help didn't appear!
+Sự giúp đỡ của nó đã không xuất hiện!
+Totem {1}
+Cột totem {1}
+{1} joined the battle!
+{1} đã tham gia trận chiến!
+Choose tile(s) to swap
+Chọn (các) ô để hoán đổi
+Choose tile(s) to cut
+Chọn (các) viên gạch để cắt
+Choose row(s) to move
+Chọn hàng (hoặc các hàng) cần di chuyển
+Insert new row
+Chèn thêm hàng mới
+Erase tile(s)
+Xóa (các) ô
+Delete row
+Xóa hàng
+Tileset Rearranger
+Công cụ sắp xếp lại bộ ô
+Mode: Swap tiles
+Chế độ: Hoán đổi ô
+Mode: Cut/insert tiles
+Chế độ: Cắt/chèn gạch
+Mode: Move rows
+Chế độ: Di chuyển hàng
+Mode: Insert new row
+Chế độ: Chèn hàng mới
+Mode: Erase unused tiles
+Chế độ: Xóa các ô không sử dụng
+Mode: Delete row
+Chế độ: Xóa hàng
+Height: {1}/{2} rows [!]
+Chiều cao: {1}/{2} hàng [!]
+Height: {1}/{2} rows
+Chiều cao: {1}/{2} hàng
+C: Swap tiles
+C: Hoán đổi ô
+X: Cancel tile swap
+X: Hủy hoán đổi ô
+C: Insert tiles here
+C: Chèn các ô vào đây
+X: Cancel tile(s) insert
+X: Hủy bỏ việc chèn ô
+ARROWS: Select multiple tiles
+MŨI TÊN: Chọn nhiều ô
+RELEASE C: Finish selection
+PHIÊN BẢN C: Hoàn tất lựa chọn
+C: Select tile
+C: Chọn ô
+HOLD C: Select multiple tiles
+GIỮ PHÍM C: Chọn nhiều ô
+C: Move rows here
+C: Di chuyển các hàng đến đây
+X: Cancel row moving
+X: Hủy di chuyển hàng
+ARROWS: Select multiple rows
+MŨI TÊN: Chọn nhiều hàng
+C: Select row
+C: Chọn hàng
+HOLD C: Select multiple rows
+GIỮ C: Chọn nhiều hàng
+C: Insert row of tiles
+C: Chèn một hàng ô
+RELEASE C: Erase tiles
+PHIÊN BẢN C: Xóa các ô
+C: Erase tile
+C: Xóa ô
+HOLD C: Erase multiple tiles
+Giữ phím C: Xóa nhiều ô
+C: Delete row of tiles
+C: Xóa hàng ô
+A/S: Jump up/down tileset
+A/S: Bộ ô nhảy lên/xuống
+Z: Change mode to cut/insert
+Z: Chuyển chế độ sang cắt/chèn
+Z: Change mode to swap
+Z: Chuyển sang chế độ hoán đổi
+Z: Change mode
+Z: Thay đổi chế độ
+D: Open menu
+D: Mở menu
+Q: Undo ({1}) - W: Redo ({2})
+Q: Hoàn tác ({1}) - W: Làm lại ({2})
+Q: Undo ({1})
+Q: Hoàn tác ({1})
+W: Redo ({1})
+W: Làm lại ({1})
+This tileset is too tall ({1} rows) and cannot be saved. Please shrink it to at most {2} rows tall.
+Bộ ô này quá cao ({1} hàng) và không thể lưu được. Vui lòng thu nhỏ nó xuống tối đa {2} hàng.
+Changes saved. To ensure that they are applied properly, close and reopen RPG Maker XP.
+Các thay đổi đã được lưu. Để đảm bảo các thay đổi được áp dụng đúng cách, hãy đóng và mở lại RPG Maker XP.
+Choose tileset to load
+Chọn bộ ô để tải
+Rearrange tiles in tilesets.
+Sắp xếp lại các ô trong bộ ô.
+Clear all unused tiles
+Xóa tất cả các ô không sử dụng
+Delete all unused rows
+Xóa tất cả các hàng không sử dụng
+List maps using this tileset
+Liệt kê các bản đồ sử dụng bộ ô này.
+Maps using tileset {1:03d}: {2:s}:
+Bản đồ sử dụng bộ ô {1:03d}: {2:s}:
+No maps use tileset {1:03d}: {2:s}.
+Không có bản đồ nào sử dụng bộ ô {1:03d}: {2:s}.
+Search for what?
+Tìm kiếm cái gì?
+No results found.
+Không tìm thấy kết quả nào.
+Skill 1
+Kỹ năng 1
+Skill 2
+Kỹ năng 2
+Skill 3
+Kỹ năng 3
+Turn {1}
+Lượt {1}
+Used: {1}
+Đã sử dụng: {1}
+Abil.
+Abil.
+Accuracy
+Sự chính xác
+Evasion
+Trốn tránh
+Crit. Hit
+Đòn chí mạng
+The Pokémon is in the Dynamax state.
+Pokémon này đang ở trạng thái Dynamax.
+Dynamax
+Dynamax
+The Pokémon is Terastallized into the {1} type.
+Pokémon này được chuyển hóa thành loại {1}.
+Non-Ice types take damage each turn. Blizzard always hits.
+Các loại không thuộc hệ Băng sẽ chịu sát thương mỗi lượt. Bão tuyết luôn trúng đích.
+Boosts Def of Ice types. Blizzard always hits.
+Tăng chỉ số phòng thủ của các loại hệ Băng. Bão Tuyết luôn trúng đích.
+Hailstorm
+Mưa đá
+Combined effects of both Hail and Snow.
+Tác động tổng hợp của cả mưa đá và tuyết.
+Boosts Fire moves and weakens Water moves.
+Tăng sức mạnh cho các chiêu thức hệ Lửa và làm suy yếu các chiêu thức hệ Nước.
+Boosts Fire moves and negates Water moves.
+Tăng sức mạnh cho các chiêu thức hệ Lửa và vô hiệu hóa các chiêu thức hệ Nước.
+Boosts Water moves and weakens Fire moves.
+Tăng sức mạnh cho các chiêu thức hệ Nước và làm suy yếu các chiêu thức hệ Lửa.
+Boosts Water moves and negates Fire moves.
+Tăng sức mạnh cho các chiêu thức hệ Nước và vô hiệu hóa các chiêu thức hệ Lửa.
+Boosts Rock type Sp. Def. Damages unless Rock/Ground/Steel.
+Tăng chỉ số phòng thủ đặc biệt của hệ Đá. Sát thương gây ra trừ khi là hệ Đá/Đất/Thép.
+Flying types won't take super effective damage.
+Các Pokémon hệ Bay sẽ không bị sát thương quá mạnh.
+Boosts Shadow moves. Non-Shadow Pokémon damaged each turn.
+Tăng sức mạnh cho các chiêu thức Bóng tối. Pokémon không thuộc hệ Bóng tối bị gây sát thương mỗi lượt.
+{1} Terrain
+{1} Địa hình
+Grounded Pokémon immune to sleep. Boosts Electric moves.
+Pokémon trên mặt đất miễn nhiễm với trạng thái ngủ. Tăng sức mạnh cho các chiêu thức hệ Điện.
+Grounded Pokémon recover HP each turn. Boosts Grass moves.
+Pokémon trên mặt đất hồi phục HP mỗi lượt. Tăng sức mạnh cho các chiêu thức hệ Cỏ.
+Priority moves fail on grounded targets. Boosts Psychic moves.
+Các đòn tấn công ưu tiên sẽ thất bại khi nhắm vào mục tiêu đang ở trên mặt đất. Tăng sức mạnh cho các đòn tấn công hệ Tâm linh.
+Status can't be changed when grounded. Weakens Dragon moves.
+Trạng thái không thể thay đổi khi bị khống chế. Làm suy yếu các chiêu thức hệ Rồng.
+Pokémon can't use moves known by the {1} user.
+Pokémon không thể sử dụng các chiêu thức mà người dùng {1} biết.
+Pokémon cannot fall asleep during an uproar.
+Pokémon không thể ngủ gật trong lúc xảy ra sự náo động.
+No Escape
+Không lối thoát
+The Pokémon can't flee or be switched out.
+Pokémon này không thể bỏ chạy hoặc bị đổi chỗ.
+The Pokémon regains some HP at the end of each turn.
+Pokémon sẽ hồi phục một lượng HP nhất định vào cuối mỗi lượt.
+The Pokémon regains some HP every turn, but cannot switch out.
+Pokémon này hồi phục một lượng HP nhất định mỗi lượt, nhưng không thể đổi chỗ cho Pokémon khác.
+The Pokémon's HP is leeched every turn to heal the opponent.
+Máu của Pokémon này bị hút mỗi lượt để hồi phục cho đối thủ.
+The Pokémon takes damage at the end of each turn.
+Pokémon sẽ chịu sát thương vào cuối mỗi lượt.
+The Pokémon takes damage each turn it spends asleep.
+Pokémon này sẽ chịu sát thương mỗi lượt khi ngủ.
+The Pokémon's Attack stat increases whenever it's hit.
+Chỉ số Tấn công của Pokémon tăng lên mỗi khi nó bị tấn công.
+The Pokémon can't use the same move twice in a row.
+Pokémon không thể sử dụng cùng một chiêu thức hai lần liên tiếp.
+The Pokémon's next Electric move will double in power.
+Chiêu thức hệ Điện tiếp theo của Pokémon sẽ có sức mạnh gấp đôi.
+The Pokémon shrunk and now takes more damage when squished.
+Con Pokémon bị teo nhỏ lại và giờ dễ bị tổn thương hơn khi bị ép.
+The Pokémon has been made weaker to Fire moves.
+Pokémon này đã trở nên yếu hơn trước các chiêu thức hệ Lửa.
+The Pokémon in this spot restores HP on the next turn.
+Pokémon ở vị trí này sẽ hồi phục HP ở lượt tiếp theo.
+The Pokémon's Ghost immunities and evasion boosts are ignored.
+Khả năng miễn nhiễm với hệ Ma và khả năng né tránh được tăng cường của Pokémon này sẽ bị bỏ qua.
+The Pokémon's evasion boosts are ignored.
+Các hiệu ứng tăng khả năng né tránh của Pokémon bị bỏ qua.
+The Pokémon's Dark immunities and evasion boosts are ignored.
+Khả năng miễn nhiễm với sát thương hệ Bóng tối và khả năng né tránh được tăng cường của Pokémon này sẽ bị bỏ qua.
+Stockpiling increases the Pokémon's defensive stats.
+Việc tích trữ giúp tăng chỉ số phòng thủ của Pokémon.
+Grounded Pokémon that switch into battle will take damage.
+Pokémon đang ở trên mặt đất khi chuyển vào trận chiến sẽ bị sát thương.
+Grounded Pokémon that switch into battle will be poisoned.
+Những Pokémon đang ở trên mặt đất khi tham gia trận chiến sẽ bị nhiễm độc.
+1
+1
+Pokémon that switch into battle will take damage.
+Pokémon được đưa vào trận chiến sẽ chịu sát thương.
+Pokémon that switch into battle will have their Speed lowered.
+Các Pokémon được đưa vào trận chiến sẽ bị giảm Tốc độ.
+The Pokémon's next attack is a guaranteed critical hit.
+Đòn tấn công tiếp theo của Pokémon chắc chắn sẽ gây sát thương chí mạng.
+Any move used against a locked-on target will be sure to hit.
+Bất kỳ đòn tấn công nào nhắm vào mục tiêu đã được khóa đều chắc chắn trúng đích.
+The Pokémon can't use any sound-based moves.
+Pokémon này không thể sử dụng bất kỳ chiêu thức nào dựa trên âm thanh.
+No Pokémon can flee.
+Không Pokémon nào có thể bỏ chạy.
+The Pokémon has been made airborne, but it cannot evade attacks.
+Pokémon này đã được nâng lên không trung, nhưng nó không thể né tránh các đòn tấn công.
+Due to {1}, the Pokémon can only use {2}.
+Do {1}, Pokémon chỉ có thể sử dụng {2}.
+The Pokémon can only use moves that deal damage.
+Pokémon này chỉ có thể sử dụng các chiêu thức gây sát thương.
+The Pokémon's Speed stat is doubled.
+Chỉ số Tốc độ của Pokémon được nhân đôi.
+Pokémon that are not Grass types take damage every turn.
+Những Pokémon không thuộc hệ Cỏ sẽ chịu sát thương mỗi lượt.
+Pokémon that are not Fire types take damage every turn.
+Những Pokémon không thuộc hệ Lửa sẽ chịu sát thương mỗi lượt.
+Pokémon that are not Water types take damage every turn.
+Những Pokémon không thuộc hệ Nước sẽ chịu sát thương mỗi lượt.
+Pokémon that are not Rock types take damage every turn.
+Những Pokémon không thuộc hệ Đá sẽ chịu sát thương mỗi lượt.
+The Pokémon is airborne and immune to Ground moves.
+Pokémon này có khả năng bay và miễn nhiễm với các chiêu thức hệ Đất.
+The Pokémon's HP cannot be restored by healing effects.
+Điểm HP của Pokémon này không thể được phục hồi bằng các hiệu ứng hồi phục.
+Items cannot be used on or by the Pokémon.
+Các vật phẩm không thể được sử dụng trên hoặc bởi Pokémon.
+The power of Electric moves is reduced.
+Sức mạnh của các chiêu thức điện bị giảm đi.
+The power of Fire moves is reduced.
+Sức mạnh của các chiêu thức hệ Lửa bị giảm đi.
+The Pokémon takes half damage from physical and special moves.
+Pokémon này chỉ chịu một nửa sát thương từ các đòn tấn công vật lý và đặc biệt.
+The Pokémon takes half damage from physical moves.
+Pokémon này chỉ chịu một nửa sát thương từ các đòn tấn công vật lý.
+The Pokémon takes half damage from special moves.
+Pokémon này chỉ chịu một nửa sát thương từ các chiêu thức đặc biệt.
+The Pokémon is protected from status conditions.
+Pokémon này được bảo vệ khỏi các trạng thái bất lợi.
+The Pokémon's stats cannot be lowered.
+Chỉ số của Pokémon này không thể bị giảm.
+The Pokémon is immune to critical hits.
+Pokémon này miễn nhiễm với các đòn chí mạng.
+Grounds Pokémon. Prevents midair actions. Increases accuracy.
+Giúp Pokémon di chuyển trên mặt đất. Ngăn chặn các hành động trên không. Tăng độ chính xác.
+No Pokémon can use their held items.
+Không Pokémon nào có thể sử dụng vật phẩm đang giữ trên người.
+All Pokémon swap their Def and Sp. Def stats.
+Tất cả Pokémon đều hoán đổi chỉ số Phòng thủ (Def) và Phòng thủ đặc biệt (Sp. Def) của chúng.
+Slower Pokémon get to move first.
+Những Pokémon có tốc độ chậm hơn sẽ được di chuyển trước.
+Bound
+Ràng buộc
+The Pokémon is bound and takes damage every turn.
+Pokémon này bị trói buộc và chịu sát thương mỗi lượt.
+Badly Poisoned
+Bị ngộ độc nặng
+Damage the Pokémon takes from its poison worsens every turn.
+Sát thương mà Pokémon phải chịu từ chất độc sẽ ngày càng nặng thêm sau mỗi lượt.
+Confusion
+Lú lẫn
+The Pokémon may hurt itself in its confusion.
+Pokémon này có thể tự làm mình bị thương trong lúc bối rối.
+Rampaging
+Sự tàn phá
+The Pokémon rampages for 2-3 turns. It then becomes confused.
+Con Pokémon này nổi loạn trong 2-3 lượt. Sau đó nó trở nên bối rối.
+No Ability
+Không có đặc tính
+The Pokémon's Ability loses its effect.
+Đặc tính của Pokémon mất tác dụng.
+Critical Hit Boost
+Tăng sát thương chí mạng
+The Pokémon is more likely to land critical hits.
+Pokémon này có khả năng gây ra đòn chí mạng cao hơn.
+Infatuation
+Say mê
+The Pokémon is less likely to attack {1} Pokémon.
+Pokémon này ít có khả năng tấn công Pokémon {1} hơn.
+Z-Healing
+Z-Healing
+A Pokémon switching into this spot will recover its HP.
+Một Pokémon chuyển vào vị trí này sẽ hồi phục HP.
+Counting Down
+Đếm ngược
+All Pokémon in this battle state will faint after 3 turns.
+Tất cả Pokémon ở trạng thái chiến đấu này sẽ bất tỉnh sau 3 lượt.
+Future Attack
+Cuộc tấn công trong tương lai
+The Pokémon in this spot will be attacked in 2 turns.
+Pokémon ở vị trí này sẽ bị tấn công sau 2 lượt.
+Speed Down
+Giảm tốc độ
+The Pokémon's Speed is lowered for 3 turns.
+Tốc độ của Pokémon bị giảm trong 3 lượt.
+Slow Start
+Khởi đầu chậm
+The Pokémon gets its act together in 5 turns.
+Pokémon này lấy lại phong độ sau 5 lượt.
+The Pokémon will fall asleep at the end of the next turn.
+Pokémon sẽ ngủ thiếp đi vào cuối lượt tiếp theo.
+Recharging
+Sạc pin
+The Pokémon cannot move until it recharges from its last attack.
+Pokémon này không thể di chuyển cho đến khi hồi phục hoàn toàn sau đòn tấn công cuối cùng.
+Vulnerable
+Dễ bị tổn thương
+The Pokémon cannot evade and takes double damage.
+Pokémon này không thể né tránh và chịu sát thương gấp đôi.
+Splinters
+Mảnh vụn
+Move Disabled
+Di chuyển bị vô hiệu hóa
+{1} has been disabled and cannot be used.
+{1} đã bị vô hiệu hóa và không thể sử dụng được.
+Rainbow
+Cầu vồng
+The additional effects of moves are more likely to occur.
+Các tác động bổ sung của việc di chuyển có nhiều khả năng xảy ra hơn.
+Swamp
+Đầm lầy
+Speed is reduced by 75% in swampy conditions.
+Tốc độ giảm 75% khi di chuyển trên địa hình đầm lầy.
+Sea of Fire
+Biển Lửa
+Semi-Invulnerable
+Bán bất khả xâm phạm
+The Pokémon cannot be hit by most attacks.
+Pokémon này hầu như không bị trúng đòn tấn công nào.
+Pow:
+Pow:
+Acc:
+Tài khoản:
+Effct:
+Hiệu quả:
+Fully restores the user's HP.
+Khôi phục hoàn toàn HP của người dùng.
+Fully restores an incoming Pokémon's HP.
+Hồi phục hoàn toàn HP cho Pokémon vừa tấn công.
+Raises the user's critical hit rate.
+Tăng tỷ lệ chí mạng của người dùng.
+Resets the user's lowered stat stages.
+Khôi phục lại các cấp độ chỉ số đã giảm của người dùng.
+The user becomes the center of attention.
+Người dùng trở thành trung tâm của sự chú ý.
+Drastically raises the user's {1}.
+Tăng đáng kể {1} của người dùng.
+Sharply raises the user's {1}.
+Tăng mạnh {1} của người dùng.
+Raises the user's {1}.
+Nâng {1} của người dùng lên.
+Z-Power: #{text}
+Z-Power: #{text}
+Tera Type: Move boosted by Terastallization.
+Loại Tera: Chiêu thức được tăng sức mạnh nhờ Terastalization.
+After consuming the [placeholder], {1} has awakened its untapped potential!
+Sau khi tiêu thụ [placeholder], {1} đã đánh thức tiềm năng chưa được khai thác của nó!
+After consuming the gene, {1} has awakened its untapped potential!
+Sau khi tiêu thụ gen, {1} đã đánh thức tiềm năng chưa được khai thác của nó!
+Abilities the pokemon always had
+Những đặc tính mà Pokémon luôn sở hữu
+Set innate
+Thiết lập bẩm sinh
+Set possible innate
+Thiết lập bẩm sinh khả dụng
+Set any innate
+Thiết lập bẩm sinh bất kỳ
+Innate is {1} (index {2}).
+Bẩm sinh là {1} (thứ tự {2}).
+Choose an innate.
+Hãy chọn một bẩm sinh
+Battle
+Trận đánh
+{1} is holding a round object...
+{1} đang cầm một vật tròn...
+What would you like to do?
+Bạn muốn làm gì?
+Play
+Chơi
+Talk
+Nói chuyện
+{1} is shivering with the effects of being poisoned.
+{1} đang run rẩy vì tác dụng của chất độc.
+{1}'s burn looks painful.
+Vết bỏng của {1} trông có vẻ đau đớn.
+{1} seems very cold. It's frozen solid!
+{1} trông có vẻ rất lạnh. Nó đóng băng hoàn toàn rồi!
+{1} seems really tired.
+{1} trông có vẻ rất mệt mỏi.
+{1} is standing still and twitching.
+{1} đang đứng yên và co giật.
+{1} is touching some kind of switch.
+{1} đang chạm vào một loại công tắc nào đó.
+{1} has a cord in its mouth!
+{1} ngậm một sợi dây trong miệng!
+{1} seems to want to touch the machinery.
+{1} có vẻ muốn chạm vào máy móc.
+{1} is sniffing around the room.
+{1} đang đánh hơi quanh phòng.
+{1} noticed {2}'s mom is nearby.
+{1} nhận thấy mẹ của {2} đang ở gần đó.
+{1} seems to want to settle down at home.
+{1} có vẻ muốn ổn định cuộc sống ở nhà.
+{1} looks happy to see the nurse.
+{1} trông có vẻ vui khi gặp y tá.
+{1} looks a little better just being in the Pokémon Center.
+{1} trông có vẻ tốt hơn một chút khi ở trong Trung tâm Pokémon.
+{1} seems fascinated by the healing machinery.
+{1} có vẻ rất thích thú với cỗ máy chữa bệnh.
+{1} looks like it wants to take a nap.
+{1} trông như muốn ngủ trưa.
+{1} chirped a greeting at the nurse.
+{1} cất tiếng chào hỏi cô y tá.
+{1} is watching {2} with a playful gaze.
+{1} đang quan sát {2} với ánh mắt tinh nghịch.
+{1} seems to be completely at ease.
+{1} có vẻ hoàn toàn thoải mái.
+{1} is making itself comfortable.
+{1} đang tự tạo cho mình sự thoải mái.
+There's a content expression on {1}'s face.
+Trên khuôn mặt của {1} hiện lên vẻ hài lòng.
+{1} looks eager to battle!
+{1} trông rất háo hức chiến đấu!
+{1} is looking at {2} with a determined gleam in its' eye.
+{1} đang nhìn {2} với ánh mắt đầy quyết tâm.
+{1} is trying to intimidate the other trainers.
+{1} đang cố gắng hăm dọa các huấn luyện viên khác.
+{1} trusts {2} to come up with a winning strategy.
+{1} tin tưởng {2} sẽ đưa ra một chiến lược thắng lợi.
+{1} is keeping an eye on the gym leader.
+{1} đang để mắt đến chủ hội quán.
+{1} is ready to pick a fight with someone.
+{1} sẵn sàng gây gổ với ai đó.
+{1} looks like it might be preparing for a big showdown!
+{1} có vẻ như nó đang chuẩn bị cho một cuộc đối đầu lớn!
+{1} wants to show off how strong it is!
+{1} muốn thể hiện sức mạnh của mình!
+{1} is...doing warm-up exercises?
+{1} đang...thực hiện các bài tập khởi động phải không?
+{1} is growling quietly in contemplation...
+{1} đang gầm gừ khe khẽ trong suy tư...
+{1} is staring up at the sky.
+{1} đang nhìn lên bầu trời.
+The storm seems to be making {1} excited.
+Cơn bão dường như đang khiến {1} phấn khích.
+{1} looked up at the sky and shouted loudly!
+{1} ngước nhìn lên trời và hét lớn!
+The storm only seems to be energizing {1}!
+Cơn bão dường như chỉ đang tiếp thêm năng lượng cho {1}!
+{1} is happily zapping and jumping in circles!
+{1} đang vui vẻ phóng điện và nhảy vòng tròn!
+The lightning doesn't bother {1} at all.
+Tia sét không hề làm phiền {1} chút nào.
+The storm seems to be making {1} a bit nervous.
+Cơn bão có vẻ khiến {1} hơi lo lắng.
+The lightning startled {1}!
+Tia chớp làm {1} giật mình!
+The rain doesn't seem to bother {1} much.
+Cơn mưa dường như không ảnh hưởng nhiều đến {1}.
+The weather seems to be putting {1} on edge.
+Thời tiết có vẻ khiến {1} lo lắng.
+{1} was startled by the lightning and snuggled up to {2}!
+{1} giật mình vì tia chớp và nép sát vào {2}!
+{1} is watching the snow fall.
+{1} đang ngắm tuyết rơi.
+{1} is thrilled by the snow!
+{1} rất thích thú với tuyết!
+{1} is staring up at the sky with a smile.
+{1} đang mỉm cười nhìn lên bầu trời.
+The snow seems to have put {1} in a good mood.
+Tuyết dường như đã khiến {1} có tâm trạng tốt.
+{1} is cheerful because of the cold!
+{1} vui vẻ vì trời lạnh!
+{1} is nipping at the falling snowflakes.
+{1} đang cắn nhẹ vào những bông tuyết đang rơi.
+{1} wants to catch a snowflake in its' mouth.
+{1} muốn bắt một bông tuyết bằng miệng.
+{1} is fascinated by the snow.
+{1} rất thích thú với tuyết.
+{1}'s teeth are chattering!
+Răng của {1} đang va vào nhau lập cập!
+{1} made its body slightly smaller because of the cold...
+{1} làm cho cơ thể của nó nhỏ lại một chút vì lạnh...
+{1} is watching the hail fall.
+{1} đang quan sát mưa đá rơi.
+{1} isn't bothered at all by the hail.
+{1} hoàn toàn không bị ảnh hưởng bởi mưa đá.
+The hail seems to have put {1} in a good mood.
+Trận mưa đá dường như đã khiến {1} có tâm trạng tốt.
+{1} is gnawing on a piece of hailstone.
+{1} đang gặm một viên mưa đá.
+{1} is getting pelted by hail!
+{1} đang bị mưa đá tấn công!
+{1} wants to avoid the hail.
+{1} muốn tránh mưa đá.
+The hail is hitting {1} painfully.
+Mưa đá đang rơi xuống {1} rất đau đớn.
+{1} looks unhappy.
+{1} trông có vẻ không vui.
+{1} is shaking like a leaf!
+{1} đang run rẩy như lá cây!
+{1} is coated in sand.
+{1} được phủ cát.
+The weather doesn't seem to bother {1} at all!
+Thời tiết dường như không ảnh hưởng gì đến {1} cả!
+The sand can't slow {1} down!
+Cát không thể làm chậm {1} lại!
+{1} is enjoying the weather.
+{1} đang tận hưởng thời tiết.
+{1} is coated in sand, but doesn't seem to mind.
+{1} bị phủ đầy cát nhưng có vẻ không bận tâm.
+{1} seems unbothered by the sandstorm.
+{1} có vẻ không bị ảnh hưởng bởi cơn bão cát.
+The sand doesn't slow {1} down.
+Cát không làm chậm {1} lại.
+{1} doesn't seem to mind the weather.
+{1} có vẻ không quan tâm đến thời tiết.
+{1} is covered in sand...
+{1} bị bao phủ bởi cát...
+{1} spat out a mouthful of sand!
+{1} nhổ ra một ngụm cát!
+{1} is squinting through the sandstorm.
+{1} đang nheo mắt nhìn xuyên qua cơn bão cát.
+The sand seems to be bothering {1}.
+Cát có vẻ đang gây khó chịu cho {1}.
+{1} seems highly interested in the trees.
+{1} có vẻ rất quan tâm đến cây cối.
+{1} seems to enjoy the buzzing of the bug Pokémon.
+{1} có vẻ thích thú với tiếng vo ve của Pokémon côn trùng.
+{1} is jumping around restlessly in the forest.
+{1} đang nhảy nhót không ngừng trong rừng.
+{1} is wandering around and listening to the different sounds.
+{1} đang đi lang thang và lắng nghe những âm thanh khác nhau.
+{1} is munching at the grass.
+{1} đang gặm cỏ.
+{1} is wandering around and enjoying the forest scenery.
+{1} đang đi dạo và tận hưởng phong cảnh rừng.
+{1} is playing around, plucking bits of grass.
+{1} đang chơi đùa, nhổ từng mẩu cỏ.
+{1} is staring at the light coming through the trees.
+{1} đang nhìn chằm chằm vào ánh sáng xuyên qua những tán cây.
+{1} is playing around with a leaf!
+{1} đang chơi đùa với một chiếc lá!
+{1} seems to be listening to the sound of rustling leaves.
+{1} có vẻ như đang lắng nghe tiếng lá xào xạc.
+{1} is standing perfectly still and might be imitating a tree...
+{1} đang đứng yên hoàn toàn và có thể đang bắt chước một cái cây...
+{1} got tangled in the branches and almost fell down!
+{1} bị vướng vào cành cây và suýt ngã!
+{1} was surprised when it got hit by a branch!
+{1} đã rất ngạc nhiên khi bị một cành cây va vào!
+{1} seems very upset the weather.
+{1} có vẻ rất khó chịu với thời tiết.
+{1} is shivering...
+{1} đang run rẩy...
+{1} doesn't seem to like being all wet...
+{1} có vẻ không thích bị ướt hết...
+{1} keeps trying to shake itself dry...
+{1} cứ cố gắng rũ sạch bụi...
+{1} moved closer to {2} for comfort.
+{1} tiến lại gần {2} hơn để cảm thấy thoải mái hơn.
+{1} is looking up at the sky and scowling.
+{1} đang ngước nhìn lên trời và cau mày.
+{1} seems to be having difficulty moving its body.
+{1} có vẻ như đang gặp khó khăn trong việc di chuyển cơ thể.
+{1} seems to be enjoying the weather.
+{1} có vẻ đang tận hưởng thời tiết.
+{1} seems to be happy about the rain!
+{1} có vẻ rất vui vì trời mưa!
+{1} seems to be very surprised that it's raining!
+{1} có vẻ rất ngạc nhiên khi trời mưa!
+{1} beamed happily at {2}!
+{1} mỉm cười rạng rỡ với {2}!
+{1} is gazing up at the rainclouds.
+{1} đang ngước nhìn những đám mây mưa.
+Raindrops keep falling on {1}.
+Những giọt mưa vẫn tiếp tục rơi xuống {1}.
+{1} is looking up with its mouth gaping open.
+{1} đang ngước nhìn lên với miệng há hốc.
+{1} looks a bit surprised to see rain.
+{1} có vẻ hơi ngạc nhiên khi thấy trời mưa.
+{1} keeps trying to shake itself dry.
+{1} liên tục cố gắng rũ sạch bụi.
+{1} is playing in a puddle!
+{1} đang chơi trong vũng nước!
+{1} is slipping in the water and almost fell over!
+{1} đang trượt chân trong nước và suýt ngã!
+{1} seems to be enjoying the scenery.
+{1} có vẻ đang tận hưởng phong cảnh.
+{1} seems to enjoy the sound of the waves moving the sand.
+{1} có vẻ thích thú với âm thanh của những con sóng làm lay động cát.
+{1} looks like it wants to swim!
+{1} trông như muốn bơi!
+{1} can barely look away from the ocean.
+{1} hầu như không thể rời mắt khỏi đại dương.
+{1} is staring longingly at the water.
+{1} đang nhìn chằm chằm vào mặt nước với vẻ khao khát.
+{1} keeps trying to shove {2} towards the water.
+{1} liên tục cố gắng đẩy {2} về phía nước.
+{1} is excited to be looking at the sea!
+{1} rất hào hứng khi được ngắm nhìn biển!
+{1} is happily watching the waves!
+{1} đang vui vẻ ngắm nhìn những con sóng!
+{1} is playing on the sand!
+{1} đang chơi trên cát!
+{1} is staring at {2}'s footprints in the sand.
+{1} đang nhìn chằm chằm vào dấu chân của {2} trên cát.
+{1} is rolling around in the sand.
+{1} đang lăn lộn trên cát.
+{1} seems pleased to be out in the sunshine.
+{1} có vẻ thích thú khi được ở ngoài trời nắng.
+{1} is soaking up the sunshine.
+{1} đang tận hưởng ánh nắng mặt trời.
+The bright sunlight doesn't seem to bother {1} at all.
+Ánh nắng chói chang dường như không làm phiền {1} chút nào.
+{1} sent a ring-shaped cloud of spores into the air!
+{1} đã phóng một đám mây bào tử hình vòng vào không khí!
+{1} is stretched out its body and is relaxing in the sunshine.
+{1} duỗi thẳng thân mình và đang thư giãn dưới ánh nắng mặt trời.
+{1} is giving off a floral scent.
+{1} đang tỏa ra mùi hương hoa.
+{1} seems to be happy about the great weather!
+{1} có vẻ rất vui vì thời tiết tuyệt vời!
+{1} looks thrilled by the sunshine!
+{1} trông rất thích thú với ánh nắng mặt trời!
+{1} blew out a fireball.
+{1} thổi ra một quả cầu lửa.
+{1} is breathing out fire!
+{1} đang phun lửa!
+{1} is hot and cheerful!
+{1} nóng bỏng và vui vẻ!
+{1} is glaring up at the sky.
+{1} đang nhìn chằm chằm lên bầu trời.
+{1} seems personally offended by the sunshine.
+{1} có vẻ như bị xúc phạm bởi ánh nắng mặt trời.
+The bright sunshine seems to bothering {1}.
+Ánh nắng chói chang dường như đang làm phiền {1}.
+{1} looks upset for some reason.
+{1} có vẻ đang buồn vì lý do nào đó.
+{1} is trying to stay in {2}'s shadow.
+{1} đang cố gắng sống dưới cái bóng của {2}.
+{1} keeps looking for shelter from the sunlight.
+{1} liên tục tìm chỗ trú ẩn khỏi ánh nắng mặt trời.
+{1} is squinting in the bright sunshine.
+{1} đang nheo mắt dưới ánh nắng chói chang.
+{1} is starting to sweat.
+{1} bắt đầu đổ mồ hôi.
+{1} seems a little uncomfortable in this weather.
+{1} có vẻ hơi khó chịu trong thời tiết này.
+{1} looks a little overheated.
+{1} trông có vẻ hơi quá nóng.
+{1} seems very hot...
+{1} có vẻ rất nóng...
+{1} shielded its vision against the sparkling light!
+{1} che chắn tầm nhìn của nó khỏi ánh sáng lấp lánh!
+{1} seems to want to play with {2}.
+{1} có vẻ muốn chơi với {2}.
+{1} is singing and humming.
+{1} đang hát và ngân nga.
+{1} is looking up at {2} with a happy expression.
+{1} đang nhìn lên {2} với vẻ mặt vui vẻ.
+{1} swayed and danced around as it pleased.
+{1} lắc lư và nhảy múa xung quanh theo ý thích của nó.
+{1} is jumping around in a carefree way!
+{1} đang nhảy nhót một cách vô tư!
+{1} is showing off its agility!
+{1} đang thể hiện sự nhanh nhẹn của mình!
+{1} is moving around happily!
+{1} đang di chuyển vui vẻ!
+Whoa! {1} suddenly started dancing in happiness!
+Ôi chà! {1} đột nhiên bắt đầu nhảy múa trong niềm vui sướng!
+{1} is steadily keeping up with {2}!
+{1} đang dần bắt kịp {2}!
+{1} is happy skipping about.
+{1} rất vui vẻ nhảy nhót.
+{1} is playfully nibbling at the ground.
+{1} đang nghịch ngợm gặm đất.
+{1} is playfully nipping at {2}'s feet!
+{1} đang nghịch ngợm cắn nhẹ vào chân của {2}!
+{1} is following {2} very closely!
+{1} đang theo sát {2}!
+{1} turns around and looks at {2}.
+{1} quay lại và nhìn {2}.
+{1} is working hard to show off its mighty power!
+{1} đang nỗ lực hết mình để phô diễn sức mạnh to lớn của mình!
+{1} looks like it wants to run around!
+{1} trông như muốn chạy nhảy xung quanh!
+{1} is wandering around enjoying the scenery.
+{1} đang đi dạo ngắm cảnh.
+{1} seems to be enjoying this a little bit!
+{1} có vẻ đang thích thú với điều này một chút!
+{1} is cheerful!
+{1} thật vui vẻ!
+{1} seems to be singing something?
+{1} hình như đang hát gì đó?
+{1} is dancing around happily!
+{1} đang nhảy múa vui vẻ!
+{1} is having fun dancing a lively jig!
+{1} đang vui vẻ nhảy một điệu jig sôi động!
+{1} is so happy, it started singing!
+{1} vui quá nên bắt đầu hát!
+{1} looked up and howled!
+{1} ngước nhìn lên và hú lên!
+{1} seems to be feeling optimistic.
+{1} có vẻ đang cảm thấy lạc quan.
+It looks like {1} feels like dancing!
+Có vẻ như {1} muốn nhảy múa!
+{1} suddenly started to sing! It seems to be feeling great.
+{1} đột nhiên bắt đầu hát! Nó có vẻ đang rất vui.
+It looks like {1} wants to dance with {2}!
+Có vẻ như {1} muốn khiêu vũ với {2}!
+{1} let out a roar!
+{1} gầm lên!
+{1} is making a face like it's angry!
+{1} đang làm vẻ mặt như thể nó đang tức giận!
+{1} seems to be angry for some reason.
+{1} có vẻ đang tức giận vì lý do nào đó.
+{1} chewed on {2}'s feet.
+{1} đã cắn vào chân của {2}.
+{1} turned to face the other way, showing a defiant expression.
+{1} quay mặt về hướng khác, thể hiện vẻ mặt thách thức.
+{1} is trying to intimidate {2}'s foes!
+{1} đang cố gắng hăm dọa kẻ thù của {2}!
+{1} wants to pick a fight!
+{1} muốn gây sự!
+{1} is ready to fight!
+{1} đã sẵn sàng chiến đấu!
+It looks like {1} will fight just about anyone right now!
+Có vẻ như {1} sẽ chiến đấu với bất cứ ai ngay bây giờ!
+{1} is growling in a way that sounds almost like speech...
+{1} đang gầm gừ theo cách nghe gần giống như tiếng nói...
+{1} is looking down steadily.
+{1} đang nhìn xuống một cách đều đặn.
+{1} is sniffing around.
+{1} đang rình mò.
+{1} is concentrating deeply.
+{1} đang tập trung cao độ.
+{1} faced {2} and nodded.
+{1} quay mặt về phía {2} và gật đầu.
+{1} is glaring straight into {2}'s eyes.
+{1} đang nhìn chằm chằm vào mắt {2}.
+{1} is surveying the area.
+{1} đang khảo sát khu vực.
+{1} focused with a sharp gaze!
+{1} tập trung với ánh nhìn sắc bén!
+{1} is looking around absentmindedly.
+{1} đang nhìn xung quanh một cách lơ đãng.
+{1} yawned very loudly!
+{1} ngáp rất to!
+{1} is relaxing comfortably.
+{1} đang thư giãn một cách thoải mái.
+{1} is focusing its attention on {2}.
+{1} đang tập trung sự chú ý vào {2}.
+{1} is staring intently at nothing.
+{1} đang chăm chú nhìn vào khoảng không.
+{1} is concentrating.
+{1} đang tập trung.
+{1} is looking at {2}'s footprints.
+{1} đang nhìn vào dấu chân của {2}.
+{1} seems to want to play and is gazing at {2} expectedly.
+{1} có vẻ muốn chơi và đang nhìn {2} với vẻ mong đợi.
+{1} seems to be thinking deeply about something.
+{1} có vẻ đang suy nghĩ rất sâu sắc về điều gì đó.
+{1} isn't paying attention to {2}...Seems it's thinking about something else.
+{1} không chú ý đến {2}...Có vẻ như nó đang nghĩ về chuyện khác.
+{1} seems to be feeling serious.
+{1} có vẻ đang cảm thấy nghiêm trọng.
+{1} seems disinterested.
+{1} có vẻ không quan tâm.
+{1}'s mind seems to be elsewhere.
+Tâm trí của {1} dường như đang ở nơi khác.
+{1} seems to be observing the surroundings instead of watching {2}.
+{1} có vẻ như đang quan sát xung quanh thay vì nhìn {2}.
+{1} looks a bit bored.
+{1} trông có vẻ hơi buồn chán.
+{1} has an intense look on its face.
+{1} có vẻ mặt rất nghiêm nghị.
+{1} is staring off into the distance.
+{1} đang nhìn xa xăm.
+{1} seems to be carefully examining {2}'s face.
+{1} có vẻ đang quan sát kỹ khuôn mặt của {2}.
+{1} seems to be trying to communicate with its eyes.
+{1} dường như đang cố gắng giao tiếp bằng mắt.
+... {1} seems to have sneezed!
+... {1} có vẻ như đã hắt hơi!
+... {1} noticed that {2}'s shoes are a bit dirty.
+... {1} nhận thấy giày của {2} hơi bẩn.
+Seems {1} ate something strange, it's making an odd face...
+Có vẻ như {1} đã ăn phải thứ gì đó lạ, nó đang làm mặt kỳ quặc...
+{1} seems to be smelling something good.
+{1} có vẻ như đang ngửi thấy mùi gì đó ngon.
+{1} noticed that {2}'s Bag has a little dirt on it...
+{1} nhận thấy túi của {2} có một chút bụi bẩn...
+...... ...... ...... ...... ...... ...... ...... ...... ...... ...... ...... {1} silently nodded!
+...... ...... ...... ...... ...... ...... ...... ...... ...... ...... ...... {1} lặng lẽ gật đầu!
+{1} began poking {2}.
+{1} bắt đầu chọc {2}.
+{1} looks very happy.
+{1} trông rất vui vẻ.
+{1} happily cuddled up to {2}.
+{1} vui vẻ nép mình bên {2}.
+{1} is so happy that it can't stand still.
+{1} vui mừng đến nỗi không thể đứng yên.
+{1} looks like it wants to lead!
+{1} có vẻ như muốn dẫn đầu!
+{1} is coming along happily.
+{1} đang tiến triển tốt.
+{1} seems to be feeling great about walking with {2}!
+{1} có vẻ rất thích thú khi đi dạo cùng {2}!
+{1} is glowing with health.
+{1} đang tràn đầy sức khỏe.
+{1} put in extra effort just for {2}!
+{1} đã nỗ lực hết mình chỉ vì {2}!
+{1} is smelling the scents of the surounding air.
+{1} đang ngửi mùi hương của không khí xung quanh.
+{1} is jumping with joy!
+{1} đang nhảy cẫng lên vì vui sướng!
+{1} is still feeling great!
+{1} vẫn cảm thấy rất tuyệt!
+{1} stretched out its body and is relaxing.
+{1} duỗi thẳng thân mình và đang thư giãn.
+{1} is doing its best to keep up with {2}.
+{1} đang cố gắng hết sức để theo kịp {2}.
+{1} is happily cuddling up to {2}!
+{1} đang vui vẻ ôm ấp {2}!
+{1} is full of energy!
+{1} tràn đầy năng lượng!
+{1} is so happy that it can't stand still!
+{1} vui mừng đến nỗi không thể đứng yên!
+{1} gives {2} a happy look and a smile.
+{1} cho {2} một vẻ mặt vui vẻ và một nụ cười.
+{1} started breathing roughly through its nose in excitement!
+{1} bắt đầu thở hổn hển bằng mũi vì phấn khích!
+{1} is trembling with eagerness!
+{1} đang run lên vì háo hức!
+{1} is so happy, it started rolling around.
+{1} vui mừng đến nỗi nó bắt đầu lăn lộn.
+{1} looks thrilled at getting attention from {2}.
+{1} tỏ ra rất vui mừng khi nhận được sự chú ý từ {2}.
+{1} seems very pleased that {2} is noticing it!
+{1} có vẻ rất vui vì {2} để ý đến điều đó!
+{1} started wriggling its entire body with excitement!
+{1} bắt đầu quẫy đạp toàn thân vì phấn khích!
+It seems like {1} can barely keep itself from hugging {2}!
+Có vẻ như {1} khó lòng kiềm chế được việc ôm chầm lấy {2}!
+{1} is keeping close to {2}'s feet.
+{1} đang ở rất gần chân của {2}.
+{1} suddenly started walking closer to {2}.
+{1} đột nhiên bắt đầu tiến lại gần {2}.
+Woah! {1} suddenly hugged {2}.
+Ôi! {1} đột nhiên ôm {2}.
+{1} is rubbing up against {2}.
+{1} đang cọ xát vào {2}.
+{1} is keeping close to {2}.
+{1} đang ở gần {2}.
+{1} blushed.
+{1} đỏ mặt.
+{1} loves spending time with {2}!
+{1} rất thích dành thời gian với {2}!
+{1} is suddenly playful!
+{1} đột nhiên trở nên tinh nghịch!
+{1} is rubbing against {2}'s legs!
+{1} đang cọ xát vào chân của {2}!
+{1} is regarding {2} with adoration!
+{1} dành cho {2} sự ngưỡng mộ!
+{1} seems to want some affection from {2}.
+{1} có vẻ muốn nhận được sự yêu thương từ {2}.
+{1} seems to want some attention from {2}.
+{1} có vẻ muốn nhận được sự chú ý từ {2}.
+{1} seems happy travelling with {2}.
+{1} có vẻ vui vẻ khi đi du lịch cùng {2}.
+{1} seems to be feeling affectionate towards {2}.
+{1} có vẻ như đang có tình cảm với {2}.
+{1} is looking at {2} with loving eyes.
+{1} đang nhìn {2} với ánh mắt trìu mến.
+{1} looks like it wants a treat from {2}.
+{1} có vẻ như muốn nhận phần thưởng từ {2}.
+{1} looks like it wants {2} to pet it!
+{1} trông như muốn {2} vuốt ve nó!
+{1} is rubbing itself against {2} affectionately.
+{1} đang cọ xát vào {2} một cách trìu mến.
+{1} bumps its head gently against {2}'s hand.
+{1} khẽ chạm đầu vào tay của {2}.
+{1} rolls over and looks at {2} expectantly.
+{1} trở mình và nhìn {2} với vẻ mong đợi.
+{1} is looking at {2} with trusting eyes.
+{1} đang nhìn {2} với ánh mắt tin tưởng.
+{1} seems to be begging {2} for some affection!
+{1} có vẻ như đang cầu xin {2} sự yêu thương!
+{1} mimicked {2}!
+{1} bắt chước {2}!
+{1} spun around in a circle!
+{1} xoay tròn!
+{1} let out a battle cry.
+{1} cất lên tiếng hô xung trận.
+{1} is on the lookout!
+{1} đang cảnh giác!
+{1} is standing patiently.
+{1} đang đứng kiên nhẫn.
+{1} is looking around restlessly.
+{1} đang nhìn xung quanh một cách bồn chồn.
+{1} is wandering around.
+{1} đang đi lang thang.
+{1} yawned loudly!
+{1} ngáp dài!
+{1} is steadily poking at the ground around {2}'s feet.
+{1} đang liên tục chọc vào mặt đất xung quanh chân của {2}.
+{1} is looking at {2} and smiling.
+{1} đang nhìn {2} và mỉm cười.
+{1} is staring intently into the distance.
+{1} đang chăm chú nhìn về phía xa.
+{1} is keeping up with {2}.
+{1} đang theo kịp {2}.
+{1} looks pleased with itself.
+{1} trông có vẻ hài lòng với chính mình.
+{1} is still going strong!
+{1} vẫn đang hoạt động mạnh mẽ!
+{1} is walking in sync with {2}.
+{1} đang đi bộ đồng bộ với {2}.
+{1} started spinning around in circles.
+{1} bắt đầu quay tròn.
+{1} looks at {2} with anticipation.
+{1} nhìn {2} với vẻ mong chờ.
+{1} fell down and looks a little embarrassed.
+{1} ngã xuống và trông có vẻ hơi xấu hổ.
+{1} is waiting to see what {2} will do.
+{1} đang chờ xem {2} sẽ làm gì.
+{1} is calmly watching {2}.
+{1} đang bình tĩnh quan sát {2}.
+{1} is looking to {2} for some kind of cue.
+{1} đang nhìn {2} để tìm kiếm một tín hiệu nào đó.
+{1} is staying in place, waiting for {2} to make a move.
+{1} đang đứng yên tại chỗ, chờ {2} hành động.
+{1} obediently sat down at {2}'s feet.
+{1} ngoan ngoãn ngồi xuống dưới chân {2}.
+{1} jumped in surprise!
+{1} giật mình ngạc nhiên!
+{1} jumped a little!
+{1} nhảy lên một chút!
+{1} seems to be holding something...
+{1} có vẻ như đang cầm thứ gì đó...
+\me[{1}]{3} found some \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} tìm thấy một số \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} tìm thấy \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{4} found \c[1]{2} {3}\c[0]!\wtnp[30]
+\me[{1}]{4} tìm thấy \c[1]{2} {3}\c[0]!\wtnp[30]
+\me[{1}]{4} found {2} \c[1]{3}\c[0]!\wtnp[30]
+\me[{1}]{4} tìm thấy {2} \c[1]{3}\c[0]!\wtnp[30]
+\me[{1}]{3} found an \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} đã tìm thấy một \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} found a \c[1]{2}\c[0]!\wtnp[30]
+\me[{1}]{3} đã tìm thấy một \c[1]{2}\c[0]!\wtnp[30]
+You put the {1} away\<<n>>in the <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
+Bạn cất {1} \<<n>>vào trong <icon=bagPocket{2}>\c<<[>>1<<]>>{3} Pocket\c<<[>>0<<]>>.
+{1} found some \c[1]{2}\c[0]!\wtnp[30]
+{1} tìm thấy một số \c[1]{2}\c[0]!\wtnp[30]
+{1} found \c[1]{2}\c[0]!\wtnp[30]
+{1} đã tìm thấy \c[1]{2}\c[0]!\wtnp[30]
+{1} found \c[1]{2} {3}\c[0]!\wtnp[30]
+{1} đã tìm thấy \c[1]{2} {3}\c[0]!\wtnp[30]
+{1} found {2} \c[1]{3}\c[0]!\wtnp[30]
+{1} tìm thấy {2} \c[1]{3}\c[0]!\wtnp[30]
+{1} found an \c[1]{2}\c[0]!\wtnp[30]
+{1} đã tìm thấy một \c[1]{2}\c[0]!\wtnp[30]
+{1} found a \c[1]{2}\c[0]!\wtnp[30]
+{1} tìm thấy một \c[1]{2}\c[0]!\wtnp[30]
+Following Pokemon
+Pokémon theo sau
+Let the first Pokemon in your party follow you in the overworld.
+Hãy để Pokémon đầu tiên trong đội hình của bạn đi theo bạn ra thế giới bên ngoài.
+<ac>Choose a Pokémon.</ac>
+<ac>Chọn một Pokémon.</ac>
+<ac>Will you choose #{@pkmnname}, <br>the dual-type #{type1}/#{type2} Pokémon?</ac>
+<ac>Bạn sẽ chọn #{@pkmnname}, <br>Pokémon song hệ #{type1}/#{type2} chứ?</ac>
+<ac>Will you choose #{@pkmnname}, <br>the #{type1}-type Pokémon?</ac>
+<ac>Bạn sẽ chọn #{@pkmnname}, <br>Pokémon hệ #{type1} chứ?</ac>
+Speed Up Settings
+Cài đặt tăng tốc
+Always
+Luôn luôn
+Only Battles
+Chỉ có các trận chiến
+Choose which aspect is sped up.
+Hãy chọn yếu tố nào được tăng tốc.
+Battle Speed
+Tốc độ chiến đấu
+x#{SPEEDUP_STAGES[0]}
+x#{SPEEDUP_STAGES[0]}
+x#{SPEEDUP_STAGES[1]}
+x#{SPEEDUP_STAGES[1]}
+x#{SPEEDUP_STAGES[2]}
+x#{SPEEDUP_STAGES[2]}
+Choose the battle speed when the battle speed-up is set to 'Battles Only'.
+Chọn tốc độ chiến đấu khi chế độ tăng tốc chiến đấu được đặt thành 'Chỉ chiến đấu'.
+How many Pokemons should {1} have? (max. #{party_params.maxNumber})
+{1} nên có bao nhiêu Pokemon? (tối đa #{party_params.maxNumber})
+Set the default Pokemon level for {1}'s party (max. #{level_params.maxNumber}).
+Đặt cấp độ Pokemon mặc định cho đội của {1} (tối đa #{level_params.maxNumber}).
+{1}?
+{1}?
+The Trainer's data was added to the list of battles and in PBS/trainers_generated.txt.
+Dữ liệu của Huấn luyện viên đã được thêm vào danh sách các trận chiến và vào tệp PBS/trainers_generated.txt.
+No difficulty with id "{1}" was provided in the DIFFICULTIES Hash of Settings.
+Không có khó khăn nào với ID "{1}" được cung cấp trong Hash DIFFICULTIES của Cài đặt.
+{1} requires an integer value, but {2} was provided.
+{1} yêu cầu một giá trị số nguyên, nhưng {2} đã được cung cấp.
+{1} requires a boolean value, but {2} was provided.
+{1} yêu cầu giá trị boolean, nhưng {2} đã được cung cấp.
+{1} is not a defined setting name.
+{1} không phải là tên cài đặt đã được định nghĩa.
+{1} drained HP with {2}!
+{1} đã rút HP với {2}!
+{1} leads the pack!
+{1} dẫn đầu!
+{1} is moving in an elusive way!
+{1} đang di chuyển một cách khó nắm bắt!
+{1}'s rage is out of control!
+Cơn thịnh nộ của {1} đã vượt ngoài tầm kiểm soát!
+{1} can only use {2} due to its Encore!
+{1} chỉ có thể sử dụng {2} do Encore!
+Terastal values
+Giá trị Terastal
+{1} Terastallize <<[>>Type: {2}<<]>><<n>>{3} currently Terastallized.
+{1} Terastallize <<[>>Hệ: {2}<<]>><<n>>{3} hiện đang ở trạng thái Tera.
+Set Terastal state
+Đặt trạng thái Terastal
+Z-Crystals
+Tinh thể Z
+Toggle Z-Moves
+Bật/tắt Z-Moves
+Toggles the availability of Z-Move functionality.
+Bật/tắt chức năng di chuyển theo trục Z.
+Z-Moves {1}.
+Di chuyển Z {1}.
+Toggle Ultra Burst
+Bật/tắt Siêu Bùng Nổ
+Toggles the availability of Ultra Burst functionality.
+Bật/tắt chức năng Ultra Burst.
+Ultra Burst {1}.
+Siêu bùng nổ {1}.
+Z-Moves
+Z-Moves
+Whether each trainer is allowed to use Z-Moves.
+Liệu mỗi huấn luyện viên có được phép sử dụng chiêu thức Z-Moves hay không.
+Choose trainer to toggle whether they can use Z-Moves.
+Chọn huấn luyện viên để bật/tắt việc họ có thể sử dụng chiêu thức Z-Moves hay không.
+Ultra Burst
+Siêu bùng nổ
+Whether each trainer is allowed to Ultra Burst.
+Liệu mỗi huấn luyện viên có được phép sử dụng Ultra Burst hay không.
+Choose trainer to toggle whether they can Ultra Burst.
+Chọn huấn luyện viên để bật/tắt khả năng sử dụng Ultra Burst của họ.
+The move taught by a TM/HM/TR, or a Z-Move linked to a Z-Crystal.
+Chiêu thức được dạy bởi TM/HM/TR, hoặc Z-Move liên kết với Z-Crystal.
+Alternate description of this item while it's being held by a Pokémon.
+Mô tả khác về vật phẩm này khi nó được một Pokémon giữ.
+A move ID followed by any number of species ID's.
+Một ID chiêu thức theo sau là bất kỳ số lượng ID loài nào.
+{1} is a Z-Crystal, but missing a Z-Move in the 'Move' field.<<n>>{2}
+{1} là một Z-Crystal, nhưng thiếu Z-Move trong trường 'Move'.<<n>>{2}
+{1} is a Z-Crystal, but the 'ZCombo' field is missing a move or a species.<<n>>{2}
+{1} là một Z-Crystal, nhưng trường 'ZCombo' bị thiếu một chiêu thức hoặc một loài.<<n>>{2}
+{1} is already holding a piece of {2}.
+{1} đã đang giữ một phần của {2}.
+{1} cannot currently use this crystal's Z-Power. Is that OK?
+{1} hiện không thể sử dụng Z-Power của tinh thể này. Có được không?
+The piece of {1} will be given to {2} so that it may use its Z-Power!
+Mảnh của {1} sẽ được trao cho {2} để nó có thể sử dụng Sức mạnh Z của mình!
+{1} is already holding {2} {3}.<<1>>
+{1} đã giữ {2} {3}.<<1>>
+You took {1}'s {2} and gave it a piece of {3}.
+Bạn đã lấy {2} của {1} và đưa cho nó một phần của {3}.
+{1} is now holding a piece of {2}!
+{1} hiện đang cầm một miếng của {2}!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Z-Moves again!
+{1} đã sạc đầy {2} của {3}!<<n>>{2} có thể sử dụng Z-Moves một lần nữa!
+The Z-Power healed {1}!
+Sức mạnh Z đã chữa lành {1}!
+{1} couldn't fully protect itself and got hurt!
+{1} không thể tự bảo vệ mình hoàn toàn và bị thương!
+{1} surrounded itself with its Z-Power!
+{1} tự bao quanh mình bằng Z-Power!
+{1} unleashed its full force Z-Move!
+{1} đã tung ra chiêu thức Z-Move toàn lực!
+{1} restored its HP using its Z-Power!
+{1} đã khôi phục HP của mình bằng Z-Power!
+{1} boosted its critical hit ratio using its Z-Power!
+{1} đã tăng tỷ lệ chí mạng của mình bằng cách sử dụng Z-Power!
+{1} returned its decreased stats to normal using its Z-Power!
+{1} đã khôi phục lại chỉ số bị giảm về bình thường bằng cách sử dụng Z-Power!
+{1} became the center of attention using its Z-Power!
+{1} đã trở thành tâm điểm chú ý nhờ sức mạnh Z-Power của mình!
+{1} boosted its {2} using its Z-Power!
+{1} đã tăng cường {2} bằng Sức mạnh Z của nó!
+{1}'s Z-Power was replenished by its aura!
+Năng lượng Z của {1} đã được bổ sung nhờ hào quang của nó!
+{1}'s aura faded!<<n>>It may now be captured!
+Hào quang của {1} đã mờ dần!<<n>>Giờ đây nó có thể bị bắt giữ!
+Z-Ring
+Vòng chữ Z
+{1} is not compatible with {2}!
+{1} không tương thích với {2}!
+{1}'s Ultra Burst faded!<<n>>It may now be captured!
+Chiêu thức Ultra Burst của {1} đã mờ dần!<<n>>Giờ đây nó có thể bị bắt giữ!
+Bright light is about to burst out of {1}!
+Ánh sáng rực rỡ sắp bùng phát từ {1}!
+{1} regained its true power with Ultra Burst!
+{1} đã lấy lại sức mạnh thực sự của mình với Ultra Burst!
+Add new foe
+Thêm kẻ thù mới
+Add or replace a foe on the opposing side.
+Thêm hoặc thay thế một kẻ thù ở phía đối diện.
+<<[>>{1}<<]>> {2} {3}
+<<[>>{1}<<]>> {2} {3}
+Choose an index for the new foe.
+Chọn một chỉ số cho kẻ thù mới.
+Set {1}'s level (max. {2}).
+Đặt mức độ của {1} (tối đa {2}).
+<<[>>{1}<<]>> ---
+<<[>>{1}<<]>> ---
+Pokémon can't use moves known by an opposing {1} user.
+Pokémon không thể sử dụng các chiêu thức mà người dùng {1} đối phương biết.
+A save file is corrupt, or is incompatible with this game.
+Tệp lưu trò chơi bị lỗi hoặc không tương thích với trò chơi này.
+Do you want to delete that save file? The game will exit afterwards either way.
+Bạn có muốn xóa tập tin lưu game đó không? Dù sao thì game cũng sẽ thoát sau khi bạn xóa.
+The save data was deleted.
+Dữ liệu lưu đã bị xóa.
+The save data could not be deleted.
+Không thể xóa dữ liệu đã lưu.
+Save to #{$player.save_slot}
+Lưu vào #{$player.save_slot}
+Save to another file
+Lưu vào tệp khác
+Quit without saving
+Thoát mà không lưu
+Are you sure you want to overwrite the save in #{slot}?
+Bạn có chắc chắn muốn ghi đè lên dữ liệu đã lưu trong #{slot} không?
+Are you sure you want to quit without saving?
+Bạn có chắc chắn muốn bỏ việc mà không tiết kiệm tiền không?
+Which slot to save in?
+Nên lưu vào ô nào?
+<ac><c3=3050C8,D0D0C8>(empty)</c3></ac>
+<ac><c3=3050C8,D0D0C8>(trống)</c3></ac>
+%I:%M%p
+%I:%M%p
+<ac>(old save)</ac>
+<ac>(old save)</ac>
+Time<r>{1}h {2}m<br>
+Thời gian<r>{1}h {2}m<br>
+Time<r>{1}m<br>
+Thời gian<r>{1}m<br>
+Unknown interpolation type {1}.
+Loại nội suy không xác định {1}.
+Frame
+Khung
+Blending
+Pha trộn
+Flip
+Lật
+Priority
+Sự ưu tiên
+Zoom X
+Thu phóng X
+Zoom Y
+Thu phóng Y
+Angle
+Góc
+Visible
+Dễ thấy
+Opacity
+Độ mờ đục
+Color Red
+Màu đỏ
+Color Green
+Màu xanh lá cây
+Color Blue
+Màu xanh lam
+Color Alpha
+Màu Alpha
+Tone Red
+Tông màu đỏ
+Tone Green
+Màu xanh lá cây
+Tone Blue
+Màu xanh lam
+Tone Gray
+Màu xám nhạt
+New animation
+Hoạt hình mới
+<<[>>Move<<]>>
+<<[>>Move<<]>>
+<<[>>Foe Move<<]>>
+<<[>>Foe Move<<]>>
+<<[>>Common<<]>>
+<<[>>Common<<]>>
+<<[>>Foe Common<<]>>
+<<[>>Foe Common<<]>>
+Unknown animation type.
+Loại hoạt ảnh không xác định.
+Compiling animation PBS files...
+Đang biên soạn các tập tin hoạt hình của PBS...
+Expected a section at the beginning of the file.
+Dự kiến ​​sẽ có một phần ở đầu tập tin.
+Particle hasn't been defined yet!
+Hạt chưa được định nghĩa!
+Animation has more than 1 "{1}" particle, which isn't allowed.
+Hoạt ảnh có nhiều hơn 1 hạt "{1}", điều này không được phép.
+Can't define a "User" particle and also set property "NoUser" to true.
+Không thể vừa định nghĩa một thành phần "User" vừa đặt thuộc tính "NoUser" thành true.
+Can't define a "Target" particle and also set property "NoTarget" to true.
+Không thể vừa định nghĩa một hạt "Target" vừa đặt thuộc tính "NoTarget" thành true.
+Particle "{1}" has a command that isn't a "Play"-type command.
+Hạt "{1}" có một lệnh không phải là lệnh loại "Phát".
+Particle "{1}" has a "Play" command but shouldn't.
+Hạt "{1}" có lệnh "Play" nhưng không nên có.
+Particle "{1}" has a "PlayUserCry" command but shouldn't.
+Hạt "{1}" có lệnh "PlayUserCry" nhưng không nên có.
+Particle "{1}" has a "PlayTargetCry" command but shouldn't.
+Hạt "{1}" có lệnh "PlayTargetCry" nhưng không nên có.
+Particle "{1}" can't have a "Focus" that involves a user if property "NoUser" is set to true.
+Hạt "{1}" không thể có "Focus" liên quan đến người dùng nếu thuộc tính "NoUser" được đặt thành true.
+Particle "{1}" can't have a "Graphic" that involves a user if property "NoUser" is set to true.
+Hạt "{1}" không thể có "Graphic" liên quan đến người dùng nếu thuộc tính "NoUser" được đặt thành true.
+Animation can't play the user's cry if property "NoUser" is set to true.
+Hoạt ảnh không thể phát tiếng kêu của người dùng nếu thuộc tính "NoUser" được đặt thành true.
+Particle "{1}" can't have a "Focus" that involves a target if property "NoTarget" is set to true.
+Hạt "{1}" không thể có "Focus" liên quan đến mục tiêu nếu thuộc tính "NoTarget" được đặt thành true.
+Particle "{1}" can't have a "Graphic" that involves a target if property "NoTarget" is set to true.
+Hạt "{1}" không thể có "Đồ họa" liên quan đến mục tiêu nếu thuộc tính "NoTarget" được đặt thành true.
+Animation can't play the target's cry if property "NoTarget" is set to true.
+Hoạt ảnh không thể phát tiếng kêu của mục tiêu nếu thuộc tính "NoTarget" được đặt thành true.
+Particle "{1}" can't set "FoeInvertX" if its focus isn't exactly 1 thing.
+Hạt "{1}" không thể đặt "FoeInvertX" nếu tiêu điểm của nó không chính xác là 1 thứ.
+Particle "{1}" can't set "FoeInvertY" if its focus isn't exactly 1 thing.
+Hạt "{1}" không thể thiết lập "FoeInvertY" nếu tiêu điểm của nó không chính xác là 1 thứ.
+Particle "{1}" can't set "FoeFlip" if its focus isn't exactly 1 thing.
+Hạt "{1}" không thể thiết lập "FoeFlip" nếu tiêu điểm của nó không chính xác là 1 thứ.
+Particle "{1}" can't have any "Frame" commands if its graphic is a Pokémon's sprite.
+Hạt "{1}" không thể có bất kỳ lệnh "Frame" nào nếu đồ họa của nó là hình ảnh của Pokémon.
+SE "{1}" should not play twice in the same frame ({2}).
+SE "{1}" không được phát hai lần trong cùng một khung hình ({2}).
+User's cry should not play twice in the same frame ({1}).
+Tiếng kêu của người dùng không được phát hai lần trong cùng một khung hình ({1}).
+Target's cry should not play twice in the same frame ({1}).
+Tiếng kêu của mục tiêu không được phát hai lần trong cùng một khung hình ({1}).
+Animation has overlapping commands for the {1} property.
+Hoạt ảnh có các lệnh chồng chéo cho thuộc tính {1}.
+Animation has multiple "Set" commands in the same keyframe for the {1} property.
+Hoạt ảnh có nhiều lệnh "Đặt" trong cùng một khung hình chính cho thuộc tính {1}.
+Invalid blend value: {1} (must be 0, 1 or 2).<<n>>{2}
+Giá trị pha trộn không hợp lệ: {1} (phải là 0, 1 hoặc 2).<<n>>{2}
+Checking new animations data
+Kiểm tra dữ liệu hoạt hình mới
+New animations data were not compiled
+Dữ liệu hoạt hình mới chưa được biên soạn.
+Writing all animation PBS files
+Viết tất cả các tập tin hoạt hình PBS
+Successfully rewrote all animation PBS files
+Đã viết lại thành công tất cả các tập tin hoạt hình PBS.
+Write all animation PBS files
+Viết tất cả các tệp hoạt hình PBS
+Write all animation PBS files.
+Viết tất cả các tệp hoạt hình PBS.
+Color/Tone
+Màu sắc/Tông màu
+Animation properties
+Thuộc tính hoạt ảnh
+Can be used in battle?
+Có thể sử dụng trong chiến đấu không?
+Animation type
+Loại hoạt hình
+Common
+Chung
+User is opposing?
+Người dùng đang phản đối?
+PBS filepath
+Đường dẫn tệp PBS
+Involves a user?
+Có liên quan đến người dùng không?
+Involves a target?
+Có liên quan đến mục tiêu không?
+Editor settings
+Cài đặt trình chỉnh sửa
+Side sizes
+Kích thước bên
+vs.
+so với
+User index
+Chỉ mục người dùng
+Target indices
+Chỉ số mục tiêu
+Background graphic
+Hình nền
+User graphic
+Đồ họa người dùng
+Target graphic
+Đồ họa mục tiêu
+Choose a file
+Chọn tệp
+Volume
+Âm lượng
+Pitch
+Sân bóng đá
+Common animation
+Hoạt hình phổ biến
+Do you want to save changes to the animation?
+Bạn có muốn lưu các thay đổi đối với hoạt ảnh không?
+<<[>><<[>>Target's sprite<<]>><<]>>
+<<[>><<[>>Target's sprite<<]>><<]>>
+<<[>><<[>>Target's other side sprite<<]>><<]>>
+<<[>><<[>>Target's other side sprite<<]>><<]>>
+<<[>><<[>>Target's front sprite<<]>><<]>>
+<<[>><<[>>Target's front sprite<<]>><<]>>
+<<[>><<[>>Target's back sprite<<]>><<]>>
+<<[>><<[>>Target's back sprite<<]>><<]>>
+<<[>><<[>>User's sprite<<]>><<]>>
+<<[>><<[>>User's sprite<<]>><<]>>
+<<[>><<[>>User's other side sprite<<]>><<]>>
+<<[>><<[>>User's other side sprite<<]>><<]>>
+<<[>><<[>>User's front sprite<<]>><<]>>
+<<[>><<[>>User's front sprite<<]>><<]>>
+<<[>><<[>>User's back sprite<<]>><<]>>
+<<[>><<[>>User's back sprite<<]>><<]>>
+<<[>><<[>>Target's cry<<]>><<]>>
+<<[>><<[>>Target's cry<<]>><<]>>
+<<[>><<[>>User's cry<<]>><<]>>
+<<[>><<[>>User's cry<<]>><<]>>
+Edit particle at keyframe
+Chỉnh sửa hạt tại khung hình chính
+Additive
+Chất phụ gia
+Subtractive
+Trừ
+Edit sound effects at keyframe
+Chỉnh sửa hiệu ứng âm thanh tại khung hình chính
+Add
+Thêm vào
+Edit particle properties
+Chỉnh sửa thuộc tính hạt
+Graphic
+Đồ họa
+Change
+Thay đổi
+Focus
+Tập trung
+Foreground
+Tiền cảnh
+Midground
+Trung cảnh
+Background
+Lý lịch
+In front of user's side
+Phía người dùng
+Behind user's side
+Phía người dùng
+In front of target's side
+Phía trước mục tiêu
+Behind target's side
+Phía sau mục tiêu
+If on opposing side...
+Nếu ở phe đối lập...
+Invert X
+Đảo ngược X
+Invert Y
+Đảo ngược Y
+Flip Sprite
+Lật Sprite
+Duplicate this particle
+Sao chép hạt này
+Delete this particle
+Xóa hạt này
+Are you sure you want to delete this particle?
+Bạn có chắc chắn muốn xóa hạt này không?
+New
+Mới
+Anim types
+Các loại hoạt hình
+Moves
+Di chuyển
+Animations
+Hoạt hình
+Edit animation
+Chỉnh sửa hoạt ảnh
+Copy animation
+Sao chép hoạt ảnh
+Delete animation
+Xóa hoạt ảnh
+Filter text
+Lọc văn bản
+<<[>>Foe<<]>>
+<<[>>Foe<<]>>
+Common animations
+Các hoạt ảnh phổ biến
+(copy)
+(bản sao)
+New Animation Editor
+Trình chỉnh sửa hoạt hình mới
+Open the new animation editor.
+Mở trình chỉnh sửa hoạt ảnh mới.
+Couldn't get default value for property {1} for particle {2}.
+Không thể lấy giá trị mặc định cho thuộc tính {1} cho hạt {2}.
+No default value for property {1} in PARTICLE_KEYFRAME_DEFAULT_VALUES.
+Không có giá trị mặc định cho thuộc tính {1} trong PARTICLE_KEYFRAME_DEFAULT_VALUES.
+Couldn't get default value for property {1}.
+Không thể lấy giá trị mặc định cho thuộc tính {1}.
+Unhandled property {1} for SE particle found.
+Thuộc tính {1} chưa được xử lý cho hạt SE đã được tìm thấy.
+(volume: {1})
+(tập: {1})
+(pitch: {1})
+(cao độ: {1})
+New particle
+Hạt mới
+Sprite for particle {1} not found somehow (battler index {2}).
+Không tìm thấy sprite cho hạt {1} vì lý do nào đó (chỉ số chiến binh {2}).
+Sprite for particle "{1}" not found somehow.
+Không tìm thấy sprite cho hạt "{1}".
+Slowdown factor
+Yếu tố làm chậm
+Duration
+Khoảng thời gian
+{1}s
+{1}s
+Unknown interpolation method {1}.
+Phương pháp nội suy không xác định {1}.
+Graphics/UI/Battle/male_icon
+Graphics/UI/Battle/male_icon
+Graphics/UI/Battle/female_icon
+Graphics/UI/Battle/female_icon
+Infertile
+Vô sinh
+Aquatic
+Thủy sinh
+Insect
+Côn trùng
+Avian
+Chim
+Animalia
+Động vật
+Pixie
+Tiên nữ
+Plant
+Thực vật
+Primordial
+Nguyên thủy
+Inanimate
+Vô tri
+Marine
+Hàng hải
+Replica
+Bản sao
+Draconic
+Rồng
+????
+????
+{1}{2}
+{1}{2}
+near a {1}
+gần một {1}
+near an {1}
+gần một {1}
+in a {1}
+trong một {1}
+{1} trigger a special event
+{1} kích hoạt một sự kiện đặc biệt
+Trade {1}
+Giao dịch {1}
+Or trade
+Hoặc trao đổi
+{1} conclude a battle
+{1} kết thúc một trận chiến
+Level up {1}
+Lên cấp {1}
+Or level up
+Hoặc nâng cấp
+{1} reach level {2} or higher
+{1} đạt cấp độ {2} trở lên
+May be left behind in an empty party slot after {1}
+Có thể bị bỏ lại trong một vị trí trống trong nhóm sau {1}
+{1} through unknown means
+{1} bằng phương tiện không rõ
+#{@description}
+#{@description}
+{1} {2}.
+{1} {2}.
+{1}.
+{1}.
+in the day
+vào ban ngày
+at night
+vào ban đêm
+in the morning
+vào buổi sáng
+in the afternoon
+vào buổi chiều
+during the evening
+vào buổi tối
+while the weather is clear
+trong khi thời tiết quang đãng
+while the sunlight is harsh
+trong khi ánh nắng mặt trời gay gắt
+while it's raining
+trong khi trời đang mưa
+while it's snowing
+trong khi trời đang có tuyết rơi
+during a sandstorm
+trong một cơn bão cát
+while traveling by bicycle
+trong khi di chuyển bằng xe đạp
+while traveling over water
+trong khi di chuyển trên mặt nước
+while traveling underwater
+trong khi di chuyển dưới nước
+while traveling in darkness
+khi di chuyển trong bóng tối
+while there's a {1}-type in the party
+trong khi có một loại {1} trong nhóm
+while its {1} is higher than its {2}
+trong khi {1} của nó cao hơn {2} của nó
+while its {2} is higher than its {1}
+trong khi {2} của nó cao hơn {1} của nó
+while its {1} and {2} are equal
+trong khi {1} và {2} của nó bằng nhau
+- results may vary
+- Kết quả có thể khác nhau
+- this may leave behind a husk afterwards
+- điều này có thể để lại lớp vỏ sau đó
+while it's happy
+trong khi nó đang vui vẻ
+while it's the happiest it can be
+trong khi nó đang hạnh phúc nhất có thể
+in the day while it's happy
+vào ban ngày khi trời đẹp
+at night while it's happy
+vào ban đêm khi nó đang vui vẻ
+while it's happy and knows the move {1}
+trong khi nó vui vẻ và biết cách di chuyển {1}
+while it's happy and knows {1}-type move
+trong khi nó vui vẻ và biết chiêu thức loại {1}
+while it's happy and holds {1}
+trong khi nó vui vẻ và giữ {1}
+while its beauty is high
+trong khi vẻ đẹp của nó rất cao
+while it holds {1}
+trong khi nó giữ {1}
+in the day while it holds {1}
+trong ngày trong khi nó giữ {1}
+at night while it holds {1}
+vào ban đêm trong khi nó giữ {1}
+while it knows the move {1}
+trong khi nó biết nước đi {1}
+while it knows {1}-type move
+trong khi nó biết chuyển động loại {1}
+while {1} is in the party
+trong khi {1} đang ở trong đội hình
+while located in {1}
+trong khi nằm ở {1}
+while {1}
+trong khi {1}
+while located in the {1} region
+trong khi nằm trong vùng {1}
+for {1}
+cho {1}
+where it landed {1} or more critical hits
+nơi nó rơi xuống {1} hoặc nhiều đòn chí mạng
+after losing at least 49 HP
+sau khi mất ít nhất 49 HP
+after walking {1} steps with it as party leader
+sau khi đi {1} bước với nó với tư cách là lãnh đạo nhóm
+while you are partnered with another trainer
+trong khi bạn hợp tác với một huấn luyện viên khác
+after it has used the move {1} 20 times
+sau khi nó đã sử dụng nước đi {1} 20 lần
+after losing at least {1} HP to recoil
+sau khi mất ít nhất {1} HP do giật lùi
+after it beats 3 of its own kind that held {1}
+sau khi nó đánh bại 3 đối thủ cùng loại đang nắm giữ {1}
+with atleast 999x {2} in the bag
+với ít nhất 999x {2} trong túi
+Zen Mode
+Chế độ Thiền
+Abilities
+Đặc tính
+Jump to <c2=043c3aff>{1}</c2>'s entry page?
+Jump to <c2=043c3aff>{1}</c2>'s entry page?
+View only <c2=043c3aff>compatible species</c2> that know the move <c2=65467b14>{1}</c2>?
+View only <c2=043c3aff>compatible species</c2> that know the move <c2=65467b14>{1}</c2>?
+No compatible species found.
+Không tìm thấy loài tương thích.
+View <c2=043c3aff>all species</c2> that know the move <c2=65467b14>{1}</c2>?
+View <c2=043c3aff>all species</c2> that know the move <c2=65467b14>{1}</c2>?
+No species found.
+Không tìm thấy loài nào.
+Return
+Trở lại
+All species that learn this move:
+Tất cả các loài đều học được chiêu thức này:
+Graphics/UI/Pokedex/icon_own
+Graphics/UI/Pokedex/icon_own
+Compatible species that learn this move:
+Các loài tương thích có thể học được chiêu thức này:
+Graphics/Pokemon/Eggs/000_icon
+Graphics/Pokemon/Eggs/000_icon
+LEVEL-UP
+NÂNG CẤP
+TM/TUTOR
+TM/TUTOR
+INHERIT
+THỪA KẾ
+Z-MOVES
+Z-MOVES
+MAX MOVES
+SỐ LƯỢT DI CHUYỂN TỐI ĐA
+Graphics/Items/#{item.id}
+Graphics/Items/#{item.id}
+View Compatible
+Xem tương thích
+View Details
+Xem chi tiết
+Total: {1:3d}
+Tổng cộng: {1:3d}
+{1:3d}
+{1:3d}
+View Family
+Xem gia đình
+Toggle Dynamax
+Bật/tắt Dynamax
+Toggles the availability of Dynamax functionality.
+Bật/tắt chức năng Dynamax.
+Dynamax {1}.
+Dynamax {1}.
+Dynamax settings...
+Cài đặt Dynamax...
+Edit when and where Dynamax is able to be used.
+Chỉnh sửa thời gian và địa điểm có thể sử dụng Dynamax.
+Dynamax usable on every map [{1}]
+Dynamax có thể sử dụng trên mọi bản đồ [{1}]
+Dynamax usable in wild battles [{1}]
+Dynamax có thể sử dụng trong các trận chiến hoang dã [{1}]
+Dynamax is now usable on every map.
+Dynamax hiện đã có thể sử dụng trên mọi bản đồ.
+Dynamax is now only usable on maps with the 'PowerSpot' flag.
+Dynamax hiện chỉ có thể sử dụng trên các bản đồ có cờ 'PowerSpot'.
+Dynamax is now also usable in wild battles.
+Dynamax giờ đây cũng có thể được sử dụng trong các trận chiến với quái vật hoang dã.
+Dynamax is now only usable in trainer battles.
+Hiện tại, Dynamax chỉ có thể sử dụng trong các trận đấu huấn luyện viên.
+Dynamax metrics...
+Các chỉ số của Dynamax...
+Reposition Pokémon Dynamax sprites displayed in battle.
+Điều chỉnh lại vị trí hiển thị của các hình ảnh Pokémon Dynamax trong trận chiến.
+Edit Dynamax metrics
+Chỉnh sửa các chỉ số của Dynamax
+Auto-set Dynamax metrics
+Tự động thiết lập các thông số Dynamax
+All sprites
+Tất cả các sprite
+Gigantamax sprites
+Hình ảnh Gigantamax
+Sprites by generation...
+Các sprite được tạo ra theo thế hệ...
+Which sprites do you want to edit?
+Bạn muốn chỉnh sửa những hình ảnh nào?
+Select a generation.
+Chọn một thế hệ.
+Half back sprites (Gen 4 style)
+Hình ảnh nửa lưng (kiểu thế hệ 4)
+Full back sprites (Gen 5 style)
+Hình ảnh toàn bộ mặt sau (kiểu thế hệ thứ 5)
+What style of back sprites are you using?
+Bạn đang sử dụng kiểu ảnh nền nào?
+Are you sure you want to automatically reposition all Dynamax sprites?
+Bạn có chắc chắn muốn tự động định vị lại tất cả các sprite Dynamax không?
+Repositioning all Dynamax sprites. Please wait.
+Đang sắp xếp lại tất cả các sprite Dynamax. Vui lòng chờ.
+SHOW_DYNAMAX_SIZE is set to 'false', so no Dynamax metrics need to be set.
+SHOW_DYNAMAX_SIZE được đặt thành 'false', vì vậy không cần thiết lập bất kỳ thông số Dynamax nào.
+Dynamax...
+Dynamax...
+Eligible: {1}<<n>>Dynamax Level: {2}<<n>>G-Max Factor: {3}<<n>>Dynamaxed: {4}
+Đủ điều kiện: {1}<<n>>Cấp độ Dynamax: {2}<<n>>Hệ số G-Max: {3}<<n>>Đã đạt Dynamax: {4}
+Set Dynamax Level
+Đặt mức Dynamax
+Set G-Max Factor
+Đặt hệ số G-Max
+Set Dynamax
+Bộ Dynamax
+{1} belongs to a species or form that cannot currently use Dynamax.<<n>>Eligibility cannot be changed.
+{1} thuộc về một loài hoặc dạng hiện không thể sử dụng Dynamax.<<n>>Điều kiện đủ điều kiện không thể thay đổi.
+{1} is no longer able to use Dynamax.
+{1} không còn có thể sử dụng Dynamax nữa.
+{1} is now able to use Dynamax.
+{1} hiện đã có thể sử dụng Dynamax.
+Set {1}'s Dynamax level (max. 10).
+Đặt mức Dynamax của {1} (tối đa 10).
+Can't edit Dynamax values on that Pokémon.
+Không thể chỉnh sửa giá trị Dynamax của Pokémon đó.
+Gigantamax factor was removed from {1}.
+Yếu tố Gigantamax đã bị loại bỏ khỏi {1}.
+Gigantamax factor was given to {1}.
+Yếu tố Gigantamax được đưa cho {1}.
+{1} doesn't have a Gigantamax form.<<n>>Give it Gigantamax factor anyway?
+{1} không có dạng Gigantamax.<<n>>Dù sao thì vẫn cho nó hệ số Gigantamax chứ?
+{1} is no longer Dynamaxed.
+{1} không còn ở trạng thái Dynamax nữa.
+{1} is now Dynamaxed.
+{1} hiện đã được Dynamax.
+All Dynamax settings restored to default.
+Tất cả cài đặt Dynamax đã được khôi phục về mặc định.
+Whether each trainer is allowed to Dynamax.
+Liệu mỗi huấn luyện viên có được phép sử dụng Dynamax hay không.
+Choose trainer to toggle whether they can Dynamax.
+Chọn huấn luyện viên để bật/tắt khả năng Dynamax của họ.
+Dynamax values
+Giá trị Dynamax
+{1} Dynamax <<[>>Lvl: {2}<<]>> <<[>>G-Max: {3}<<]>><<n>>{4} currently Dynamaxed.
+{1} Dynamax <<[>>Cấp độ: {2}<<]>> <<[>>G-Max: {3}<<]>><<n>>{4} hiện đang ở trạng thái Dynamax.
+Set Dynamax Lvl
+Đặt cấp độ Dynamax
+Set Dynamax state
+Đặt trạng thái Dynamax
+No Dynamax
+Không có Dynamax
+If set to true, the trainer will never Dynamax this Pokémon.
+Nếu đặt thành true, người huấn luyện sẽ không bao giờ sử dụng Dynamax cho Pokémon này.
+Dynamax Lv
+Dynamax Lv
+Dynamax level of the Pokémon (0-10).
+Cấp độ Dynamax của Pokémon (0-10).
+Gigantamax
+Gigantamax
+If set to true, the Pokémon will have G-Max Factor.
+Nếu đặt thành true, Pokémon sẽ có G-Max Factor.
+Dynamax Lv.
+Dynamax Lv.
+{1}'s Dynamax level was increased to 10!
+Cấp độ Dynamax của {1} đã được tăng lên 10!
+{1}'s Dynamax level was increased by 1!
+Cấp độ Dynamax của {1} đã tăng lên 1!
+{1} lost its Gigantamax energy.
+{1} đã mất năng lượng Gigantamax.
+{1} is now bursting with Gigantamax energy!
+{1} hiện đang tràn đầy năng lượng Gigantamax!
+The {1} fully recharged {2}'s {3}!<<n>>{2} can use Dynamax again!
+{1} đã sạc đầy {2} của {3}!<<n>>{2} có thể sử dụng Dynamax một lần nữa!
+{1}'s Dynamax energy faded!<<n>>It may now be captured!
+Năng lượng Dynamax của {1} đã suy yếu!<<n>>Giờ đây nó có thể bị bắt giữ!
+Dynamax Band
+Băng Dynamax
+{1} surrounded itself in {2} energy!
+{1} tự bao quanh mình trong {2} năng lượng!
+{1} recalled {2}!
+{1} đã nhớ lại {2}!
+{1}'s ball surges with {2} energy!
+Quả bóng của {1} bùng lên với năng lượng {2}!
+The sharp steel bit into {1}!
+Lưỡi thép sắc bén đâm vào {1}!
+{1} is hurt by {2}'s ferocious beating!
+{1} bị thương bởi cú đánh dữ dội của {2}!
+{1} is burning up within {2}'s flames!
+{1} đang bốc cháy trong ngọn lửa của {2}!
+{1} is hurt by {2}'s vortex!
+{1} bị thương bởi cơn lốc xoáy của {2}!
+{1} is hurt by the rocks thrown out by {2}!
+{1} bị thương bởi những hòn đá do {2} ném ra!
+{1} was released from {2}'s beating!
+{1} đã được giải thoát khỏi sự đánh đập của {2}!
+{1} was released from {2}'s flames!
+{1} đã được giải thoát khỏi ngọn lửa của {2}!
+{1} was released from {2}'s vortex!
+{1} đã được giải thoát khỏi vòng xoáy của {2}!
+Rocks stopped being thrown out by {1} on {2}!
+Đá ngừng bị ném bởi {1} vào {2}!
+{1} became drowsy!
+{1} trở nên buồn ngủ!
+{1} got trapped with vines!
+{1} bị mắc kẹt với dây leo!
+{1} were surrounded by fire!
+{1} bị bao vây bởi lửa!
+{1} got caught in a vortex of water!
+{1} bị cuốn vào một vòng xoáy nước!
+{1} became surrounded by rocks!
+{1} bị bao quanh bởi đá!
+Sharp-pointed pieces of steel started floating around {1}!
+Những mảnh thép sắc nhọn bắt đầu bay lơ lửng xung quanh {1}!
+{1} became stronger against physical and special moves!
+{1} trở nên mạnh mẽ hơn trước các đòn tấn công vật lý và đặc biệt!
+{1} became trapped in the watery vortex!
+{1} bị mắc kẹt trong vòng xoáy nước!
+{1}'s PP was reduced!
+PP của {1} đã bị giảm!
+Any Berry
+Bất kỳ loại quả mọng nào
+Would you like to craft {1} {2}?
+Bạn có muốn chế tạo {1} {2} không?
+You put {1} {2} away\<<n>>in the <icon=bagPocket{3}>\c<<[>>1<<]>>{4} Pocket\c<<[>>0<<]>>.
+Bạn cất {1} {2}\<<n>>vào <icon=bagPocket{3}>\c<<[>>1<<]>>{4} Pocket\c<<[>>0<<]>>.
+You lack the necessary ingredients.
+Bạn thiếu các nguyên liệu cần thiết.
+Invalid Recipe ID {1}.
+Mã công thức không hợp lệ {1}.
+You don't have any recipes to use here.
+Bạn không có công thức nấu ăn nào để sử dụng ở đây.
+Would you like to craft something?
+Bạn có muốn tự tay làm một món đồ gì đó không?
+Let's get started!
+Bắt đầu nào!
+Come back soon!
+Hẹn gặp lại sớm!
+The entry 'Ingredients' is required in recipes.txt section {1}.<<n>>{2}
+Mục 'Ingredients' là bắt buộc trong phần {1}.<<n>>{2} của recipes.txt
+Tera Type: Power boosted by Terastallization.
+Loại Tera: Sức mạnh được tăng cường nhờ quá trình Terastalization.
+Z: Hide
+Z: Ẩn
+Z: Details
+Z: Chi tiết
+Return to the command menu.
+Quay lại menu lệnh.
+C: Use
+C: Sử dụng
+Cheer
+Reo hò
+Launch
+Phóng
+{1} used the {2} on {3}.
+{1} đã sử dụng {2} trên {3}.
+{1} used the {2}.
+{1} đã sử dụng {2}.
+Items can't be used in this battle.
+Không thể sử dụng vật phẩm trong trận chiến này.
+{1} is losing health due to Showdown Mode!
+{1} đang mất máu do Chế độ Đối đầu!
+{1}'s stats rose due to its Showdown Mode!
+Chỉ số của {1} đã tăng lên nhờ Chế độ Đối đầu!
+{1} makes other Pokémon dance to a frantic beat!
+{1} khiến các Pokémon khác nhảy múa theo một nhịp điệu điên cuồng!
+{1}'s {2} raised its {3} due to Cat's Luck!
+{1}'s {2} đã nâng {3} lên nhờ May Mắn của Mèo!
+Still
+Vẫn
+Normal
+Bình thường
+Slowest
+Chậm nhất
+Both
+Cả hai
+Ally
+Ally
+Enemy
+Kẻ thù
+Set Animation Speed
+Đặt tốc độ hoạt ảnh
+Set Super Shiny Hue
+Bộ sản phẩm Super Shiny Hue
+Search for a specific species.
+Tìm kiếm một loài cụ thể.
+{1}'s {2} shared {3} HP with {4}!
+{1}'s {2} shared {3} HP with {4}!
+{1} is ready to take half damage from {2}!
+{1} sẵn sàng chịu một nửa sát thương từ {2}!
+{1}'s {2} allows it to rampage and skip the recharge!
+{1} của {2} cho phép nó hoành hành và bỏ qua việc sạc lại!
+{1}'s {2} restores 3 PP to {3}!
+{1}'s {2} khôi phục 3 PP thành {3}!
+{1}'s {2} frostbitten {3}!
+{1} của {2} bị bỏng lạnh {3}!
+{1}'s {2} lowered {3}'s Defense!
+{1} đã làm giảm khả năng phòng thủ của {3}!
+Actually, this should not be possible
+Thực tế, điều này lẽ ra không thể xảy ra.
+{1} is summoning the winds!
+{1} đang triệu hồi gió!
+Pokémon Animations
+Hoạt ảnh Pokémon
+Choose whether Pokémon sprites should be animated.
+Chọn xem hình ảnh Pokémon có nên được hoạt họa hay không.
+: A
+: A
+: S
+: S
+The Pokémon's HP is leeched every turn to heal {1}.
+HP của Pokémon bị hút mỗi lượt để hồi phục {1}.
+The Pokémon's damage output is being increased.
+Sức sát thương của Pokémon này đang được tăng lên.
+The Pokémon's Atk and Def are swapped.
+Chỉ số Tấn công và Phòng thủ của Pokémon bị hoán đổi cho nhau.
+The Pokémon's next move will be Electric type.
+Chiêu thức tiếp theo của Pokémon này sẽ là hệ Điện.
+The Pokémon's Normal type moves become Electric type.
+Các chiêu thức hệ Thường của Pokémon này chuyển thành hệ Điện.
+The Pokémon is being lifted in the air by {1}.
+Pokémon đang được {1} nhấc lên không trung.
+The Pokémon has been made weaker to Fire type moves.
+Pokémon này đã trở nên yếu hơn trước các chiêu thức hệ Lửa.
+The Pokémon takes damage when it uses a Fire type move.
+Pokémon này sẽ bị sát thương khi sử dụng chiêu thức hệ Lửa.
+Fully heals a Pokémon switching into this spot.
+Hồi phục hoàn toàn cho Pokémon khi chuyển vào vị trí này.
+The Pokémon will survive all incoming attacks with 1 HP.
+Pokémon này sẽ sống sót sau tất cả các đòn tấn công với chỉ 1 HP.
+The Pokémon's substitute will take any incoming moves.
+Pokémon thay thế sẽ hứng chịu mọi đòn tấn công đến.
+The Pokémon bounces back any incoming status moves.
+Pokémon này có khả năng phản đòn mọi đòn tấn công gây trạng thái.
+The Pokémon is protected from all status moves.
+Pokémon này được miễn nhiễm với tất cả các chiêu thức gây trạng thái.
+The Pokémon is protected from all priority moves.
+Pokémon này được bảo vệ khỏi tất cả các chiêu thức ưu tiên.
+The Pokémon is protected from all spread moves.
+Pokémon này được miễn nhiễm với tất cả các chiêu thức tấn công diện rộng.
+The Pokémon is grounded and its Flying immunities are ignored.
+Pokémon này bị khống chế và khả năng miễn nhiễm với hệ Bay của nó bị vô hiệu hóa.
+The Pokémon is grounded.
+Con Pokémon bị cấm bay.
+The Pokémon is less likely to attack {1}.
+Pokémon này ít có khả năng tấn công {1}.
+Weight Changed
+Cân nặng đã thay đổi
+The Pokémon's weight has been {1}.
+Cân nặng của Pokémon là {1}.
+Full Protect
+Bảo vệ toàn diện
+The Pokémon is protected from all incoming moves.
+Pokémon này được bảo vệ khỏi mọi đòn tấn công.
+Damage Protect
+Bảo vệ khỏi hư hại
+The Pokémon is protected from all incoming damage.
+Pokémon này được bảo vệ khỏi mọi sát thương tấn công.
+Pow
+Bùm
+Pri
+Pri
+Eff
+Hiệu quả
+Type changed by the {1} ability.
+Loại được thay đổi bởi đặc tính {1}.
+Power boosted by the {1} ability.
+Sức mạnh được tăng cường bởi đặc tính {1}.
+Power weakened by the {1} ability.
+Sức mạnh bị suy yếu bởi đặc tính {1}.
+Accuracy boosted by the {1} ability.
+Độ chính xác được tăng cường nhờ đặc tính {1}.
+Accuracy lowered by the {1} ability.
+Độ chính xác bị giảm bởi đặc tính {1}.
+Priority boosted by the {1} ability.
+Độ ưu tiên được tăng cường bởi đặc tính {1}.
+Priority lowered by the {1} ability.
+Độ ưu tiên bị giảm xuống bởi đặc tính {1}.
+Effect chance boosted by the {1} ability.
+Xác suất hiệu ứng được tăng cường bởi đặc tính {1}.
+Healing boosted by the {1} ability.
+Khả năng hồi phục được tăng cường bởi đặc tính {1}.
+Power boosted by Terastallization.
+Sức mạnh được tăng cường nhờ công nghệ Terastalization.
+Z-Power: Fully restores the user's HP.
+Z-Power: Khôi phục hoàn toàn HP của người dùng.
+Z-Power: Fully restores an incoming Pokémon's HP.
+Sức mạnh Z: Hồi phục hoàn toàn HP cho Pokémon vừa tấn công.
+Z-Power: Raises the user's critical hit rate.
+Sức mạnh Z: Tăng tỷ lệ chí mạng của người dùng.
+Z-Power: Resets the user's lowered stat stages.
+Z-Power: Khôi phục lại các chỉ số đã bị giảm của người dùng.
+Z-Power: The user becomes the center of attention.
+Z-Power: Người dùng trở thành tâm điểm chú ý.
+Z-Power: Drastically raises the user's {1}.
+Z-Power: Tăng đáng kể {1} của người dùng.
+Z-Power: Sharply raises the user's {1}.
+Z-Power: Tăng mạnh {1} của người dùng.
+Z-Power: Raises the user's {1}.
+Z-Power: Nâng cao {1} của người dùng.
+Graphics/Pictures/Location/icon_numbers
+Graphics/Pictures/Location/icon_numbers
+Atras
+Atras
+Equipo: {1}
+Đội ngũ: {1}
+Salir
+Salir
+Sin habilidad
+Sin habilidad
+Sin objeto
+Sin objeto
+¡Llevas un Pokémon!
+¡Llevas un Pokémon!
+¿Continuar operaciones?
+¿Continuar operaciones?
+¿Salir del PC?
+¿Salir del PC?
+Has seleccionado a {1}.
+Has seleccionado a {1}.
+Cambiar
+Cambiar
+Dejar
+Dejar
+Movimientos
+Movimientos
+Datos
+Datos
+Guardar
+Lưu
+Sacar
+Sacar
+Objeto
+Đối tượng
+Marcar
+Marcar
+Liberar
+Liberar
+Cancelar
+Hủy bỏ
+¿Continuar con las operaciones?
+¿Tiếp tục hoạt động?
+¿Cuál quieres coger?
+¿Cuál quieres coger?
+Marcas
+Marcas
+¿Continuar con las operacions?
+¿Tiếp tục hoạt động?
+No se puede sacar del equipo...
+Không có se puede sacar del trang bị...
+¡Tu equipo está lleno!
+¡Tu equipo está lleno!
+No se puede depositar...
+No se puede depositar...
+¡Es tu último Pokémon!
+¡Es tu último Pokémon!
+Debes retirar la carta que lleva.
+Debes đã rút lui la carta que lleva.
+¡{1} no quiere quedarse en el PC!
+¡{1} không có gì đáng lo ngại trên PC!
+¿Dejar en qué caja?
+¿Dejar en qué caja?
+La Caja está llena.
+La Caja está llena.
+La posición {1},{2} no está vacía...
+La posición {1},{2} no está vacía...
+La posición {1},{2} está vacía...
+La posición {1},{2} está vacía...
+No puedes liberar un Huevo.
+No puedes liberar un Huevo.
+¡{1} no quiere separarse de ti!
+¡{1} không có gì khác biệt cả!
+¿Liberar este Pokémon?
+¿Liberar este Pokémon?
+Si
+Si
+Has liberado a {1}.
+Has liberado a {1}.
+¡Adiós, {1}!
+¡Adiós, {1}!
+Los Huevos no pueden llevar objetos.
+Los Huevos no pueden llevar objetos.
+¿Coger {1}?
+¿Coger {1}?
+Has cogido {1}.
+Has cogido {1}.
+No se puede guardar {1}.
+No se puede guardar {1}.
+Has equipado {1}.
+Has equipado {1}.
+Saltar
+Saltar
+Fondo
+Hình nền
+Nombre
+Tên
+¿Qué hacer con?
+¿Qué hacer con?
+¿Saltar a qué Caja?
+¿Saltar a qué Caja?
+Elige un fondo.
+Elige un fondo.
+¿Nombre de la caja?
+¿Nombre de la caja?
+¿Salir de la Caja
+¿Salir de la Caja
+Seleccionar
+Chọn
+Objetos
+Vật phẩm
+Graphics/Items/{1}_key
+Graphics/Items/{1}_key
+Graphics/Items/{1}
+Graphics/Items/{1}
+Innate 1
+Bẩm sinh 1
+Innate 2
+Bẩm sinh 2
+Innate 3
+Bẩm sinh 3
+{1} has shuffled it's innates!
+{1} đã xáo trộn những đặc điểm bẩm sinh của nó!
+{1} has shuffled its innates!
+{1} đã xáo trộn các thuộc tính bẩm sinh của nó!
+Do you want to shuffle {1}'s Innates?
+Bạn có muốn xáo trộn các lá bài Innate của {1} không?
+One or more specified innate abilities are not defined.<<n>>{1}
+Một hoặc nhiều năng lực bẩm sinh cụ thể không được xác định.<<n>>{1}
+Set Innates
+Đặt bẩm sinh
+Set Innate Abilities.
+Đặt năng lực bẩm sinh
+Randomize Defined Innates
+Ngẫu nhiên các bẩm sinh đã được định nghĩa.
+Reset Innates
+Đặt lại bẩm sinh
+Innates are: {1}
+Các bẩm sinh là: {1}
+How many Innates Max?
+Có tối đa bao nhiêu bẩm sinh?
+{1} ability has been set as the {2} Innate!
+{1} đặc tính đã được thiết lập là {2} bẩm sinh!
+How many innates should this Pokémon have?
+Pokémon này nên có bao nhiêu bẩm sinh?
+Set Innate Abilities
+Thiết lập các năng lực bẩm sinh
+Randomize Innates MAX
+Ngẫu nhiên bẩm sinh MAX
+Current innates for form {1}: {2}
+Các bẩm sinh hiện tại cho dạng {1}: {2}
+Set the max number of innates for form {1}:
+Đặt số lượng tối đa các bẩm sinh cho dạng {1}:
+{1} set as innate {2} for form {3}.
+{1} được đặt là bẩm sinh {2} cho dạng {3}.
+Reset innates for form {1} to how many?
+Đặt lại các bẩm sinh cho dạng {1} thành bao nhiêu?
+Quests
+Nhiệm vụ
+The 'quest' argument should be a symbol, e.g. ':Quest1'.
+Tham số 'quest' phải là một ký hiệu, ví dụ: ':Quest1'.
+\se[{1}]<ac><c2=#{colorQuest(
+\se[{1}]<ac><c2=#{colorQuest(
+{1} tasks
+{1} nhiệm vụ
+Pet
+Thú cưng
+Feed
+Cho ăn
+Swap with team
+Đổi chỗ với đội
+You gently pet the Pokémon. It seems to enjoy that!
+Bạn nhẹ nhàng vuốt ve Pokémon. Có vẻ như nó rất thích điều đó!
+You give the Pokémon some food. It eats happily!
+Bạn cho Pokémon ăn. Nó ăn một cách ngon lành!
+You play with the Pokémon for a while. It has fun!
+Bạn chơi với Pokémon một lúc. Thật vui!
+Swap not possible. Player data not available.
+Không thể đổi người chơi. Dữ liệu người chơi không khả dụng.
+Swap not possible. Event ID missing.
+Không thể hoán đổi. Thiếu ID sự kiện.
+Swap not possible. Box Ranch not initialized.
+Không thể hoán đổi. Box Ranch chưa được khởi tạo.
+Swap not possible. Pokémon not found.
+Không thể trao đổi. Không tìm thấy Pokémon.
+Swap not possible for unknown reason.
+Không thể trao đổi vì lý do không rõ.
+You have no Pokémon in your team to swap with.
+Bạn không có Pokémon nào trong đội hình để đổi chỗ.
+Choose a Pokémon from your team to swap with.
+Chọn một Pokémon trong đội của bạn để đổi chỗ.
+Swap cancelled.
+Giao dịch bị hủy.
+Do you want to swap {1} (Lv. {2}) with {3} (Lv. {4})?
+Bạn có muốn đổi {1} (Cấp độ {2}) lấy {3} (Cấp độ {4}) không?
+Swap successful! {1} is now in your team, and {2} is on the Ranch.
+Trao đổi thành công! {1} hiện đã ở trong đội của bạn, và {2} đang ở Trang trại.
+NHIỆM VỤ {1}
+NHIỆM VỤ {1}
+Average
+Trung bình
+Very Fast
+Rất nhanh
+Can't mix old and new formats.<<n>>{1}
+Can't mix old and new formats.<<r>><<n>>{1}
+Item ID '{1}' is used twice.<<n>>{2}
+Item ID '{1}' is used twice.<<r>><<n>>{2}
+Undefined berry constant name: {1}<<n>>Make sure the berry is defined in PBS/berry_data.txt.<<n>>{2}
+Undefined berry constant name: {1}<<r>><<n>>Make sure the berry is defined in PBS/berry_data.txt.<<r>><<n>>{2}
+Berrydex list number {1} has berry {2} listed twice.<<n>>{3}
+Berrydex list number {1} has berry {2} listed twice.<<r>><<n>>{3}
+You don't have any Berries registered.
+Bạn chưa đăng ký bất kỳ loại quả mọng nào.
+$player.has_berrydex is currently false
+$player.has_berrydex is currently false
+Switch #{Settings::ACCESS_BERRYDEX_SWITCH_ID} is currently false
+Công tắc #{Settings::ACCESS_BERRYDEX_SWITCH_ID} hiện đang ở trạng thái false
+Berrydex
+Berrydex
+Toggle Berrydex
+Bật/tắt Berrydex
+Toggle possession of the Berrydex
+Bật/tắt quyền sở hữu Berrydex
+Gave Berrydex.
+Đã cho Berrydex.
+Lost Berrydex.
+Sổ tay quả mọng bị thất lạc.
+Gathered:
+Đã tập hợp:
+Planted:
+Đã trồng:
+Graphics/#{@file_location}/Berrydex/plant_dirt
+Graphics/#{@file_location}/Berrydex/plant_dirt
+Graphics/#{@file_location}/Berrydex/preferred_weather_box_split
+Graphics/#{@file_location}/Berrydex/preferred_weather_box_split
+Graphics/#{@file_location}/Berrydex/preferred_weather_box
+Graphics/#{@file_location}/Berrydex/preferred_weather_box
+Graphics/#{@file_location}/Berrydex/bar_mutations_info
+Graphics/#{@file_location}/Berrydex/bar_mutations_info
+Graphics/#{@file_location}/Berrydex/mutation_titles
+Graphics/#{@file_location}/Berrydex/mutation_titles
+Graphics/#{@file_location}/Berrydex/mutation_pageindicator
+Graphics/#{@file_location}/Berrydex/mutation_pageindicator
+Graphics/#{@file_location}/Berrydex/mutation_row
+Graphics/#{@file_location}/Berrydex/mutation_row
+Graphics/#{@file_location}/Berrydex/mutation_row2
+Graphics/#{@file_location}/Berrydex/mutation_row2
+Graphics/#{@file_location}/Berrydex/mutation_none
+Graphics/#{@file_location}/Berrydex/mutation_none
+Graphics/#{@file_location}/Berrydex/flavor_selected
+Graphics/#{@file_location}/Berrydex/flavor_selected
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_info
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_info
+Graphics/#{@file_location}/Berrydex/bar_battle_info
+Graphics/#{@file_location}/Berrydex/bar_battle_info
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_battle_plant
+Graphics/#{@file_location}/Berrydex/bar_battle_plant
+Graphics/#{@file_location}/Berrydex/bar_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_mutations_plant
+Graphics/#{@file_location}/Berrydex/bar_mutations_battle
+Graphics/#{@file_location}/Berrydex/bar_mutations_battle
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations
+Graphics/#{@file_location}/Berrydex/bar_battle_mutations
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}_graph
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}_graph
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}
+Graphics/#{@file_location}/Berrydex/bg_info#{color_path}
+Firm
+Firm
+{1:.1f}"
+{1:.1f}"
+{1:.1f} cm
+{1:.1f} cm
+Graphics/#{@file_location}/Berrydex/bg_plant
+Graphics/#{@file_location}/Berrydex/bg_plant
+Graphics/#{@file_location}/Berrydex/plant_dirt#{Settings::BERRY_SOIL_DEFINITIONS[berry_data.preferred_soil][:dex_graphic_ext]}
+Graphics/#{@file_location}/Berrydex/plant_dirt#{Settings::BERRY_SOIL_DEFINITIONS[berry_data.preferred_soil][:dex_graphic_ext]}
+Growth Time
+Thời gian tăng trưởng
+Harvest
+Mùa gặt
+Dry Rate
+Tốc độ khô
+{1:d} hrs
+{1:d} giờ
+{1:d} - {2:d}
+{1:d} - {2:d}
+Ideal Weather
+Thời tiết lý tưởng
+Ideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Ideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Unideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Unideal #{Settings::BERRYDEX_PREFERRED_ZONES_TERM}
+Graphics/#{@file_location}/Berrydex/bg_battle
+Graphics/#{@file_location}/Berrydex/bg_battle
+Fling
+Quăng ra
+Natural Gift
+Món quà tự nhiên
+Power
+Sức mạnh
+Graphics/#{@file_location}/types
+Graphics/#{@file_location}/types
+Graphics/#{@file_location}/Berrydex/bg_mutation
+Graphics/#{@file_location}/Berrydex/bg_mutation
+{1}/{2}
+{1}/{2}
+Parents
+Cha mẹ
+Offspring
+Con cháu
+???
+???
+Multiple
+Nhiều
+No Mutation Data
+Không có dữ liệu đột biến
+You don't have any berries!
+Bạn không có quả mọng nào cả!
+Choose this berry?
+Bạn chọn loại quả mọng này chứ?
+Choose these berries?
+Bạn chọn những loại quả mọng này chứ?
+Stop choosing a berry?
+Ngừng lựa chọn quả mọng?
+Stop choosing berries?
+Ngừng hái quả mọng nhé?
+You don't have any more of these to choose.
+Bạn không còn lựa chọn nào khác trong số này nữa.
+Choose
+Chọn
+Choose {1}?
+Chọn {1}?
+There is something unique about it...
+Nó có điều gì đó độc đáo...
+Zones
+Khu vực
+Loamy
+Đất thịt
+soft, loamy
+mềm, đất thịt
+soft and loamy
+mềm và tơi xốp
+Sandy
+Sandy
+coarse, sandy
+thô ráp, cát
+coarse and sandy
+thô ráp và cát
+Clay
+Đất sét
+dense, heavy
+đặc, nặng
+dense and heavy
+đặc và nặng
+Marshy
+Đầm lầy
+wet, marshy
+ẩm ướt, đầm lầy
+wet and marshy
+ẩm ướt và đầm lầy
+Rocky
+Đá
+uneven, gravelly
+không bằng phẳng, nhiều sỏi đá
+uneven and gravelly
+không bằng phẳng và nhiều sỏi đá
+Fertile
+Màu mỡ
+rich, fertile
+giàu có, màu mỡ
+rich and fertile
+giàu có và màu mỡ
+It's {1} soil.
+Đó là đất {1}.
+soft, earthy
+mềm mại, mộc mạc
+Plant #{(Settings::BERRY_USE_BERRY_SEEDS ?
+Cây #{(Settings::BERRY_USE_BERRY_SEEDS ?
+It's {1} soil. Want to plant a #{(Settings::BERRY_USE_BERRY_SEEDS ?
+Đây là đất {1}. Bạn muốn trồng một #{(Settings::BERRY_USE_BERRY_SEEDS ?
+Want to plant a #{(Settings::BERRY_USE_BERRY_SEEDS ?
+Bạn muốn trồng một #{(Settings::BERRY_USE_BERRY_SEEDS ?
+The {1} was planted in the {2} soil.
+Cây {1} được trồng trên đất {2}.
+{1} planted an {2} in the {3} soil.
+{1} đã trồng một {2} trong đất {3}.
+{1} planted a {2} in the {3} soil.
+{1} đã trồng một {2} trong đất {3}.
+Want to sprinkle some water on it?
+Bạn muốn tưới chút nước lên đó không?
+The {1} is empty!
+{1} trống!
+The {1} is now empty.
+{1} hiện đã trống.
+Plant Info
+Thông tin về cây trồng
+Make Fully Grown
+Làm cho trưởng thành hoàn toàn
+Reset Plant
+Đặt lại nhà máy
+View info about the plant event.
+Xem thông tin về sự kiện trồng cây.
+Make the plant fully grown and ready to harvest.
+Hãy để cây phát triển hoàn toàn và sẵn sàng thu hoạch.
+Reset the entire plant (will clear all data).
+Khởi động lại toàn bộ hệ thống (sẽ xóa tất cả dữ liệu).
+Continue.
+Tiếp tục.
+Zone: {1}
+Khu vực: {1}
+Map Location: {1}
+Vị trí trên bản đồ: {1}
+Soil: {1} | Mulch: {2}
+Soil: {1}  |  Mulch: {2}
+Mulch: {1}
+Lớp phủ: {1}
+Seed: {1}
+Hạt giống: {1}
+Current Yield: {1}
+Sản lượng hiện tại: {1}
+Berry: {1}
+Quả mọng: {1}
+Stage: {1}
+Giai đoạn: {1}
+Hrs per stage: {1}
+Số giờ mỗi giai đoạn: {1}
+Max replants: {1}
+Số lần trồng lại tối đa: {1}
+Moisture: {1}% | Dry rate: {2}%/hr
+Độ ẩm: {1}%  |  Độ khô: {2}%/hr
+Fully grown stage count: {1}
+Số lần trưởng thành hoàn toàn: {1}
+Exposed to Pref Weather?: {1}
+Tiếp xúc với thời tiết ưa thích?: {1}
+In Pref Zone?: {1}
+Trong khu vực ưu tiên?: {1}
+In Unpref Zone?: {1}
+Trong khu vực không ưu tiên?: {1}
+In Pref Soil?: {1}
+Trong Đất Ưu Tiên?: {1}
+Weed chance: {1}%
+Xác suất cỏ dại: {1}%
+Pest chance: {1}%
+Xác suất xuất hiện sâu bệnh: {1}%
+Mutation chance: {1}%
+Xác suất đột biến: {1}%
+Mutation: {1} [{2}]
+Đột biến: {1} [{2}]
+Propagation chance: {1}%
+Xác suất lan truyền: {1}%
+Watering cans (with traits) used: None
+Bình tưới cây (có đặc điểm) đã sử dụng: Không có
+Watering cans (with traits) used:
+Các loại bình tưới cây (có đặc điểm) được sử dụng:
+The berry plant is ready to harvest.
+Cây dâu đã sẵn sàng để thu hoạch.
+Are you sure you want to reset all data for this plant?
+Bạn có chắc chắn muốn đặt lại tất cả dữ liệu cho nhà máy này không?
+Berry plant reset.
+Đặt lại cây dâu tây.
+The {1} seemed happy to be planted here!
+Cây {1} có vẻ rất vui khi được trồng ở đây!
+The {1} didn't seem happy to be planted here...
+Cây {1} có vẻ không vui khi được trồng ở đây...
+There are {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> and {3} \c<<[>>1<<]>>{4}\c<<[>>0<<]>>! <<1>>Want to pick them?
+Có {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> và {3} \c<<[>>1<<]>>{4}\c<<[>>0<<]>>! <<1>>Bạn muốn chọn chúng không?
+There are {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> and 1 \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Want to pick them?
+Có {1} \c<<[>>1<<]>>{2}\c<<[>>0<<]>> và 1 \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Bạn muốn chọn chúng không?
+There is 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> and {2} \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Want to pick them?
+Có 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> và {2} \c<<[>>1<<]>>{3}\c<<[>>0<<]>>! <<1>>Bạn muốn chọn chúng không?
+There is 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> and 1 \c<<[>>1<<]>>{2}\c<<[>>0<<]>>! <<1>>Want to pick them?
+Có 1 \c<<[>>1<<]>>{1}\c<<[>>0<<]>> và 1 \c<<[>>1<<]>>{2}\c<<[>>0<<]>>! <<1>>Bạn muốn chọn chúng không?
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and {3} \c[1]{4}\c[0].\wtnp[30]
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and {3} \c[1]{4}\c[0].\wtnp[30]
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the {1} \c[1]{2}\c[0] and \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and {2} \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and {2} \c[1]{3}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and \c[1]{2}\c[0].\wtnp[30]
+\me[Berry get]You picked the \c[1]{1}\c[0] and \c[1]{2}\c[0].\wtnp[30]
+{1} put them in\<<n>>your Bag's <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> Pocket.<<1>>
+{1} put them in\<<n>>your Bag's <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> Pocket.<<1>>
+The soil returned to its {1} state.
+Đất đã trở lại trạng thái {1} ban đầu.
+soft and earthy
+mềm mại và mộc mạc
+A Pokémon jumped out, but the repellent made it run away!
+Một Pokémon nhảy ra, nhưng thuốc đuổi bắt khiến nó bỏ chạy!
+A Pokémon jumped out at you!
+Một Pokémon bất ngờ nhảy ra trước mặt bạn!
+You may be able to dig up the seed. Dig up the {1}?
+Bạn có thể đào hạt giống lên. Đào {1} lên?
+The dug up {1} was in good enough condition to keep.
+Vật được đào lên {1} có tình trạng đủ tốt để giữ lại.
+The dug up {1} broke apart in your hands.
+Vật đào lên {1} vỡ vụn trong tay bạn.
+You may be able to dig up the berry. Dig up the {1}?
+Bạn có thể đào quả mọng lên. Đào {1} lên?
+Weeds are growing here. Pull out the weeds?
+Ở đây có cỏ dại mọc. Nhổ cỏ đi?
+{1} pulled out the weeds!
+{1} đã nhổ cỏ dại!
+There's something on the ground...
+Có thứ gì đó trên mặt đất...
+BerryPlant Event #{info[0][1]} on map #{pbGetBasicMapNameFromId(info[0][0])}[#{info[0][0]}] has no map(region,x,y) defined.
+Sự kiện BerryPlant #{info[0][1]} on map #{pbGetBasicMapNameFromId(info[0][0])}[#{info[0][0]}] has no map(region,x,y) defined.
+Oh, something dropped!
+Ồ, có thứ gì đó rơi xuống rồi!
+The composter cannot be used.
+Không thể sử dụng thùng ủ phân.
+It's a composter.<<n>>Compost some Berries to make Mulch?
+Đây là một thùng ủ phân.<<n>>Ủ một ít quả mọng để làm phân hữu cơ?
+Read lid
+Đọc nắp
+It's a composter!<<n>>The instructions are written on the lid...
+Đây là thùng ủ phân!<<n>>Hướng dẫn sử dụng được ghi trên nắp...
+Do you want to compost some Berries to make Mulch?
+Bạn có muốn ủ một ít quả mọng để làm phân hữu cơ không?
+{1} put {2} into the composter!
+{1} cho {2} vào thùng ủ phân!
+\w[signskin]Put {1} Berries in, and you can make Mulch.
+\w[signskin]Cho {1} Quả mọng vào, và bạn có thể làm Lớp phủ.
+\w[signskin]Using Mulch on the soil before planting a Berry helps the Berries grow.
+Việc sử dụng lớp phủ (mulch) trên đất trước khi trồng cây dâu giúp cây dâu phát triển tốt hơn.
+Autoplanting cannot be done.
+Việc tự động trồng cây là không thể.
+Oh I don't know how to plant seeds yet. Maybe one day.
+Ồ, tôi chưa biết cách gieo hạt. Có lẽ một ngày nào đó tôi sẽ học được.
+I can plant some Berries for you!
+Tôi có thể trồng một ít quả mọng cho bạn!
+Do you want me to plant some of your Berries?
+Bạn có muốn tôi trồng một số quả mọng của bạn không?
+Let me know if you change your mind!
+Hãy cho tôi biết nếu bạn đổi ý nhé!
+I wasn't able to plant the Berries. Here, have them back!
+Tôi không trồng được mấy quả mọng. Đây, lấy lại đây!
+I planted some of the Berries, but not all of them. Here are the ones left over!
+Tôi đã trồng một số cây dâu tây, nhưng không phải tất cả. Đây là những cây còn lại!
+I've planted all of the Berries you gave me!
+Tôi đã trồng hết số quả mọng mà bạn cho tôi rồi!
+Event #{event} doesn't have BerryPlantData.
+Sự kiện #{event} không có BerryPlantData.
+{1} watered the plant.\wtnp[40]
+{1} tưới nước cho cây.\wtnp[40]
+Graphics/UI/Berry Improvements/potsWaterBg
+Graphics/UI/Berry Improvements/potsWaterBg
+Graphics/UI/Berry Improvements/potsWaterGauge
+Graphics/UI/Berry Improvements/potsWaterGauge
+Graphics/Pictures/Berry Improvements/potsWaterBg
+Graphics/Pictures/Berry Improvements/potsWaterBg
+Graphics/Pictures/Berry Improvements/potsWaterGauge
+Graphics/Pictures/Berry Improvements/potsWaterGauge
+Remove
+Loại bỏ
+Do what with this rule?
+Vậy thì nên làm gì với quy định này?
+There are no remaining battle rules to add.
+Không còn luật chiến đấu nào cần bổ sung nữa.
+Selected battle rule is invalid.
+Luật chiến đấu đã chọn không hợp lệ.
+Battle rule inverted.
+Luật chiến đấu bị đảo ngược.
+Set battle rules...
+Thiết lập luật chơi...
+Set battle rules to apply to the next encounter.
+Thiết lập luật chiến đấu áp dụng cho cuộc chạm trán tiếp theo.
+Set partner trainer
+Thiết lập người huấn luyện đối tác
+Set a partner trainer to accompany the player in battle.
+Chọn một người huấn luyện viên đồng hành để cùng người chơi tham gia trận chiến.
+Replace
+Thay thế
+Do what with the player's existing partner? ({1})
+Làm gì với đối tác hiện tại của người chơi? ({1})
+Removed {1} as partner.
+Đã xóa {1} khỏi danh sách đối tác.
+Choose a new partner.
+Hãy chọn một người bạn đời mới.
+PARTNER TRAINER
+HUẤN LUYỆN VIÊN ĐỐI TÁC
+Registered {1} as partner.
+Đã đăng ký {1} với tư cách là đối tác.
+Trainer is missing a back sprite.<<n>>Unable to set as partner.
+Huấn luyện viên bị thiếu hình ảnh mặt sau.<<n>>Không thể thiết lập làm đối tác.
+Toggle battle gimmicks...
+Các chiêu thức chiến đấu bật/tắt...
+Toggles for various battle gimmicks such as Mega Evolution.
+Các nút chuyển đổi cho nhiều cơ chế chiến đấu khác nhau, chẳng hạn như Tiến hóa Mega.
+<<[>>ADD NEW RULE<<]>>
+<<[>>ADD NEW RULE<<]>>
+Select a new battle rule to apply.
+Chọn một luật chiến đấu mới để áp dụng.
+<<[>>CLEAR ALL RULES<<]>>
+<<[>>CLEAR ALL RULES<<]>>
+Clear all active battle rules.
+Xóa bỏ tất cả các quy tắc chiến đấu đang hoạt động.
+No battle active battle rules to clear.
+Không có trận chiến nào đang diễn ra, cần xóa bỏ các quy tắc chiến đấu.
+Are you sure you want to clear all active battle rules?
+Bạn có chắc chắn muốn xóa tất cả các quy tắc chiến đấu đang hoạt động không?
+Determines the number of battlers on each side of the field.
+Xác định số lượng chiến binh ở mỗi bên chiến trường.
+Set the battle size.
+Thiết lập quy mô trận chiến.
+The player's partner trainer will not participate in battle.
+Huấn luyện viên đồng hành của người chơi sẽ không tham gia trận chiến.
+The game will continue even if the player loses the battle.
+Trò chơi sẽ tiếp tục ngay cả khi người chơi thua trận.
+The player will be unable to select the Run command.
+Người chơi sẽ không thể chọn lệnh Chạy.
+Wild Pokémon will always attempt to flee as their first action.
+Pokémon hoang dã luôn cố gắng bỏ chạy ngay lập tức.
+Trainers will be unable to manually switch out Pokémon.
+Người huấn luyện sẽ không thể tự tay đổi Pokémon.
+Determines whether or not switch mode is enabled.
+Xác định xem chế độ chuyển mạch có được bật hay không.
+Set whether switch mode should be enabled. (Trainer battles only)
+Thiết lập xem chế độ chuyển đổi có được bật hay không. (Chỉ dành cho các trận đấu huấn luyện viên)
+The player's Pokémon will not gain any experience.
+Pokémon của người chơi sẽ không nhận được bất kỳ điểm kinh nghiệm nào.
+The player will not lose or receive any prize money.
+Người chơi sẽ không mất hoặc nhận được bất kỳ khoản tiền thưởng nào.
+Determines the default battle weather.
+Xác định thời tiết chiến đấu mặc định.
+Set the default battle weather.
+Thiết lập thời tiết mặc định cho trận chiến.
+Determines the default battle terrain.
+Xác định địa hình chiến đấu mặc định.
+Set the default battle terrain.
+Thiết lập địa hình chiến đấu mặc định.
+Determines the battle environment.
+Xác định môi trường chiến đấu.
+Set the battle environment.
+Thiết lập môi trường chiến đấu.
+Poké Balls will be unable to be selected from the bag.
+Bạn sẽ không thể chọn Poké Ball từ trong túi đồ.
+Any captured Pokémon must be added to the party.
+Bất kỳ Pokémon nào bắt được đều phải được thêm vào đội hình.
+Determines whether or not battle animations are enabled.
+Xác định xem hoạt ảnh chiến đấu có được bật hay không.
+Set whether battle animations should be enabled.
+Thiết lập xem hoạt ảnh chiến đấu có nên được bật hay không.
+Determines the graphic used for the battle background.
+Xác định hình ảnh được sử dụng làm phông nền cho trận chiến.
+Set the name of the background graphic.
+Đặt tên cho hình nền.
+Determines the graphics used for the battle bases.
+Xác định đồ họa được sử dụng cho các căn cứ chiến đấu.
+Set the name of the battle base graphics.
+Đặt tên cho đồ họa căn cứ chiến đấu.
+The variable number used to store the battle outcome.
+Biến số dùng để lưu trữ kết quả trận chiến.
+Set a variable number.
+Đặt một số biến.
+Determines temporary player attributes.
+Xác định các thuộc tính tạm thời của người chơi.
+Enter the player's temporary display name.
+Nhập tên hiển thị tạm thời của người chơi.
+Set the player's temporary outfit number.
+Đặt số trang phục tạm thời cho người chơi.
+Determines the player's temporary party.
+Xác định đội hình tạm thời của người chơi.
+Add a temporary party member (slot {1}).<<n>>(Exit menu to end early)
+Thêm thành viên tạm thời vào nhóm (vị trí {1}).<<n>>(Thoát menu để kết thúc sớm)
+Set a level for {1}.
+Đặt mức độ cho {1}.
+Set a temporary party of {1}.
+Thiết lập một đội hình tạm thời gồm {1}.
+Determines the player's temporary inventory.
+Xác định kho đồ tạm thời của người chơi.
+Add a new item to the temporary bag.<<n>>(Exit menu to end)
+Thêm vật phẩm mới vào giỏ hàng tạm thời.<<n>>(Thoát menu để kết thúc)
+Set the number of {1} to add.
+Đặt số lượng {1} cần thêm.
+Set a temporary inventory of {1} items.
+Thiết lập kho tạm thời gồm {1} mặt hàng.
+Trainers are unable to use any items from their inventories.
+Huấn luyện viên không thể sử dụng bất kỳ vật phẩm nào từ kho đồ của họ.
+Determines which side Mega Evolution is disabled for.
+Xác định bên nào bị vô hiệu hóa tính năng Tiến hóa Mega.
+Choose a side to disable Mega Evolution for.
+Chọn một phe để vô hiệu hóa Mega Evolution.
+The AI will control the player's commands.
+Trí tuệ nhân tạo sẽ điều khiển các lệnh của người chơi.
+The battle functions like a Battle Tower or PvP battle.
+Trận chiến diễn ra tương tự như trận đấu Tháp Chiến đấu hoặc trận đấu PvP.
+Type effectiveness will be inverted.
+Hiệu quả của từng loại sẽ bị đảo ngược.
+Determines a battle gimmick to be used by wild Pokémon.
+Xác định chiến thuật mà Pokémon hoang dã sẽ sử dụng trong trận chiến.
+Choose a battle gimmick for wild Pokémon to use.
+Hãy chọn một chiêu thức chiến đấu cho Pokémon hoang dã sử dụng.
+Determines whether Poké Balls always succeeed or fail.
+Xác định xem Poké Ball luôn thành công hay thất bại.
+Set whether Poké Balls will always succeed or fail.
+Thiết lập xem việc sử dụng Poké Ball có luôn thành công hay không.
+Captured Pokémon will not be kept or registered in the Pokédex.
+Pokémon bị bắt sẽ không được giữ lại hoặc ghi nhận trong Pokédex.
+You're prompted to capture a wild Pokémon when its HP drops to zero.
+Bạn sẽ được nhắc nhở bắt một Pokémon hoang dã khi lượng HP của nó giảm xuống bằng không.
+Determines the music effect upon capturing a Pokémon.
+Xác định hiệu ứng âm thanh khi bắt được Pokémon.
+Set the music effect that plays upon capturing a Pokémon.
+Thiết lập hiệu ứng âm thanh phát ra khi bắt được Pokémon.
+Determines the battle background music.
+Xác định nhạc nền của trận chiến.
+Set the battle background music. (Set to None to disable)
+Thiết lập nhạc nền cho trận chiến. (Chọn None để tắt)
+Determines the battle victory music.
+Xác định nhạc chiến thắng trong trận chiến.
+Set the battle victory music. (Set to None to disable)
+Thiết lập nhạc chiến thắng trong trận đấu. (Chọn None để tắt)
+Determines the low HP background music.
+Xác định nhạc nền cho chế độ HP thấp.
+Set the low HP background music. (Set to None to disable)
+Đặt nhạc nền khi HP thấp. (Chọn None để tắt)
+Determines the text displayed at the start of an encounter.
+Xác định văn bản hiển thị khi bắt đầu một cuộc gặp gỡ.
+Set the displayed encounter text.
+Thiết lập văn bản hiển thị cho cuộc gặp gỡ.
+Determines the opposing trainer's win speech.
+Xác định bài phát biểu chiến thắng của huấn luyện viên đối phương.
+Set the opposing trainer's win speech. (PvP-style battles only)
+Thiết lập bài phát biểu chiến thắng của huấn luyện viên đối phương. (Chỉ áp dụng cho các trận đấu kiểu PvP)
+Determines the opposing trainer's lose speech.
+Xác định bài phát biểu thất bại của huấn luyện viên đối phương.
+Set the opposing trainer's lose speech.
+Chuẩn bị bài phát biểu thua cuộc của huấn luyện viên đối phương.
+Determines the way opponents slide on screen when encountered.
+Xác định cách đối thủ trượt trên màn hình khi chạm trán.
+Set the way opponents slide on screen.
+Thiết lập cách đối thủ di chuyển trên màn hình.
+Determines the style of the displayed databoxes.
+Xác định kiểu hiển thị của các hộp dữ liệu.
+Set the databox style to display.
+Đặt kiểu hiển thị cho hộp dữ liệu.
+Determines which mid-battle script to run.
+Xác định kịch bản nào sẽ được thực thi trong quá trình chiến đấu.
+No valid midbattle scripts found.
+Không tìm thấy kịch bản giữa trận chiến hợp lệ nào.
+Set a mid-battle script to run.
+Thiết lập kịch bản chạy giữa trận chiến.
+#{g}You don't have enough Pokémon in your party that can participate...
+#{g}Bạn không có đủ Pokémon trong đội hình để tham gia...
+#{g}Come back when you have enough Pokémon to battle with.
+#{g}Hãy quay lại khi bạn có đủ Pokémon để chiến đấu.
+#{g}Huh? Changed your mind?
+#{g}Hả? Đổi ý rồi à?
+#{g}Come back when you have the right Pokéméon you want to battle with.
+#{g}Hãy quay lại khi bạn đã tìm được Pokémon phù hợp để chiến đấu.
+{1} evolved into {2}!
+{1} đã tiến hóa thành {2}!
+Capture {1}?
+Bắt giữ {1}?
+{1} is completely immune to indirect damage!
+{1} hoàn toàn miễn nhiễm với thiệt hại gián tiếp!
+Basic
+Nền tảng
+Long
+Dài
+Graphics/Items/#{@battler.item_id}
+Graphics/Items/#{@battler.item_id}
+{1} reverted to its original typing!
+{1} đã trở lại kiểu chữ ban đầu!
+Determines which side Dynamax is disabled for.
+Xác định bên nào bị vô hiệu hóa Dynamax.
+Choose a side to disable Dynamax for.
+Chọn phía bạn muốn vô hiệu hóa Dynamax.
+Other plugin settings...
+Các cài đặt plugin khác...
+Settings for various features implemented by add-on plugins.
+Cài đặt cho các tính năng khác nhau được triển khai bởi các plugin bổ sung.
+Dynamax species metrics...
+Các chỉ số loài Dynamax...
+Determines which side Terastallization is disabled for.
+Xác định phía nào bị vô hiệu hóa chức năng Terastallization.
+Choose a side to disable Terastallization for.
+Chọn phía bạn muốn tắt tính năng Terastallization.
+Determines which side Z-Moves are disabled for.
+Xác định phía nào bị vô hiệu hóa chức năng di chuyển theo trục Z.
+Choose a side to disable Z-Moves for.
+Chọn một bên để vô hiệu hóa tính năng Z-Moves.
+Determines which side Ultra Burst is disabled for.
+Xác định bên nào bị vô hiệu hóa chế độ Ultra Burst.
+Choose a side to disable Ultra Burst for.
+Chọn một bên để vô hiệu hóa Ultra Burst.
+This is a working Menu Entry for Voltseon's Pause Menu.
+Đây là một mục menu hoạt động dành cho Menu Tạm dừng của Voltseon.
+Set Menu Theme
+Đặt chủ đề menu
+Change the Menu Theme for Voltseon's Pause Menu...
+Thay đổi giao diện menu cho menu tạm dừng của Voltseon...
+Set the menu theme. (1 - {1})
+Đặt chủ đề menu. (1 - {1})
+The menu theme has been set to {1}.
+Chủ đề menu đã được đặt thành {1}.
+Menu Theme
+Chủ đề Menu
+Set pause menu theme.
+Đặt chủ đề cho menu tạm dừng.
+Steps: {1}/{2}
+Các bước: {1}/{2}
+Caught: {1}
+Đã bắt được: {1}
+Level: {1}
+Cấp độ: {1}
+Caught: None
+Bị bắt: Không có
+{1} {2} {3}
+{1} {2} {3}
+You have {1} new quest!
+Bạn có {1} nhiệm vụ mới!
+You have {1} new quests!
+Bạn có {1} nhiệm vụ mới!
+The Pokémon's HP won't fall below {1}% when attacked.
+HP của Pokémon sẽ không giảm xuống dưới {1}% khi bị tấn công.
+Damage Gate
+Cổng hư hỏng
+Unknown weather.
+Thời tiết không xác định.
+Unknown terrain.
+Địa hình chưa được biết đến.
+Offense Cheer 1
+Đội tấn công cổ vũ 1
+The Pokémon's attacks deal increased damage.
+Các đòn tấn công của Pokémon gây sát thương lớn hơn.
+Offense Cheer 2
+Đội tấn công cổ vũ 2
+The Pokémon's attacks will trigger effects & critically hit.
+Các đòn tấn công của Pokémon sẽ gây ra hiệu ứng và gây sát thương chí mạng.
+Offense Cheer 3
+Đội tấn công cổ vũ 3
+The Pokémon's attacks bypass effects like Protect & Substitute.
+Các đòn tấn công của Pokémon này có thể bỏ qua các hiệu ứng như Protect và Substitute.
+Defense Cheer 1
+Đội cổ vũ phòng thủ 1
+The Pokémon takes reduced damage from attacks.
+Pokémon này chịu ít sát thương hơn từ các đòn tấn công.
+Defense Cheer 2
+Đội cổ vũ quốc phòng 2
+The Pokémon is immune to critical hits and move effects.
+Pokémon này miễn nhiễm với đòn chí mạng và hiệu ứng chiêu thức.
+Defense Cheer 3
+Đội cổ vũ phòng thủ 3
+Accuracy boosted by the held {1}.
+Độ chính xác được tăng cường nhờ {1} được giữ.
+Accuracy lowered by the held {1}.
+Độ chính xác giảm do {1} được giữ lại.
+Power boosted by the held {1}.
+Sức mạnh được tăng cường nhờ {1} đang được giữ.
+Power weakened by the held {1}.
+Sức mạnh bị suy yếu do nắm giữ {1}.
+Storm
+Bão
+Blizzard
+Bão tuyết
+Heavy rain
+Mưa lớn
+Fog
+Sương mù
+The weather on the zone has been {1}, with chance of some places having {2}, since {3}:{4}.
+Thời tiết trong khu vực là {1}, với khả năng một số nơi có {2}, kể từ {3}:{4}.
+The weather will change at {1}:{2} to {3} with chance of {4} on some places.
+Thời tiết sẽ thay đổi ở mức {1}:{2} đến {3} với xác suất {4} ở một số nơi.
+Summer grass
+Cỏ mùa hè
+Summer tall grass
+Cỏ cao mùa hè
+Autumn grass
+Cỏ mùa thu
+Autumn tall grass
+Cỏ cao mùa thu
+Winter grass
+Cỏ mùa đông
+Winter tall grass
+Cỏ cao mùa đông
+Spring grass
+Cỏ mùa xuân
+Spring tall grass
+Cỏ cao mùa xuân
+Graphics/Pictures/WeatherSystem/Seasons/
+Graphics/Pictures/WeatherSystem/Seasons/
+Graphics/UI/WeatherSystem/Seasons/
+Graphics/UI/WeatherSystem/Seasons/
+Não tem PP suficiente...
+Không có PP đủ...
+{1} não pode usar {2} em si mesmo
+{1} không thể sử dụng {2} trong thư
+{1} não pode ser usado em ovos!
+{1} không thể sử dụng chúng!
+{1} não pode ser usado nesse Pokémon.
+{1} Bạn không thể sử dụng Pokémon này.
+{1} curou o HP em {2} pontos.
+{1} curou o HP em {2} pontos.
+Selecione um Pokémon?
+Chọn một Pokémon?
+{1} só pode ser usado em alvos dormindo.
+{1} vì vậy bạn có thể sử dụng nó trong ký túc xá của mình.
+{1} curou o HP em {2} pontos e causou dano em {3}.
+{1} curou o HP em {2} pontos và gây ra em {3}.
+{1} não pode ser usado nesse Pokémon pois possue a Ability Telepathy.
+{1} Không ai có thể sử dụng Pokémon có đặc tính Telepathy.
+{1} não pode ser usado nesse Pokémon pois possue a Ability Bulletproof.
+{1} Không có khả năng sử dụng Pokémon có đặc tính Bulletproof.
+{1} não pode ser usado.
+{1} não pode ser usado.
+Os pokemon do seu time foram curados!
+Pokemon của bạn đang dành thời gian cho curados!
+Nenhum pokemon do seu time foi curado!
+Nenhum pokemon do seu time foi curado!
+{1} não pode usar {2} em si mesmo.
+{1} không thể sử dụng {2} như vậy.
+{1} foi revivido pelo Revival Blessing.
+{1} foi revivido pelo Revival Blessing.
+{1} foi revivido pelo Revival Blessing e {2} desmaiou.
+{1} foi revivido pelo Revival Blessing và {2} desmaiou.
+{1} foi revivido pelo Lunar Dance, curou {2} por completo e desmaiou.
+{1} foi revivido pelo Lunar Dance, curou {2} bởi đã hoàn thành và desmaiou.
+{1} can't be used.
+{1} không thể sử dụng.
+Restaure os PPS...
+Phục hồi os PPS...
+Not enough PP...
+Không đủ PP...
+{1} restaurou 100% do seu HP e dormiu.
+{1} nhà hàng 100% do seu HP e ký túc xá.
+{1} curou o HP em {2} pontos e curou efeito negativo de #{newpkmn.name}.
+{1} curou o HP em {2} pontos và curou efeito negativo de #{newpkmn.name}.
+Seus status foram curados!
+Seus status foram curados!
+Você não tem nenhum status valido!
+Bạn không phải là trạng thái không hợp lệ!
+Ninguém tem nenhum efeito de status!
+Ninguém tem nenhum efeito de status!
+Os efeitos de status de todos foram curados!
+Đây là trạng thái của tất cả các việc cần làm trên diễn đàn!
+Os Pokémon do seu time foram curados!
+Pokémon này sẽ dành thời gian cho bạn!
+Nenhum Pokémon do seu time foi curado!
+Nenhum Pokémon đã dành thời gian cho curado!
+{1} is immune to {2}'s magic!
+{1} miễn nhiễm với phép thuật của {2}!
+{1} can't use {2} after tampering!
+{1} không thể sử dụng {2} sau khi bị can thiệp!
+{1} hurt itself from being brittle!
+{1} tự làm tổn thương mình vì quá giòn!
+{1} was hurt by the thorns in the rose garden!
+{1} bị gai trong vườn hoa hồng đâm vào!
+{1}'s magic is back!
+Phép thuật của {1} đã trở lại!
+{1}'s gold hoard wore off!
+Kho vàng của {1} đã cạn kiệt!
+{1} is starting to feel the fatigue
+{1} bắt đầu cảm thấy mệt mỏi
+{1} became confused due to vertigo!
+{1} trở nên bối rối vì chóng mặt!
+{1} got scared and switched out!
+{1} sợ hãi và đổi chỗ!
+{1} is exhausted from breaking it's limits!
+{1} đã kiệt sức vì vượt quá giới hạn của nó!
+{1} was freed from the restrictive vines!
+{1} đã được giải thoát khỏi những dây leo trói buộc!
+{1} caught the ball attack with {2}!
+{1} bắt được quả bóng tấn công với {2}!
+{1} is scratching its itch and can't move!
+{1} đang gãi ngứa và không thể di chuyển!
+{1} is idolizing!
+{1} đang thần tượng hóa!
+Set the Pokémon's winded count.
+Đặt số lần thở hổn hển của Pokémon.
+Set the Pokémon's blinded count.
+Đặt số lần bị mù của Pokémon.
+Set {1}'s winded count (0-99).
+Số lần thở của bộ {1} (0-99).
+Set {1}'s blinded count (0-99).
+Số lượng ẩn của tập {1} (0-99).
+{1} set up a magical barrier!
+{1} thiết lập một rào chắn ma thuật!
+{1} barrier was broken and a curse was placed!
+{1} rào cản đã bị phá vỡ và một lời nguyền đã được đặt ra!
+Magical miasma is in the air around {1}!
+Không khí huyền ảo đang bao trùm {1}!
+{1} began to gather fighting energy!
+{1} bắt đầu tích tụ năng lượng chiến đấu!
+This sudden energy is pumping {1} up!
+Năng lượng đột ngột này đang dâng lên {1}!
+{1} threw Poison spikes across the battle field!
+{1} ném gai độc khắp chiến trường!
+{1} feels energised after being pollenised!
+{1} cảm thấy tràn đầy năng lượng sau khi được thụ phấn!
+{1} snuffed out its Tailwind!
+{1} đã dập tắt Tailwind của nó!
+{1} snuffed out the foe's Tailwind!
+{1} đã dập tắt Tailwind của kẻ thù!
+{1} shattered the Trick Room!
+{1} đã phá hủy Phòng Bí ẩn!
+{1} shattered the Wonder Room!
+{1} đã phá hủy Phòng Kỳ Diệu!
+{1} shattered the Magic Room!
+{1} đã phá hủy Phòng Phép Thuật!
+{1} got captured by {2}'s vines and can't escape!
+{1} bị dây leo của {2} bắt giữ và không thể thoát ra!
+{1} set up a gold hoard, boosting {2}'s Dragon moves!
+{1} thiết lập kho vàng, tăng cường các chiêu thức Rồng của {2}!
+{1} had its magic tampered!
+{1} đã bị can thiệp vào phép thuật của nó!
+{1}'s {2} makes it act like it's in the sun!
+{1}'s {2} khiến nó hành xử như thể đang ở dưới ánh mặt trời!
+{1}'s {2} froze everything on the battlefield
+{1} của {2} đã đóng băng mọi thứ trên chiến trường
+{1}'s {2} shocked everything on the battlefield
+{1} của {2} đã gây chấn động mọi thứ trên chiến trường
+{1}'s {2} burned everything on the battlefield
+{1} của {2} đã thiêu rụi mọi thứ trên chiến trường
+Small electric shock came from the attack hitting {1}!
+Một cú sốc điện nhỏ xuất hiện khi cuộc tấn công trúng {1}!
+{1} is enraged at its fallen ally!
+{1} vô cùng tức giận trước đồng minh đã ngã xuống của mình!
+{1} won't leave until it has won!
+{1} sẽ không rời đi cho đến khi giành chiến thắng!
+{1} is no longer vengeful!
+{1} không còn thù hận nữa!
+{1} is radiating a bursting aura, gaining the {2} type!
+{1} đang tỏa ra một luồng hào quang bùng nổ, đạt được loại {2}!
+{1} is radiating a blazing aura, gaining the {2} type!
+{1} đang tỏa ra hào quang rực rỡ, đạt được loại {2}!
+{1} is radiating a blazing aura
+{1} đang tỏa ra một luồng hào quang rực rỡ.
+{1}'s spirit ignited giving it the {2} type!
+Tinh thần của {1} bùng cháy, mang lại cho nó kiểu {2}!
+{1} is feeling very sick due to the weather!
+{1} cảm thấy rất khó chịu vì thời tiết!
+{1}'s {2} made the field spooky!
+{1} của {2} đã khiến cánh đồng trở nên ma quái!
+{1} gained the {2} type!
+{1} đã đạt được loại {2}!
+Fatigue
+Mệt mỏi
+Winded
+Thở hổn hển
+Vertigo
+Chóng mặt
+Splinter
+Mảnh vỡ
+Pester
+Kẻ quấy rầy
+Scared
+Sợ hãi
+Brittle
+Dễ vỡ
+Drenched
+Ướt sũng
+Allergies
+Dị ứng
+Migraine
+Đau nửa đầu
+Opulent
+Sang trọng
+Blinded
+Mù lòa
+Idolize
+Thần tượng hóa
+{1} is already fatigue!
+{1} đã mệt mỏi rồi!
+{1} is already winded!
+{1} đã mệt rồi!
+{1} already has vertigo!
+{1} đã bị chóng mặt rồi!
+{1} already has splinters!
+{1} đã có mảnh vụn rồi!
+{1} is already being pestered!
+{1} đã bị quấy rầy rồi!
+{1} is already scared!
+{1} đã sợ rồi!
+{1} is already brittle!
+{1} đã dễ vỡ rồi!
+{1} is already drenched!
+{1} đã ướt sũng rồi!
+{1} already has allergies!
+{1} đã bị dị ứng rồi!
+{1} already has a migraine!
+{1} đã bị đau nửa đầu rồi!
+{1} is already being greedy!
+{1} đã tham lam rồi!
+{1} is already blinded!
+{1} đã bị mù rồi!
+{1} is already infatuated!
+{1} đã say mê rồi!
+{1} cannot get fatigued!
+{1} không thể mệt mỏi!
+{1} cannot be winded!
+{1} không thể bị gió cuốn đi!
+{1} keeps its balance!
+{1} giữ thăng bằng!
+{1} cannot get splinters!
+{1} không thể bị dằm đâm!
+{1} cannot be pestered!
+{1} không thể bị quấy rầy!
+{1} cannot get scared!
+{1} không thể sợ hãi!
+{1} cannot be brittle!
+{1} không thể giòn!
+{1} cannot be drenched!
+{1} không thể bị ướt!
+{1} cannot get allergies!
+{1} không thể bị dị ứng!
+{1} cannot get migraines!
+{1} không thể bị đau nửa đầu!
+{1} cannot get greedy!
+{1} không thể tham lam!
+{1} cannot get blinded!
+{1} không thể bị mù!
+{1} cannot idolize the opponent!
+{1} không thể thần tượng đối thủ!
+{1} isn't fatigued because of {2}'s {3}!
+{1} không mệt mỏi vì {3} của {2}!
+{1} cannot be winded because of {2}'s {3}!
+{1} không thể bị nghẹt thở vì {3} của {2}!
+{1} kept its balance because of {2}'s {3}!
+{1} giữ được thăng bằng nhờ {3} của {2}!
+{1} cannot get splinters because of {2}'s {3}!
+{1} không thể bị dằm đâm vì {2}'s {3}!
+{1} cannot be pestered because of {2}'s {3}!
+{1} không thể bị quấy rầy vì {3} của {2}!
+{1} cannot get scared because of {2}'s {3}!
+{1} không thể sợ hãi vì {3} của {2}!
+{1} cannot be brittle because of {2}'s {3}!
+{1} không thể giòn vì {2} của {3}!
+{1} cannot get drenched because of {2}'s {3}!
+{1} không thể bị ướt sũng vì {2} của {3}!
+{1} cannot get allergies because of {2}'s {3}!
+{1} không thể bị dị ứng vì {2}'s {3}!
+{1} cannot get migraines because of {2}'s {3}!
+{1} không thể bị đau nửa đầu vì {2} của {3}!
+{1} cannot get greedy because of {2}'s {3}!
+{1} không thể tham lam vì {3} của {2}!
+{1} cannot get blinded because of {2}'s {3}!
+{1} không thể bị mù vì {3} của {2}!
+{1} cannot idolize because of {2}'s {3}!
+{1} không thể thần tượng vì {2} của {3}!
+{1}'s {2} prevents fatigue!
+{1} của {2} ngăn ngừa mệt mỏi!
+{1}'s {2} prevents getting winded!
+{1} của {2} giúp ngăn ngừa việc bị hụt hơi!
+{1}'s {2} prevents vertigo!
+{1}'s {2} ngăn ngừa chóng mặt!
+{1}'s {2} prevents splinters!
+{1}'s {2} ngăn ngừa dằm!
+{1}'s {2} prevents pestering!
+{1} của {2} ngăn chặn việc quấy rối!
+{1}'s {2} prevents getting scared!
+{1} của {2} ngăn ngừa việc bị sợ hãi!
+{1}'s {2} prevents getting brittle!
+{1} của {2} ngăn ngừa việc trở nên giòn!
+{1}'s {2} prevents getting drecnhed!
+{1} của {2} ngăn không cho bị ướt!
+{1}'s {2} prevents allergies!
+{1} của {2} ngăn ngừa dị ứng!
+{1}'s {2} prevents migraine!
+{1} của {2} ngăn ngừa chứng đau nửa đầu!
+{1}'s {2} prevents greed!
+{1} của {2} ngăn chặn lòng tham!
+{1}'s {2} prevents blinding!
+{1} của {2} ngăn ngừa mù lòa!
+{1}'s {2} prevents idolization!
+{1} của {2} ngăn chặn sự thần tượng hóa!
+{1} feels fatigued!
+{1} cảm thấy mệt mỏi!
+{1} had the wind knocked out of it!
+{1} đã bị mất hơi thở!
+{1} cannot stand up straight!
+{1} không thể đứng thẳng!
+Stoney splinters have dug into {1}!
+Những mảnh đá vụn đã găm vào {1}!
+{1} is feeling very itchy!
+{1} đang cảm thấy rất ngứa!
+{1} joints feel very brittle!
+{1} Các khớp cảm thấy rất giòn!
+{1} got drenched!
+{1} bị ướt sũng!
+{1} is starting to sneeze due to allergies!
+{1} bắt đầu hắt hơi do dị ứng!
+{1} started to have a migraine!
+{1} bắt đầu bị đau nửa đầu!
+{1} is getting too greedy and leaking power!
+{1} đang trở nên quá tham lam và lãng phí quyền lực!
+{1} has lost it's sight and cannot see!
+{1} đã mất thị lực và không thể nhìn thấy!
+{1} began to idolize the opponent's team!
+{1} bắt đầu thần tượng đội đối thủ!
+{1}'s fatigue has worn off!
+Sự mệt mỏi của {1} đã tan biến!
+{1} got its breath back.
+{1} đã lấy lại được hơi thở.
+{1} got its balance!
+{1} đã cân bằng!
+{1} removed its splinters.
+{1} đã loại bỏ các mảnh vụn của nó.
+{1} is no longer itchy.
+{1} không còn bị ngứa nữa.
+{1} is no longer scared!
+{1} không còn sợ hãi nữa!
+{1} feels strong again!
+{1} lại cảm thấy khỏe mạnh rồi!
+{1} has finally dried off!
+{1} cuối cùng cũng đã khô!
+{1} got over its allergies!
+{1} đã khỏi dị ứng!
+{1} recovered from its migraine.
+{1} đã khỏi chứng đau nửa đầu.
+{1} got over its greed.
+{1} đã vượt qua lòng tham của nó.
+{1} can see again!
+{1} có thể nhìn thấy lại!
+{1} got over the other team!
+{1} đã vượt qua đội kia!
+{1} is still tired from being fatigued!
+{1} vẫn còn mệt mỏi vì kiệt sức!
+{1} is winded and is catching its breath!
+{1} đang thở hổn hển và lấy lại hơi!
+{1} still can't get its balance!
+{1} vẫn chưa thể giữ thăng bằng!
+{1} was hurt by its splinters!
+{1} bị thương bởi mảnh vụn của nó!
+{1} was hurt due to itching too hard!
+{1} bị đau do gãi quá mạnh!
+{1} got too scared and switched out!
+{1} sợ quá nên đã đổi chỗ!
+{1} was too brittle to defend!
+{1} quá dễ vỡ để phòng thủ!
+{1} was hurt due to being drenched!
+{1} bị thương do bị ướt sũng!
+{1} is szeezing due to allergies!
+{1} đang hắt hơi do dị ứng!
+{1} was hurt due to it's migraine!
+{1} bị thương do chứng đau nửa đầu!
+{1} is still leaking power!
+{1} vẫn đang rò rỉ điện!
+{1} still can't see!
+{1} vẫn không thể nhìn thấy!
+{1} is too busy idolizing!
+{1} quá bận rộn với việc thần tượng hóa!
+An ice ring has been frozen over at {1}'s feet!
+Một vòng băng đã đóng lại dưới chân {1}!
+The Dragon Force opened up under {1}!
+Lực lượng Rồng đã mở cửa dưới {1}!
+{1} blew away the damaged terrain!
+{1} đã thổi bay địa hình bị hư hại!
+{1} blew away restictive winds!
+{1} đã thổi bay những cơn gió kìm hãm!
+{1} blew away haunted orbs!
+{1} thổi bay những quả cầu ma ám!
+{1} blew away burning debris!
+{1} đã thổi bay những mảnh vụn đang cháy!
+{1} blew away water channel!
+{1} kênh dẫn nước bị thổi bay!
+{1} blew away rose field!
+{1} cánh đồng hoa hồng bị gió thổi bay!
+{1} blew away the electric charge!
+{1} đã thổi bay điện tích!
+{1} blew away mind field!
+{1} đã thổi bay tâm trí!
+{1} blew away ice ring!
+{1} đã thổi bay vòng băng!
+{1} sealed away the Dragon Force!
+{1} đã phong ấn Sức mạnh Rồng!
+{1} blew away dark mist!
+{1} đã thổi bay màn sương mù đen!
+{1} blew away mana flux!
+{1} thổi bay dòng mana!
+The terrain debris disappeared from around {1}!
+Các mảnh vụn địa hình đã biến mất khỏi khoảng {1}!
+The harsh wind disappeared from around {1}!
+Cơn gió mạnh đã biến mất khỏi khoảng {1}!
+The haunted orbs disappeared from around {1}!
+Những quả cầu ma ám đã biến mất khỏi khoảng {1}!
+The burning debris disappeared from around {1}!
+Các mảnh vụn đang cháy đã biến mất khỏi khoảng {1}!
+The rose field disappeared from around {1}!
+Cánh đồng hoa hồng đã biến mất từ ​​khoảng {1}!
+The electric charge disappeared from around {1}!
+Điện tích đã biến mất khỏi khoảng {1}!
+The mind field disappeared from around {1}!
+Trường tâm trí biến mất khỏi khoảng {1}!
+The ice ring disappeared from around {1}!
+Vòng băng biến mất khỏi khoảng {1}!
+The Dragon Forze was sealed around {1}!
+Rồng Forze đã bị phong ấn vào khoảng {1}!
+The dark mist disappeared from around {1}!
+Làn sương mù đen biến mất khỏi khoảng {1}!
+The mana flux disappeared from around {1}!
+Dòng mana đã biến mất từ ​​khoảng {1}!
+{1} absorbed the electric charge!
+{1} đã hấp thụ điện tích!
+{1} absorbed the crashing waves!
+{1} đã hấp thụ những con sóng dữ dội!
+{1} was hurt due to its dry skin!
+{1} bị thương do da khô!
+{1} absorbed the burning debris!
+{1} đã hấp thụ các mảnh vụn đang cháy!
+{1} ate the rose field!
+{1} đã ăn hết cánh đồng hoa hồng!
+{1} absorbed a large amount of poison spikes!
+{1} đã hấp thụ một lượng lớn gai độc!
+The terrain is too strong for {1} to smash it!
+Địa hình quá hiểm trở nên {1} không thể đập vỡ nó!
+The terrain was smashed and debris now covers {1}'s feet!
+Địa hình bị tàn phá và mảnh vụn giờ đây phủ kín chân của {1}!
+The terrain is too smashed to set up the terrain!
+Địa hình bị phá hủy quá nặng nên không thể dựng mô hình được!
+A harsh wind now restricts {1}'s movements!
+Một cơn gió mạnh hiện đang hạn chế sự di chuyển của {1}!
+Haunted Orbs are know haunting {1}'s side!
+Những quả cầu ma ám được biết là đang ám ảnh phía {1}!
+Sharp steel start floating around {1}!
+Thép sắc nhọn bắt đầu bay lơ lửng xung quanh {1}!
+Burning rocks and charcol were scattered around {1}'s feet!
+Đá cháy và than củi nằm rải rác xung quanh chân của {1}!
+A wave channel appeared on {1}'s feet!
+Một kênh sóng xuất hiện trên chân của {1}!
+A beautiful rose garden grew at {1}'s feet!
+Một vườn hoa hồng tuyệt đẹp mọc ngay dưới chân {1}!
+An electric charge has been set on {1}'s feet!
+Một điện tích đã được đặt vào chân của {1}!
+A field of psychic orbs has been set up around {1}!
+Một trường gồm các quả cầu tâm linh đã được thiết lập xung quanh {1}!
+A dark smog now surrounds {1}'s feet!
+Một lớp sương mù đen kịt giờ bao phủ đôi chân của {1}!
+A magical circle appeared under {1}'s feet!
+Một vòng tròn ma thuật xuất hiện dưới chân {1}!
+{1} is struggling agaisnt the restrictive winds!
+{1} đang phải vật lộn với những cơn gió hạn chế!
+A haunted orb attacked {1}!
+Một quả cầu ma ám đã tấn công {1}!
+The sharp steel dug into {1}!
+Thép sắc bén đâm vào {1}!
+{1} was burnt by the smouldering rocks!
+{1} đã bị thiêu cháy bởi những tảng đá đang âm ỉ!
+A rough wave crashed into {1}!
+Một con sóng dữ dội ập vào {1}!
+{1} was paralyzed by the energized field!
+{1} đã bị tê liệt bởi trường năng lượng!
+{1} was hit by a mind bomb!
+{1} đã bị trúng bom tâm lý!
+{1} can freely move around on the ice!
+{1} có thể tự do di chuyển trên băng!
+{1} slipped on the ice!
+{1} bị trượt chân trên băng!
+{1} sealed up the Dragon Force!
+{1} đã phong ấn Lực lượng Rồng!
+{1} was hurt by the Dragon Force!
+{1} đã bị Lực lượng Rồng làm bị thương!
+The smog crawled up and scared {1}!
+Khói mù bò lên và làm {1} sợ hãi!
+{1} was disrupted by the magic!
+{1} đã bị gián đoạn bởi phép thuật!
+{1} was burnt by the magical miasma!
+{1} đã bị thiêu cháy bởi khí độc ma thuật!
+{1} was paralyzed by the magical miasma!
+{1} đã bị tê liệt bởi luồng khí ma thuật!
+{1} was poisoned by the magical miasma!
+{1} đã bị nhiễm độc bởi khí độc ma thuật!
+Set Badges
+Bộ huy hiệu
+Update PBS from module
+Cập nhật PBS từ mô-đun
+The badges data was added to PBS/badges.txt.
+Dữ liệu huy hiệu đã được thêm vào PBS/badges.txt.
+Create PBS File(s)
+Tạo tệp PBS
+The entry {1} is required in {2} section {3}.
+Mục {1} là bắt buộc trong phần {2} mục {3}.
+BADGE INFO
+THÔNG TIN HUY HIỆU
+Obtained At
+Được lấy tại
+Main Type
+Loại chính
+Location
+Vị trí
+Leader
+Leader
+ACE
+ACE
+POKEMON
+POKEMON
+Not Obtained
+Không có được
+Bạn có {1} nhiệm vụ mới!
+Bạn có {1} nhiệm vụ mới!
+Đã dùng: {1}
+Đã dùng: {1}
+Lượt {1}
+Đ {1}
+HP của Pokémon sẽ không giảm xuống dưới {1}% khi bị tấn công.
+HP của Pokémon sẽ không giảm xuống dưới {1}% khi bị tấn công.
+Pokémon đang ở trạng thái Dynamax.
+Pokémon đang ở trạng thái Dynamax.
+Pokémon này được Terastallized thành hệ {1}.
+Pokémon này được Terastallized thành hệ {1}.
+Tăng Def của hệ Ice. Blizzard luôn trúng.
+Tăng Def của hệ Ice. Blizzard luôn trúng.
+Kết hợp hiệu ứng của Hail và Snow.
+Kết hợp hiệu ứng của Hail và Snow.
+Không phải hệ Ice sẽ chịu sát thương mỗi lượt. Blizzard luôn trúng.
+Không phải hệ Ice sẽ chịu sát thương mỗi lượt. Blizzard luôn trúng.
+Đòn hệ Fire mạnh lên và đòn hệ Water yếu đi.
+Đòn hệ Fire mạnh lên và đòn hệ Water yếu đi.
+Đòn hệ Water mạnh lên và đòn hệ Fire yếu đi.
+Đòn hệ Water mạnh lên và đòn hệ Fire yếu đi.
+Tăng Sp.Def của hệ Rock. Chịu dame nếu không phải hệ Rock/Ground/Steel.
+Tăng Sp.Def của hệ Rock. Chịu dame nếu không phải hệ Rock/Ground/Steel.
+Hệ Flying không có điểm yếu
+Hệ Flying không có điểm yếu
+Đòn bóng tối mạnh hơn. Chịu dame nếu không phải là Shadow
+Đòn bóng tối mạnh hơn. Chịu dame nếu không phải là Shadow
+Không rõ thời tiết
+Không rõ thời tiết
+Z: Ẩn
+Z: Ẩn
+Z: Chi tiết
+Z: Chi tiết
+Trở về
+Trở về
+Quay lại menu.
+Quay lại menu.
+C: Dùng
+C: Dùng
+Tribe:
+Bộ tộc:
+{1} Pokémon required - {2}
+{1} Pokémon cần thiết - {2}
+Progress: {1}/{2} in party
+Progress: {1}/{2} in party
+{1}/{2} Pokémon
+{1}/{2} Pokémon
+You got ${1} because of Good Luck!
+Bạn nhận được ${1} nhờ may mắn!
+With some Good Luck you also got ${1}!
+Với chút may mắn, bạn cũng nhận được ${1}!
+{1} was freed from the rage bait!
+{1} đã được giải thoát khỏi mồi nhử giận dữ!
+{1} became confused due to its concussion!
+{1} bị bối rối do chấn động não!
+{1} was called safe!
+{1} được gọi là an toàn!
+{1}'s type changed to {2} and healed from a {3}!
+Loại của {1} đã thay đổi thành {2} và được chữa lành khỏi {3}!
+{1} is immune to Arcane Magic!
+{1} miễn nhiễm với Ma thuật Huyền bí!
+{1} is focusing!
+{1} đang tập trung!
+{1} is relaxed!
+{1} đang thư giãn!
+{1} is relaxed by {2}'s {3}!
+{1} được thư giãn bởi {3} của {2}!
+{1} was healed by Solar Field!
+{1} đã được chữa lành bởi Solar Field!
+{1} created a scarecrow!
+{1} đã tạo ra một con bù nhìn!
+{1} is baited into a rage!
+{1} bị chọc giận!
+{1} was ignited!
+{1} đã được đốt cháy!
+{1} was extinguished!
+{1} đã bị dập tắt!

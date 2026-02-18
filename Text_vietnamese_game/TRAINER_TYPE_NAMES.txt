@@ -1,0 +1,154 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[TRAINER_TYPE_NAMES]
+Backers
+Backers
+Backpacker
+Backpacker
+Baker
+Baker
+Baron
+Baron
+Baroness
+Baroness
+Battle Girl
+Battle Girl
+Boarder
+Boarder
+Butler
+Butler
+Cafe Master
+Cafe Master
+Cameraman
+Cameraman
+Chef
+Chef
+Clerk
+Clerk
+Clown
+Clown
+Collector
+Collector
+Cow Girl
+Cow Girl
+Cyclist
+Cyclist
+Dancer
+Dancer
+Deliquent
+Deliquent
+Debot Agent
+Debot Agent
+Doctor
+Doctor
+Dragon Tamer
+Dragon Tamer
+Expert
+Expert
+Fairy Tale Girl
+Fairy Tale Girl
+Fire Breather
+Fire Breather
+Guitarist
+Guitarist
+Harlequin
+Harlequin
+Hex Maniac
+Hex Maniac
+Hoopster
+Hoopster
+Idol
+Idol
+Infielder
+Infielder
+Interviewer
+Interviewer
+Janitor
+Janitor
+Kimono Girl
+Kimono Girl
+Kindler
+Kindler
+Madame
+Madame
+Maid
+Maid
+Model
+Model
+Motor Cyclist
+Motor Cyclist
+Musician
+Musician
+Ninja Boy
+Ninja Boy
+Neckbear
+Neckbear
+Nurse
+Nurse
+Nursery Aide
+Nursery Aide
+Owner
+Owner
+Parasol Lady
+Parasol Lady
+PI
+PI
+Pilot
+Pilot
+Poke Kid
+Poke Kid
+Pokefan
+Pokefan
+Policeman
+Policeman
+Postman
+Postman
+Preschool
+Preschool
+Punk Girl
+Punk Girl
+Punk Guy
+Punk Guy
+Rancher
+Rancher
+Reporter
+Reporter
+Rich Boy
+Rich Boy
+Rough Neck
+Rough Neck
+School Kid
+School Kid
+Skier
+Skier
+Smasher
+Smasher
+Socialite
+Socialite
+Street Thug
+Street Thug
+Striker
+Striker
+Teenager
+Teenager
+Tester
+Tester
+Tourist
+Tourist
+Veteran
+Veteran
+Waiter
+Waiter
+Waitress
+Waitress
+Worker
+Worker
+Pokemon
+Pokemon
+Elite
+Elite
+Team Steam Admin
+Team Steam Admin
+Team Steam Grunt
+Team Steam Grunt

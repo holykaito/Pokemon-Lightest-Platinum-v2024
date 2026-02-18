@@ -1,0 +1,26 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map089]
+\rYou've made it this far, but can you beat me?
+\rYou've made it this far, but can you beat me?
+\rSee you again.
+\rSee you again.
+\rWe'll be the ones to check if you're eligible to move on!
+\rWe'll be the ones to check if you're eligible to move on!
+\bI often work in the caves on Route 7, digging up fossils.
+\bI often work in the caves on Route 7, digging up fossils.
+\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
+\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
+\bYou've made it this far, but can you beat me?
+\bYou've made it this far, but can you beat me?
+\bWe'll be the ones to check if you're eligible to move on!
+\bWe'll be the ones to check if you're eligible to move on!
+r\You're not really with TEAM STEAM, are you? Get back to ESMERALD CITY! People need your help!
+r\You're not really with TEAM STEAM, are you? Get back to ESMERALD CITY! People need your help!
+\bI and SamNau are brother.
+\bI and SamNau are brother.
+Esmerald City
+Esmerald City
+Botanic Laboratory
+Botanic Laboratory

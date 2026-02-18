@@ -1,0 +1,8 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map101]
+\bYou're a trainer. Think you can find a use for this?
+\bYou're a trainer. Think you can find a use for this?
+\bThe AMULET COIN quickly increases the money you make as soon as you equip it to a POKéMON. It'll help you on your journey.
+\bThe AMULET COIN quickly increases the money you make as soon as you equip it to a POKéMON. It'll help you on your journey.

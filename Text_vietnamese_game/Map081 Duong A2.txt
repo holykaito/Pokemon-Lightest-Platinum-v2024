@@ -1,0 +1,46 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map081]
+On different routes, you can find different types of POKéMON.
+On different routes, you can find different types of POKéMON.
+\bIt's a pleasure to meet you. My name is CALEM, I'm a trainer from the KALOS region.
+\bIt's a pleasure to meet you. My name is CALEM, I'm a trainer from the KALOS region.
+\bI'm in the ZHERY league as a rookie, but I'm not one really, see? Let's fight!
+\bI'm in the ZHERY league as a rookie, but I'm not one really, see? Let's fight!
+\bMy congratulations on your victory. You really impressed me with your fighting strength. You have a great future ahead of you
+\bMy congratulations on your victory. You really impressed me with your fighting strength. You have a great future ahead of you
+\bI hope to meet you again in the ZHERY region and ask you for another battle, but for now, goodbye.
+\bI hope to meet you again in the ZHERY region and ask you for another battle, but for now, goodbye.
+\bI am off to challenge the first ZHERY league gym in INHORE CITY!
+\bI am off to challenge the first ZHERY league gym in INHORE CITY!
+Route A2 - Central City
+Route A2 - Central City
+\rI'm going to keep winning and aim to be the best TRAINER. Help me further my career!
+\rI'm going to keep winning and aim to be the best TRAINER. Help me further my career!
+\rI ended up furthering your career.
+\rI ended up furthering your career.
+\rTo keep winning my way up, I see that I have to catch more POKéMON.
+\rTo keep winning my way up, I see that I have to catch more POKéMON.
+\rI'm not very tall, so I sink right into tall grass.
+\rI'm not very tall, so I sink right into tall grass.
+\rThe grass goes up my nose and... Fwafwafwafwafwa. Fwatchoo!
+\rThe grass goes up my nose and... Fwafwafwafwafwa. Fwatchoo!
+\bAll you need to win are POKéMON and the will to fight!
+\bAll you need to win are POKéMON and the will to fight!
+\bThe winner is the one who can take defeat graciously.
+\bThe winner is the one who can take defeat graciously.
+\bWhether you lose or win, battles are always very exciting.
+\bWhether you lose or win, battles are always very exciting.
+\bMy POKéMON are well-trained, and I trust them in battle!
+\bMy POKéMON are well-trained, and I trust them in battle!
+\bA victory is only one accomplishment. A greater goal is training daily, without pause.
+\bA victory is only one accomplishment. A greater goal is training daily, without pause.
+\rWe must have been fated to meet. May I ask you for a battle?
+\rWe must have been fated to meet. May I ask you for a battle?
+\rOh, my!
+\rOh, my!
+\rI hope we meet again.
+\rI hope we meet again.
+Route A2
+Route A2

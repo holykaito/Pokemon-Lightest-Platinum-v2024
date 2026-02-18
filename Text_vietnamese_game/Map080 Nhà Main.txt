@@ -1,0 +1,26 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map080]
+\ff[mom]Hi, \PN! I'm glad you woke up. I was waiting to give you a message from Prof. Fennel. She's asking if you'll go to Central City. Something strange is happening there involving Alpha, the language only you know because your father taught it to you before he disappeared.
+\ff[mom]Hi, \PN! I'm glad you woke up. I was waiting to give you a message from Prof. Fennel. She's asking if you'll go to Central City. Something strange is happening there involving Alpha, the language only you know because your father taught it to you before he disappeared.
+\pg\ff[boy]Da, thua Me!
+\pg\ff[boy]Da, thua Me!
+\pg\ff[girl]Da, thua Me
+\pg\ff[girl]Da, thua Me
+\ff[mom]Remember to go to Central City to meet Pro.Fennel. She's very helpful to everyone.
+\ff[mom]Remember to go to Central City to meet Pro.Fennel. She's very helpful to everyone.
+\pgYes, I'm on my way now.
+\pgYes, I'm on my way now.
+\ff[mom]See you later. If you need me. I'll be there.
+\ff[mom]See you later. If you need me. I'll be there.
+\ff[mom]My dear, is there anything Mom can help with?
+\ff[mom]My dear, is there anything Mom can help with?
+\ff[mom]Mom is always here to take care of and support you. Share your joys and challenges with Mom. Mom believes that you can achieve anything with faith and effort. Remember, home is where you are always loved and welcomed. Mom wishes you a wonderful day!
+\ff[mom]Mom is always here to take care of and support you. Share your joys and challenges with Mom. Mom believes that you can achieve anything with faith and effort. Remember, home is where you are always loved and welcomed. Mom wishes you a wonderful day!
+\ff[mom]Oh... Are you all right? Well, you'll have better luck this time.
+\ff[mom]Oh... Are you all right? Well, you'll have better luck this time.
+Yes
+Yes
+No
+No

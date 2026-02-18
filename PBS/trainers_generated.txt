@@ -1,0 +1,55 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[HIKER,Limv]
+LoseText = Tch! I took you too lightly!
+Pokemon = WIMPOD,18
+Pokemon = DWEBBLE,18
+Pokemon = NINJASK,20
+#-------------------------------
+[PAINTER,Freya]
+LoseText = Uww... I blew it.
+Pokemon = DOTTLER,18
+Pokemon = SHELMET,18
+Pokemon = FROSMOTH,20
+#-------------------------------
+[BATTLEGIRL,Connor]
+LoseText = Pretty impressive! I'm sure you can go anywhere with that skill!
+Pokemon = SHROOMISH,14
+Pokemon = KARRABLAST,14
+Pokemon = SILCOON,14
+#-------------------------------
+[RICHBOY,Nelson]
+LoseText = Oh... I lost...
+Pokemon = KAKUNA,14
+Pokemon = GRUBBIN,14
+Pokemon = VENONAT,14
+#-------------------------------
+[BUGCATCHER,Mikey]
+LoseText = Argh, I can't do anymore...
+Pokemon = BURMY_2,14
+Pokemon = METAPOD,14
+Pokemon = BUTTERFREE,14
+#-------------------------------
+[HARLEQUIN,Barnett]
+LoseText = Wow, you're too good!
+Pokemon = CUTIEFLY,14
+Pokemon = VENIPEDE,14
+Pokemon = PINSIR,14
+#-------------------------------
+[SCHOOLBOY,Wilfredo]
+LoseText = Heh, I guess I didn't try hard enough.
+Pokemon = ZIGZAGOON,6
+Pokemon = GEODUDE,7
+Pokemon = MUNNA,6
+#-------------------------------
+[LASS,Jamie]
+LoseText = Gwa ha ha! I lost.
+Pokemon = PAWNIARD,6
+Pokemon = WYNAUT,5
+Pokemon = SHUPPET,6
+#-------------------------------
+[POKEMONBREEDER1_M,Reuben]
+LoseText = I should've guessed you would cheat.
+Pokemon = SMOLIV,5
+Pokemon = TAILLOW,7
+Pokemon = GIRAFARIG,6

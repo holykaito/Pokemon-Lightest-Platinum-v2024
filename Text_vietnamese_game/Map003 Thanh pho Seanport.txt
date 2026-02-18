@@ -1,0 +1,92 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map003]
+Sometimes I wonder if Pokémon dream. What do you think they dream about?
+Sometimes I wonder if Pokémon dream. What do you think they dream about?
+<b><< Seanport City >>
+<b><< Seanport City >>
+The city with beautiful beaches and Zhery's main harbor.
+The city with beautiful beaches and Zhery's main harbor.
+Heading out to sea? Don’t forgA journey at sea requires not just skill but also trust in your Pokémon.et to bring some Net Balls. They’re much better for catching Water Pokémon!
+Heading out to sea? Don’t forgA journey at sea requires not just skill but also trust in your Pokémon.et to bring some Net Balls. They’re much better for catching Water Pokémon!
+That flickering blue light in the distance? It’s not a lighthouse… It might be a Pokémon.
+That flickering blue light in the distance? It’s not a lighthouse… It might be a Pokémon.
+I’m studying the connection between Berries and their healing properties.
+I’m studying the connection between Berries and their healing properties.
+Don’t let the sea’s calmness fool you. The waves can pull you deep into the ocean in no time!
+Don’t let the sea’s calmness fool you. The waves can pull you deep into the ocean in no time!
+I just fed a Berry to a Wingull, and now it’s so happy it won’t fly away!
+I just fed a Berry to a Wingull, and now it’s so happy it won’t fly away!
+Pokémon hold secrets we’ve yet to uncover. Do you have the courage to find out?
+Pokémon hold secrets we’ve yet to uncover. Do you have the courage to find out?
+My first Pokémon was a Rhyhorn. It’s been years, but I still remember every adventure with it.
+My first Pokémon was a Rhyhorn. It’s been years, but I still remember every adventure with it.
+I once saw a Mantine gliding over the waves near the harbor. It was magical!
+I once saw a Mantine gliding over the waves near the harbor. It was magical!
+Have you ever heard a Jigglypuff sing? It’s enchanting… but you might wake up hours later!
+Have you ever heard a Jigglypuff sing? It’s enchanting… but you might wake up hours later!
+I want to be a great Pokémon trainer like my brother! But my mom says I’m too young.
+I want to be a great Pokémon trainer like my brother! But my mom says I’m too young.
+North: Seanport City - Seanport Gym - Seanport Harbor - The Lighthouse
+North: Seanport City - Seanport Gym - Seanport Harbor - The Lighthouse
+West: Route A8 - Bramboach City
+West: Route A8 - Bramboach City
+East: Route A9 - National Park
+East: Route A9 - National Park
+Listen to the sound of the waves… It feels like they’re whispering something, doesn’t it?
+Listen to the sound of the waves… It feels like they’re whispering something, doesn’t it?
+We just received a shipment of Poké Balls from another region. They seem to be specially designed for catching sea Pokémon!
+We just received a shipment of Poké Balls from another region. They seem to be specially designed for catching sea Pokémon!
+If you see water suddenly shimmering, be careful. It might be a sign of a Legendary Pokémon beneath the waves.
+If you see water suddenly shimmering, be careful. It might be a sign of a Legendary Pokémon beneath the waves.
+It’s a perfect day for fishing. I hope I can catch a really big Magikarp!
+It’s a perfect day for fishing. I hope I can catch a really big Magikarp!
+When I was young, I once saw a Lapras carrying an entire family across the ocean. It was a sight I’ll never forget.
+When I was young, I once saw a Lapras carrying an entire family across the ocean. It was a sight I’ll never forget.
+There are plenty of fish Pokémon, but rare ones like Feebas are tough to find. I’ve been searching for a month!
+There are plenty of fish Pokémon, but rare ones like Feebas are tough to find. I’ve been searching for a month!
+Have you tried sailing to the small island in the distance? People say a glowing Pokémon appears on its beach at night.
+Have you tried sailing to the small island in the distance? People say a glowing Pokémon appears on its beach at night.
+My ship once encountered a massive storm. Strangely, a blue light guided us safely back to shore.
+My ship once encountered a massive storm. Strangely, a blue light guided us safely back to shore.
+I’ve lived by the sea all my life. Every morning, I watch the seagulls fly alongside Wingull. It’s so peaceful.
+I’ve lived by the sea all my life. Every morning, I watch the seagulls fly alongside Wingull. It’s so peaceful.
+If you drop a pearl into the water during a full moon, a Pokémon will appear to grant your wish.
+If you drop a pearl into the water during a full moon, a Pokémon will appear to grant your wish.
+Heading out to sea? Don’t forget to bring some Net Balls. They’re much better for catching Water Pokémon!
+Heading out to sea? Don’t forget to bring some Net Balls. They’re much better for catching Water Pokémon!
+I set a paper boat adrift on the sea, hoping it will reach the land of Legendary Pokémon!
+I set a paper boat adrift on the sea, hoping it will reach the land of Legendary Pokémon!
+Did you know? The tallest waves sometimes carry Pokémon no one has ever documented.
+Did you know? The tallest waves sometimes carry Pokémon no one has ever documented.
+Look, I just built a sandcastle! But Sandygast keeps knocking it down!
+Look, I just built a sandcastle! But Sandygast keeps knocking it down!
+I came here to relax but ended up being enchanted by the scenery and stories of sea Pokémon.
+I came here to relax but ended up being enchanted by the scenery and stories of sea Pokémon.
+\ff[steven]\c[1]Steven: \c[0]Hello, \PN! My name is Steven, and I hail from the <b>Hoenn</b> region. I currently hold the title of Hoenn League Champion. \c[3]Ash\c[0] spoke highly of you, and I believe your skills would be invaluable to us.
+\ff[steven]\c[1]Steven: \c[0]Hello, \PN! My name is Steven, and I hail from the <b>Hoenn</b> region. I currently hold the title of Hoenn League Champion. \c[3]Ash\c[0] spoke highly of you, and I believe your skills would be invaluable to us.
+\ff[leaderlucas]\c[1]Lucas: \c[0]Greetings, I’m Lucas, the Gym Leader of Seanport City. Steven and I have been eagerly awaiting your arrival so we can embark together on a journey to Imatari Island. \c[3]Jessica\c[0] and \c[3]Esmaralda\c[0] assure me of your talent, and with the challenges ahead, your strength will be crucial.
+\ff[leaderlucas]\c[1]Lucas: \c[0]Greetings, I’m Lucas, the Gym Leader of Seanport City. Steven and I have been eagerly awaiting your arrival so we can embark together on a journey to Imatari Island. \c[3]Jessica\c[0] and \c[3]Esmaralda\c[0] assure me of your talent, and with the challenges ahead, your strength will be crucial.
+\ff[steven]\c[1]Steven: \c[0]/PN, a grave threat looms on the horizon. Team Steam is attempting to awaken two formidable legendary Pokémon from their ancient slumber using the \c[1]Blue Orb\c[0] and \c[1]Red Orb\c[0]. Their leaders, \c[5]Marina\c[0] and \c[5]Terra\c[0], are bound to put up a fierce fight, so prepare yourself for a battle like no other.
+\ff[steven]\c[1]Steven: \c[0]/PN, a grave threat looms on the horizon. Team Steam is attempting to awaken two formidable legendary Pokémon from their ancient slumber using the \c[1]Blue Orb\c[0] and \c[1]Red Orb\c[0]. Their leaders, \c[5]Marina\c[0] and \c[5]Terra\c[0], are bound to put up a fierce fight, so prepare yourself for a battle like no other.
+\ff[steven]\c[1]Steven: \c[0]Do you want to come to Imatari Island with us?
+\ff[steven]\c[1]Steven: \c[0]Do you want to come to Imatari Island with us?
+\ff[steven]\c[1]Steven: \c[0]Alright! Let's go!
+\ff[steven]\c[1]Steven: \c[0]Alright! Let's go!
+\ff[steven]\c[1]Steven: \c[0]Okay, we'll wait until you're ready to go.
+\ff[steven]\c[1]Steven: \c[0]Okay, we'll wait until you're ready to go.
+Look! I found an old Poké Ball floating in the water. Who knows, it might have belonged to a famous trainer!
+Look! I found an old Poké Ball floating in the water. Who knows, it might have belonged to a famous trainer!
+The shop near the harbor sells souvenirs made from Clamperl shells. They’re said to bring good luck!
+The shop near the harbor sells souvenirs made from Clamperl shells. They’re said to bring good luck!
+I threw a Poké Ball into the water to float away. Who knows, maybe one day it’ll catch a Pokémon!
+I threw a Poké Ball into the water to float away. Who knows, maybe one day it’ll catch a Pokémon!
+I’ve visited seven regions so far, and this one has the best food for Pokémon!
+I’ve visited seven regions so far, and this one has the best food for Pokémon!
+The currents have been stronger lately. I suspect a massive Water-type Pokémon might be causing it.
+The currents have been stronger lately. I suspect a massive Water-type Pokémon might be causing it.
+Yes
+Yes
+No
+No

@@ -1,0 +1,8 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map103]
+\rThe first gym of the ZHERY league is located in INHORE CITY. The leader uses the BUG type, so to win easily, just use FIRE POKéMON.
+\rThe first gym of the ZHERY league is located in INHORE CITY. The leader uses the BUG type, so to win easily, just use FIRE POKéMON.
+\bWhen I grow older, I will attend the University of Inhore. It's very big and beautiful, and offers many different fields of study.
+\bWhen I grow older, I will attend the University of Inhore. It's very big and beautiful, and offers many different fields of study.

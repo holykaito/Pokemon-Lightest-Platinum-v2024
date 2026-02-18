@@ -1,0 +1,72 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map042]
+\bBattle me now!
+\bBattle me now!
+\bYou're pretty good!
+\bYou're pretty good!
+Chao mung
+Chao mung
+Huong Bac: Thanh pho Central Huong Nam: Thi tran Yellow
+Huong Bac: Thanh pho Central Huong Nam: Thi tran Yellow
+b\Here you are!
+b\Here you are!
+b/Get out!
+b/Get out!
+\ff[boy]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
+\ff[boy]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
+\ff[girl]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
+\ff[girl]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
+Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
+Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
+Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
+Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
+\ff[boy]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
+\ff[boy]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
+\ff[girl]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
+\ff[girl]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
+Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
+Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
+\ff[boy]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
+\ff[boy]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
+\ff[girl]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
+\ff[girl]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
+Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
+Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
+Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…
+Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…
+\ff[boy]\c[0]By the way, I never caught your name. What should I call you?
+\ff[boy]\c[0]By the way, I never caught your name. What should I call you?
+\ff[girl]\c[0]By the way, I never caught your name. What should I call you?
+\ff[girl]\c[0]By the way, I never caught your name. What should I call you?
+\ff[cynthia]\c[1]Cynthia: \c[0]Ah, how rude of me. I’m Cynthia. It’s a pleasure to meet you.
+\ff[cynthia]\c[1]Cynthia: \c[0]Ah, how rude of me. I’m Cynthia. It’s a pleasure to meet you.
+\ff[boy]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
+\ff[boy]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
+\ff[girl]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
+\ff[girl]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
+\ff[cynthia]\c[1]Cynthia: \c[0]Yes, I’ve traveled quite a bit, but Sinnoh is home. I’ve always been drawn to the region’s rich history and its deep connection with Pokémon. There's always something new to discover here.
+\ff[cynthia]\c[1]Cynthia: \c[0]Yes, I’ve traveled quite a bit, but Sinnoh is home. I’ve always been drawn to the region’s rich history and its deep connection with Pokémon. There's always something new to discover here.
+\ff[boy]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
+\ff[boy]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
+\ff[girl]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
+\ff[girl]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
+\ff[cynthia]\c[1]Cynthia: \c[0]Oh, absolutely. Sinnoh is filled with ancient ruins, legends, and of course, Pokémon that you won’t find anywhere else. It’s a place that holds many mysteries… and I’m sure you’ll find some of your own if you ever make it there.
+\ff[cynthia]\c[1]Cynthia: \c[0]Oh, absolutely. Sinnoh is filled with ancient ruins, legends, and of course, Pokémon that you won’t find anywhere else. It’s a place that holds many mysteries… and I’m sure you’ll find some of your own if you ever make it there.
+\ff[boy]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
+\ff[boy]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
+\ff[girl]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
+\ff[girl]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
+\ff[cynthia]\c[1]Cynthia: \c[0]You’re very welcome. It was a pleasure chatting with you. Now, keep an eye out for those Legendary Pokémon, there are more secrets waiting to be uncovered. See you later!
+\ff[cynthia]\c[1]Cynthia: \c[0]You’re very welcome. It was a pleasure chatting with you. Now, keep an eye out for those Legendary Pokémon, there are more secrets waiting to be uncovered. See you later!
+\ff[cynthia]\c[1]???: \c[0]Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
+\ff[cynthia]\c[1]???: \c[0]Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
+\ff[cynthia]\c[1]???: \c[0]Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
+\ff[cynthia]\c[1]???: \c[0]Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
+\ff[cynthia]\c[1]???: \c[0]Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
+\ff[cynthia]\c[1]???: \c[0]Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
+\ff[cynthia]\c[1]???: \c[0]Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
+\ff[cynthia]\c[1]???: \c[0]Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
+\ff[cynthia]\c[1]???: \c[0]Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…
+\ff[cynthia]\c[1]???: \c[0]Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…

@@ -1,0 +1,10 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map099]
+\bPOKéMON equipped with QUICK CLAW attack first more often than others without the item, so you can use it to win many battles.
+\bPOKéMON equipped with QUICK CLAW attack first more often than others without the item, so you can use it to win many battles.
+\rI love GRASS-type POKéMON, they're always strong and cute, ready for any battle.
+\rI love GRASS-type POKéMON, they're always strong and cute, ready for any battle.
+\rHere in my home I'm always responsible for our food, so I try to please us all.
+\rHere in my home I'm always responsible for our food, so I try to please us all.

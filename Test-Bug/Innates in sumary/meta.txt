@@ -1,0 +1,4 @@
+﻿Name       = Innate summary page 
+Version    = 1.0
+Link       = https://reliccastle.com/resources/1328/
+Credits    = Lucidious89,Sonicover

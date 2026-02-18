@@ -1,0 +1,84 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map084]
+\bInhore City's old gym leader was a very strange guy. He talked a lot with everyone.
+\bInhore City's old gym leader was a very strange guy. He talked a lot with everyone.
+Zzz Zzz Zzz Zzz ... ... ...
+Zzz Zzz Zzz Zzz ... ... ...
+\r\ff[leaderjessica]\pn, look! The Combee have invaded Inhore City and practically shut it down. See for yourself!
+\r\ff[leaderjessica]\pn, look! The Combee have invaded Inhore City and practically shut it down. See for yourself!
+\r\ff[leaderjessica]Look, they're being vicious and attacking people for no reason. The villagers are hiding in their houses.
+\r\ff[leaderjessica]Look, they're being vicious and attacking people for no reason. The villagers are hiding in their houses.
+\r\ff[leaderjessica]I think that the hive these Combee are from is in Inhore Woods.
+\r\ff[leaderjessica]I think that the hive these Combee are from is in Inhore Woods.
+\r\ff[leaderjessica]I'll go there now, and reopen the Gym when this matter is resolved.
+\r\ff[leaderjessica]I'll go there now, and reopen the Gym when this matter is resolved.
+\bA Pokémon you get in a trade from someone grows fast. But if you don't have certain Gym Badges, it may not obey you.
+\bA Pokémon you get in a trade from someone grows fast. But if you don't have certain Gym Badges, it may not obey you.
+\rMy favorite Pokémon is Eevee, it's always cute and happy.
+\rMy favorite Pokémon is Eevee, it's always cute and happy.
+\b\ff[blue]Hey \pn, I just got my first Zhery league badge here in Inhore City.
+\b\ff[blue]Hey \pn, I just got my first Zhery league badge here in Inhore City.
+\b\ff[blue]Now I'm going after the second gym. It's said it's very hard, but first I'll test your strength with a Pokémon battle!
+\b\ff[blue]Now I'm going after the second gym. It's said it's very hard, but first I'll test your strength with a Pokémon battle!
+\b\ff[blue]That was a stroke of luck. I hope we meet again. I think you can defeat this gym leader if you fight smart.
+\b\ff[blue]That was a stroke of luck. I hope we meet again. I think you can defeat this gym leader if you fight smart.
+\b\ff[blue]I'll give you a gift, for winning!
+\b\ff[blue]I'll give you a gift, for winning!
+\b\ff[blue]That HM contains CUT. It can be used to cut down small bushes anywhere in the world, but only if you have the Inhore City badge.
+\b\ff[blue]That HM contains CUT. It can be used to cut down small bushes anywhere in the world, but only if you have the Inhore City badge.
+\b\ff[blue]For now, I'll wish you good luck in this battle and say goodbye.
+\b\ff[blue]For now, I'll wish you good luck in this battle and say goodbye.
+\rFire is the key to beating Bug Pokémon, but you should be wary of their power. They seem harmless, but they're not!
+\rFire is the key to beating Bug Pokémon, but you should be wary of their power. They seem harmless, but they're not!
+\bDid you know this? You can have a 2-on-2 battle even if you're not with another Trainer.
+\bDid you know this? You can have a 2-on-2 battle even if you're not with another Trainer.
+\bIf you catch the eyes of two Trainers when you have two or more Pokémon, they'll both challenge you.
+\bIf you catch the eyes of two Trainers when you have two or more Pokémon, they'll both challenge you.
+\bDon't you think it'd be cool if you could beat two Trainers by yourself?
+\bDon't you think it'd be cool if you could beat two Trainers by yourself?
+\bI love buying items to pretty up my Pokémon.
+\bI love buying items to pretty up my Pokémon.
+\rAt the Pokémart, you can buy various important items, like Potions, Pokéballs, and more!
+\rAt the Pokémart, you can buy various important items, like Potions, Pokéballs, and more!
+\bWow, you have Pokémon with you, too. When I get bigger, I'm going to go places with Pokémon, too.
+\bWow, you have Pokémon with you, too. When I get bigger, I'm going to go places with Pokémon, too.
+\bYou've made it this far, but can you beat me?
+\bYou've made it this far, but can you beat me?
+\bI often work in the caves on Route 7, digging up fossils.
+\bI often work in the caves on Route 7, digging up fossils.
+\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
+\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
+\rPokémon Trainer's University! If I go to this school, will I be able to catch rare Pokémon easily?
+\rPokémon Trainer's University! If I go to this school, will I be able to catch rare Pokémon easily?
+\bExploring a cave isn't like walking on a road. You never know when wild Pokémon will appear. It's full of suspense.
+\bExploring a cave isn't like walking on a road. You never know when wild Pokémon will appear. It's full of suspense.
+\bInhore City is my hometown, so I've always loved insects. It's in my blood.
+\bInhore City is my hometown, so I've always loved insects. It's in my blood.
+\rWelcome to Inhore City's Honey Shop!
+\rWelcome to Inhore City's Honey Shop!
+\rWould you buy Honey for $800?
+\rWould you buy Honey for $800?
+\rHere you are!
+\rHere you are!
+\rThanks, come back any time.
+\rThanks, come back any time.
+\rYou don't have enough money to buy.
+\rYou don't have enough money to buy.
+\rCome back any time.
+\rCome back any time.
+\bIf a Pokémon gains experience in battles, it can sometimes change in the way it looks.
+\bIf a Pokémon gains experience in battles, it can sometimes change in the way it looks.
+\bIf you give a Quick Claw to a Pokémon, it will always strike first, even if its speed is lower than that of its opponent.
+\bIf you give a Quick Claw to a Pokémon, it will always strike first, even if its speed is lower than that of its opponent.
+\bThis is Inhore City's University. This place is currently under repair, please come back later.
+\bThis is Inhore City's University. This place is currently under repair, please come back later.
+\bI challenged the Gym Leader, but It's not going to be easy winning with my Grass-type Pokémon.
+\bI challenged the Gym Leader, but It's not going to be easy winning with my Grass-type Pokémon.
+\bGrass-type Pokémon don't match up well against Bug-type Pokémon.
+\bGrass-type Pokémon don't match up well against Bug-type Pokémon.
+Yes
+Yes
+No
+No

@@ -1,0 +1,44 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map082]
+Route 3 - Route 2
+Route 3 - Route 2
+Route 2 - Inhore Woods
+Route 2 - Inhore Woods
+Route 3
+Route 3
+\bI caught a whole bunch of POKéMON! Go, go, go! My Bug Pokémon team!
+\bI caught a whole bunch of POKéMON! Go, go, go! My Bug Pokémon team!
+\bI have all these Pokémon, but I couldn't win.
+\bI have all these Pokémon, but I couldn't win.
+\bI caught a bunch of Pokémon. Now I'm out of Pokeballs.
+\bI caught a bunch of Pokémon. Now I'm out of Pokeballs.
+\r\ff[leaderjessica]Hey, have you seen any Combee on this route?
+\r\ff[leaderjessica]Hey, have you seen any Combee on this route?
+\r\ff[leaderjessica]I'm sorry, I forgot to introduce myself! I'm Jessica, the leader of the Inhore City gym, the first gym in the Zhery league!
+\r\ff[leaderjessica]I'm sorry, I forgot to introduce myself! I'm Jessica, the leader of the Inhore City gym, the first gym in the Zhery league!
+\pg\ff[boy]I'm \pn. I was just on my way to challenge you!
+\pg\ff[boy]I'm \pn. I was just on my way to challenge you!
+\pg\ff[girl]I'm \pn. I was just on my way to challenge you!
+\pg\ff[girl]I'm \pn. I was just on my way to challenge you!
+\r\ff[leaderjessica]Well, the gym is closed right now due to a very serious crisis! The Combee that naturally inhabit this route and Inhore Woods are acting strangely and attacking people for no reason! They've always been gentle and well-behaved Pokémon, but something's happened to them! If you spot any Combee, let me know in Inhore City.
+\r\ff[leaderjessica]Well, the gym is closed right now due to a very serious crisis! The Combee that naturally inhabit this route and Inhore Woods are acting strangely and attacking people for no reason! They've always been gentle and well-behaved Pokémon, but something's happened to them! If you spot any Combee, let me know in Inhore City.
+\r\ff[leaderjessica]Go, Vespiquen, use Cut!
+\r\ff[leaderjessica]Go, Vespiquen, use Cut!
+\bOh, sure, I'll accept your challenge. I have a lot of money.
+\bOh, sure, I'll accept your challenge. I have a lot of money.
+\bWhy couldn't I win?
+\bWhy couldn't I win?
+\bThere are some things money can't buy. That's Pokémon.
+\bThere are some things money can't buy. That's Pokémon.
+\rIn Inhore City, there is a breeding center for Combee that produces lots of honey.
+\rIn Inhore City, there is a breeding center for Combee that produces lots of honey.
+\bI've been a long time since I've had a battle, but now's the time!
+\bI've been a long time since I've had a battle, but now's the time!
+\bIt takes a real winner to know when he's beaten.
+\bIt takes a real winner to know when he's beaten.
+\bI really should have beaten a trainer like you...
+\bI really should have beaten a trainer like you...
+The university in Inhore is one of the biggest in the world. It's my dream to become a teacher there.
+The university in Inhore is one of the biggest in the world. It's my dream to become a teacher there.

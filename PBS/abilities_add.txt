@@ -1,0 +1,216 @@
+﻿#-------------------------------
+[AGILE] ###
+Name = Agile
+Description = The user gains priority on its first turn.
+#-------------------------------
+[ANTIUB]
+Name = Anti-UB
+Description = Deals more damage and takes less damage from Ultra Beasts.
+#-------------------------------
+[ASTRALPLANE]
+Name = Astral Plane
+Description = Adds the Ghost-type to all Pokémon on the field.
+#-------------------------------
+[AURAMANIPULATION]
+Name = Aura Manipulation
+Description = Buff damage of Aura Sphere.
+#-------------------------------
+[BRANCHSWING]
+Name = Branch Swing
+Description = When Grassy Terrain, gives immunity to all Ground-type moves.
+#-------------------------------
+[BATTLEINTELLECT]
+Name = Battle Intellect
+Description = Opposing Pokemon can be marked as hunted at the end of the turn.
+#-------------------------------
+[CATSLUCK]
+Name = Cat's Luck
+Description = Increases random stat when dealing a critical hit.
+#-------------------------------
+[CHIMERIC]
+Name = Chimeric
+Description = Gain STAB when use Normal,Flying,Bug,Water,Flying-type moves.
+#-------------------------------
+[COLORAURA]
+Name = Color Aura
+Description = The opposing foe's color affects the user's mood.
+#-------------------------------
+[COTTONCLOAK] ###
+Name = Cotton Cloak
+Description = Halves the damage from physical moves.
+#-------------------------------
+[DANCINGPANIC] ###
+Name = Dancing Panic
+Description = Reverses stat changes of other's dance moves.
+#-------------------------------
+[DODGE]
+Name = Dodge
+Description = User has chance to avoid any moves.
+#-------------------------------
+[ECHOLOCK] ###
+Name = Echo Lock
+Description = The user's sound-based moves never miss.
+#-------------------------------
+[FORTITUTE] ###
+Name = Fortitute
+Description = When a stat is lowered by an opponent, its Defense is increased by two stages.
+#-------------------------------
+[FIELDEXPLORER]
+Name = Field Explorer
+Description = Powers up field moves.
+#-------------------------------
+[FIGHTSSPIRIT] ###
+Name = Fight's Spirit
+Description = Add Fighting-type to user.
+#-------------------------------
+[FLOCK] ###
+Name = Flock
+Description = Powers up Flying-type moves when suffering.
+#-------------------------------
+[GROUNDSHOCK] ###
+Name = Ground Shock
+Description = Can hit Ground-type Pokemon.
+#-------------------------------
+[GROWINGTOOTH]
+Name = Growing Tooth
+Description = Raise Attack when using fang moves.
+#-------------------------------
+[HALFDRAKE] ###
+Name = Half Drake
+Description = Add Dragon-type to user.
+#-------------------------------
+[HEADACHE] ###
+Name = Headache
+Description = Boosts the user's Sp. Atk each turn spent confused.
+#-------------------------------
+[HEARTBREAKER]
+Name = Heartbreaker
+Description = Increases the power of moves against targets infatuated.
+#-------------------------------
+[HUNTEDONE] ###
+Name = Hunted One
+Description = Resistance and evasion ability is drastically reduced.
+#-------------------------------
+[HUBRIS] ###
+Name = Hubris
+Description = Boosts Sp.Attack after knocking out any Pokémon.
+#-------------------------------
+[ICYVEINS] ###
+Name = Icy Veins
+Description = Boosts the user's Ice and Water-type moves in hail.
+#-------------------------------
+[INFLATABLE] ###
+Name = Inflatable
+Description = Inhales wind-based moves to expand the body & boost defense.
+#-------------------------------
+[JUNGLECOMBAT] ###
+Name = Jungle Combat
+Description = Can use "not very effective" Grass-type moves to deal regular damage.
+#-------------------------------
+[PACKLEADER] ###
+Name = Pack Leader
+Description = Boosts damage when in the lead position of the party.
+#-------------------------------
+[PETRIFYINGGAZE]
+Name = Petrifying Gaze
+Description = Adds the Rock-type to foes upon entry.
+#-------------------------------
+[PHANTOMIMAGE] ###
+Name = Phantom Image
+Description = Evasion scales higher against slower foes.
+#-------------------------------
+[PIERCEARMOR] ###
+Name = Pierce Armor
+Description = Reduces foe's Defense when hit with a contact move.
+#-------------------------------
+[PHEROMONELURE]
+Name = Phenomonelure
+Description = Opposite-gendered Pokémon may not escape.
+#-------------------------------
+[NIMBLEFIST]
+Name = Nimble Fist
+Description = Punching moves may gain priority.
+#-------------------------------
+[NUMBINGPOISON]
+Name = Numbing Poison
+Description = Moves that inflict poison may paralyze instead.
+#-------------------------------
+[OUTBREAK]
+Name = Outbreak
+Description = Spreads the user's status conditions when struck.
+#-------------------------------
+[PRIDEFULGUARD]
+Name = Prideful Guard
+Description = Increases Defense and Special Defense when HP is below half.
+#-------------------------------
+[HYPERCHARGE] ###
+Name = HYPERCHARGE
+Description = Electric-type moves gain priority when its HP is full.
+#-------------------------------
+[RAINMIRAGE] ###
+Name = Rain Mirage
+Description = Boosts the Pokémon's evasiveness in a rain.
+#-------------------------------
+[RAMPAGE]
+Name = Rampage
+Description = Boosts the Pokémon's evasiveness in a rain.
+#-------------------------------
+[RESILIENCE]
+Name = Resilience
+Description = Recovers health gradually when seriously injured.
+#-------------------------------
+[ROLLER] ###
+Name = Roller
+Description = Boosts the Defense stat when the Pokémon enters a battle.
+#-------------------------------
+[SEARINGPOISON]
+Name = Searing Poison
+Description = Moves that inflict poison may burn instead.
+#-------------------------------
+[SEEDPARASITE]
+Name = Seed Parasite
+Description = Seeds an attacker that KO's the user on contact.
+#-------------------------------
+[SEEDSTIMULUS]
+Name = Seed Stimulus
+Description = Raise user's Attack and Sp. Attack after using a Grass-type move.
+#-------------------------------
+[SELFSUFFICIENT] ###
+Name = Self-Sufficient
+Description = Heal user every turn.
+#-------------------------------
+[SHOWDOWNMODE] ###
+Name = Showdown Mode
+Description = Enhance stats when in danger, but gradually weaken
+#-------------------------------
+[SPELLCASTER]
+Name = Spellcaster
+Description = Boost damage for Fire,Electric and Ice-type moves.
+#-------------------------------
+[SPIKEBURST]
+Name = Spike Burst
+Description = Scatters spikes when a Pokémon makes contact.
+#-------------------------------
+[SPELLFIST]
+Name = Spell Fist
+Description = Punching moves will use Sp.Attack as damage calculation.
+#-------------------------------
+[SPOREVEIL]
+Name = Spore Veil
+Description = Boosts the Evasion stat when hit by an attack.
+#-------------------------------
+[STRIKER] ###
+Name = Striker
+Description = Powers up kicking moves.
+#-------------------------------
+[TERRORSOWER]
+Name = Terror Sower
+Description = Lower opposing Pokémon's Attack stat when entering battle.
+#-------------------------------
+[VAMPIRIC] ###
+Name = Vampiric
+Description = Restores a little HP when using contact moves.
+#-------------------------------
+[WILDTANTRUM] ###
+Name = Wild Tantrum
+Description = Rage builds when struck, boosting Attack.

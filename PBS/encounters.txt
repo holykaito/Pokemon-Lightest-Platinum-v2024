@@ -1,0 +1,291 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[022] # Yellow Town
+Land,10
+    15,STARLY,2,3
+    15,RATTATA,2,3
+    10,HOPPIP,2,3
+    10,GLAMEOW,2,3
+    10,YAMPER,2,3
+    10,AZURILL,2,3
+    5,SURSKIT,2,3
+    5,MIMEJR,2,3
+Water,5
+    70,AZURILL,10,30
+    30,SURSKIT,10,30
+SuperRod
+    60,MAGIKARP,5,10
+    35,GOLDEEN,5,10
+    5,QUAXLY,5,10
+#-------------------------------
+[042] # Route A1
+Land,10
+    15,STARLY,2,3
+    15,NYMBLE,2,3
+    10,ZIGZAGOON,2,3
+    15,RATTATA_1,2,3
+    10,POOCHYENA,2,3
+    10,YAMPER,2,3
+    15,SMOLIV,2,3
+    10,PIDOVE,2,3
+#-------------------------------
+[048] # Central City
+Land,21
+    10,SHINX,3,5
+    10,STARLY,3,5
+    10,RATTATA_1,3,5
+    10,YAMPER,3,5
+    10,PIDOVE,3,5
+    10,GULPIN,3,5
+    10,PURRLOIN,3,5
+    5,RALTS,3,5
+    5,MINUN,3,5
+    5,PLUSLE,3,5
+Water,10
+    50,MARILL,15,30
+    50,BUIZEL,15,30
+SuperRod
+    40,MAGIKARP,5,10
+    40,GOLDEEN,5,10
+    10,BARBOACH,5,10
+    10,TADBULB,5,10
+#-------------------------------
+[079] # Manfeny Lake
+Land,21
+    10,SMOLIV,3,5
+    10,SHINX,3,5
+    10,CROAGUNK,3,5
+    10,PIDOVE,3,5
+    10,ZIGZAGOON,3,5
+    10,PURRLOIN,3,5
+    10,WINGULL,3,5
+    10,GULPIN,3,5
+Water,10
+    50,WINGULL,10,30
+    50,TENTACOOL,10,30
+SuperRod
+    20,MAGIKARP,5,10
+    20,GOLDEEN,5,10
+    20,REMORAID,5,10
+    20,FEEBAS,5,10
+	10,CLAUNCHER,5,10
+    10,ARROKUDA,5,10
+#-------------------------------
+[081] # Route A2
+Land,21
+    10,STARLY,5,7
+    10,SENTRET,5,7
+    10,LOTAD,5,7
+    10,BIDOOF,5,7
+    10,BURMY,5,7
+    10,PANPOUR,5,7
+    10,CUFANT,5,7
+    10,NYMBLE,5,7
+    10,PICHU,5,7
+Water,10
+    20,POLIWAG,10,30
+    20,PSYDUCK,10,30
+    20,MARILL,10,30
+    20,BIDOOF,10,30
+    20,LOTAD,10,30
+SuperRod
+    25,MAGIKARP,5,10
+    25,GOLDEEN,5,10
+    25,POLIWAG,5,10
+	20,CORPHISH,5,10
+    5,SOBBLE,5,10
+#-------------------------------
+[082] # Route A3
+Land,21
+    10,HOOTHOOT,5,9
+    10,SPINARAK,5,9
+    10,PONYTA,5,9
+    10,SEEDOT,5,9
+    10,GRUBBIN,5,9
+    10,SPRITZEE,5,9
+    10,BUNNELBY,5,9
+    10,SHROODLE,5,9
+    10,LEDYBA,5,9
+    10,PANSEAR,5,9
+	10,DUSKULL,5,9
+#-------------------------------
+[083] # Inhore Woods
+Land,21
+    10,WEEDLE,7,12
+    10,BUDEW,7,12
+    10,COMBEE,7,12
+    10,PARAS,7,12
+    10,SURSKIT,7,12
+    10,PINECO,7,12
+    10,WURMPLE,7,12
+    10,CUTIEFLY,7,12
+    10,BULBASAUR,7,12
+    10,POLIWAG,7,12
+    10,PANSAGE,7,12
+	8,APPLIN,7,12
+    2,BULBASAUR,7,12
+Water,10
+    45,SURSKIT,10,30
+	20,PSYDUCK,10,30
+    23,LOTAD,10,30
+    2,FROAKIE,10,30
+SuperRod
+    25,MAGIKARP,5,10
+    25,GOLDEEN,5,10
+    25,POLIWAG,5,10
+	25,ARROKUDA,5,10
+#-------------------------------
+[084] # Inhore City
+Land,21
+    20,COMBEE,2,3
+    20,SKIDDO,2,3
+    10,MEOWTH,2,3
+    10,RATTATA,2,3
+    10,SOLOSIS,2,3
+    10,PIDOVE,2,3
+    10,FURFROU,2,3
+    7,ELGYEM,2,3
+    7,PACHIRISU,2,3
+#-------------------------------
+[085] # Route A4
+Land,21
+    10,PIDOVE,11,16
+    10,HOPPIP,11,16
+    10,PAWMI,11,16
+    10,BUDEW,11,16
+    10,BIDOOF,11,16
+    10,FLABEBE,11,16
+    10,FOONGUS,11,16
+    10,JIGGLYPUFF,11,16
+    10,SLOWPOKE,11,16
+	10,WOOPER,11,16
+    10,PSYDUCK,11,16
+    10,PATRAT,11,16
+Water,10
+    20,SLOWPOKE,11,16
+    20,WOOPER,11,16
+    20,PSYDUCK,11,16
+	20,BIDOOF,11,16
+    20,MARILL,11,16
+SuperRod
+    20,MAGIKARP,11,16
+    20,GOLDEEN,11,16
+    10,SLOWPOKE,11,16
+    10,WOOPER,11,16
+	10,PSYDUCK,11,16
+    10,CORPHISH,11,16
+	10,ARROKUDA,11,16
+#-------------------------------
+[086] # Route A5
+Land,21
+    10,PATRAT,13,18
+    10,NIDORANmA,13,18
+    10,NIDORANfE,13,18
+    10,MILTANK,13,18
+    10,WOOLOO,13,18
+    10,TAUROS,13,18
+    10,PONYTA,13,18
+    10,MAREEP,13,18
+    10,TAILLOW,13,18
+    10,SKIDDO,13,18
+    10,LECHONK,13,18
+    10,WOOLOO,13,18
+    10,MUDBRAY,13,18
+    10,BIDOOF,13,18
+    10,RAPIDASH,13,18
+    10,PHANPY,13,18
+    1,TEPIG,13,18
+    1,TORCHIC,13,18
+Water,10
+    20,SLOWPOKE,13,18
+    40,BIDOOF,13,18
+    10,PSYDUCK,13,18
+    10,LOTAD,13,18
+    10,MARILL,13,18
+    10,WOOPER,13,18
+SuperRod
+    10,MAGIKARP,17,19
+    10,SLOWPOKE,17,19
+    10,GOLDEEN,16,19
+    10,WOOPER,16,19
+    10,PSYDUCK,15,18
+    10,CORPHISH,15,18
+    10,ARROKUDA,15,18
+#-------------------------------
+[087] # Pantem Town
+Land,21
+    10,STARLY,2,3
+    8,STARAVIA,2,3
+    2,STARAPTOR,2,3
+    10,SHUPPET,2,3
+    5,BANETTE,2,3
+    15,FIDOUGH,2,3
+    5,DACHSBUN,2,3
+    10,MASCHIFF,2,3
+    5,MABOSSTIFF,2,3
+    9,YANMA,2,3
+    1,YANMEGA,2,3
+    7,TEDDIURSA,2,3
+    2,URSARING,2,3
+    1,URSALUNA,2,3
+    10,PACHIRISU,2,3
+    5,CASTFORM,2,3
+#-------------------------------
+[088] # Route A6
+Land,21
+    20,WOOPER,2,3
+    20,BELLSPROUT,2,3
+    15,CROAGUNK,2,3
+    15,TANGELA,2,3
+    10,TADBULB,2,3
+    10,NATU,2,3
+    4,MURKROW,2,3
+    1,HONCHKROW,2,3
+    4,PASSIMIAN,2,3
+    1,MUDKIP,2,3
+#-------------------------------
+[089] # Esmeralda City
+Land,21
+    20,BUDEW,2,3
+    20,PIDOVE,2,3
+    15,FIDOUGH,2,3
+    5,DACHSBUN,2,3
+    10,MASCHIFF,2,3
+    5,MABOSSTIFF,2,3
+    10,PETILIL,2,3
+    10,COTTONEE,2,3
+    4,GOTHITA,2,3
+    4,SOLOSIS,2,3
+    2,CHIKORITA,2,3
+Water,10
+    40,BIDOOF,14,19
+    40,MARILL,15,16
+    20,DUCKLETT,15,16
+SuperRod
+    30,MAGIKARP,17,19
+    30,GOLDEEN,16,19
+    20,TYMPOLE,15,18
+    10,SLOWPOKE,15,18
+#-------------------------------
+[097] # Route A7
+Land,21
+    20,EXEGGCUTE,2,3
+    20,SLAKOTH,2,3
+    15,DROWZEE,2,3
+    15,PIKIPEK,2,3
+    10,FOMANTIS,2,3
+    10,KECLEON,2,3
+    4,SQUAWKABILLY,2,3
+    4,ORANGURU,2,3
+    2,GROOKEY,2,3
+Water,10
+    40,TENTACOOL,14,19
+    30,WINGULL,14,19
+    20,BUIZEL,15,16
+    10,BOMBIRDIER,15,16
+SuperRod
+    20,MAGIKARP,17,19
+    20,SHELLDER,17,19
+    20,HORSEA,16,19
+    20,CARVANHA,15,18
+    20,LUVDISC,15,18

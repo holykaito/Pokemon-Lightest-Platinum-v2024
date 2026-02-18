@@ -1,0 +1,176 @@
+# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[CORRUPTEDCODE]
+Name = Corrupted Code
+Description = Powers up Poison-type moves, May disable a move used on the Pokémon.
+#-------------------------------
+[AQUATICBLOOD]
+Name = Aquatic Blood
+Description = Is Water-type in addition to its other types.
+#-------------------------------
+[EXPEDITIOUS]
+Name = Expeditious
+Description = Your attacking moves have +1 priority.
+#-------------------------------
+[GOODLUCK]
+Name = Good Luck
+Description = Increased crit-chance and winnings.
+#-------------------------------
+[TOXICWATERS]
+Name = Toxic Waters
+Description = Water-type moves have a 20% chance of poisoning.
+#-------------------------------
+[BURNINGSTEAM]
+Name = Burning Steam
+Description = Water-type moves have a 20% chance of burning.
+#-------------------------------
+[RUSTEDFEATHERS]
+Name = Rusted Feathers
+Description = Halves speed and damage. Weakness to Water.
+#-------------------------------
+[GREYGOO]
+Name = Grey Goo
+Description = Posion-type moves and being poisoned heal.
+#-------------------------------
+[MADSCIENTIST]
+Name = Mad Scientist
+Description = Powers up Fire, Poison, and Fairy moves.
+#-------------------------------
+[QUEENSPOTENTIAL]
+Name = Queen's Potential
+Description = Boosts crit-chance after knocking out any Pokémon.
+#-------------------------------
+[MUTATION]
+Name = Mutation
+Description = Raises Attack and Lowers speed when attacked.
+#-------------------------------
+[SCARECROW]
+Name = Scarecrow
+Description = Creates a substitute when below half health.
+#-------------------------------
+[PHANTOMTHIEF]
+Name = Phantom Thief
+Description = When you lower an opponents stat increase yours.
+#-------------------------------
+[BACKSWING]
+Name = Backswing
+Description = When the last move fails increase offensive stats.
+#-------------------------------
+[UNCONCERNED]
+Name = Unconcerned
+Description = Normal moves bypass Rock and Steel resistances.
+#-------------------------------
+[MAGICJAW]
+Name = Magic Jaw
+Description = Biting moves are special and inflict status's.
+#-------------------------------
+[SWEETDREAMS]
+Name = Sweet Dreams
+Description = Heals any sleeping pokemon.
+#-------------------------------
+[PRACTICAL]
+Name = Practical
+Description = If a stat is lowered, increase the opposite.
+#-------------------------------
+[PARALYTICPOISON]
+Name = Paralytic Poison
+Description = Moves that would poison paralyze instead.
+#-------------------------------
+[ACIDICPOISON]
+Name = Acidic Poison
+Description = Moves that would poison burn instead.
+#-------------------------------
+[SOLARFIELD]
+Name = Solar Field
+Description = Increased special D in the sun, Heals grass allies.
+#-------------------------------
+[COMPACTEDICE]
+Name = Compacted Ice
+Description = Resist Fighting and Steel gain defence when hit. 
+#-------------------------------
+[NEUTRALIZE]
+Name = Neutralize
+Description = Moves are typeless and stronger.
+#-------------------------------
+[WINDSWEPT]
+Name = Wind Swept
+Description = When using a flying type move set a tailwind. 
+#-------------------------------
+[QUICKCHARGE]
+Name = Quick Charge
+Description = Two turn moves only take one turn instead.
+#-------------------------------
+[KINGSWRATH]
+Name = King's Wrath
+Description = Horn or Drill moves are stronger and can flinch.
+#-------------------------------
+[CHEMICALREACTION]
+Name = Chemical Reaction
+Description = Heal 25% from an berry and gain its type.
+#-------------------------------
+[ECHOLOCATION]
+Name = Echolocation
+Description = Accuracy cannot lower, takes more damage from sound-based moves.
+#-------------------------------
+[POWERSHIELD]
+Name = Power Shield
+Description = Ingores type chart, immune to non-sleep statuses.
+#-------------------------------
+[RAGEBAITING]
+Name = Ragebaiting
+Description = When first lowering a stat, trap and damage an opponent
+#-------------------------------
+[BEASTMODE]
+Name = Beast Mode
+Description = After 5 turns revert forms
+#-------------------------------
+[CONCUSSION]
+Name = Concussion
+Description = Explosion & Self Destruct deal 75% to use when at full hp.
+#-------------------------------
+[BOULDERBARRIER]
+Name = Boulder Barrier
+Description = When protected succesfully, powers up rock-type moves.
+#-------------------------------
+[HESSAFE]
+Name = He’s Safe
+Description = On fainting to recoil damage, restore 50% hp.
+#-------------------------------
+[ARCANEMAGE]
+Name = Arcane Mage
+Description = Fire, Ice, Electric moves are stronger, dark types are immune to them.
+#-------------------------------
+[QUICKSTRIKE]
+Name = Quick Strike
+Description = On first turn goes first, with 100% accuracy. 
+#-------------------------------
+[IGNITION]
+Name = Ignition
+Description = Ignites when hit by a Fire move. Reduce damage from Fire moves.
+#-------------------------------
+[EXTINGUISH]
+Name = Extinguish
+Description = Extinguishs when hit by a Water move. Reduce damage from Water moves.
+#-------------------------------
+[SOUPFILLER]
+Name = Soup Filler
+Description = When an opponent heals, you heal some as well.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

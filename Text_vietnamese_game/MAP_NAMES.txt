@@ -1,0 +1,94 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[MAP_NAMES]
+Intro
+Intro
+Đường D7
+Đường D7
+Thành Phố Seanport
+Thành Phố Seanport
+Hoc vien Inhore
+Hoc vien Inhore
+Vuon Sau Nha
+Vuon Sau Nha
+Route 1
+Route 1
+Cedolan City
+Cedolan City
+Lappet Town
+Lappet Town
+Route 2
+Route 2
+Thị trấn Yellow
+Thị trấn Yellow
+Lerucean Town
+Lerucean Town
+Natural Park
+Natural Park
+Route 3
+Route 3
+Ingido Plateau
+Ingido Plateau
+Route 4
+Route 4
+Route 5
+Route 5
+Đường A1
+Đường A1
+Fennel's Lab
+Fennel's Lab
+Route 6
+Route 6
+Route 7
+Route 7
+Thành Phố Central
+Thành Phố Central
+Battle Frontier
+Battle Frontier
+Safari Zone
+Safari Zone
+Route 8
+Route 8
+Berth Island
+Berth Island
+Faraday Island
+Faraday Island
+Tiall Region
+Tiall Region
+Central PokeCenter
+Central PokeCenter
+Hồ Manfeny
+Hồ Manfeny
+Đường A2
+Đường A2
+Đường A3
+Đường A3
+Rừng Inhore
+Rừng Inhore
+Thành Phố Inhore
+Thành Phố Inhore
+Đường A4
+Đường A4
+Đường A5
+Đường A5
+Thị trấn Pantem
+Thị trấn Pantem
+Đầm lầy Despair
+Đầm lầy Despair
+Thành Phố Esmerald
+Thành Phố Esmerald
+Esmerald PokeCenter
+Esmerald PokeCenter
+Đường A6
+Đường A6
+Đài phát thanh
+Đài phát thanh
+Inhore PokeCenter
+Inhore PokeCenter
+Đạo quán Inhore
+Đạo quán Inhore
+Pantem PokeCenter
+Pantem PokeCenter
+Thị trấn Bramboach
+Thị trấn Bramboach

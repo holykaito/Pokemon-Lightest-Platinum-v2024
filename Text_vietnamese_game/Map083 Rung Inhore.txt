@@ -1,0 +1,102 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map083]
+!!!
+!!!
+\bIf you take Bug POKémon to school, you get to be instantly popular!
+\bIf you take Bug POKémon to school, you get to be instantly popular!
+\bI can't be popular if I lose.
+\bI can't be popular if I lose.
+\bIf you have a big Bug Pokémon, people respect you for it.
+\bIf you have a big Bug Pokémon, people respect you for it.
+\bLately, I've seen a lot of Combee in this part of the forest.
+\bLately, I've seen a lot of Combee in this part of the forest.
+\rThe Pokemon in this forest seem to be very strong. Always be prepared!
+\rThe Pokemon in this forest seem to be very strong. Always be prepared!
+\rWater Pokémon always appear when the water is calm.
+\rWater Pokémon always appear when the water is calm.
+\rWell-trained Pokémon always look ready for battle. Any time, any place!
+\rWell-trained Pokémon always look ready for battle. Any time, any place!
+\rPachirisu is so cute ~
+\rPachirisu is so cute ~
+\rPach....Pach....
+\rPach....Pach....
+Inhore Woods
+Inhore Woods
+\rMy beauty is being lost on this horrible place. Only a battle will warm my heart!
+\rMy beauty is being lost on this horrible place. Only a battle will warm my heart!
+\rYour Pokémon are very strong and well-trained.
+\rYour Pokémon are very strong and well-trained.
+\rThis place is making me shiver in fear!
+\rThis place is making me shiver in fear!
+\bTEAM STEAM is ready to defeat any enemy!
+\bTEAM STEAM is ready to defeat any enemy!
+\bA member of TEAM STEAM defeated?! Impossible! Our boss will be very angry...
+\bA member of TEAM STEAM defeated?! Impossible! Our boss will be very angry...
+\bYou seem to be a good trainer, but you have much to learn.
+\bYou seem to be a good trainer, but you have much to learn.
+\bIn this place, bugs seem to grow more powerful. This will bring me victory!
+\bIn this place, bugs seem to grow more powerful. This will bring me victory!
+\bYou're a good trainer, and you have great Pokémon.
+\bYou're a good trainer, and you have great Pokémon.
+\bYou seem to be a good trainer but you still have much to learn.
+\bYou seem to be a good trainer but you still have much to learn.
+\r\ff[leaderjessica]Well, I found what was wrong with the Combee!
+\r\ff[leaderjessica]Well, I found what was wrong with the Combee!
+\r\ff[leaderjessica]Team Steam, in their drive to create new equipment to capture legendary Pokémon, were testing their inventions on these poor and defenseless Combee!
+\r\ff[leaderjessica]Team Steam, in their drive to create new equipment to capture legendary Pokémon, were testing their inventions on these poor and defenseless Combee!
+\r\ff[leaderjessica]Now, I'll stop them at last!
+\r\ff[leaderjessica]Now, I'll stop them at last!
+\r\ff[steamsheila]Hahaaa!
+\r\ff[steamsheila]Hahaaa!
+\r\ff[steamsheila]I doubt very much that you can defeat me.
+\r\ff[steamsheila]I doubt very much that you can defeat me.
+\r\ff[steamsheila]I'm Sheila, an admin of Team Steam! I'll show you the power of Team Steam.
+\r\ff[steamsheila]I'm Sheila, an admin of Team Steam! I'll show you the power of Team Steam.
+\r\ff[leaderjessica]Vespiquen, Go!
+\r\ff[leaderjessica]Vespiquen, Go!
+\r\ff[steamsheila]Trevenent, Go!
+\r\ff[steamsheila]Trevenent, Go!
+\r\ff[leaderjessica]Vespiquen, attack with Power Gem!
+\r\ff[leaderjessica]Vespiquen, attack with Power Gem!
+\r\ff[steamsheila]Trevenent, attack with Will-O-Wisp!
+\r\ff[steamsheila]Trevenent, attack with Will-O-Wisp!
+\r\ff[steamsheila]Trevenent, use Wood Hammer!
+\r\ff[steamsheila]Trevenent, use Wood Hammer!
+\r\ff[leaderjessica]VESPIQUEN !!!
+\r\ff[leaderjessica]VESPIQUEN !!!
+\r\ff[leaderjessica]You did a great job, Vespiquen. Thanks for battling.
+\r\ff[leaderjessica]You did a great job, Vespiquen. Thanks for battling.
+\r\ff[steamsheila]Now it's time for the fun part, Gym Leader! Trevenent, finish her off with Wood Hammer!
+\r\ff[steamsheila]Now it's time for the fun part, Gym Leader! Trevenent, finish her off with Wood Hammer!
+\pg\ff[boy]Stop it right now!
+\pg\ff[boy]Stop it right now!
+\pg\ff[girl]Stop it right now!
+\pg\ff[girl]Stop it right now!
+\pg\ff[boy]Get ready to face me, Sheila!
+\pg\ff[boy]Get ready to face me, Sheila!
+\pg\ff[girl]Get ready to face me, Sheila!
+\pg\ff[girl]Get ready to face me, Sheila!
+\r\ff[steamsheila]Impossible! A Team Steam admin can't lose to a brat like you!
+\r\ff[steamsheila]Impossible! A Team Steam admin can't lose to a brat like you!
+\r\ff[steamsheila]... ... ... ... ... ...
+\r\ff[steamsheila]... ... ... ... ... ...
+\r\ff[steamsheila]This humiliating defeat has left me speechless. I will keep coming back until I see you defeated!
+\r\ff[steamsheila]This humiliating defeat has left me speechless. I will keep coming back until I see you defeated!
+\r\ff[leaderjessica]Thanks for saving me. You really look like a formidable opponent.
+\r\ff[leaderjessica]Thanks for saving me. You really look like a formidable opponent.
+\r\ff[leaderjessica]I'll be waiting for your challenge at the Inhore City Gym!
+\r\ff[leaderjessica]I'll be waiting for your challenge at the Inhore City Gym!
+\bThis forest is really scary. Let's battle!
+\bThis forest is really scary. Let's battle!
+\bYou're a good trainer, and your Pokémon are very strong!
+\bYou're a good trainer, and your Pokémon are very strong!
+\bI lost to you, but everything happens for a reason.
+\bI lost to you, but everything happens for a reason.
+\bIn this forest, insects reign supreme and show no mercy!
+\bIn this forest, insects reign supreme and show no mercy!
+\bOnly a real winner takes defeat this graciously.
+\bOnly a real winner takes defeat this graciously.
+\bYou surprised me. Those attacks were very effective.
+\bYou surprised me. Those attacks were very effective.

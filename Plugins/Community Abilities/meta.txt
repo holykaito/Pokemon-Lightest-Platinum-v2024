@@ -1,0 +1,138 @@
+﻿Name       = v21.1 Community Abilities
+Version    = 1.0.0
+Essentials = 21.1
+Credits    = Loven Drunk
+#=====================================================================
+# Change log
+#=====================================================================
+# V - 1.0.0
+# Added the following abilities
+#-------------------------------
+#	Name = Corrupted Code
+#	Description = Powers up Poison-type moves by 1.5x, May disable a move used on the Pokémon (like cursed body).
+#-------------------------------
+#	Name = Aquatic Blood
+#	Description = Is Water-type in addition to its other types. Increases decreases damage from the water type chart 
+#	+ STAB on water moves. The effectiveness of moves remains unchanged but the damage is modified, so that its the same.
+#-------------------------------
+#	Name = Expeditious
+#	Description = Your attacking moves have +1 priority.
+#-------------------------------
+#	Name = Good Luck
+#	Description = Increased crit-chance and winnings.
+#-------------------------------
+#	Name = Toxic Waters
+#	Description = Water-type moves have a 20% chance of poisoning.
+#-------------------------------
+#	Name = Burning Steam
+#	Description = Water-type moves have a 20% chance of burning.
+#-------------------------------
+#	Name = Rusted Feathers
+#	Description = Halves speed and damage. Increased damage from Water. 
+#-------------------------------
+#	Name = Grey Goo
+#	Description = Posion-type moves and being poisoned heal this pokemon.
+#-------------------------------
+#	Name = Mad Scientist
+#	Description = Powers up by 1.5x Fire, Poison, and Fairy moves.
+#-------------------------------
+#	Name = Queen's Potential
+#	Description = Boosts crit-chance after knocking out any Pokémon.
+#-------------------------------
+#	Name = Mutation
+#	Description = Raises Attack and Lowers speed when attacked.
+#-------------------------------
+#	Name = Scarecrow
+#	Description = Creates a substitute when below half health. Must have more than 25% hp to use.
+#-------------------------------
+#	Name = Phantom Thief
+#	Description = When you lower an opponents stat increase yours.
+#-------------------------------
+#	Name = Backswing
+#	Description = When the last move fails increase Attack and Special Attack by 1 stage.
+#-------------------------------
+#	Name = Unconcerned
+#	Description = Normal moves bypass Rock and Steel resistances.
+#-------------------------------
+#	Name = Magic Jaw
+#	Description = Biting moves are special and inflict a completely random status 30% of the time.
+#-------------------------------
+#	Name = Sweet Dreams
+#	Description = Heals any sleeping pokemon by 1/16th at the end of the round.
+#-------------------------------
+#	Name = Practical
+#	Description = If a stat is lowered, increase the opposite.
+#-------------------------------
+#	Name = Paralytic Poison
+#	Description = Moves that would poison paralyze instead.
+#-------------------------------
+#	Name = Acidic Poison
+#	Description = Moves that would poison burn instead.
+#-------------------------------
+#	Name = Solar Field
+#	Description = Increased special defence in the sun, Heals grass allies by 1/16th.
+#-------------------------------
+#	Name = Compacted Ice
+#	Description = Resist Fighting and Steel gain defence when by a move of those types hit. 
+#-------------------------------
+#	Name = Neutralize
+#	Description = Of the users moves are typeless and 1.8x stronger. 
+#	Special Note = Only works if the QMARKS type is in your game, which it is by default.
+#-------------------------------
+#	Name = Wind Swept
+#	Description = When using a flying type move set a tailwind, so long as no tailwind already exsists. 
+#-------------------------------
+#	Name = Quick Charge
+#	Description = Two turn moves only take one turn instead.
+#-------------------------------
+#	Name = King's Wrath
+#	Description = Horn or Drill moves are stronger and can flinch. 
+#	Special Note =  You must assign moves in your PBS the flags "Horn" or "Drill" for this ability to work.
+#-------------------------------
+#	Name = Chemical Reaction
+#	Description = Heal 25% from an berry and gain its type based off its Natural Gift type.
+#-------------------------------
+#	Name = Echolocation
+#	Description = Accuracy cannot lower, takes 1.5x more damage from sound-based moves.
+#-------------------------------
+#	Name = Power Shield
+#	Description = Ingores type chart, immune to non-sleep statuses. This ability halves all incoming damage.
+#	Special Note = Only works if the QMARKS type is in your game, which it is by default.
+#-------------------------------
+#	Name = Ragebaiting
+#	Description = When first lowering a stat, trap (for one turn) and deal 1/8th of the opponent's health. 
+#	This ability only applies once per Pokemon switched in. It can apply multiple times to the same mon if it is switched back in.
+#-------------------------------
+#	Name = Beast Mode
+#	Description = After 5 turns revert forms. Switches to form 1 on entry, after 5 turns it becomes form 0.
+#	Special Note = The pokemon that has this MUST have a form. That form and the base form MUST have Beast Mode. 
+#-------------------------------
+#	Name = Concussion
+#	Description = Explosion & Self Destruct deal 75% to use when at full hp. This also confuses the user.
+#-------------------------------
+#	Name = Boulder Barrier
+#	Description = When protected succesfully, powers up rock-type moves by 1.5x for only the next turn. 
+#-------------------------------
+#	Name = He’s Safe
+#	Description = On fainting to recoil damage, restore 50% hp. Only works once per mon with this ability
+#-------------------------------
+#	Name = Arcane Mage
+#	Description = Fire, Ice, Electric moves are stronger, dark types are immune to them.
+#-------------------------------
+#	Name = Quick Strike
+#	Description = On first turn goes first, with 100% accuracy. This only works the first turn its switched into battle and makes a move. 
+#	it stays in its priority bracket, and the move skips the accuracy check but doesn't hit semi-invulerable pokemon.
+#-------------------------------
+#	Name = Ignition
+#	Description = Ignites when hit by a Fire move. Reduce damage from Fire moves.
+#	Special Note = The pokemon that has this ability MUST have a form with the ability Extinguish.
+#-------------------------------
+#	Name = Extinguish
+#	Description = Extinguishs when hit by a Water move. Reduce damage from Water moves.
+#	Special Note = The form of a pokemon that has this ability MUST have a base form with the ability Ignition.
+#-------------------------------
+#	Name = Soup Filler
+#	Description = When an opponent heals, you heal 1/8th of your health.
+#-------------------------------
+#	End of Patch Notes :3 <3
+#=====================================================================

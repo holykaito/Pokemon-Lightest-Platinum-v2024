@@ -1,0 +1,56 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map022]
+\bToday's technology is incredible! I can trade Pokemon with people around the world.
+\bToday's technology is incredible! I can trade Pokemon with people around the world.
+Yellow Town - Route A1
+Yellow Town - Route A1
+Hey \PN! Your mother is waiting for you at home. Go home first to give your mother peace of mind!
+Hey \PN! Your mother is waiting for you at home. Go home first to give your mother peace of mind!
+\r\ff[mom]\r\PN! \PN!
+\r\ff[mom]\r\PN! \PN!
+\r\ff[mom]Did you introduce yourself to Prof. Jasmine?
+\r\ff[mom]Did you introduce yourself to Prof. Jasmine?
+\r\ff[mom]You look good together with Pokémon! Here, honey! If you're going out on an adventure, wear these Running Shoes. They'll put a zip in your step!
+\r\ff[mom]You look good together with Pokémon! Here, honey! If you're going out on an adventure, wear these Running Shoes. They'll put a zip in your step!
+\r\ff[mom]To think that you have your very own Pokémon now. Your father will be overjoyed.
+\r\ff[mom]To think that you have your very own Pokémon now. Your father will be overjoyed.
+\r\ff[mom]But please be careful. If anything happens, you can come home.
+\r\ff[mom]But please be careful. If anything happens, you can come home.
+\r\ff[mom]Go on, go get them, honey!
+\r\ff[mom]Go on, go get them, honey!
+\rProf. Jasmine's laboratory is one of the best research centres in the whole Zhery Region.
+\rProf. Jasmine's laboratory is one of the best research centres in the whole Zhery Region.
+Research Laboratory Pro. Jasmine
+Research Laboratory Pro. Jasmine
+\rI'm cleaning the house for Pro. Fennel.
+\rI'm cleaning the house for Pro. Fennel.
+\bArceus is a legendary Pokemon that can change its type to anything, but that's only a theory because no one's seen it.
+\bArceus is a legendary Pokemon that can change its type to anything, but that's only a theory because no one's seen it.
+In Yellow Town, people always want their children to be good trainer, who will be the pride of their families and of the city.
+In Yellow Town, people always want their children to be good trainer, who will be the pride of their families and of the city.
+\rHello, I'm ready to provide dedicated medical care for your Pokemon team. From restoring health to treating injuries, let me help you and your Pokemon get back in top shape.
+\rHello, I'm ready to provide dedicated medical care for your Pokemon team. From restoring health to treating injuries, let me help you and your Pokemon get back in top shape.
+\rTrust and entrust your Pokemon to me, I'll take care of them as if they were family!
+\rTrust and entrust your Pokemon to me, I'll take care of them as if they were family!
+Hello, friend! Is this \PN's house?
+Hello, friend! Is this \PN's house?
+Yes, that's me!
+Yes, that's me!
+Good! Prof. Fennel asked me to come get you, because she urgently needs your help in Central City!
+Good! Prof. Fennel asked me to come get you, because she urgently needs your help in Central City!
+I was on my way just now!
+I was on my way just now!
+I almost forgot to introduce myself. I'm Kaori, the current Champion of The Zhery League. I'm a close friend of Pro. Jasmine's, and she asked me and a few of my friends to urgently look into this great mystery. She thinks it may be linked to the world's creation!
+I almost forgot to introduce myself. I'm Kaori, the current Champion of The Zhery League. I'm a close friend of Pro. Jasmine's, and she asked me and a few of my friends to urgently look into this great mystery. She thinks it may be linked to the world's creation!
+Very interesting! Let's get there as fast as we can!
+Very interesting! Let's get there as fast as we can!
+Roaring Moon will take us there right now!
+Roaring Moon will take us there right now!
+\PN, they must be close to the lake in the center of the city. Let's go!
+\PN, they must be close to the lake in the center of the city. Let's go!
+Roarrrrrr!
+Roarrrrrr!
+Roaring Moon, use Fly!!!
+Roaring Moon, use Fly!!!
