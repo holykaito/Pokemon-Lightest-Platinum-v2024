@@ -946,3 +946,32 @@ class Battle::Move::DisableTargetMovesKnownByUser < Battle::Move
     @battle.pbDisplay(_INTL("{1} sealed any moves its target shares with it!", user.pbThis))
   end
 end
+
+#===============================================================================
+# Power is multiplied by 1.5 if Anchor was previously used (not stackable).
+# After hitting, raises the user's Attack and Defense by 1 stage if boosted.
+#===============================================================================
+class Battle::Move::AnchorStrike < Battle::Move
+  def pbBaseDamage(baseDmg, user, target)
+    return (baseDmg * 1.5).floor if target.effects[PBEffects::MeanLook] >= 0
+    return baseDmg
+  end
+
+  def pbEffectAfterAllHits(user, target)
+    return if target.damageState.hpLost <= 0
+    return if target.damageState.substitute
+    return unless target.effects[PBEffects::MeanLook] >= 0
+
+    showAnim = true
+    if user.pbCanRaiseStatStage?(:ATTACK, user, self)
+      user.pbRaiseStatStage(:ATTACK, 1, user, showAnim)
+      showAnim = false
+    end
+    if user.pbCanRaiseStatStage?(:DEFENSE, user, self)
+      user.pbRaiseStatStage(:DEFENSE, 1, user, showAnim)
+      showAnim = false
+    end
+
+    target.effects[PBEffects::MeanLook] = -1
+  end
+end

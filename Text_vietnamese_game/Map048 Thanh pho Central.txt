@@ -19,13 +19,13 @@ Contest Hall
 \bDo you want to get a EGG?
 \bDo you want to get a EGG?
 \pn received the Egg.\wt[80]
-\pn received the Egg.\wt[80] 
+\pn received the Egg.\wt[80]
 \bTake good care of it!
 \bTake good care of it!
 \bYou can go back to get it if you want.
 \bYou can go back to get it if you want.
 \rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle.
-\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle. 
+\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle.
 \bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
 \bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
 \bI enjoy strolling through the city, admiring the scenery, and meeting new people. Let's share stories, expand knowledge, and discover new interests together. Life is not just about work, but also about memorable moments. Embrace each day and create cherished memories!
@@ -35,7 +35,7 @@ Safari Zone
 \bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
 \bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
 \bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion.
-\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion. 
+\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion.
 Radio & TV Tower
 Radio & TV Tower
 \bThis is Central City's Train Station. This place is currently under repair, please come back later.
@@ -51,7 +51,7 @@ Train Station
 \bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
 \bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
 \bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it.
-\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it. 
+\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it.
 \r\ff[profjasmine]Hello, \PN! I asked for help from Ash Ketchum and Kaori for this study because it is very hazardous. If something goes wrong, everyone on this planet would be in danger!
 \r\ff[profjasmine]Hello, \PN! I asked for help from Ash Ketchum and Kaori for this study because it is very hazardous. If something goes wrong, everyone on this planet would be in danger!
 \pg\ff[boy]I'll be careful, Professor.

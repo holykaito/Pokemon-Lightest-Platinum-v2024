@@ -140,7 +140,7 @@ class Battle::AI::AIMove
     # Ability effects that alter damage
     if user.ability_active?
       case user.ability_id
-      when :AERILATE, :GALVANIZE, :PIXILATE, :REFRIGERATE
+      when :AERILATE, :GALVANIZE, :PIXILATE, :REFRIGERATE, :INTOXICATE, :DRAGONIZE
         multipliers[:power_multiplier] *= 1.2 if type == :NORMAL   # NOTE: Not calc_type.
       when :ANALYTIC
         if rough_priority(user) <= 0
@@ -184,7 +184,7 @@ class Battle::AI::AIMove
       end
       if target.ability_active?
         case target.ability_id
-        when :FILTER, :SOLIDROCK
+        when :FILTER, :SOLIDROCK, :PERMAFROST
           if Effectiveness.super_effective_type?(calc_type, *target.pbTypes(true))
             multipliers[:final_damage_multiplier] *= 0.75
           end

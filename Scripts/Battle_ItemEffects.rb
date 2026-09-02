@@ -1169,6 +1169,14 @@ Battle::ItemEffects::DamageCalcFromTarget.add(:METALPOWDER,
   }
 )
 
+Battle::ItemEffects::DamageCalcFromTarget.add(:GRISEOUSORB,
+  proc { |item, user, target, move, mults, power, type|
+    if target.isSpecies?(:GIRATINA) && [:DRAGON, :GHOST].include?(type)
+      mults[:defense_multiplier] *= 1.2
+    end
+  }
+)
+
 Battle::ItemEffects::DamageCalcFromTarget.add(:OCCABERRY,
   proc { |item, user, target, move, mults, power, type|
     target.pbMoveTypeWeakeningBerry(:FIRE, type, mults)

@@ -23,10 +23,10 @@ class Battle::Move::SwapSideEffects < Battle::Move
     @boolean_effects = [
       PBEffects::StealthRock,
       PBEffects::StickyWeb, 
-	  PBEffects::TerrainSmash,
+	    PBEffects::TerrainSmash,
       PBEffects::RestictiveWinds,
       PBEffects::HauntedOrbs,
-	  PBEffects::CopperJacks,
+	    PBEffects::CopperJacks,
       PBEffects::BurningDebris,
       PBEffects::WaterChannel,
       PBEffects::RoseField,
@@ -711,16 +711,20 @@ Battle::AbilityEffects::OnSwitchIn.add(:SAPSIPPER,
 
 Battle::AbilityEffects::OnSwitchIn.add(:POISONABSORB,
   proc { |ability, battler, battle, switch_in|
-    next if !battler.pbOwnSide.effects[PBEffects::ToxicSpikes] > 0
+    toxic_spikes = battler.pbOwnSide.effects[PBEffects::ToxicSpikes] || 0
+    next if toxic_spikes <= 0
+
     battle.pbShowAbilitySplash(battler)
-	if battler.pbOwnSide.effects[PBEffects::ToxicSpikes] == 2
-	battler.pbRecoverHP(battler.totalhp / 6)
-    battle.pbDisplay(_INTL("{1} absorbed a large amount of poison spikes!", battler.pbThis))	
-	else
-	battler.pbRecoverHP(battler.totalhp / 8)
-    battle.pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))	
-    end	
-	battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
-	battle.pbHideAbilitySplash(battler)
+
+    if toxic_spikes >= 2
+      battler.pbRecoverHP(battler.totalhp / 6)
+      battle.pbDisplay(_INTL("{1} absorbed a large amount of poison spikes!", battler.pbThis))
+    else
+      battler.pbRecoverHP(battler.totalhp / 8)
+      battle.pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))
+    end
+
+    battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+    battle.pbHideAbilitySplash(battler)
   }
-)			
+)	

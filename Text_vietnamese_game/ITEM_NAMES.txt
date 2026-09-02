@@ -112,6 +112,194 @@ Meteorite
 Meteorite
 Briar's Book
 Briar's Book
+Clefablite
+Clefablite
+Victreebelite
+Victreebelite
+Starminite
+Starminite
+Dragoninite
+Dragoninite
+Meganiumite
+Meganiumite
+Feraligite
+Feraligite
+Skarmorite
+Skarmorite
+Froslassite
+Froslassite
+Emboarite
+Emboarite
+Excadrite
+Excadrite
+Scolipite
+Scolipite
+Scraftinite
+Scraftinite
+Eelektrossite
+Eelektrossite
+Chandelurite
+Chandelurite
+Chesnaughtite
+Chesnaughtite
+Delphoxite
+Delphoxite
+Greninjite
+Greninjite
+Pyroarite
+Pyroarite
+Floettite
+Floettite
+Malamarite
+Malamarite
+Barbaracite
+Barbaracite
+Dragalgite
+Dragalgite
+Hawluchanite
+Hawluchanite
+Zygardite
+Zygardite
+Drampanite
+Drampanite
+Falinksite
+Falinksite
+Mega Shard
+Mega Shard
+Red Canari Plush
+Red Canari Plush
+Gold Canari Plush
+Gold Canari Plush
+Pink Canari Plush
+Pink Canari Plush
+Green Canari Plush
+Green Canari Plush
+Blue Canari Plush
+Blue Canari Plush
+Heatranite
+Heatranite
+Darkranite
+Darkranite
+Zeraorite
+Zeraorite
+Raichunite X
+Raichunite X
+Raichunite Y
+Raichunite Y
+Chimechite
+Chimechite
+Absolite Z
+Absolite Z
+Staraptite
+Staraptite
+Garchompite Z
+Garchompite Z
+Lucarionite Z
+Lucarionite Z
+Golurkite
+Golurkite
+Meowsticite
+Meowsticite
+Crabominite
+Crabominite
+Golisopite
+Golisopite
+Magearnite
+Magearnite
+Scovillainite
+Scovillainite
+Baxcalibrite
+Baxcalibrite
+Tatsugirinite
+Tatsugirinite
+Glimmoranite
+Glimmoranite
+Hyper Cheri Berry
+Hyper Cheri Berry
+Hyper Chesto Berry
+Hyper Chesto Berry
+Hyper Pecha Berry
+Hyper Pecha Berry
+Hyper Rawst Berry
+Hyper Rawst Berry
+Hyper Aspear Berry
+Hyper Aspear Berry
+Hyper Oran Berry
+Hyper Oran Berry
+Hyper Persim Berry
+Hyper Persim Berry
+Hyper Lum Berry
+Hyper Lum Berry
+Hyper Sitrus Berry
+Hyper Sitrus Berry
+Hyper Pomeg Berry
+Hyper Pomeg Berry
+Hyper Kelpsy Berry
+Hyper Kelpsy Berry
+Hyper Qualot Berry
+Hyper Qualot Berry
+Hyper Hondew Berry
+Hyper Hondew Berry
+Hyper Grepa Berry
+Hyper Grepa Berry
+Hyper Tamato Berry
+Hyper Tamato Berry
+Hyper Occa Berry
+Hyper Occa Berry
+Hyper Passho Berry
+Hyper Passho Berry
+Hyper Wacan Berry
+Hyper Wacan Berry
+Hyper Rindo Berry
+Hyper Rindo Berry
+Hyper Yache Berry
+Hyper Yache Berry
+Hyper Chople Berry
+Hyper Chople Berry
+Hyper Kebia Berry
+Hyper Kebia Berry
+Hyper Shuca Berry
+Hyper Shuca Berry
+Hyper Coba Berry
+Hyper Coba Berry
+Hyper Payapa Berry
+Hyper Payapa Berry
+Hyper Tanga Berry
+Hyper Tanga Berry
+Hyper Charti Berry
+Hyper Charti Berry
+Hyper Kasib Berry
+Hyper Kasib Berry
+Hyper Haban Berry
+Hyper Haban Berry
+Hyper Colbur Berry
+Hyper Colbur Berry
+Hyper Babiri Berry
+Hyper Babiri Berry
+Hyper Chilan Berry
+Hyper Chilan Berry
+Hyper Roseli Berry
+Hyper Roseli Berry
+Canari Bread
+Canari Bread
+Lumiosian Butter
+Lumiosian Butter
+Nice Butter
+Nice Butter
+Great Butter
+Great Butter
+Amazing Butter
+Amazing Butter
+Supreme Butter
+Supreme Butter
+Hyperspace Butter
+Hyperspace Butter
+Hoennian Salt
+Hoennian Salt
+Épice Noire
+Épice Noire
+Arboliva Oil
+Arboliva Oil
 TM001
 TM001
 TM002
@@ -568,10 +756,6 @@ TM229
 TM229
 Innate Shuffler
 Innate Shuffler
-Dragoninite
-Dragoninite
-Drampanite
-Drampanite
 Dynamax Band
 Dynamax Band
 Wishing Star

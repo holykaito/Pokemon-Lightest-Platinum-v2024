@@ -186,6 +186,8 @@ Upper Hand
 Upper Hand
 Malignant Chain
 Malignant Chain
+Nihil Light
+Nihil Light
 Pollen Blast
 Pollen Blast
 Queen's Shield
@@ -410,6 +412,18 @@ G-Max One Blow
 G-Max One Blow
 G-Max Rapid Flow
 G-Max Rapid Flow
+Hypnotic Note
+Hypnotic Note
+Cotton Kick
+Cotton Kick
+Wind Boarding
+Wind Boarding
+Shield Bash
+Shield Bash
+Cursed Terrain
+Cursed Terrain
+Relic Dance
+Relic Dance
 Tera Blast
 Tera Blast
 Breakneck Blitz

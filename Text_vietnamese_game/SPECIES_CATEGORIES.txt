@@ -168,6 +168,20 @@ Mantis Shrimp
 Mantis Shrimp
 Seismic Punch
 Seismic Punch
+Cotton
+Cotton
+Little Mouse
+Little Mouse
+Baton
+Baton
+Musical Mouse
+Musical Mouse
+Little Seagull
+Little Seagull
+Leading
+Leading
+Reactor
+Reactor
 Sphere
 Sphere
 Ghost Flame
@@ -190,6 +204,14 @@ Hero
 Hero
 Coin Hunter
 Coin Hunter
+Double Jaw
+Double Jaw
+Bad Dreams
+Bad Dreams
+Second Sight
+Second Sight
+Imposing
+Imposing
 Snow Hump
 Snow Hump
 Dormant

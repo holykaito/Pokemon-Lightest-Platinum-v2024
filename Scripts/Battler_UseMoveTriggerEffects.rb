@@ -154,7 +154,10 @@ class Battle::Battler
     # Target switching caused by Roar, Whirlwind, Circle Throw, Dragon Tail
     move.pbSwitchOutTargetEffect(user, targets, numHits, switched_battlers)
     # Target's item, user's item, target's ability (all negated by Sheer Force)
-    if !(user.hasActiveAbility?(:SHEERFORCE) && move.addlEffect > 0)
+    # NOTE: Sheer Force prevents these effects ONLY if the move has a secondary effect.
+    # We check if the move would have additional effects via pbAdditionalEffectChance.
+    hasSecondaryEffect = move.pbAdditionalEffectChance(user, targets[0]) > 0 if targets.length > 0
+    if !(user.hasActiveAbility?(:SHEERFORCE) && hasSecondaryEffect)
       pbEffectsAfterMove2(user, targets, move, numHits, switched_battlers)
     end
     # Some move effects that need to happen here, i.e. user switching caused by
@@ -164,7 +167,8 @@ class Battle::Battler
       move.pbEndOfMoveUsageEffect(user, targets, numHits, switched_battlers)
     end
     # User's ability/item that switches the user out (all negated by Sheer Force)
-    if !(user.hasActiveAbility?(:SHEERFORCE) && move.addlEffect > 0)
+    # NOTE: Sheer Force prevents these effects ONLY if the move has a secondary effect
+    if !(user.hasActiveAbility?(:SHEERFORCE) && hasSecondaryEffect)
       pbEffectsAfterMove3(user, targets, move, numHits, switched_battlers)
     end
     if numHits > 0

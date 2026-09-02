@@ -115,18 +115,6 @@ class Battle::AI
 		
 		return score
 	end
-
-#-------------------------------------------------------------------------------
-# Acknowledge ARCANE MAGE dark Immunity
-#-------------------------------------------------------------------------------
-	alias CAL_pbPredictMoveFailureAgainstTarget pbPredictMoveFailureAgainstTarget
-	def pbPredictMoveFailureAgainstTarget()
-		ret = CAL_pbPredictMoveFailureAgainstTarget()
-		
-		ret = true if @user.has_active_ability?(:ARCANEMAGE) && [:FIRE, :ICE, :ELECTRIC].include?(@move.rough_type) && @target.has_type?(:DARK) && !@battle.moldBreaker
-		
-		return ret 
-	end
 end
   
 class Battle::AI::AIBattler

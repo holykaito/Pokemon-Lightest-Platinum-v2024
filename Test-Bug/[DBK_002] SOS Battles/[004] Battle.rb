@@ -349,7 +349,7 @@ class Battle
   def pbCallForHelp(caller)
     roll = pbRandom(100)
     answer_rate  = caller.sos_call_rate * 4.0
-    answer_rate *= 1.2 if pbCheckOpposingAbility([:INTIMIDATE, :UNNERVE, :PRESSURE], caller.index, true)
+    answer_rate *= 1.2 if pbCheckOpposingAbility([:INTIMIDATE, :UNNERVE, :PRESSURE, :TERRORSOWER], caller.index, true)
     answer_rate *= 1.5 if @lastTurnCalled == @turnCount - 1
     answer_rate *= 2.0 if caller.tookSuperEffectiveDamage
     answer_rate *= 3.0 if @lastCallAnswered == false

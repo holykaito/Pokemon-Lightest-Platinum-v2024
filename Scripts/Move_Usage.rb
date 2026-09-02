@@ -208,7 +208,7 @@ class Battle::Move
         elsif target.hasActiveItem?(:FOCUSSASH) && target.hp == target.totalhp
           target.damageState.focusSash = true
           damage -= 1
-        elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100) < 10
+        elsif target.hasActiveItem?(:FOCUSBAND) && @battle.pbRandom(100) < 20
           target.damageState.focusBand = true
           damage -= 1
         elsif Settings::AFFECTION_EFFECTS && @battle.internalBattle &&

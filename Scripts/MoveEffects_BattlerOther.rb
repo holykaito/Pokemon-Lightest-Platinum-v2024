@@ -43,8 +43,8 @@ class Battle::Move::SleepTargetChangeUserMeloettaForm < Battle::Move::SleepTarge
     return if user.fainted? || user.effects[PBEffects::Transform]
     return if !user.isSpecies?(:MELOETTA)
     return if user.hasActiveAbility?(:SHEERFORCE) && @addlEffect > 0
-    newForm = (user.form + 1) % 2
-    user.pbChangeForm(newForm, _INTL("{1} transformed!", user.pbThis))
+    # newForm = (user.form + 1) % 2
+    # user.pbChangeForm(newForm, _INTL("{1} transformed!", user.pbThis))
   end
 end
 
@@ -97,14 +97,14 @@ class Battle::Move::PoisonTarget < Battle::Move
 end
 
 #===============================================================================
-# Poisons the target and decreases its Speed by 1 stage. (Toxic Thread)
+# Poisons the target and decreases its Speed by 2 stage. (Toxic Thread)
 #===============================================================================
 class Battle::Move::PoisonTargetLowerTargetSpeed1 < Battle::Move
   attr_reader :statDown
 
   def initialize(battle, move)
     super
-    @statDown = [:SPEED, 1]
+    @statDown = [:SPEED, 2]
   end
 
   def canMagicCoat?; return true; end

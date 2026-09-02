@@ -188,6 +188,8 @@ An attack that hits first and makes the target flinch. Fails if the target isn't
 An attack that hits first and makes the target flinch. Fails if the target isn't using a high priority move.
 Wraps the target in a toxic, corrosive chain. This may also leave the target badly poisoned.
 Wraps the target in a toxic, corrosive chain. This may also leave the target badly poisoned.
+A powerful light that defies nature, striking Fairy types and ignoring target stat changes.
+A powerful light that defies nature, striking Fairy types and ignoring target stat changes.
 Chance to seed the target. Boosts Grass-Type's Speed.
 Chance to seed the target. Boosts Grass-Type's Speed.
 Protects itself from damage. It also harshly lowers the Special Attack of attackers.
@@ -408,6 +410,14 @@ A G-Max Move used by G-Max Urshifu. This single-strike move can ignore Max Guard
 A G-Max Move used by G-Max Urshifu. This single-strike move can ignore Max Guard.
 A G-Max Move used by G-Max Urshifu. This rapid-strike move can ignore Max Guard.
 A G-Max Move used by G-Max Urshifu. This rapid-strike move can ignore Max Guard.
+Puts the opponent to sleep if the user takes damage during that turn.
+Puts the opponent to sleep if the user takes damage during that turn.
+It reduces hit Pokémon's Speed.
+It reduces hit Pokémon's Speed.
+Increases power if Trap move has been used before and raises Attack and Defense.
+Increases power if Trap move has been used before and raises Attack and Defense.
+The user turns the battlefield into cursed terrain for five turns.
+The user turns the battlefield into cursed terrain for five turns.
 Move type changes to match a Terastallized user's Tera Type. Deals damage based on user's higher stat.
 Move type changes to match a Terastallized user's Tera Type. Deals damage based on user's higher stat.
 The user builds up its momentum using its Z-Power and crashes into the target at full speed.

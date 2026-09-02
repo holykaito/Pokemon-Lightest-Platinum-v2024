@@ -23,16 +23,15 @@ class Battle::Battler
   #PHANTOMTHIEF #RAGEBAITING
   alias CAL_pbLowerStatStage pbLowerStatStage
   def pbLowerStatStage(stat, increment, user, showAnim = true, ignoreContrary = false, mirrorArmorSplash = 0, ignoreMirrorArmor = false)
-	ret = CAL_pbLowerStatStage(stat, increment, user, showAnim, ignoreContrary, mirrorArmorSplash, ignoreMirrorArmor)
-	if (ret)
-		Battle::AbilityEffects.triggerOnStatLossWithIncrement(self.ability, self, stat, user, increment)
-		
-		if user.hasActiveAbility?(:PHANTOMTHIEF) || user.hasActiveAbility?(:RAGEBAITING)
-			Battle::AbilityEffects.triggerOnAnyStatLoss(user.ability, user, stat, self, increment, @battle)
-		end
-	end
-	
-	return ret
+    ret = CAL_pbLowerStatStage(stat, increment, user, showAnim, ignoreContrary, mirrorArmorSplash, ignoreMirrorArmor)
+    if ret
+      Battle::AbilityEffects.triggerOnStatLossWithIncrement(self.ability, self, stat, user, increment)
+
+      if user && (user.hasActiveAbility?(:PHANTOMTHIEF) || user.hasActiveAbility?(:RAGEBAITING))
+        Battle::AbilityEffects.triggerOnAnyStatLoss(user.ability, user, stat, self, increment, @battle)
+      end
+    end
+    return ret
   end
   #PHANTOMTHIEF #RAGEBAITING  
   alias CAL_pbLowerStatStageByCause pbLowerStatStageByCause
@@ -160,28 +159,24 @@ class Battle::Battler
       end
     end
   end
-  #BOULDERBARRIER #ARCANEMAGE
-  alias CAL_pbSuccessCheckAgainstTarget pbSuccessCheckAgainstTarget
-  def pbSuccessCheckAgainstTarget(move, user, target, targets)
-	ret = CAL_pbSuccessCheckAgainstTarget(move, user, target, targets)
-	
-	return ret if @battle.moldBreaker
-	
-	if @battle.successStates[user.index].protected && target.hasActiveAbility?(:BOULDERBARRIER)
-		target.effects[PBEffects::BoulderBarrier] = true
-	elsif target.hasActiveAbility?(:BOULDERBARRIER)
-		target.effects[PBEffects::BoulderBarrier] = false
-	end
-	
-	if user.hasActiveAbility?(:ARCANEMAGE) && [:FIRE, :ICE, :ELECTRIC].include?(move.type) && target.pbHasType?(:DARK) 
-		@battle.pbShowAbilitySplash(user)
-		@battle.pbDisplay(_INTL("{1} is immune to Arcane Magic!", target.pbThis))
-		ret = false
-		@battle.pbHideAbilitySplash(user)
-	end
-	
-	return ret
+
+#BOULDERBARRIER
+alias CAL_pbSuccessCheckAgainstTarget pbSuccessCheckAgainstTarget
+
+def pbSuccessCheckAgainstTarget(move, user, target, targets)
+  ret = CAL_pbSuccessCheckAgainstTarget(move, user, target, targets)
+
+  return ret if @battle.moldBreaker
+
+  if @battle.successStates[user.index].protected && target.hasActiveAbility?(:BOULDERBARRIER)
+    target.effects[PBEffects::BoulderBarrier] = true
+  elsif target.hasActiveAbility?(:BOULDERBARRIER)
+    target.effects[PBEffects::BoulderBarrier] = false
   end
+
+  return ret
+end
+	
   #SOUPFILLER
   alias CAL_pbEffectsAfterMove pbEffectsAfterMove
   def pbEffectsAfterMove(user, targets, move, numHits)

@@ -77,7 +77,7 @@ class Battle
 
   def switch_limit_ability(battler) # add once per switch ability here
     ret = [:EMBODYASPECT, :EMBODYASPECT_1, :EMBODYASPECT_2, :EMBODYASPECT_3,
-           :INTIMIDATE,
+           :INTIMIDATE, :TERRORSOWER,
            :SCARE]
     #ret = [] if !battler.pbOwnedByPlayer?
     return ret
@@ -85,7 +85,7 @@ class Battle
 
   def battle_limit_ability(battler) # add once per battle ability here
     ret = [:EMBODYASPECT, :EMBODYASPECT_1, :EMBODYASPECT_2, :EMBODYASPECT_3,
-           :INTIMIDATE,
+           :INTIMIDATE, TERRORSOWER,
            :SCARE]
     #ret = [] if !battler.pbOwnedByPlayer?
     return ret

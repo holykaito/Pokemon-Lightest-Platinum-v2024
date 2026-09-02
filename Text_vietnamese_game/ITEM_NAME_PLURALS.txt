@@ -112,6 +112,194 @@ Meteorites
 Meteorites
 Briar's Books
 Briar's Books
+Clefablites
+Clefablites
+Victreebelites
+Victreebelites
+Starminites
+Starminites
+Dragoninites
+Dragoninites
+Meganiumites
+Meganiumites
+Feraligites
+Feraligites
+Skarmorites
+Skarmorites
+Froslassites
+Froslassites
+Emboarites
+Emboarites
+Excadrites
+Excadrites
+Scolipites
+Scolipites
+Scraftinites
+Scraftinites
+Eelektrossites
+Eelektrossites
+Chandelurites
+Chandelurites
+Chesnaughtites
+Chesnaughtites
+Delphoxites
+Delphoxites
+Greninjites
+Greninjites
+Pyroarites
+Pyroarites
+Floettites
+Floettites
+Malamarites
+Malamarites
+Barbaracites
+Barbaracites
+Dragalgites
+Dragalgites
+Hawluchanites
+Hawluchanites
+Zygardites
+Zygardites
+Drampanites
+Drampanites
+Falinksites
+Falinksites
+Mega Shards
+Mega Shards
+Red Canari Plushies
+Red Canari Plushies
+Gold Canari Plushies
+Gold Canari Plushies
+Pink Canari Plushies
+Pink Canari Plushies
+Green Canari Plushies
+Green Canari Plushies
+Blue Canari Plushies
+Blue Canari Plushies
+Heatranites
+Heatranites
+Darkranites
+Darkranites
+Zeraorites
+Zeraorites
+Raichunite Xs
+Raichunite Xs
+Raichunite Ys
+Raichunite Ys
+Chimechites
+Chimechites
+Absolite Zs
+Absolite Zs
+Staraptites
+Staraptites
+Garchompite Zs
+Garchompite Zs
+Lucarionite Zs
+Lucarionite Zs
+Golurkites
+Golurkites
+Meowsticites
+Meowsticites
+Crabominites
+Crabominites
+Golisopites
+Golisopites
+Magearnites
+Magearnites
+Scovillainites
+Scovillainites
+Baxcalibrites
+Baxcalibrites
+Tatsugirinites
+Tatsugirinites
+Glimmoranites
+Glimmoranites
+Hyper Cheri Berries
+Hyper Cheri Berries
+Hyper Chesto Berries
+Hyper Chesto Berries
+Hyper Pecha Berries
+Hyper Pecha Berries
+Hyper Rawst Berries
+Hyper Rawst Berries
+Hyper Aspear Berries
+Hyper Aspear Berries
+Hyper Oran Berries
+Hyper Oran Berries
+Hyper Persim Berries
+Hyper Persim Berries
+Hyper Lum Berries
+Hyper Lum Berries
+Hyper Sitrus Berries
+Hyper Sitrus Berries
+Hyper Pomeg Berries
+Hyper Pomeg Berries
+Hyper Kelpsy Berries
+Hyper Kelpsy Berries
+Hyper Qualot Berries
+Hyper Qualot Berries
+Hyper Hondew Berries
+Hyper Hondew Berries
+Hyper Grepa Berries
+Hyper Grepa Berries
+Hyper Tamato Berries
+Hyper Tamato Berries
+Hyper Occa Berries
+Hyper Occa Berries
+Hyper Passho Berries
+Hyper Passho Berries
+Hyper Wacan Berries
+Hyper Wacan Berries
+Hyper Rindo Berries
+Hyper Rindo Berries
+Hyper Yache Berries
+Hyper Yache Berries
+Hyper Chople Berries
+Hyper Chople Berries
+Hyper Kebia Berries
+Hyper Kebia Berries
+Hyper Shuca Berries
+Hyper Shuca Berries
+Hyper Coba Berries
+Hyper Coba Berries
+Hyper Payapa Berries
+Hyper Payapa Berries
+Hyper Tanga Berries
+Hyper Tanga Berries
+Hyper Charti Berries
+Hyper Charti Berries
+Hyper Kasib Berries
+Hyper Kasib Berries
+Hyper Haban Berries
+Hyper Haban Berries
+Hyper Colbur Berries
+Hyper Colbur Berries
+Hyper Babiri Berries
+Hyper Babiri Berries
+Hyper Chilan Berries
+Hyper Chilan Berries
+Hyper Roseli Berries
+Hyper Roseli Berries
+Canari Breads
+Canari Breads
+Lumiosian Butters
+Lumiosian Butters
+Nice Butters
+Nice Butters
+Great Butters
+Great Butters
+Amazing Butters
+Amazing Butters
+Supreme Butters
+Supreme Butters
+Hyperspace Butters
+Hyperspace Butters
+Hoennian Salts
+Hoennian Salts
+Épice Noires
+Épice Noires
+Arboliva Oils
+Arboliva Oils
 TM001s
 TM001s
 TM002s
@@ -568,10 +756,6 @@ TM229s
 TM229s
 Innate Shufflers
 Innate Shufflers
-Dragoninites
-Dragoninites
-Drampanites
-Drampanites
 Dynamax Bands
 Dynamax Bands
 Wishing Stars

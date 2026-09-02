@@ -45,7 +45,7 @@ class Battle::Battler
       msg = _INTL("{1} had its energy drained!", target.pbThis) if nil_or_empty?(msg)
       @battle.pbDisplay(msg)
       if canHeal?
-        amt = (amt * 1.3).floor if hasActiveItem?(:BIGROOT)
+        amt = (amt * 1.5).floor if hasActiveItem?(:BIGROOT)
         pbRecoverHP(amt)
       end
     end

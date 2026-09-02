@@ -1,0 +1,225 @@
+#===============================================================================
+# Fiery Spirit AI Support
+# Pokémon Essentials v21.1
+#
+# Ability:
+# FIERYSPIRIT - Adds Fire type on switch-in.
+#
+# AI logic:
+# - More valuable if the Pokémon is not already Fire-type.
+# - More valuable if the Pokémon has Fire-type moves.
+# - Slightly less valuable if the Pokémon already has risky defensive typing.
+#===============================================================================
+
+module FierySpiritAI
+  FIRE_TYPE = :FIRE
+
+  #-----------------------------------------------------------------------------
+  # Safely checks whether a battler/Pokémon already has Fire type.
+  #-----------------------------------------------------------------------------
+  def self.has_fire_type?(battler)
+    return false if !battler
+
+    if battler.respond_to?(:pbHasType?)
+      return battler.pbHasType?(FIRE_TYPE)
+    end
+
+    if battler.respond_to?(:types)
+      return battler.types.include?(FIRE_TYPE)
+    end
+
+    if battler.respond_to?(:pokemon) && battler.pokemon && battler.pokemon.respond_to?(:types)
+      return battler.pokemon.types.include?(FIRE_TYPE)
+    end
+
+    return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Safely checks whether the Pokémon has at least one Fire move.
+  #-----------------------------------------------------------------------------
+  def self.has_fire_move?(battler)
+    return false if !battler
+    return false if !battler.respond_to?(:moves)
+
+    battler.moves.each do |m|
+      next if !m
+
+      if m.respond_to?(:type)
+        return true if m.type == FIRE_TYPE
+      end
+
+      if m.respond_to?(:pbCalcType)
+        # Some projects use calculated move type, but this may require more args,
+        # so we don't call it here for safety.
+        next
+      end
+    end
+
+    return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Counts useful Fire moves.
+  #-----------------------------------------------------------------------------
+  def self.count_fire_moves(battler)
+    return 0 if !battler
+    return 0 if !battler.respond_to?(:moves)
+
+    count = 0
+
+    battler.moves.each do |m|
+      next if !m
+      next if !m.respond_to?(:type)
+      count += 1 if m.type == FIRE_TYPE
+    end
+
+    return count
+  end
+end
+
+#===============================================================================
+# AI: Ability ranking
+#===============================================================================
+# This part only runs if your AI plugin supports AbilityRanking.
+# If your project doesn't have AbilityRanking, this safely does nothing.
+#===============================================================================
+
+if defined?(Battle::AI::Handlers) &&
+   defined?(Battle::AI::Handlers::AbilityRanking)
+
+  Battle::AI::Handlers::AbilityRanking.add(:FIERYSPIRIT,
+    proc { |ability, score, battler, ai|
+      # Base value: gaining an extra type can be useful.
+      score += 2
+
+      # If already Fire-type, the ability does almost nothing.
+      if FierySpiritAI.has_fire_type?(battler)
+        next score - 4
+      end
+
+      # Non-Fire Pokémon gaining Fire type is the main value.
+      score += 5
+
+      # Fire moves become more valuable because the Pokémon gains Fire STAB.
+      fire_move_count = FierySpiritAI.count_fire_moves(battler)
+      score += fire_move_count * 3
+
+      # Extra bonus if it has at least one Fire move.
+      score += 3 if fire_move_count > 0
+
+      next score
+    }
+  )
+
+end
+
+#===============================================================================
+# HalfDrake AI Support
+# Pokémon Essentials v21.1
+#
+# Ability:
+# HALF DRAKE - Adds Dragon type on switch-in.
+#
+# AI logic:
+# - More valuable if the Pokémon is not already Dragon-type.
+# - More valuable if the Pokémon has Dragon-type moves.
+# - Less valuable if the Pokémon already has Dragon type.
+#===============================================================================
+
+module HalfDrakeAI
+  DRAGON_TYPE = :DRAGON
+
+  #-----------------------------------------------------------------------------
+  # Safely checks whether a battler/Pokémon already has Dragon type.
+  #-----------------------------------------------------------------------------
+  def self.has_dragon_type?(battler)
+    return false if !battler
+
+    if battler.respond_to?(:pbHasType?)
+      return battler.pbHasType?(DRAGON_TYPE)
+    end
+
+    if battler.respond_to?(:types)
+      return battler.types.include?(DRAGON_TYPE)
+    end
+
+    if battler.respond_to?(:pokemon) && battler.pokemon && battler.pokemon.respond_to?(:types)
+      return battler.pokemon.types.include?(DRAGON_TYPE)
+    end
+
+    return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Safely checks whether the Pokémon has at least one Dragon move.
+  #-----------------------------------------------------------------------------
+  def self.has_dragon_move?(battler)
+    return false if !battler
+    return false if !battler.respond_to?(:moves)
+
+    battler.moves.each do |m|
+      next if !m
+      next if !m.respond_to?(:type)
+
+      return true if m.type == DRAGON_TYPE
+    end
+
+    return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Counts Dragon moves.
+  #-----------------------------------------------------------------------------
+  def self.count_dragon_moves(battler)
+    return 0 if !battler
+    return 0 if !battler.respond_to?(:moves)
+
+    count = 0
+
+    battler.moves.each do |m|
+      next if !m
+      next if !m.respond_to?(:type)
+
+      count += 1 if m.type == DRAGON_TYPE
+    end
+
+    return count
+  end
+end
+
+#===============================================================================
+# AI: Ability ranking
+#===============================================================================
+# This only runs if your AI plugin supports AbilityRanking.
+# If your project doesn't have AbilityRanking, this safely does nothing.
+#===============================================================================
+
+if defined?(Battle::AI::Handlers) &&
+   defined?(Battle::AI::Handlers::AbilityRanking)
+
+  Battle::AI::Handlers::AbilityRanking.add(:HALFDRAKE,
+    proc { |ability, score, battler, ai|
+      # Base value: gaining an extra type can be useful.
+      score += 2
+
+      # If already Dragon-type, the ability is almost useless.
+      if HalfDrakeAI.has_dragon_type?(battler)
+        next score - 4
+      end
+
+      # Main value: non-Dragon Pokémon gains Dragon type.
+      score += 5
+
+      # Dragon moves gain STAB after the ability activates.
+      dragon_move_count = HalfDrakeAI.count_dragon_moves(battler)
+      score += dragon_move_count * 3
+
+      # Extra bonus if it has at least one Dragon move.
+      score += 3 if dragon_move_count > 0
+
+      next score
+    }
+  )
+
+end

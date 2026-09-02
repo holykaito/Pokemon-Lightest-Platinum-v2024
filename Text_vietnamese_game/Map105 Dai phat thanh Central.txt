@@ -6,6 +6,8 @@
 \rSome people claim that Pokémon came from space. Could it be true?
 \rWelcome to Central City's RADIO & TV TOWER. All the technology inside helps people more and more each day.
 \rWelcome to Central City's RADIO & TV TOWER. All the technology inside helps people more and more each day.
+\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
+\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
 \r\ff[prooak]\bHey \pn. I'm glad you came to my research center. I have a gift for you.
 \r\ff[prooak]\bHey \pn. I'm glad you came to my research center. I have a gift for you.
 \r\ff[prooak]\bIt's a POKEDEX, which you can use to find and record data on POKéMON during your journey.
@@ -26,14 +28,12 @@
 \r\ff[prooak]\b\pn, just by looking at you, I can see that you have great potential as a Pokémon trainer. I'm going to let you choose one of these three rare Pokémon to help you on your quest.
 \r\ff[prooak]\bI'm studying FIRE, WATER and GRASS Pokémon, and how they're always widely used by trainers. My studies indicate that people use them because it's very easy to evolve them and make them grow stronger, so they're very decisive in battles.
 \r\ff[prooak]\bI'm studying FIRE, WATER and GRASS Pokémon, and how they're always widely used by trainers. My studies indicate that people use them because it's very easy to evolve them and make them grow stronger, so they're very decisive in battles.
-\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
-\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
 \bYou should always have many POKéBALLS with you when trying to capture wild POKéMON.
 \bYou should always have many POKéBALLS with you when trying to capture wild POKéMON.
-\rIn POKéMON contests, you need to be very intelligent.
-\rIn POKéMON contests, you need to be very intelligent.
 \bAll life needs the sea to live, even though it makes its home on the land. Life, having run its course, becomes soil and returns to the land.
 \bAll life needs the sea to live, even though it makes its home on the land. Life, having run its course, becomes soil and returns to the land.
+\rIn POKéMON contests, you need to be very intelligent.
+\rIn POKéMON contests, you need to be very intelligent.
 \rI really like my DITTO. It's very cute and well-behaved.
 \rI really like my DITTO. It's very cute and well-behaved.
 \bIt's easy to find many types of POKéMON in caves.

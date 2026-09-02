@@ -124,6 +124,7 @@ class Battle::Battler
       @effects[PBEffects::PowerTrick]        = false
       @effects[PBEffects::Substitute]        = 0
       @effects[PBEffects::Telekinesis]       = 0
+      @effects[PBEffects::BlackStain]       = false
     end
     @fainted                 = (@hp == 0)
     @lastAttacker            = []

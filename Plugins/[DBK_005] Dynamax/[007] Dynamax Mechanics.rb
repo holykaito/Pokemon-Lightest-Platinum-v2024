@@ -176,6 +176,7 @@ MidbattleHandlers.add(:midbattle_triggers, "disableDynamax",
 ################################################################################
 
 class Battle
+  attr_reader   :dynamax_bands
   attr_accessor :dynamax
   
   #-----------------------------------------------------------------------------
@@ -456,8 +457,8 @@ class Battle::Battler
   def pbDynamaxAvailable?
     side  = self.idxOwnSide
     owner = @battle.pbGetOwnerIndexFromBattlerIndex(@index)
-    return false if @battle.raidBattle? && @battle.raidRules[:style] != :Max
     return false if @battle.dynamax[side][owner] == -2
+    return true if @battle.raidBattle? && @battle.raidRules[:style] == :Max
     return false if $game_switches[Settings::NO_DYNAMAX]
     map_data = GameData::MapMetadata.try_get($game_map.map_id)
     if @battle.trainerBattle?

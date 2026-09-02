@@ -258,6 +258,9 @@ class Battle::AI
       if target.has_active_ability?(:SPEEDBOOST)
         score -= 15 * ((target.opposes?(@user)) ? 1 : desire_mult)
       end
+      if target.has_active_ability?(:FLUFFUP)
+        score -= 15 * ((target.opposes?(@user)) ? 1 : desire_mult)
+      end
     when :ACCURACY
       # Modify score depending on current stat stage
       if old_stage >= 2 && increment == 1
@@ -541,6 +544,9 @@ class Battle::AI
       if target.has_active_ability?(:SPEEDBOOST)
         score -= 15 * ((target.opposes?(@user)) ? 1 : desire_mult)
       end
+      if target.has_active_ability?(:FLUFFUP)
+        score -= 15 * ((target.opposes?(@user)) ? 1 : desire_mult)
+      end
     when :ACCURACY
       # Modify score depending on current stat stage
       if old_stage <= -2 && decrement == 1
@@ -634,7 +640,7 @@ class Battle::AI
       if @trainer.medium_skill? && !b.has_active_item?(:UTILITYUMBRELLA)
         beneficial_abilities = {
           :Sun       => [:CHLOROPHYLL, :FLOWERGIFT, :FORECAST, :HARVEST, :LEAFGUARD, :SOLARPOWER],
-          :Rain      => [:DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH, :SWIFTSWIM],
+          :Rain      => [:DRYSKIN, :FORECAST, :HYDRATION, :RAINDISH, :SWIFTSWIM, :HYDROPONIC],
           :Sandstorm => [:SANDFORCE, :SANDRUSH, :SANDVEIL],
           :Hail      => [:FORECAST, :ICEBODY, :SLUSHRUSH, :SNOWCLOAK, :ICYVEINS]
         }[weather]

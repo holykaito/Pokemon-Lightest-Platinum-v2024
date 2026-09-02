@@ -334,7 +334,7 @@ module GameData
       end
       return false if @form != 0 && (!@real_form_name || @real_form_name.empty?)
       return false if @pokedex_form != @form
-      return false if [:PICHU_2, :FLOETTE_5, :GIMMIGHOUL_1].include?(@id)
+      return false if [:PICHU_2, :GIMMIGHOUL_1].include?(@id)
       return false if @species == :PIKACHU && (8..15).include?(@form)
       if special
         return false if @mega_stone || @mega_move
@@ -353,10 +353,10 @@ module GameData
       return 0
     end
 	
-	#---------------------------------------------------------------------------
+    #---------------------------------------------------------------------------
     # Checks a species for all forms that branch off into different evolutions.
     #---------------------------------------------------------------------------
-	def branch_evolution_forms
+    def branch_evolution_forms
       forms = [@form]
       @flags.each do |flag|
         forms.push($~[1].to_i) if flag[/^EvoBranchForm_(\d+)$/i]
@@ -378,27 +378,33 @@ module GameData
     end
 	
     #---------------------------------------------------------------------------
-    # Includes special form moves in tutor move lists.
+    # Returns all tutor moves including special form moves.
     #---------------------------------------------------------------------------
     def get_tutor_moves
       case @id
-      when :PIKACHU     then moves = [:VOLTTACKLE]
       when :ROTOM_1     then moves = [:OVERHEAT]
       when :ROTOM_2     then moves = [:HYDROPUMP]
       when :ROTOM_3     then moves = [:BLIZZARD]
       when :ROTOM_4     then moves = [:AIRSLASH]
       when :ROTOM_5     then moves = [:LEAFSTORM]
-      when :KYUREM_1    then moves = [:ICEBURN, :FUSIONFLARE]
-      when :KYUREM_2    then moves = [:FREEZESHOCK, :FUSIONBOLT]
       when :NECROZMA_1  then moves = [:SUNSTEELSTRIKE]
       when :NECROZMA_2  then moves = [:MOONGEISTBEAM]
       when :ZACIAN_1    then moves = [:BEHEMOTHBLADE]
       when :ZAMAZENTA_1 then moves = [:BEHEMOTHBASH]
-      when :CALYREX_1   then moves = [:GLACIALLANCE]
-      when :CALYREX_2   then moves = [:ASTRALBARRAGE]
+      else                   moves = []
       end
-      return @tutor_moves if !moves
-      return moves.concat(@tutor_moves.clone)
+      return (self.tutor_moves + moves).sort
+    end
+	
+    #---------------------------------------------------------------------------
+    # Returns all egg moves including special inherited moves.
+    #---------------------------------------------------------------------------
+    def get_inherited_moves
+      case self.get_baby_species
+      when :PICHU then moves = [:VOLTTACKLE]
+      else             moves = []
+      end
+      return (self.get_egg_moves + moves).sort
     end
 	
     #---------------------------------------------------------------------------

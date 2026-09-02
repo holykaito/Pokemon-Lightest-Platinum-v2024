@@ -152,3 +152,5 @@ Team Steam Admin
 Team Steam Admin
 Team Steam Grunt
 Team Steam Grunt
+Mage
+Mage

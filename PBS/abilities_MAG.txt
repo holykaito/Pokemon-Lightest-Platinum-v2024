@@ -15,10 +15,6 @@ Description = Removes STAB. Boosts all moves by 30%.
 Name = Cryo Healing
 Description = Restores HP if the Pokémon is frostbiten.
 #-------------------------------
-[MENACING]
-Name = Menacing
-Description = Lowers the foe's Special Attack stat.
-#-------------------------------
 [EXTREMEFOCUS]
 Name = Extreme Focus
 Description = Boosts Special Attack if there is a status problem.

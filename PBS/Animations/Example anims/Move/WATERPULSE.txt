@@ -8,8 +8,8 @@ Name = Example anim
 <Target>
     SetX = 0,0
     SetY = 0,0
-    SetToneBlue = 15,255
-    SetToneBlue = 18,0
+    SetTone = 15,+00+00+FF+00
+    SetTone = 18,+00+00+00+00
 <Particle 2>
     Graphic = Examples/Water pulse
     Focus = UserAndTarget

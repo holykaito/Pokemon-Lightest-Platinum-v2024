@@ -127,7 +127,7 @@ Battle::AI::Handlers::AbilityRanking.add(:HESSAFE,
 
 Battle::AI::Handlers::AbilityRanking.add(:ARCANEMAGE,
   proc { |ability, score, battler, ai|
-    next score if battler.has_damaging_move_of_type?(:FIRE)
+  next score if battler.has_damaging_move_of_type?(:FIRE)
 	next score if battler.has_damaging_move_of_type?(:ELECTRIC)
 	next score if battler.has_damaging_move_of_type?(:ICE)
     next 0

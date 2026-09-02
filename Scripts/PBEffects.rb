@@ -120,6 +120,7 @@ module PBEffects
   WeightChange        = 115
   Yawn                = 116
   ShowdownMode        = 117
+  BlackStain          = 118
 
   #=============================================================================
   # These effects apply to a battler position

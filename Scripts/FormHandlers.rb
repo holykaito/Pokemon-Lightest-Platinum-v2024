@@ -390,8 +390,9 @@ MultipleForms.register(:KELDEO, {
 })
 
 MultipleForms.register(:MELOETTA, {
-  "getFormOnLeavingBattle" => proc { |pkmn, battle, usedInBattle, endBattle|
-    next 0
+  "getForm" => proc { |pkmn|
+    next 1 if pkmn.hasMove?(:RELICDANCE)  # Resolute Form
+    next 0                                # Ordinary Form
   }
 })
 

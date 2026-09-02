@@ -174,6 +174,14 @@ Resists all types when HP is full.
 Resists all types when HP is full.
 Eliminates all weather and terrain.
 Eliminates all weather and terrain.
+Uses its moves as if in sunny weather.
+Uses its moves as if in sunny weather.
+Normal-type moves become Dragon-type and powered.
+Normal-type moves become Dragon-type and powered.
+Contact moves deals a quarter of damage against protections.
+Contact moves deals a quarter of damage against protections.
+Burns the attacker when hit by a damaging move.
+Burns the attacker when hit by a damaging move.
 The user doesn't have any ability
 The user doesn't have any ability
 Bite moves heals the user. Stackable.
@@ -184,8 +192,6 @@ Removes STAB. Boosts all moves by 30%.
 Removes STAB. Boosts all moves by 30%.
 Restores HP if the Pokémon is frostbiten.
 Restores HP if the Pokémon is frostbiten.
-Lowers the foe's Special Attack stat.
-Lowers the foe's Special Attack stat.
 Boosts Special Attack if there is a status problem.
 Boosts Special Attack if there is a status problem.
 Summons rain & electric terrain.
@@ -242,36 +248,74 @@ Boosts Special Attack, but allows only one move to be used.
 Boosts Special Attack, but allows only one move to be used.
 The user gains priority on its first turn.
 The user gains priority on its first turn.
+Powers up sound moves and weakens sound damage.
+Powers up sound moves and weakens sound damage.
+May raise all stats every 2 turns while asleep.
+May raise all stats every 2 turns while asleep.
 Deals more damage and takes less damage from Ultra Beasts.
 Deals more damage and takes less damage from Ultra Beasts.
+Adds the Water type to this Pokémon and removes the weaknesses.
+Adds the Water type to this Pokémon and removes the weaknesses.
+Reduces damage from physical and special moves.
+Reduces damage from physical and special moves.
 Adds the Ghost-type to all Pokémon on the field.
 Adds the Ghost-type to all Pokémon on the field.
 Buff damage of Aura Sphere.
 Buff damage of Aura Sphere.
+Can curse the enemy, removing 10% of their HP each turn.
+Can curse the enemy, removing 10% of their HP each turn.
 When Grassy Terrain, gives immunity to all Ground-type moves.
 When Grassy Terrain, gives immunity to all Ground-type moves.
+Raises Attack when an opposing Pokémon gains stats.
+Raises Attack when an opposing Pokémon gains stats.
+Add Bug-type to user.
+Add Bug-type to user.
 Opposing Pokemon can be marked as hunted at the end of the turn.
 Opposing Pokemon can be marked as hunted at the end of the turn.
+Weakens super-effective hits and heals after KOing foes.
+Weakens super-effective hits and heals after KOing foes.
 Increases random stat when dealing a critical hit.
 Increases random stat when dealing a critical hit.
+Creates Trick Room when entering battle.
+Creates Trick Room when entering battle.
+Boosts Attack and Speed by 20% on its first turn.
+Boosts Attack and Speed by 20% on its first turn.
+Uses Scratch when this Pokémon enters battle.
+Uses Scratch when this Pokémon enters battle.
 Gain STAB when use Normal,Flying,Bug,Water,Flying-type moves.
 Gain STAB when use Normal,Flying,Bug,Water,Flying-type moves.
 The opposing foe's color affects the user's mood.
 The opposing foe's color affects the user's mood.
+Creates Cursed Terrain when entering battle.
+Creates Cursed Terrain when entering battle.
 Reverses stat changes of other's dance moves.
 Reverses stat changes of other's dance moves.
+When this Pokémon hits an enemy, it reduces any stat.
+When this Pokémon hits an enemy, it reduces any stat.
 User has chance to avoid any moves.
 User has chance to avoid any moves.
+Boosts damage if any active Pokémon is asleep.
+Boosts damage if any active Pokémon is asleep.
+Halves the chance of additional effects when hit by a move.
+Halves the chance of additional effects when hit by a move.
 The user's sound-based moves never miss.
 The user's sound-based moves never miss.
-When a stat is lowered by an opponent, its Defense is increased by two stages.
-When a stat is lowered by an opponent, its Defense is increased by two stages.
+It recovers HP when attacking a sleeping enemy.
+It recovers HP when attacking a sleeping enemy.
+Super-effective moves cannot miss.
+Super-effective moves cannot miss.
+When a stat is lowered by an opponent, its Defense is increased.
+When a stat is lowered by an opponent, its Defense is increased.
 Powers up field moves.
 Powers up field moves.
 Add Fighting-type to user.
 Add Fighting-type to user.
 Powers up Flying-type moves when suffering.
 Powers up Flying-type moves when suffering.
+Can increase the attack or special attack after each attack.
+Can increase the attack or special attack after each attack.
+Contact moves may trap. Trapped targets can't evade and lose defensive boosts.
+Contact moves may trap. Trapped targets can't evade and lose defensive boosts.
 Can hit Ground-type Pokemon.
 Can hit Ground-type Pokemon.
 Raise Attack when using fang moves.
@@ -286,12 +330,32 @@ Resistance and evasion ability is drastically reduced.
 Resistance and evasion ability is drastically reduced.
 Boosts Sp.Attack after knocking out any Pokémon.
 Boosts Sp.Attack after knocking out any Pokémon.
+Increases Grass-type moves damage in rain.
+Increases Grass-type moves damage in rain.
+Powers up Ice moves if hit by an Ice move.
+Powers up Ice moves if hit by an Ice move.
 Boosts the user's Ice and Water-type moves in hail.
 Boosts the user's Ice and Water-type moves in hail.
 Inhales wind-based moves to expand the body & boost defense.
 Inhales wind-based moves to expand the body & boost defense.
+Normal-moves becomes Poison-moves and be boosted.
+Normal-moves becomes Poison-moves and be boosted.
+If this Pokémon was damaged this turn, it restores of its max HP.
+If this Pokémon was damaged this turn, it restores of its max HP.
+Contact moves use part of the user's Defense for damage.
+Contact moves use part of the user's Defense for damage.
 Can use "not very effective" Grass-type moves to deal regular damage.
 Can use "not very effective" Grass-type moves to deal regular damage.
+Takes less contact damage but more Water damage.
+Takes less contact damage but more Water damage.
+Sound attacks may confuse the target.
+Sound attacks may confuse the target.
+Boosts the power of its horn and drill moves.
+Boosts the power of its horn and drill moves.
+Hits extra times based on the Pokémon's heads.
+Hits extra times based on the Pokémon's heads.
+Dragon moves hit Fairy-types.
+Dragon moves hit Fairy-types.
 Boosts damage when in the lead position of the party.
 Boosts damage when in the lead position of the party.
 Adds the Rock-type to foes upon entry.
@@ -302,45 +366,83 @@ Reduces foe's Defense when hit with a contact move.
 Reduces foe's Defense when hit with a contact move.
 Opposite-gendered Pokémon may not escape.
 Opposite-gendered Pokémon may not escape.
+Gives powder moves +1 priority.
+Gives powder moves +1 priority.
+Move inflicts burn x5 as often.
+Move inflicts burn x5 as often.
+Sets extra Spikes or Toxic Spikes layers.
+Sets extra Spikes or Toxic Spikes layers.
 Punching moves may gain priority.
 Punching moves may gain priority.
+Reduces damage from Fairy-type and Dark-type moves.
+Reduces damage from Fairy-type and Dark-type moves.
 Moves that inflict poison may paralyze instead.
 Moves that inflict poison may paralyze instead.
-Spreads the user's status conditions when struck.
-Spreads the user's status conditions when struck.
+Spreads status and lowers Attack when inflicting status.
+Spreads status and lowers Attack when inflicting status.
+Punching moves gain crit chance and doubled secondary effect.
+Punching moves gain crit chance and doubled secondary effect.
 Increases Defense and Special Defense when HP is below half.
 Increases Defense and Special Defense when HP is below half.
 Electric-type moves gain priority when its HP is full.
 Electric-type moves gain priority when its HP is full.
 Boosts the Pokémon's evasiveness in a rain.
 Boosts the Pokémon's evasiveness in a rain.
+No recharge move needed when K.O. target.
+No recharge move needed when K.O. target.
+Lets the Pokémon act once even after being knocked out.
+Lets the Pokémon act once even after being knocked out.
 Recovers health gradually when seriously injured.
 Recovers health gradually when seriously injured.
 Boosts the Defense stat when the Pokémon enters a battle.
 Boosts the Defense stat when the Pokémon enters a battle.
 Moves that inflict poison may burn instead.
 Moves that inflict poison may burn instead.
-Seeds an attacker that KO's the user on contact.
-Seeds an attacker that KO's the user on contact.
+Grass-type takes half damage and deal double damage to Fire-type Pokémon.
+Grass-type takes half damage and deal double damage to Fire-type Pokémon.
+Seeds attackers if knocked out by contact moves.
+Seeds attackers if knocked out by contact moves.
 Raise user's Attack and Sp. Attack after using a Grass-type move.
 Raise user's Attack and Sp. Attack after using a Grass-type move.
 Heal user every turn.
 Heal user every turn.
 Enhance stats when in danger, but gradually weaken
 Enhance stats when in danger, but gradually weaken
-Boost damage for Fire,Electric and Ice-type moves.
-Boost damage for Fire,Electric and Ice-type moves.
+During hail, opposing Pokémon at the end of each turn.
+During hail, opposing Pokémon at the end of each turn.
++1 all stats on KO
++1 all stats on KO
+Use an additional Speed ​​to calculate damage.
+Use an additional Speed ​​to calculate damage.
+Boosts elements and Psychic moves, except against Dark types.
+Boosts elements and Psychic moves, except against Dark types.
 Scatters spikes when a Pokémon makes contact.
 Scatters spikes when a Pokémon makes contact.
 Punching moves will use Sp.Attack as damage calculation.
 Punching moves will use Sp.Attack as damage calculation.
 Boosts the Evasion stat when hit by an attack.
 Boosts the Evasion stat when hit by an attack.
+Vanishes when entry, avoiding attacks until it moves.
+Vanishes when entry, avoiding attacks until it moves.
+Sets Stealth Rock on the opposing side on first entry.
+Sets Stealth Rock on the opposing side on first entry.
 Powers up kicking moves.
 Powers up kicking moves.
+On first turn out, slicing moves gain priority.
+On first turn out, slicing moves gain priority.
 Lower opposing Pokémon's Attack stat when entering battle.
 Lower opposing Pokémon's Attack stat when entering battle.
+Clears entry hazards from its side when switches in.
+Clears entry hazards from its side when switches in.
+When hits with a punching move, lowers one of the target's stats.
+When hits with a punching move, lowers one of the target's stats.
 Restores a little HP when using contact moves.
 Restores a little HP when using contact moves.
+Powers up Ghost-type moves when the Pokémon's HP is low.
+Powers up Ghost-type moves when the Pokémon's HP is low.
+Sets Haunted Orbs on the opposing side when this Pokémon enters battle.
+Sets Haunted Orbs on the opposing side when this Pokémon enters battle.
 Rage builds when struck, boosting Attack.
 Rage builds when struck, boosting Attack.
+Damages opposing Pokémon that hit it with special moves.
+Damages opposing Pokémon that hit it with special moves.

@@ -10,7 +10,7 @@ class Battle::Scene::PokemonDataBox < Sprite
   # Time in seconds for this data box to flash when the Exp fully fills.
   EXP_FULL_FLASH_DURATION = 0.2
   # Maximum time in seconds to make a change to the HP bar.
-  HP_BAR_CHANGE_TIME = 1.0
+  HP_BAR_CHANGE_TIME = 2.0
   # Time (in seconds) for one complete sprite bob cycle (up and down) while
   # choosing a command for this battler or when this battler is being chosen as
   # a target. Set to nil to prevent bobbing.
@@ -32,6 +32,7 @@ class Battle::Scene::PokemonDataBox < Sprite
     @spriteX         = 0
     @spriteY         = 0
     @spriteBaseX     = 0
+    @spriteBaseY     = 0
     @selected        = 0
     @show_hp_numbers = false
     @show_exp_bar    = false
@@ -58,13 +59,14 @@ class Battle::Scene::PokemonDataBox < Sprite
     @databoxBitmap = AnimatedBitmap.new(bgFilename)
     # Determine the co-ordinates of the data box and the left edge padding width
     if onPlayerSide
-      @spriteX = Graphics.width - 244
-      @spriteY = Graphics.height - 192
-      @spriteBaseX = 34
+      @spriteX = Graphics.width - 254 #244
+      @spriteY = Graphics.height - 202 #192
+      @spriteBaseX = 34 #34
     else
-      @spriteX = -16
-      @spriteY = 36
-      @spriteBaseX = 16
+      @spriteX = -10 #-16
+      @spriteY = 10 #36
+      @spriteBaseX = 16 #26
+      @spriteBaseY = -4
     end
     case sideSize
     when 2
@@ -114,14 +116,17 @@ class Battle::Scene::PokemonDataBox < Sprite
 
   def x=(value)
     super
-    @hpBar.x     = value + @spriteBaseX + 62
+    @hpBar.x     = value + @spriteBaseX + 38
     @expBar.x    = value + @spriteBaseX + 6
-    @hpNumbers.x = value + @spriteBaseX + 70
+    @hpNumbers.x = value + @spriteBaseX + 60
   end
 
   def y=(value)
     super
-    @hpBar.y     = value + 44
+    # Allow a small vertical offset for the HP bar for opponent/player differences
+    hp_y = value + 48
+    hp_y += -9 if @battler && @battler.opposes?(0)   # move opponent's HP bar down -9 px
+    @hpBar.y     = hp_y
     @expBar.y    = value + 74
     @hpNumbers.y = value + 48
   end
@@ -222,18 +227,17 @@ class Battle::Scene::PokemonDataBox < Sprite
   def draw_name
     nameWidth = self.bitmap.text_size(@battler.name).width
     nameOffset = 0
-    nameOffset = nameWidth - 116 if nameWidth > 116
-    pbSetSystemFont(self.bitmap)
-    pbDrawTextPositions(self.bitmap, [[@battler.name, @spriteBaseX + 8 - nameOffset, 12, :left,
-                                       NAME_BASE_COLOR, NAME_SHADOW_COLOR]]
+    nameOffset = nameWidth - 126 if nameWidth > 116
+    pbDrawTextPositions(self.bitmap, [[@battler.name, @spriteBaseX + 0 - nameOffset, @spriteBaseY + 18, :left,
+                                       NAME_BASE_COLOR, NAME_SHADOW_COLOR]] #10,14
     )
   end
-
+  
   def draw_level
     # "Lv" graphic
-    pbDrawImagePositions(self.bitmap, [[_INTL("Graphics/UI/Battle/overlay_lv"), @spriteBaseX + 140, 16]])
+    pbDrawImagePositions(self.bitmap, [[_INTL("Graphics/UI/Battle/overlay_lv"), @spriteBaseX + 140, @spriteBaseY + 20]]) #140,16
     # Level number
-    pbDrawNumber(@battler.level, self.bitmap, @spriteBaseX + 162, 16)
+    pbDrawNumber(@battler.level, self.bitmap, @spriteBaseX + 162, @spriteBaseY + 20) #162,16
   end
 
   def draw_gender
@@ -244,7 +248,7 @@ class Battle::Scene::PokemonDataBox < Sprite
 #    shadow_color = (gender == 0) ? MALE_SHADOW_COLOR : FEMALE_SHADOW_COLOR
 #    pbDrawTextPositions(self.bitmap, [[gender_text, @spriteBaseX + 126, 12, :left, base_color, shadow_color]])
     gender_icon  = (gender == 0) ? _INTL("Graphics/UI/Battle/male_icon") : _INTL("Graphics/UI/Battle/female_icon")
-    pbDrawImagePositions(self.bitmap, [[gender_icon, @spriteBaseX + 122, 14]])
+    pbDrawImagePositions(self.bitmap, [[gender_icon, @spriteBaseX + 126, @spriteBaseY + 21]]) #122,16
   end
 
   def draw_status
@@ -255,7 +259,7 @@ class Battle::Scene::PokemonDataBox < Sprite
       s = GameData::Status.get(@battler.status).icon_position
     end
     return if s < 0
-    pbDrawImagePositions(self.bitmap, [[_INTL("Graphics/UI/Battle/icon_statuses"), @spriteBaseX + 24, 36,
+    pbDrawImagePositions(self.bitmap, [[_INTL("Graphics/UI/Battle/icon_statuses"), @spriteBaseX + -5, @spriteBaseY + 49,
                                         0, s * STATUS_ICON_HEIGHT, -1, STATUS_ICON_HEIGHT]])
   end
 

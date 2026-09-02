@@ -274,25 +274,6 @@ Battle::AbilityEffects::OnDealingHit.add(:MAGICJAW,
 ###########################################################################
 ###########################################################################
 
-Battle::AbilityEffects::EndOfRoundEffect.add(:SWEETDREAMS,
-  proc { |ability, battler, battle|
-    battle.allBattlers.each do |b|
-      next if !b.asleep?
-	  next if !b.canHeal?
-	  
-      battle.pbShowAbilitySplash(battler)
-      b.pbRecoverHP(b.totalhp / 16)
-	  
-      if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} is relaxed!", b.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} is relaxed by {2}'s {3}!",b.pbThis, battler.pbThis(true), battler.abilityName))
-      end
-	  
-      battle.pbHideAbilitySplash(battler)
-    end
-  }
-)
 
 ###########################################################################
 ###########################################################################
@@ -576,10 +557,22 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:BOULDERBARRIER,
 ###########################################################################
 ###########################################################################
 ###########################################################################
-
-Battle::AbilityEffects::DamageCalcFromUser.add(:ARCANEMAGE,
-  proc { |ability, user, target, move, mults, power, type|
-	mults[:attack_multiplier] *= 1.5 if [:FIRE, :ICE, :ELECTRIC].include?(type) 
+#===============================================================================
+# Speed Force
+# Contact moves deal additional damage based on 20% of the user's Speed stat.
+# The bonus is applied as a flat damage addition after base damage is calculated.
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromUser.add(:SPEEDFORCE,
+  proc { |ability, user, target, move, mults, baseDmg, type|
+    next if !move.contactMove?
+    # Tính 20% Speed của user (dùng Speed đã tính sau các modifier)
+    speed_bonus = (user.speed * 0.20).floor
+    baseDmg += speed_bonus
+    # Hiển thị thông báo
+    user.battle.pbShowAbilitySplash(user)
+    user.battle.pbDisplay(_INTL("{1}'s Speed surges through the attack!", user.pbThis))
+    user.battle.pbHideAbilitySplash(user)
+    baseDmg += speed_bonus
   }
 )
 

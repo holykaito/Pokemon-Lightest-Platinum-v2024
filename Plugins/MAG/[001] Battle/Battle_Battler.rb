@@ -36,11 +36,7 @@ def pbSuccessCheckAgainstTarget(move, user, target, targets)
           end
           return false
         end
-	if user.hasActiveAbility?(:ARCANEMAGE) && target.pbHasType?(:DARK) && 
-	(move.calcType == :ELECTRIC || move.calcType == :FIRE || move.calcType == :ICE)
-	@battle.pbDisplay(_INTL("{1} is immune to {2}'s magic!", target.pbThis, user.pbThis))
-	  return false
-	end
+
 	    ret = mag_pbSuccessCheckAgainstTarget(move, user, target, targets)
     if ret
       Battle::AbilityEffects.triggerOnMoveSuccessCheck(
@@ -110,7 +106,7 @@ alias mag_hasMoldBreaker? hasMoldBreaker?
 
 alias mag_pbRemoveItem pbRemoveItem
   def pbRemoveItem(permanent = true)
-    @lastRoundMoved = @battle.turnCount   # Done something this round
+    # @lastRoundMoved = @battle.turnCount   # Done something this round
     if !@effects[PBEffects::ChoiceBand] && hasActiveAbility?(:MONKEYBUSINESS)
       if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
         @effects[PBEffects::ChoiceBand] = @lastMoveUsed

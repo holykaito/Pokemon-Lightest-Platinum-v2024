@@ -287,7 +287,6 @@ module Battle::AbilityEffects
   def self.triggerOnIntimidated(ability, battler, battle)
     OnIntimidated.trigger(ability, battler, battle)
   end
-
   #=============================================================================
 
   def self.triggerCertainEscapeFromBattle(ability, battler)
@@ -845,23 +844,10 @@ Battle::AbilityEffects::OnStatLoss.add(:FORTITUDE,
 # PriorityChange handlers
 #===============================================================================
 
-Battle::AbilityEffects::PriorityChange.add(:AGILE,
-  proc { |ability, battler, move, pri|
-    next pri + 1 if battler.turnCount==1
-  }
-)
-
 Battle::AbilityEffects::PriorityChange.add(:GALEWINGS,
   proc { |ability, battler, move, pri|
     next pri + 1 if (Settings::MECHANICS_GENERATION <= 6 || battler.hp == battler.totalhp) &&
                     move.type == :FLYING
-  }
-)
-
-Battle::AbilityEffects::PriorityChange.add(:HYPERCHARGE,
-  proc { |ability, battler, move, pri|
-    next pri + 1 if (Settings::MECHANICS_GENERATION <= 6 || battler.hp == battler.totalhp) &&
-                    move.type == :ELECTRIC
   }
 )
 
@@ -1118,11 +1104,27 @@ Battle::AbilityEffects::ModifyMoveBaseType.add(:PIXILATE,
   }
 )
 
+Battle::AbilityEffects::ModifyMoveBaseType.add(:DRAGONIZE,
+  proc { |ability, user, move, type|
+    next if type != :NORMAL || !GameData::Type.exists?(:DRAGON)
+    move.powerBoost = true
+    next :DRAGON
+  }
+)
+
 Battle::AbilityEffects::ModifyMoveBaseType.add(:REFRIGERATE,
   proc { |ability, user, move, type|
     next if type != :NORMAL || !GameData::Type.exists?(:ICE)
     move.powerBoost = true
     next :ICE
+  }
+)
+
+Battle::AbilityEffects::ModifyMoveBaseType.add(:INTOXICATE,
+  proc { |ability, user, move, type|
+    next if type != :NORMAL || !GameData::Type.exists?(:POISON)
+    move.powerBoost = true
+    next :POISON
   }
 )
 
@@ -1133,6 +1135,12 @@ Battle::AbilityEffects::ModifyMoveBaseType.add(:REFRIGERATE,
 Battle::AbilityEffects::AccuracyCalcFromUser.add(:COMPOUNDEYES,
   proc { |ability, mods, user, target, move, type|
     mods[:accuracy_multiplier] *= 1.3
+  }
+)
+
+Battle::AbilityEffects::AccuracyCalcFromUser.add(:ILLUMINATE,
+  proc { |ability, mods, user, target, move, type|
+    mods[:accuracy_multiplier] *= 1.2
   }
 )
 
@@ -1270,13 +1278,7 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:AERILATE,
   }
 )
 
-Battle::AbilityEffects::DamageCalcFromUser.copy(:AERILATE, :GALVANIZE, :NORMALIZE, :PIXILATE, :REFRIGERATE)
-
-Battle::AbilityEffects::DamageCalcFromUser.add(:HALFDRAKE,
-  proc { |ability, user, target, move, mults, power, type|
-    mults[:attack_multiplier] *= 1.25 if type == :DRAGON
-  }
-)
+Battle::AbilityEffects::DamageCalcFromUser.copy(:AERILATE, :GALVANIZE, :NORMALIZE, :PIXILATE, :REFRIGERATE, :INTOXICATE, :DRAGONIZE)
 
 Battle::AbilityEffects::DamageCalcFromUser.add(:AQUATIC,
   proc { |ability, user, target, move, mults, power, type|
@@ -1556,11 +1558,11 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:SWARM,
 
 Battle::AbilityEffects::DamageCalcFromUser.add(:FLOCK,
   proc { |ability, user, target, move, mults, power, type|
-    if user.hp <= user.totalhp / 3 && type == :BUG
+    if user.hp <= user.totalhp / 3 && type == :FLYING
       mults[:attack_multiplier] *= 1.5
-    elsif user.hp <= user.totalhp / 2 && type == :BUG
+    elsif user.hp <= user.totalhp / 2 && type == :FLYING
       mults[:attack_multiplier] *= 1.2
-    elsif user.hp <= user.totalhp / 1 && type == :BUG
+    elsif user.hp <= user.totalhp / 1 && type == :FLYING
       mults[:attack_multiplier] *= 1.1
     end
   }
@@ -1595,6 +1597,18 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:TORRENT,
     elsif user.hp <= user.totalhp / 2 && type == :WATER
       mults[:attack_multiplier] *= 1.2
     elsif user.hp <= user.totalhp / 1 && type == :WATER
+      mults[:attack_multiplier] *= 1.1
+    end
+  }
+)
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:VENGEANCE,
+  proc { |ability, user, target, move, mults, power, type|
+    if user.hp <= user.totalhp / 3 && type == :GHOST
+      mults[:attack_multiplier] *= 1.5
+    elsif user.hp <= user.totalhp / 2 && type == :GHOST
+      mults[:attack_multiplier] *= 1.2
+    elsif user.hp <= user.totalhp / 1 && type == :GHOST
       mults[:attack_multiplier] *= 1.1
     end
   }
@@ -1675,7 +1689,7 @@ Battle::AbilityEffects::DamageCalcFromTarget.add(:FILTER,
   }
 )
 
-Battle::AbilityEffects::DamageCalcFromTarget.copy(:FILTER, :SOLIDROCK)
+Battle::AbilityEffects::DamageCalcFromTarget.copy(:FILTER, :SOLIDROCK, :PERMAFROST)
 
 Battle::AbilityEffects::DamageCalcFromTarget.add(:FLOWERGIFT,
   proc { |ability, user, target, move, mults, power, type|
@@ -1765,13 +1779,6 @@ Battle::AbilityEffects::DamageCalcFromTarget.add(:THICKFAT,
 Battle::AbilityEffects::DamageCalcFromTarget.add(:HUNTEDONE,
   proc { |ability, user, target, move, mults, power, type|
     mults[:power_multiplier] /= 0.8
-  }
-)
-
-Battle::AbilityEffects::DamageCalcFromTarget.add(:HALFDRAKE,
-  proc { |ability, user, target, move, mults, power, type|
-    mults[:power_multiplier] /= 1.5 if [:FIRE, :WATER, :GRASS, :ELECTRIC].include?(type)
-    mults[:power_multiplier] *= 1.5 if [:DRAGON, :ICE, :FAIRY].include?(type)
   }
 )
 
@@ -2165,6 +2172,23 @@ Battle::AbilityEffects::OnBeingHit.add(:POISONPOINT,
   }
 )
 
+Battle::AbilityEffects::OnBeingHit.add(:BLACKSTAIN,
+  proc { |ability, user, target, move, battle|
+    next if user.fainted?
+    next if battle.pbRandom(100) >= 35
+    battle.pbShowAbilitySplash(target)
+    user.effects[PBEffects::BlackStain] = true
+    if Battle::Scene::USE_ABILITY_SPLASH
+      battle.pbDisplay(_INTL("{1} has been cursed by the Black Stain of {2}!",
+                             user.pbThis, target.pbThis(true)))
+    else
+      battle.pbDisplay(_INTL("{1} has been cursed by the Black Stain of {2}!",
+                             user.pbThis, target.pbThis(true)))
+    end
+    battle.pbHideAbilitySplash(target)
+  }
+)
+
 Battle::AbilityEffects::OnBeingHit.add(:RATTLED,
   proc { |ability, user, target, move, battle|
     next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
@@ -2369,7 +2393,7 @@ Battle::AbilityEffects::OnDealingHit.add(:VAMPIRIC,
   proc { |ability, user, target, move, battle|
     next false if !move.pbContactMove?(user)
     changehp=(user.totalhp/16).floor
-    changehp*=1.3 if user.hasActiveItem?(:BIGROOT)
+    changehp*=1.5 if user.hasActiveItem?(:BIGROOT)
     if target.hasActiveAbility?(:LIQUIDOOZE) && target.abilityActive?(true)
       battle.pbShowAbilitySplash(user)
       battle.pbShowAbilitySplash(target)
@@ -2417,6 +2441,25 @@ Battle::AbilityEffects::OnDealingHit.add(:SEEDSTIMULUS,
   }
 )
 
+Battle::AbilityEffects::OnDealingHit.add(:ETERNALDREAM,
+  proc { |ability, user, target, move, battle|
+    #next if target.fainted?
+    next if target.status != :SLEEP
+
+    battle.pbShowAbilitySplash(user)
+
+    if user.pbRecoverHP((user.totalhp / 8).floor) > 0
+      if Battle::Scene::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} recovered HP!", user.pbThis))
+      else
+        battle.pbDisplay(_INTL("{2} of {1} recovered their HP!",
+                               user.pbThis, user.abilityName))
+      end
+    end
+
+    battle.pbHideAbilitySplash(user)
+  }
+)
 #===============================================================================
 # OnEndOfUsingMove handlers
 #===============================================================================
@@ -2920,6 +2963,18 @@ Battle::AbilityEffects::EndOfRoundEffect.add(:SPEEDBOOST,
        battler.pbCanRaiseStatStage?(:SPEED, battler)
       battler.pbRaiseStatStageByAbility(:SPEED, 1, battler)
     end
+  }
+)
+
+Battle::AbilityEffects::EndOfRoundEffect.add(:FLUFFUP,
+  proc { |ability, battler, battle|
+    next if battler.turnCount <= 0
+    next if battle.choices[battler.index][0] == :Run
+    next if battle.pbRandom(100) >= 20
+    #battle.pbShowAbilitySplash(battler)
+    battler.pbRaiseStatStageByAbility(:ATTACK, 1, battler) if battler.pbCanRaiseStatStage?(:ATTACK, battler)
+    battler.pbRaiseStatStageByAbility(:SPECIAL_ATTACK, 1, battler) if battler.pbCanRaiseStatStage?(:SPECIAL_ATTACK, battler)
+    #battle.pbHideAbilitySplash(battler)
   }
 )
 

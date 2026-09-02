@@ -33,6 +33,8 @@ class Battle::AI
     2  => [:CLEARAMULET],
   }
 
+  HP_HEAL_ITEMS[:CANARIBREAD] = 100
+
   #===============================================================================
   # Battle_AI
   #===============================================================================
@@ -353,7 +355,7 @@ class Battle::AI::AIMove
     # Ability effects that alter damage
     if user.ability_active?
       case user.ability_id
-      when :AERILATE, :GALVANIZE, :PIXILATE, :REFRIGERATE
+      when :AERILATE, :GALVANIZE, :PIXILATE, :REFRIGERATE, :INTOXICATE, :DRAGONIZE
         multipliers[:power_multiplier] *= 1.2 if type == :NORMAL   # NOTE: Not calc_type.
       when :ANALYTIC
         if rough_priority(user) <= 0
@@ -393,7 +395,7 @@ class Battle::AI::AIMove
       end
       if target.ability_active?
         case target.ability_id
-        when :FILTER, :SOLIDROCK
+        when :FILTER, :SOLIDROCK, :PERMAFROST
           if Effectiveness.super_effective_type?(calc_type, *target.pbTypes(true))
             multipliers[:final_damage_multiplier] *= 0.75
           end
@@ -626,6 +628,13 @@ class Battle::AI::AIMove
       return 100 if @ai.target.effects[PBEffects::GlaiveRush] > 0
     end
     return paldea_rough_accuracy
+  end
+
+  # Added evasion check for Nihil Light
+  alias za_apply_rough_accuracy_modifiers apply_rough_accuracy_modifiers
+  def apply_rough_accuracy_modifiers(user, target, calc_type, modifiers)
+    za_apply_rough_accuracy_modifiers(user, target, calc_type, modifiers)
+    modifiers[:evasion_stage] = 0 if function_code == "IgnoreTargetDefSpDefEvaStatStagesHitFairyType"   # Nihil Light
   end
 end
 

@@ -3,9 +3,25 @@
 Name = Agile
 Description = The user gains priority on its first turn.
 #-------------------------------
+[AMPLIFIER] ###
+Name = Amplifier
+Description = Powers up sound moves and weakens sound damage.
+#-------------------------------
+[ANCIENTSLUMBER] ###
+Name = Ancient Slumber
+Description = May raise all stats every 2 turns while asleep.
+#-------------------------------
 [ANTIUB]
 Name = Anti-UB
 Description = Deals more damage and takes less damage from Ultra Beasts.
+#-------------------------------
+[AQUATIC]
+Name = Aquatic
+Description = Adds the Water type to this Pokémon and removes the weaknesses.
+#-------------------------------
+[ARTICFUR]
+Name = Artic Fur
+Description = Reduces damage from physical and special moves.
 #-------------------------------
 [ASTRALPLANE]
 Name = Astral Plane
@@ -15,17 +31,45 @@ Description = Adds the Ghost-type to all Pokémon on the field.
 Name = Aura Manipulation
 Description = Buff damage of Aura Sphere.
 #-------------------------------
+[BLACKSTAIN] ###
+Name = Black Stain
+Description = Can curse the enemy, removing 10% of their HP each turn.
+#-------------------------------
 [BRANCHSWING]
 Name = Branch Swing
 Description = When Grassy Terrain, gives immunity to all Ground-type moves.
+#-------------------------------
+[BRAVEHEART] ####
+Name = Brave Heart
+Description = Raises Attack when an opposing Pokémon gains stats.
+#-------------------------------
+[BUGBOUND]
+Name = Bugbound
+Description = Add Bug-type to user.
 #-------------------------------
 [BATTLEINTELLECT]
 Name = Battle Intellect
 Description = Opposing Pokemon can be marked as hunted at the end of the turn.
 #-------------------------------
-[CATSLUCK]
+[CARRIONFEAST] ####
+Name = Carrion Feast
+Description = Weakens super-effective hits and heals after KOing foes.
+#-------------------------------
+[CATSLUCK] ####
 Name = Cat's Luck
 Description = Increases random stat when dealing a critical hit.
+#-------------------------------
+[CHAOSSPACE] ####
+Name = Chaos Space
+Description = Creates Trick Room when entering battle.
+#-------------------------------
+[CHARGERUSH] ####
+Name = Charge Rush
+Description = Boosts Attack and Speed by 20% on its first turn.
+#-------------------------------
+[CHEAPTACTICS] ####
+Name = Cheap Tactics
+Description = Uses Scratch when this Pokémon enters battle.
 #-------------------------------
 [CHIMERIC]
 Name = Chimeric
@@ -39,21 +83,45 @@ Description = The opposing foe's color affects the user's mood.
 Name = Cotton Cloak
 Description = Halves the damage from physical moves.
 #-------------------------------
+[CURSEDSURGE]
+Name = Cursed Surge
+Description = Creates Cursed Terrain when entering battle.
+#-------------------------------
 [DANCINGPANIC] ###
 Name = Dancing Panic
 Description = Reverses stat changes of other's dance moves.
+#-------------------------------
+[DISTORTION] ###
+Name = Distortion
+Description = When this Pokémon hits an enemy, it reduces any stat.
 #-------------------------------
 [DODGE]
 Name = Dodge
 Description = User has chance to avoid any moves.
 #-------------------------------
+[DREAMCATCHER] ###
+Name = Dream Catcher
+Description = Boosts damage if any active Pokémon is asleep.
+#-------------------------------
+[DWARFHIDE] ###
+Name = Dwarfhide
+Description = Halves the chance of additional effects when hit by a move.
+#-------------------------------
 [ECHOLOCK] ###
 Name = Echo Lock
 Description = The user's sound-based moves never miss.
 #-------------------------------
-[FORTITUTE] ###
-Name = Fortitute
-Description = When a stat is lowered by an opponent, its Defense is increased by two stages.
+[ETERNALDREAM] ###
+Name = Eternal Dream
+Description = It recovers HP when attacking a sleeping enemy.
+#-------------------------------
+[FATALPRECISION] ###
+Name = Fatal Precision
+Description = Super-effective moves cannot miss.
+#-------------------------------
+[FORTITUDE] ###
+Name = Fortitude
+Description = When a stat is lowered by an opponent, its Defense is increased.
 #-------------------------------
 [FIELDEXPLORER]
 Name = Field Explorer
@@ -66,6 +134,14 @@ Description = Add Fighting-type to user.
 [FLOCK] ###
 Name = Flock
 Description = Powers up Flying-type moves when suffering.
+#-------------------------------
+[FLUFFUP] ###
+Name = Fluff Up
+Description = Can increase the attack or special attack after each attack.
+#-------------------------------
+[GRIPPINCER]
+Name = Grip Pincer
+Description = Contact moves may trap. Trapped targets can't evade and lose defensive boosts.
 #-------------------------------
 [GROUNDSHOCK] ###
 Name = Ground Shock
@@ -95,6 +171,14 @@ Description = Resistance and evasion ability is drastically reduced.
 Name = Hubris
 Description = Boosts Sp.Attack after knocking out any Pokémon.
 #-------------------------------
+[HYDROPONIC] ###
+Name = Hydroponic
+Description = Increases Grass-type moves damage in rain.
+#-------------------------------
+[ICEDEW] ###
+Name = Ice Dew
+Description = Powers up Ice moves if hit by an Ice move.
+#-------------------------------
 [ICYVEINS] ###
 Name = Icy Veins
 Description = Boosts the user's Ice and Water-type moves in hail.
@@ -103,13 +187,49 @@ Description = Boosts the user's Ice and Water-type moves in hail.
 Name = Inflatable
 Description = Inhales wind-based moves to expand the body & boost defense.
 #-------------------------------
+[INTOXICATE] ###
+Name = Intoxicate
+Description = Normal-moves becomes Poison-moves and be boosted.
+#-------------------------------
+[KINTSUGI] ###
+Name = Kintsugi
+Description = If this Pokémon was damaged this turn, it restores of its max HP.
+#-------------------------------
+[JUGGERNAUT] ###
+Name = Juggernaut
+Description = Contact moves use part of the user's Defense for damage.
+#-------------------------------
 [JUNGLECOMBAT] ###
 Name = Jungle Combat
 Description = Can use "not very effective" Grass-type moves to deal regular damage.
 #-------------------------------
+[LIQUIFY] ###
+Name = Liquify
+Description = Takes less contact damage but more Water damage.
+#-------------------------------
+[LOUDBANG] ###
+Name = Loud Bang
+Description = Sound attacks may confuse the target.
+#-------------------------------
+[MIGHTYHORN] ###
+Name = Mighty Horn
+Description = Boosts the power of its horn and drill moves.
+#-------------------------------
+[MULTIHEADED] ###
+Name = Multi Headed
+Description = Hits extra times based on the Pokémon's heads.
+#-------------------------------
+[OVERWHELM] ###
+Name = Overwhelm
+Description = Dragon moves hit Fairy-types.
+#-------------------------------
 [PACKLEADER] ###
 Name = Pack Leader
 Description = Boosts damage when in the lead position of the party.
+#-------------------------------
+[PERMAFROST]
+Name = Permafrost
+Description = Reduces damage from super-effective attacks.
 #-------------------------------
 [PETRIFYINGGAZE]
 Name = Petrifying Gaze
@@ -127,17 +247,37 @@ Description = Reduces foe's Defense when hit with a contact move.
 Name = Phenomonelure
 Description = Opposite-gendered Pokémon may not escape.
 #-------------------------------
+[POWDERBURST]
+Name = Powder Burst
+Description = Gives powder moves +1 priority.
+#-------------------------------
+[PYROMANCY] ###
+Name = Pyromancy
+Description = Move inflicts burn x5 as often.
+#-------------------------------
+[NINJASTYLE]
+Name = Ninja Style
+Description = Sets extra Spikes or Toxic Spikes layers.
+#-------------------------------
 [NIMBLEFIST]
 Name = Nimble Fist
 Description = Punching moves may gain priority.
+#-------------------------------
+[NOCTURNAL] ###
+Name = Nocturnal
+Description = Reduces damage from Fairy-type and Dark-type moves.
 #-------------------------------
 [NUMBINGPOISON]
 Name = Numbing Poison
 Description = Moves that inflict poison may paralyze instead.
 #-------------------------------
-[OUTBREAK]
+[OUTBREAK] ###
 Name = Outbreak
-Description = Spreads the user's status conditions when struck.
+Description = Spreads status and lowers Attack when inflicting status.
+#-------------------------------
+[PRECISEFIST]
+Name = Precise Fist
+Description = Punching moves gain crit chance and doubled secondary effect.
 #-------------------------------
 [PRIDEFULGUARD]
 Name = Prideful Guard
@@ -151,9 +291,13 @@ Description = Electric-type moves gain priority when its HP is full.
 Name = Rain Mirage
 Description = Boosts the Pokémon's evasiveness in a rain.
 #-------------------------------
-[RAMPAGE]
+[RAMPAGE] ###
 Name = Rampage
-Description = Boosts the Pokémon's evasiveness in a rain.
+Description = No recharge move needed when K.O. target.
+#-------------------------------
+[PARASITEHOST] ###
+Name = Parasite Host
+Description = Lets the Pokémon act once even after being knocked out.
 #-------------------------------
 [RESILIENCE]
 Name = Resilience
@@ -167,9 +311,13 @@ Description = Boosts the Defense stat when the Pokémon enters a battle.
 Name = Searing Poison
 Description = Moves that inflict poison may burn instead.
 #-------------------------------
-[SEEDPARASITE]
+[SEAWEED] ###
+Name = Seaweed
+Description = Grass-type takes half damage and deal double damage to Fire-type Pokémon.
+#-------------------------------
+[SEEDPARASITE] ###
 Name = Seed Parasite
-Description = Seeds an attacker that KO's the user on contact.
+Description = Seeds attackers if knocked out by contact moves.
 #-------------------------------
 [SEEDSTIMULUS]
 Name = Seed Stimulus
@@ -183,9 +331,21 @@ Description = Heal user every turn.
 Name = Showdown Mode
 Description = Enhance stats when in danger, but gradually weaken
 #-------------------------------
-[SPELLCASTER]
+[SLEET] ###
+Name = Sleet
+Description = During hail, opposing Pokémon at the end of each turn.
+#-------------------------------
+[SOULDEVOURING] ###
+Name = Soul Devouring
+Description = +1 all stats on KO
+#-------------------------------
+[SPEEDFORCE] ###
+Name = Speed Force
+Description = Use an additional Speed ​​to calculate damage.
+#-------------------------------
+[SPELLCASTER] ###
 Name = Spellcaster
-Description = Boost damage for Fire,Electric and Ice-type moves.
+Description = Boosts elements and Psychic moves, except against Dark types.
 #-------------------------------
 [SPIKEBURST]
 Name = Spike Burst
@@ -199,18 +359,50 @@ Description = Punching moves will use Sp.Attack as damage calculation.
 Name = Spore Veil
 Description = Boosts the Evasion stat when hit by an attack.
 #-------------------------------
+[STEALTH] ###
+Name = Stealth
+Description = Vanishes when entry, avoiding attacks until it moves.
+#-------------------------------
+[STONESCATTER] ###
+Name = Stone Scatter
+Description = Sets Stealth Rock on the opposing side on first entry.
+#-------------------------------
 [STRIKER] ###
 Name = Striker
 Description = Powers up kicking moves.
 #-------------------------------
-[TERRORSOWER]
+[SUDDENSLASH] ###
+Name = Sudden Slash
+Description = On first turn out, slicing moves gain priority.
+#-------------------------------
+[TERRORSOWER] ###
 Name = Terror Sower
 Description = Lower opposing Pokémon's Attack stat when entering battle.
+#-------------------------------
+[TIDINESS]
+Name = Tidiness
+Description = Clears entry hazards from its side when switches in.
+#-------------------------------
+[TRAUMATICFIST] ###
+Name = Traumatic Fist
+Description = When hits with a punching move, lowers one of the target's stats.
 #-------------------------------
 [VAMPIRIC] ###
 Name = Vampiric
 Description = Restores a little HP when using contact moves.
 #-------------------------------
+[VENGEANCE] ###
+Name = Vengeance
+Description = Powers up Ghost-type moves when the Pokémon's HP is low.
+#-------------------------------
+[WANDERINGORBS] ###
+Name = Wandering Orbs
+Description = Sets Haunted Orbs on the opposing side when this Pokémon enters battle.
+#-------------------------------
 [WILDTANTRUM] ###
 Name = Wild Tantrum
 Description = Rage builds when struck, boosting Attack.
+#-------------------------------
+[ZENAURA]
+Name = Zen Aura
+Description = Damages opposing Pokémon that hit it with special moves.

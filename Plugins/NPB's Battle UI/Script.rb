@@ -42,5 +42,5 @@ class PokemonTrainerCard_Scene
 end
 
 class Battle::Scene::PokemonDataBox < Sprite
-  STATUS_ICON_HEIGHT = 24
+  STATUS_ICON_HEIGHT = 16
   end

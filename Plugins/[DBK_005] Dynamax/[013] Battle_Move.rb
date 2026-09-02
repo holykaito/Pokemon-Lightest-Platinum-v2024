@@ -7,7 +7,13 @@ module GameData
     # Returns true if this move is considered a Dynamax move.
     #---------------------------------------------------------------------------
     def dynamaxMove?
-      return self.flags.any? { |f| f.include?("DynamaxMove") || f.include?("GmaxMove") }
+      return true if gmaxMove?
+      return true if self.flags.any? { |f| f.include?("DynamaxMove") }
+      return false
+    end
+	
+    def gmaxMove?
+      return self.flags.any? { |f| f.include?("GmaxMove") }
     end
 	
     #---------------------------------------------------------------------------
@@ -44,6 +50,12 @@ class Battle::Move
     move = GameData::Move.try_get(@id)
     return false if !move
     return move.dynamaxMove?
+  end
+  
+  def gmaxMove?
+    move = GameData::Move.try_get(@id)
+    return false if !move
+    return move.gmaxMove?
   end
   
   #-----------------------------------------------------------------------------
@@ -97,13 +109,14 @@ class Battle::Move
   #-----------------------------------------------------------------------------
   # For converting a selected Dynamax move into one of a different type.
   #-----------------------------------------------------------------------------
-  def convert_dynamax_move(battler, battle)
+  def convert_dynamax_move(battler, battle, idxMove = -1)
     if !statusMove?
       if ["TypeDependsOnUserIVs", 
           "TypeAndPowerDependOnUserBerry"].include?(@function_code)
-        newtype = @type
+        return self
       else
-        newtype = pbCalcType(battler)
+        baseMove = battler.baseMoves[idxMove] || self
+        newtype = baseMove.pbCalcType(battler)
       end
       if newtype != @type && GameData::Type.exists?(newtype)
         if battler.gmax_factor?
@@ -116,7 +129,6 @@ class Battle::Move
           dynahash = GameData::Move.get_generic_dynamax_moves
           dynamove = dynahash[newtype]
         end
-        idxMove = battler.powerMoveIndex
         return self.make_dynamax_move(dynamove, battle, idxMove)
       end
     end

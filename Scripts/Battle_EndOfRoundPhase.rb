@@ -172,7 +172,7 @@ class Battle
       next if !battler.effects[PBEffects::AquaRing]
       next if !battler.canHeal?
       hpGain = battler.totalhp / 16
-      hpGain = (hpGain * 1.3).floor if battler.hasActiveItem?(:BIGROOT)
+      hpGain = (hpGain * 1.5).floor if battler.hasActiveItem?(:BIGROOT)
       battler.pbRecoverHP(hpGain)
       pbDisplay(_INTL("Aqua Ring restored {1}'s HP!", battler.pbThis(true)))
     end
@@ -181,7 +181,7 @@ class Battle
       next if !battler.effects[PBEffects::Ingrain]
       next if !battler.canHeal?
       hpGain = battler.totalhp / 16
-      hpGain = (hpGain * 1.3).floor if battler.hasActiveItem?(:BIGROOT)
+      hpGain = (hpGain * 1.5).floor if battler.hasActiveItem?(:BIGROOT)
       battler.pbRecoverHP(hpGain)
       pbDisplay(_INTL("{1} absorbed nutrients with its roots!", battler.pbThis))
     end
@@ -268,6 +268,13 @@ class Battle
       next if !battler.effects[PBEffects::Curse] || !battler.takesIndirectDamage?
       battler.pbTakeEffectDamage(battler.totalhp / 4) do |hp_lost|
         pbDisplay(_INTL("{1} is afflicted by the curse!", battler.pbThis))
+      end
+    end
+    # Black Stain
+    priority.each do |battler|
+      next if !battler.effects[PBEffects::BlackStain] || !battler.takesIndirectDamage?
+      battler.pbTakeEffectDamage(battler.totalhp / 10) do |hp_lost|
+        pbDisplay(_INTL("{1} has been cursed by the Black Stain!", battler.pbThis))
       end
     end
   end

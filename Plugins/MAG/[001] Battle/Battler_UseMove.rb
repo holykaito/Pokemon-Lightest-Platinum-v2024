@@ -527,7 +527,6 @@ alias mag_pbEffectsAfterMove pbEffectsAfterMove
 
 alias mag_pbEndTurn pbEndTurn
   def pbEndTurn(_choice)
-  @lastRoundMoved = @battle.turnCount   # Done something this round
     if !@effects[PBEffects::ChoiceBand] && hasActiveAbility?(:MONKEYBUSINESS)
       if @lastMoveUsed && pbHasMove?(@lastMoveUsed)
         @effects[PBEffects::ChoiceBand] = @lastMoveUsed

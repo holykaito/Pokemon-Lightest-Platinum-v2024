@@ -54,7 +54,7 @@ alias mag_rough_damage rough_damage
     # Ability effects that alter damage
     if user.ability_active?
       case user.ability_id
-      when :AERILATE, :GALVANIZE, :PIXILATE, :REFRIGERATE
+      when :AERILATE, :GALVANIZE, :PIXILATE, :REFRIGERATE, :INTOXICATE, :DRAGONIZE
         multipliers[:power_multiplier] *= 1.2 if type == :NORMAL   # NOTE: Not calc_type.
 	  when :CRYSTALLIZE
         multipliers[:power_multiplier] *= 1.5 if type == :ROCK     # NOTE: Not calc_type.
@@ -100,7 +100,7 @@ alias mag_rough_damage rough_damage
       end
       if target.ability_active?
         case target.ability_id
-        when :FILTER, :SOLIDROCK
+        when :FILTER, :SOLIDROCK, :PERMAFROST
           if Effectiveness.super_effective_type?(calc_type, *target.pbTypes(true))
             multipliers[:final_damage_multiplier] *= 0.75
           end

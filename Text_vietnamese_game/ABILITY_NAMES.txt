@@ -160,6 +160,14 @@ Tera Shell
 Tera Shell
 Teraform Zero
 Teraform Zero
+Mega Sol
+Mega Sol
+Dragonize
+Dragonize
+Piercing Drill
+Piercing Drill
+Spicy Spray
+Spicy Spray
 No Ability
 No Ability
 Vampiric Fang
@@ -170,8 +178,6 @@ Joat
 Joat
 Cryo Healing
 Cryo Healing
-Menacing
-Menacing
 Extreme Focus
 Extreme Focus
 Storm Front
@@ -236,38 +242,76 @@ Monkey Business
 Monkey Business
 Agile
 Agile
+Amplifier
+Amplifier
+Ancient Slumber
+Ancient Slumber
 Anti-UB
 Anti-UB
+Aquatic
+Aquatic
+Artic Fur
+Artic Fur
 Astral Plane
 Astral Plane
 Aura Manipulation
 Aura Manipulation
+Black Stain
+Black Stain
 Branch Swing
 Branch Swing
+Brave Heart
+Brave Heart
+Bugbound
+Bugbound
 Battle Intellect
 Battle Intellect
+Carrion Feast
+Carrion Feast
 Cat's Luck
 Cat's Luck
+Chaos Space
+Chaos Space
+Charge Rush
+Charge Rush
+Cheap Tactics
+Cheap Tactics
 Chimeric
 Chimeric
 Color Aura
 Color Aura
 Cotton Cloak
 Cotton Cloak
+Cursed Surge
+Cursed Surge
 Dancing Panic
 Dancing Panic
+Distortion
+Distortion
 Dodge
 Dodge
+Dream Catcher
+Dream Catcher
+Dwarfhide
+Dwarfhide
 Echo Lock
 Echo Lock
-Fortitute
-Fortitute
+Eternal Dream
+Eternal Dream
+Fatal Precision
+Fatal Precision
+Fortitude
+Fortitude
 Field Explorer
 Field Explorer
 Fight's Spirit
 Fight's Spirit
 Flock
 Flock
+Fluff Up
+Fluff Up
+Grip Pincer
+Grip Pincer
 Ground Shock
 Ground Shock
 Growing Tooth
@@ -282,14 +326,36 @@ Hunted One
 Hunted One
 Hubris
 Hubris
+Hydroponic
+Hydroponic
+Ice Dew
+Ice Dew
 Icy Veins
 Icy Veins
 Inflatable
 Inflatable
+Intoxicate
+Intoxicate
+Kintsugi
+Kintsugi
+Juggernaut
+Juggernaut
 Jungle Combat
 Jungle Combat
+Liquify
+Liquify
+Loud Bang
+Loud Bang
+Mighty Horn
+Mighty Horn
+Multi Headed
+Multi Headed
+Overwhelm
+Overwhelm
 Pack Leader
 Pack Leader
+Permafrost
+Permafrost
 Petrifying Gaze
 Petrifying Gaze
 Phantom Image
@@ -298,12 +364,22 @@ Pierce Armor
 Pierce Armor
 Phenomonelure
 Phenomonelure
+Powder Burst
+Powder Burst
+Pyromancy
+Pyromancy
+Ninja Style
+Ninja Style
 Nimble Fist
 Nimble Fist
+Nocturnal
+Nocturnal
 Numbing Poison
 Numbing Poison
 Outbreak
 Outbreak
+Precise Fist
+Precise Fist
 Prideful Guard
 Prideful Guard
 HYPERCHARGE
@@ -312,12 +388,16 @@ Rain Mirage
 Rain Mirage
 Rampage
 Rampage
+Parasite Host
+Parasite Host
 Resilience
 Resilience
 Roller
 Roller
 Searing Poison
 Searing Poison
+Seaweed
+Seaweed
 Seed Parasite
 Seed Parasite
 Seed Stimulus
@@ -326,6 +406,12 @@ Self-Sufficient
 Self-Sufficient
 Showdown Mode
 Showdown Mode
+Sleet
+Sleet
+Soul Devouring
+Soul Devouring
+Speed Force
+Speed Force
 Spellcaster
 Spellcaster
 Spike Burst
@@ -334,11 +420,27 @@ Spell Fist
 Spell Fist
 Spore Veil
 Spore Veil
+Stealth
+Stealth
+Stone Scatter
+Stone Scatter
 Striker
 Striker
+Sudden Slash
+Sudden Slash
 Terror Sower
 Terror Sower
+Tidiness
+Tidiness
+Traumatic Fist
+Traumatic Fist
 Vampiric
 Vampiric
+Vengeance
+Vengeance
+Wandering Orbs
+Wandering Orbs
 Wild Tantrum
 Wild Tantrum
+Zen Aura
+Zen Aura

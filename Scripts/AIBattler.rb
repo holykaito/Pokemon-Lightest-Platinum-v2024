@@ -110,13 +110,13 @@ class Battle::AI::AIBattler
     # Aqua Ring
     if self.effects[PBEffects::AquaRing] && battler.canHeal?
       amt = self.totalhp / 16
-      amt = (amt * 1.3).floor if has_active_item?(:BIGROOT)
+      amt = (amt * 1.5).floor if has_active_item?(:BIGROOT)
       ret -= [amt, 1].max
     end
     # Ingrain
     if self.effects[PBEffects::Ingrain] && battler.canHeal?
       amt = self.totalhp / 16
-      amt = (amt * 1.3).floor if has_active_item?(:BIGROOT)
+      amt = (amt * 1.5).floor if has_active_item?(:BIGROOT)
       ret -= [amt, 1].max
     end
     # Leech Seed
@@ -128,7 +128,7 @@ class Battle::AI::AIBattler
       @ai.each_battler do |b, i|
         next if i == @index || b.effects[PBEffects::LeechSeed] != @index
         amt = [[b.totalhp / 8, b.hp].min, 1].max
-        amt = (amt * 1.3).floor if has_active_item?(:BIGROOT)
+        amt = (amt * 1.5).floor if has_active_item?(:BIGROOT)
         ret -= [amt, 1].max
       end
     end

@@ -39,13 +39,13 @@ Battle::AbilityEffects::CertainSwitching.add(:RUNAWAY,
 #===============================================================================
 Battle::AbilityEffects::SpeedCalc.add(:LIGHTMETAL,
   proc { |ability, battler, mult|
-    next mult * 1.3 if Settings::MAG_LIGHTMETAL == true
+    next mult * 1.2 if Settings::MAG_LIGHTMETAL == true
   }
 )
 
 Battle::AbilityEffects::SpeedCalc.add(:HEAVYMETAL,
   proc { |ability, battler, mult|
-    next mult / 1.15 if Settings::MAG_HEAVYMETAL == true
+    next mult / 1.2 if Settings::MAG_HEAVYMETAL == true
   }
 )
 
@@ -173,7 +173,7 @@ Battle::AbilityEffects::DamageCalcFromTarget.add(:SHELLARMOR,
 # Battle Armor
 # Takes half damage from slicing moves
 #===============================================================================
-Battle::AbilityEffects::DamageCalcFromTarget.add(:SHELLARMOR,
+Battle::AbilityEffects::DamageCalcFromTarget.add(:BATTLEARMOR,
   proc { |ability, user, target, move, mults, power, type|
     mults[:final_damage_multiplier] /= 2 if move.slicingMove? && Settings::MAG_BATTLEARMOR == true
   }

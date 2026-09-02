@@ -3,7 +3,7 @@
 #-------------------------------
 [TRAINER_TYPE_NAMES]
 Pokémon Trainer
-Huấn luyện viên 
+Huấn luyện viên
 Rival
 Đối thủ
 Aroma Lady

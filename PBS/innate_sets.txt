@@ -1,14 +1,491 @@
 #----------------------------------------
+[WEEDLE]
+Innates = SWARM
+#----------------------------------------
+[KAKUNA]
+Innates = SWARM
+#----------------------------------------
+[BEEDRILL]
+Innates = SWARM,LEVITATE,MERCILESS
+#----------------------------------------
+[BEEDRILL_1]
+Innates = SWARM,LEVITATE,MERCILESS
+#----------------------------------------
+[TENTACOOL]
+Innates = CLEARBODY,LIQUIDOOZE
+#----------------------------------------
+[TENTACRUEL]
+Innates = CLEARBODY,LIQUIDOOZE,RAINDISH
+#----------------------------------------
+[GASTLY]
+Innates = LEVITATE,VENGEANCE
+#----------------------------------------
+[HAUNTER]
+Innates = LEVITATE,VENGEANCE
+#----------------------------------------
+[GENGAR]
+Innates = LEVITATE,VENGEANCE
+#----------------------------------------
+[GENGAR_1]
+Innates = VENGEANCE,SHADOWTAG
+#----------------------------------------
+[EXEGGCUTE]
+Innates = HARVEST
+#----------------------------------------
+[EXEGGUTOR]
+Innates = HARVEST,THICKFAT
+#----------------------------------------
+[EXEGGUTOR_1]
+Innates = HARVEST,LONGREACH
+#----------------------------------------
+[KOFFING]
+Innates = LEVITATE,INFLATABLE
+#----------------------------------------
+[WEEZING]
+Innates = LEVITATE,INFLATABLE,MULTIHEADED
+#----------------------------------------
+[WEEZING_1]
+Innates = LEVITATE,INFLATABLE,MULTIHEADED
+#----------------------------------------
+[STARYU]
+Innates = NATURALCURE
+#----------------------------------------
+[STARMIE]
+Innates = NATURALCURE
+#----------------------------------------
+[STARMIE_1]
+Innates = NATURALCURE
+#----------------------------------------
+[LAPRAS]
+Innates = SHELLARMOR,HYDRATION
+#----------------------------------------
+[DRATINI]
+Innates = SHEDSKIN
+#----------------------------------------
+[DRAGONAIR]
+Innates = SHEDSKIN
+#----------------------------------------
+[DRAGONITE]
+Innates = MARVELSCALE,MULTISCALE
+#----------------------------------------
+[DRAGONITE_1]
+Innates = MARVELSCALE,MULTISCALE
+#----------------------------------------
+[TOTODILE]
+Innates = TORRENT,STRONGJAW
+#----------------------------------------
+[CROCONAW]
+Innates = TORRENT,STRONGJAW
+#----------------------------------------
+[FERALIGATR]
+Innates = TORRENT,STRONGJAW,ROUGHSKIN
+#----------------------------------------
+[FERALIGATR_1]
+Innates = TORRENT,STRONGJAW,ROUGHSKIN
+#----------------------------------------
+[GLIGAR]
+Innates = HYPERCUTTER,SANDVEIL
+#----------------------------------------
+[GLISCOR]
+Innates = HYPERCUTTER,SANDVEIL,VAMPIRIC
+#----------------------------------------
 [BLAZIKEN]
 Innates = BLAZE,FLAMEBODY,SPEEDBOOST
 #----------------------------------------
+[LOTAD]
+Innates = SEAWEED,HYDROPONIC
+#----------------------------------------
+[LOMBRE]
+Innates = SEAWEED,HYDROPONIC
+#----------------------------------------
+[LUDICOLO]
+Innates = SEAWEED,HYDROPONIC,OWNTEMPO
+#----------------------------------------
+[WINGULL]
+Innates = FLOCK
+#----------------------------------------
+[PELIPPER]
+Innates = FLOCK,RAINDISH
+#----------------------------------------
+[SURSKIT]
+Innates = SWARM,RAINDISH
+#----------------------------------------
+[MASQUERAIN]
+Innates = LEVITATE,RAINDISH
+#----------------------------------------
+[ARON]
+Innates = FILTER,HEAVYMETAL
+#----------------------------------------
+[LAIRON]
+Innates = FILTER,HEAVYMETAL
+#----------------------------------------
 [AGGRON]
-Innates = FILTER,CLEARBODY
+Innates = FILTER,HEAVYMETAL,IRONBARBS
 #----------------------------------------
-[AGGRON_1] #<- Mega Aggron
-Innates = STURDY,WHITESMOKE
+[AGGRON_1]
+Innates = FILTER,HEAVYMETAL,IRONBARBS
 #----------------------------------------
-[METAGROSS]
-Innates1 = SANDVEIL,STURDY,CLEARBODY
-Innates2 = FILTER,CLEARBODY
-Innates3 = PLUS,MINUS,ELECTRICSURGE
+#[METAGROSS]
+#Innates1 = SANDVEIL,STURDY,CLEARBODY
+#Innates2 = FILTER,CLEARBODY
+#Innates3 = PLUS,MINUS,ELECTRICSURGE
+#----------------------------------------
+[TRAPINCH]
+Innates = ARENATRAP
+#----------------------------------------
+[VIBRAVA]
+Innates = LEVITATE
+#----------------------------------------
+[FLYGON]
+Innates = LEVITATE
+#----------------------------------------
+[GIBLE]
+Innates = SANDVEIL
+#----------------------------------------
+[GABITE]
+Innates = SANDVEIL
+#----------------------------------------
+[GARCHOMP]
+Innates = SANDVEIL
+#----------------------------------------
+[GARCHOMP_1]
+Innates = SANDVEIL
+#----------------------------------------
+[GARCHOMP_2]
+Innates = SANDVEIL
+#----------------------------------------
+[RIOLU]
+Innates = PRANKSTER
+#----------------------------------------
+[LUCARIO]
+Innates = JUSTIFIED,AURAMANIPULATION
+#----------------------------------------
+[LUCARIO_1]
+Innates = JUSTIFIED,AURAMANIPULATION
+#----------------------------------------
+[LUCARIO_2]
+Innates = JUSTIFIED,AURAMANIPULATION
+#----------------------------------------
+[GALLADE]
+Innates = JUSTIFIED,SHARPNESS
+#----------------------------------------
+[GALLADE_1]
+Innates = JUSTIFIED,SHARPNESS
+#----------------------------------------
+[DARKRAI]
+Innates = BADDREAMS,PHANTOMIMAGE
+#----------------------------------------
+[GIRATINA]
+Innates = PRESSURE,TELEPATHY
+#----------------------------------------
+[GIRATINA_1]
+Innates = PRESSURE,TELEPATHY,LEVITATE
+#----------------------------------------
+[PURRLOIN]
+Innates = LIMBER,UNBURDEN
+#----------------------------------------
+[LIEPARD]
+Innates = LIMBER,UNBURDEN,SUPERLUCK
+#----------------------------------------
+[LILLIPUP]
+Innates = PICKUP,SCRAPPY
+#----------------------------------------
+[HERDIER]
+Innates = PICKUP,SCRAPPY,OVERCOAT
+#----------------------------------------
+[STOUTLAND]
+Innates = PICKUP,SCRAPPY,OVERCOAT
+#----------------------------------------
+[PATRAT]
+Innates = RUNAWAY,KEENEYE
+#----------------------------------------
+[WATCHOG]
+Innates = RUNAWAY,KEENEYE
+#----------------------------------------
+[MUNNA]
+Innates = LEVITATE,TELEPATHY
+#----------------------------------------
+[MUSHARNA]
+Innates = LEVITATE,TELEPATHY,COMATOSE
+#----------------------------------------
+[SEWADDLE]
+Innates = OVERCOAT,LEAFGUARD
+#----------------------------------------
+[SWADLOON]
+Innates = OVERCOAT,LEAFGUARD
+#----------------------------------------
+[LEAVANNY]
+Innates = OVERCOAT,LEAFGUARD,SHARPNESS
+#----------------------------------------
+[GURDURR]
+Innates = SHEERFORCE,DWARFHIDE
+#----------------------------------------
+[CONKELDURR]
+Innates = SHEERFORCE,DWARFHIDE
+#----------------------------------------
+[TIMBURR]
+Innates = SHEERFORCE,DWARFHIDE
+#----------------------------------------
+[AUDINO]
+Innates = HEALER,KLUTZ
+#----------------------------------------
+[AUDINO_1]
+Innates = HEALER,KLUTZ
+#----------------------------------------
+[THROH]
+Innates = INNERFOCUS,TECHNICIAN
+#----------------------------------------
+[SAWK]
+Innates = INNERFOCUS,TECHNICIAN
+#----------------------------------------
+[SCRAGGY]
+Innates = SHEDSKIN,ROCKHEAD
+#----------------------------------------
+[SCRAFTY]
+Innates = SHEDSKIN,ROCKHEAD
+#----------------------------------------
+[SCRAFTY_1]
+Innates = SHEDSKIN,ROCKHEAD
+#----------------------------------------
+[YAMASK]
+Innates = CURSEDBODY
+#----------------------------------------
+[YAMASK_1]
+Innates = CURSEDBODY
+#----------------------------------------
+[COFAGRIGUS]
+Innates = CURSEDBODY,CLEARBODY
+#----------------------------------------
+[TRUBBISH]
+Innates = STENCH,POISONABSORB
+#----------------------------------------
+[GARBODOR]
+Innates = STENCH,POISONABSORB
+#----------------------------------------
+[CINCCINO]
+Innates = CUTECHARM,OVERCOAT
+#----------------------------------------
+[MINCCINO]
+Innates = CUTECHARM
+#----------------------------------------
+[GOTHITA]
+Innates = NOCTURNAL,SHADOWTAG
+#----------------------------------------
+[GOTHORITA]
+Innates = NOCTURNAL,SHADOWTAG
+#----------------------------------------
+[GOTHITELLE]
+Innates = NOCTURNAL,SHADOWTAG
+#----------------------------------------
+[SOLOSIS]
+Innates = LIQUIDOOZE,OVERCOAT
+#----------------------------------------
+[DUOSION]
+Innates = LIQUIDOOZE,OVERCOAT
+#----------------------------------------
+[REUNICLUS]
+Innates = LIQUIDOOZE,OVERCOAT,REGENERATOR
+#----------------------------------------
+[DEERLING]
+Innates = SAPSIPPER
+#----------------------------------------
+[SAWSBUCK]
+Innates = SAPSIPPER,MIGHTYHORN
+#----------------------------------------
+[KARRABLAST]
+Innates = SWARM,SHEDSKIN
+#----------------------------------------
+[ESCAVALIER]
+Innates = SWARM,SHELLARMOR,OVERCOAT
+#----------------------------------------
+[JELLICENT]
+Innates = DAMP,IMMUNITY
+#----------------------------------------
+[ALOMOMOLA]
+Innates = WATERVEIL,SELFSUFFICIENT
+#----------------------------------------
+[LITWICK]
+Innates = INFILTRATOR,PYROMANCY,LEVITATE
+#----------------------------------------
+[LAMPENT]
+Innates = INFILTRATOR,PYROMANCY,LEVITATE
+#----------------------------------------
+[CHANDELURE]
+Innates = INFILTRATOR,PYROMANCY,LEVITATE
+#----------------------------------------
+[AXEW]
+Innates = SHARPNESS
+#----------------------------------------
+[FRAXURE]
+Innates = SHARPNESS
+#----------------------------------------
+[HAXORUS]
+Innates = SHARPNESS
+#----------------------------------------
+[CHANDELURE_1]
+Innates = INFILTRATOR,PYROMANCY,LEVITATE
+#----------------------------------------
+[CUBCHOO]
+Innates = SNOWCLOAK
+#----------------------------------------
+[BEARTIC]
+Innates = SNOWCLOAK
+#----------------------------------------
+[CRYOGONAL]
+Innates = LEVITATE
+#----------------------------------------
+[SHELMET]
+Innates = HYDRATION,SHELLARMOR
+#----------------------------------------
+[ACCELGOR]
+Innates = HYDRATION,STICKYHOLD
+#----------------------------------------
+[TIRTOUGA]
+Innates = SOLIDROCK
+#----------------------------------------
+[CARRACOSTA]
+Innates = SOLIDROCK
+#----------------------------------------
+[GOLETT]
+Innates = IRONFIST,KINTSUGI
+#----------------------------------------
+[GOLURK]
+Innates = IRONFIST,KINTSUGI
+#----------------------------------------
+[GOLURK_1]
+Innates = IRONFIST,KINTSUGI
+#----------------------------------------
+[PAWNIARD]
+Innates = BATTLEARMOR
+#----------------------------------------
+[BISHARP]
+Innates = BATTLEARMOR,PRESSURE
+#----------------------------------------
+[KINGAMBIT]
+Innates = BATTLEARMOR,PRESSURE
+#----------------------------------------
+[BOUFFALANT]
+Innates = RECKLESS,SAPSIPPER
+#----------------------------------------
+[MIENFOO]
+Innates = LIMBER,REGENERATOR
+#----------------------------------------
+[MIENSHAO]
+Innates = LIMBER,REGENERATOR
+#----------------------------------------
+[DRUDDIGON]
+Innates = ROUGHSKIN
+#----------------------------------------
+[RUFFLET]
+Innates = FLOCK,KEENEYE
+#----------------------------------------
+[BRAVIARY]
+Innates = FLOCK,KEENEYE,HESSAFE
+#----------------------------------------
+[BRAVIARY_1]
+Innates = FLOCK,KEENEYE,HESSAFE
+#----------------------------------------
+[VULLABY]
+Innates = FLOCK,OVERCOAT
+#----------------------------------------
+[MANDIBUZZ]
+Innates = FLOCK,OVERCOAT,VAMPIRIC
+#----------------------------------------
+[HYDREIGON]
+Innates = LEVITATE
+#----------------------------------------
+[LARVESTA]
+Innates = SWARM
+#----------------------------------------
+[VOLCARONA]
+Innates = SWARM
+#----------------------------------------
+[KYUREM]
+Innates = PRESSURE,PERMAFROST
+#----------------------------------------
+[KYUREM_1]
+Innates = PRESSURE,PERMAFROST
+#----------------------------------------
+[KYUREM_2]
+Innates = PRESSURE,PERMAFROST
+#----------------------------------------
+[SCATTERBUG]
+Innates = SHIELDDUST,FRIENDGUARD
+#----------------------------------------
+[SPEWPA]
+Innates = SHEDSKIN,FRIENDGUARD
+#----------------------------------------
+[VIVILLON]
+Innates = SHIELDDUST,FRIENDGUARD
+#----------------------------------------
+[PANCHAM]
+Innates = IRONFIST,SCRAPPY
+#----------------------------------------
+[PANGORO]
+Innates = IRONFIST,SCRAPPY,ANGERPOINT
+#----------------------------------------
+[YVELTAL]
+Innates = IRONFIST,SCRAPPY,ANGERPOINT
+#----------------------------------------
+[ORANGURU]
+Innates = INNERFOCUS
+#----------------------------------------
+[PHEROMOSA]
+Innates = BEASTBOOST
+#----------------------------------------
+[TOXEL]
+Innates = PUNKROCK,STATIC
+#----------------------------------------
+[TOXTRICITY]
+Innates = PUNKROCK,PLUS
+#----------------------------------------
+[TOXTRICITY_1]
+Innates = PUNKROCK,MINUS
+#----------------------------------------
+[HATTREM]
+Innates = ANTICIPATION
+#----------------------------------------
+[HATENNA]
+Innates = ANTICIPATION
+#----------------------------------------
+[HATTERENE]
+Innates = ANTICIPATION
+#----------------------------------------
+[IMPIDIMP]
+Innates = PRANKSTER
+#----------------------------------------
+[MORGREM]
+Innates = PRANKSTER
+#----------------------------------------
+[GRIMMSNARL]
+Innates = PRANKSTER,TANGLINGHAIR
+#----------------------------------------
+[ZAMAZENTA]
+Innates = BATTLEARMOR,STAMINA
+#----------------------------------------
+[ZAMAZENTA_1]
+Innates = BATTLEARMOR,STAMINA
+#----------------------------------------
+[FUECOCO]
+Innates = BLAZE,UNAWARE
+#----------------------------------------
+[CROCALOR]
+Innates = BLAZE,UNAWARE
+#----------------------------------------
+[SKELEDIRGE]
+Innates = BLAZE,UNAWARE,AMPLIFIER
+#----------------------------------------
+[FLUTTERMANE]
+Innates = PROTOSYNTHESIS
+#----------------------------------------
+[IRONHANDS]
+Innates = QUARKDRIVE
+#----------------------------------------
+[IRONJUGULIS]
+Innates = QUARKDRIVE,MULTIHEADED
+#----------------------------------------
+[CHIENPAO]
+Innates = ARTICFUR
+#----------------------------------------
+[PECHARUNT]
+Innates = LEVITATE

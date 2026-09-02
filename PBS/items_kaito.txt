@@ -1,0 +1,40 @@
+﻿#-------------------------------
+[POKEBALL1]
+Name = Poké Ball
+NamePlural = Poké Balls
+Pocket = 1
+Price = 0
+FieldUse = Direct
+Consumable = false
+Flags = Fling_30
+Description = A mysterious Poké Ball that contains a random Pokémon.
+#-------------------------------
+[GREATBALL1]
+Name = Great Ball
+NamePlural = Great Balls
+Pocket = 1
+Price = 0
+FieldUse = Direct
+Consumable = false
+Flags = Fling_30
+Description = A mysterious Great Ball with better odds for rare Pokémon.
+#-------------------------------
+[ULTRABALL1]
+Name = Ultra Ball
+NamePlural = Ultra Balls
+Pocket = 1
+Price = 0
+FieldUse = Direct
+Consumable = false
+Flags = Fling_30
+Description = A mysterious Ultra Ball with high odds for rare Pokémon.
+#-------------------------------
+[MASTERBALL1]
+Name = Master Ball
+NamePlural = Master Balls
+Pocket = 1
+Price = 0
+FieldUse = Direct
+Consumable = false
+Flags = Fling_30
+Description = A mysterious Master Ball with the best odds for rare Pokémon.

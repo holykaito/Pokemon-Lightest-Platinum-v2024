@@ -1328,3 +1328,23 @@ class Battle::Move::ReplaceMoveWithTargetLastMoveUsed < Battle::Move
     end
   end
 end
+
+#===============================================================================
+# Puts the target to sleep for 2 turns if the user lost HP this round.
+#===============================================================================
+class Battle::Move::SleepIfUserDamaged < Battle::Move
+  def pbMoveFailed?(user, targets)
+    if user.damageState.hpLost <= 0
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    return if target.damageState.substitute
+    return unless target.pbCanSleep?(user, true, self)
+
+    target.pbSleep
+  end
+end

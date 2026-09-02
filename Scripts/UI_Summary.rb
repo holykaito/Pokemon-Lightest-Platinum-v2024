@@ -357,11 +357,20 @@ class PokemonSummary_Scene
       textpos.push([_INTL("None"), 16, 358, :left, Color.new(192, 200, 208), Color.new(208, 216, 224)])
     end
     # Write the gender symbol
-    if @pokemon.male?
-      textpos.push([_INTL("♂"), 178, 68, :left, Color.new(24, 112, 216), Color.new(136, 168, 208)])
-    elsif @pokemon.female?
-      textpos.push([_INTL("♀"), 178, 68, :left, Color.new(248, 56, 32), Color.new(224, 152, 144)])
-    end
+#    if @pokemon.male?
+#      textpos.push([_INTL("♂"), 178, 68, :left, Color.new(24, 112, 216), Color.new(136, 168, 208)])
+#    elsif @pokemon.female?
+#      textpos.push([_INTL("♀"), 178, 68, :left, Color.new(248, 56, 32), Color.new(224, 152, 144)])
+#    end
+if @pokemon.male?
+  icon = AnimatedBitmap.new("Graphics/UI/male_icon")
+  overlay.blt(178, 68, icon.bitmap, Rect.new(0, 0, icon.bitmap.width, icon.bitmap.height))
+  icon.dispose
+elsif @pokemon.female?
+  icon = AnimatedBitmap.new("Graphics/UI/female_icon")
+  overlay.blt(178, 68, icon.bitmap, Rect.new(0, 0, icon.bitmap.width, icon.bitmap.height))
+  icon.dispose
+end
     # Draw all text
     pbDrawTextPositions(overlay, textpos)
     # Draw the Pokémon's markings

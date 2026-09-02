@@ -128,10 +128,10 @@ class Battle
 	end
 end
 ################################################################################
-	# Menacing
+	# Terror Sower
 	# Special Attack Intimidate
 ################################################################################
-Battle::AbilityEffects::OnSwitchIn.add(:MENACING,
+Battle::AbilityEffects::OnSwitchIn.add(:TERRORSOWER,
 	proc { |ability, battler, battle, switch_in|
 		battle.pbShowAbilitySplash(battler)
 		battle.allOtherSideBattlers(battler.index).each do |b|
@@ -700,8 +700,8 @@ Battle::AbilityEffects::DamageCalcFromUser.copy(:AERILATE, :FLAMEWING)
 #===============================================================================
 Battle::AbilityEffects::DamageCalcFromUser.add(:ARCANEMAGE,
 	proc { |ability, user, target, move, mults, power, type|
-		if type == :FIRE || type == :ICE || type == :ELECTRIC 
-			mults[:attack_multiplier] *= 1.3
+		if type == :FIRE || type == :ICE || type == :ELECTRIC || type == :PSYCHIC 
+			mults[:attack_multiplier] *= 1.2
 		end
 	}
 )
@@ -710,15 +710,22 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:ARCANEMAGE,
 	# Fiery Spirit
 	# Gain the Fire-Type on switch in
 #===============================================================================
+
 Battle::AbilityEffects::OnSwitchIn.add(:FIERYSPIRIT,
-	proc { |ability, battler, battle, switch_in|
-		battle.pbShowAbilitySplash(battler)
-		if !battler.pbHasType?(:FIRE)
-			battler.effects[PBEffects::ExtraType] = :FIRE
-			typeName = GameData::Type.get(:FIRE).name
-			battle.pbDisplay(_INTL("{1}'s spirit ignited giving it the {2} type!", battler.pbThis, typeName))
-		end
-	}
+  proc { |ability, battler, battle, switch_in|
+    next if battler.fainted?
+
+    battle.pbShowAbilitySplash(battler)
+
+    if !battler.pbHasType?(:FIRE)
+      battler.effects[PBEffects::ExtraType] = :FIRE
+      typeName = GameData::Type.get(:FIRE).name
+      battle.pbDisplay(_INTL("{1}'s spirit ignited giving it the {2} type!",
+        battler.pbThis, typeName))
+    end
+
+    battle.pbHideAbilitySplash(battler)
+  }
 )
 
 #===============================================================================

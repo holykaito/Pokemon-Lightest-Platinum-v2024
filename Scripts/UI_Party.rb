@@ -388,14 +388,28 @@ class PokemonPartyPanel < Sprite
     pbSetSystemFont(@overlaysprite.bitmap)
   end
 
-  def draw_gender
-    return if @pokemon.egg? || @pokemon.genderless?
-    gender_text  = (@pokemon.male?) ? _INTL("♂") : _INTL("♀")
-    base_color   = (@pokemon.male?) ? Color.new(0, 112, 248) : Color.new(232, 32, 16)
-    shadow_color = (@pokemon.male?) ? Color.new(120, 184, 232) : Color.new(248, 168, 184)
-    pbDrawTextPositions(@overlaysprite.bitmap,
-                        [[gender_text, 224, 22, :left, base_color, shadow_color]])
-  end
+#  def draw_gender
+#    return if @pokemon.egg? || @pokemon.genderless?
+#    gender_text  = (@pokemon.male?) ? _INTL("♂") : _INTL("♀")
+#    base_color   = (@pokemon.male?) ? Color.new(0, 112, 248) : Color.new(232, 32, 16)
+#    shadow_color = (@pokemon.male?) ? Color.new(120, 184, 232) : Color.new(248, 168, 184)
+#    pbDrawTextPositions(@overlaysprite.bitmap,
+#                        [[gender_text, 224, 22, :left, base_color, shadow_color]])
+#  end
+def draw_gender
+  return if @pokemon.egg? || @pokemon.genderless?
+
+  icon_path = @pokemon.male? ? "Graphics/UI/male_icon" : "Graphics/UI/female_icon"
+  icon = AnimatedBitmap.new(icon_path)
+
+  @overlaysprite.bitmap.blt(
+    223, 19,
+    icon.bitmap,
+    Rect.new(0, 0, icon.bitmap.width, icon.bitmap.height)
+  )
+
+  icon.dispose
+end
 
   def draw_hp
     return if @pokemon.egg? || (@text && @text.length > 0)

@@ -9,7 +9,7 @@ Accuracy = 85
 TotalPP = 10
 Target = NearOther
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Horn
 Description = Using its tough and impressive horn, the user rams into the target with no letup.
 #-------------------------------
 [ATTACKORDER]
@@ -41,7 +41,7 @@ Description = The user vibrates its wings to generate a sound wave. It may also 
 Name = First Impression
 Type = BUG
 Category = Physical
-Power = 90
+Power = 100
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
@@ -685,7 +685,7 @@ Description = This attack's power increases the more the target has powered up w
 Name = Dark Void
 Type = DARK
 Category = Status
-Accuracy = 50
+Accuracy = 80
 TotalPP = 10
 Target = AllNearFoes
 FunctionCode = SleepTargetIfUserDarkrai
@@ -1002,7 +1002,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Slicing
 Description = The user slashes the target with huge, sharp claws.
 #-------------------------------
 [BREAKINGSWIPE]
@@ -1589,7 +1589,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = LowerTargetSpAtk1
 Flags = CanProtect,CanMirrorMove
-EffectChance = 30
+EffectChance = 20
 Description = The user attacks by borrowing the power of the moon. This may also lower the target's Sp. Atk stat.
 #-------------------------------
 [PLAYROUGH]
@@ -1634,7 +1634,7 @@ Description = The user damages opposing Pokémon by emitting a powerful flash.
 Name = Spirit Break
 Type = FAIRY
 Category = Physical
-Power = 75
+Power = 85
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
@@ -1969,7 +1969,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = IgnoreTargetDefSpDefEvaStatStages
-Flags = Contact,CanProtect,CanMirrorMove,Slicing
+Flags = Contact,CanProtect,CanMirrorMove,Slicing,Horn
 Description = The user attacks by slicing with its long horns. The target's stat changes don't affect the damage.
 #-------------------------------
 [THUNDEROUSKICK]
@@ -1994,7 +1994,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = UseTargetDefenseInsteadOfTargetSpDef
-Flags = CanProtect,CanMirrorMove,CannotMetronome,Slicing
+Flags = CanProtect,CanMirrorMove,CannotMetronome,Slicing,Horn
 Description = The user cuts with its long horn. The odd power contained in it does physical damage to the foe.
 #-------------------------------
 [SKYUPPERCUT]
@@ -2667,7 +2667,7 @@ Description = Cloaked in flames, the user dances and flaps its wings. It may als
 Name = Fire Lash
 Type = FIRE
 Category = Physical
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
@@ -2928,7 +2928,7 @@ Description = A vortex of air is shot at the target to inflict damage. Critical 
 Name = Beak Blast
 Type = FLYING
 Category = Physical
-Power = 100
+Power = 120
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
@@ -2971,7 +2971,7 @@ Accuracy = 100
 TotalPP = 20
 Target = Other
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate
+Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate,Drill
 Description = A corkscrewing attack with the sharp beak acting as a drill.
 #-------------------------------
 [OBLIVIONWING]
@@ -3117,7 +3117,7 @@ Accuracy = 100
 TotalPP = 35
 Target = Other
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate
+Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate,Drill
 Description = The target is jabbed with a sharply pointed beak or horn.
 #-------------------------------
 [DEFOG]
@@ -3277,7 +3277,7 @@ Description = The user hurls a shadowy blob at the target. It may also lower the
 Name = Spirit Shackle
 Type = GHOST
 Category = Physical
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
@@ -3290,12 +3290,12 @@ Description = The user attacks while also stitching the target's shadow to the g
 Name = Shadow Claw
 Type = GHOST
 Category = Physical
-Power = 70
+Power = 80
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate
+Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing
 Description = The user slashes with a sharp claw made from shadows. Critical hits land more easily.
 #-------------------------------
 [HEX]
@@ -3601,7 +3601,7 @@ Description = The user stirs up a violent petal blizzard and attacks everything 
 Name = Apple Acid
 Type = GRASS
 Category = Special
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
@@ -3639,7 +3639,7 @@ Description = A column of grass hits the foes. When used with its water equivale
 Name = Grav Apple
 Type = GRASS
 Category = Physical
-Power = 80
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = NearOther
@@ -3681,7 +3681,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = HealUserByHalfOfDamageDone
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Horn
 Description = The user drains the foe's energy with its horns. The user's HP is restored by half the damage inflicted.
 #-------------------------------
 [GRASSYGLIDE]
@@ -3700,7 +3700,7 @@ Description = Gliding on the ground, the user attacks the target. This move alwa
 Name = Trop Kick
 Type = GRASS
 Category = Physical
-Power = 70
+Power = 85
 Accuracy = 100
 TotalPP = 15
 Target = NearOther
@@ -3809,7 +3809,7 @@ Description = A nutrient-draining attack. The user's HP is restored by half the 
 #-------------------------------
 [SNAPTRAP]
 Name = Snap Trap
-Type = GRASS
+Type = STEEL
 Category = Physical
 Power = 35
 Accuracy = 100
@@ -4140,7 +4140,7 @@ Accuracy = 95
 TotalPP = 10
 Target = NearOther
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate
+Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate,Drill
 Description = The user crashes into its target while rotating its body like a drill. Critical hits land more easily.
 #-------------------------------
 [STOMPINGTANTRUM]
@@ -4248,7 +4248,7 @@ Description = The user traps the target inside a harshly raging sandstorm for fo
 Name = Bone Rush
 Type = GROUND
 Category = Physical
-Power = 25
+Power = 30
 Accuracy = 90
 TotalPP = 10
 Target = NearOther
@@ -4352,11 +4352,11 @@ Flags = ZPower_DEFENSE_1
 Name = Freeze Shock
 Type = ICE
 Category = Physical
-Power = 140
+Power = 110
 Accuracy = 90
 TotalPP = 5
 Target = NearOther
-FunctionCode = TwoTurnAttackParalyzeTarget
+FunctionCode = ParalyzeTarget
 Flags = CanProtect,CanMirrorMove,CannotMetronome
 EffectChance = 30
 Description = On the second turn, the user hits the foe with electrically charged ice. It may also paralyze the foe.
@@ -4365,11 +4365,11 @@ Description = On the second turn, the user hits the foe with electrically charge
 Name = Ice Burn
 Type = ICE
 Category = Special
-Power = 140
+Power = 110
 Accuracy = 90
 TotalPP = 5
 Target = NearOther
-FunctionCode = TwoTurnAttackBurnTarget
+FunctionCode = BurnTarget
 Flags = CanProtect,CanMirrorMove,CannotMetronome
 EffectChance = 30
 Description = On the second turn, an ultracold, freezing wind surrounds the foe. This may leave it with a burn.
@@ -5009,7 +5009,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetDefense1
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Slicing
 EffectChance = 50
 Description = The user slashes the target with hard and sharp claws. It may also lower the target's Defense.
 #-------------------------------
@@ -5017,13 +5017,13 @@ Description = The user slashes the target with hard and sharp claws. It may also
 Name = Relic Song
 Type = NORMAL
 Category = Special
-Power = 75
+Power = 90
 Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
 FunctionCode = SleepTargetChangeUserMeloettaForm
 Flags = CanProtect,CanMirrorMove,Sound,CannotMetronome
-EffectChance = 10
+EffectChance = 20
 Description = An ancient song appeals to the hearts of those listening. It may also induce sleep.
 #-------------------------------
 [CHIPAWAY]
@@ -5134,7 +5134,7 @@ Accuracy = 100
 TotalPP = 25
 Target = NearOther
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Horn
 Description = The target is jabbed with a sharply pointed horn to inflict damage.
 #-------------------------------
 [STOMP]
@@ -5513,7 +5513,7 @@ Accuracy = 85
 TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Horn
 Description = The target is jabbed repeatedly with a horn or beak two to five times in a row.
 #-------------------------------
 [WRAP]
@@ -5623,7 +5623,7 @@ Accuracy = 30
 TotalPP = 5
 Target = NearOther
 FunctionCode = OHKO
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Horn
 Description = The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly.
 #-------------------------------
 [NATURALGIFT]
@@ -6033,7 +6033,7 @@ Description = The user growls in an endearing way, making the foe less wary. The
 #-------------------------------
 [GROWTH]
 Name = Growth
-Type = NORMAL
+Type = GRASS
 Category = Status
 Accuracy = 0
 TotalPP = 20
@@ -7544,7 +7544,7 @@ Description = The user employs its psychic power to switch stat changes with the
 Name = Hypnosis
 Type = PSYCHIC
 Category = Status
-Accuracy = 60
+Accuracy = 65
 TotalPP = 20
 Target = NearOther
 FunctionCode = SleepTarget
@@ -8123,7 +8123,7 @@ Name = Iron Tail
 Type = STEEL
 Category = Physical
 Power = 100
-Accuracy = 75
+Accuracy = 85
 TotalPP = 15
 Target = NearOther
 FunctionCode = LowerTargetDefense1
@@ -8192,7 +8192,7 @@ TotalPP = 15
 Target = NearOther
 FunctionCode = FlinchTarget
 Flags = Contact,CanProtect,CanMirrorMove
-EffectChance = 30
+EffectChance = 20
 Description = The foe slams the target with its steel-hard head. It may also make the target flinch.
 #-------------------------------
 [SMARTSTRIKE]
@@ -8204,7 +8204,7 @@ Accuracy = 0
 TotalPP = 10
 Target = NearOther
 FunctionCode = None
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Horn
 Description = The user stabs the target with a sharp horn. This attack never misses.
 #-------------------------------
 [STEELWING]
@@ -8431,7 +8431,7 @@ Power = 110
 Accuracy = 80
 TotalPP = 5
 Target = NearOther
-FunctionCode = None
+FunctionCode = AlwaysHitsInRain
 Flags = CanProtect,CanMirrorMove
 Description = The target is blasted by a huge volume of water launched under great pressure.
 #-------------------------------
@@ -8465,7 +8465,7 @@ Name = Crabhammer
 Type = WATER
 Category = Physical
 Power = 100
-Accuracy = 90
+Accuracy = 95
 TotalPP = 10
 Target = NearOther
 FunctionCode = None
@@ -8476,7 +8476,7 @@ Description = The target is hammered with a large pincer. Critical hits land mor
 Name = Aqua Tail
 Type = WATER
 Category = Physical
-Power = 90
+Power = 100
 Accuracy = 90
 TotalPP = 10
 Target = NearOther

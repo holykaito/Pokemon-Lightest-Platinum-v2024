@@ -67,7 +67,6 @@ Generation = 6
 [TROPIUS,1]
 FormName = Mega Tropius
 MegaStone = VENUSAURITE
-Types = GRASS,FLYING
 BaseStats = 80,100,123,80,122,120
 BaseExp = 313
 Abilities = THICKFAT

@@ -1458,3 +1458,108 @@ Gender = Female
 BaseMoney = 100
 BattleBGM = Battle Elite
 VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Lenora]
+Name = Gym Leader
+Gender = Female
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Roxie]
+Name = Gym Leader
+Gender = Female
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Burgh]
+Name = Gym Leader
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Elesa]
+Name = Gym Leader
+Gender = Female
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Clay]
+Name = Gym Leader
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Skyla]
+Name = Gym Leader
+Gender = Female
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Brycen]
+Name = Gym Leader
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Drayden]
+Name = Gym Leader
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[LEADER_Marlon]
+Name = Gym Leader
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Gym Leader
+VictoryBGM = Battle victory leader
+#-------------------------------
+[ELITEFOUR_Shauntal]
+Name = Elite
+Gender = Female
+BaseMoney = 100
+BattleBGM = Battle Elite
+VictoryBGM = Battle victory leader
+#-------------------------------
+[ELITEFOUR_Marshal]
+Name = Elite
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Elite
+VictoryBGM = Battle victory leader
+#-------------------------------
+[ELITEFOUR_Grimsley]
+Name = Elite
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Elite
+VictoryBGM = Battle victory leader
+#-------------------------------
+[ELITEFOUR_Caitlin]
+Name = Elite
+Gender = Female
+BaseMoney = 100
+BattleBGM = Battle Elite
+VictoryBGM = Battle victory leader
+#-------------------------------
+[CHAMPION_Alder]
+Name = Champion
+Gender = Male
+BaseMoney = 100
+BattleBGM = Battle Champion
+VictoryBGM = Battle victory leader
+#-------------------------------
+[CHAMPION_Iris]
+Name = Champion
+Gender = Female
+BaseMoney = 100
+BattleBGM = Battle Champion
+VictoryBGM = Battle victory leader

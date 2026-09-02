@@ -7,7 +7,7 @@ class Battle::Scene::PokemonDataBox
   # 0 - Draw above the databox
   # 1 - Draw below the databox
   # 2 - Draw at the side of the databox
-  TYPE_ICONS_POSITION = 1
+  TYPE_ICONS_POSITION = 2
 
 end
 
