@@ -423,7 +423,7 @@ SpecialBattleIntroAnimations.register("alternate_vs_trainer_animation", 50,   # 
 SpecialBattleIntroAnimations.register("rocket_grunt_animation", 40,   # Priority 40
   proc { |battle_type, foe, location|   # Condition
     next false unless [1, 3].include?(battle_type)   # Only if a trainer battle
-    trainer_types = [:TEAMROCKET_M, :TEAMROCKET_F]
+    trainer_types = [:TEAMROCKETGRUNT_M, :TEAMROCKETGRUNT_F]
     next foe.any? { |f| trainer_types.include?(f.trainer_type) }
   },
   proc { |viewport, battle_type, foe, location|   # Animation

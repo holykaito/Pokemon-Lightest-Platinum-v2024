@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+﻿# Hãy xem tài liệu trên wiki để biết cách chỉnh sửa file này.
 #-------------------------------
 [HIKER,Limv]
 LoseText = Tch! I took you too lightly!
@@ -6,7 +6,7 @@ Pokemon = WIMPOD,18
 Pokemon = DWEBBLE,18
 Pokemon = NINJASK,20
 #-------------------------------
-[PAINTER,Freya]
+[PAINTER_F,Freya]
 LoseText = Uww... I blew it.
 Pokemon = DOTTLER,18
 Pokemon = SHELMET,18
@@ -24,7 +24,7 @@ Pokemon = KAKUNA,14
 Pokemon = GRUBBIN,14
 Pokemon = VENONAT,14
 #-------------------------------
-[BUGCATCHER,Mikey]
+[BUGCATCHER_M,Mikey]
 LoseText = Argh, I can't do anymore...
 Pokemon = BURMY_2,14
 Pokemon = METAPOD,14
@@ -36,7 +36,7 @@ Pokemon = CUTIEFLY,14
 Pokemon = VENIPEDE,14
 Pokemon = PINSIR,14
 #-------------------------------
-[SCHOOLBOY,Wilfredo]
+[SCHOOLKID_M,Wilfredo]
 LoseText = Heh, I guess I didn't try hard enough.
 Pokemon = ZIGZAGOON,6
 Pokemon = GEODUDE,7
@@ -48,8 +48,14 @@ Pokemon = PAWNIARD,6
 Pokemon = WYNAUT,5
 Pokemon = SHUPPET,6
 #-------------------------------
-[POKEMONBREEDER1_M,Reuben]
+[BREEDER_M,Reuben]
 LoseText = I should've guessed you would cheat.
 Pokemon = SMOLIV,5
 Pokemon = TAILLOW,7
 Pokemon = GIRAFARIG,6
+#-------------------------------
+[PKMTRAINER_TanLoi,TanLoi,1]
+LoseText = Mercy!
+Pokemon = LECHONK,6
+Pokemon = SKWOVET,6
+Pokemon = SQUAWKABILLY,7

@@ -2,9 +2,17 @@
 # translate every second line of this file.
 #-------------------------------
 [Map099]
-\bPOKéMON equipped with QUICK CLAW attack first more often than others without the item, so you can use it to win many battles.
-\bPOKéMON equipped with QUICK CLAW attack first more often than others without the item, so you can use it to win many battles.
+The weather tells us many things about the world.
+The weather tells us many things about the world.
+Rain, sunlight, wind, and storms all affect Pokémon in different ways.
+Rain, sunlight, wind, and storms all affect Pokémon in different ways.
+A good researcher doesn't just observe Pokémon... they observe their environment too.
+A good researcher doesn't just observe Pokémon... they observe their environment too.
 \rI love GRASS-type POKéMON, they're always strong and cute, ready for any battle.
 \rI love GRASS-type POKéMON, they're always strong and cute, ready for any battle.
-\rHere in my home I'm always responsible for our food, so I try to please us all.
-\rHere in my home I'm always responsible for our food, so I try to please us all.
+Life in this town may seem quiet, but that's what makes it special.
+Life in this town may seem quiet, but that's what makes it special.
+Every morning, I wake up to the sound of Pokémon outside my window.
+Every morning, I wake up to the sound of Pokémon outside my window.
+I think a peaceful place like this is something worth protecting.
+I think a peaceful place like this is something worth protecting.

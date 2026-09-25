@@ -1,0 +1,16 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map007]
+The world is home to countless creatures known as Pokémon.
+Thế giới này là mái nhà của vô số sinh vật được gọi là Pokémon.
+They live alongside humans, in forests, oceans, mountains, and even places yet to be discovered.
+Chúng sống bên cạnh con người, trong rừng sâu, đại dương, núi non và cả những vùng đất chưa ai từng khám phá.
+Some people battle with Pokémon. Some train them. Others study their behavior and uncover the mysteries of their existence.
+Có người cùng Pokémon chiến đấu. Có người huấn luyện chúng. Cũng có người nghiên cứu tập tính và khám phá những bí ẩn xoay quanh sự tồn tại của chúng.
+Among them, there are Pokémon Researchers who dedicate their lives to understanding these amazing creatures.
+Trong số đó có những nhà nghiên cứu Pokémon, những người dành cả cuộc đời để tìm hiểu về các sinh vật kỳ diệu này.
+And this is the story of a young trainer with a dream...
+Và đây là câu chuyện về một Huấn luyện viên trẻ mang trong mình một ước mơ...
+A dream to meet every Pokémon in the world.
+Ước mơ được gặp tất cả Pokémon trên thế giới.

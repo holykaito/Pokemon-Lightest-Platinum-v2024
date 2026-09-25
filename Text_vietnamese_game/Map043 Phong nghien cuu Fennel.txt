@@ -2,43 +2,109 @@
 # translate every second line of this file.
 #-------------------------------
 [Map043]
-\bHey, the professor is looking for you!
-\bHey, the professor is looking for you!
-\r\ff[profjasmine]Hi, \PN! Welcom to my lab! Now that you have your first Pokemon, I think you should train to become a Pokemon Master by challenging the Zhery League and its eight gyms.
-\r\ff[profjasmine]Hi, \PN! Welcom to my lab! Now that you have your first Pokemon, I think you should train to become a Pokemon Master by challenging the Zhery League and its eight gyms.
-\rYes! I've dreamed of this all my life, and now I'll make my dreams come true!
-\rYes! I've dreamed of this all my life, and now I'll make my dreams come true!
-\r\ff[profjasmine]Right! But first, I have one last request of you. To the east of Central City lies Marfeny Lake. Pro. Oak is at the lake, and I urgently need to speak with him. Can I ask you to get him to contact me?
-\r\ff[profjasmine]Right! But first, I have one last request of you. To the east of Central City lies Marfeny Lake. Pro. Oak is at the lake, and I urgently need to speak with him. Can I ask you to get him to contact me?
-\rOkay! I'll go right away!
-\rOkay! I'll go right away!
-\r\ff[profjasmine]Before you leave, here's a little gift from me! Pokeballs. These Pokeballls will capture many Pokemon. Good luck on yur journey!
-\r\ff[profjasmine]Before you leave, here's a little gift from me! Pokeballs. These Pokeballls will capture many Pokemon. Good luck on yur journey!
-\r\ff[profjasmine]These Pokeballls will capture many Pokemon. Good luck on yur journey!
-\r\ff[profjasmine]These Pokeballls will capture many Pokemon. Good luck on yur journey!
+\ff[profjasmine]Ah, you must be the new research assistant I was expecting.
+\ff[profjasmine]À, cháu hẳn là trợ lý nghiên cứu mới mà cô đang chờ.
+\ff[profjasmine]Welcome to my laboratory. I'm Professor Fennel.
+\ff[profjasmine]Chào mừng cháu đến Viện nghiên cứu Khải Nguyên. Cô là Giáo sư Fennel.
+\ff[profjasmine]I've heard quite a lot about you from the Pokémon School.
+\ff[profjasmine]Cô đã nghe các thấy cô trong Trường Pokémon kể khá nhiều về cháu rồi.
+\ff[profjasmine]Your grades, your research reports, and especially your curiosity about Pokémon.
+\ff[profjasmine]Từ thành tích học tập, các báo cáo nghiên cứu, đến niềm đam mê tìm hiểu về Pokémon.
+\ff[profjasmine]That's exactly the kind of person we need for this project.
+\ff[profjasmine]Đó chính là người mà dự án này của cô đang cần.
+\ff[profjasmine]As you know, our goal is to complete the Pokémon Encyclopedia.
+\ff[profjasmine]Cháu biết rồi đó, mục tiêu của chúng ta là hoàn thiện Bách khoa toàn thư Pokémon.
+\ff[profjasmine]There are still many Pokémon whose habits, habitats, and abilities remain unknown.
+\ff[profjasmine]Vẫn còn rất nhiều Pokémon mà tập tính, môi trường sống và đặc tính của chúng ta chưa hiểu rõ.
+\ff[profjasmine]To understand them, we need more than just data from books.
+\ff[profjasmine]Muốn hiểu rõ chúng, chỉ dựa vào dữ liệu trong sách thôi là chưa đủ.
+\ff[profjasmine]We need someone who can go out into the field, observe Pokémon directly, and record new discoveries.
+\ff[profjasmine]Chúng ta cần một người có thể đi thực địa, trực tiếp quan sát Pokémon và ghi lại những phát hiện mới.
+\ff[profjasmine]From today onward, you'll be helping me collect information for the Pokémon Encyclopedia.
+\ff[profjasmine]Từ hôm nay, cháu sẽ giúp cô thu thập thông tin cho Bách khoa toàn thư Pokémon.
+\ff[profjasmine]Actually... there's something important I need your help with.
+\ff[profjasmine]Hmmm... Trước tiên, cô có một việc quan trọng muốn nhờ cháu.
+\ff[profjasmine]I need to send these research documents to Professor Oak.
+\ff[profjasmine]Cô cần gửi một số tài liệu nghiên cứu này cho Giáo sư Oak.
+\ff[profjasmine]He is currently staying in V?n H?i City, where he is continuing his own Pokémon research.
+\ff[profjasmine]Hiện ông ấy đang ở Thành phố Vạn Hội để nghiên cứu về Pokémon của vùng này.
+\ff[profjasmine]Could you deliver these documents to him for me?
+\ff[profjasmine]Cháu mang số tài liệu này đến cho ông ấy giúp cô nhé?
+\ff[profjasmine]While you're there, please ask him about the Pokédex units he prepared for us.
+\ff[profjasmine]Tiện thể, cháu hỏi ông ấy về những chiếc Pokédex đã chuẩn bị cho chúng ta nhé.
+\ff[profjasmine]A Pokédex is an essential tool for any Pokémon researcher.
+\ff[profjasmine]Pokédex là công cụ không thể thiếu đối với một nhà nghiên cứu Pokémon.
+\ff[profjasmine]However...I heard Professor Oak might not be at his laboratory right now.
+\ff[profjasmine]Nhưng... cô nghe nói Giáo sư Oak hiện không có ở phòng thí nghiệm.
+\ff[profjasmine]Apparently, he went somewhere along Route A10 to investigate something.
+\ff[profjasmine]Hình như ông ấy đã đến đâu đó trên Đường A10 để điều tra việc gì đó.
+\ff[profjasmine]So you may have to find him before delivering the documents.
+\ff[profjasmine]Vì vậy chắc cháu sẽ phải tìm ông ấy trước rồi mới giao được tài liệu.
+\ff[profjasmine]Here are the documents. Please take good care of them.
+\ff[profjasmine]Tài liệu đây này. Cháu nhớ giữ cẩn thận nhé.
+\ff[profjasmine]This will be your first official task as a Pokémon Research Assistant. ^^
+\ff[profjasmine]Đây sẽ là nhiệm vụ chính thức đầu tiên của cháu với tư cách Trợ lý Nghiên cứu Pokémon. ^^
+\ff[profjasmine]Before you leave, there's one more thing we need to prepare.
+\ff[profjasmine]À, trước khi cháu đi, vẫn còn một thứ cần chuẩn bị.
+\ff[profjasmine]A Pokémon researcher can't properly study Pokémon by traveling alone.
+\ff[profjasmine]Một nhà nghiên cứu Pokémon không thể cứ đi một mình mà nghiên cứu được.
+\ff[profjasmine]Having a Pokémon partner will make your journey safer and much more meaningful.
+\ff[profjasmine]Có một Pokémon đồng hành sẽ giúp chuyến đi của cháu an toàn và ý nghĩa hơn nhiều.
+\ff[profjasmine]These three Pokémon have been raised here at the laboratory.
+\ff[profjasmine]Ba Pokémon này đều được nuôi dưỡng tại phòng thí nghiệm.
+\ff[profjasmine]Each one has different strengths and different personalities.
+\ff[profjasmine]Mỗi Pokémon đều có thế mạnh và tính cách riêng.
+\ff[profjasmine]Take your time and choose the Pokémon that feels right for you.
+\ff[profjasmine]Cứ từ từ chọn Pokémon mà cháu cảm thấy hợp với mình nhất nhé.
+\ff[profjasmine]A wonderful choice.
+\ff[profjasmine]Lựa chọn tuyệt lắm.
+\ff[profjasmine]From now on, this Pokémon will be your research partner.
+\ff[profjasmine]Từ giờ, Pokémon này sẽ là người bạn đồng hành nghiên cứu của cháu.
+\ff[profjasmine]I'm sure the two of you will make many discoveries together.
+\ff[profjasmine]Cô tin hai đứa sẽ cùng nhau khám phá được rất nhiều điều.
+\ff[profjasmine]Oh, and you'll need these as well.
+\ff[profjasmine]À, cháu cũng sẽ cần những thứ này nữa.
+\ff[profjasmine]These Poké Balls will allow you to safely catch Pokémon you encounter during your journey.
+\ff[profjasmine]Những Poké Ball này sẽ giúp cháu bắt Pokémon gặp trên đường một cách an toàn.
+\ff[profjasmine]Use them carefully, and always treat Pokémon with respect.
+\ff[profjasmine]Hãy dùng chúng cẩn thận và luôn đối xử với Pokémon bằng sự tôn trọng.
+\ff[profjasmine]Now, go meet Professor Oak. Your first research assignment is waiting.
+\ff[profjasmine]Giờ cháu đi gặp Giáo sư Oak nhé. Nhiệm vụ nghiên cứu đầu tiên đang chờ cháu đấy.
 \r\ff[profjasmine]It seems like you were born to become a legendary trainer! I'll be following your journey from here.
-\r\ff[profjasmine]It seems like you were born to become a legendary trainer! I'll be following your journey from here.
-\bWe are working at full steam on new research into Arceus and the other mysteries we have yet to uncover in the Pokemon World
-\bWe are working at full steam on new research into Arceus and the other mysteries we have yet to uncover in the Pokemon World
-\bPokemon always have some mystery to be solved, and the best scientists in the world work to unravel them.
-\bPokemon always have some mystery to be solved, and the best scientists in the world work to unravel them.
-\bI'm always excited to share my findings and contribute to the development of the Pokemon trainer community. Let's explore together!
-\bI'm always excited to share my findings and contribute to the development of the Pokemon trainer community. Let's explore together!
+\r\ff[profjasmine]Có vẻ cháu sinh ra để trở thành một Huấn luyện viên huyền thoại đấy! Cô sẽ dõi theo hành trình của cháu từ đây.
+Ah! Don't mind the mess over there...
+À! Đừng để ý đống bừa bộn bên kia nhé...
+I was organizing the research documents, but then I found some interesting Pokémon records.
+Tôi đang sắp xếp tài liệu nghiên cứu thì lại tìm thấy vài ghi chép thú vị về Pokémon.
+One thing led to another, and now I have a bigger mess than before...
+Rồi cứ xem hết cái này đến cái khác, cuối cùng còn bừa hơn lúc đầu...
+Please be careful around these computers.
+Cẩn thận khi ở gần những máy tính này nhé.
+They contain years of research data collected from Pokémon across the region.
+Chúng lưu trữ dữ liệu nghiên cứu về Pokémon được thu thập suốt nhiều năm trên khắp vùng.
+Every single observation, no matter how small, can help us understand Pokémon better.
+Dù chỉ là một quan sát rất nhỏ cũng có thể giúp chúng ta hiểu Pokémon hơn.
+Professor Fennel has been studying Pokémon habitats for many years.
+Giáo sư Fennel đã nghiên cứu môi trường sống của Pokémon suốt nhiều năm.
+She believes that understanding Pokémon is the first step toward protecting them.
+Bà ấy tin rằng muốn bảo vệ Pokémon, trước hết phải hiểu được chúng.
+I'm lucky to be able to learn from her.
+Tôi thật may mắn khi được học hỏi từ bà ấy.
 \r\ff[profjasmine]Hi, Prof.Oak! Welcom to my lab!
-\r\ff[profjasmine]Hi, Prof.Oak! Welcom to my lab!
+\r\ff[profjasmine]Chào Giáo sư Oak! Chào mừng ông đến phòng thí nghiệm của tôi!
 \b\ff[prooak]Thanks, Prof.Fennel! \PN told me I had to come here quickly, so I'm here to learn about your research!
-\b\ff[prooak]Thanks, Prof.Fennel! \PN told me I had to come here quickly, so I'm here to learn about your research!
+\b\ff[prooak]Cảm ơn Giáo sư Fennel! \PN bảo tôi nên đến đây ngay, nên tôi tới xem nghiên cứu của cô có gì mới!
 \r\ff[profjasmine]Yes, professor! With \PN's help, I've been studying ancient writings about the creation of the universe! They said the Arceus created the world and all the Pokémon.
-\r\ff[profjasmine]Yes, professor! With \PN's help, I've been studying ancient writings about the creation of the universe! They said the Arceus created the world and all the Pokémon.
+\r\ff[profjasmine]Vâng, Giáo sư! Nhờ \PN giúp đỡ, tôi đã nghiên cứu những văn tự cổ về sự hình thành vũ trụ! Chúng ghi rằng Arceus đã tạo ra thế giới và mọi Pokémon.
 \b\ff[prooak]Incredible! This is actually related to my latest research into Pokémon DNA. It seems all species have the same small trait in common!
-\b\ff[prooak]Incredible! This is actually related to my latest research into Pokémon DNA. It seems all species have the same small trait in common!
+\b\ff[prooak]Thật đáng kinh ngạc! Điều này lại liên quan đến nghiên cứu mới nhất của tôi về DNA Pokémon. Có vẻ mọi loài đều có chung một đặc điểm nhỏ!
 \r\ff[profjasmine]Yes, professor, right now that's all I know. I'll send you the full document on a CD.
-\r\ff[profjasmine]Yes, professor, right now that's all I know. I'll send you the full document on a CD.
+\r\ff[profjasmine]Vâng, Giáo sư. Hiện tại tôi mới biết được đến đó. Tôi sẽ gửi toàn bộ tài liệu cho ông qua CD.
 \b\ff[prooak]Okay, Prof.Fennel. I'm going to my research center in Zhery, Central City's Radio Tower. Let me know immediately if you have any problems.
-\b\ff[prooak]Okay, Prof.Fennel. I'm going to my research center in Zhery, Central City's Radio Tower. Let me know immediately if you have any problems.
+\b\ff[prooak]Được rồi, Giáo sư Fennel. Tôi sẽ về trung tâm nghiên cứu ở Tháp Phát thanh Central City, Zhery. Có vấn đề gì thì báo cho tôi ngay nhé.
 \r\ff[profjasmine]Okay!
-\r\ff[profjasmine]Okay!
+\r\ff[profjasmine]Vâng!
 \r\ff[profjasmine]Good job, \PN. I've registered you in the Zhery league. Now you can fight the gym leaders and become a powerful trainer. Congratulations and take care, Team Steam still be after you!
-\r\ff[profjasmine]Good job, \PN. I've registered you in the Zhery league. Now you can fight the gym leaders and become a powerful trainer. Congratulations and take care, Team Steam still be after you!
+\r\ff[profjasmine]Làm tốt lắm, \PN. Cô đã đăng ký cháu vào Liên minh Zhery rồi. Giờ cháu có thể thách đấu các Thủ lĩnh Nhà thi đấu và trở thành một Huấn luyện viên mạnh mẽ. Chúc mừng nhé, nhưng nhớ cẩn thận, Team Steam vẫn đang nhắm đến cháu đấy!
 \bI delve into the lives, powers, and evolutions of various Pokemon species. Each Pokemon is a complex system, and I am always excited to uncover their mysteries.
-\bI delve into the lives, powers, and evolutions of various Pokemon species. Each Pokemon is a complex system, and I am always excited to uncover their mysteries.
+\bTôi nghiên cứu tập tính, sức mạnh và quá trình Tiến hóa của nhiều loài Pokémon. Mỗi Pokémon đều là một thế giới phức tạp, và tôi luôn hào hứng khi khám phá những bí ẩn của chúng.

@@ -1,0 +1,338 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map079]
+\ff[prooak]Look carefully and report anything unusual you find.
+\ff[prooak]Quan sát cho kỹ nhé, có gì bất thường thì báo ngay cho ta.
+\ff[prooak]Every small detail could be an important clue.
+\ff[prooak]Dù là chi tiết nhỏ nhất cũng có thể là manh mối quan trọng.
+\rPOKéMON should always be fit and\n ready for battle!
+\rPokémon phải luôn khỏe mạnh và sẵn sàng chiến đấu!
+\rYou're a great battler! You use sound tactics in your fights.
+\rCậu đánh khá lắm! Chiến thuật cũng rất chắc tay.
+\rVictories are won with the sweat of training each day. This is the real way to become a good POKéMON trainer.
+\rMuốn chiến thắng thì phải khổ luyện mỗi ngày. Đó mới là con đường trở thành một Huấn luyện viên Pokémon giỏi.
+\ff[blue]A mysterious Pokémon phenomenon on Route A10...
+\ff[blue]Một hiện tượng Pokémon bí ẩn ở Route A10...
+\ff[blue]This is getting more interesting than I expected.
+\ff[blue]Chuyện này thú vị hơn cháu tưởng đấy.
+Marfeny Lake
+Marfeny Lake
+\ff[steamgruntm]Perfect...
+\ff[steamgruntm]Hoàn hảo...
+\ff[steamgruntm]The Black Crystal's energy is spreading exactly as expected.
+\ff[steamgruntm]Năng lượng của Pha Lê Đen đang tỏa ra đúng như dự tính.
+\ff[steamgruntm]The Pokémon in this area are becoming more aggressive.
+\ff[steamgruntm]Pokémon trong khu vực này đang ngày càng hung hăng hơn.
+\ff[steamgruntm]Well..well..
+\ff[steamgruntm]Chà..chà..
+\ff[steamgruntm]Looks like I have an unexpected visitor.
+\ff[steamgruntm]Xem ra ta có khách không mời mà tới rồi.
+\ff[steamgruntm]You should leave.
+\ff[steamgruntm]Tốt nhất là thằng nhóc mày biến khỏi đây đi.
+\ff[steamgruntm]This area is currently part of Team Chaos' experiment.
+\ff[steamgruntm]Khu vực này đang được Team Chaos dùng cho một thí nghiệm.
+\ff[steamgruntm]Hey! Don't get any closer.
+\ff[steamgruntm]Này! Đứng lại đó!
+\ff[steamgruntm]Don't even think about touching it.
+\ff[steamgruntm]Đừng hòng chạm vào nó.
+\ff[steamgruntm]This is a Black Crystal.
+\ff[steamgruntm]Đây là Pha Lê Đen.
+\ff[steamgruntm]A special crystal containing a powerful energy source.
+\ff[steamgruntm]Một loại tinh thể đặc biệt chứa nguồn năng lượng cực mạnh.
+\ff[steamgruntm]Its energy affects the minds of Pokémon nearby.
+\ff[steamgruntm]Nó sẽ tác động đến tâm trí các Pokémon ở gần.
+\ff[prooak]So this is the cause of the strange behavior.
+\ff[prooak]Ra đây chính là nguyên nhân khiến chúng hành xử kỳ lạ.
+\ff[blue]Grandpa, you mean this guy placed it here?
+\ff[blue]Ông, ý ông là tên này đã đặt nó ở đây sao?
+\ff[prooak]It seems so.
+\ff[prooak]Có vẻ là vậy.
+\ff[prooak]The energy readings match the changes we observed in the Pokémon.
+\ff[prooak]Chỉ số năng lượng trùng khớp với những thay đổi ông cháu ta đã quan sát ở Pokémon.
+\ff[prooak]This must be the cause of the abnormal behavior in Pokémon around Route A10.
+\ff[prooak]Đây hẳn là nguyên nhân khiến Pokémon quanh Đường A10 trở nên bất thường.
+\ff[steamgruntm]You're quite observant, Professor.
+\ff[steamgruntm]Mắt quan sát khá đấy, ông già.
+\ff[blue]You've been using wild Pokémon as test subjects?
+\ff[blue]Các ngươi lấy Pokémon hoang dã ra làm vật thí nghiệm sao?
+\ff[steamgruntm]Don't make it sound so dramatic.
+\ff[steamgruntm]Đừng làm quá lên thế chứ.
+\ff[steamgruntm]We are simply studying the effects of a new power source.
+\ff[steamgruntm]Bọn ta chỉ đang nghiên cứu tác động của một nguồn năng lượng mới thôi.
+\ff[prooak]By forcing Pokémon to suffer from its effects?
+\ff[prooak]Bằng cách bắt Pokémon phải chịu đựng tác động của nó sao?
+\ff[steamgruntm]Pokémon are much stronger than humans realize.
+\ff[steamgruntm]Pokémon mạnh hơn con người các ngươi tưởng nhiều.
+\ff[steamgruntm]If they can overcome this energy, they will become even more powerful.
+\ff[steamgruntm]Nếu vượt qua được nguồn năng lượng này, chúng sẽ còn mạnh hơn nữa.
+\ff[blue]That's ridiculous!
+\ff[blue]Vớ vẩn!
+\ff[blue]You're not helping Pokémon. You're just using them!
+\ff[blue]Các ngươi đâu có giúp Pokémon! Chỉ đang lợi dụng chúng thôi!
+\ff[steamgruntm]You don't understand.
+\ff[steamgruntm]Ngươi chẳng hiểu gì cả.
+\ff[steamgruntm]Team Chaos sees possibilities that ordinary researchers cannot.
+\ff[steamgruntm]Team Chaos nhìn thấy những khả năng mà đám nghiên cứu tầm thường các ngươi không thể thấy.
+\ff[prooak]Team Chaos...
+\ff[prooak]Team Chaos...
+\ff[prooak]So this is your organization's doing.
+\ff[prooak]Vậy ra chuyện này là do tổ chức của ngươi gây ra.
+\ff[steamgruntm]Now you know.
+\ff[steamgruntm]Giờ thì ông già biết rồi đấy.
+\ff[steamgruntm]But I can't allow you to interfere with our experiment.
+\ff[steamgruntm]Nhưng ta không thể để ông già phá hỏng thí nghiệm của bọn ta.
+\ff[steamgruntm]How is this possible?
+\ff[steamgruntm]Sao có thể như vậy được?
+\ff[prooak]Your Pokémon was standing within the crystal's influence the entire time.
+\ff[prooak]Pokémon của cháu đã ở trong phạm vi ảnh hưởng của tinh thể suốt từ nãy đến giờ.
+\ff[prooak]Yet it showed no signs of losing control.
+\ff[prooak]Thế mà chúng không hề có dấu hiệu mất kiểm soát.
+\ff[steamgruntm]Impossible...
+\ff[steamgruntm]Không thể nào...
+\ff[steamgruntm]The Black Crystal's effects should affect every Pokémon nearby.
+\ff[steamgruntm]Pha Lê Đen lẽ ra phải ảnh hưởng đến mọi Pokémon ở gần chứ.
+\ff[steamgruntm]That Pokémon wasn't affected either?
+\ff[steamgruntm]Pokémon của thằng nhóc đó cũng không bị ảnh hưởng sao?
+\ff[prooak]So both your Pokémon and theirs can resist the crystal's influence...
+\ff[prooak]Vậy cả Pokémon của ngươi lẫn của cháu ấy đều kháng được ảnh hưởng của tinh thể...
+\ff[steamgruntm]I'll have to report this discovery.
+\ff[steamgruntm]Ta phải báo cáo lại chuyện này.
+\ff[steamgruntm]This experiment was only the beginning.
+\ff[steamgruntm]Thí nghiệm này mới chỉ là khởi đầu thôi.
+\ff[steamgruntm]Team Chaos will uncover the true potential of the Black Crystal.
+\ff[steamgruntm]Team Chaos bọn ta sẽ khai phá tiềm năng thực sự của Pha Lê Đen.
+\ff[prooak]A crystal capable of affecting Pokémon's minds...
+\ff[prooak]Một tinh thể có thể tác động đến tâm trí Pokémon...
+\ff[prooak]And an organization attempting to control its power...
+\ff[prooak]Lại còn một tổ chức đang tìm cách kiểm soát sức mạnh của nó...
+\ff[prooak]This is far more serious than I expected.
+\ff[prooak]Chuyện này nghiêm trọng hơn ta nghĩ rất nhiều.
+\ff[blue]Grandpa, what should we do now?
+\ff[blue]Ông, giờ chúng ta làm gì đây?
+\ff[prooak]First, we need to report this incident immediately.
+\ff[prooak]Trước hết, phải báo cáo sự việc này ngay.
+\ff[prooak]The Pokémon Association needs to know about Team Chaos and the Black Crystal.
+\ff[prooak]Hiệp hội Pokémon cần biết về Bang Hỗn Mang và Pha Lê Đen.
+\ff[prooak]If this crystal can affect Pokémon over a wide area, we cannot ignore the danger.
+\ff[prooak]Nếu viên pha lê này có thể ảnh hưởng đến Pokémon trên diện rộng, chúng ta không thể xem nhẹ nó.
+\ff[prooak]I'll return to my research facility at V?n H?i City's Television Station and send them a full report.
+\ff[prooak]Ta sẽ trở về cơ sở nghiên cứu tại Đài Truyền hình Vạn Hội và gửi báo cáo đầy đủ cho họ.
+\ff[prooak]Wait...
+\ff[prooak]Khoan đã...
+\ff[prooak]Before we leave, there is still one thing we need to take care of.
+\ff[prooak]Trước khi đi, vẫn còn một việc chúng ta phải xử lý.
+\ff[blue]The Black Crystal?
+\ff[blue]Pha Lê Đen hả ông?
+\ff[prooak]As long as it remains here, Pokémon in this area may continue to be affected.
+\ff[prooak]Chừng nào nó còn ở đây, Pokémon trong khu vực vẫn có thể tiếp tục bị ảnh hưởng.
+\ff[blue]Then let's just destroy it.
+\ff[blue]Vậy thì phá nó thôi nào!
+\ff[prooak]Normally, I would agree.
+\ff[prooak]Bình thường thì ông cũng sẽ đồng ý.
+\ff[prooak]But we still don't fully understand this crystal's properties.
+\ff[prooak]Nhưng chúng ta vẫn chưa hiểu hết đặc tính của viên pha lê này.
+\ff[prooak]There is one thing we have learned today.
+\ff[prooak]Tuy vậy, hôm nay chúng ta đã xác nhận được một điều.
+\ff[prooak]\PN's Pokémon can resist the Black Crystal's influence.
+\ff[prooak]Pokémon của \PN có thể kháng lại ảnh hưởng của Pha Lê Đen.
+\ff[prooak]And it was able to fight normally even near the crystal.
+\ff[prooak]Chúng vẫn chiến đấu bình thường ngay cả khi ở sát viên pha lê.
+\ff[prooak]This means your Pokémon may be able to interact with the crystal without being affected by its energy.
+\ff[prooak]Điều đó nghĩa là Pokémon của cháu có thể tiếp xúc với tinh thể mà không bị năng lượng của nó tác động.
+\ff[blue]So you're asking them to destroy it?
+\ff[blue]Vậy ông định nhờ thằng nhóc \PN phá nó à?
+\ff[prooak]If you decide to do this, be careful.
+\ff[prooak]\PM, nếu cháu quyết định làm, hãy thật cẩn thận nhé.
+\ff[prooak]Trust your Pokémon and watch for any changes.
+\ff[prooak]Hãy tin vào Pokémon của cháu và để ý mọi thay đổi.
+\ff[prooak]The energy is disappearing...
+\ff[prooak]Năng lượng đang biến mất...
+\ff[prooak]It seems the influence on the Pokémon is fading.
+\ff[prooak]Có vẻ ảnh hưởng lên Pokémon cũng đang yếu dần.
+\ff[blue]So destroying the crystal really worked.
+\ff[blue]Vậy phá viên pha lê thật sự có tác dụng.
+\ff[prooak]Yes, but...
+\ff[prooak]Đúng, nhưng...
+\ff[prooak]We still don't understand what this crystal is capable of.
+\ff[prooak]Chúng ta vẫn chưa biết viên pha lê này còn có thể làm được những gì.
+\ff[prooak]These fragments...
+\ff[prooak]Những mảnh vỡ này...
+\ff[prooak]Even after being broken, they still contain traces of that strange energy.
+\ff[prooak]Dù đã vỡ, chúng vẫn còn lưu lại dấu vết của nguồn năng lượng kỳ lạ ấy.
+\ff[blue]You're saying they're still dangerous?
+\ff[blue]Ý ông là chúng vẫn còn nguy hiểm sao?
+\ff[prooak]I'm not sure yet.
+\ff[prooak]Ông vẫn chưa chắc.
+\ff[prooak]But as a researcher, I cannot ignore a discovery like this.
+\ff[prooak]Nhưng là một nhà nghiên cứu, ông không thể bỏ qua một phát hiện thế này.
+\ff[prooak]\PN, could you collect those Black Crystal fragments for me?
+\ff[prooak]\PN, cháu có thể nhặt những mảnh Pha Lê Đen đó giúp ta không?
+\ff[prooak]I want to analyze them properly at my research laboratory.
+\ff[prooak]Ta muốn mang chúng về phòng thí nghiệm để phân tích kỹ hơn.
+\ff[blue]So even something dangerous like this becomes a research project for you, huh?
+\ff[blue]Đến thứ nguy hiểm thế này mà ông cũng biến thành đề tài nghiên cứu được à?
+\ff[prooak]That is how we learn, Blue.
+\ff[prooak]Có như vậy chúng ta mới học hỏi được cái mới cháu à.
+\ff[prooak]Understanding something is the first step toward dealing with it.
+\ff[prooak]Muốn đối phó với một thứ, trước hết phải hiểu rõ nó đã.
+\rIn MARFENY LAKE there are unusual POKéMON, like MAGIKARP and FEEBAS.
+\rỞ MARFENY LAKE có những POKéMON đặc biệt như MAGIKARP và FEEBAS.
+Central City - Marfeny Lake
+Central City - Marfeny Lake
+\ff[prooak]Thank you, \PN.
+\ff[prooak]Cảm ơn cháu, \PN.
+\ff[prooak]I'll return to my laboratory at Van Hoi City's Television Station with Blue.
+\ff[prooak]Ta sẽ cùng Blue trở về phòng thí nghiệm tại Đài Truyền hình Vạn Hội City.
+\ff[blue]I'll help you write the report about what happened here.
+\ff[blue]Cháu sẽ giúp ông viết báo cáo về chuyện xảy ra ở đây.
+\ff[prooak]The Pokémon Association needs to know about Team Chaos and the Black Crystal as soon as possible.
+\ff[prooak]Hiệp hội Pokémon cần biết về Bang Hỗn Nguyên và Pha Lê Đen càng sớm càng tốt.
+\ff[prooak]Oh, and one more thing, \PN.
+\ff[prooak]À, còn một việc nữa, \PN.
+\ff[prooak]Professor Fennel is waiting for the Pokédex units I prepared.
+\ff[prooak]Giáo sư Fennel đang chờ những chiếc Pokédex ta đem từ Kanto đến.
+\ff[prooak]Please stop by my laboratory in Van Hoi City when you have time.
+\ff[prooak]Khi nào rảnh, cháu ghé qua chỗ nghiên cứu của ta ở Thành phố Vạn Hội nhé.
+\ff[prooak]I'll give you the Pokédexes so you can deliver them to Professor Fennel.
+\ff[prooak]Ta sẽ đưa các Pokédex cho cháu để mang về cho Giáo sư Fennel.
+\ff[blue]Looks like your research journey is just getting started.
+\ff[blue]Xem ra hành trình nghiên cứu của nhóc mới chỉ bắt đầu thôi.
+\ff[prooak]Take care, \PN.
+\ff[prooak]Bảo trọng nhé, \PN.
+\ff[prooak]Continue observing Pokémon and record everything you discover.
+\ff[prooak]Hãy tiếp tục quan sát Pokémon và ghi lại mọi điều cháu khám phá được.
+\bLook at this beautiful lake! I love it!
+\bNhìn hồ nước này xem! Đẹp quá, tôi thích nơi này thật đấy!
+Do you want to shatter this Black Crystal?
+Bạn có muốn phá vỡ Pha Lê Đen này không?
+The black crystal has shattered.
+Pha Lê Đen đã vỡ tan.
+You have collected the fragments of Black Crystal.
+Bạn đã thu thập các mảnh vỡ của Pha Lê Đen.
+\ff[prooak]Hmm... this is quite unusual.
+\ff[prooak]Hmm... lạ thật.
+\ff[prooak]The behavior of Pokémon in this area has changed dramatically.
+\ff[prooak]Hành vi của Pokémon trong khu vực này thay đổi quá rõ rệt.
+\ff[blue]I've never seen wild Pokémon act like this before.
+\ff[blue]Cháu chưa từng thấy Pokémon hoang dã hành xử như thế này.
+\ff[prooak]Neither have I.
+\ff[prooak]Ông cũng vậy.
+\ff[prooak]That is why we must observe carefully before making any conclusions.
+\ff[prooak]Vì thế càng phải quan sát thật kỹ trước khi đưa ra kết luận.
+\ff[blue]You mean we still don't know what's causing it?
+\ff[blue]Ý ông là vẫn chưa biết thứ gì gây ra chuyện này à?
+\ff[prooak]Not yet.
+\ff[prooak]Chưa.
+\ff[prooak]Something is affecting the Pokémon around Route A10, but we don't have enough information.
+\ff[prooak]Có thứ gì đó đang ảnh hưởng đến Pokémon quanh Đường A10, nhưng chúng ta vẫn chưa có đủ thông tin.
+\ff[prooak]Oh? Who do we have here?
+\ff[prooak]Ồ? Ai đây nhỉ?
+\ff[prooak]You must be the assistant Professor Fennel mentioned.
+\ff[prooak]Cháu hẳn là trợ lý mà Giáo sư Fennel đã nhắc đến.
+\ff[prooak]It's good to meet you. I'm Professor Oak.
+\ff[prooak]Rất vui được gặp cháu. Ta là Giáo sư Oak.
+\ff[blue]So you're the new researcher Professor Fennel mentioned?
+\ff[blue]Vậy nhóc là nhà nghiên cứu mới mà Giáo sư Fennel nhắc đến à?
+\ff[blue]Looks like Professor Fennel is trusting someone pretty young with a big project.
+\ff[blue]Giáo sư Fennel gan thật, giao dự án cho một nhóc con thế này tham gia.
+\ff[prooak]Blue.
+\ff[prooak]Blue à.
+\ff[blue]What? I'm just saying.
+\ff[blue]Gì chứ? Cháu chỉ nói thôi mà.
+\ff[prooak]Age is not what determines the ability to become a good researcher or Trainer.
+\ff[prooak]Tuổi tác không quyết định một người có thể trở thành nhà nghiên cứu hay Huấn luyện viên giỏi hay không.
+\ff[prooak]Besides, it's not like you're actually older than him.
+\ff[prooak]Với lại, cháu cũng đâu lớn hơn cậu ấy bao nhiêu.
+\ff[blue]Yeah, yeah. I know.
+\ff[blue]Rồi, rồi. Cháu biết rồi.
+\ff[prooak]Ah, these must be the documents from Professor Fennel.
+\ff[prooak]À, đây hẳn là tài liệu Giáo sư Fennel gửi.
+\ff[prooak]Thank you for bringing them here.
+\ff[prooak]Cảm ơn cháu đã mang đến tận đây.
+\ff[prooak]However, I'll need to examine them properly at my laboratory.
+\ff[prooak]Nhưng ta cần mang chúng về nơi làm việc để xem xét kỹ hơn.
+\ff[prooak]My temporary research facility is located at V?n H?i City's Television Station.
+\ff[prooak]Chỗ làm việc tạm thời của ta nằm tại Đài Truyền hình Vạn Hội.
+\ff[prooak]I'll review them once we return there.
+\ff[prooak]Khi về đó ta sẽ xem kỹ.
+\ff[blue]So we came all the way here, and you still have more work waiting?
+\ff[blue]Đi xa đến tận đây rồi mà về vẫn còn việc chờ ông à?
+\ff[prooak]Research rarely goes exactly as planned, Blue.
+\ff[prooak]Nghiên cứu hiếm khi diễn ra đúng như kế hoạch lắm.
+\ff[blue]Professor! Look!
+\ff[blue]Ông! Nhìn kìa!
+\ff[prooak]Those Shinx...
+\ff[prooak]Những Shinx đó...
+\ff[prooak]Their behavior has changed again.
+\ff[prooak]Hành vi của chúng thay đổi rồi, bỗng nhiên chúng hung hăng lên vậy.
+\ff[blue]I'll handle this!
+\ff[blue]Để cháu xử lý!
+\ff[blue]Blastoise, let's calm them down!
+\ff[blue]Blastoise, dùng Hydro Pump tạt cho chúng tỉnh lại nào!
+\ff[pkm_blastoise] Gawwwwwwwww
+\ff[pkm_blastoise] Gawwwwwwwww
+(Blue's Pokémon suddenly loses control.)
+(Blastoise của Blue đột nhiên mất kiểm soát.)
+\ff[blue]What...?
+\ff[blue]Cái gì...?
+\ff[blue]My Blastoise... it's not listening!
+\ff[blue]Blastoise của cháu... nó không nghe lời!
+\ff[prooak]Blue! Recall your Blastoise!
+\ff[prooak]Blue! Thu Blastoise về ngay!
+\ff[blue]Blastoise! Come back!
+\ff[blue]Blastoise! Quay về!
+\ff[blue]I've never experienced anything like this...
+\ff[blue]Cháu chưa từng gặp chuyện thế này...
+\ff[prooak]This phenomenon is affecting even trained Pokémon.
+\ff[prooak]Hiện tượng này ảnh hưởng cả những Pokémon đã được huấn luyện.
+\ff[blue]Grandfa!!!
+\ff[blue]Ông!!!
+\ff[prooak]They've gone...
+\ff[prooak]Chúng đi rồi...
+\ff[prooak]Interesting...
+\ff[prooak]Thú vị thật...
+\ff[blue]Grandpa? What's interesting?
+\ff[blue]Có cái gì thú vị ở đây vậy ạ -_- Cháu tưởng sắp ngủm rồi.
+\ff[prooak]The behavior of that Shinx was clearly abnormal.
+\ff[prooak]Hành vi của Shinx đó rõ ràng rất bất thường.
+\ff[prooak]But something else caught my attention.
+\ff[prooak]Nhưng còn một điều khác khiến ông chú ý hơn.
+\ff[prooak]Your Pokémon.
+\ff[prooak]Pokémon của \PN.
+\ff[prooak]It was nearby the same phenomenon, yet it didn't show any signs of losing control.
+\ff[prooak]Chúng cũng ở ngay gần hiện tượng đó, vậy mà chẳng hề có dấu hiệu mất kiểm soát.
+\ff[blue]Wait... you're right.
+\ff[blue]Ờ ha, ông nói đúng thật.
+\ff[blue]My Pokémon couldn't even follow my commands, but yours was completely fine.
+\ff[blue]Blastoise của anh còn chẳng nghe lệnh, vậy mà Pokémon của nhóc vẫn tỉnh bơ.
+\ff[prooak]This is very unusual.
+\ff[prooak]Chuyện này thật sự rất lạ.
+\ff[prooak]There must be some difference between your Pokémon and the others affected by this phenomenon.
+\ff[prooak]Hẳn phải có điểm gì đó khác biệt giữa Pokémon của \PN và những Pokémon bị ảnh hưởng.
+\ff[blue]Are you saying this kid is special?
+\ff[blue]Ý ông là nhóc này đặc biệt à?
+\ff[prooak]Not necessarily.
+\ff[prooak]Chưa chắc.
+\ff[prooak]In research, we don't jump to conclusions without evidence.
+\ff[prooak]Làm nghiên cứu thì không thể vội kết luận khi chưa có bằng chứng.
+\ff[prooak]But this is certainly something worth investigating.
+\ff[prooak]Nhưng chuyện này chắc chắn đáng để tìm hiểu.
+\ff[blue]So what now?
+\ff[blue]Vậy giờ tính sao đây ạ?
+\ff[prooak]First, we need more observations.
+\ff[prooak]Trước hết, chúng ta cần quan sát thêm.
+\ff[prooak]If something is affecting Pokémon in this area, there should be some clue nearby.
+\ff[prooak]Nếu có thứ gì đó ảnh hưởng đến Pokémon ở đây, quanh khu vực này hẳn phải có manh mối.
+\ff[prooak]Would you help me investigate this area, \PN?
+\ff[prooak]\PN, cháu giúp ta điều tra khu vực này nhé?
+\bBeing a trainer means being prepared for a battle at any time! I hope you're ready now!
+\bĐã là Huấn luyện viên thì lúc nào cũng phải sẵn sàng chiến đấu! Mong là cậu chuẩn bị xong rồi!
+\bYou're a great battler! You use sound tactics in your fights.
+\bCậu đánh khá lắm! Chiến thuật cũng rất chắc tay.
+\bA good team of POKéMON has different types, to make it balanced.
+\bMột đội Pokémon tốt nên có nhiều hệ khác nhau để giữ cân bằng.
+Yes
+Có
+No
+Không

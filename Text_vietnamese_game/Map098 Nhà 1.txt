@@ -2,9 +2,19 @@
 # translate every second line of this file.
 #-------------------------------
 [Map098]
-\bThere's a show about POKéMON on TV.
-\bThere's a show about POKéMON on TV.
-\bI learned that FIRE POKéMON are strong against GRASS types, but have a weakness to WATER types, which in turn have a weakness to GRASS.
-\bI learned that FIRE POKéMON are strong against GRASS types, but have a weakness to WATER types, which in turn have a weakness to GRASS.
-\rTo become a MASTER, you have to be skilled, and capture many POKéMON from all over ZHERY.
-\rTo become a MASTER, you have to be skilled, and capture many POKéMON from all over ZHERY.
+Wow! Look at that Pokémon on TV!
+Wow! Look at that Pokémon on TV!
+The reporter said it was found in a place that nobody had explored before.
+The reporter said it was found in a place that nobody had explored before.
+There are still so many unknown Pokémon out there!
+There are still so many unknown Pokémon out there!
+When I grow up, I want to become an explorer too!
+When I grow up, I want to become an explorer too!
+I used to think Pokémon battles were everything.
+I used to think Pokémon battles were everything.
+But after learning more about Pokémon, I realized there is so much more to them than just fighting.
+But after learning more about Pokémon, I realized there is so much more to them than just fighting.
+They have their own habits, feelings, and ways of living.
+They have their own habits, feelings, and ways of living.
+I hope I can travel someday and see the world with my own eyes.
+I hope I can travel someday and see the world with my own eyes.

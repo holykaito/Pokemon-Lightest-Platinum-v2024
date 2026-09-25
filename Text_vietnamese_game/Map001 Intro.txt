@@ -2,47 +2,45 @@
 # translate every second line of this file.
 #-------------------------------
 [Map001]
-\rHello! Sorry to keep you waiting!
-\rHello! Sorry to keep you waiting!
-\rWelcome to the world of Pokémon.
-\rWelcome to the world of Pokémon.
+\rHello! Welcome to the world of Pokémon.
+\rXin chào! Chào mừng bạn đến với thế giới Pokémon.
 \rMy name is Fennel.
-\rMy name is Fennel.
-\rI'm a Pokémon Professor of Zhery region.
-\rI'm a Pokémon Professor of Zhery region.
+\rTôi tên là Fennel.
+\rI'm a Pokémon Professor of AnLam region.
+\rĐang công tác tại Viện nghiên cứu Khải Nguyên của vùng An Lâm.
 \rThis world is inhabited by creatures we call Pokémon.
-\rThis world is inhabited by creatures we call Pokémon.
+\rThế giới này là mái nhà của những sinh vật được gọi là Pokémon.
 \rPeople and Pokémon live together by supporting each other.
-\rPeople and Pokémon live together by supporting each other.
+\rCon người và Pokémon cùng chung sống, giúp đỡ lẫn nhau.
 \rSome people play with Pokémon, some battle with them.
-\rSome people play with Pokémon, some battle with them.
+\rCó người vui chơi cùng Pokémon, cũng có người cùng chúng chiến đấu.
 \rBut we don't know everything about Pokémon yet.
-\rBut we don't know everything about Pokémon yet.
+\rNhưng chúng ta vẫn chưa hiểu hết mọi điều về Pokémon.
 \rThere are still many mysteries to solve.
-\rThere are still many mysteries to solve.
+\rVẫn còn rất nhiều bí ẩn đang chờ được khám phá.
 \rThat's why I study Pokémon every day.
-\rThat's why I study Pokémon every day.
+\rVì thế tôi vẫn nghiên cứu Pokémon mỗi ngày.
 \rAre you a boy or a girl?
-\rAre you a boy or a girl?
+\rBạn là nam hay nữ?
 \rNow what did you say your name was?
-\rNow what did you say your name was?
+\rÀ, bạn tên là gì nhỉ?
 \rSo you're \PN?
-\rSo you're \PN?
+\rVậy bạn là \PN?
 \rWhat is your name?
-\rWhat is your name?
+\rBạn tên là gì?
 \r\PN, are you ready?
-\r\PN, are you ready?
+\r\PN, sẵn sàng chưa?
 \rYour very own Pokémon story is about to unfold.
-\rYour very own Pokémon story is about to unfold.
+\rCâu chuyện Pokémon của riêng bạn sắp bắt đầu rồi.
 \rYou'll face fun times and tough challenges.
-\rYou'll face fun times and tough challenges.
+\rSẽ có những niềm vui, nhưng cũng không thiếu thử thách.
 \rA world of dreams and adventures with Pokémon awaits! Let's go!
-\rA world of dreams and adventures with Pokémon awaits! Let's go!
+\rMột thế giới đầy ước mơ và những chuyến phiêu lưu cùng Pokémon đang chờ bạn! Lên đường thôi!
 Boy
-Boy
+Nam
 Girl
-Girl
+Nữ
 Yes
-Yes
+Có
 No
-No
+Không

@@ -1,0 +1,106 @@
+﻿Name      = Derxwna's Custom Vs. Transitions System
+Version   = 1.0
+Website   = https://eeveeexpo.com/
+Credits   = DerxwnaKapsyla, Vendily
+Essentials = 21.1
+#---------------------------------------------------------------------------------------------------
+# Derxwna's Custom Vs. Transitions System for Essentials Version 21.1
+# Developed by Derxwna Kapsyla
+# With heavy assistance from Vendily
+#
+# This will likely not work properly on V20.1 and backwards without extensive editing of the timings,
+# as this uses V21's new timing system for frame agonstic wait counts.
+#
+# This comes with an example map! First you will need to create a new map, save your project, get the ID
+# for that map, then copy this plugin's Data Folder to your project's root directory, and rename
+# the "TRANSITION_EXAMPLE_MAP.rxdata" to the ID of the new map you made (You will need to delete the
+# new map you just made OUTSIDE of RPG Maker XP first!)
+#---------------------------------------------------------------------------------------------------
+# This plugin allows users to make more cinematic Vs. Transitions before important 
+# battles, in a style vaguely reminiscent of the Gen 6 Pre-Battle Vs. Transitions.
+# This system is fairly easy to use! This file will show off how to use it to its fullest
+# potential.
+#
+# Supported battle types:
+#   * Trainer Single Battles
+#   * Trainer Double Battles
+#   * Trainer Triple Battles
+#   * Wild Single Battles
+#
+# Things you can achieve with this system:
+#   * Custom background per trainer/event encounter
+#     - This can be defined per-event by putting in $game_temp.vs_transition_bg into a
+#       script command.
+#     - If this is not defined, it will default to a "Plains" background, which has been
+#       provided with this plugin.
+#   * Custom name definitions per trainer/event encounter
+#     - There is a three step hierarchy system when it comes to picking the name to display
+#       in the Vs. Transition sequence. The hierarchy is as follows:
+#       * Step 1: The plugin checks for the existence of a file in Transitions/DTS/Names
+#         with the following names:
+#         * Trainers: "Name_(TRAINERTYPE)"
+#         * Pokemon: "Name_(SPECIESNAME)_W"
+#         * Double Trainer Battles: "Name_(TRAINERTYPE1)_(TRAINERTYPE2)"
+#         * Triple Trainer Battles: "Name_(TRAINERTYPE1)_(TRAINERTYPE2)_(TRAINERTYPE3)"
+#           * For Double and Triple Battles it should be noted that the format listed above is
+#             STRICT. If it isn't in that exact format, it will not see the file as existing and
+#             proceed to Step 2.
+#       * Step 2: If a graphic wasn't found, it will then check for the existence of a value
+#         stored in "$game_temp.vs_name". This is used to define a custom name.
+#         * Key example: If you don't want to reveal a trainer's name as Silver, but instead ???.
+#       * Step 3: If neither a graphic nor a value was found, this will default to the name of
+#         the trainer as identified in trainers.txt. 
+#  * Different portraits for Pokemon based on their form
+#    - For Pokemon like Deoxys who have custom forms that they can take in battle, you can have the
+#      filename for that Pokemon have the form ID and it will reflect as such in the Vs. Transition.
+#      This is achieved by having a portrait in the Transitions/DTS/PTs folder with the following
+#      filename format: "Wild_(POKEMON)_(FORMID)". Example, Deoxys Speed would be "Wild_DEOXYS_3".
+#      A glossary of accepted filenames will be provided at the end.
+#
+# This system can definitely have improvements made to it (The support of Double and Triple Wild Battles),
+# but as it is this is a good start for anybody who wants to breathe new life into the Pre-Battle sequence
+# of their games.
+#
+# A glossary of all the accepted commands and filenames can be found in this section.
+#
+# * $game_temp.vs_transition_bg = "(Value)" - This is used to set the Background used for the next Vs. Transition.
+#   If not defined, it will default to "Plains".
+#   - Example: $game_temp.vs_transition_bg = "Starlight"
+#   - Files are stored in the Transitions/DTS/BGs folder, and must be prefixed with "BG" before the background name.
+#
+# * $game_temp.vs_name = "(Value)" - This is used to set a name to display at the bottom of the Vs. Transition.
+#   The game will check for an image first; if not found, it will check if this exists. If this is not defined, it will
+#   default to the Trainer or Pokémon's name as defined in their relevant PBS files.
+#   - Example: $game_temp.vs_name = "Captain Ringo" / $game_temp.vs_name = "Vs. Arceus (Steel)
+#   - Files are stored in the Transitions/DTS/Names folder, and must be named accordingly:
+#     * Trainers: "Name_(TRAINERTYPE)"
+#     * Pokemon: "Name_(SPECIESNAME)_W"
+#     * Double Trainer Battles: "Name_(TRAINERTYPE1)_(TRAINERTYPE2)"
+#     * Triple Trainer Battles: "Name_(TRAINERTYPE1)_(TRAINERTYPE2)_(TRAINERTYPE3)"
+#       * For Double and Triple Battles it should be noted that the format listed above is
+#         STRICT. If it isn't in that exact format, it will not see the file as existing.
+#
+# * Transitions/DTS/Balls: The folder where the modified overlay_lineup.png file is located. Currently
+#   this is all that is here.
+#
+# * Transitions/DTS/BGs: The folder where all backgrounds are stored for the Vs. Transition system.
+#
+# * Transitions/DTS/Names: The folder where all custom names are stored for the Vs. Transition system.
+#
+# * Transitions/DTS/PTs: The folder where all portraits are stored for the Vs. Transition system.
+#   - "Char_(VALUE)" is used for Trainers
+#   - "Wild_(VALUE)" is used for Pokemon
+#     - "Wild_(VALUE)_(ID)" is used for Pokemon with different forms.
+#
+# I hope you find enjoyment in using this system! People've asked me to release this to the public for a long
+# time, and now I can finally do so. I've had a lot of fun refining this and using it over the years. Just
+# remember to credit myself and Vendily if you use this! Also, some of the assets came from the Gensou
+# Ningyou Enbu Asset Collection Pack- if you use the Arceus Portrait, please credit them as well!
+#
+# - DerxwnaKapsyla
+#---------------------------------------------------------------------------------------------------
+# CHANGE LOG
+#---------------------------------------------------------------------------------------------------
+# Version 1.0: June 4th, 2025
+# - Initial Release
+#---------------------------------------------------------------------------------------------------

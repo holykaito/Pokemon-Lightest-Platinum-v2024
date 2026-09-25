@@ -1,0 +1,58 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map048]
+\b\ff[oldman]You're a trainer. I think this will be of use to you.
+\b\ff[oldman]You're a trainer. I think this will be of use to you.
+\b\ff[oldman]High level Pokemon will be difficult to capture. You must first weaken them, and then use the Ultra Ball.
+\b\ff[oldman]High level Pokemon will be difficult to capture. You must first weaken them, and then use the Ultra Ball.
+Contest Hall
+Contest Hall
+\bThis is the Safari Zone of Central City. Inside, there are many ways to catch Pokemon! This place is currently under repair, please come back later.
+\bThis is the Safari Zone of Central City. Inside, there are many ways to catch Pokemon! This place is currently under repair, please come back later.
+\bHey, you! Don't go on this route, it has many strong and dangerous Pokemon on it!
+\bHey, you! Don't go on this route, it has many strong and dangerous Pokemon on it!
+\bWhen I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
+\bWhen I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
+You can tell hust by looking at some trainers that they have the capacity to train certain Pokemon really well. I'm willing to give you a great Pokemon.
+You can tell hust by looking at some trainers that they have the capacity to train certain Pokemon really well. I'm willing to give you a great Pokemon.
+Do you want to get a EGG?
+Do you want to get a EGG?
+\b\PN received the Egg.\wt[80]
+\b\PN received the Egg.\wt[80]
+Take good care of it!
+Take good care of it!
+You can go back to get it if you want.
+You can go back to get it if you want.
+\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle.
+\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle.
+\bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
+\bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
+\bI enjoy strolling through the city, admiring the scenery, and meeting new people. Let's share stories, expand knowledge, and discover new interests together. Life is not just about work, but also about memorable moments. Embrace each day and create cherished memories!
+\bI enjoy strolling through the city, admiring the scenery, and meeting new people. Let's share stories, expand knowledge, and discover new interests together. Life is not just about work, but also about memorable moments. Embrace each day and create cherished memories!
+Safari Zone
+Safari Zone
+\bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
+\bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
+\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion.
+\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion.
+Radio & TV Tower
+Radio & TV Tower
+\bThis is Central City's Train Station. This place is currently under repair, please come back later.
+\bThis is Central City's Train Station. This place is currently under repair, please come back later.
+\bThis is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
+\bThis is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
+\rIn this city, there are many buildings that are important throughout the Zhery region and the world.
+\rIn this city, there are many buildings that are important throughout the Zhery region and the world.
+Train Station
+Train Station
+\bYesterday I saw a Combee in Inhore Woods. It looked very pretty, but I was still scared.
+\bYesterday I saw a Combee in Inhore Woods. It looked very pretty, but I was still scared.
+\bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
+\bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
+\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it.
+\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it.
+Yes
+Yes
+No
+No

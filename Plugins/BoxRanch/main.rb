@@ -235,8 +235,10 @@ class BoxRanch
     end
     
     # Update sprites
-    $scene.disposeSpritesets
-    $scene.createSpritesets
+    if $scene.is_a?(Scene_Map)
+      $scene.disposeSpritesets
+      $scene.createSpritesets
+    end
   end
 
   def create_pokemon_event(pkmn, index, in_water = false)
@@ -402,22 +404,24 @@ class BoxRanch
 
   def clear_ranch_pokemon
     event_ids_to_remove = []
-    
+
     @pokemon_events.each_key do |event_id|
       event_ids_to_remove.push(event_id)
     end
-    
+
     event_ids_to_remove.each do |event_id|
       if $game_map.events[event_id]
         $game_map.events.delete(event_id)
       end
     end
-    
+
     @pokemon_events.clear
-    
-    # Update sprites
-    $scene.disposeSpritesets
-    $scene.createSpritesets
+
+    # Update sprites only when actually on Scene_Map
+    if $scene.is_a?(Scene_Map)
+      $scene.disposeSpritesets
+      $scene.createSpritesets
+    end
   end
 
   def update
@@ -570,8 +574,10 @@ class BoxRanch
   
   def refresh_sprites
     # Update sprites
-    $scene.disposeSpritesets
-    $scene.createSpritesets
+    if $scene.is_a?(Scene_Map)
+      $scene.disposeSpritesets
+      $scene.createSpritesets
+    end
   end
 end
 

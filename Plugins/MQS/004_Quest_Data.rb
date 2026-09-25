@@ -162,14 +162,26 @@ module QuestModule
 
   Quest1 = {
     :ID => "1",
-    :Name => "Chính: Ngôn ngữ Alpha bí ẩn",
+    :Name => "Khởi đầu hành trình",
     :QuestGiver => "Mẹ",
-    :Stage1 => "Tìm và giúp đỡ Giáo sư Fennel",
-    :Stage2 => "Báo tin cho Giáo sư Oak ở Hồ Manferny",
-    :Location1 => "Thành phố Central",
-	:Location1 => "Hồ Manferny",
-    :QuestDescription => "Giáo sư Fennel đang cần bạn để biết về nội dung của một bia đá viết bằng ngôn ngữ Alpha và thông báo kết quả với các đồng nghiệp",
+    :Stage1 => "Gặp Giáo sư Fennel",
+    :Location1 => "Thị trấn Khởi Nguyên",
+    :QuestDescription => "Trở thành thực tập sinh của giáo sư Fennel, chuyên nghiên cứu về các loài Pokémon.",
     :RewardString => "x20 Poké Ball"
+  }
+
+  Quest2 = {
+    :ID => "2",
+    :Name => "PokéDex từ Giáo sư Oak",
+    :QuestGiver => "Giáo sư Fennel",
+    :Stage1 => "Gặp Giáo sư Oak",
+    :Stage2 => "Giúp giáo sư Oak điều tra",
+    :Stage3 => "Đến Đài truyền hình Vạn Hội",
+    :Location1 => "Đường A10",
+    :Location2 => "Đường A10",
+    :Location3 => "Thành phố Vạn Hội",
+    :QuestDescription => "Gửi tài liệu cho giáo sư Oak và nhận PokéDex từ ông ấy rồi đem về cho cô Fennel",
+    :RewardString => "Một Pokémon đặc biệt"
   }
 
 

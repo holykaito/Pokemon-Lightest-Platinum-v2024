@@ -6,12 +6,12 @@ Intro
 Intro
 Đường D7
 Đường D7
-Thành Phố Seanport
-Thành Phố Seanport
-Hoc vien Inhore
-Hoc vien Inhore
-Vuon Sau Nha
-Vuon Sau Nha
+Thành phố Bắc Hải
+Thành phố Bắc Hải
+Học viện Văn Uyển
+Học viện Văn Uyển
+Vườn Sau Nhà
+Vườn Sau Nhà
 Route 1
 Route 1
 Cedolan City
@@ -20,8 +20,8 @@ Lappet Town
 Lappet Town
 Route 2
 Route 2
-Thị trấn Yellow
-Thị trấn Yellow
+Thị trấn Khải Nguyên
+Thị trấn Khải Nguyên
 Lerucean Town
 Lerucean Town
 Natural Park
@@ -36,14 +36,14 @@ Route 5
 Route 5
 Đường A1
 Đường A1
-Fennel's Lab
-Fennel's Lab
+Viện Khải Nguyên
+Viện Khải Nguyên
 Route 6
 Route 6
 Route 7
 Route 7
-Thành Phố Central
-Thành Phố Central
+Thành phố Vạn Hội
+Thành phố Vạn Hội
 Battle Frontier
 Battle Frontier
 Safari Zone
@@ -56,39 +56,39 @@ Faraday Island
 Faraday Island
 Tiall Region
 Tiall Region
-Central PokeCenter
-Central PokeCenter
-Hồ Manfeny
-Hồ Manfeny
+PokeCenter Vạn hội
+PokeCenter Vạn hội
+Đường A10
+Đường A10
 Đường A2
 Đường A2
 Đường A3
 Đường A3
-Rừng Inhore
-Rừng Inhore
-Thành Phố Inhore
-Thành Phố Inhore
+Rừng Bách Trùng
+Rừng Bách Trùng
+Thành phố Văn Uyển
+Thành phố Văn Uyển
 Đường A4
 Đường A4
 Đường A5
 Đường A5
-Thị trấn Pantem
-Thị trấn Pantem
-Đầm lầy Despair
-Đầm lầy Despair
-Thành Phố Esmerald
-Thành Phố Esmerald
-Esmerald PokeCenter
-Esmerald PokeCenter
+Thị trấn Thiên Du
+Thị trấn Thiên Du
+Đầm lầy U Trạch
+Đầm lầy U Trạch
+Thành Phố Lạc Hoa
+Thành Phố Lạc Hoa
+Lạc Hoa PokeCenter
+Lạc Hoa PokeCenter
 Đường A6
 Đường A6
-Đài phát thanh
-Đài phát thanh
-Inhore PokeCenter
-Inhore PokeCenter
-Đạo quán Inhore
-Đạo quán Inhore
-Pantem PokeCenter
-Pantem PokeCenter
-Thị trấn Bramboach
-Thị trấn Bramboach
+Đài phát thanh Vạn Hội
+Đài phát thanh Vạn Hội
+PokéCenter Văn Uyển
+PokéCenter Văn Uyển
+Đạo quán Văn Uyển
+Đạo quán Văn Uyển
+PokéCenter Thiên Du
+PokéCenter Thiên Du
+Thị trấn Thanh Vũ
+Thị trấn Thanh Vũ

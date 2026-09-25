@@ -1,0 +1,87 @@
+ Data/Actors.rxdata                                 |  Bin [31m1574[m -> [32m1574[m bytes
+ Data/Animations.rxdata                             |  Bin [31m7027[m -> [32m7027[m bytes
+ Data/Armors.rxdata                                 |  Bin [31m222[m -> [32m222[m bytes
+ Data/CommonEvents.rxdata                           |  Bin [31m2566[m -> [32m2566[m bytes
+ Data/Enemies.rxdata                                |  Bin [31m541[m -> [32m541[m bytes
+ Data/Items.rxdata                                  |  Bin [31m428[m -> [32m428[m bytes
+ Data/Map003.rxdata                                 |  Bin [31m133321[m -> [32m146707[m bytes
+ Data/MapInfos.rxdata                               |  Bin [31m2206[m -> [32m2206[m bytes
+ Data/PkmnAnimations.rxdata                         |  Bin [31m14669121[m -> [32m14703793[m bytes
+ Data/PluginScripts.rxdata                          |  Bin [31m1050035[m -> [32m1290793[m bytes
+ Data/Skills.rxdata                                 |  Bin [31m377[m -> [32m377[m bytes
+ Data/States.rxdata                                 |  Bin [31m431[m -> [32m431[m bytes
+ Data/System.rxdata                                 |  Bin [31m4576[m -> [32m4575[m bytes
+ Data/Tilesets.rxdata                               |  Bin [31m538976[m -> [32m538976[m bytes
+ Data/Weapons.rxdata                                |  Bin [31m245[m -> [32m245[m bytes
+ Data/abilities.dat                                 |  Bin [31m45895[m -> [32m51052[m bytes
+ Data/animations.dat                                |  Bin [31m365946[m -> [32m399175[m bytes
+ Data/innate_sets.dat                               |  Bin [31m338[m -> [32m7929[m bytes
+ Data/items.dat                                     |  Bin [31m265601[m -> [32m266409[m bytes
+ Data/messages_core.dat                             |  Bin [31m963377[m -> [32m963379[m bytes
+ Data/messages_game.dat                             |  Bin [31m851437[m -> [32m949204[m bytes
+ Data/move2anim.dat                                 |  Bin [31m15502[m -> [32m15521[m bytes
+ Data/moves.dat                                     |  Bin [31m253787[m -> [32m255087[m bytes
+ Data/species.dat                                   |  Bin [31m1102038[m -> [32m1122487[m bytes
+ Data/species_metrics.dat                           |  Bin [31m149758[m -> [32m148070[m bytes
+ Data/trainer_types.dat                             |  Bin [31m21586[m -> [32m22665[m bytes
+ Data/trainers.dat                                  |  Bin [31m21211[m -> [32m29367[m bytes
+ Graphics/Pokemon/Back/FERALIGATR_1.png             |  Bin [31m2434[m -> [32m2631[m bytes
+ Graphics/Pokemon/Front shiny/ABSOL_2.png           |  Bin [31m1990[m -> [32m2840[m bytes
+ Graphics/Pokemon/Front shiny/BARBARACLE_1.png      |  Bin [31m2547[m -> [32m3220[m bytes
+ .../Pokemon/Front shiny/BASCULEGION_female.PNG     |  Bin [31m3318[m -> [32m4125[m bytes
+ Graphics/Pokemon/Front shiny/CHANDELURE_1.png      |  Bin [31m2453[m -> [32m3156[m bytes
+ Graphics/Pokemon/Front shiny/CHESNAUGHT_1.png      |  Bin [31m2576[m -> [32m3427[m bytes
+ Graphics/Pokemon/Front shiny/CHIMECHO_1.png        |  Bin [31m2522[m -> [32m3324[m bytes
+ Graphics/Pokemon/Front shiny/CLEFABLE_1.png        |  Bin [31m1625[m -> [32m2452[m bytes
+ Graphics/Pokemon/Front shiny/CRABOMINABLE_1.png    |  Bin [31m2801[m -> [32m3609[m bytes
+ Graphics/Pokemon/Front/ABSOL_2.png                 |  Bin [31m1990[m -> [32m2840[m bytes
+ Graphics/Pokemon/Front/AMPHIBREA.png               |  Bin [31m3300[m -> [32m4012[m bytes
+ Graphics/Pokemon/Front/ARBOLIVA.gif                |  Bin [31m74900[m -> [32m31402[m bytes
+ Graphics/Pokemon/Front/BARBARACLE_1.png            |  Bin [31m2535[m -> [32m3206[m bytes
+ Graphics/Pokemon/Front/BASCULEGION_female.PNG      |  Bin [31m3332[m -> [32m4102[m bytes
+ Graphics/Pokemon/Front/CAMERUPT_1_female.png       |  Bin [31m4103[m -> [32m4391[m bytes
+ Graphics/Pokemon/Front/CAMERUPT_2.png              |  Bin [31m3928[m -> [32m4578[m bytes
+ Graphics/Pokemon/Front/CHANDELURE_1.png            |  Bin [31m2453[m -> [32m3156[m bytes
+ Graphics/Pokemon/Front/CHESNAUGHT_1.png            |  Bin [31m4288[m -> [32m3839[m bytes
+ Graphics/Pokemon/Front/CHIMECHO_1.png              |  Bin [31m2543[m -> [32m3312[m bytes
+ Graphics/Pokemon/Front/CLEFABLE_1.png              |  Bin [31m1654[m -> [32m2462[m bytes
+ Graphics/Pokemon/Front/CRABOMINABLE_1.png          |  Bin [31m2779[m -> [32m3584[m bytes
+ Graphics/Pokemon/Front/CRANOOM.png                 |  Bin [31m1946[m -> [32m2611[m bytes
+ Graphics/Pokemon/Front/DARUMAKA_1.png              |  Bin [31m1412[m -> [32m2958[m bytes
+ Graphics/Pokemon/Front/DELILION.png                |  Bin [31m7201[m -> [32m6792[m bytes
+ Graphics/Pokemon/Front/DELPHOX_1.png               |  Bin [31m2482[m -> [32m3351[m bytes
+ Graphics/Pokemon/Front/DENACHU.png                 |  Bin [31m4129[m -> [32m4745[m bytes
+ Graphics/Pokemon/Front/DRAGALGE_1.png              |  Bin [31m2769[m -> [32m3657[m bytes
+ Graphics/Pokemon/Front/DRAMPA_1.png                |  Bin [31m2208[m -> [32m3061[m bytes
+ Graphics/Pokemon/Front/EMBOAR_1.png                |  Bin [31m2681[m -> [32m3357[m bytes
+ Graphics/Pokemon/Front/EXCADRILL_1.png             |  Bin [31m2186[m -> [32m3010[m bytes
+ Graphics/Pokemon/Front/FALINKS_1.png               |  Bin [31m2094[m -> [32m2823[m bytes
+ Graphics/Pokemon/Front/FERALIGATR_1.png            |  Bin [31m2239[m -> [32m2993[m bytes
+ Graphics/Pokemon/Front/FLOETTE_6.png               |  Bin [31m2292[m -> [32m3058[m bytes
+ Graphics/Pokemon/Front/FROSLASS_1.png              |  Bin [31m2058[m -> [32m2778[m bytes
+ Graphics/Pokemon/Front/GLIMMORA_1.png              |  Bin [31m2146[m -> [32m2925[m bytes
+ Graphics/Pokemon/Front/GOLISOPOD_1.png             |  Bin [31m3254[m -> [32m4120[m bytes
+ Graphics/Pokemon/Front/GOLURK_1.png                |  Bin [31m2948[m -> [32m3613[m bytes
+ Graphics/Pokemon/Front/HAWLUCHA_1.png              |  Bin [31m4659[m -> [32m5518[m bytes
+ Graphics/Pokemon/Front/HEATRAN_1.png               |  Bin [31m2299[m -> [32m2998[m bytes
+ Graphics/Pokemon/Front/KINGDRA_1.png               |  Bin [31m30099[m -> [32m12202[m bytes
+ Graphics/Pokemon/Front/MAGEARNA_2.png              |  Bin [31m2187[m -> [32m2998[m bytes
+ Graphics/Pokemon/Front/MALAMAR_1.png               |  Bin [31m4701[m -> [32m5627[m bytes
+ Graphics/Pokemon/Front/MEGANIUM_1.png              |  Bin [31m2189[m -> [32m2982[m bytes
+ Graphics/Pokemon/Front/MEOWSTIC_2.png              |  Bin [31m1519[m -> [32m2333[m bytes
+ Graphics/Pokemon/Front/PYROAR_1.png                |  Bin [31m2160[m -> [32m2940[m bytes
+ Graphics/Pokemon/Front/RAICHU_2.png                |  Bin [31m1875[m -> [32m2684[m bytes
+ Graphics/Pokemon/Front/RAICHU_3.png                |  Bin [31m2174[m -> [32m2952[m bytes
+ Graphics/Pokemon/Front/SCOLIPEDE_1.png             |  Bin [31m2390[m -> [32m3179[m bytes
+ Graphics/Pokemon/Front/SCOVILLAIN_1.png            |  Bin [31m2132[m -> [32m2933[m bytes
+ Graphics/Pokemon/Front/SCRAFTY_1.png               |  Bin [31m1591[m -> [32m2348[m bytes
+ Graphics/Pokemon/Front/SKARMORY_1.png              |  Bin [31m1665[m -> [32m2427[m bytes
+ Graphics/Pokemon/Front/STARAPTOR_1.png             |  Bin [31m2095[m -> [32m2881[m bytes
+ Graphics/Pokemon/Front/STARMIE_1.png               |  Bin [31m1733[m -> [32m2537[m bytes
+ Graphics/Pokemon/Front/TATSUGIRI_3.png             |  Bin [31m1607[m -> [32m2344[m bytes
+ Graphics/Pokemon/Front/TATSUGIRI_4.png             |  Bin [31m1596[m -> [32m2361[m bytes
+ Graphics/Pokemon/Front/TATSUGIRI_5.png             |  Bin [31m1583[m -> [32m2329[m bytes
+ Graphics/Pokemon/Front/VICTREEBEL_1.png            |  Bin [31m4553[m -> [32m5420[m bytes
+ Graphics/Pokemon/Front/ZYGARDE_4.png               |  Bin [31m2448[m -> [32m3102[m bytes
+ Graphics/Pokemon/Icons/ALCREMIE_1.png              |  Bin [31m1986[m -> [32m1059[m bytes
+ Graphics/Pokemon/Icons/ALCREMIE_10.png             |  Bi

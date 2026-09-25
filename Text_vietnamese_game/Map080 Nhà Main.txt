@@ -2,25 +2,105 @@
 # translate every second line of this file.
 #-------------------------------
 [Map080]
-\ff[mom]Hi, \PN! I'm glad you woke up. I was waiting to give you a message from Prof. Fennel. She's asking if you'll go to Central City. Something strange is happening there involving Alpha, the language only you know because your father taught it to you before he disappeared.
-\ff[mom]Hi, \PN! I'm glad you woke up. I was waiting to give you a message from Prof. Fennel. She's asking if you'll go to Central City. Something strange is happening there involving Alpha, the language only you know because your father taught it to you before he disappeared.
-\pg\ff[boy]Da, thua Me!
-\pg\ff[boy]Da, thua Me!
-\pg\ff[girl]Da, thua Me
-\pg\ff[girl]Da, thua Me
-\ff[mom]Remember to go to Central City to meet Pro.Fennel. She's very helpful to everyone.
-\ff[mom]Remember to go to Central City to meet Pro.Fennel. She's very helpful to everyone.
-\pgYes, I'm on my way now.
-\pgYes, I'm on my way now.
-\ff[mom]See you later. If you need me. I'll be there.
-\ff[mom]See you later. If you need me. I'll be there.
-\ff[mom]My dear, is there anything Mom can help with?
-\ff[mom]My dear, is there anything Mom can help with?
-\ff[mom]Mom is always here to take care of and support you. Share your joys and challenges with Mom. Mom believes that you can achieve anything with faith and effort. Remember, home is where you are always loved and welcomed. Mom wishes you a wonderful day!
-\ff[mom]Mom is always here to take care of and support you. Share your joys and challenges with Mom. Mom believes that you can achieve anything with faith and effort. Remember, home is where you are always loved and welcomed. Mom wishes you a wonderful day!
+\ff[mom]Good morning, honey. You're finally awake.
+\ff[mom]Chào buổi sáng, con yêu. Cuối cùng cũng chịu dậy rồi à?
+\ff[mom]Today's the big day, isn't it?
+\ff[mom]Hôm nay là ngày trọng đại của con nhỉ?
+\ff[mom]You’ve been talking about this Pokémon research project for weeks.
+\ff[mom]Mấy tuần nay con cứ nhắc mãi về dự án nghiên cứu Pokémon này.
+\ff[mom]I still remember when you were little. You could spend hours reading about Pokémon instead of playing outside.
+\ff[mom]Mẹ vẫn nhớ hồi con còn bé, con có thể ngồi hàng giờ đọc về Pokémon thay vì chạy ra ngoài chơi.
+\ff[mom]I guess nothing has changed. ^^
+\ff[mom]Xem ra đến giờ vẫn chẳng thay đổi gì nhỉ. ^^
+\ff[mom]Your room is still full of Pokémon books... although I was hoping you'd clean it someday.
+\ff[mom]Phòng con vẫn đầy sách Pokémon... mẹ chỉ mong có ngày con chịu dọn chúng thôi.
+\ff[mom]But honestly, I'm proud of you.
+\ff[mom]Nhưng thật lòng mà nói, mẹ rất tự hào về con.
+\ff[mom]You worked hard at the Pokémon School and became one of its top students.
+\ff[mom]Con đã học rất chăm ở Pokémon School và trở thành một trong những học viên xuất sắc nhất.
+\ff[mom]That's why Professor Fennel invited you to join the Pokédex Research Project.
+\ff[mom]Vì thế Giáo sư Fennel mới mời con tham gia Dự án Nghiên cứu Pokédex.
+\ff[mom]Today, you're going to her lab to officially begin your work.
+\ff[mom]Hôm nay con sẽ đến phòng thí nghiệm của cô ấy để chính thức bắt đầu công việc.
+\ff[mom]A real Pokémon Research Assistant... sounds pretty impressive, doesn't it?
+\ff[mom]Trợ lý Nghiên cứu Pokémon thực thụ... nghe oách lắm đấy chứ, nhỉ?
+\ff[mom]But remember, studying Pokémon isn't only about reading books.
+\ff[mom]Nhưng nhớ nhé, nghiên cứu Pokémon không chỉ là đọc sách đâu.
+\ff[mom]You'll need to travel, meet Pokémon in their natural habitats, and learn from your own experiences.
+\ff[mom]Con sẽ phải đi nhiều nơi, gặp Pokémon trong môi trường tự nhiên và tự mình trải nghiệm.
+\ff[mom]Professor Fennel's lab isn't far from here.
+\ff[mom]Phòng thí nghiệm của Giáo sư Fennel cũng không xa đây đâu.
+\ff[mom]Go meet her, listen carefully, and do your best.
+\ff[mom]Đến gặp cô ấy, nhớ nghe cho kỹ và cố gắng hết sức nhé.
+\ff[mom]Who knows? Maybe this will be the first step toward your dream of meeting every Pokémon.
+\ff[mom]Biết đâu đây sẽ là bước đầu tiên để con thực hiện ước mơ gặp được mọi Pokémon.
+\ff[mom]Oh, and before you go, stop by and see your dad.
+\ff[mom]À, trước khi đi nhớ qua gặp ba nữa nhé.
+\ff[mom]He's been busy preparing things for you since early this morning.
+\ff[mom]Từ sáng sớm ba đã bận rộn chuẩn bị đủ thứ cho con rồi.
+\ff[mom]He said he has a few things to give you... and a few words to say before you leave.
+\ff[mom]Ba bảo có vài thứ muốn đưa cho con... với cả vài lời muốn dặn trước khi con đi.
+\ff[mom]Knowing him, he's probably been rehearsing those lines all morning.
+\ff[mom]Tính ba con ấy mà, chắc sáng giờ đứng tập nói mấy câu đó mãi rồi.
+\ff[mom]Hi, \PN! Remember to say goodbye to Dad before you leave!
+\ff[mom]\PN! Trước khi đi nhớ chào ba nhé!
+Pi...pi...
+Pi...pi...
+\ff[mom]Come on, take a short rest before you head out again.
+\ff[mom]Nào, nghỉ một chút rồi hẵng đi tiếp.
+\ff[mom]You won't get very far if you keep pushing yourself like that.
+\ff[mom]Cứ cố quá như thế thì con chẳng đi được bao xa đâu.
+\ff[mom]And make sure your Pokémon get some rest too.
+\ff[mom]Nhớ cho Pokémon của con nghỉ ngơi nữa nhé.
+\ff[mom]All right, you should be feeling better now.
+\ff[mom]Được rồi, giờ chắc con thấy khỏe hơn rồi.
+\ff[mom]Take care out there.
+\ff[mom]Ra ngoài nhớ cẩn thận nhé.
 \ff[mom]Oh... Are you all right? Well, you'll have better luck this time.
-\ff[mom]Oh... Are you all right? Well, you'll have better luck this time.
-Yes
-Yes
-No
-No
+\ff[mom]Ôi... con không sao chứ? Lần này nhất định sẽ suôn sẻ hơn thôi.
+\ff[dad]Well, look at you. All ready to start your Pokémon journey.
+\ff[dad]Chà, nhìn con xem. Chuẩn bị sẵn sàng cho hành trình Pokémon rồi nhỉ.
+\ff[dad]Feels like just yesterday you were asking me how to catch a Pokémon.
+\ff[dad]Cứ như mới hôm qua con còn hỏi ba làm sao để bắt Pokémon vậy.
+\ff[dad]Now you're the one going out there to explore the world.
+\ff[dad]Thế mà giờ con đã sắp tự mình ra ngoài khám phá thế giới rồi.
+\ff[dad]Before you leave, I got some things that might help you.
+\ff[dad]Trước khi đi, ba có vài thứ chắc sẽ giúp ích cho con.
+\ff[dad]Don't worry, they're not just random things I found in the closet.
+\ff[dad]Yên tâm, không phải mấy món ba tiện tay lôi từ trong tủ ra đâu.
+\ff[dad]First, these are \c[1]Running Shoes\c[0].
+\ff[dad]Đầu tiên là đôi \c[1]Running Shoes\c[0] này.
+\ff[dad]They'll help you move faster when you're traveling.
+\ff[dad]Có nó con sẽ di chuyển nhanh hơn khi đi đường.
+\ff[dad]Your old shoes were starting to look pretty worn out anyway.
+\ff[dad]Với lại đôi giày cũ của con cũng sắp mòn đến nơi rồi.
+\ff[dad]Just don't run indoors. Your mother will not be happy about that.
+\ff[dad]Nhưng đừng chạy trong nhà đấy. Mẹ con mà thấy là không vui đâu.
+\ff[dad]Next, here's a \c[1]Town Map\c[0].
+\ff[dad]Tiếp theo là \c[1]Town Map\c[0].
+\ff[dad]The world is a big place. It's easy to get lost.
+\ff[dad]Thế giới rộng lắm, sơ ý là lạc ngay.
+\ff[dad]Especially if you have my sense of direction.
+\ff[dad]Nhất là nếu con thừa hưởng khả năng định hướng của ba.
+\ff[dad]Trust me, you don't want to spend three hours looking for a town that's right behind you.
+\ff[dad]Tin ba đi, con không muốn mất ba tiếng tìm một thị trấn nằm ngay sau lưng mình đâu.
+\ff[dad]And this is a \c[1]PokéGear\c[0].
+\ff[dad]Còn đây là \c[1]PokéGear\c[0].
+\ff[dad]It lets you make calls and keep track of important things.
+\ff[dad]Con có thể dùng nó để gọi điện và theo dõi những thông tin quan trọng.
+\ff[dad]Make sure you answer when I call.
+\ff[dad]Ba gọi thì nhớ nghe máy đấy.
+\ff[dad]I don't want to find out you're ignoring your own father already.
+\ff[dad]Ba không muốn con vừa đi khỏi nhà đã bắt đầu bơ luôn ba đâu nhé.
+\ff[dad]Anyway, that's everything.
+\ff[dad]Rồi, vậy là hết.
+\ff[dad]Remember to take care of yourself.
+\ff[dad]Nhớ tự chăm sóc bản thân nhé.
+\ff[dad]Explore as much as you can, meet new people, and have fun.
+\ff[dad]Cứ đi thật nhiều, gặp gỡ những người mới và tận hưởng chuyến đi.
+\ff[dad]And if things get tough... just give me a call.
+\ff[dad]Nếu có chuyện khó khăn... cứ gọi cho ba.
+\ff[dad]Have fun, and then come back and tell Dad about the new and unusual Pokémon you see!
+\ff[dad]Cứ vui hết mình đi, rồi về kể cho ba nghe những Pokémon mới lạ mà con gặp nhé!
+\ff[dad]Good luck, kid. Your adventure starts now!
+\ff[dad]Chúc con may mắn. Cuộc phiêu lưu của con bắt đầu rồi đấy!

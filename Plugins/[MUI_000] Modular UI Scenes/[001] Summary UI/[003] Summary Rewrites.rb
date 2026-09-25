@@ -23,7 +23,7 @@ class PokemonSummary_Scene
     imagepos.push([ballimage, 14, 60])
     pagename = UIHandlers.get_info(:summary, @page_id, :name)
     textpos = [
-      [pagename, 26, 22, :left, base, shadow],
+      [pagename, 26, 26, :left, base, shadow],
       [@pokemon.name, 46, 68, :left, base, shadow],
       [_INTL("Item"), 66, 324, :left, base, shadow]
     ]

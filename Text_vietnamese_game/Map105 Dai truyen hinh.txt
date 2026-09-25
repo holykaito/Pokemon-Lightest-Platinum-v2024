@@ -1,0 +1,44 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map105]
+\rSome people claim that Pokémon came from space. Could it be true?
+\rSome people claim that Pokémon came from space. Could it be true?
+\rWelcome to Central City's RADIO & TV TOWER. All the technology inside helps people more and more each day.
+\rWelcome to Central City's RADIO & TV TOWER. All the technology inside helps people more and more each day.
+\r\ff[prooak]\bHey \pn. I'm glad you came to my research center. I have a gift for you.
+\r\ff[prooak]\bHey \pn. I'm glad you came to my research center. I have a gift for you.
+\r\ff[prooak]\bIt's a POKEDEX, which you can use to find and record data on POKéMON during your journey.
+\r\ff[prooak]\bIt's a POKEDEX, which you can use to find and record data on POKéMON during your journey.
+\r\ff[prooak]\bWell, \pn, now, with this tool, you can go on a magnificent journey through the Zhery league.
+\r\ff[prooak]\bWell, \pn, now, with this tool, you can go on a magnificent journey through the Zhery league.
+\r\ff[blue]\bHey, \pn!
+\r\ff[blue]\bHey, \pn!
+\r\ff[blue]\bI am looking forward to meeting you.
+\r\ff[blue]\bI am looking forward to meeting you.
+\r\ff[blue]\bCome on, battle with me, so I can check out your Pokémon!
+\r\ff[blue]\bCome on, battle with me, so I can check out your Pokémon!
+\r\ff[blue]\bYou really are a formidable opponent! Next time I'll show you the strongest Pokemon I have. Goodbye!
+\r\ff[blue]\bYou really are a formidable opponent! Next time I'll show you the strongest Pokemon I have. Goodbye!
+\r\ff[blue]\bGoodbye Grandpa!
+\r\ff[blue]\bGoodbye Grandpa!
+\r\ff[prooak]\b\pn, just by looking at you, I can see that you have great potential as a Pokémon trainer. I'm going to let you choose one of these three rare Pokémon to help you on your quest.
+\r\ff[prooak]\b\pn, just by looking at you, I can see that you have great potential as a Pokémon trainer. I'm going to let you choose one of these three rare Pokémon to help you on your quest.
+\r\ff[prooak]\bI'm studying FIRE, WATER and GRASS Pokémon, and how they're always widely used by trainers. My studies indicate that people use them because it's very easy to evolve them and make them grow stronger, so they're very decisive in battles.
+\r\ff[prooak]\bI'm studying FIRE, WATER and GRASS Pokémon, and how they're always widely used by trainers. My studies indicate that people use them because it's very easy to evolve them and make them grow stronger, so they're very decisive in battles.
+\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
+\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
+\bYou should always have many POKéBALLS with you when trying to capture wild POKéMON.
+\bYou should always have many POKéBALLS with you when trying to capture wild POKéMON.
+\rIn POKéMON contests, you need to be very intelligent.
+\rIn POKéMON contests, you need to be very intelligent.
+\bAll life needs the sea to live, even though it makes its home on the land. Life, having run its course, becomes soil and returns to the land.
+\bAll life needs the sea to live, even though it makes its home on the land. Life, having run its course, becomes soil and returns to the land.
+\rI really like my DITTO. It's very cute and well-behaved.
+\rI really like my DITTO. It's very cute and well-behaved.
+\bIt's easy to find many types of POKéMON in caves.
+\bIt's easy to find many types of POKéMON in caves.
+\bPOKéMON need to be treated well if you want to use them to their full potential.
+\bPOKéMON need to be treated well if you want to use them to their full potential.
+\bIn this city, there are many buildings that are important throughout the ZHERY region and the world.
+\bIn this city, there are many buildings that are important throughout the ZHERY region and the world.

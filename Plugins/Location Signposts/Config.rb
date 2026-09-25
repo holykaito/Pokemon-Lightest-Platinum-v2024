@@ -10,7 +10,7 @@ class LocationWindow
 
   # Duration of the signpost (in frames)
   # Default: 140
-  DURATION = 140
+  DURATION = 250
 
   # The signpost images to use and the keywords to match
   # "Filename" => ["Map name keyword 1","Map name keyword 2", ...]
@@ -19,8 +19,10 @@ class LocationWindow
       "Town_1"  => ["Town", "Village", "Thi tran", "Thị trấn", "Lang", "Làng"],
       "Lake_1"  => ["Lake", "Ho", "Hồ"],
       "Cave_1"  => ["Cave", "Hang"],
-      "City_1"  => ["City", "Thanh pho", "Thành Phố", "Do thi", "Đô thị"],
+      "City_1"  => ["City", "Thanh pho", "Thành phố", "Do thi", "Đô thị"],
       "Forest_1" => ["Forest", "Woods", "Rừng", "Rung"],
+      "HGSS_2" => ["Smash", "Đầm lầy", "Dam lay"],
+      "HGSS_7" => ["Viện nghiên cứu", "Lab"],
       "HGSS_8" => ["Gym", "Stadium", "Academy", "Dao quan", "Đạo quán", "Hoc vien", "Học viện", "Nhà thi đấu", "Nha thi dau"],
       "Blank"   => ["Blank"]
   }

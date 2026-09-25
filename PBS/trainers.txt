@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+﻿# Hãy xem tài liệu trên wiki để biết cách chỉnh sửa file này.
 #-------------------------------
 [TEAMSTEAMGRUNT_M,Talor]
 LoseText = I will take revenge next time!
@@ -13,30 +13,6 @@ Pokemon = ARCANINE,60
     IV = 25,25,25,25,25,25
     EV = 0,100,0,100,100,0
     TeraType = FIRE
-#-------------------------------
-[LEADER_Esmaralda,Esmaralda]
-Items = SUPERPOTION
-LoseText = Very good.
-Pokemon = MARACTUS,25
-    Moves = NEEDLEARM,DRAINPUNCH,COTTONSPORE,GRASSWHISTLE
-    AbilityIndex = 2
-    IV = 20,20,20,20,20,20
-Pokemon = QUILLADIN,25
-    Moves = GRASSYGLIDE,ROCKTOMB,LOWSWEEP,PINMISSILE
-    AbilityIndex = 1
-    IV = 20,20,20,20,20,20
-Pokemon = CHERRIM,26
-    Form = 1
-    Moves = GIGADRAIN,SLEEPPOWDER,DRAININGKISS,WEATHERBALL
-    AbilityIndex = 0
-    IV = 20,20,20,20,20,20
-Pokemon = ROSERADE,27
-    Moves = GIGADRAIN,VENOSHOCK,ANCIENTPOWER,GRASSWHISTLE
-    AbilityIndex = 4
-    Item = SITRUSBERRY
-    IV = 20,20,20,20,20,20
-    Ball = SAFARIBALL
-    TeraType = GRASS
 #-------------------------------
 [COOLTRAINER_M,Year]
 Items = MEGARING
@@ -246,93 +222,91 @@ Pokemon = GARDEVOIR,60
 Pokemon = ZIGZAGOON,2
     Form = 1
 #-------------------------------
-[BUGCATCHER,Jose]
-LoseText = Ôi không... bọ của tớ bị đè bẹp rồi...
+[BUGCATCHER_M,HoanTien]
+LoseText = Ôi không... bọ của em bị đè bẹp rồi...
 Pokemon = CATERPIE,2
 Pokemon = WURMPLE,2
 Pokemon = SCATTERBUG,2
 #-------------------------------
-[YOUNGSTER,Juan]
+[YOUNGSTER,VanLoc]
 LoseText = Ơ... Không thể nào! Tớ đã luyện chăm lắm mà!
-Pokemon = PIDGEY,2
-Pokemon = ELECTRIKE,2
-Pokemon = BLITZLE,2
+Pokemon = PIDGEY,3
+Pokemon = ELECTRIKE,3
+Pokemon = LILLIPUP,3
 #-------------------------------
-[BUGCATCHER,Matt]
-LoseText = Ối... Lũ bọ của tớ bị cho ra rìa rồi...
-Pokemon = KRICKETOT,3
-Pokemon = CATERPIE,3
-Pokemon = WURMPLE,3
+[LASS3,MinhPhuong]
+LoseText = A... Tôi thật sự đã nghĩ mình có cơ hội thắng chứ.
+Pokemon = GLAMEOW,4
+Pokemon = HOOTHOOT,4
+Pokemon = FLABEBE,4
 #-------------------------------
-[LASS,Adele]
+[LASS4,ThaoUyen]
 LoseText = A very good battle, indeed!
-Pokemon = SPRITZEE,4
-Pokemon = CETODDLE,4
-Pokemon = PACHIRISU,4
+Pokemon = SPRITZEE,5
+Pokemon = CETODDLE,5
+Pokemon = PACHIRISU,5
 #-------------------------------
-[YOUNGSTER,Timmy]
+[YOUNGSTER3,TanDong]
 LoseText = A very good battle, indeed!
 Pokemon = DUCKLETT,5
 Pokemon = FIDOUGH,5
 Pokemon = CACNEA,5
 #-------------------------------
-[BUGCATCHER,Vicky]
-LoseText = A very good battle, indeed!
-Pokemon = VENONAT,6
-Pokemon = SURSKIT,6
-Pokemon = DOTTLER,6
+[TEAMCHAOSGRUNT_M,TienDat]
+LoseText = How is this possible?
+Pokemon = INKAY,8
+Pokemon = TOEDSCOOL,8
+Pokemon = TEDDIURSA,9
 #-------------------------------
-[AROMALADY,Kathy]
+[LADY2,MinhNhu]
 LoseText = A very good battle, indeed!
-Pokemon = AXEW,6
-Pokemon = ZIGZAGOON,6
-    Form = 1
-Pokemon = FLITTLE,6
+Pokemon = POLIWAG,7
+Pokemon = JOLTIK,7
+Pokemon = CHERUBI,7
 #-------------------------------
-[LASS,Elisa]
+[AROMALADY2,TuongVi]
 LoseText = A very good battle, indeed!
-Pokemon = SKITTY,7
-Pokemon = FERROSEED,7
-Pokemon = GOSSIFLEUR,7
+Pokemon = APPLIN,7
+Pokemon = CAPSAKID,7
+Pokemon = CUTIEFLY,7
 #-------------------------------
-[HIKER,Nicole]
+[GARDENER_M,VanTuong]
+LoseText = A very good battle, indeed!
+Pokemon = NIDORANmA,7
+Pokemon = PANPOUR,7
+Pokemon = SHUPPET,7
+#-------------------------------
+[HIKER2,NgocSon]
 LoseText = A very good battle, indeed!
 Pokemon = TIMBURR,7
-Pokemon = SMOOCHUM,7
-Pokemon = SALANDIT,7
+Pokemon = CHEWTLE,7
+Pokemon = MAGBY,7
 #-------------------------------
-[POKEMONTRAINER_Blue,Blue,1]
-LoseText = You are lucky!
-Pokemon = NIDORANmA,9
-Pokemon = GROWLITHE,9
-Pokemon = EEVEE,10
-Pokemon = SQUIRTLE,11
-#-------------------------------
-[BUGCATCHER,Raymond]
+[BUGCATCHER_F,ThuTruc]
 LoseText = A very good battle, indeed!
-Pokemon = CASCOON,8
+Pokemon = WURMPLE,8
 Pokemon = KRICKETOT,8
 Pokemon = BURMY,8
 #-------------------------------
-[RICHBOY,Spencer]
+[PAINTER3_M,BinhKhiem]
 LoseText = A very good battle, indeed!
-Pokemon = HATENNA,9
-Pokemon = PHANPY,9
-Pokemon = HOOTHOOT,9
+Pokemon = KRABBY,8
+Pokemon = PHANPY,8
+Pokemon = HOOTHOOT,8
 #-------------------------------
-[BACKPACKER_M,Brent]
+[BACKPACKER_M,ThienBao]
 LoseText = A very good battle, indeed!
 Pokemon = SKWOVET,9
 Pokemon = MISDREAVUS,9
-Pokemon = DUNSPARCE,9
+Pokemon = CUBONE,9
 #-------------------------------
-[BUGCATCHER,Lamar]
+[BUGCATCHER_M,Lamar]
 LoseText = A very good battle, indeed!
 Pokemon = COMBEE,10
 Pokemon = GRUBBIN,10
 Pokemon = SURSKIT,10
 #-------------------------------
-[BUGCATCHER,Cameron]
+[BUGCATCHER_M,Cameron]
 LoseText = A very good battle, indeed!
 Pokemon = SPINARAK,10
 Pokemon = BURMY,10
@@ -350,7 +324,7 @@ Pokemon = SHUPPET,11
 Pokemon = SWIRLIX,11
 Pokemon = CUBONE,11
 #-------------------------------
-[BUGCATCHER,Ramiro]
+[BUGCATCHER_M,Ramiro]
 LoseText = A very good battle, indeed!
 Pokemon = NINCADA,11
 Pokemon = VENONAT,11
@@ -412,7 +386,7 @@ Pokemon = NOSEPASS,18
 Pokemon = RIOLU,18
 Pokemon = BUNEARY,18
 #-------------------------------
-[BIRDKEEPER,Lester]
+[BIRDKEEPER_M,Lester]
 LoseText = A very good battle, indeed!
 Pokemon = FLETCHLING,19
 Pokemon = STARAVIA,19
@@ -444,7 +418,7 @@ Pokemon = ELGYEM,20
 Pokemon = CAPSAKID,20
 Pokemon = SALANDIT,20
 #-------------------------------
-[PAINTER,Clara]
+[PAINTER_F,Clara]
 LoseText = A very good battle, indeed!
 Pokemon = NICKIT,20
 Pokemon = SPOINK,20
@@ -513,7 +487,7 @@ Pokemon = BELLSPROUT,23
 Pokemon = GRIMER,23
 Pokemon = SKARMORY,23
 #-------------------------------
-[BUGCATCHER,Noah]
+[BUGCATCHER_M,Noah]
 LoseText = A very good battle, indeed!
 Pokemon = YANMA,23
 Pokemon = VOLBEAT,23
@@ -567,13 +541,13 @@ Pokemon = TYNAMO,24
 Pokemon = DEERLING,24
 Pokemon = SPHEAL,24
 #-------------------------------
-[POKEMONRANGER_F,Olivia]
+[RANGER_F,Olivia]
 LoseText = A very good battle, indeed!
 Pokemon = LOUDRED,24
 Pokemon = BOLTUND,24
 Pokemon = WORMADAM,24
 #-------------------------------
-[POKEMONRANGER_F,Eva]
+[RANGER_F,Eva]
 LoseText = A very good battle, indeed!
 Pokemon = DOLLIV,24
 Pokemon = JIGGLYPUFF,24
