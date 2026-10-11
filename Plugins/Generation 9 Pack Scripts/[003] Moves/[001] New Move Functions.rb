@@ -427,7 +427,8 @@ class Battle::Move::AddMoneyGainedFromBattleLowerUserSpAtk1 < Battle::Move
   attr_reader :statDown
   def initialize(battle, move)
     super
-    @statDown = [:SPECIAL_ATTACK, 1]
+    qty = Settings::CHAMPIONS_MECHANICS ? 2 : 1
+    @statDown = [:SPECIAL_ATTACK, qty]
   end
   
   def pbEndOfMoveUsageEffect(user, targets, numHits, switchedBattlers)

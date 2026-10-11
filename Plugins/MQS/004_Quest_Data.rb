@@ -162,27 +162,54 @@ module QuestModule
 
   Quest1 = {
     :ID => "1",
-    :Name => "Khởi đầu hành trình",
+    :Name => "Gặp giáo sư Minh Anh",
     :QuestGiver => "Mẹ",
-    :Stage1 => "Gặp Giáo sư Fennel",
+    :Stage1 => "Gặp Giáo sư Minh Anh",
     :Location1 => "Thị trấn Khởi Nguyên",
-    :QuestDescription => "Trở thành thực tập sinh của giáo sư Fennel, chuyên nghiên cứu về các loài Pokémon.",
+    :QuestDescription => "Trở thành thực tập sinh của giáo sư Minh Anh, chuyên nghiên cứu về các loài Pokémon.",
     :RewardString => "x20 Poké Ball"
   }
 
   Quest2 = {
     :ID => "2",
     :Name => "PokéDex từ Giáo sư Oak",
-    :QuestGiver => "Giáo sư Fennel",
-    :Stage1 => "Gặp Giáo sư Oak",
-    :Stage2 => "Giúp giáo sư Oak điều tra",
-    :Stage3 => "Đến Đài truyền hình Vạn Hội",
+    :QuestGiver => "Giáo sư Minh Anh",
+    :Stage1 => "Gặp gỡ tại Đường A10",
+    :Stage2 => "Phòng nghiên cứu của giáo sư Oak",
     :Location1 => "Đường A10",
-    :Location2 => "Đường A10",
-    :Location3 => "Thành phố Vạn Hội",
-    :QuestDescription => "Gửi tài liệu cho giáo sư Oak và nhận PokéDex từ ông ấy rồi đem về cho cô Fennel",
+    :Location2 => "Thành phố Vạn Hội",
+    :QuestDescription => "Gửi tài liệu cho giáo sư Oak và nhận PokéDex từ ông ấy rồi đem về cho cô Minh Anh",
     :RewardString => "Một Pokémon đặc biệt"
   }
 
+  Quest3 = {
+    :ID => "3",
+    :Name => "Điều tra cùng Giáo sư Oak",
+    :QuestGiver => "Giáo sư Oak",
+    :Stage1 => "Tìm kiếm xung quanh",
+    :Location1 => "Đường A10",
+    :QuestDescription => "Tìm kiếm các điều khả nghi tại đường A10 khiến các Pokémon bị mất tự chủ",
+    :RewardString => "Một Pokémon đặc biệt"
+  }
+
+  Quest3 = {
+    :ID => "3",
+    :Name => "Điều tra cùng Giáo sư Oak",
+    :QuestGiver => "Giáo sư Oak",
+    :Stage1 => "Tìm kiếm xung quanh",
+    :Location1 => "Đường A10",
+    :QuestDescription => "Tìm kiếm các điều khả nghi tại đường A10 khiến các Pokémon bị mất tự chủ",
+    :RewardString => "Một Pokémon đặc biệt"
+  }
+
+  Quest4 = {
+    :ID => "4",
+    :Name => "Mọi người ở Đài truyền hình",
+    :QuestGiver => "Thanh niên da đen",
+    :Stage1 => "Gặp mọi người",
+    :Location1 => "Đài truyền hình Vạn Hội",
+    :QuestDescription => "Kết nối với mọi người trong Đài truyền hình để biết về câu chuyện của họ",
+    :RewardString => "Vật phẩm đặc biệt"
+  }
 
 end

@@ -71,6 +71,16 @@ class Battle::Move::TwoTurnAttackOneTurnInSun < Battle::Move::TwoTurnMove
     damageMult /= 2 if ![:None, :Sun, :HarshSun].include?(user.effectiveWeather) && !user.hasActiveAbility?(:MEGASOL)
     return damageMult
   end
+
+  def pbChargingTurnMessage(user, targets)
+    @battle.pbDisplay(_INTL("{1} took in sunlight!", user.pbThis))
+    @battle.pbShowAbilitySplash(user) if user.hasActiveAbility?(:MEGASOL)
+  end
+
+  def pbAttackingTurnMessage(user, targets)
+    super
+    @battle.pbHideAbilitySplash(user) if user.hasActiveAbility?(:MEGASOL)
+  end
 end
 
 #===============================================================================
@@ -82,6 +92,12 @@ class Battle::Move::HealUserDependingOnWeather < Battle::Move::HealingMove
   def pbOnStartUse(user, targets)
     megasol_pbOnStartUse(user, targets)
     @healAmount = (user.totalhp * 2 / 3.0).round if user.hasActiveAbility?(:MEGASOL)
+    @battle.pbShowAbilitySplash(user) if user.hasActiveAbility?(:MEGASOL)
+  end
+
+  def pbEffectGeneral(user)
+    @battle.pbHideAbilitySplash(user) if user.hasActiveAbility?(:MEGASOL)
+    super
   end
 end
 

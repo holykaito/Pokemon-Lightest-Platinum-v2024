@@ -289,3 +289,8 @@ SuperRod
     20,HORSEA,16,19
     20,CARVANHA,15,18
     20,LUVDISC,15,18
+#-------------------------------
+[008] # Hang Mạch Ngầm
+Cave,21
+    50,ZUBAT,13,18
+    50,GEODUDE,13,18

@@ -69,7 +69,6 @@ Height = 20.0
 Pokedex = It lays traps, hoping to steal the lives of those it catches. If you stand in front of its mouth, you'll hear your loved ones' voices calling out to you.
 Generation = 8
 GmaxMove = GMAXTERROR
-RaidRanks = 4,5
 RaidStyle = Max
 #-------------------------------
 [KINGLER,1]
@@ -87,7 +86,6 @@ Height = 24.0
 Pokedex = Over 5,000 people can ride on its shell at once. And it's a very comfortable ride, without the slightest shaking or swaying.
 Generation = 8
 GmaxMove = GMAXRESONANCE
-RaidRanks = 4,5
 RaidStyle = Max
 #-------------------------------
 [EEVEE,2]
@@ -105,7 +103,6 @@ Height = 35.0
 Pokedex = Gigantamax energy has affected stray seeds and even pebbles that got stuck to Snorlax, making them grow to a huge size.
 Generation = 8
 GmaxMove = GMAXREPLENISH
-RaidRanks = 4,5
 RaidStyle = Max
 #-------------------------------
 [GARBODOR,1]
@@ -123,7 +120,6 @@ Height = 25.0
 Pokedex = In a distant land, there are legends about a cyclopean giant. In fact, the giant was a Melmetal that was flooded with Gigantamax energy.
 Generation = 8
 GmaxMove = GMAXMELTDOWN
-RaidRanks = 6
 RaidStyle = Max
 #-------------------------------
 [RILLABOOM,1]
@@ -258,7 +254,6 @@ FormName = Gigantamax
 Height = 23.0
 Pokedex = After this Pokémon has Gigantamaxed, its massive nose can utterly demolish large structures with a single smashing blow.
 GmaxMove = GMAXSTEELSURGE
-RaidRanks = 4,5
 RaidStyle = Max
 #-------------------------------
 [DURALUDON,1]
@@ -281,7 +276,6 @@ FormName = Gigantamax Single Strike Style
 Height = 29.0
 Pokedex = The energy released by this Pokémon's fists forms shock waves that can blow away Dynamax Pokémon in just one hit.
 GmaxMove = GMAXONEBLOW
-RaidRanks = 6
 RaidStyle = Max
 #-------------------------------
 [URSHIFU,3]
@@ -292,5 +286,4 @@ Height = 26.0
 Pokedex = As it waits for the right moment to unleash its Gigantamax power, this Pokémon maintains a perfect one-legged stance. It won't even twitch.
 GmaxMove = GMAXRAPIDFLOW
 UngmaxForm = 1
-RaidRanks = 6
 RaidStyle = Max

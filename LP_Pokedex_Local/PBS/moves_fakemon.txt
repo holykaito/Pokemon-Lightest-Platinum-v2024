@@ -1,0 +1,74 @@
+#-------------------------------
+[HYPNOTICNOTE]
+Name = Hypnotic Note
+Type = PSYCHIC
+Category = Status
+Power = 0
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = -3
+FunctionCode = SleepIfUserDamaged
+Flags = CanProtect,CanMirrorMove,ZPower_SPECIAL_ATTACK_1
+Description = Puts the opponent to sleep if the user takes damage during that turn.
+#-------------------------------
+[COTTONKICK]
+Name = Cotton Kick
+Type = FAIRY
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = LowerTargetSpeed1
+Flags = CanProtect,CanMirrorMove,Kick
+EffectChance = 100
+Description = It reduces hit Pokémon's Speed.
+#-------------------------------
+[WINDBOARDING]
+Name = Wind Boarding
+Type = DARK
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = AnchorStrike
+Flags = CanProtect,CanMirrorMove
+Description = Increases power if Trap move has been used before and raises Attack and Defense.
+#-------------------------------
+[SHIELDBASH]
+Name = Shield Bash
+Type = STEEL
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = UseUserDefenseInsteadOfUserAttack
+Flags = Contact,CanProtect,CanMirrorMove,CannotMetronome
+Description = The user slams its body into the target. Deals more damage with a higher Defense stat.
+#-------------------------------
+[CURSEDTERRAIN]
+Name = Cursed Terrain
+Type = GHOST
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = UserSide
+FunctionCode = StartCursedTerrain
+Flags = CanMirrorMove
+Description = The user turns the battlefield into cursed terrain for five turns.
+#-------------------------------
+[RELICDANCE]
+Name = Relic Dance
+Type = NORMAL
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = AllNearFoes
+FunctionCode = SleepTargetChangeUserMeloettaForm
+Flags = CanProtect,CanMirrorMove,Sound,CannotMetronome,Kick,Dance
+EffectChance = 20
+Description = An ancient song appeals to the hearts of those listening. It may also induce sleep.

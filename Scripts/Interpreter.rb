@@ -317,15 +317,14 @@ class Interpreter
     end
   end
 
-  # Sets another event's self switch (eg. pbSetSelfSwitch(20, "A", true) ).
-#  def pbSetSelfSwitch(eventid, switch_name, value, mapid = -1)
-#    mapid = @map_id if mapid < 0
-#    old_value = $game_self_switches[[mapid, eventid, switch_name]]
-#    $game_self_switches[[mapid, eventid, switch_name]] = value
-#    if value != old_value && $map_factory.hasMap?(mapid)
-#      $map_factory.getMap(mapid, false).need_refresh = true
-#    end
-#  end
+  def pbSetSelfSwitch(eventid, switch_name, value, mapid = -1)
+    mapid = @map_id if mapid < 0
+    old_value = $game_self_switches[[mapid, eventid, switch_name]]
+    $game_self_switches[[mapid, eventid, switch_name]] = value
+    if value != old_value && $map_factory.hasMap?(mapid)
+      $map_factory.getMap(mapid, false).need_refresh = true
+    end
+  end
 
   def pbSetSelfSwitchFlexible(map_id, events, switch, value)
     event_ids = []

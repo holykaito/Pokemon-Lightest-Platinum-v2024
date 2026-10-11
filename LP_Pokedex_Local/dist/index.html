@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0e1724" />
+  <meta name="description" content="Tra cứu dữ liệu Pokémon từ PBS của Lightest Platinum." />
+  <title>LP Pokédex · Quản trị</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">LP<span>◆</span></span><span class="brand-title">POKÉDEX <small>QUẢN TRỊ</small></span></div>
+      <div class="topmeta"><span class="source-pill">PBS · Essentials v21.1</span><span id="totalCount">Đang tải dữ liệu…</span><button type="button" id="refreshData" class="refresh-button" title="Đọc lại PBS và Sprite">↻ Làm mới dữ liệu</button></div>
+    </header>
+    <main class="workspace">
+      <aside class="directory">
+        <div class="directory-head">
+          <p class="eyebrow">THƯ VIỆN LOÀI</p>
+          <h1>Pokémon</h1>
+          <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Tìm tên, mã, Đặc tính…" aria-label="Tìm Pokémon" autocomplete="off" /><kbd>/</kbd></label>
+          <div class="filters"><select id="typeFilter" aria-label="Lọc theo hệ"><option value="">Tất cả hệ</option></select><select id="groupFilter" aria-label="Lọc theo nhóm"><option value="base">Loài gốc</option><option value="all">Cả dạng khác</option><option value="forms">Chỉ dạng khác</option></select></div>
+          <div class="results-heading"><span id="resultCount">— kết quả</span><select id="sort" aria-label="Sắp xếp"><option value="name">Tên A–Z</option><option value="bst">Tổng chỉ số ↓</option><option value="generation">Thế hệ</option></select></div>
+        </div>
+        <div class="card-list" id="pokemonList" aria-label="Danh sách Pokémon"></div>
+      </aside>
+      <section class="detail" id="detail" aria-live="polite"><div class="loading">Đang đọc dữ liệu PBS…</div></section>
+    </main>
+  </div>
+  <div class="compare-bar" id="compareBar" hidden><div><strong id="compareNames"></strong><span>Chọn tối đa 2 Pokémon để so sánh chỉ số</span></div><div class="compare-actions"><button type="button" id="clearCompare" class="quiet">Bỏ chọn</button><button type="button" id="openCompare" class="primary">So sánh</button></div></div>
+  <dialog id="compareDialog"><div class="dialog-head"><h2>So sánh chỉ số</h2><button type="button" class="icon-button" id="closeCompare" aria-label="Đóng">×</button></div><div id="compareContent"></div></dialog>
+  <script src="./app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+LP PROXIMITY WATER v1.0.0
+Pokémon Essentials v21.1 chạy bằng Game.exe/mkxp-z.
+
+1. CÀI ĐẶT
+- Chép hai thư mục Plugins và Audio trong gói này vào thư mục game.
+- Mở mkxp.json ở cạnh Game.exe bằng trình soạn thảo văn bản.
+- Nếu đã có BGMTrackCount, đặt giá trị ít nhất là 2.
+- Nếu chưa có, thêm dòng sau bên trong đối tượng JSON (chú ý dấu phẩy):
+  "BGMTrackCount": 2,
+- Không thay toàn bộ mkxp.json bằng một tệp mới. Giữ các thiết lập khác.
+- Đóng Game.exe rồi mở lại để engine nhận số kênh mới.
+- Chạy Debug để biên dịch plugin. Nếu bản cũ vẫn được dùng, giữ Ctrl khi
+  khởi động Debug để biên dịch lại plugin.
+
+2. ĐẶT NGUỒN ÂM THANH
+- Xóa event Parallel Process phát tiếng nước đã dùng theo hướng dẫn cũ.
+- Tạo event không có hình, đặt giữa hồ hoặc tại mép hồ cần nghe tiếng nước.
+- Trigger: Action Button. Through: ON. Không cần Parallel Process.
+- Trên trang event đang hoạt động, thêm lệnh Comment chứa đúng một dòng:
+  [Water:Lake,8,70,2]
+- Chỉ cần Comment, không cần thêm Script hay Play BGS.
+
+Ý nghĩa: Lake = tên file; 8 = bán kính nghe (ô); 70 = âm lượng tối đa;
+2 = bán kính nghe ở mức tối đa. Từ 2 đến 8 ô, âm lượng giảm dần về 0.
+Khoảng cách tính theo hình tròn, có tính đường chéo; không bị tường che.
+
+Ví dụ nghe xa hơn:
+  [Water:Lake,12,80,3]
+Ví dụ dùng tiếng nước riêng:
+  [Water:MyWater,8,65,2]
+Đặt MyWater.ogg vào Audio/BGS. Có thể ghi cả đuôi file trong Comment.
+Hỗ trợ .ogg, .wav, .mp3, .flac (ưu tiên .ogg/.wav).
+Tên file không chứa dấu phẩy, dấu ngoặc vuông, đường dẫn hoặc '..'.
+
+3. HỒ LỚN / BẬT TẮT BẰNG EVENT
+- Đặt nhiều event cùng dùng Lake dọc theo bờ hồ để mở rộng vùng nghe.
+- Các nguồn cùng file được gộp bằng mức âm lượng cao nhất, không cộng dồn.
+- Chỉ một bản ghi tiếng nước được phát ở một thời điểm. Nếu dùng nhiều file,
+  plugin chọn nguồn nghe rõ nhất, nhỏ dần rồi chuyển sang file mới.
+- Plugin đọc Comment của trang event ĐANG HOẠT ĐỘNG. Để tắt nguồn nước bằng
+  Switch/Self Switch, tạo trang ưu tiên cao hơn không chứa Comment [Water:...].
+- Erase Event cũng tắt nguồn đó. Lưu/tải game sẽ đọc lại nguồn từ map.
+
+4. HÀNH VI
+- Tiếng nước lặp bằng kênh BGM phụ số 1, không dùng SE và không thay BGS.
+- Nhạc nền dùng BGM số 0; BGS của map và SE vẫn phát bình thường.
+- Âm lượng tăng/giảm mềm khi vào/ra vùng nghe, không khởi động lại mỗi bước.
+- Nước tự dừng khi chuyển map, vào trận đấu hoặc rời Scene_Map.
+- Quay lại map / kết thúc trận đấu thì nguồn nước được kiểm tra lại.
+- Mở menu dùng scene khác sẽ dừng nước; menu chạy bên trong Scene_Map có
+  thể tiếp tục nghe. Đây là âm thanh theo vị trí, không giả lập stereo.
+- Không cần pbBGSStop trong event chuyển map để dừng tiếng nước của plugin.
+  Chỉ dùng pbBGSStop nếu bạn chủ động muốn tắt BGS riêng của map.
+- Theo thanh âm lượng tổng BGM của engine: tắt BGM trong Options cũng có
+  thể tắt tiếng nước. Âm lượng tối đa trong Comment vẫn được áp dụng riêng.
+
+5. TƯƠNG THÍCH
+- Cần mkxp-z có API BGM nhiều kênh; không dùng RGSS Player gốc của RMXP.
+- Không cần DLL hoặc đổi Game.exe cho bản Essentials 21.1 chuẩn.
+- Kênh BGM số 1 được dành cho plugin. Nếu plugin khác cũng dùng kênh này,
+  đổi TRACK ở đầu 001_Proximity_Water.rb sang kênh còn trống và đặt
+  BGMTrackCount lớn hơn số kênh đó. Ví dụ TRACK = 2 cần BGMTrackCount >= 3.
+- Plugin định tuyến bgm_play/bgm_stop/bgm_fade không chỉ định kênh sang số 0
+  để nhạc nền không tắt tiếng nước. Các lệnh chỉ định kênh vẫn giữ nguyên.
+  Plugin âm thanh nhiều kênh khác cần được kiểm tra tương thích trong game.
+- Cấu hình thiếu, file lỗi hoặc API không hỗ trợ sẽ được ghi vào log; plugin
+  dừng hoạt động thay vì làm game crash. Sau khi sửa lỗi hãy khởi động lại.
+- File mã nguồn UTF-8; không cần sửa các script lõi của Essentials.
+
+6. LỆNH TÙY CHỌN TRONG SCRIPT EVENT
+  LPWaterSound.pause    # tạm tắt nước, ví dụ khi vào cutscene
+  LPWaterSound.resume   # cho phép nghe lại
+  LPWaterSound.refresh  # đọc lại tag/file đã thay đổi khi đang chạy
+
+7. ÂM THANH MẪU VÀ KIỂM TRA
+- Audio/BGS/Lake.ogg: mẫu tiếng nước tổng hợp bằng xử lý tín hiệu, dài
+  12 giây, thiết kế để lặp. Bạn có thể dùng hoặc thay bằng thu âm riêng.
+- Code và mẫu do OpenAI tạo cho yêu cầu này; không dùng bản ghi bên thứ ba.
+- Đã kiểm tra cú pháp Ruby và logic với engine âm thanh giả lập: khoảng cách,
+  âm lượng, lặp không phát lại mỗi bước, giữ BGM/BGS/SE, đổi map, trận đấu,
+  đổi trang event, nguồn trùng nhau, file thiếu và cấu hình thiếu.
+- Chưa chạy trong Game.exe / repo thực tế của bạn. Sau khi cài hãy kiểm tra:
+  bật BGM + BGS trên map; đi tới hồ rồi đi xa; mở menu; chiến đấu; đổi map;
+  lưu cạnh hồ và tải lại. Nếu có lỗi, gửi ảnh thông báo/log để sửa đúng bản.
+
+THAM KHẢO API CHÍNH THỨC
+https://github.com/mkxp-z/mkxp-z/wiki/Extensions-(RGSS,-Modules)
+https://github.com/mkxp-z/mkxp-z/blob/dev/mkxp.json

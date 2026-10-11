@@ -5,16 +5,16 @@ StartMoney = 3000
 StartItemStorage = POTION
 Home = 80,8,5,8
 StorageCreator = Kaito
-WildBattleBGM = Battle wild 2
+WildBattleBGM = Battle wild
 TrainerBattleBGM = Battle trainer
 WildVictoryBGM = Battle victory wild
 TrainerVictoryBGM = Battle victory trainer
-SurfBGM = Surfing
-BicycleBGM = Bicycle
+#SurfBGM = Surfing
+#BicycleBGM = Bicycle
 #-------------------------------
 [1]
-TrainerType = POKEMONTRAINER_Lucas
-WalkCharset = trainer_Lucas
+TrainerType = PKMTRAINER_Curtis
+WalkCharset = boy_walk
 RunCharset = boy_run
 CycleCharset = boy_bike
 SurfCharset = boy_surf

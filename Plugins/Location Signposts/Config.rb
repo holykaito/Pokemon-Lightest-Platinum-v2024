@@ -22,6 +22,7 @@ class LocationWindow
       "City_1"  => ["City", "Thanh pho", "Thành phố", "Do thi", "Đô thị"],
       "Forest_1" => ["Forest", "Woods", "Rừng", "Rung"],
       "HGSS_2" => ["Smash", "Đầm lầy", "Dam lay"],
+      "HGSS_3" => ["Vườn"],
       "HGSS_7" => ["Viện nghiên cứu", "Lab"],
       "HGSS_8" => ["Gym", "Stadium", "Academy", "Dao quan", "Đạo quán", "Hoc vien", "Học viện", "Nhà thi đấu", "Nha thi dau"],
       "Blank"   => ["Blank"]

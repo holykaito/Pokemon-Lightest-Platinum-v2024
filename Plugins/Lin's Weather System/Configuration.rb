@@ -4,7 +4,7 @@
 
 module WeatherConfig
   # Set to false to use the Weather System.
-  NO_WEATHER = false		# Default: false
+  NO_WEATHER = true		# Default: false
 
   # Set to true to show the weather on the Town Map.
   SHOW_WEATHER_ON_MAP = true	# Default: true
@@ -93,9 +93,9 @@ module WeatherConfig
   # The maps within each zone will have the same weather at the same time.
   # Each zone may have a different weather than the others.
   ZONE_MAPS = [
-    [2, 5],
-    [7],
-    [21]
+    [32, 94],
+    [32],
+    [32]
   ]
 #===============================================================================
 # * Map Display

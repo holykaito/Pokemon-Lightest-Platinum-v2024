@@ -9,9 +9,9 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,7,1
-MapSize = 4,1111000000000000
 SnapEdges = true
 BattleBack = field
+MapSize = 4,1111000000000000
 Environment = Grass
 #-------------------------------
 [003]   # BacHai City
@@ -21,9 +21,9 @@ ShowArea = true
 Bicycle = true
 HealingSpot = 2,8,8
 MapPosition = 0,11,1
-MapSize = 2,1111
 SnapEdges = true
 BattleBack = city
+MapSize = 2,1111
 Environment = None
 #-------------------------------
 [004]   # VanUyen Academy
@@ -41,12 +41,26 @@ MapPosition = 0,5,18
 SnapEdges = true
 BattleBack = field
 #-------------------------------
+[008]   # Hang Mach Ngam
+Name = Hang Mạch Ngầm
+ShowArea = true
+MapPosition = 0,2,9
+SnapEdges = true
+BattleBack = cave
+Environment = Cave
+#-------------------------------
+[009]   # Nha
+Name = Nha
+SnapEdges = true
+BattleBack = indoor2
+Environment = None
+#-------------------------------
 [022]   # KhaiNguyen Town
 Name = Thị trấn Khải Nguyên
 Outdoor = true
 ShowArea = true
-MapPosition = 0,5,18
 Bicycle = true
+MapPosition = 0,5,18
 SnapEdges = true
 BattleBack = town
 Environment = None
@@ -55,14 +69,14 @@ Environment = None
 Name = Đường A1
 Outdoor = true
 ShowArea = true
-MapPosition = 0,5,16
-MapSize = 2,1010
 Bicycle = true
+MapPosition = 0,5,16
 SnapEdges = true
 BattleBack = field
+MapSize = 2,1010
 Environment = Grass
 #-------------------------------
-[043]   # Phong nghien cuu Fennel
+[043]   # Lab MinhAnh
 Name = Viện Khải Nguyên
 ShowArea = true
 BattleBack = indoor1
@@ -72,11 +86,11 @@ Environment = None
 Name = Thành phố Vạn Hội
 Outdoor = true
 ShowArea = true
-MapPosition = 0,5,14
-MapSize = 2,1111
 Bicycle = true
+MapPosition = 0,5,14
 SnapEdges = true
 BattleBack = city
+MapSize = 2,1111
 Environment = None
 #-------------------------------
 [076]   # VanHoi PokeCenter
@@ -87,8 +101,8 @@ BattleBack = indoor1
 Name = Đường A10
 Outdoor = true
 ShowArea = true
-MapPosition = 0,7,14
 Bicycle = true
+MapPosition = 0,7,14
 SnapEdges = true
 BattleBack = beach
 #-------------------------------
@@ -96,29 +110,29 @@ BattleBack = beach
 Name = Đường A2
 Outdoor = true
 ShowArea = true
-MapPosition = 0,2,14
-MapSize = 3,111000000
 Bicycle = true
+MapPosition = 0,2,14
 SnapEdges = true
 BattleBack = field
+MapSize = 3,111000000
 Environment = Grass
 #-------------------------------
 [082]   # Duong A3
 Name = Đường A3
 Outdoor = true
 ShowArea = true
-MapPosition = 0,1,13
-MapSize = 2,1010
 Bicycle = true
+MapPosition = 0,1,13
 SnapEdges = true
 BattleBack = field
+MapSize = 2,1010
 #-------------------------------
 [083]   # BachTrung Forest
 Name = Rừng Bách Trùng
 Outdoor = true
 ShowArea = true
-MapPosition = 0,1,12
 Bicycle = true
+MapPosition = 0,1,12
 BattleBack = forest
 Environment = Forest
 #-------------------------------
@@ -126,19 +140,19 @@ Environment = Forest
 Name = Thành phố Văn Uyển
 Outdoor = true
 ShowArea = true
-MapPosition = 0,1,10
-MapSize = 2,1010
 Bicycle = true
+MapPosition = 0,1,10
 SnapEdges = true
 BattleBack = city
+MapSize = 2,1010
 Environment = None
 #-------------------------------
 [085]   # Duong A4
 Name = Đường A4
 Outdoor = true
 ShowArea = true
-MapPosition = 0,1,9
 Bicycle = true
+MapPosition = 0,1,9
 SnapEdges = true
 BattleBack = field
 #-------------------------------
@@ -146,19 +160,20 @@ BattleBack = field
 Name = Đường A5
 Outdoor = true
 ShowArea = true
-MapPosition = 0,1,7
-MapSize = 2,1010
 Bicycle = true
+MapPosition = 0,1,7
 SnapEdges = true
-BattleBack = field
+BattleBack = farm
+MapSize = 2,1010
+Environment = Grass
 #-------------------------------
 [087]   # ThanhVu Town
 Name = Thị trấn Thanh Vũ
 Outdoor = true
 ShowArea = true
-MapPosition = 0,1,6
 Bicycle = true
 Weather = Rain,40
+MapPosition = 0,1,6
 SnapEdges = true
 BattleBack = town
 Environment = Puddle
@@ -167,21 +182,23 @@ Environment = Puddle
 Name = Đầm lầy U Trạch
 Outdoor = true
 ShowArea = true
-MapPosition = 0,2,6
-MapSize = 3,111000000
 Bicycle = true
 Weather = HeavyRain,100
+MapPosition = 0,2,6
+SnapEdges = true
 BattleBack = forest
+MapSize = 3,111000000
+Environment = TallGrass
 #-------------------------------
 [089]   # LacHoa City
 Name = Thành Phố Lạc Hoa
 Outdoor = true
 ShowArea = true
-MapPosition = 0,5,6
-MapSize = 2,1100
 Bicycle = true
+MapPosition = 0,5,6
 SnapEdges = true
 BattleBack = city
+MapSize = 2,1100
 Environment = Grass
 #-------------------------------
 [092]   # LacHoa PokeCenter
@@ -194,9 +211,9 @@ Outdoor = true
 ShowArea = true
 Bicycle = true
 MapPosition = 0,6,2
-MapSize = 4,1000100010001000
 SnapEdges = true
 BattleBack = field
+MapSize = 4,1000100010001000
 Environment = Forest
 #-------------------------------
 [105]   # Dai truyen hinh
@@ -219,7 +236,7 @@ BattleBack = indoor1
 Name = Thị trấn Thiên Du
 Outdoor = true
 ShowArea = true
-MapPosition = 0,6,1
 Bicycle = true
+MapPosition = 0,6,1
 SnapEdges = true
 BattleBack = town

@@ -539,7 +539,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:INTREPIDSWORD,
 #-------------------------------------------------------------------------------
 Battle::AbilityEffects::OnTypeChange.add(:PROTEAN,
   proc { |ability, battler, type|
-    next if Settings::MECHANICS_GENERATION < 10
+    next if Settings::MECHANICS_GENERATION < 9
     next if GameData::Type.get(type).pseudo_type
     battler.effects[PBEffects::OneUseAbility] = ability
   }
@@ -692,7 +692,7 @@ Battle::AbilityEffects::EndOfRoundGainItem.add(:BALLFETCH,
     next if battler.item
     next if battle.first_poke_ball.nil?
     battle.pbShowAbilitySplash(battler)
-    user.setStolenItem(battle.first_poke_ball)
+    battler.setStolenItem(battle.first_poke_ball)
     battler.item = battle.first_poke_ball
     battler.setInitialItem(battler.item) if !battler.initialItem
     battle.first_poke_ball = nil

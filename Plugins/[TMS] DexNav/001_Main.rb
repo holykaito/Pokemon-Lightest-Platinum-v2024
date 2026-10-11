@@ -154,26 +154,29 @@ class PokemonDexNav_Scene
     return tableData
   end
 
-  def pbLoadSpeciesIcon(list, iconY)
-    iconX = 12
-    # iconY = 251 land; iconY = 74 water
-    list.each do |specie|
-      icon = Pokemon.new(specie, 1)
-      to_disp = $player.pokedex.seen?(specie)
-      if to_disp
-        @sprites["icon#{specie}"] = PokemonIconSprite.new(icon, @viewport)
-      else
-        @sprites["icon#{specie}"] = PokemonIconSprite.new(nil, @viewport)
-      end
-      @sprites["icon#{specie}"].x = iconX
-      @sprites["icon#{specie}"].y = iconY
-      iconX += 64
-      if iconX > 320
-        iconX = 12
-        iconY += 64
-      end
-    end
-  end
+	def pbLoadSpeciesIcon(list, iconY)
+	  list.each_with_index do |specie, index|
+		iconX = 12 + (index % 5) * 64
+		y = iconY + (index / 5) * 64
+
+		# Mỗi vị trí có khóa riêng, kể cả khi một loài có ở cả hai danh sách.
+		sprite_key = "dexnav_icon_#{iconY}_#{index}"
+
+		if $player.pokedex.seen?(specie)
+		  pokemon = Pokemon.new(specie, 1)
+		  @sprites[sprite_key] = PokemonIconSprite.new(pokemon, @viewport)
+		else
+		  @sprites[sprite_key] = IconSprite.new(0, 0, @viewport)
+		  @sprites[sprite_key].setBitmap("Graphics/Pokemon/Icons/000")
+
+		  # Chỉ lấy khung hình đầu tiên, vừa đúng một ô 64 × 64.
+		  @sprites[sprite_key].src_rect.set(0, 0, 64, 64)
+		end
+
+		@sprites[sprite_key].x = iconX
+		@sprites[sprite_key].y = y
+	  end
+	end
 
   def pbGetEncounterAtTime(enc, encounter_keys)
     # Check if the encounter is available at the current time of day

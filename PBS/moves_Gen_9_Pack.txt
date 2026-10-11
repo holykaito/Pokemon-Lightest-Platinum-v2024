@@ -4,13 +4,13 @@
 Name = Dire Claw
 Type = POISON
 Category = Physical
-Power = 90
+Power = 80
 Accuracy = 100
-TotalPP = 15
+TotalPP = 16
 Target = NearOther
 FunctionCode = PoisonParalyzeOrSleepTarget
-Flags = Contact,CanProtect,CanMirrorMove
-EffectChance = 50
+Flags = Contact,CanProtect,CanMirrorMove,Slicing
+EffectChance = 30
 Description = The user may critically hit with its ruinous claws. May also leave the target poisoned, paralyzed, or asleep.
 #-------------------------------
 [SPRINGTIDESTORM]
@@ -19,7 +19,7 @@ Type = FAIRY
 Category = Special
 Power = 100
 Accuracy = 80
-TotalPP = 5
+TotalPP = 8
 Target = AllNearFoes
 FunctionCode = LowerTargetAttack1
 Flags = Wind,CanProtect,CanMirrorMove,CannotMetronome

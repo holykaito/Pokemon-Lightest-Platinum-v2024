@@ -365,7 +365,7 @@ end
 class PokemonSaveScreen
   def doSave(slot)
     if Game.save(slot)
-      pbMessage("\\se[]" + _INTL("{1} saved the game.", $player.name) + "\\me[GUI save game]\\wtnp[20]")
+      pbMessage("\\se[]" + _INTL("{1} saved the game.", $player.name) + "\\se[GUI save game]\\wtnp[20]")
       return true
     else
       pbMessage("\\se[]" + _INTL("Save failed.") + "\\wtnp[30]")
@@ -617,7 +617,7 @@ def pbEmergencySave
   backup_file = SaveData.get_backup_file_path
   file_copy(current_file, backup_file)
   if Game.save
-    pbMessage("\\se[]" + _INTL("The game was saved.") + "\\me[GUI save game]\\wtnp[20]")
+    pbMessage("\\se[]" + _INTL("The game was saved.") + "\\se[GUI save game]\\wtnp[20]")
     pbMessage("\\se[]" + _INTL("The previous save file has been backed up.") + "\\wtnp[20]")
   else
     pbMessage("\\se[]" + _INTL("Save failed.") + "\\wtnp[30]")

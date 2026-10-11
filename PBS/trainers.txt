@@ -259,37 +259,50 @@ Pokemon = TOEDSCOOL,8
 Pokemon = TEDDIURSA,9
 #-------------------------------
 [LADY2,MinhNhu]
-LoseText = A very good battle, indeed!
+LoseText = Bất ngờ thật! Tôi không nghĩ cuộc gặp tình cờ này lại thành ra thế này.
 Pokemon = POLIWAG,7
 Pokemon = JOLTIK,7
 Pokemon = CHERUBI,7
 #-------------------------------
 [AROMALADY2,TuongVi]
-LoseText = A very good battle, indeed!
+LoseText = Ôi trời! Trận đấu này căng thẳng hơn tôi tưởng nhiều đấy!
 Pokemon = APPLIN,7
 Pokemon = CAPSAKID,7
 Pokemon = CUTIEFLY,7
 #-------------------------------
 [GARDENER_M,VanTuong]
-LoseText = A very good battle, indeed!
+LoseText = Chà, trận đấu không diễn ra như tôi nghĩ rồi. Xem ra lúc nào cũng còn điều để học hỏi.
 Pokemon = NIDORANmA,7
 Pokemon = PANPOUR,7
 Pokemon = SHUPPET,7
 #-------------------------------
+[NURSERYAIDE,MyThuy]
+LoseText = Các em bé chơi rất vui!
+Pokemon = IGGLYBUFF,7
+Pokemon = BUDEW,7
+Pokemon = AZURILL,7
+Pokemon = TOXEL,7
+#-------------------------------
 [HIKER2,NgocSon]
-LoseText = A very good battle, indeed!
+LoseText = Ha ha ha! Xem ra tôi mệt hơn mình tưởng rồi.
 Pokemon = TIMBURR,7
 Pokemon = CHEWTLE,7
 Pokemon = MAGBY,7
 #-------------------------------
 [BUGCATCHER_F,ThuTruc]
-LoseText = A very good battle, indeed!
+LoseText = Oa... Tôi cứ tưởng mình đã hiểu cách chiến đấu của chúng, vậy mà Pokémon của cậu khiến tôi bất ngờ hoàn toàn!
 Pokemon = WURMPLE,8
 Pokemon = KRICKETOT,8
 Pokemon = BURMY,8
 #-------------------------------
+[PICNICKER,NgocTram]
+LoseText = Ôi không! Có lẽ tôi vui quá nên quên mất phải tập trung!
+Pokemon = CACNEA,8
+Pokemon = TAILLOW,8
+Pokemon = BUIZEL,8
+#-------------------------------
 [PAINTER3_M,BinhKhiem]
-LoseText = A very good battle, indeed!
+LoseText = Tuyệt vời... Một trận đấu thật đẹp. Ta suýt quên mất mình phải vẽ!
 Pokemon = KRABBY,8
 Pokemon = PHANPY,8
 Pokemon = HOOTHOOT,8
@@ -300,60 +313,67 @@ Pokemon = SKWOVET,9
 Pokemon = MISDREAVUS,9
 Pokemon = CUBONE,9
 #-------------------------------
-[BUGCATCHER_M,Lamar]
-LoseText = A very good battle, indeed!
+[BUGCATCHER2_M,VanHao]
+LoseText = Pokémon của cậu biết cách chiến đấu với Pokémon hệ Bọ thật đấy!
 Pokemon = COMBEE,10
 Pokemon = GRUBBIN,10
 Pokemon = SURSKIT,10
 #-------------------------------
-[BUGCATCHER_M,Cameron]
-LoseText = A very good battle, indeed!
+[BUGCATCHER_M,ThienTam]
+LoseText = Tuyệt thật! Tôi không ngờ Pokémon của cậu lại chiến đấu như vậy!
 Pokemon = SPINARAK,10
 Pokemon = BURMY,10
 Pokemon = NYMBLE,10
 #-------------------------------
-[YOUNGSTER,Felipe]
-LoseText = A very good battle, indeed!
+[FISHERMAN,TheTrung]
+LoseText = Chà, đây đúng là một “mẻ cá” lớn hơn bất cứ thứ gì tôi có thể câu được!
+Pokemon = SPHEAL,10
+Pokemon = CORPHISH,10
+Pokemon = MUDKIP,10
+#-------------------------------
+[YOUNGSTER,AnhQuan]
+LoseText = Agh! Biết thế tôi đã ở yên trên đường chính rồi!
 Pokemon = PATRAT,11
 Pokemon = PIKIPEK,11
 Pokemon = ARON,11
 #-------------------------------
-[BEAUTY,Margarita]
-LoseText = A very good battle, indeed!
+[BEAUTY,LamOanh]
+LoseText = Ôi trời! Trận đấu này căng hơn tôi tưởng nhiều đấy!
 Pokemon = SHUPPET,11
 Pokemon = SWIRLIX,11
 Pokemon = CUBONE,11
 #-------------------------------
-[BUGCATCHER_M,Ramiro]
-LoseText = A very good battle, indeed!
+[BUGCATCHER2_F,NhuNguyet]
+LoseText = Ôi không! Tôi mải vui quá nên quên mất phải tập trung!
 Pokemon = NINCADA,11
 Pokemon = VENONAT,11
 Pokemon = BUTTERFREE,11
 #-------------------------------
-[TEAMSTEAMGRUNT_M,Senth]
-LoseText = I will take revenge next time!
-Pokemon = DUSKULL,13
-Pokemon = MANKEY,13
-Pokemon = REMORAID,13
-#-------------------------------
-[TEAMSTEAMGRUNT_F,Lesla]
-LoseText = I will take revenge next time!
+[TEAMCHAOSGRUNT_M,VanTiep]
+LoseText = Hừ... Đúng là xui xẻo.
 Pokemon = VULPIX,13
 Pokemon = TANGELA,13
 Pokemon = TIMBURR,13
 #-------------------------------
-[TEAMSTEAMGRUNT_M,Nikon]
-LoseText = I will take revenge next time!
+[TEAMCHAOSGRUNT_F,HongGam]
+LoseText = Tch! Chuyện này đáng lẽ không được xảy ra...
+Pokemon = DUSKULL,13
+Pokemon = MANKEY,13
+Pokemon = REMORAID,13
+#-------------------------------
+[TEAMCHAOSGRUNT_M,QuocTrang]
+LoseText = Cậu mạnh hơn vẻ ngoài đấy.
 Pokemon = LECHONK,13
 Pokemon = KLINK,13
 Pokemon = SNORUNT,13
 #-------------------------------
-[STEAMADMIN_Sheila,Sheila]
-LoseText = I will take revenge next time!
-Pokemon = SKITTY,15
-Pokemon = SHELLOS_1,15
+[TEAMCHAOS_TraMy,TraMy]
+LoseText = Tch... Vậy là kết thúc như thế này sao.
+Pokemon = LICKITUNG,16
+Pokemon = HELIOPTILE,16
+Pokemon = PUMPKABOO,16
 Pokemon = GOTHITA,16
-Pokemon = TREVENANT,18
+Pokemon = NINETALES_1,18
 #-------------------------------
 [POKEMONTRAINER_Blue,Blue]
 LoseText = A very good battle, indeed!

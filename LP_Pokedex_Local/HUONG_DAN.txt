@@ -1,0 +1,32 @@
+LP POKEDEX - BAN WEB CHAY TREN MAY
+=================================
+
+1. Giai nen toan bo ZIP vao mot thu muc tren Windows.
+2. May can Python 3. Neu chua co, cai Python 3 tu https://www.python.org/downloads/
+   va chon "Add python.exe to PATH" khi cai dat. Khong can cai thu vien khac.
+3. Nhan dup START_WINDOWS.bat. Trinh duyet se mo http://127.0.0.1:8765.
+   Giu cua so lenh mo trong luc xem Pokédex.
+
+CAP NHAT KHI SUA GAME
+---------------------
+- Mac dinh, sua hoac them file .txt trong thu muc PBS nam canh START_WINDOWS.bat;
+  them / thay file .png vao thu muc Sprite nam canh START_WINDOWS.bat.
+- Luu file. Tren web, bam "Lam moi du lieu" hoac nhan F5.
+- Web doc lai PBS va sprite tu hai thu muc nay. Khong can gui ZIP cho ai.
+
+DE WEB DOC THANG FILE GAME (khuyen dung)
+----------------------------------------
+Mo PATHS.txt. Dien duong dan tuyet doi vao hai dong PBS= va SPRITE=, vi du:
+PBS=C:\Games\Lightest Platinum\PBS
+SPRITE=C:\Games\Lightest Platinum\Graphics\Pokemon\Front
+
+Dung dung duong dan den thu muc chua file .txt va den thu muc chua sprite .png.
+Luu PATHS.txt. Tu do sua truc tiep PBS / sprite trong game, chi can bam
+"Lam moi du lieu" tren web. Duong dan vi du co the khac du an cua ban.
+Co the chi khai bao PBS= va de trong SPRITE= neu sprite van nam trong goi nay.
+
+Web chi doc va khong ghi nguoc vao file game.
+Mang Internet khong can thiet khi dung. Dia chi 127.0.0.1 chi truy cap tu may nay.
+
+Luu y: Neu file PBS chua duoc luu, trinh duyet khong thay noi dung moi.
+Neu sua file trong thu muc game khac, hay chep file do vao PBS/Sprite trong goi nay.

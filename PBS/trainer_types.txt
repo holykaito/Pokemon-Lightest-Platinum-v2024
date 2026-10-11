@@ -1632,6 +1632,11 @@ Name = Team Chaos Masked
 Gender = Unknown
 BaseMoney = 80
 #-------------------------------
+[TEAMCHAOS_TraMy]
+Name = Team Chaos
+Gender = Female
+BaseMoney = 100
+#-------------------------------
 [LEADER_TrongDiep]
 Name = Gym Leader
 Gender = Male
@@ -1750,7 +1755,7 @@ Name = Pokémon Trainer
 Gender = Female
 BaseMoney = 100
 #-------------------------------
-[POKEMONTRAINER_Lucas]
+[PKMTRAINER_Curtis]
 Name = Pokémon Trainer
 Gender = Male
 BaseMoney = 100

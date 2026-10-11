@@ -1,0 +1,5 @@
+﻿Name      = Fly Animation
+Version   = 1.0.5
+Essentials= 21.1
+Website   = https://reliccastle.com/resources/1246/
+Credits   = KleinStudio, A.I.R, Crater

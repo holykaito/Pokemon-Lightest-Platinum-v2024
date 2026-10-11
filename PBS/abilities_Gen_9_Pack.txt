@@ -187,3 +187,15 @@ Description = Contact moves deals a quarter of damage against protections.
 [SPICYSPRAY]
 Name = Spicy Spray
 Description = Burns the attacker when hit by a damaging move.
+#-------------------------------
+[FIREMANE]
+Name = Fire Mane
+Description = Powers up Fire-type moves.
+#-------------------------------
+[EELEVATE]
+Name = Eelevate
+Description = Immune to Ground-type moves. Boosts best stat when it deals a KO.
+#-------------------------------
+[AURAGUARD]
+Name = Aura Guard
+Description = Halves the damage from contact moves.

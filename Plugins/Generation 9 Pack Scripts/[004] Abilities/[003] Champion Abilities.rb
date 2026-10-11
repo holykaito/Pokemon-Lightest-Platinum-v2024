@@ -96,6 +96,17 @@ Battle::AbilityEffects::OnDealingHit.add(:UNSEENFIST,
 #     mods[:evasion_multiplier] *= 1.25 if target.effectiveWeather == :Hail && !user.hasActiveAbility?(:MEGASOL)
 #   }
 # )
+
+#===============================================================================
+# CertainSwitching handlers (Run Away)
+#===============================================================================
+Battle::AbilityEffects::CertainSwitching.add(:RUNAWAY,
+  proc { |ability, switcher, battle|
+    next true if Settings::CHAMPIONS_MECHANICS
+  }
+)
+
+
 ################################################################################
 # NEW ABILITIES
 ################################################################################
@@ -113,7 +124,7 @@ Battle::AbilityEffects::ModifyMoveBaseType.add(:DRAGONIZE,
 Battle::AbilityEffects::DamageCalcFromUser.copy(:AERILATE, :DRAGONIZE)
 
 #===============================================================================
-# Mega Sol (Need to change all sun-related moves)
+# Mega Sol (Added to all sun-related moves)
 #===============================================================================
 
 #===============================================================================
@@ -139,5 +150,45 @@ Battle::AbilityEffects::OnBeingHit.add(:SPICYSPRAY,
       user.pbBurn(target, msg)
     end
     battle.pbHideAbilitySplash(target)
+  }
+)
+
+#===============================================================================
+# Fire Mane
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromUser.add(:FIREMANE,
+  proc { |ability, user, target, move, mults, baseDmg, type|
+    mults[:attack_multiplier] *= 1.5 if type == :FIRE
+  }
+)
+
+#===============================================================================
+# Eelevate
+#===============================================================================
+Battle::AbilityEffects::OnEndOfUsingMove.add(:EELEVATE,
+  proc { |ability, user, targets, move, battle|
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+    numFainted = 0
+    targets.each { |b| numFainted += 1 if b.damageState.fainted }
+    next if numFainted == 0
+    userStats = user.plainStats
+    highestStatValue = 0
+    userStats.each_value { |value| highestStatValue = value if highestStatValue < value }
+    GameData::Stat.each_main_battle do |s|
+      next if userStats[s.id] < highestStatValue
+      if user.pbCanRaiseStatStage?(s.id, user)
+        user.pbRaiseStatStageByAbility(s.id, numFainted, user)
+      end
+      break
+    end
+  }
+)
+
+#===============================================================================
+# Aura Guard
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromTarget.add(:AURAGUARD,
+  proc { |ability, user, target, move, mults, power, type|
+    mults[:final_damage_multiplier] /= 2 if move.pbContactMove?(user)
   }
 )

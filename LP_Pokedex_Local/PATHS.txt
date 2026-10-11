@@ -1,0 +1,4 @@
+# De trong: web doc PBS va Sprite nam trong goi nay.
+# Neu muon doc truc tiep du lieu game, dien duong dan tuyet doi sau dau =.
+PBS=
+SPRITE=
