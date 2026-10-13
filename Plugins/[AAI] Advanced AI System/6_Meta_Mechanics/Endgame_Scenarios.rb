@@ -61,32 +61,37 @@ module AdvancedAI
       score = base_score
       
       # 1. KO Priority (Winning Move = +100)
-      if can_ko?(user, target, move)
-        AdvancedAI.log("  [Endgame] 1v1: Move can KO! +100", :endgame)
+      if AdvancedAI.get_setting(:ko_prediction, 0) > 0 && can_ko?(user, target, move)
+        AdvancedAI.log("1v1: Move can KO! +100", :endgame)
         score += 100
       # 2. 2HKO Priority (+50)
-      elsif can_2hko?(user, target, move)
-        AdvancedAI.log("  [Endgame] 1v1: Move can 2HKO! +50", :endgame)
+      elsif AdvancedAI.get_setting(:ko_prediction, 0) > 0 && can_2hko?(user, target, move)
+        AdvancedAI.log("1v1: Move can 2HKO! +50", :endgame)
         score += 50
       end
       
       # 3. Speed Control
-      if user.pbSpeed < target.pbSpeed
-        # Slower = Priority Moves very valuable
-        if move.priority > 0
-          AdvancedAI.log("  [Endgame] 1v1: Priority move (slower) +60", :endgame)
+      trick_room = battle.field.effects[PBEffects::TrickRoom] > 0
+      slower = trick_room ? user.pbSpeed > target.pbSpeed : user.pbSpeed < target.pbSpeed
+      faster = trick_room ? user.pbSpeed < target.pbSpeed : user.pbSpeed > target.pbSpeed
+      if slower
+        # Slower = Priority Moves very valuable (attacks only - Protect has
+        # priority +4 but never strikes first, score_protect_utility owns it)
+        if move.damagingMove? && AdvancedAI::PriorityTiers.get_priority_tier(move, user) > 0 &&
+           ko_damage(user, target, move) > 0
+          AdvancedAI.log("1v1: Priority move (slower) +60", :endgame)
           score += 60
         end
         
         # Slower = Setup risky
         if AdvancedAI.setup_move?(move.id)
-          AdvancedAI.log("  [Endgame] 1v1: Setup risky (slower) -40", :endgame)
+          AdvancedAI.log("1v1: Setup risky (slower) -40", :endgame)
           score -= 40
         end
-      else
+      elsif faster
         # Faster = Setup safer
         if AdvancedAI.setup_move?(move.id)
-          AdvancedAI.log("  [Endgame] 1v1: Setup safe (faster) +20", :endgame)
+          AdvancedAI.log("1v1: Setup safe (faster) +20", :endgame)
           score += 20
         end
       end
@@ -156,7 +161,7 @@ module AdvancedAI
       # 1. Focus Fire (both on weakest target)
       weakest = find_weakest_opponent(battle, user)
       if weakest && target.index == weakest.index
-        AdvancedAI.log("  [Endgame] 2v2: Targeting weakest +40", :endgame)
+        AdvancedAI.log("2v2: Targeting weakest +40", :endgame)
         score += 40
       end
       
@@ -167,8 +172,8 @@ module AdvancedAI
           # Check if Partner can KO
           partner.moves.each do |partner_move|
             next if !partner_move
-            if can_ko?(partner, target, partner_move)
-              AdvancedAI.log("  [Endgame] 2v2: Protect for partner KO +50", :endgame)
+            if AdvancedAI.get_setting(:ko_prediction, 0) > 0 && can_ko?(partner, target, partner_move)
+              AdvancedAI.log("2v2: Protect for partner KO +50", :endgame)
               score += 50
               break
             end
@@ -178,13 +183,13 @@ module AdvancedAI
       
       # 3. Spread Moves less valuable (only 2 targets)
       if AdvancedAI.spread_move?(move.id)
-        AdvancedAI.log("  [Endgame] 2v2: Spread move limited -20", :endgame)
+        AdvancedAI.log("2v2: Spread move limited -20", :endgame)
         score -= 20
       end
       
       # 4. Priority for secure KOs
-      if can_ko?(user, target, move)
-        AdvancedAI.log("  [Endgame] 2v2: Secure KO +80", :endgame)
+      if AdvancedAI.get_setting(:ko_prediction, 0) > 0 && can_ko?(user, target, move)
+        AdvancedAI.log("2v2: Secure KO +80", :endgame)
         score += 80
       end
       
@@ -195,25 +200,23 @@ module AdvancedAI
     # Winning Move Detection
     #===========================================================================
     
-    # Checks if Move ensures guaranteed Victory
+    # Whether the estimated hit could remove every remaining opposing Pokemon.
     def self.winning_move?(battle, user, move)
-      return false if !battle || !user || !move
-      
-      # All Opponent Pokemon KO-able?
-      opponents = battle.allOtherSideBattlers(user.index)
+      user = user.battler if user.respond_to?(:battler)
+      move = move.move if move.respond_to?(:move)
+      return false unless battle && user && move && !user.fainted? && move.damagingMove?
+      index = user.moves.index { |candidate| candidate.id == move.id }
+      return false unless index && battle.pbCanChooseMove?(user.index, index, false)
+      opponents = battle.allOtherSideBattlers(user.index).reject(&:fainted?)
       return false if opponents.empty?
-      
-      ko_count = 0
-      opponents.each do |opp|
-        next if !opp || opp.fainted?
-        ko_count += 1 if can_ko?(user, opp, move)
+      return false if battle.pbAbleCount(1 - (user.index & 1)) > opponents.length
+      target_data = move.pbTarget(user)
+      return false if opponents.length > 1 && target_data.num_targets <= 1
+      opponents.all? do |opponent|
+        battle.pbMoveCanTarget?(user.index, opponent.index, target_data) && can_ko?(user, opponent, move)
       end
-      
-      # Winning if all active opponents KO-able
-      active_opponents = opponents.count { |opp| opp && !opp.fainted? }
-      return ko_count >= active_opponents
     end
-    
+
     # Finds Winning Move (if exists)
     def self.find_winning_move(battle, user)
       return nil if !battle || !user
@@ -306,84 +309,46 @@ module AdvancedAI
     
     # Checks if Move can KO
     def self.can_ko?(user, target, move)
-      return false if !user || !target || !move
-      
-      # Rough damage calculation - use standardized (move, attacker, defender) order
-      damage = calculate_rough_damage(move, user, target)
-      return damage >= target.hp
+      user = user.battler if user.respond_to?(:battler)
+      target = target.battler if target.respond_to?(:battler)
+      return false unless user && target && move && !target.fainted?
+      return false if target.effects[PBEffects::Endure]
+      if target.hp == target.totalhp
+        return false if target.hasActiveItem?(:FOCUSSASH)
+        return false if target.hasActiveAbility?(:STURDY) && !AdvancedAI::Utilities.ignores_ability?(user, move, target)
+      end
+      ko_damage(user, target, move) >= target.hp
     end
-    
-    # Checks if Move can 2HKO
+
     def self.can_2hko?(user, target, move)
-      return false if !user || !target || !move
-      
-      damage = calculate_rough_damage(move, user, target)
-      return damage * 2 >= target.hp
+      user = user.battler if user.respond_to?(:battler)
+      target = target.battler if target.respond_to?(:battler)
+      return false unless user && target && move && !target.fainted?
+      ko_damage(user, target, move) * 2 >= target.hp
     end
-    
+
+    def self.ko_damage(user, target, move)
+      user = user.battler if user.respond_to?(:battler)
+      target = target.battler if target.respond_to?(:battler)
+      return 0 unless user && target && move
+      return 0 if user.fainted? || move.statusMove?
+      battle = user.instance_variable_get(:@battle)
+      index = user.moves.index { |candidate| candidate && candidate.id == move.id }
+      return 0 if index && !battle.pbCanChooseMove?(user.index, index, false)
+      native = move.respond_to?(:move) ? move.move : move
+      return 0 if target.effects[PBEffects::Substitute] > 0 && !native.ignoresSubstitute?(user)
+      return 0 if AdvancedAI::Utilities.counter_priority_blocked?(battle, native, user, target)
+      return 0 if AdvancedAI::Utilities.counter_shield_blocked?(battle, native, user, target)
+      calculate_rough_damage(native, user, target)
+    end
+
     # Rough Damage Calculation
     # NOTE: Signature matches Move_Scorer: (move, attacker, defender)
     def self.calculate_rough_damage(move, user, target)
       return 0 if !user || !target || !move
       return 0 if move.statusMove?
-      
-      # Resolve effective type and power via shared helpers
-      effective_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
-      power = AdvancedAI::CombatUtilities.resolve_move_power(move)
-      return 0 if power == 0
-      
-      # Very simplified (enough for AI)
-      attack = (move.physicalMove? ? user.attack : user.spatk)
-      # Huge Power / Pure Power (2x Attack for physical moves)
-      if move.physicalMove?
-        has_huge = user.respond_to?(:hasActiveAbility?) ?
-          (user.hasActiveAbility?(:HUGEPOWER) || user.hasActiveAbility?(:PUREPOWER)) :
-          ([:HUGEPOWER, :PUREPOWER].include?(user.ability_id) rescue false)
-        attack *= 2 if has_huge
-      end
-      defense = (move.physicalMove? ? target.defense : target.spdef)
-      defense = [defense, 1].max  # Prevent division by zero
-      
-      # Type effectiveness (Scrappy/Mind's Eye: Normal/Fighting hits Ghost)
-      target_types = target.respond_to?(:pbTypes) ? target.pbTypes(true) : target.types
-      effectiveness = AdvancedAI::CombatUtilities.scrappy_effectiveness(effective_type, user, target_types)
-      # Effectiveness.calculate already returns a float multiplier (1.0 = neutral)
-      multiplier = effectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
-      
-      # STAB (Adaptability: 2.0 instead of 1.5)
-      has_stab = user.respond_to?(:pbHasType?) ? user.pbHasType?(effective_type) : user.hasType?(effective_type)
-      stab = has_stab ? 1.5 : 1.0
-      if stab == 1.5
-        has_adapt = user.respond_to?(:hasActiveAbility?) ?
-          user.hasActiveAbility?(:ADAPTABILITY) :
-          (user.ability_id == :ADAPTABILITY rescue false)
-        stab = 2.0 if has_adapt
-      end
 
-      # Rough formula
-      damage = ((2 * user.level / 5.0 + 2) * power * attack / defense / 50 + 2) * multiplier * stab
-      
-      # Field & context modifiers (weather, terrain, items, burn)
-      damage *= AdvancedAI::CombatUtilities.field_modifier(nil, user, effective_type, move, move.physicalMove?, target)
-      
-      # Defender modifiers (Assault Vest, Eviolite, weather defense)
-      damage *= AdvancedAI::CombatUtilities.defender_modifier(nil, target, move.physicalMove?)
-
-      # Screen modifiers (Reflect / Light Screen / Aurora Veil)
-      damage *= AdvancedAI::CombatUtilities.screen_modifier(nil, user, target, move.physicalMove?)
-      
-      # Parental Bond (1.25x — two hits: 100% + 25%)
-      if !move.multiHitMove?
-        has_pb = user.respond_to?(:hasActiveAbility?) ?
-          user.hasActiveAbility?(:PARENTALBOND) :
-          (user.ability_id == :PARENTALBOND rescue false)
-        damage *= 1.25 if has_pb
-      end
-
-      # Ability damage modifiers (Fur Coat, Ice Scales, Multiscale, Tinted Lens, etc.)
-      damage *= AdvancedAI::CombatUtilities.ability_damage_modifier(user, target, effective_type, move.physicalMove?, effectiveness)
-
-      return damage.to_i
+      AdvancedAI::CombatUtilities.estimate_damage(user, move, target)
     end
     
     # Finds weakest Opponent

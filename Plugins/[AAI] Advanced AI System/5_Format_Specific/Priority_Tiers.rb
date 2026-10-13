@@ -53,34 +53,43 @@ module AdvancedAI
     # Get Priority Level
     #===========================================================================
     
-    def self.get_priority_tier(move)
+    def self.get_priority_tier(move, user = nil)
       return 0 unless move
-      
-      # Check move's inherent priority
-      base_priority = move.priority || 0
-      
-      # For conditional priority moves (e.g., Grassy Glide in Grassy Terrain)
-      # This would need battle state context
-      
-      return base_priority
+      move = move.move if move.respond_to?(:move)
+      return move.priority || 0 unless user && move.respond_to?(:pbPriority)
+      battler = user.respond_to?(:battler) ? user.battler : user
+      return move.priority || 0 unless battler
+      # Priority handlers can set effects such as Prankster; isolate prediction.
+      probe = battler.dup
+      probe.instance_variable_set(:@effects, battler.effects.dup)
+      priority = move.pbPriority(probe)
+      if probe.abilityActive?
+        priority = Battle::AbilityEffects.triggerPriorityChange(probe.ability, probe, move, priority)
+      end
+      return priority
     end
-    
+
     #===========================================================================
     # Priority Move Scoring
     #===========================================================================
     
     def self.score_priority_advantage(user, move, target, battle, skill_level = 100)
+      return 0 if move && move.statusMove?
       return 0 unless skill_level >= 60
       return 0 unless move
+      # Protect resolves before attacks but does not provide speed-control
+      # value. Its dedicated scorer handles its actual situational utility.
+      return 0 if AdvancedAI.protect_move?(move.id)
       
-      move_priority = get_priority_tier(move)
+      move_priority = get_priority_tier(move, user)
       return 0 if move_priority == 0  # Not a priority move
       
       score = 0
       
       # === PRIORITY BLOCKERS (Dazzling, Queenly Majesty, Armor Tail) ===
       # These abilities block priority moves targeting ANY Pokémon on that side
-      if move_priority > 0 && move.damagingMove?
+      if move_priority > 0 && move.damagingMove? && target.opposes?(user)
+        return -100 if battle.field.terrain == :Psychic && target.affectedByTerrain?
         blocking_abilities = [:DAZZLING, :QUEENLYMAJESTY, :ARMORTAIL]
         unless user.respond_to?(:hasMoldBreaker?) && user.hasMoldBreaker?
           # Check target
@@ -102,15 +111,18 @@ module AdvancedAI
       # Pre-compute speeds (used in positive, negative, and ability sections)
       user_speed = user.pbSpeed
       target_speed = target.pbSpeed
+      trick_room = battle.field.effects[PBEffects::TrickRoom] > 0
+      user_is_later = trick_room ? user_speed > target_speed : user_speed < target_speed
 
       # === POSITIVE PRIORITY ===
       if move_priority > 0
-        # Priority is most valuable when we're slower
-        if target_speed > user_speed
+        # Striking first only helps a move that actually hits
+        speed_matters = move.damagingMove?
+        if speed_matters && user_is_later
           score += 40 * move_priority  # Higher priority = more valuable
           
           # Extra bonus if we're MUCH slower
-          speed_ratio = target_speed.to_f / [user_speed, 1].max
+          speed_ratio = [user_speed, target_speed].max.to_f / [[user_speed, target_speed].min, 1].max
           if speed_ratio >= 2.0
             score += 30  # Completely outclassed in speed
           elsif speed_ratio >= 1.5
@@ -132,7 +144,7 @@ module AdvancedAI
             score += 40
           end
           
-        else
+        elsif speed_matters
           # We're already faster - priority is less valuable
           score += 10 * move_priority  # Small bonus
         end
@@ -262,47 +274,6 @@ module AdvancedAI
         end
       end
       
-      # === PRANKSTER ABILITY ===
-      # Prankster gives status moves +1 priority
-      if user.hasActiveAbility?(:PRANKSTER) && move.statusMove?
-        # Treat as priority +1
-        if target_speed > user_speed
-          score += 50  # Status move goes first!
-        else
-          score += 20
-        end
-        
-        # EXCEPTION: Dark-types are immune to Prankster
-        if target.pbHasType?(:DARK)
-          score -= 200  # Move will fail!
-        end
-      end
-      
-      # === GALE WINGS ABILITY ===
-      # Gale Wings gives Flying moves priority at full HP
-      if user.hasActiveAbility?(:GALEWINGS)
-        resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
-        if resolved_type == :FLYING
-          user_hp_percent = AdvancedAI::CombatUtilities.hp_percent(user)
-          if user_hp_percent >= 1.0
-            # Treat as priority +1
-            score += 40 if target_speed > user_speed
-          end
-        end
-      end
-      
-      # === TRIAGE ABILITY ===
-      # Triage gives healing moves +3 priority
-      if user.hasActiveAbility?(:TRIAGE) && move.healingMove?
-        # Massive bonus - heal before getting hit
-        user_hp_percent = AdvancedAI::CombatUtilities.hp_percent(user)
-        if user_hp_percent < 0.50
-          score += 80  # Critical healing
-        else
-          score += 40
-        end
-      end
-      
       return score
     end
     
@@ -314,7 +285,7 @@ module AdvancedAI
       return false unless user
       
       user.moves.each do |move|
-        return true if move && get_priority_tier(move) > 0
+        return true if move && get_priority_tier(move, user) > 0
       end
       
       return false
@@ -328,7 +299,7 @@ module AdvancedAI
       
       user.moves.each do |move|
         next unless move
-        next if get_priority_tier(move) <= 0  # Not a priority move
+        next if get_priority_tier(move, user) <= 0  # Not a priority move
         
         score = score_priority_advantage(user, move, target, battle)
         if score > best_score
@@ -349,20 +320,23 @@ end
 #===============================================================================
 
 class Battle::AI
-  alias priority_tiers_pbRegisterMove pbRegisterMove
+  alias_method :priority_tiers_pbRegisterMove, :pbRegisterMove unless method_defined?(:priority_tiers_pbRegisterMove) || private_method_defined?(:priority_tiers_pbRegisterMove)
   
   def pbRegisterMove(user, move)
     score = priority_tiers_pbRegisterMove(user, move)
     
     return score unless user && move
     
-    skill_level = 100
-    target = @battle.allOtherSideBattlers(user.index).find { |b| b && !b.fainted? }
+    skill_level = @_resolved_skill || 100
+    target = @_resolved_target || @battle.allOtherSideBattlers(user.index).find { |b| b && !b.fainted? }
     
     # Apply priority tier bonus/penalty
     if target
       priority_score = AdvancedAI::PriorityTiers.score_priority_advantage(user, move, target, @battle, skill_level)
       score += priority_score
+      if @_score_factors && priority_score != 0
+        @_score_factors["Priority Advantage"] = priority_score
+      end
     end
     
     return score

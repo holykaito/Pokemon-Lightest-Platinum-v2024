@@ -11,14 +11,14 @@ module AdvancedAI
     :SOULDEVOURING => 1.8,  # +1 all stats on KO (custom)
     :CHILLINGNEIGH => 1.7,  # +1 Atk on KO (Ice)
     :GRIMNEIGH     => 1.7,  # +1 SpAtk on KO (Dark)
-    :ASONEGRIMNEIGH => 1.9, # Unnerve + Chilling Neigh (+1 Atk on KO)
-    :ASONECHILLINGNEIGH => 1.9, # Unnerve + Grim Neigh (+1 SpAtk on KO)
+    :ASONEGLASTRIER => 1.9, # Unnerve + Chilling Neigh (+1 Atk on KO)
+    :ASONESPECTRIER => 1.9, # Unnerve + Grim Neigh (+1 SpAtk on KO)
     :POWEROFALCHEMY => 1.5,  # Copies fainted ally's ability (could gain Moxie/Speed Boost)
     :RECEIVER       => 1.5,  # Same as Power of Alchemy (doubles variant)
   }
   
   SPEED_SHIFT_ABILITIES = {
-    :UNBURDEN      => 2.5,  # 2x Speed after item consumed - MASSIVE threat
+    :UNBURDEN      => 2.5,  # 2x Speed after item consumption
     :SLOWSTART     => 0.3,  # Half Atk/Speed for 5 turns - weakling
     :SPEEDBOOST    => 1.6,  # +1 Speed per turn
   }
@@ -41,15 +41,22 @@ class Battle::AI
   # SNOWBALL THREAT DETECTION (Moxie, Beast Boost)
   # ============================================================================
   
-  alias advanced_abilities_pbRegisterMove pbRegisterMove
+  alias_method :advanced_abilities_pbRegisterMove, :pbRegisterMove unless method_defined?(:advanced_abilities_pbRegisterMove) || private_method_defined?(:advanced_abilities_pbRegisterMove)
   def pbRegisterMove(user, move)
     score = advanced_abilities_pbRegisterMove(user, move)
     
     return score unless user && move
-    
-    # Check all targets for snowball abilities
-    @battle.allOtherSideBattlers(user.index).each do |target|
+
+    target_data = move.pbTarget(user) rescue nil
+    targets = []
+    if target_data && target_data.num_targets > 0
+      targets = @_resolved_targets || [@_resolved_target].compact
+    end
+
+    # Check each opponent this move will actually affect
+    targets.each do |target|
       next unless target && !target.fainted?
+      next unless target.opposes?(user)
       
       # SNOWBALL ABILITIES: Don't feed kills to Moxie/Beast Boost users
       snowball_key = AdvancedAI::SNOWBALL_ABILITIES.keys.find { |a| target.hasActiveAbility?(a) }
@@ -57,7 +64,7 @@ class Battle::AI
         score += evaluate_snowball_threat(user, move, target)
       end
       
-      # REVERSE ABILITIES: Stat drops = stat boosts!
+      # Reverse abilities turn stat drops into boosts.
       reverse_key = AdvancedAI::REVERSE_ABILITIES.keys.find { |a| target.hasActiveAbility?(a) }
       if reverse_key
         score += evaluate_reverse_ability(user, move, target)
@@ -71,8 +78,7 @@ class Battle::AI
     
     # REGENERATOR: Penalty for forcing switch (they get free 33% heal)
     if ["SwitchOutTargetStatusMove", "SwitchOutTargetDamagingMove"].include?(move.function_code)
-      # In doubles, only penalize once for the actual target (not all opponents)
-      target_battler = @battle.allOtherSideBattlers(user.index).first
+      target_battler = @_resolved_target
       if target_battler && target_battler.hasActiveAbility?(:REGENERATOR)
         score -= 15  # Penalty - they get free 33% heal
         AdvancedAI.log("  #{move.name} vs Regenerator: -15 (free heal on force-out)", "Abilities")
@@ -90,7 +96,7 @@ class Battle::AI
     ability_name = ""
     AdvancedAI::SNOWBALL_ABILITIES.each do |ab, _|
       if target.hasActiveAbility?(ab)
-        ability_name = GameData::Ability.get(ab).name
+        ability_name = GameData::Ability.try_get(ab)&.name || ab.to_s
         break
       end
     end
@@ -103,13 +109,6 @@ class Battle::AI
       # KOing Moxie/Beast Boost user is GOOD (prevent snowball)
       score += 30
       AdvancedAI.log("  KO #{target.name} (#{ability_name}): +30 (prevent snowball)", "Abilities")
-    else
-      # DON'T leave them at low HP for easy snowball
-      hp_percent = target.hp.to_f / target.totalhp
-      if hp_percent < 0.35 && rough_damage > 0.2
-        score -= 20  # They can easily KO us next turn and get +1
-        AdvancedAI.log("  Damage to #{ability_name}: -20 (sets up snowball)", "Abilities")
-      end
     end
     
     # If they already have +1 or more, URGENT to KO
@@ -128,7 +127,7 @@ class Battle::AI
     
     case ability_id
     when :CONTRARY
-      # DON'T use stat-lowering moves on Contrary users (they become buffs!)
+      # Stat-lowering moves benefit Contrary targets.
       # This includes both status moves AND damaging moves with stat-drop effects
       # (e.g., Snarl, Icy Wind, Moonblast, Psychic)
       # Check if move lowers target's stats (function_code is a CamelCase string)
@@ -240,11 +239,9 @@ class Battle::AI
     if speed_key
       multiplier = AdvancedAI::SPEED_SHIFT_ABILITIES[speed_key]
       
-      # Unburden: Only threat if item consumed
-      if speed_key == :UNBURDEN && battler.item
-        multiplier = 1.0  # Not active yet
-      elsif speed_key == :UNBURDEN && !battler.item
-        multiplier = 2.5  # ACTIVE - extreme threat
+      if speed_key == :UNBURDEN
+        active = !battler.item && (battler.effects[PBEffects::Unburden] rescue false)
+        multiplier = active ? 2.5 : 1.0
       end
     end
     
@@ -262,10 +259,169 @@ class Battle::AI
     
     return multiplier
   end
+  
+  # ============================================================================
+  # GEN 9: Zero to Hero / Costar / Hospitality switch-in awareness
+  # Used by switch evaluators to bias bringing these mons in.
+  # ============================================================================
+  def gen9_switchin_bonus(pkmn)
+    return 0 unless AdvancedAI::GEN9_PACK_COMPAT
+    return 0 unless pkmn
+    bonus = 0
+    begin
+      ab = pkmn.respond_to?(:ability_id) ? pkmn.ability_id : (pkmn.ability rescue nil)
+      ab = ab.id if ab.is_a?(GameData::Ability)
+      
+      case ab
+      when :ZEROTOHERO
+        # Palafin: switching out and back in flips to Hero form (huge stat boost).
+        bonus += 60
+      when :ORICHALCUMPULSE
+        bonus += 25  # Sets Sun + 1.33x physical
+      when :HADRONENGINE
+        bonus += 25  # Sets Electric Terrain + 1.33x special
+      when :PROTOSYNTHESIS, :QUARKDRIVE
+        # Booster Energy active = guaranteed boost on switch-in
+        if pkmn.respond_to?(:item_id) && pkmn.item_id == :BOOSTERENERGY
+          bonus += 30
+        end
+        # Auto-active via weather/terrain (no item needed)
+        if @battle
+          begin
+            wx      = (@battle.field.weather rescue :None)
+            terrain = (@battle.field.terrain rescue :None)
+            if (ab == :PROTOSYNTHESIS && wx == :Sun) ||
+               (ab == :QUARKDRIVE     && terrain == :Electric)
+              bonus += 20
+            end
+          rescue
+          end
+        end
+      when :GRIMNEIGH, :CHILLINGNEIGH
+        bonus += 5  # Ready to snowball if it KOs
+      when :REGENERATOR
+        bonus += 10  # Comes in healthier on subsequent switches
+      when :INTIMIDATE
+        bonus += 15  # Free -1 Atk on opponent
+      when :GOODASGOLD
+        bonus += 15  # Status immunity is hugely valuable defensively
+      when :PURIFYINGSALT
+        bonus += 15  # Status immunity + Ghost resistance
+      when :ICESCALES
+        bonus += 20  # Halves all special damage — premier special wall
+      when :FURCOAT
+        bonus += 18  # Halves all physical damage
+      when :THERMALEXCHANGE
+        bonus += 12  # Burn immunity + Atk boost on Fire hits
+      when :GUARDDOG
+        bonus += 10  # Intimidate immunity + can't be phazed
+      when :WINDPOWER
+        bonus += 5
+      when :CUDCHEW
+        # If holding a berry, will recycle it next turn → effectively two uses
+        if pkmn.respond_to?(:item_id) && pkmn.item_id
+          item_data = (GameData::Item.try_get(pkmn.item_id) rescue nil)
+          if item_data && item_data.is_berry?
+            bonus += 12
+          end
+        end
+      when :ARMORTAIL, :DAZZLING, :QUEENLYMAJESTY
+        bonus += 8  # Priority immunity (vs. Sucker Punch / Fake Out / etc.)
+      when :MIRRORARMOR
+        bonus += 8  # Reflects stat drops back (Intimidate / etc.)
+      when :EMBODYASPECT_TEAL, :EMBODYASPECT_HEARTHFLAME, :EMBODYASPECT_WELLSPRING, :EMBODYASPECT_CORNERSTONE
+        # Ogerpon masks: free +1 stat on switch-in (Speed/Atk/SpDef/Def respectively)
+        bonus += 20
+      when :SUPERSWEETSYRUP
+        # Dipplin/Hydrapple line: -1 evasion on opponents on first switch-in
+        bonus += 10
+      when :OPPORTUNIST
+        # Copies opponent boosts when they happen — minor switch bias if opponent has setup moves
+        bonus += 5
+      when :COSTAR
+        # Doubles-only: copies ally stat changes on switch-in
+        if @battle && @user
+          begin
+            user_side = @user.idxOwnSide rescue (@user.index & 1)
+            @battle.battlers.each do |a|
+              next unless a && !a.fainted?
+              a_side = a.idxOwnSide rescue (a.index & 1)
+              next if a_side != user_side
+              next if a.index == @user.index
+              total = 0
+              [:ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED, :ACCURACY, :EVASION].each do |st|
+                stage = (a.stages[st] rescue 0)
+                total += stage if stage > 0
+              end
+              bonus += total * 8  # Each copied positive stage ~ +8 score
+            end
+          rescue
+          end
+        else
+          bonus += 5
+        end
+      when :HOSPITALITY
+        # Doubles-only: heal ally 25% on switch-in
+        if @battle && @user
+          begin
+            user_side = @user.idxOwnSide rescue (@user.index & 1)
+            @battle.battlers.each do |a|
+              next unless a && !a.fainted?
+              a_side = a.idxOwnSide rescue (a.index & 1)
+              next if a_side != user_side
+              next if a.index == @user.index
+              hp_missing = 1.0 - (a.hp.to_f / [a.totalhp, 1].max)
+              bonus += (hp_missing * 30).to_i  # Up to +30 if ally is at 0%
+            end
+          rescue
+          end
+        else
+          bonus += 5
+        end
+      when :COMMANDER
+        # Commander boosts an allied Dondozo.
+        if @battle && @user
+          begin
+            user_side = @user.idxOwnSide rescue (@user.index & 1)
+            has_dondozo_ally = @battle.battlers.any? do |b|
+              next false unless b && !b.fainted?
+              b_side = b.idxOwnSide rescue (b.index & 1)
+              b_side == user_side && b.index != @user.index && b.isSpecies?(:DONDOZO)
+            end
+            bonus += 50 if has_dondozo_ally  # +2 to ALL stats on Dondozo is huge
+          rescue
+          end
+        end
+      end
+      
+      # === Iron Ball penalty: halves Speed + grounds the holder ===
+      # Bad on a fast attacker, neutral on a Trick-Room mon, situationally good
+      # if user wants to be grounded for Earthquake immunity reasons (rare).
+      if pkmn.respond_to?(:item_id) && pkmn.item_id == :IRONBALL
+        spd = (pkmn.respond_to?(:speed) ? pkmn.speed : (pkmn.calcStats[:SPEED] rescue 0))
+        if @battle && (@battle.field.effects[PBEffects::TrickRoom] > 0 rescue false)
+          bonus += 10  # Halved Speed is good in Trick Room
+        elsif spd >= 90
+          bonus -= 20  # Crippling on fast attackers
+        else
+          bonus -= 5   # Mild penalty otherwise
+        end
+        # Extra penalty if Flying-type / Levitate (Iron Ball negates immunity)
+        types = (pkmn.types rescue [])
+        ab = pkmn.respond_to?(:ability_id) ? pkmn.ability_id : nil
+        if types.include?(:FLYING) || ab == :LEVITATE
+          bonus -= 15  # Loses Ground immunity
+        end
+      end
+    rescue
+    end
+    return bonus
+  end
 end
 
 AdvancedAI.log("Advanced Abilities System loaded", "Core")
 AdvancedAI.log("  - Snowball detection (Moxie, Beast Boost)", "Abilities")
+AdvancedAI.log("  - Gen 9 switch-in awareness (Zero to Hero, Booster Energy paradoxes)", "Abilities")
 AdvancedAI.log("  - Reverse abilities (Contrary, Defiant, Competitive)", "Abilities")
 AdvancedAI.log("  - Speed shift (Unburden, Speed Boost)", "Abilities")
 AdvancedAI.log("  - Switch abilities (Regenerator, Natural Cure)", "Abilities")

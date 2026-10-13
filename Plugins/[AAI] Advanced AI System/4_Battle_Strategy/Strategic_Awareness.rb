@@ -76,7 +76,7 @@ module AdvancedAI
       :SNOWWARNING => :Snow, :ORICHALCUMPULSE => :Sun,
     }
 
-    RAIN_ABUSERS  = [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC]
+    RAIN_ABUSERS  = [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION]
     SUN_ABUSERS   = [:CHLOROPHYLL, :SOLARPOWER, :LEAFGUARD, :FLOWERGIFT, :HARVEST, :PROTOSYNTHESIS]
     SAND_ABUSERS  = [:SANDRUSH, :SANDFORCE, :SANDVEIL]
     HAIL_ABUSERS  = [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE]
@@ -193,7 +193,7 @@ module AdvancedAI
 
       state[:opponent_archetype] = archetype
       state[:archetype_confidence] = confidence
-      AdvancedAI.log("[Strategy] Opponent archetype: #{archetype} (#{confidence}%)", "Strategy")
+      AdvancedAI.log("Opponent archetype: #{archetype} (#{confidence}%)", "Strategy")
       archetype
     end
 
@@ -296,7 +296,7 @@ module AdvancedAI
 
       # Detect if our win condition changed (plan failed, adapt)
       if prev && current_win_con && prev != current_win_con[:type]
-        AdvancedAI.log("[Strategy] Win condition shifted: #{prev} → #{current_win_con[:type]}", "Strategy")
+        AdvancedAI.log("Win condition shifted: #{prev} → #{current_win_con[:type]}", "Strategy")
 
         # Transitional bonuses to help the AI adapt
         case current_win_con[:type]
@@ -387,7 +387,6 @@ module AdvancedAI
             next if !m || m.pp <= 0
             move_data = GameData::Move.try_get(m.id)
             next if !move_data || move_data.power == 0
-            # Does this move hit the attacking type's common Pokemon?
             has_coverage = true  # Simplified: can attack back
             break
           end if pkmn.moves
@@ -404,7 +403,7 @@ module AdvancedAI
       state[:coverage_gaps] = gaps
       state[:coverage_gaps_alive_count] = alive_count
       if gaps.any?
-        AdvancedAI.log("[Strategy] Coverage gaps: #{gaps.join(', ')}", "Strategy")
+        AdvancedAI.log("Coverage gaps: #{gaps.join(', ')}", "Strategy")
       end
       gaps
     end
@@ -435,7 +434,6 @@ module AdvancedAI
         our_party.each do |pkmn|
           next if !pkmn || pkmn.fainted? || pkmn.egg?
           my_types = get_pokemon_types(pkmn)
-          # Can resist their STAB and hit back?
           resists_stab = opp_types.all? { |t| type_effectiveness_against(t, my_types) < 1.0 }
           handlers << pkmn if resists_stab
         end
@@ -443,7 +441,7 @@ module AdvancedAI
         # If only ONE handler → that Pokemon is critical
         if handlers.length == 1
           critical << handlers.first unless critical.include?(handlers.first)
-          AdvancedAI.log("[Strategy] #{handlers.first.name} is sole answer to #{get_name(opp)}", "Strategy")
+          AdvancedAI.log("#{handlers.first.name} is sole answer to #{get_name(opp)}", "Strategy")
         end
       end
 
@@ -562,7 +560,7 @@ module AdvancedAI
         old_entry = state[:remaining_threats].find { |t| t[:pokemon] == name }
         if old_entry
           state[:eliminated_threats] << old_entry.merge(alive: false, turn_eliminated: battle.turnCount)
-          AdvancedAI.log("[Strategy] Threat eliminated: #{name} (was #{old_entry[:level].round(1)} threat)", "Strategy")
+          AdvancedAI.log("Threat eliminated: #{name} (was #{old_entry[:level].round(1)} threat)", "Strategy")
         end
       end
 
@@ -692,7 +690,7 @@ module AdvancedAI
 
       # Log detected cores
       found_cores.each do |core_name|
-        AdvancedAI.log("[Strategy] Defensive core detected: #{core_name}", "Strategy")
+        AdvancedAI.log("Defensive core detected: #{core_name}", "Strategy")
       end
 
       found_cores
@@ -716,7 +714,7 @@ module AdvancedAI
       end
       if bonus > 0
         move_name = move.respond_to?(:name) ? move.name : move.id.to_s
-        AdvancedAI.log("[Strategy] Core-breaking move bonus: +#{bonus} for #{move_name}", "Strategy")
+        AdvancedAI.log("Core-breaking move bonus: +#{bonus} for #{move_name}", "Strategy")
       end
       bonus
     end
@@ -753,7 +751,7 @@ module AdvancedAI
         # 7. Core breaking
         total += core_breaking_bonus(battle, user, move, target) if target
       rescue => e
-        AdvancedAI.log("[Strategy] Error: #{e.message}", "Strategy")
+        AdvancedAI.log("Error: #{e.message}", "Strategy")
       end
 
       total
@@ -912,7 +910,7 @@ class Battle::AI
       bonus = AdvancedAI.strategic_score(@battle, real_user, move, real_target, skill)
       score += bonus if bonus && bonus != 0
     rescue => e
-      AdvancedAI.log("[Strategy] Pipeline error: #{e.message}", "Strategy")
+      AdvancedAI.log("Pipeline error: #{e.message}", "Strategy")
     end
     return score
   end
@@ -920,7 +918,7 @@ end
 
 # Cleanup hook
 class Battle
-  alias aai_strategy_cleanup_pbEndOfBattle pbEndOfBattle
+  alias_method :aai_strategy_cleanup_pbEndOfBattle, :pbEndOfBattle unless method_defined?(:aai_strategy_cleanup_pbEndOfBattle) || private_method_defined?(:aai_strategy_cleanup_pbEndOfBattle)
   def pbEndOfBattle
     AdvancedAI::StrategicAwareness.cleanup(self)
     aai_strategy_cleanup_pbEndOfBattle

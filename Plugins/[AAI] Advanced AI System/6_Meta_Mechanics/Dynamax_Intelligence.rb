@@ -21,7 +21,6 @@ class Battle::AI
     # Check if Dynamax is available for this battler
     # Note: user is an AIBattler, so we use the battle's method with the index
     unless @battle.pbCanDynamax?(user.index)
-      # Detailed diagnostics: which sub-check is failing?
       begin
         battler = @battle.battlers[user.index]
         AdvancedAI.log("  ❌ @battle.pbCanDynamax? returned false — diagnostics:", "Dynamax")
@@ -267,7 +266,6 @@ class Battle::AI
     score = 0
     party = @battle.pbParty(user.index & 1)
     
-    # Better Dynamax Candidates?
     better_candidates = party.count do |pkmn|
       next false if !pkmn || pkmn.fainted? || pkmn.egg?
       # Skip if this Pokemon is currently in battle

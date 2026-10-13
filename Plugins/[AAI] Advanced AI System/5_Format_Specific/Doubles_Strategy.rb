@@ -169,8 +169,7 @@ module AdvancedAI
       if partner_has_strong_move
         score += 60  # Boost strong attack
         
-        # Extra bonus if partner can KO with boost
-        # (Would require damage calc - simplified here)
+        # Flat bonus; partner damage is not calculated here.
         score += 40
       else
         score += 20  # Generic bonus
@@ -199,7 +198,6 @@ module AdvancedAI
       
       score = 0
       
-      # Fake Out is CRITICAL Turn 1 in doubles
       score += 80  # High base value - flinch + free turn for partner
       
       # Bonus if partner can setup
@@ -221,8 +219,7 @@ module AdvancedAI
         score += 30  # Prevent opponent from moving first
       end
       
-      # Target Prioritization: Hit the bigger threat
-      # (Simplified - would need threat assessment)
+      # High offensive stats stand in for full threat assessment.
       if target.attack > 120 || target.spatk > 120
         score += 25  # Flinch the sweeper
       end
@@ -248,8 +245,6 @@ module AdvancedAI
           penalty += 50  # Don't both protect - wasteful
         end
         
-        # If partner is protecting this turn (check current move choice)
-        # (Would need battle state tracking - simplified here)
       end
       
       return -penalty
@@ -270,9 +265,6 @@ module AdvancedAI
       # Prefer spread if both opponents are damaged equally
       opponents = user.allOpposing
       return false if opponents.length < 2
-      
-      # Check if both are weak to the spread move
-      # (Simplified - would need type effectiveness calc)
       
       # Prefer spread if both opponents are low HP (can KO both)
       both_low_hp = opponents.all? { |opp| opp.hp < opp.totalhp * 0.4 }
@@ -331,7 +323,7 @@ end
 #===============================================================================
 
 class Battle::AI
-  alias doubles_strategy_pbRegisterMove pbRegisterMove
+  alias_method :doubles_strategy_pbRegisterMove, :pbRegisterMove unless method_defined?(:doubles_strategy_pbRegisterMove) || private_method_defined?(:doubles_strategy_pbRegisterMove)
   
   def pbRegisterMove(user, move)
     score = doubles_strategy_pbRegisterMove(user, move)
@@ -340,8 +332,8 @@ class Battle::AI
     return score unless @battle.pbSideSize(0) > 1
     return score unless user && move
     
-    skill_level = 100
-    target = @battle.allOtherSideBattlers(user.index).find { |b| b && !b.fainted? }
+    skill_level = @_resolved_skill || 100
+    target = @_resolved_target || @battle.allOtherSideBattlers(user.index).find { |b| b && !b.fainted? }
     
     # NOTE: Helping Hand, Fake Out, Follow Me, and Protect scoring is handled
     # by Doubles_Coordination.rb's apply_doubles_coordination to avoid double-counting.

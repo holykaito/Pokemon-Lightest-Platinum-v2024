@@ -10,7 +10,7 @@ module AdvancedAI
     #===========================================================================
     
     OFFENSIVE_PIVOTS = [:UTURN, :VOLTSWITCH, :FLIPTURN]
-    DEFENSIVE_PIVOTS = [:PARTINGSHOT, :TELEPORT, :BATONPASS, :CHILLYRECEPTION]
+    DEFENSIVE_PIVOTS = [:PARTINGSHOT, :TELEPORT, :BATONPASS, :CHILLYRECEPTION, :SHEDTAIL]
     SLOW_PIVOTS = [:TELEPORT]  # Move last for safe switch
     
     ALL_PIVOTS = OFFENSIVE_PIVOTS + DEFENSIVE_PIVOTS
@@ -19,7 +19,6 @@ module AdvancedAI
     # Pivot Decision Making
     #===========================================================================
     
-    # Should we pivot or stay in?
     def self.evaluate_pivot(battle, attacker, move, target, skill_level = 100)
       return 0 unless skill_level >= 60
       return 0 unless ALL_PIVOTS.include?(move.id)
@@ -78,7 +77,6 @@ module AdvancedAI
         score += 15  # Switch-out value despite Sub absorbing damage
       end
       
-      # Do we have a better switch-in available?
       switch_in = find_best_switch_in(battle, attacker, target, skill_level)
       if switch_in
         score += 25
@@ -86,12 +84,10 @@ module AdvancedAI
         score -= 15  # No good switch target
       end
       
-      # Are we at a disadvantage?
       if target && at_type_disadvantage?(attacker, target)
         score += 30  # Get out while dealing damage
       end
       
-      # Do we have momentum?
       # Pivoting maintains offensive pressure
       if is_offensive_team?(battle, attacker)
         score += 15
@@ -204,9 +200,7 @@ module AdvancedAI
       # Teleport is -6 priority - we move last
       # Perfect for bringing in frail sweepers
       
-      party = battle.pbParty(attacker.index & 1)
-      frail_sweepers = party.count do |pkmn|
-        next false unless pkmn && !pkmn.fainted? && pkmn != attacker.pokemon
+      frail_sweepers = switch_in_candidates(battle, attacker).count do |pkmn|
         # Frail but strong
         (pkmn.attack >= 120 || pkmn.spatk >= 120) && 
         (pkmn.defense < 80 || pkmn.spdef < 80)
@@ -252,7 +246,6 @@ module AdvancedAI
       
       score += total_boosts * 15
       
-      # Substitute to pass?
       if attacker.effects[PBEffects::Substitute] && attacker.effects[PBEffects::Substitute] > 0
         score += 35
       end
@@ -269,9 +262,7 @@ module AdvancedAI
       end
       
       # Need recipient
-      party = battle.pbParty(attacker.index & 1)
-      recipients = party.count do |pkmn|
-        next false unless pkmn && !pkmn.fainted? && pkmn != attacker.pokemon
+      recipients = switch_in_candidates(battle, attacker).count do |pkmn|
         # Can make use of boosts
         pkmn.attack >= 100 || pkmn.spatk >= 100
       end
@@ -339,14 +330,21 @@ module AdvancedAI
     #===========================================================================
     
     # Find the best Pokemon to pivot into
+    def self.switch_in_candidates(battle, attacker)
+      battle.pbParty(attacker.index).each_with_index.filter_map do |pkmn, i|
+        next unless battle.pbCanSwitchIn?(attacker.index, i)
+        reserved = battle.allSameSideBattlers(attacker.index).any? do |ally|
+          battle.choices[ally.index][0] == :SwitchOut && battle.choices[ally.index][1] == i
+        end
+        pkmn unless reserved
+      end
+    end
+
     def self.find_best_switch_in(battle, attacker, opponent, skill_level)
       return nil unless skill_level >= 60
       
-      party = battle.pbParty(attacker.index & 1)
-      
       candidates = []
-      party.each do |pkmn|
-        next unless pkmn && !pkmn.fainted? && pkmn != attacker.pokemon
+      switch_in_candidates(battle, attacker).each do |pkmn|
         
         candidate_score = 0
         
@@ -395,7 +393,6 @@ module AdvancedAI
     # Pivot vs Attack Decision
     #===========================================================================
     
-    # Should we pivot or just attack?
     def self.pivot_vs_attack(battle, attacker, pivot_move, attack_move, target, skill_level = 100)
       return :attack unless skill_level >= 65
       return :pivot unless attack_move
@@ -417,7 +414,6 @@ module AdvancedAI
           attack_score += 20
         end
         
-        # Can we KO?
         estimated_damage = estimate_damage_percent(attacker, target, attack_move)
         if estimated_damage >= 100
           attack_score += 50  # KO is high value
@@ -458,57 +454,10 @@ module AdvancedAI
     
     def self.estimate_damage_percent(attacker, target, move)
       return 0 unless move && move.damagingMove?
-      
-      # Resolve power and type via shared helpers
-      power = AdvancedAI::CombatUtilities.resolve_move_power(move)
-      return 0 if power == 0
-      
-      effective_type = AdvancedAI::CombatUtilities.resolve_move_type(attacker, move)
-      
-      if move.physicalMove?
-        atk = attacker.attack
-        dfn = target.defense
-      else
-        atk = attacker.spatk
-        dfn = target.spdef
-      end
-      
-      dfn = [dfn, 1].max  # Prevent division by zero
-      
-      damage = ((2 * attacker.level / 5.0 + 2) * power * atk / dfn / 50 + 2)
-      
-      # STAB
-      if attacker.pbHasType?(effective_type)
-        damage *= attacker.hasActiveAbility?(:ADAPTABILITY) ? 2.0 : 1.5
-      end
-      
-      # Huge Power / Pure Power (2x Attack for physical moves)
-      if move.physicalMove? && (attacker.hasActiveAbility?(:HUGEPOWER) || attacker.hasActiveAbility?(:PUREPOWER))
-        damage *= 2
-      end
-      
-      # Type effectiveness (Scrappy/Mind's Eye: Normal/Fighting hits Ghost)
-      type_mod = AdvancedAI::CombatUtilities.scrappy_effectiveness(effective_type, attacker, target.pbTypes(true))
-      damage *= type_mod / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
-      
-      # Field & context modifiers (weather, terrain, items, burn)
-      damage *= AdvancedAI::CombatUtilities.field_modifier(nil, attacker, effective_type, move, move.physicalMove?, target)
-      
-      # Defender modifiers (Assault Vest, Eviolite, weather defense)
-      damage *= AdvancedAI::CombatUtilities.defender_modifier(nil, target, move.physicalMove?)
-      
-      # Screen modifiers (Reflect / Light Screen / Aurora Veil)
-      damage *= AdvancedAI::CombatUtilities.screen_modifier(nil, attacker, target, move.physicalMove?)
-      
-      # Parental Bond (1.25x — two hits: 100% + 25%)
-      if !move.multiHitMove? && attacker.hasActiveAbility?(:PARENTALBOND)
-        damage *= 1.25
-      end
-      
-      # Ability damage modifiers (Fur Coat, Ice Scales, Multiscale, Tinted Lens, etc.)
-      damage *= AdvancedAI::CombatUtilities.ability_damage_modifier(attacker, target, effective_type, move.physicalMove?, type_mod)
-      
-      (damage / target.totalhp.to_f) * 100
+
+      AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, move, target, :as_percent => true
+      ) * 100
     end
   end
 end

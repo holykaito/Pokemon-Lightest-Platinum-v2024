@@ -66,7 +66,9 @@ module AdvancedAI
     def self.optimize_spread_moves(battle, attacker, move, skill_level = 100)
       return 0 unless skill_level >= 60
       return 0 unless battle.pbSideSize(0) > 1
-      return 0 unless move.pbTarget(attacker).num_targets > 1
+      return 0 unless move.damagingMove?
+      target_data = move.pbTarget(attacker) rescue nil
+      return 0 unless target_data && target_data.num_targets > 1
       
       score = 0
       partner = find_partner(battle, attacker)
@@ -87,7 +89,19 @@ module AdvancedAI
         elsif Effectiveness.not_very_effective?(type_mod)
           score += 15  # Partner resists
         else
-          score -= 40  # Hits Partner hard
+          # Scale by what it actually costs the partner - a flat penalty
+          # treated "survives easily" and "gets KO'd" the same.
+          dmg = (AdvancedAI::CombatUtilities.estimate_damage(attacker, move, partner) rescue 0)
+          hp  = [partner.hp, 1].max
+          if dmg >= hp
+            score -= 150  # would KO our own partner
+          elsif dmg >= hp * 0.5
+            score -= 80
+          elsif dmg >= hp * 0.25
+            score -= 40
+          else
+            score -= 15
+          end
         end
       end
       
@@ -185,8 +199,9 @@ module AdvancedAI
         battle.allOtherSideBattlers(attacker.index).each do |opponent|
           next unless opponent && !opponent.fainted?
           
-          opponent.moves.each do |move|
-            next unless move
+          opponent.moves.each_with_index do |move, i|
+            next unless move && move.damagingMove?
+            next unless battle.pbCanChooseMove?(opponent.index, i, false)
             # Check if move is a known spread move
             if SPREAD_MOVES.include?(move.id)
               predicted_moves << move.id
@@ -208,9 +223,10 @@ module AdvancedAI
         battle.allOtherSideBattlers(attacker.index).each do |opponent|
           next unless opponent && !opponent.fainted?
           
-          opponent.moves.each do |move|
-            next unless move
-            if PRIORITY_MOVES.include?(move.id) || move.priority > 0
+          opponent.moves.each_with_index do |move, i|
+            next unless move && battle.pbCanChooseMove?(opponent.index, i, false)
+            next unless move.pbTarget(opponent).targets_foe
+            if AdvancedAI::PriorityTiers.get_priority_tier(move, opponent) > 0
               predicted_moves << move.id
             end
           end
@@ -369,14 +385,6 @@ module AdvancedAI
           if DoublesCoordination::PROTECT_MOVE_IDS.include?(partner_move)
             score -= 100  # Redirect + Protect = partner is safe already
           end
-        end
-        
-        # Check for Ghost-type opponents (Follow Me doesn't work on them)
-        if move.id == :FOLLOWME
-          ghost_opponents = battle.allOtherSideBattlers(attacker.index).any? do |opp|
-            opp && !opp.fainted? && opp.pbHasType?(:GHOST)
-          end
-          score -= 50 if ghost_opponents
         end
         
         # High priority if partner is setting up
@@ -727,7 +735,7 @@ module AdvancedAI
       # Abilities that benefit from weather
       WEATHER_SYNERGY = {
         :Sun  => [:CHLOROPHYLL, :SOLARPOWER, :FLOWERGIFT, :LEAFGUARD, :HARVEST, :PROTOSYNTHESIS],
-        :Rain => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC],
+        :Rain => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION],
         :Sandstorm => [:SANDRUSH, :SANDFORCE, :SANDVEIL],
         :Hail => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE],
         :Snow => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE]
@@ -1012,7 +1020,7 @@ module AdvancedAI
         end
         
         # Don't spam (becomes predictable)
-        if attacker.effects[PBEffects::AllySwitch]
+        if defined?(PBEffects::AllySwitch) && attacker.effects[PBEffects::AllySwitch]
           score -= 40
         end
         
@@ -1184,8 +1192,8 @@ module AdvancedAI
         
         # Instruct works best with high-damage moves
         # Check partner's last used move (if we can track it)
-        if partner.lastMoveUsed
-          last_move = GameData::Move.try_get(partner.lastMoveUsed)
+        if partner.lastRegularMoveUsed
+          last_move = GameData::Move.try_get(partner.lastRegularMoveUsed)
           if last_move
             # High power move = good target for Instruct
             eff_power = AdvancedAI::CombatUtilities.resolve_move_power(last_move)
@@ -1232,6 +1240,15 @@ module AdvancedAI
         if attacker.turnCount != 0
           return -100  # Fails if not first turn out
         end
+
+        opponents = battle.allOtherSideBattlers(attacker.index).select { |b| b && !b.fainted? }
+        threat = opponents.any? do |opp|
+          usable = opp.moves.each_with_index.select do |candidate, i|
+            candidate && battle.pbCanChooseMove?(opp.index, i, false)
+          end
+          usable.empty? || usable.any? { |candidate, _| candidate.damagingMove? }
+        end
+        return -40 unless threat
         
         # Protects entire team from damaging moves
         score += 60
@@ -1243,7 +1260,6 @@ module AdvancedAI
         end
         
         # Bonus if opponents have strong attackers
-        opponents = battle.allOtherSideBattlers(attacker.index).select { |b| b && !b.fainted? }
         high_offense = opponents.count { |opp| opp.attack > 100 || opp.spatk > 100 }
         score += high_offense * 20
         
@@ -1261,15 +1277,12 @@ module AdvancedAI
         # Check if opponents have status moves
         opponents = battle.allOtherSideBattlers(attacker.index).select { |b| b && !b.fainted? }
         status_moves = 0
-        dangerous_status = [:SPORE, :DARKVOID, :THUNDERWAVE, :WILLOWISP, :TOXIC, 
-                            :TAUNT, :ENCORE, :DISABLE, :SWAGGER]
-        
         opponents.each do |opp|
-          opp.moves.each do |opp_move|
-            next unless opp_move
-            if opp_move.category == 2 || dangerous_status.include?(opp_move.id)
-              status_moves += 1
-            end
+          opp.moves.each_with_index do |opp_move, i|
+            next unless opp_move && opp_move.statusMove?
+            next unless battle.pbCanChooseMove?(opp.index, i, false)
+            next unless opp_move.pbTarget(opp).targets_foe
+            status_moves += 1
           end
         end
         
@@ -1430,17 +1443,16 @@ module AdvancedAI
         # Good abilities to copy
         good_abilities = [:INTIMIDATE, :HUGEPOWER, :PUREPOWER, :SPEEDBOOST, :PROTEAN, 
                           :LIBERO, :ADAPTABILITY, :CONTRARY, :MOODY, :UNAWARE,
-                          :MAGICGUARD, :MULTISCALE, :STURDY, :LEVITATE, :TERRORSOWER]
+                          :MAGICGUARD, :MULTISCALE, :STURDY, :LEVITATE]
         
         if good_abilities.any? { |a| target.hasActiveAbility?(a) }
           score += 50
           
-          # Synergy check - does partner benefit?
           if target.hasActiveAbility?(:HUGEPOWER) || target.hasActiveAbility?(:PUREPOWER)
             score += 30 if partner.attack > partner.spatk
           elsif target.hasActiveAbility?(:SPEEDBOOST)
             score += 25 if partner.speed < 100
-          elsif target.hasActiveAbility?(:INTIMIDATE) || target.hasActiveAbility?(:TERRORSOWER)
+          elsif target.hasActiveAbility?(:INTIMIDATE)
             score += 20  # Always useful
           end
         end
@@ -1457,7 +1469,7 @@ module AdvancedAI
         
         # Check for Commander ability and Dondozo
         if attacker.hasActiveAbility?(:COMMANDER) && partner.species == :DONDOZO
-          return 100  # Massive bonus for this combo
+          return 100
         elsif partner.hasActiveAbility?(:COMMANDER) && attacker.species == :DONDOZO
           return 80  # Bonus for being the Dondozo
         end
@@ -1506,7 +1518,6 @@ module AdvancedAI
         
         score = 0
         
-        # Already active?
         if battle.field.terrain == :Psychic
           return -60
         end
@@ -1540,7 +1551,7 @@ module AdvancedAI
       end
       
       # Evaluates Electromorphosis / Wind Rider ability synergy
-      def self.check_ability_synergy(battle, attacker, move)
+      def self.check_ability_synergy(battle, attacker, move, target = nil)
         return 0 unless battle.pbSideSize(0) > 1
         
         partner = DoublesCoordination.find_partner(battle, attacker)
@@ -1563,17 +1574,17 @@ module AdvancedAI
         if partner.hasActiveAbility?(:STEAMENGINE)
           if move.type == :FIRE || move.type == :WATER
             # Only if move hits partner
-            if DoublesCoordination.hits_partner?(move, attacker, partner)
+            if DoublesCoordination.hits_partner?(move, attacker, partner, target)
               score += 35
             end
           end
         end
         
         # Anger Point: Critical hit triggers max Attack
-        # (Hard to control, but Frost Breath/Storm Throw always crit)
+        # Frost Breath and Storm Throw provide a controlled trigger.
         if partner.hasActiveAbility?(:ANGERPOINT)
           if [:FROSTBREATH, :STORMTHROW].include?(move.id)
-            if DoublesCoordination.hits_partner?(move, attacker, partner)
+            if DoublesCoordination.hits_partner?(move, attacker, partner, target)
               score += 60  # Guaranteed max Attack!
             end
           end
@@ -1871,9 +1882,8 @@ module AdvancedAI
           score += tera_moves * 20
         end
         
-        # Defensive Tera (change type to resist threats)
+        # Low HP increases the value of a defensive Tera.
         opponents = battle.allOtherSideBattlers(attacker.index).select { |b| b && !b.fainted? }
-        # This is complex - simplified version
         if attacker.hp < attacker.totalhp * 0.6
           score += 15  # More likely to Tera for survival
         end
@@ -2095,8 +2105,7 @@ module AdvancedAI
         
         # Check if Tatsugiri is in the Commander slot
         if attacker.species == :DONDOZO
-          # Dondozo with Tatsugiri inside gets stat boost based on Tatsugiri form
-          # This is complex to check, but give base bonus
+          # Commander form details are unavailable here.
           score += 30
         end
         
@@ -2133,8 +2142,10 @@ module AdvancedAI
         
         score = 0
         
-        # Check how many times attacker has been hit
-        times_hit = attacker.effects[PBEffects::RageFist] rescue 0
+        # Check how many times attacker has been hit (engine tracks this via
+        # Battler#num_times_hit / pbRageHitCount — there is no PBEffects::RageFist)
+        real = (attacker.respond_to?(:battler) && attacker.battler) ? attacker.battler : attacker
+        times_hit = (real.respond_to?(:num_times_hit) ? real.num_times_hit.to_i : 0) rescue 0
         
         # Base power 50 + 50 per hit, max 350
         effective_power = [50 + (times_hit * 50), 350].min
@@ -2178,7 +2189,6 @@ module AdvancedAI
         
         score = 0
         
-        # Already active?
         if battle.field.terrain == terrain_type
           return -60
         end
@@ -2313,12 +2323,12 @@ module AdvancedAI
         score = 0
         
         # Check if move hits partner and is super effective
-        if DoublesCoordination.hits_partner?(move, attacker, partner)
+        if DoublesCoordination.hits_partner?(move, attacker, partner, target)
           resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(attacker, move)
           type_mod = Effectiveness.calculate(resolved_type, *partner.pbTypes(true))
           
           if Effectiveness.super_effective?(type_mod)
-            # Low power move preferred (don't KO partner!)
+            # Prefer low power to avoid knocking out the partner.
             eff_power = AdvancedAI::CombatUtilities.resolve_move_power(move)
             if eff_power <= 40
               score += 80  # Weak move triggers WP without killing
@@ -2330,7 +2340,7 @@ module AdvancedAI
           end
         end
         
-        # Beat Up on WP Justified mon is god-tier — only when targeting partner
+        # Beat Up can activate both Justified and Weakness Policy on the partner.
         if move.id == :BEATUP && partner.hasActiveAbility?(:JUSTIFIED) && partner.item_id == :WEAKNESSPOLICY
           if target && target.index == partner.index
             score += 100  # +4 Attack and +2 Attack/SpAtk!
@@ -2477,6 +2487,7 @@ module AdvancedAI
       
       # Covert Cloak awareness (blocks secondary effects — flinch, status from attacks)
       def self.check_covert_cloak(battle, target, move, skill_level = 100)
+        return 0 unless AdvancedAI::GEN9_PACK_COMPAT
         return 0 unless skill_level >= 65
         return 0 unless target
         return 0 unless target.item_id == :COVERTCLOAK
@@ -2489,6 +2500,7 @@ module AdvancedAI
       
       # Clear Amulet awareness (prevents stat drops from opponent's moves)
       def self.check_clear_amulet(battle, target, move, skill_level = 100)
+        return 0 unless AdvancedAI::GEN9_PACK_COMPAT
         return 0 unless skill_level >= 65
         return 0 unless target
         return 0 unless target.item_id == :CLEARAMULET
@@ -2501,6 +2513,7 @@ module AdvancedAI
       
       # Mirror Herb awareness (copies stat boosts when opponent boosts)
       def self.check_mirror_herb(battle, attacker, target, move, skill_level = 100)
+        return 0 unless AdvancedAI::GEN9_PACK_COMPAT
         return 0 unless skill_level >= 75
         return 0 unless target
         return 0 unless target.item_id == :MIRRORHERB
@@ -2511,6 +2524,7 @@ module AdvancedAI
       
       # Loaded Dice awareness (multi-hit moves always hit max times)
       def self.check_loaded_dice(battle, attacker, move, skill_level = 100)
+        return 0 unless AdvancedAI::GEN9_PACK_COMPAT
         return 0 unless skill_level >= 60
         return 0 unless attacker.item_id == :LOADEDDICE
         return 0 unless move.multiHitMove?
@@ -2521,6 +2535,7 @@ module AdvancedAI
       
       # Booster Energy awareness (activates Protosynthesis or Quark Drive)
       def self.check_booster_energy(battle, attacker, skill_level = 100)
+        return 0 unless AdvancedAI::GEN9_PACK_COMPAT
         return 0 unless skill_level >= 70
         return 0 unless attacker.item_id == :BOOSTERENERGY
         return 0 unless attacker.hasActiveAbility?(:PROTOSYNTHESIS) || attacker.hasActiveAbility?(:QUARKDRIVE)
@@ -2533,6 +2548,7 @@ module AdvancedAI
       
       # Ability Shield awareness (blocks ability-changing moves entirely)
       def self.check_ability_shield(battle, target, move, skill_level = 100)
+        return 0 unless AdvancedAI::GEN9_PACK_COMPAT
         return 0 unless skill_level >= 65
         return 0 unless target
         return 0 unless target.item_id == :ABILITYSHIELD
@@ -2569,10 +2585,9 @@ module AdvancedAI
           end
         end
         
-        # Check if partner has Defiant/Competitive (Intimidate helps them!)
+        # Defiant and Competitive turn Intimidate into an advantage.
         if partner
           if partner.hasActiveAbility?(:DEFIANT) || partner.hasActiveAbility?(:COMPETITIVE)
-            # Facing Intimidate is actually good for us
             opponents = battle.allOtherSideBattlers(attacker.index).select { |b| b && !b.fainted? }
             if opponents.any? { |o| o.hasActiveAbility?(:INTIMIDATE) }
               score += 35
@@ -2594,8 +2609,8 @@ module AdvancedAI
         # Prankster gives priority to status moves
         score += 20
         
-        # But Dark types are immune to Prankster status
-        if target && target.pbHasType?(:DARK)
+        # But opposing Dark types are immune to Prankster-boosted moves
+        if target && AdvancedAI::Utilities.prankster_blocked?(attacker, target, move)
           score -= 80  # Move fails
         end
         
@@ -2678,7 +2693,7 @@ module AdvancedAI
         case move.id
         when :SKILLSWAP
           # Good abilities to steal
-          good_abilities = [:HUGEPOWER, :PUREPOWER, :SPEEDBOOST, :INTIMIDATE, :TERRORSOWER,
+          good_abilities = [:HUGEPOWER, :PUREPOWER, :SPEEDBOOST, :INTIMIDATE,
                            :MULTISCALE, :MAGICGUARD, :LEVITATE, :PRANKSTER]
           if good_abilities.any? { |a| target.hasActiveAbility?(a) }
             score += 50
@@ -2700,7 +2715,7 @@ module AdvancedAI
         when :GASTROACID
           # Suppress target's ability
           strong_abilities = [:HUGEPOWER, :INTIMIDATE, :LEVITATE, :MULTISCALE,
-                             :MAGICGUARD, :WONDERGUARD, :PRANKSTER]
+                             :MAGICGUARD, :WONDERGUARD]
           if strong_abilities.any? { |a| target.hasActiveAbility?(a) }
             score += 55
           end
@@ -2740,7 +2755,7 @@ module AdvancedAI
         return 0 unless partner && !partner.fainted?
         
         if partner.hasActiveAbility?(:POWERSPOT)
-          # Our moves deal 30% more damage!
+          # Allied moves deal 30% more damage.
           return 25
         end
         
@@ -2757,7 +2772,7 @@ module AdvancedAI
         return 0 unless partner && !partner.fainted?
         
         if partner.hasActiveAbility?(:BATTERY)
-          # Our special moves deal 30% more damage!
+          # Allied special moves deal 30% more damage.
           return 25
         end
         
@@ -2774,7 +2789,7 @@ module AdvancedAI
         return 0 unless partner && !partner.fainted?
         
         if partner.hasActiveAbility?(:STEELYSPIRIT)
-          # Our Steel moves deal 50% more damage!
+          # Allied Steel moves deal 50% more damage.
           return 40
         end
         
@@ -2888,7 +2903,11 @@ module AdvancedAI
         score = 0
         
         # Check target's status move count
-        status_moves = target.moves.count { |m| m && m.category == 2 }
+        usable_status = target.moves.each_with_index.filter_map do |candidate, i|
+          candidate if candidate && candidate.statusMove? &&
+                       battle.pbCanChooseMove?(target.index, i, false)
+        end
+        status_moves = usable_status.length
         
         if status_moves >= 3
           score += 60  # Target relies on status moves
@@ -2903,7 +2922,7 @@ module AdvancedAI
         # High priority targets for Taunt
         priority_taunt = [:TRICKROOM, :TAILWIND, :PROTECT, :FOLLOWME, :RAGEPOWDER,
                          :SPORE, :WILLOWISP, :THUNDERWAVE]
-        if target.moves.any? { |m| m && priority_taunt.include?(m.id) }
+        if usable_status.any? { |candidate| priority_taunt.include?(candidate.id) }
           score += 35
         end
         
@@ -2929,12 +2948,12 @@ module AdvancedAI
         score = 0
         
         # Encore last used move
-        if target.lastMoveUsed
-          last_move = GameData::Move.try_get(target.lastMoveUsed)
+        if target.lastRegularMoveUsed
+          last_move = GameData::Move.try_get(target.lastRegularMoveUsed)
           if last_move
             # Encore them into bad moves
             bad_to_encore = [:PROTECT, :DETECT, :SPLASH, :HELPINGHAND]
-            if bad_to_encore.include?(target.lastMoveUsed)
+            if bad_to_encore.include?(target.lastRegularMoveUsed)
               score += 70  # Locked into useless move
             end
             
@@ -3131,9 +3150,7 @@ module AdvancedAI
       def self.predict_intimidate_switch(battle, attacker, skill_level = 100)
         return 0 unless skill_level >= 70
         
-        # Check opponent's back for Intimidate users
-        # This is predictive - harder to implement without team preview
-        # For now, check if current opponents have Intimidate
+        # Only currently active Intimidate users are visible here.
         opponents = battle.allOtherSideBattlers(attacker.index).select { |b| b && !b.fainted? }
         
         if opponents.any? { |o| o.hasActiveAbility?(:INTIMIDATE) }
@@ -3150,10 +3167,7 @@ module AdvancedAI
       def self.predict_weather_switch(battle, attacker, skill_level = 100)
         return 0 unless skill_level >= 70
         
-        # Current weather might change on switch
-        # Track if opponent has weather setters in back
-        # For now, be aware of current weather abilities
-        
+        # Score the current weather; reserve abilities are not exposed here.
         current_weather = AdvancedAI::Utilities.current_weather(battle)
         
         allies = battle.allSameSideBattlers(attacker.index).select { |b| b && !b.fainted? }
@@ -3161,7 +3175,7 @@ module AdvancedAI
         # Check if our team benefits from current weather
         weather_synergy = {
           :Sun => [:CHLOROPHYLL, :SOLARPOWER, :FLOWERGIFT, :LEAFGUARD, :HARVEST, :PROTOSYNTHESIS],
-          :Rain => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC],
+          :Rain => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION],
           :Sandstorm => [:SANDRUSH, :SANDFORCE, :SANDVEIL],
           :Hail => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE],
           :Snow => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE]
@@ -3209,7 +3223,7 @@ module AdvancedAI
     # These helpers are intentionally public so nested modules can call them.
     
     def self.find_partner(battle, attacker)
-      battle.allSameSideBattlers(attacker.index).find { |b| b && b != attacker && !b.fainted? }
+      battle.allSameSideBattlers(attacker.index).find { |b| b && b.index != attacker.index && !b.fainted? }
     end
 
     # Peek at what move the partner has already registered this turn.
@@ -3253,7 +3267,6 @@ module AdvancedAI
           return partner_target_idx == target.index if partner_target_idx
         end
       rescue
-        # Fall back to heuristic: does partner have moves that target this foe?
       end
 
       # Heuristic: if partner is a physical/special attacker and target is low HP,
@@ -3265,15 +3278,31 @@ module AdvancedAI
       false
     end
     
-    def self.hits_partner?(move, attacker, partner)
-      targets = move.pbTarget(attacker)
-      # In v21.1, spread moves that hit partners include AllOtherPokemon, AllFoesAndAllies, etc.
-      # We check if num_targets > 1 and it's NOT just hitting foes.
-      return targets.num_targets > 1 && ![:AllNearFoes, :AllFoes, :RandomFoe].include?(targets.id)
+    def self.hits_partner?(move, attacker, partner, selected_target = nil)
+      real_attacker = attacker.respond_to?(:battler) ? attacker.battler : attacker
+      battle = real_attacker.battle
+      target_data = move.pbTarget(real_attacker)
+      can_target = battle.pbMoveCanTarget?(real_attacker.index, partner.index, target_data)
+      return false unless can_target
+      return true if target_data.num_targets > 1
+      if selected_target
+        return selected_target.index == partner.index
+      end
+      false
+    rescue
+      false
     end
-    
+
     def self.count_enemies_hit(battle, attacker, move)
-      battle.allOtherSideBattlers(attacker.index).count { |b| b && !b.fainted? }
+      real_attacker = attacker.respond_to?(:battler) ? attacker.battler : attacker
+      target_data = move.pbTarget(real_attacker) rescue nil
+      return 0 unless target_data
+      battle.allOtherSideBattlers(attacker.index).count do |battler|
+        battler && !battler.fainted? &&
+          battle.pbMoveCanTarget?(real_attacker.index, battler.index, target_data)
+      end
+    rescue
+      0
     end
   end
 end
@@ -3397,22 +3426,27 @@ module AdvancedAI
   
   # Gen 9 APIs
   def self.evaluate_revival_blessing(battle, attacker, move, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9DoublesStrategies.evaluate_revival_blessing(battle, attacker, move, skill_level)
   end
   
   def self.evaluate_shed_tail(battle, attacker, move, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9DoublesStrategies.evaluate_shed_tail(battle, attacker, move, skill_level)
   end
   
   def self.evaluate_doodle(battle, attacker, move, target, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9DoublesStrategies.evaluate_doodle(battle, attacker, move, target, skill_level)
   end
   
   def self.check_commander_combo(battle, attacker)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9DoublesStrategies.check_commander_combo(battle, attacker)
   end
   
   def self.evaluate_tidy_up(battle, attacker, move, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9DoublesStrategies.evaluate_tidy_up(battle, attacker, move, skill_level)
   end
   
@@ -3420,8 +3454,8 @@ module AdvancedAI
     DoublesCoordination::Gen9DoublesStrategies.evaluate_psychic_terrain_doubles(battle, attacker, move, skill_level)
   end
   
-  def self.check_ability_synergy(battle, attacker, move)
-    DoublesCoordination::Gen9DoublesStrategies.check_ability_synergy(battle, attacker, move)
+  def self.check_ability_synergy(battle, attacker, move, target = nil)
+    DoublesCoordination::Gen9DoublesStrategies.check_ability_synergy(battle, attacker, move, target)
   end
   
   # Terrain APIs
@@ -3456,10 +3490,12 @@ module AdvancedAI
   
   # Gen 9 Extended APIs
   def self.evaluate_tera_timing_doubles(battle, attacker, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_tera_timing_doubles(battle, attacker, skill_level)
   end
   
   def self.evaluate_paradox_moves(battle, attacker, move, target, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_paradox_moves(battle, attacker, move, target, skill_level)
   end
   
@@ -3472,14 +3508,17 @@ module AdvancedAI
   end
   
   def self.evaluate_mortal_spin(battle, attacker, move, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_mortal_spin(battle, attacker, move, skill_level)
   end
   
   def self.evaluate_make_it_rain(battle, attacker, move, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_make_it_rain(battle, attacker, move, skill_level)
   end
   
   def self.evaluate_triple_arrows(battle, attacker, move, target, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_triple_arrows(battle, attacker, move, target, skill_level)
   end
   
@@ -3488,14 +3527,17 @@ module AdvancedAI
   end
   
   def self.evaluate_order_up(battle, attacker, move, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_order_up(battle, attacker, move, skill_level)
   end
   
   def self.evaluate_salt_cure(battle, attacker, move, target, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_salt_cure(battle, attacker, move, target, skill_level)
   end
   
   def self.evaluate_rage_fist(battle, attacker, move, skill_level = 100)
+    return 0 unless GEN9_PACK_COMPAT
     DoublesCoordination::Gen9ExtendedStrategies.evaluate_rage_fist(battle, attacker, move, skill_level)
   end
   
@@ -3706,7 +3748,7 @@ class Battle::AI
     score += AdvancedAI.check_commander_combo(@battle, user)
     score += AdvancedAI.evaluate_tidy_up(@battle, user, move, skill)
     score += AdvancedAI.evaluate_psychic_terrain_doubles(@battle, user, move, skill)
-    score += AdvancedAI.check_ability_synergy(@battle, user, move)
+    score += AdvancedAI.check_ability_synergy(@battle, user, move, target)
     
     # Gen 9 Extended Strategies
     score += AdvancedAI.evaluate_paradox_moves(@battle, user, move, target, skill) if target
@@ -3742,7 +3784,7 @@ class Battle::AI
     score += AdvancedAI::DoublesCoordination::ItemAwarenessDoubles.check_loaded_dice(@battle, user, move, skill)
     score += AdvancedAI::DoublesCoordination::ItemAwarenessDoubles.check_booster_energy(@battle, user, skill)
     score += AdvancedAI.evaluate_weakness_policy_abuse(@battle, user, move, target, skill)
-    partner = @battle.allSameSideBattlers(user.index).find { |b| b && b != user && !b.fainted? }
+    partner = @battle.allSameSideBattlers(user.index).find { |b| b && b.index != user.index && !b.fainted? }
     score += AdvancedAI.check_stat_trigger_items(@battle, user, partner, skill) if partner
     
     # Ability Synergy

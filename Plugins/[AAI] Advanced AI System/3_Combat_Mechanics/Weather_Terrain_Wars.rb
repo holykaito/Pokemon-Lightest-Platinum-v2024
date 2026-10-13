@@ -8,7 +8,7 @@ class Battle::AI
   # WEATHER WARS
   # ============================================================================
   
-  alias weather_wars_pbRegisterMove pbRegisterMove
+  alias_method :weather_wars_pbRegisterMove, :pbRegisterMove unless method_defined?(:weather_wars_pbRegisterMove) || private_method_defined?(:weather_wars_pbRegisterMove)
   def pbRegisterMove(user, move)
     score = weather_wars_pbRegisterMove(user, move)
     
@@ -117,7 +117,7 @@ class Battle::AI
       # Check if opponent has weather-boosting ability
       weather_abilities = {
         :Sun       => [:SOLARPOWER, :CHLOROPHYLL, :FLOWERGIFT, :LEAFGUARD, :HARVEST, :PROTOSYNTHESIS],
-        :Rain      => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC],
+        :Rain      => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION],
         :Sandstorm => [:SANDFORCE, :SANDRUSH, :SANDVEIL],
         :Hail      => [:ICEBODY, :SNOWCLOAK, :SLUSHRUSH, :ICEFACE],
         :Snow      => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE],
@@ -173,7 +173,7 @@ class Battle::AI
       
       # Swift Swim, Rain Dish, Dry Skin, Hydration
       if user.hasActiveAbility?(:SWIFTSWIM) || user.hasActiveAbility?(:RAINDISH) || user.hasActiveAbility?(:DRYSKIN) ||
-         user.hasActiveAbility?(:HYDRATION) || user.hasActiveAbility?(:HYDROPONIC)
+         user.hasActiveAbility?(:HYDRATION)
         benefit += 30
       end
       
@@ -295,7 +295,7 @@ class Battle::AI
   def weather_activates_ability?(user, weather)
     activations = {
       :Sun       => [:CHLOROPHYLL, :SOLARPOWER, :FLOWERGIFT, :LEAFGUARD, :HARVEST, :PROTOSYNTHESIS],
-      :Rain      => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC],
+      :Rain      => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION],
       :Sandstorm => [:SANDRUSH, :SANDFORCE, :SANDVEIL],
       :Hail      => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE],
       :Snow      => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE],

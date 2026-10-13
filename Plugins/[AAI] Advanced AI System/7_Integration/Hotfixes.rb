@@ -8,48 +8,33 @@
 #===============================================================================
 # DBK Wonder Launcher Compatibility
 #===============================================================================
-# DBK Wonder Launcher checks if Battle is a "Launcher Battle"
-# BOTH classes need the method: Battle AND Battle::AI
-#===============================================================================
 
-# Battle Class: Main Method (if not already defined)
 class Battle
   def launcherBattle?
-    # Check if Wonder Launcher is active
     return @launcherBattle if instance_variable_defined?(:@launcherBattle)
     return false
   end unless method_defined?(:launcherBattle?)
 end
 
-# Battle::AI Delegation - ALWAYS define (overrides if necessary)
 class Battle::AI
-  # This method is called by DBK Wonder Launcher in Line 11
-  # BEFORE it converts to battle.battle in Line 27
   def launcherBattle?
-    # @battle is the actual Battle object (from attr_reader :battle)
     return false unless @battle
     return @battle.launcherBattle? if @battle.respond_to?(:launcherBattle?)
     return false
   end
 end
 
-# Debug: Confirm method was defined
-if $DEBUG
-  puts "[Advanced AI] Battle::AI.launcherBattle? defined: #{Battle::AI.method_defined?(:launcherBattle?)}"
-end
+AdvancedAI.log("Wonder Launcher bridge ready", "Compatibility")
 
 #===============================================================================
 # DBK Improved Item AI Hotfix
 #===============================================================================
-# Problem: NoMethodError 'battler' for nil:NilClass (AIMove)
-# Solution: Nil-safe battler method
-#===============================================================================
 
 if defined?(Battle::AI::AIMove)
   class Battle::AI::AIMove
-    attr_reader :move # Expose underlying move safely
+    attr_reader :move
     
-    alias original_battler battler if method_defined?(:battler)
+    alias original_battler battler if method_defined?(:battler) && !method_defined?(:original_battler)
     
     def battler
       return original_battler if respond_to?(:original_battler)
@@ -57,8 +42,7 @@ if defined?(Battle::AI::AIMove)
       return nil
     end
     
-    # Explicitly delegate common category checks to avoid method_missing weirdness
-    # Use safe checks that work with all Battle::Move subclasses
+    # Mirror Battle::Move's category API.
     def physical?
       return @move.physicalMove? if @move && @move.respond_to?(:physicalMove?)
       return @move.physical? if @move && @move.respond_to?(:physical?)
@@ -87,8 +71,7 @@ if defined?(Battle::AI::AIMove)
       return status?
     end
 
-    # Delegate missing methods to the underlying @move object
-    # This fixes NoMethodError for power, multiHitMove?, etc.
+    # Forward the rest of the move API.
     def method_missing(method_name, *args, &block)
       if @move && @move.respond_to?(method_name)
         return @move.send(method_name, *args, &block)
@@ -105,13 +88,9 @@ end
 #===============================================================================
 # AIBattler Compatibility
 #===============================================================================
-# Problem: AIBattler wrapper missing common battler methods
-# Solution: Delegate to underlying @battler
-#===============================================================================
 
 if defined?(Battle::AI::AIBattler)
   class Battle::AI::AIBattler
-    # Delegate ability/item checks to underlying battler
     def hasActiveAbility?(ability)
       return @battler.hasActiveAbility?(ability) if @battler
       return false
@@ -122,14 +101,7 @@ if defined?(Battle::AI::AIBattler)
       return false
     end
     
-    #---------------------------------------------------------------------------
-    # Delegate stat accessors to underlying battler
-    # The AAI scoring code calls user.attack, user.speed, etc. directly,
-    # but AIBattler only exposes stats through base_stat(:STAT) / rough_stat(:STAT).
-    # Without these delegations, every stat access raises NoMethodError which
-    # silently kills move scoring (caught by logonerr) and makes the AI think
-    # ALL moves are terrible → endless switch loop.
-    #---------------------------------------------------------------------------
+    # Mirror Battle::Battler stat accessors used by AAI scoring.
     def attack;  return @battler.attack  if @battler; 0; end
     def defense; return @battler.defense if @battler; 0; end
     def spatk;   return @battler.spatk   if @battler; 0; end
@@ -137,13 +109,7 @@ if defined?(Battle::AI::AIBattler)
     def speed;   return @battler.speed   if @battler; 0; end
     def pbSpeed; return @battler.pbSpeed if @battler; 0; end
     
-    #---------------------------------------------------------------------------
-    # Catch-all: Delegate any other missing methods to the underlying battler.
-    # The AAI uses dozens of Battle::Battler methods on AIBattler objects
-    # (poisoned?, burned?, affectedByTerrain?, lastMoveUsed, airborne?, etc.)
-    # that aren't explicitly delegated. Instead of listing them all, we use
-    # method_missing to transparently forward to @battler.
-    #---------------------------------------------------------------------------
+    # Forward remaining Battle::Battler calls.
     def method_missing(method, *args, &block)
       if @battler && @battler.respond_to?(method)
         return @battler.send(method, *args, &block)
@@ -160,16 +126,13 @@ end
 #===============================================================================
 # Essentials Core Effectiveness Hotfix
 #===============================================================================
-# Problem: SystemStackError in Type::calculate (Recursion)
-# Solution: Recursion Guard (max depth 10)
-#===============================================================================
 
 module Effectiveness
   @recursion_depth = 0
   MAX_RECURSION_DEPTH = 10
   
   class << self
-    alias original_calculate calculate if method_defined?(:calculate)
+    alias original_calculate calculate if method_defined?(:calculate) && !method_defined?(:original_calculate)
     
     def calculate(attack_type, *target_types)
       return NORMAL_EFFECTIVE_MULTIPLIER if !attack_type
@@ -195,7 +158,7 @@ module Effectiveness
   end
 end
 
-# GameData::Type Recursion Guard
+# GameData::Type recursion guard
 if defined?(GameData::Type)
   module GameData
     class Type
@@ -204,7 +167,7 @@ if defined?(GameData::Type)
       
       class << self
         if method_defined?(:calculate)
-          alias original_type_calculate calculate
+          alias original_type_calculate calculate unless method_defined?(:original_type_calculate)
           
           def calculate(attack_type, *target_types)
             @type_recursion_depth ||= 0
@@ -232,16 +195,8 @@ end
 #===============================================================================
 # Missing Method Shims
 #===============================================================================
-# Problem: AAI code calls Effectiveness.calculate_one, GameData::Move#physicalMove?,
-#          and AdvancedAI::StrategicAwareness.battle_state — none of which exist
-#          in Essentials v21.1. Every call raises NoMethodError, gets caught by
-#          logonerr, and kills move scoring → "Terrible Moves" every turn.
-# Solution: Add compatibility shims that delegate to the real API.
-#===============================================================================
 
-# --- Effectiveness.calculate_one(atk_type, def_type) --------------------------
-# Returns a float multiplier (0.0 / 0.5 / 1.0 / 2.0) for a single type matchup.
-# Used by Strategic_Awareness, 0_Move_Scorer, and Doubles_Coordination.
+# Effectiveness.calculate_one returns the multiplier for one defending type.
 module Effectiveness
   module_function
 
@@ -250,10 +205,7 @@ module Effectiveness
   end
 end
 
-# --- GameData::Move#physicalMove? / #specialMove? -----------------------------
-# GameData::Move already has physical?, special?, damaging?, status? that
-# compare the integer category (0/1/2) correctly. The AAI code calls the
-# Battle::Move-style names (with "Move" suffix), so we delegate.
+# Match the Battle::Move category method names.
 class GameData::Move
   def physicalMove?
     self.physical?
@@ -272,9 +224,7 @@ class GameData::Move
   end
 end
 
-# --- AdvancedAI::StrategicAwareness.battle_state(battle) ----------------------
-# The actual method is get_state(battle). Tactical_Enhancements.rb calls
-# battle_state which doesn't exist.
+# Alias expected by Tactical_Enhancements.rb.
 module AdvancedAI
   module StrategicAwareness
     def self.battle_state(battle)
@@ -283,41 +233,38 @@ module AdvancedAI
   end
 end
 
-puts "[Advanced AI] Hotfixes loaded: Wonder Launcher, Item AI, Type Effectiveness"
+AdvancedAI.log("Wonder Launcher, Item AI and type-effectiveness fixes ready", "Compatibility")
 
 #===============================================================================
-# Nil-Safe Comparisons for PBEffects
+# Choice-lock + no-PP Struggle handling
 #===============================================================================
-# Problem: Some PBEffects values may be nil. Code like `effects[X] > 0`
-#          crashes with `NoMethodError: undefined method '>' for nil:NilClass`.
-#
-# OLD FIX (NilSafeEffects wrapper) was BROKEN:
-#   It converted nil → 0, but 0 is TRUTHY in Ruby. Effects like ChoiceBand
-#   store nil (not active) or a move Symbol (locked). Converting nil → 0
-#   made EVERY battler appear choice-locked → every move scored -1000 →
-#   "Terrible Moves" every turn → AI does nothing.
-#
-# NEW FIX: Monkey-patch NilClass to handle comparison operators safely.
-#   nil stays nil (falsy), so `if effects[ChoiceBand]` correctly tests false.
-#   But `nil > 0` returns false instead of crashing.
-#===============================================================================
-class NilClass
-  def >(other);  false; end
-  def <(other);  false; end
-  def >=(other); other.nil?; end
-  def <=(other); other.nil?; end
+# Bypass the Fight menu so pbAutoChooseMove can select Struggle.
+# prepend keeps the check ahead of DBK's later command-menu definition.
+module AAI_ChoiceLockStruggleFix
+  def pbCanShowFightMenu?(idxBattler)
+    battler = @battlers[idxBattler]
+    if battler && aai_choice_locked_out_of_pp?(battler)
+      PBDebug.log("[AAI] #{battler.pbThis} is Choice-locked with no PP left -> forcing Struggle") if defined?(PBDebug)
+      return false
+    end
+    super
+  end
+
+  # True only when the battler is Choice-locked (Choice item or Gorilla Tactics,
+  # both stored in PBEffects::ChoiceBand) into a move it still owns whose PP is 0.
+  def aai_choice_locked_out_of_pp?(battler)
+    return false unless battler.respond_to?(:effects)
+    locked_id = battler.effects[PBEffects::ChoiceBand]
+    return false unless locked_id
+    return false unless battler.pbHasMove?(locked_id)
+    locked_move = battler.moves.find { |m| m && m.id == locked_id }
+    return false unless locked_move
+    # total_pp > 0 guard: only a real move that has been spent, never an empty
+    # slot that natively reports 0 PP.
+    locked_move.pp == 0 && locked_move.total_pp > 0
+  end
 end
-
-#===============================================================================
-# ReserveLastPokemon: Smart Reserve (no longer strips the flag)
-#===============================================================================
-# PE v21.1 auto-adds "ReserveLastPokemon" to every trainer with skill >= 100.
-# The AAI's find_best_switch_advanced now handles this intelligently:
-# - Ace is reserved by default (PE intended behavior)
-# - Ace is allowed when it has a dramatically better matchup than all
-#   alternatives (prevents refusing to send the perfect counter)
-# - Ace is always allowed for forced switches when it's the only option
-#===============================================================================
+Battle.prepend(AAI_ChoiceLockStruggleFix)
 
 # Boot banner (debug only)
 if AdvancedAI::DEBUG_MODE

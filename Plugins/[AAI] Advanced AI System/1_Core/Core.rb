@@ -3,9 +3,7 @@
 # Hooks into Pokemon Essentials v21.1 AI system
 #===============================================================================
 
-# RGSS Safety: Define Kernel#pp so it doesn't try to require the 'pp' library
-# which doesn't exist in RGSS/mkxp. This prevents crashes when method
-# resolution falls through to Kernel#pp on objects missing a 'pp' method.
+# RGSS/mkxp does not provide Ruby's pp library.
 module Kernel
   def pp(*args)
     return nil if args.empty?
@@ -45,7 +43,7 @@ class Battle::AI
   attr_accessor :threat_cache
   attr_accessor :switch_analyzer
   
-  alias aai_initialize initialize
+  alias_method :aai_initialize, :initialize unless method_defined?(:aai_initialize) || private_method_defined?(:aai_initialize)
   def initialize(battle)
     aai_initialize(battle)
     @move_memory = {}      # Track opponent move usage
@@ -63,24 +61,19 @@ class Battle::AI
   # Enhanced move scoring with Advanced AI integration
   # Note: This hooks into the DBK AI scoring system which calls pbGetMoveScore
   # with different signatures depending on context
-  alias aai_pbGetMoveScore pbGetMoveScore
+  alias_method :aai_pbGetMoveScore, :pbGetMoveScore unless method_defined?(:aai_pbGetMoveScore) || private_method_defined?(:aai_pbGetMoveScore)
   def pbGetMoveScore(*args)
-    # Extract parameters based on what was passed
-    # DBK calls this with 0 args (no target) or 1 arg ([target])
-    target_array = args[0] if args.length > 0
-    target = target_array&.first if target_array.is_a?(Array)
-    
-    # CRITICAL FIX: Side/field-targeting moves (Stealth Rock, Reflect, Spikes,
-    # Light Screen, etc.) have num_targets == 0, so vanilla calls pbGetMoveScore()
-    # with NO target argument. We must pick a fallback opponent for scoring context,
-    # otherwise score_move_advanced returns 0 and these moves are never chosen.
-    if target.nil? && @user
+    explicit_targets = args[0].is_a?(Array)
+    targets = explicit_targets ? args[0].compact : []
+    target = targets.first
+    if !explicit_targets && @user
       target = @battle.allOtherSideBattlers(@user.index).find { |b| b && !b.fainted? }
     end
     
     # Get skill from trainer OR wild Pokemon setting
-    if @trainer
-      skill = @trainer.skill
+    if @trainer && !@battle.wildBattle?
+      # Check for debug menu skill override
+      skill = (@trainer.instance_variable_get(:@aai_skill_override) rescue nil) || @trainer.skill
     else
       # Wild Pokemon - check if AI is enabled
       return aai_pbGetMoveScore(*args) unless AdvancedAI::ENABLE_WILD_POKEMON_AI
@@ -89,36 +82,69 @@ class Battle::AI
       return aai_pbGetMoveScore(*args) if skill == 0
     end
     
-    # Check qualification First
     unless AdvancedAI.qualifies_for_advanced_ai?(skill)
       return aai_pbGetMoveScore(*args)
     end
 
-    # Need move context for advanced scoring
     return aai_pbGetMoveScore(*args) unless @move
-    
-    # Use Advanced AI Scoring if qualified
-    # Route through pbRegisterMove so the full alias chain fires:
-    # Disruption (Taunt/Encore/Knock Off/Trick), Special Moves (Pain Split/
-    # Healing Wish/Final Gambit/Memento), Recoil Tracking (recoil penalty/
-    # confusion risk/substitute cost), and Doubles Strategy (Fake Out/
-    # Redirection/Helping Hand/Protect coordination).
-    @_resolved_target = target
-    @_resolved_skill  = skill
-    score = pbRegisterMove(@user, @move)
-    @_resolved_target = nil
-    @_resolved_skill  = nil
-    
-    # Apply Advanced AI enhancements (Layers on top of base advanced score)
-    score = apply_advanced_modifiers(score, @move, @user, target, skill)
+    return aai_pbGetMoveScore(*args) if explicit_targets && targets.empty?
+
+    scoring_targets = explicit_targets ? targets : [target]
+    if scoring_targets.all? { |t| aai_sleep_clause_blocks?(t) }
+      return MOVE_USELESS_SCORE
+    end
+    mirror_move = @move.move if @move.function_code == "UseLastMoveUsedByTarget"
+    mirror_target = @target
+    scores = []
+    target_data = @move.pbTarget(@user.battler) rescue nil
+    @_resolved_skill = skill
+    begin
+      scoring_targets.each do |current_target|
+        if mirror_move
+          set_up_move_check(mirror_move)
+          set_up_move_check_target(current_target)
+        end
+        next if aai_sleep_clause_blocks?(current_target)
+        next if current_target && aai_move_fails_against_target?(current_target)
+        @_resolved_target = current_target
+        @_resolved_targets = current_target ? [current_target] : []
+        current_score = pbRegisterMove(@user, @move)
+        current_score = apply_advanced_modifiers(current_score, @move, @user, current_target, skill)
+        if current_target && target_data && target_data.targets_foe &&
+           !current_target.opposes?(@user) && current_target.index != @user.index
+          current_score = ((1.85 * MOVE_BASE_SCORE) - current_score).to_i
+        end
+        scores << current_score
+      end
+    ensure
+      @move.set_up(mirror_move) if mirror_move
+      @target = mirror_target if mirror_move
+      @_resolved_target = nil
+      @_resolved_targets = nil
+      @_resolved_skill = nil
+    end
+    if scores.empty?
+      begin
+        return aai_pbGetMoveScore(*args)
+      ensure
+        @move.set_up(mirror_move) if mirror_move
+        @target = mirror_target if mirror_move
+      end
+    end
+
+    score = scores.inject(0) { |sum, value| sum + value } / scores.length
+    if scores.length > 1 && @trainer && @trainer.has_skill_flag?("PreferMultiTargetMoves")
+      score += (scores.length - 1) * 10
+    end
     
     # === DEBUG: Per-factor move score breakdown ===
-    if $DEBUG && @_score_factors && !@_score_factors.empty?
+    if AdvancedAI::DEBUG_MODE && @_score_factors && !@_score_factors.empty?
       move_name = @move.name rescue @move.id.to_s
       target_name = target.name rescue "???"
       user_name = @user.name rescue "???"
+      actual_base = @_actual_base_score || 100
       echoln "  ┌─ MOVE SCORE: #{move_name} (#{user_name} vs #{target_name}) ─┐"
-      echoln "    Base Score:                  100"
+      echoln "    Base Score:                  #{actual_base}"
       @_score_factors.each do |name, value|
         next if value == 0
         sign = value >= 0 ? "+" : "-"
@@ -136,7 +162,30 @@ class Battle::AI
   end
   
   private
-  
+
+  def aai_sleep_clause_blocks?(target)
+    return false unless AdvancedAI::ENFORCE_SLEEP_CLAUSE && @move && @user && target
+    return false unless target.opposes?(@user) && @move.statusMove?
+    return false unless @move.function_code.start_with?("SleepTarget")
+    @battle.pbParty(target.index).any? { |p| p && !p.egg? && !p.fainted? && p.status == :SLEEP }
+  end
+
+  def aai_move_fails_against_target?(target)
+    ai_target = @battlers[target.index]
+    return false unless ai_target
+    saved_target = @target
+    begin
+      @target = ai_target
+      @target.refresh_battler
+      return pbPredictMoveFailureAgainstTarget
+    ensure
+      @target = saved_target
+    end
+  rescue => e
+    AdvancedAI.log("Failure-against-target check errored: #{e.class}: #{e.message}", "Core")
+    return false
+  end
+
   def apply_advanced_modifiers(score, move, user, target, skill)
     factors = @_score_factors  # May be nil if not debugging
     
@@ -159,38 +208,38 @@ class Battle::AI
     end
     
     # Setup Recognition (55+)
-    if AdvancedAI.feature_enabled?(:setup, skill)
+    if AdvancedAI.feature_enabled?(:setup, skill) && AdvancedAI.tier_feature(skill, :setup_detection) && target
       pre = score; score = apply_setup_evaluation(score, move, user, target)
       factors["Setup Recognition"] = score - pre if factors && score != pre
     end
     
     # Endgame Scenarios (60+)
-    if AdvancedAI.feature_enabled?(:endgame, skill)
+    if AdvancedAI.feature_enabled?(:endgame, skill) && target
       pre = score; score = apply_endgame_logic(score, move, user, target)
       factors["Endgame Logic"] = score - pre if factors && score != pre
     end
     
     # Battle Personalities (65+)
-    if AdvancedAI.feature_enabled?(:personalities, skill)
+    if AdvancedAI.feature_enabled?(:personalities, skill) && target
       pre = score; score = apply_personality_modifiers(score, move, user, target)
       factors["Personality"] = score - pre if factors && score != pre
     end
     
     # Strategic Awareness (70+) — archetype counters, win condition shifts,
     # coverage gaps, sacking, collective health, threat persistence, cores
-    if skill >= 70
+    if skill >= 70 && target
       pre = score; score = apply_strategic_awareness(score, move, user, target, skill)
       factors["Strategic Awareness"] = score - pre if factors && score != pre
     end
     
     # Tactical Enhancements (50+) — ability/item/move awareness, multi-turn planning
-    if skill >= 50
+    if skill >= 50 && target
       pre = score; score = apply_tactical_enhancements(score, move, user, target, skill)
       factors["Tactical Enhancements"] = score - pre if factors && score != pre
     end
     
     # Item Intelligence (85+)
-    if AdvancedAI.feature_enabled?(:items, skill)
+    if AdvancedAI.feature_enabled?(:items, skill) && target
       pre = score; score = apply_item_intelligence(score, move, user, target)
       factors["Item Intelligence"] = score - pre if factors && score != pre
     end
@@ -276,6 +325,11 @@ Battle::AI::Handlers::ShouldSwitch.add(:advanced_ai_switch_intelligence,
       next false
     end
     
+    # Respect UsePokemonInOrder — skip advanced switch analysis
+    if ai.trainer && ai.trainer.has_skill_flag?("UsePokemonInOrder")
+      next false
+    end
+    
     if dbg
       echoln "========================================"
       echoln "=== ADVANCED AI SWITCH ANALYSIS ==="
@@ -341,10 +395,8 @@ Battle::AI::Handlers::ShouldSwitch.add(:advanced_ai_switch_intelligence,
     
     result = false
     begin
-      # Call our Advanced AI switch logic from [012] Switch_Intelligence.rb
-      # NOTE: battler is Battle::AI::AIBattler, need battler.battler for the real Battler
+      # should_switch_advanced? expects the real battler, not its AI wrapper.
       if ai.respond_to?(:should_switch_advanced?)
-        # Pass the real Battler object, not the AI wrapper
         real_battler = battler.respond_to?(:battler) ? battler.battler : battler
         result = ai.should_switch_advanced?(real_battler, skill)
         
@@ -366,7 +418,7 @@ Battle::AI::Handlers::ShouldSwitch.add(:advanced_ai_switch_intelligence,
         end
       end
     rescue => e
-      AdvancedAI.log("[AAI Core ERROR] #{e.class}: #{e.message}", "Switch")
+      AdvancedAI.log("Core error: #{e.class}: #{e.message}", "Switch")
       AdvancedAI.log(e.backtrace.first(3).join("\n"), "Switch")
       result = false
     end
@@ -379,16 +431,92 @@ Battle::AI::Handlers::ShouldSwitch.add(:advanced_ai_switch_intelligence,
 # Override replacement Pokemon selection to use Advanced AI logic
 #===============================================================================
 class Battle::AI
-  alias aai_choose_best_replacement_pokemon choose_best_replacement_pokemon
+  # Mark engine-requested replacements so stay-in heuristics cannot cancel them.
+  alias_method :aai_pbDefaultChooseNewEnemy, :pbDefaultChooseNewEnemy unless method_defined?(:aai_pbDefaultChooseNewEnemy) || private_method_defined?(:aai_pbDefaultChooseNewEnemy)
+  def pbDefaultChooseNewEnemy(idxBattler)
+    @aai_forced_replacement = true
+    begin
+      return aai_pbDefaultChooseNewEnemy(idxBattler)
+    ensure
+      @aai_forced_replacement = false
+    end
+  end
+
+  # True when every move the user could pick is predicted to do nothing at all.
+  def aai_all_moves_dead?(user)
+    battler = user.battler
+    return false unless battler
+    foes = @battle.allOtherSideBattlers(user.index).select { |b| b && !b.fainted? }
+    return false if foes.empty?
+    saved_target = @target
+    begin
+      battler.eachMoveWithIndex do |m, i|
+        next if !@battle.pbCanChooseMove?(user.index, i, false)
+        set_up_move_check(m)
+        next if pbPredictMoveFailure
+        works_somewhere = foes.any? do |f|
+          ai_f = @battlers[f.index]
+          next false unless ai_f
+          @target = ai_f
+          !pbPredictMoveFailureAgainstTarget
+        end
+        return false if works_somewhere
+      end
+      return true
+    rescue
+      return false
+    ensure
+      @target = saved_target
+    end
+  end
+
+  alias_method :aai_choose_best_replacement_pokemon, :choose_best_replacement_pokemon unless method_defined?(:aai_choose_best_replacement_pokemon) || private_method_defined?(:aai_choose_best_replacement_pokemon)
   def choose_best_replacement_pokemon(idxBattler, terrible_moves = false)
     begin
+      # Inspect the last move for forced paths that bypass pbDefaultChooseNewEnemy.
+      mandatory_switch = (@aai_forced_replacement == true)
+      begin
+        if !mandatory_switch && @user
+          if @user.respond_to?(:fainted?) && @user.fainted?
+            mandatory_switch = true
+          elsif @user.battler
+            last_move = @user.battler.lastMoveUsed
+            if last_move
+              move_data = GameData::Move.try_get(last_move)
+              if move_data
+                fc = move_data.function_code
+                pivot_ids = (defined?(AdvancedAI::PivotMoves::ALL_PIVOTS) ? AdvancedAI::PivotMoves::ALL_PIVOTS : [])
+                if pivot_ids.include?(move_data.id) ||
+                   ["SwitchOutUserDamagingMove",       # U-turn/Volt Switch/Flip Turn
+                    "SwitchOutUserPassOnEffects",      # Baton Pass
+                    "SwitchOutUserStatDownTarget",     # Parting Shot
+                    "SwitchOutUserHealReplacement",    # Teleport (Gen 8+)
+                    "SwitchOutUserAndChangeWeather",   # Chilly Reception
+                    "SwitchOutUserPassOnSubstitute"    # Shed Tail
+                   ].include?(fc)
+                  mandatory_switch = true
+                end
+              end
+            end
+          end
+        end
+      rescue
+        # Never downgrade a committed forced replacement to "optional".
+        mandatory_switch ||= (@aai_forced_replacement == true)
+      end
+      
       # Wild Pokemon: respect ENABLE_WILD_POKEMON_AI setting
       if @battle.wildBattle? && !AdvancedAI::ENABLE_WILD_POKEMON_AI
         return aai_choose_best_replacement_pokemon(idxBattler, terrible_moves)
       end
       
+      # Respect UsePokemonInOrder flag — vanilla already handles party-order selection
+      if @trainer && @trainer.has_skill_flag?("UsePokemonInOrder")
+        return aai_choose_best_replacement_pokemon(idxBattler, terrible_moves)
+      end
+      
       skill = if @trainer
-                @trainer.skill
+                (@trainer.instance_variable_get(:@aai_skill_override) rescue nil) || @trainer.skill
               elsif @battle.wildBattle?
                 AdvancedAI::WILD_POKEMON_SKILL_LEVEL
               else
@@ -404,11 +532,10 @@ class Battle::AI
         echoln "  Forced Switch: #{terrible_moves}"
       end
       
-      # Anti-ping-pong: If this Pokemon just switched in, don't switch out
-      # due to "terrible moves". Stall teams have low-scoring moves that are
-      # still strategically correct (Toxic, Protect, Recover, etc.).
-      # This prevents Blissey <-> Toxapex infinite switching loops.
-      if terrible_moves && @user.turnCount < 2 && !@user.fainted?
+      # Avoid immediate switch-backs caused by low-scoring stall moves.
+      # Mandatory switches and movesets that cannot affect a foe are exempt.
+      if !mandatory_switch && terrible_moves && @user.turnCount < 2 && !@user.fainted? &&
+         !aai_all_moves_dead?(@user)
         if dbg
           echoln "  >>> Anti-ping-pong: #{@user.name} just switched in (turn #{@user.turnCount})"
           echoln "  >>> Staying to use available moves instead of switching"
@@ -417,11 +544,8 @@ class Battle::AI
         return -1
       end
       
-      # Stall archetype protection: Stall mons should NOT switch out due to
-      # "terrible moves" when their stall gameplan is active (Toxic/Burn ticking,
-      # Leech Seed draining). Their moves ARE the strategy.
-      if terrible_moves && !@user.fainted? && AdvancedAI.has_stall_moveset?(@user)
-        # Check if stall gameplan is working (opponent has passive damage)
+      # Keep stall sets in while their passive-damage plan is active.
+      if !mandatory_switch && terrible_moves && !@user.fainted? && AdvancedAI.has_stall_moveset?(@user)
         stall_working = false
         @battle.allOtherSideBattlers(@user.index).each do |target|
           next unless target && !target.fainted?
@@ -473,8 +597,7 @@ class Battle::AI
         echoln "  >>> Using Advanced AI selection..." if dbg
         
         # Call our advanced switch finder from [012] Switch_Intelligence.rb
-        # Use send to bypass visibility restrictions
-        # Returns party index directly (pass terrible_moves as forced_switch)
+        # send bypasses the helper's visibility.
         best_idx = send(:find_best_switch_advanced, @user, skill, terrible_moves)
         if best_idx && @battle.pbCanSwitchIn?(idxBattler, best_idx)
           party = @battle.pbParty(idxBattler)
@@ -489,7 +612,7 @@ class Battle::AI
         AdvancedAI.log("No suitable advanced switch found, falling back to vanilla", "Switch")
       end
     rescue => e
-      AdvancedAI.log("[AAI ERROR] #{e.class}: #{e.message}", "Switch")
+      AdvancedAI.log("Error: #{e.class}: #{e.message}", "Switch")
       AdvancedAI.log(e.backtrace.first(3).join("\n"), "Switch")
     end
     
@@ -498,7 +621,6 @@ class Battle::AI
   end
 end
 
-# Initialization log moved to EventHandler to ensure AdvancedAI module is fully loaded
 EventHandlers.add(:on_game_map_setup, :aai_core_loaded,
   proc {
     if defined?(AdvancedAI) && AdvancedAI.respond_to?(:log)
@@ -507,10 +629,81 @@ EventHandlers.add(:on_game_map_setup, :aai_core_loaded,
   }
 )
 
-if $DEBUG
-  echoln "[AAI Core] ✅ Switch Intelligence Handler registered!"
-  echoln "[AAI Core] ✅ Replacement selector override active!"
-  echoln "[AAI Core] Ready for battles with skill-based switch logic"
+AdvancedAI.log("Switch intelligence and replacement selector ready", "Core")
+
+
+
+#===============================================================================
+# Deterministic move selection (opt-in: AdvancedAI::DETERMINISTIC_MOVE_CHOICE)
+# Picks the highest score; ties resolve by move index, then target index.
+# The terrible-move switch gate also runs without its random roll.
+#===============================================================================
+class Battle::AI
+  alias_method :aai_det_pbChooseMove, :pbChooseMove unless method_defined?(:aai_det_pbChooseMove) || private_method_defined?(:aai_det_pbChooseMove)
+
+  def pbChooseMove(choices)
+    return aai_det_pbChooseMove(choices) unless AdvancedAI::ENABLED
+    unless (defined?(AdvancedAI::DETERMINISTIC_MOVE_CHOICE) && AdvancedAI::DETERMINISTIC_MOVE_CHOICE)
+      return aai_det_pbChooseMove(choices)
+    end
+    user_battler = @user.battler
+    if choices.length == 0
+      @battle.pbAutoChooseMove(user_battler.index)
+      PBDebug.log_ai("#{@user.name} will auto-use a move or Struggle")
+      return
+    end
+    max_score = 0
+    choices.each { |c| max_score = c[1] if max_score < c[1] }
+    # Sleeping or frozen battlers do not switch merely because every move is unusable.
+    if @trainer.high_skill? && @user.can_switch_lax?
+      bad_moves = false
+      if max_score <= MOVE_USELESS_SCORE
+        bad_moves = @user.can_attack?
+      elsif max_score < MOVE_BASE_SCORE * move_score_threshold && user_battler.turnCount > 2
+        bad_moves = true
+      end
+      if bad_moves
+        PBDebug.log_ai("#{@user.name} wants to switch due to terrible moves")
+        if pbChooseToSwitchOut(true)
+          @battle.pbUnregisterMegaEvolution(@user.index)
+          return
+        end
+        PBDebug.log_ai("#{@user.name} won't switch after all")
+      end
+    end
+    # Deterministic pick: highest score, ties -> lowest move index, then target.
+    # (DBK's choices carry a 5th element and may have a nil target index.)
+    best = choices.min_by { |c| [-c[1], c[0], c[2] || -1] }
+    unless best
+      @battle.pbAutoChooseMove(user_battler.index)
+      PBDebug.log_ai("#{@user.name} deterministic fallback: auto-choosing a move or Struggle")
+      return
+    end
+    # DBK registers a move's gimmick action before registering the move itself.
+    if best.length > 4 && best[4] && respond_to?(:pbRegisterEnemySpecialActionFromMove)
+      pbRegisterEnemySpecialActionFromMove(user_battler, best[4])
+    end
+    unless @battle.pbRegisterMove(user_battler.index, best[0], false)
+      @battle.pbAutoChooseMove(user_battler.index)
+      PBDebug.log_ai("#{@user.name} deterministic fallback: auto-choosing a move or Struggle")
+      return
+    end
+    @battle.pbRegisterTarget(user_battler.index, best[2]) if best[2] && best[2] >= 0
+    if $INTERNAL
+      mv  = @battle.choices[user_battler.index][2]
+      tgt = @battle.choices[user_battler.index][3]
+      PBDebug.log("   => will use #{mv.name}" + ((tgt && tgt >= 0) ? " (target #{tgt})" : "") + " [deterministic]") if mv
+    end
+  end
 end
 
-
+class Battle::AI::AITrainer
+  alias_method :aai_settings_set_up_skill, :set_up_skill unless method_defined?(:aai_settings_set_up_skill)
+  def set_up_skill
+    aai_settings_set_up_skill
+    return if @trainer || !@ai.battle.wildBattle?
+    return unless AdvancedAI::ENABLED && AdvancedAI::ENABLE_WILD_POKEMON_AI
+    skill = AdvancedAI::WILD_POKEMON_SKILL_LEVEL
+    @skill = skill if AdvancedAI.active?(skill) || skill == 0
+  end
+end

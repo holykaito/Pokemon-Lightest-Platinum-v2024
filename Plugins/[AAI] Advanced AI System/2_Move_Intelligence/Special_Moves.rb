@@ -8,7 +8,7 @@ class Battle::AI
   # SPECIAL MOVE EVALUATION
   # ============================================================================
   
-  alias special_moves_pbRegisterMove pbRegisterMove
+  alias_method :special_moves_pbRegisterMove, :pbRegisterMove unless method_defined?(:special_moves_pbRegisterMove) || private_method_defined?(:special_moves_pbRegisterMove)
   def pbRegisterMove(user, move)
     score = special_moves_pbRegisterMove(user, move)
     
@@ -16,19 +16,17 @@ class Battle::AI
     
     case move.id
     when :PAINSPLIT
-      score += evaluate_pain_split(user, move)
+      score += evaluate_pain_split(user, move, @_resolved_target)
     when :HEALINGWISH, :LUNARDANCE
       score += evaluate_healing_wish(user, move)
     when :FINALGAMBIT
-      score += evaluate_final_gambit(user, move)
+      score += evaluate_final_gambit(user, move, @_resolved_target)
     when :MEMENTO, :MISTYEXPLOSION
-      score += evaluate_sacrifice_moves(user, move)
+      score += evaluate_sacrifice_moves(user, move, @_resolved_target)
     when :RAPIDSPIN, :DEFOG
       score += evaluate_hazard_removal(user, move)
     when :ENDEAVOR
-      score += evaluate_endeavor(user, move)
-    when :DREAMEATER
-      score += evaluate_dream_eater(user, move)
+      score += evaluate_endeavor(user, move, @_resolved_target)
     end
     
     return score
@@ -38,28 +36,28 @@ class Battle::AI
   # PAIN SPLIT EVALUATION
   # ============================================================================
   
-  def evaluate_pain_split(user, move)
+  def evaluate_pain_split(user, move, resolved_target = nil)
     score = 0
     
-    targets = @battle.allOtherSideBattlers(user.index).select { |t| t && !t.fainted? }
+    targets = resolved_target ? [resolved_target] : @battle.allOtherSideBattlers(user.index)
+    targets = targets.select { |t| t && !t.fainted? && t.opposes?(user) }
     return 0 if targets.empty?
     
     best = targets.map { |target|
+      next -90 if target.effects[PBEffects::Substitute] > 0 && !move.ignoresSubstitute?(user)
       tscore = 0
       
       # Pain Split averages RAW HP values (not percentages!)
-      # e.g., 50/100 user vs 200/400 target → average = 125, user gains 75 HP
-      average_hp = (user.hp + target.hp) / 2.0
-      user_gain = average_hp - user.hp
+      average_hp = (user.hp + target.hp) / 2
+      user_gain = [average_hp, user.totalhp].min - user.hp
       user_gain_pct = user_gain / user.totalhp.to_f
       user_hp_percent = user.hp.to_f / user.totalhp
       
-      # HIGH VALUE: We gain a significant chunk of HP
+      # Value scales with recovered HP.
       if user_gain_pct > 0.30 && user_hp_percent < 0.35
         tscore += 80
         AdvancedAI.log("  Pain Split (#{user.hp}/#{user.totalhp} vs #{target.hp}/#{target.totalhp}): +80 (huge heal)", "Special")
         
-        # CRITICAL: Could save us from KO
         if user_hp_percent < 0.2
           tscore += 40
           AdvancedAI.log("  Emergency heal: +40", "Special")
@@ -110,15 +108,17 @@ class Battle::AI
       return -70
     end
     
-    # Check party for valuable teammates
-    party = @battle.pbParty(user.index & 1)  # side index (0/1), not battler slot
+    party = []
+    @battle.eachInTeamFromBattlerIndex(user.index) { |pkmn, i| party << pkmn }
+    active = @battle.allSameSideBattlers(user.index).map { |b| b.pokemon }
+    reserves = party.reject { |p| !p || p.fainted? || p.egg? || active.include?(p) }
     valuable_teammates = 0
     injured_sweepers = 0
+    depleted_pp = false
     
-    party.each do |pkmn|
-      next if !pkmn || pkmn.fainted? || pkmn.egg?
-      next if pkmn == user.battler.pokemon  # Skip self
+    reserves.each do |pkmn|
       
+      depleted_pp ||= pkmn.moves.any? { |m| m.pp < m.total_pp }
       hp_percent = pkmn.hp.to_f / pkmn.totalhp
       
       # Valuable if injured and has high stats
@@ -126,7 +126,7 @@ class Battle::AI
         injured_sweepers += 1
       end
       
-      # Valuable if status'd — both Healing Wish (Gen 5+) and Lunar Dance cure status
+      # Valuable if status'd â€” both Healing Wish (Gen 5+) and Lunar Dance cure status
       if pkmn.status != :NONE
         valuable_teammates += 1
       end
@@ -136,13 +136,13 @@ class Battle::AI
       score += injured_sweepers * 50
       AdvancedAI.log("  #{move.name}: +#{injured_sweepers * 50} (heal sweeper)", "Special")
       
-      # CRITICAL: Last Pokemon standing, sacrifice for win condition
-      alive_count = party.count { |p| p && !p.fainted? }
+      # Last Pokemon standing
+      alive_count = party.count { |p| p && !p.egg? && !p.fainted? }
       if alive_count == 2 && user_hp_percent < 0.25
         score += 60
         AdvancedAI.log("  Last hope sacrifice: +60", "Special")
       end
-    else
+    elsif valuable_teammates == 0 && !(move.id == :LUNARDANCE && depleted_pp)
       # No good targets
       score -= 50
       AdvancedAI.log("  #{move.name}: -50 (no valuable teammates)", "Special")
@@ -155,7 +155,7 @@ class Battle::AI
     end
     
     # Lunar Dance extra: also fully restores PP
-    if move.id == :LUNARDANCE
+    if move.id == :LUNARDANCE && depleted_pp
       score += 10
       AdvancedAI.log("  Lunar Dance restores PP: +10", "Special")
     end
@@ -167,21 +167,28 @@ class Battle::AI
   # FINAL GAMBIT EVALUATION
   # ============================================================================
   
-  def evaluate_final_gambit(user, move)
+  def evaluate_final_gambit(user, move, resolved_target = nil)
     score = 0
     
-    targets = @battle.allOtherSideBattlers(user.index).select { |t| t && !t.fainted? }
+    targets = resolved_target ? [resolved_target] : @battle.allOtherSideBattlers(user.index)
+    targets = targets.select { |t| t && !t.fainted? && t.opposes?(user) }
     return 0 if targets.empty?
     
     best = targets.map { |target|
       tscore = 0
       
       # Final Gambit: Deals damage equal to user's current HP, user faints
+      next -90 if AdvancedAI::CombatUtilities.estimate_damage(user, move, target) <= 0
+      next -90 if target.effects[PBEffects::Substitute] > 0 && !move.ignoresSubstitute?(user)
       damage = user.hp
       target_hp = target.hp
       
       # BEST CASE: KO high-value target
-      if damage >= target_hp
+      bypass = AdvancedAI::Utilities.ignores_ability?(user, move, target)
+      survives = target.effects[PBEffects::Endure] ||
+                 (target.hp == target.totalhp && (target.hasActiveItem?(:FOCUSSASH) ||
+                  (target.hasActiveAbility?(:STURDY) && !bypass)))
+      if damage >= target_hp && !survives
         tscore += 100
         AdvancedAI.log("  Final Gambit: +100 (KOs target)", "Special")
         
@@ -192,7 +199,7 @@ class Battle::AI
         end
         
         # BONUS: Target is last Pokemon
-        enemy_count = @battle.allOtherSideBattlers(user.index).count { |b| b && !b.fainted? }
+        enemy_count = @battle.pbParty(target.index).count { |p| p && !p.egg? && !p.fainted? }
         if enemy_count == 1
           tscore += 80
           AdvancedAI.log("  KOs last Pokemon: +80 (wins game!)", "Special")
@@ -230,20 +237,31 @@ class Battle::AI
   # SACRIFICE MOVES (Memento, Misty Explosion, etc.)
   # ============================================================================
   
-  def evaluate_sacrifice_moves(user, move)
+  def evaluate_sacrifice_moves(user, move, resolved_target = nil)
     score = 0
     user_hp_percent = user.hp.to_f / user.totalhp
     
     # Memento: -2 Atk/SpAtk to target, user faints
-    # Misty Explosion: 2x power on Misty Terrain, user faints
+    # Misty Explosion: user faints after dealing damage.
     
     if move.id == :MEMENTO
-      targets = @battle.allOtherSideBattlers(user.index).select { |t| t && !t.fainted? }
+      targets = resolved_target ? [resolved_target] : @battle.allOtherSideBattlers(user.index)
+      targets = targets.select { |t| t && !t.fainted? && t.opposes?(user) }
       
       best = targets.map { |target|
         tscore = 0
         
-        # HIGH VALUE: Cripple setup sweeper
+        preview = @battle.clone
+        preview.moldBreaker = AdvancedAI::Utilities.ignores_ability?(user, move, target)
+        probe = target.clone
+        probe.instance_variable_set(:@battle, preview)
+        if target.hasActiveAbility?([:DEFIANT, :COMPETITIVE]) ||
+           (!preview.moldBreaker && target.hasActiveAbility?([:CONTRARY, :MIRRORARMOR]))
+          next -90
+        end
+        next -90 unless [:ATTACK, :SPECIAL_ATTACK].any? { |stat| probe.pbCanLowerStatStage?(stat, user, move) }
+
+        # Cripple a setup sweeper.
         if target.stages[:ATTACK] >= 1 || target.stages[:SPECIAL_ATTACK] >= 1
           tscore += 70
           AdvancedAI.log("  Memento vs boosted: +70 (cripple)", "Special")
@@ -268,7 +286,8 @@ class Battle::AI
     end
     
     if move.id == :MISTYEXPLOSION
-      # 2x power on Misty Terrain
+      return -90 if @battle.pbCheckGlobalAbility(:DAMP) && !AdvancedAI::Utilities.ignores_ability?(user, move)
+      # Native Misty Terrain bonus: 1.5x.
       if @battle.field.terrain == :Misty
         score += 40
         AdvancedAI.log("  Misty Explosion (terrain): +40", "Special")
@@ -282,79 +301,168 @@ class Battle::AI
   # HAZARD REMOVAL (Rapid Spin, Defog)
   # ============================================================================
   
-  def evaluate_hazard_removal(user, move)
-    score = 0
-    
-    # Check our side for hazards
-    our_side = @battle.sides[user.index & 1]  # Fixed: pbOwnedByPlayer? doesn't exist on Battle
-    
-    hazard_count = 0
-    hazard_count += 1 if our_side.effects[PBEffects::StealthRock]
-    hazard_count += our_side.effects[PBEffects::Spikes]
-    hazard_count += our_side.effects[PBEffects::ToxicSpikes]
-    hazard_count += 1 if our_side.effects[PBEffects::StickyWeb]
-    
-    if hazard_count == 0
-      AdvancedAI.log("  #{move.name}: -70 (no hazards)", "Special")
-      return -70
-    end
-    
-    # HIGH VALUE: Remove hazards
-    score += hazard_count * 30
-    AdvancedAI.log("  #{move.name}: +#{hazard_count * 30} (remove #{hazard_count} hazards)", "Special")
-    
-    # BONUS: Stealth Rock is critical
-    if our_side.effects[PBEffects::StealthRock]
-      score += 25
-      AdvancedAI.log("  Remove Stealth Rock: +25", "Special")
-    end
-    
-    # BONUS: We have Pokemon weak to hazards
-    party = @battle.pbParty(user.index & 1)  # side index (0/1), not battler slot
-    weak_to_rocks = party.count do |pkmn|
-      next false if !pkmn || pkmn.fainted?
-      type_mod = Effectiveness.calculate(:ROCK, *pkmn.types)
-      Effectiveness.super_effective?(type_mod)
-    end
-    
-    if weak_to_rocks > 0
-      score += weak_to_rocks * 15
-      AdvancedAI.log("  Protect weak teammates: +#{weak_to_rocks * 15}", "Special")
-    end
-    
-    # Defog ALSO removes opponent's hazards and screens
-    if move.id == :DEFOG
-      opp_side = @battle.sides[1 - (user.index & 1)]  # Fixed: pbOwnedByPlayer? doesn't exist on Battle
-      
-      # Remove opponent screens (bad for us usually)
-      if opp_side.effects[PBEffects::Reflect] > 0 || opp_side.effects[PBEffects::LightScreen] > 0
-        score += 40
-        AdvancedAI.log("  Remove opponent screens: +40", "Special")
-      end
-      
-      # Remove opponent hazards (gives them benefit)
-      opp_hazards = 0
-      opp_hazards += 1 if opp_side.effects[PBEffects::StealthRock]
-      opp_hazards += opp_side.effects[PBEffects::Spikes]
-      opp_hazards += opp_side.effects[PBEffects::ToxicSpikes] || 0
-      opp_hazards += 1 if opp_side.effects[PBEffects::StickyWeb]
-      if opp_hazards > 0
-        score -= opp_hazards * 15
-        AdvancedAI.log("  Also removes our hazards: -#{opp_hazards * 15}", "Special")
-      end
-    end
-    
-    return score
+  def aai_revival_candidates(index, party = nil)
+    party ||= @battle.pbParty(index)
+    first, last = @battle.pbTeamIndexRangeFromBattlerIndex(index)
+    (first...last).select { |i| party[i] && !party[i].egg? && party[i].fainted? }
   end
-  
+
+  def aai_secondary_poison_useful?(user, move, target)
+    user = user.battler if user.respond_to?(:battler)
+    move = move.move if move.respond_to?(:move)
+    target = target.battler if target.respond_to?(:battler)
+    return false if user.hasActiveAbility?(:SHEERFORCE)
+    return false if target.effects[PBEffects::Substitute] > 0 && !move.ignoresSubstitute?(user)
+    return false unless AdvancedAI::WinConditions.poison_damage_useful?(@battle, target)
+    preview = @battle.clone
+    battlers = @battle.battlers.map do |b|
+      next nil unless b
+      copy = b.clone
+      copy.instance_variable_set(:@battle, preview)
+      copy.instance_variable_set(:@effects, b.effects.dup)
+      copy.instance_variable_set(:@stages, b.stages.dup)
+      copy
+    end
+    preview.instance_variable_set(:@battlers, battlers)
+    user = battlers[user.index]
+    target = battlers[target.index]
+    native = Battle::Move.from_pokemon_move(preview, Pokemon::Move.new(move.id))
+    preview.moldBreaker = user.hasMoldBreaker? && !target.hasActiveItem?(:ABILITYSHIELD)
+    native.pbAdditionalEffectChance(user, target) > 0 && target.pbCanPoison?(user, false, native)
+  end
+
+  def aai_self_stage_delta(user, move, stat)
+    user = user.battler if user.respond_to?(:battler)
+    move = move.move if move.respond_to?(:move)
+    preview = @battle.clone
+    preview.moldBreaker = false
+    copy = user.clone
+    copy.instance_variable_set(:@battle, preview)
+    copy.instance_variable_set(:@stages, user.stages.dup)
+    copy.instance_variable_set(:@effects, user.effects.dup)
+    return 0 unless copy.pbCanRaiseStatStage?(stat, copy, move)
+    before = copy.stages[stat]
+    copy.pbRaiseStatStageBasic(stat, 1)
+    copy.stages[stat] - before
+  end
+
+  def aai_known_retaliation_ko?(user, move, target)
+    user = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    move = move.move if move.respond_to?(:move)
+    return false unless user.takesIndirectDamage?
+    contact = move.pbContactMove?(user) && user.affectedByContactEffect?
+    return false if target.effects[PBEffects::Substitute] > 0 && !move.ignoresSubstitute?(user)
+    hits = []
+    hits << [user.totalhp / 8, 1].max if contact && target.hasActiveAbility?([:ROUGHSKIN, :IRONBARBS])
+    if target.hasActiveAbility?([:AFTERMATH, :INNARDSOUT]) && AdvancedAI::EndgameScenarios.can_ko?(user, target, move)
+      if target.hasActiveAbility?(:INNARDSOUT)
+        hits << target.hp unless user.dummy
+      elsif contact
+        mold_breaker = user.hasMoldBreaker? && !target.hasActiveItem?(:ABILITYSHIELD)
+        hits << [user.totalhp / 4, 1].max if mold_breaker || !@battle.pbCheckGlobalAbility(:DAMP)
+      end
+    end
+    hits << [user.totalhp / 6, 1].max if contact && target.hasActiveItem?(:ROCKYHELMET)
+    return false if hits.empty?
+    preview = @battle.clone
+    copies = @battle.battlers.map do |b|
+      next nil unless b
+      copy = b.clone
+      copy.instance_variable_set(:@pokemon, b.pokemon.clone) if b.pokemon
+      copy.instance_variable_set(:@battle, preview)
+      copy.instance_variable_set(:@effects, b.effects.dup)
+      copy.instance_variable_set(:@stages, b.stages.dup)
+      copy
+    end
+    preview.instance_variable_set(:@battlers, copies)
+    probe = copies[user.index]
+    hits.each do |damage|
+      probe.hp = [probe.hp - damage, 0].max
+      return true if probe.fainted?
+      heal_switch_entry_item(probe)
+    end
+    false
+  end
+
+  def aai_removal_target_state(user, move, target)
+    user = user.battler if user.respond_to?(:battler)
+    move = move.move if move.respond_to?(:move)
+    target = target.battler if target.respond_to?(:battler)
+    return :blocked unless target && !target.fainted? && !user.fainted?
+    index = user.moves.index { |m| m.id == move.id }
+    return :blocked if index && !@battle.pbCanChooseMove?(user.index, index, false)
+    return :blocked if AdvancedAI::Utilities.counter_priority_blocked?(@battle, move, user, target)
+    return :blocked if AdvancedAI::Utilities.counter_shield_blocked?(@battle, move, user, target)
+    if move.damagingMove?
+      return :blocked if move.id == :RAPIDSPIN && aai_known_retaliation_ko?(user, move, target)
+      return AdvancedAI::CombatUtilities.estimate_damage(user, move, target) > 0 ? :hit : :blocked
+    end
+    preview = @battle.clone
+    native = Battle::Move.from_pokemon_move(preview, Pokemon::Move.new(move.id))
+    preview.moldBreaker = (user.hasMoldBreaker? || user.hasActiveAbility?(:MYCELIUMMIGHT)) && !target.hasActiveItem?(:ABILITYSHIELD)
+    return :blocked if native.pbImmunityByAbility(user, target, false)
+    return :reflected if native.canMagicCoat? && !target.semiInvulnerable? &&
+      (target.effects[PBEffects::MagicCoat] ||
+       (target.hasActiveAbility?(:MAGICBOUNCE) && !preview.moldBreaker && !target.effects[PBEffects::MagicBounce]))
+    return :blocked if native.pbFailsAgainstTarget?(user, target, false)
+    :hit
+  end
+
+  def evaluate_hazard_removal(user, move, resolved_target = nil)
+    user = user.battler if user.respond_to?(:battler)
+    move = move.move if move.respond_to?(:move)
+    resolved_target ||= @_resolved_target
+    targets = resolved_target ? [resolved_target] : @battle.allOtherSideBattlers(user.index)
+    scores = targets.map do |target|
+      state = aai_removal_target_state(user, move, target)
+      next 0 if state == :blocked
+      score = 0
+      our_side = user.pbOwnSide
+      opp_side = user.pbOpposingSide
+      clears_ours = move.id == :RAPIDSPIN || Settings::MECHANICS_GENERATION >= 6 || state == :reflected
+      if clears_ours
+        hazards = (our_side.effects[PBEffects::StealthRock] ? 1 : 0) +
+                  our_side.effects[PBEffects::Spikes] + our_side.effects[PBEffects::ToxicSpikes] +
+                  (our_side.effects[PBEffects::StickyWeb] ? 1 : 0)
+        score += hazards * 30
+        if our_side.effects[PBEffects::StealthRock]
+          score += 25
+          weak = @battle.pbParty(user.index & 1).count do |p|
+            p && !p.egg? && !p.fainted? && Effectiveness.super_effective?(Effectiveness.calculate(:ROCK, *p.types))
+          end
+          score += weak * 15
+        end
+      end
+      if move.id == :RAPIDSPIN
+        score += 30 if user.effects[PBEffects::LeechSeed] >= 0
+        score += 30 if user.effects[PBEffects::Trapping] > 0
+      elsif move.id == :DEFOG
+        cleared_side = state == :reflected ? our_side : target.pbOwnSide
+        if [:Reflect, :LightScreen, :AuroraVeil].any? { |effect| cleared_side.effects[PBEffects.const_get(effect)] > 0 }
+          score += state == :reflected ? -40 : 40
+        end
+        if Settings::MECHANICS_GENERATION >= 6 || state != :reflected
+          hazards = (opp_side.effects[PBEffects::StealthRock] ? 1 : 0) +
+                    opp_side.effects[PBEffects::Spikes] + opp_side.effects[PBEffects::ToxicSpikes] +
+                    (opp_side.effects[PBEffects::StickyWeb] ? 1 : 0)
+          score -= hazards * 15
+        end
+      end
+      score
+    end
+    scores.max || 0
+  end
+
   # ============================================================================
   # ENDEAVOR EVALUATION
   # ============================================================================
   
-  def evaluate_endeavor(user, move)
+  def evaluate_endeavor(user, move, resolved_target = nil)
     score = 0
     
-    targets = @battle.allOtherSideBattlers(user.index).select { |t| t && !t.fainted? }
+    targets = resolved_target ? [resolved_target] : @battle.allOtherSideBattlers(user.index)
+    targets = targets.select { |t| t && !t.fainted? && t.opposes?(user) }
     return 0 if targets.empty?
     
     # Endeavor: Set target HP to user's current HP
@@ -367,11 +475,13 @@ class Battle::AI
     end
     
     best = targets.map { |target|
+      next -90 if AdvancedAI::CombatUtilities.estimate_damage(user, move, target) <= 0
+      next -90 if target.effects[PBEffects::Substitute] > 0 && !move.ignoresSubstitute?(user)
       tscore = 0
       user_hp = user.hp
       target_hp = target.hp
       
-      # HIGH VALUE: Target at high HP, we're low
+      # Favor high-HP targets while the user is low.
       if target_hp > user_hp * 2
         damage = target_hp - user_hp
         damage_percent = damage.to_f / target.totalhp
@@ -380,7 +490,14 @@ class Battle::AI
         AdvancedAI.log("  Endeavor: +60 (#{(damage_percent * 100).to_i}% damage)", "Special")
         
         # COMBO: Follow up with priority move
-        priority_moves = user.moves.select { |m| m && m.priority > 0 }
+        priority_moves = user.moves.each_with_index.select do |m, i|
+          m && m.damagingMove? && @battle.pbCanChooseMove?(user.index, i, false) &&
+            AdvancedAI::PriorityTiers.get_priority_tier(m, user) > 0 &&
+            !(@battle.field.terrain == :Psychic && target.affectedByTerrain?) &&
+            (AdvancedAI::Utilities.ignores_ability?(user, m, target) ||
+             @battle.allSameSideBattlers(target.index).none? { |b| b.hasActiveAbility?([:DAZZLING, :QUEENLYMAJESTY, :ARMORTAIL]) }) &&
+            AdvancedAI::CombatUtilities.estimate_damage(user, m, target) > 0
+        end
         if priority_moves.any?
           tscore += 40
           AdvancedAI.log("  Have priority follow-up: +40", "Special")
@@ -395,82 +512,14 @@ class Battle::AI
     
     return best
   end
-  
-  # ============================================================================
-  # DREAM EATER EVALUATION
-  # ============================================================================
-  # Dream Eater: 50% Special Attack Drain move that ONLY works on asleep targets
-  # Deals 50% damage if target is asleep, fails if target is NOT asleep
-  # This function is only called if Dream Eater itself is being considered
-  
-  def evaluate_dream_eater(user, move)
-    score = 0
-    
-    targets = @battle.allOtherSideBattlers(user.index).select { |t| t && !t.fainted? }
-    return 0 if targets.empty?
-    
-    best = targets.map { |target|
-      tscore = 0
-      
-      # CRITICAL: Target must be asleep for Dream Eater to work
-      if target.status == :SLEEP
-        # Condition met! Dream Eater will work
-        tscore += 80
-        AdvancedAI.log("  Dream Eater: +80 (target is asleep)", "Special")
-        
-        # Healing value scales with damage
-        user_hp_percent = user.hp.to_f / user.totalhp
-        
-        # Urgency increases value
-        if user_hp_percent < 0.3
-          tscore += 50  # Critical healing at low HP
-          AdvancedAI.log("  Dream Eater healing: +50 (critical HP)", "Special")
-        elsif user_hp_percent < 0.5
-          tscore += 30  # Good healing
-          AdvancedAI.log("  Dream Eater healing: +30 (moderate HP)", "Special")
-        elsif user_hp_percent < 0.7
-          tscore += 15  # Minor sustain
-          AdvancedAI.log("  Dream Eater healing: +15 (sustain)", "Special")
-        end
-        
-        # Type matchup: Dream Eater is Psychic-type
-        type_mod = Effectiveness.calculate(:PSYCHIC, *target.pbTypes(true))
-        if Effectiveness.super_effective?(type_mod)
-          tscore += 30
-          AdvancedAI.log("  Dream Eater super-effective: +30", "Special")
-        elsif Effectiveness.not_very_effective?(type_mod)
-          tscore -= 20
-          AdvancedAI.log("  Dream Eater not very effective: -20", "Special")
-        end
-        
-        # Bonus if target is defensive (healing matters more vs walls)
-        if target.defense > target.spatk
-          tscore += 20
-          AdvancedAI.log("  Dream Eater vs defensive target: +20", "Special")
-        end
-      else
-        # MAJOR PENALTY: Target is NOT asleep
-        # Dream Eater will fail/do nothing useful
-        tscore -= 100
-        AdvancedAI.log("  Dream Eater: -100 (target NOT asleep - MOVE WILL FAIL)", "Special")
-        
-        # Check if we have sleep moves to suggest setup first
-        sleep_moves = user.moves.select { |m|
-          m && [:SLEEPPOWDER, :SPORE, :HYPNOSIS, :DARKVOID, :GRASSWHISTLE, :LOVELYKISS, :SING, :YAWN].include?(m.id)
-        }
-        
-        if sleep_moves.any?
-          tscore -= 50  # Extra penalty - we have a way to setup
-          AdvancedAI.log("  Have sleep setup moves available: -50 (should use those first)", "Special")
-        end
-      end
-      
-      tscore
-    }.max || 0
-    
-    return best
+end
+
+module AdvancedAI::RevivalOwnerSelection
+  def choose_best_revive_pokemon(index, party)
+    aai_revival_candidates(index, party).max_by { |i| rate_replacement_pokemon(index, party[i], 100) } || -1
   end
 end
+Battle::AI.prepend(AdvancedAI::RevivalOwnerSelection) unless Battle::AI.ancestors.include?(AdvancedAI::RevivalOwnerSelection)
 
 AdvancedAI.log("Special Sacrifice & Utility Moves loaded", "Core")
 AdvancedAI.log("  - Pain Split (HP averaging)", "Special")
@@ -479,4 +528,3 @@ AdvancedAI.log("  - Final Gambit (sacrifice damage)", "Special")
 AdvancedAI.log("  - Memento/Misty Explosion", "Special")
 AdvancedAI.log("  - Rapid Spin/Defog (hazard removal)", "Special")
 AdvancedAI.log("  - Endeavor (HP matching)", "Special")
-AdvancedAI.log("  - False Swipe = -999 in PVP (already in Move_Scorer)", "Special")

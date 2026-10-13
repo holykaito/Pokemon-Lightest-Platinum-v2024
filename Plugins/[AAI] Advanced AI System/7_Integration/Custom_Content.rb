@@ -79,7 +79,7 @@ module AdvancedAI
       :POISONPUPPETEER    => 2.0,  # Poison also confuses (Pecharunt)
       :SUPERSWEETSYRUP    => 1.5,  # -1 Evasion to all opponents on entry
       :EMBODYASPECT       => 1.8,  # +1 stat on entry (Ogerpon)
-      :ZEROTOHERO         => 2.5,  # Hero form Palafin = massive stats
+      :ZEROTOHERO         => 2.5,
       
       # As One (Calyrex fusions) - Unnerve + KO momentum
       :ASONEGLASTRIER     => 2.5,  # Unnerve + Chilling Neigh (+1 Atk on KO)
@@ -205,7 +205,6 @@ module AdvancedAI
     SUPPORT_ABILITIES = {
       # Disruption (Threat +1.0)
       :INTIMIDATE         => 1.5,  # -1 Atk to opponents
-      :TERRORSOWER        => 1.5,  # -1 Sp.Atk to opponents
       :DROUGHT            => 1.5,  # Sets Sun
       :DRIZZLE            => 1.5,  # Sets Rain
       :SANDSTREAM         => 1.5,  # Sets Sandstorm
@@ -312,7 +311,7 @@ module AdvancedAI
         return [:CHLOROPHYLL, :SOLARPOWER, :FLOWERGIFT, :LEAFGUARD, 
                 :HARVEST, :PROTOSYNTHESIS, :ORICHALCUMPULSE].any? { |a| battler.hasActiveAbility?(a) }
       when :Rain, :HeavyRain
-        return [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC].any? { |a| battler.hasActiveAbility?(a) }
+        return [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION].any? { |a| battler.hasActiveAbility?(a) }
       when :Sandstorm
         return [:SANDRUSH, :SANDVEIL, :SANDFORCE].any? { |a| battler.hasActiveAbility?(a) }
       when :Hail, :Snow

@@ -139,7 +139,6 @@ module AdvancedAI
       end
       
       # 5. Sweep Potential
-      # Can defender survive?
       if defender.hp < defender.totalhp * 0.5
         threat += 1.5  # Defender weak = higher danger
       end
@@ -167,20 +166,17 @@ module AdvancedAI
       best_move = nil
       best_score = 0
       
-      user.moves.each do |move|
+      user.moves.each_with_index do |move, index|
         next if !move || move.pp <= 0
+        next unless battle.pbCanChooseMove?(user.index, index, false)
+        next if AdvancedAI::Utilities.counter_shield_blocked?(battle, move, user, target)
         move_id = move.id
         
         # Phazing Moves (Roar, Whirlwind)
         if [:ROAR, :WHIRLWIND, :DRAGONTAIL, :CIRCLETHROW].include?(move_id)
+          next unless AdvancedAI::Utilities.phazing_possible?(battle, move, user, target)
           score = 100
-          
-          # Less effective against Soundproof
-          score -= 50 if target.hasActiveAbility?(:SOUNDPROOF) && [:ROAR].include?(move_id)
-          
-          # Less effective against Suction Cups
-          score -= 80 if target.hasActiveAbility?(:SUCTIONCUPS)
-          
+
           # More points if many boosts
           score += count_setup_stages(target) * 10
           
@@ -192,6 +188,8 @@ module AdvancedAI
         
         # Haze (reset all stats)
         if move_id == :HAZE
+          next if count_setup_stages(target) <= 0
+          next unless AdvancedAI::Utilities.stat_reset_hits_target?(battle, move, user, target)
           score = 90
           score += count_setup_stages(target) * 10
           
@@ -203,6 +201,8 @@ module AdvancedAI
         
         # Clear Smog (reset + damage)
         if move_id == :CLEARSMOG
+          next if count_setup_stages(target) <= 0
+          next unless AdvancedAI::Utilities.stat_reset_hits_target?(battle, move, user, target)
           score = 85
           score += count_setup_stages(target) * 10
           
@@ -220,6 +220,7 @@ module AdvancedAI
         
         # Encore (lock into last move)
         if move_id == :ENCORE
+          next unless AdvancedAI::Utilities.setup_disruption_hits?(battle, move, user, target)
           score = 80
           
           # Very good if target used setup move
@@ -235,6 +236,7 @@ module AdvancedAI
         
         # Taunt (prevent status moves)
         if move_id == :TAUNT
+          next unless AdvancedAI::Utilities.setup_disruption_hits?(battle, move, user, target)
           score = 70
           
           # Good against Support Pokemon
@@ -286,13 +288,12 @@ module AdvancedAI
       baton_pass_count = 0
       setup_move_count = 0
       
-      battle.pbParty(side_index).each do |pokemon|
+      battle.eachInTeamFromBattlerIndex(side_index) do |pokemon, _index|
         next if !pokemon || pokemon.egg? || pokemon.fainted?
         
-        pokemon.moves.each do |move|
-          baton_pass_count += 1 if move.id == :BATONPASS
-          setup_move_count += 1 if AdvancedAI.setup_move?(move.id)
-        end
+        ids = pokemon.moves.map(&:id).uniq
+        baton_pass_count += 1 if ids.include?(:BATONPASS)
+        setup_move_count += ids.count { |id| AdvancedAI.setup_move?(id) }
       end
       
       # Chain if at least 2 Pokemon have Baton Pass
@@ -301,28 +302,19 @@ module AdvancedAI
     end
     
     # Priority against Baton Pass chains
-    def self.baton_chain_priority(battle, user)
-      return 0 if !battle || !user
-      
-      # Check if Opponent Team uses Baton Pass
-      opponent_side = 1 - (user.index & 1)  # true opponent side (safe in doubles)
-      return 0 if !baton_pass_chain?(battle, opponent_side)
-      
-      # Higher Priority for Phaze Moves
-      priority_boost = 0
-      user.moves.each do |move|
-        next if !move
-        
-        if [:ROAR, :WHIRLWIND, :HAZE, :CLEARSMOG].include?(move.id)
-          priority_boost += 30
-        end
-        
-        if [:TAUNT, :ENCORE].include?(move.id)
-          priority_boost += 20
-        end
+    def self.baton_chain_priority(battle, user, move = nil, target = nil, skill = 100)
+      return 0 unless battle && user && AdvancedAI.get_setting(:setup_chains, 0) > 0
+      return 0 unless AdvancedAI.feature_enabled?(:setup, skill) && AdvancedAI.tier_feature(skill, :setup_detection)
+      user = user.battler if user.respond_to?(:battler)
+      target = target.battler if target.respond_to?(:battler)
+      targets = target ? [target] : battle.allOtherSideBattlers(user).to_a
+      bonuses = targets.map do |opponent|
+        next 0 unless opponent.opposes?(user) && baton_pass_chain?(battle, opponent.index)
+        counter = find_best_counter(battle, user, opponent)
+        next 0 unless counter && (!move || move.id == counter)
+        [:TAUNT, :ENCORE].include?(counter) ? 20 : 30
       end
-      
-      return priority_boost
+      bonuses.max || 0
     end
     
   end
@@ -363,13 +355,28 @@ end
 class Battle::AI
   def apply_setup_evaluation(score, move, user, target)
     return score unless move
-    skill = @trainer&.skill || 100
+    skill = @_resolved_skill || @trainer&.skill || 100
     
     real_user = user.respond_to?(:battler) ? user.battler : user
     
     # If opponent has setup boosts, prioritize counter-measures
     if target
       real_target = target.respond_to?(:battler) ? target.battler : target
+      if [:ROAR, :WHIRLWIND, :DRAGONTAIL, :CIRCLETHROW, :HAZE, :CLEARSMOG, :ENCORE, :TAUNT].include?(move.id)
+        return score if AdvancedAI::Utilities.counter_shield_blocked?(@battle, move, real_user, real_target)
+      end
+      if [:HAZE, :CLEARSMOG].include?(move.id)
+        index = real_user.moves.index { |m| m.id == move.id }
+        return score if index && !@battle.pbCanChooseMove?(real_user.index, index, false)
+        return score unless real_target.stages.values.any? { |stage| stage > 0 }
+        return score unless AdvancedAI::Utilities.stat_reset_hits_target?(@battle, move, real_user, real_target)
+      end
+      if [:ROAR, :WHIRLWIND, :DRAGONTAIL, :CIRCLETHROW].include?(move.id)
+        index = real_user.moves.index { |m| m.id == move.id }
+        return score if index && !@battle.pbCanChooseMove?(real_user.index, index, false)
+        return score unless AdvancedAI::Utilities.phazing_possible?(@battle, move, real_user, real_target)
+      end
+      score += AdvancedAI::SetupRecognition.baton_chain_priority(@battle, real_user, move, real_target, skill)
       threat = AdvancedAI.assess_setup_threat(@battle, real_target, real_user)
       
       if threat >= 5.0
@@ -385,7 +392,6 @@ class Battle::AI
         end
       end
       
-      # Should we counter setup right now?
       if AdvancedAI.should_counter_setup_now?(@battle, real_user, real_target, skill)
         counter_move = AdvancedAI.find_best_setup_counter(@battle, real_user, real_target)
         if counter_move && move.id == counter_move

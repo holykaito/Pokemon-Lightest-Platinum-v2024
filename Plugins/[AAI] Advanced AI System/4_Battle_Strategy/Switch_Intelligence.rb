@@ -15,6 +15,56 @@ class Battle::AI
     battler_or_index.to_i
   end
   
+  def aai_reserved_party_index(user)
+    return -1 unless AdvancedAI::RESPECT_RESERVE_LAST_POKEMON
+    index = get_battler_index(user)
+    side = index & 1
+    owner = @battle.pbGetOwnerIndexFromBattlerIndex(index)
+    trainer = @trainers && @trainers[side] && @trainers[side][owner]
+    unless trainer
+      native_trainer = @battle.pbGetOwnerFromBattlerIndex(index)
+      return -1 unless native_trainer
+      trainer = Battle::AI::AITrainer.new(self, side, owner, native_trainer)
+    end
+    return -1 unless trainer.has_skill_flag?("ReserveLastPokemon")
+    starts = @battle.pbPartyStarts(index)
+    (starts[owner + 1] || @battle.pbParty(index).length) - 1
+  end
+
+  def aai_filter_reserved_switches(candidates, user, forced_switch = false)
+    reserved = aai_reserved_party_index(user)
+    ace = candidates.find { |entry| entry[2] == reserved } if reserved >= 0
+    return candidates unless ace
+    others = candidates.reject { |entry| entry[2] == reserved }
+    if others.empty?
+      return (forced_switch || user.fainted?) ? candidates : []
+    end
+    return others if AdvancedAI::RESERVE_LAST_POKEMON_STRICT
+    candidates.each { |entry| entry[1] ||= evaluate_switch_matchup_detailed(entry[0], user) }
+    return candidates if ace[1] > others.map { |entry| entry[1] }.max + 50
+    others
+  end
+
+  def aai_switch_candidate_legal?(user, index, forced_switch = false)
+    return @battle.pbCanSwitchIn?(user.index, index) if forced_switch || user.fainted?
+    @battle.pbCanSwitch?(user.index, index)
+  end
+
+  def aai_switch_move_available?(battler, index)
+    move = battler.moves[index]
+    move && move.damagingMove? && @battle.pbCanChooseMove?(battler.index, index, false)
+  end
+
+  def aai_switch_ability_immunity?(pkmn, current_user, attacker, move, move_type)
+    absorbers = AdvancedAI::Utilities::TYPE_ABSORBING_ABILITIES[move_type]
+    return false unless absorbers && absorbers.any? { |ability, _| Array(ability).include?(pkmn.ability_id) }
+    probe = switch_hazard_preview(pkmn, get_battler_index(current_user))
+    projected_attacker = probe.battle.battlers[attacker.index]
+    projected_move = move.clone
+    projected_move.instance_variable_set(:@battle, probe.battle)
+    !!AdvancedAI::Utilities.type_absorbing_immunity?(projected_attacker, probe, move_type, projected_move)
+  end
+
   # Initialize caches
   def initialize_switch_caches
     @type_effectiveness_cache ||= {}
@@ -24,7 +74,7 @@ class Battle::AI
   # Analyzes if AI should switch (advanced version)
   def should_switch_advanced?(user, skill = 100)
     return false unless user && !user.fainted?
-    return false if user.trappedInBattle?
+    return false unless @battle.pbParty(user.index).each_index.any? { |i| @battle.pbCanSwitch?(user.index, i) }
     return false unless AdvancedAI.feature_enabled?(:core, skill)
     
     # Initialize caches
@@ -46,8 +96,22 @@ class Battle::AI
     # Thresholds based on skill
     tier = AdvancedAI.get_ai_tier(skill)
     threshold = AdvancedAI::SWITCH_THRESHOLDS[tier] || 50
-    
-    return switch_score >= threshold
+    personality = AdvancedAI.get_personality(@battle, user.index)
+    neutral_threshold = AdvancedAI.get_personality_switch_threshold(:balanced)
+    personality_threshold = AdvancedAI.get_personality_switch_threshold(personality)
+    threshold = (threshold + personality_threshold - neutral_threshold).clamp(0, 100)
+    would_switch = switch_score >= threshold
+
+    # Sacrifice-switch veto: even when the score says "switch", never give up a
+    # voluntary switch if every legal replacement would faint on the switch-in.
+    # Staying in (and acting) always beats feeding a teammate to a free OHKO.
+    # This is the Garganacl -> Aerodactyl-into-Meteor-Mash scenario.
+    if would_switch && no_safe_switch_in?(user, skill)
+      AdvancedAI.log("Switch vetoed for #{user.pbThis}: no safe switch-in (every replacement faints on entry)", "Switch")
+      return false
+    end
+
+    return would_switch
   end
   
   private # All methods below are private helper methods
@@ -90,7 +154,7 @@ class Battle::AI
     end
     
     # 6. PREDICTION BONUS (0-15 Points)
-    if skill >= 85
+    if skill >= 85 && AdvancedAI.tier_feature(skill, :switch_prediction) && AdvancedAI.get_setting(:switch_prediction) > 0
       prediction_score = evaluate_prediction_advantage(user, skill)
       score += prediction_score
       echoln("  [6/8] Prediction: +#{prediction_score}") if dbg && prediction_score > 0
@@ -104,7 +168,7 @@ class Battle::AI
     
     # 8. BONUS: Pivot Move Available (+25 Points)
     # Prefer using pivot moves (U-turn, Volt Switch, etc.) over hard switches
-    pivot_bonus = evaluate_pivot_move_option(user, skill)
+    pivot_bonus = AdvancedAI.tier_feature(skill, :pivot_preference) ? evaluate_pivot_move_option(user, skill) : 0
     if pivot_bonus > 0
       score -= pivot_bonus  # REDUCE switch score if pivot available (prefer pivot over switch!)
       echoln("  [8/12] Pivot Move Available (reduces hard switch need): -#{pivot_bonus}") if dbg
@@ -124,11 +188,23 @@ class Battle::AI
       echoln("  [10/12] Just Switched In (malus): -40") if dbg
     end
     
-    # 11. PENALTY: No better option (-30 Points)
-    # If better_score is 0, it means either no switches exist OR the best switch isn't significantly better
+    # 11. PENALTY: No better option (-30, or more when the matchup is inescapable)
+    # If better_score is 0, it means either no switches exist OR the best switch isn't significantly better.
+    # When the best reachable switch is ITSELF a losing matchup (@best_switch_matchup < 0),
+    # the type-disadvantage / survival pressure inflating this score can't actually
+    # be escaped — every benched mon is disadvantaged too, so switching only feeds
+    # the incoming mon a free hit (the revolving-door bug). Scale the penalty up to
+    # also cancel the unescapable type-disadvantage points so the AI stays in and
+    # acts instead of sacrificing its team one Pokemon at a time.
     if better_score <= 0
-      score -= 30
-      echoln("  [11/12] No Better Option (malus): -30") if dbg
+      if @best_switch_matchup && @best_switch_matchup < 0
+        penalty = 30 + [type_score, 0].max
+        score -= penalty
+        echoln("  [11/12] No Better Option — inescapable matchup (malus): -#{penalty}") if dbg
+      else
+        score -= 30
+        echoln("  [11/12] No Better Option (malus): -30") if dbg
+      end
     end
     
     # 12. PENALTY: Can KO Opponent (-60 Points)
@@ -187,8 +263,8 @@ class Battle::AI
         my_types = get_real_types(user)
         @battle.allOtherSideBattlers(user.index).each do |target|
           next unless target && !target.fainted?
-          target.moves.each do |m|
-            next unless m && m.damagingMove? && m.type
+          target.moves.each_with_index do |m, index|
+            next unless aai_switch_move_available?(target, index) && m.type
             resolved_m_type = AdvancedAI::CombatUtilities.resolve_move_type(target, m)
             type_mod = Effectiveness.calculate(resolved_m_type, *my_types)
             if Effectiveness.super_effective?(type_mod)
@@ -204,8 +280,8 @@ class Battle::AI
           next unless target && !target.fainted?
           max_dmg_pct = 0
           best_move_name = nil
-          target.moves.each do |m|
-            next unless m && m.damagingMove?
+          target.moves.each_with_index do |m, index|
+            next unless aai_switch_move_available?(target, index)
             dmg = estimate_incoming_damage_percent(user, m, target) rescue 0
             if dmg > max_dmg_pct
               max_dmg_pct = dmg
@@ -213,7 +289,7 @@ class Battle::AI
             end
           end
           if max_dmg_pct > 0 && best_move_name
-            echoln "[Switch] Survival concern: incoming #{best_move_name} ~#{max_dmg_pct.to_i}%% estimated damage"
+            echoln "[Switch] Survival concern: incoming #{best_move_name} ~#{max_dmg_pct.to_i}% estimated damage"
           end
         end
       end
@@ -221,16 +297,65 @@ class Battle::AI
     
     return score
   end
-  
+
+  # Sacrifice-switch guard: returns true when EVERY legal replacement would
+  # faint on the switch-in (entry-hazard chip + the opponent's strongest hit).
+  # In that case a voluntary switch only feeds a teammate to a free OHKO, so
+  # should_switch_advanced? stays in instead. The Ace is excluded the same way
+  # find_best_switch_advanced excludes it for voluntary switches, so this stays
+  # consistent with the replacement that would actually be chosen.
+  # NOTE: only the VOLUNTARY path calls this. Forced replacements (faint,
+  # U-turn / Volt Switch, phazing, Eject Button, etc.) never reach here, so a
+  # fainted Pokemon is still always replaced.
+  def no_safe_switch_in?(user, skill)
+    party = @battle.pbParty(user.index & 1)
+    side  = user.index & 1
+
+    available = []
+    party.each_with_index do |pkmn, i|
+      next unless pkmn && !pkmn.fainted? && !pkmn.egg?
+      next if @battle.pbFindBattler(i, user.index)      # already on the field
+      next unless aai_switch_candidate_legal?(user, i)
+      available << [pkmn, i]
+    end
+
+    available = aai_filter_reserved_switches(available.map { |pkmn, i| [pkmn, nil, i] }, user)
+
+    return false if available.empty?  # nothing to switch to -> don't veto here
+
+    opponents = @battle.allOtherSideBattlers(user.index).select { |t| t && !t.fainted? }
+    return false if opponents.empty?
+
+    # Veto only if EVERY candidate faints on entry.
+    available.all? do |(pkmn, _score, _idx)|
+      hp_frac     = pkmn.hp.to_f / [pkmn.totalhp, 1].max
+      hazard_frac = (calculate_entry_hazard_damage(pkmn, user.index, true) rescue 0.0)
+
+      worst_hit = 0.0
+      opponents.each do |target|
+        target.moves.each_with_index do |move, index|
+          next unless aai_switch_move_available?(target, index)
+          dmg = (calculate_incoming_damage(pkmn, move, target, user) rescue 0.0)
+          worst_hit = dmg if dmg > worst_hit
+        end
+      end
+
+      faints_on_entry = (hazard_frac + worst_hit) >= hp_frac
+      if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE
+        echoln("    [SAC-CHECK] #{pkmn.name}: hazard #{(hazard_frac * 100).to_i}% + hit #{(worst_hit * 100).to_i}% vs #{(hp_frac * 100).to_i}% HP -> #{faints_on_entry ? 'FAINTS' : 'survives'}")
+      end
+      faints_on_entry
+    end
+  end
+
   #=============================================================================
   # EVALUATION METHODS
   #=============================================================================
-  
+
   # 1. Type Disadvantage Evaluation
   def evaluate_type_disadvantage(user, skill)
     score = 0
     
-    # Use real types (ignoring Illusion) for defensive calculation
     my_types = get_real_types(user)
     
     @battle.allOtherSideBattlers(user.index).each do |target|
@@ -239,9 +364,8 @@ class Battle::AI
       echoln("    → Analyzing vs #{target.name} [#{target.pbTypes(true).join('/')}]")
       
       # Offensive Threat (Opponent can hit User super effectively)
-      target.moves.each do |move|
-        next unless move
-        next unless move.damagingMove?  # Skip status moves like Hypnosis
+      target.moves.each_with_index do |move, index|
+        next unless aai_switch_move_available?(target, index)
         next unless move.type # Fix ArgumentError
         resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(target, move)
         type_mod = Effectiveness.calculate(resolved_type, *my_types)
@@ -263,9 +387,8 @@ class Battle::AI
       score += 10 if user_offensive >= 3  # Most moves not very effective
       
       # STAB Disadvantage
-      target.moves.each do |move|
-        next unless move
-        next unless move.damagingMove?  # Skip status moves
+      target.moves.each_with_index do |move, index|
+        next unless aai_switch_move_available?(target, index)
         next unless move.type # Fix ArgumentError
         resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(target, move)
         if target.pbHasType?(resolved_type)  # STAB
@@ -325,8 +448,8 @@ class Battle::AI
       # Faster Opponent with high Attack (accounting for Trick Room)
       tr_active = (@battle.field.effects[PBEffects::TrickRoom] > 0 rescue false)
       if tr_active ? (target.pbSpeed < user.pbSpeed) : (target.pbSpeed > user.pbSpeed)
-        target.moves.each do |move|
-          next unless move && move.damagingMove?
+        target.moves.each_with_index do |move, index|
+          next unless aai_switch_move_available?(target, index)
           next unless move.type
           
           resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(target, move)
@@ -381,41 +504,25 @@ class Battle::AI
   # 4. Better Available Options
   def evaluate_better_options(user, skill)
     score = 0
-    
-    party = @battle.pbParty(user.index & 1)
-    available_switches = party.select.with_index do |pkmn, i|
-      pkmn && !pkmn.fainted? && !pkmn.egg? && !@battle.pbFindBattler(i, user.index)
-    end
-    
-    # Handle ReserveLastPokemon
-    # Robust trainer retrieval
-    ai_trainer = @trainer
-    if !ai_trainer
-      # Try to get trainer from battler
-      ai_trainer = @battle.pbGetOwnerFromBattlerIndex(user.index)
-    end
+    # Best matchup reachable by a voluntary switch (after reserve filtering), so
+    # calculate_switch_score can tell whether the current type disadvantage is
+    # actually escapable. nil = no legal switch target at all.
+    @best_switch_matchup = nil
 
-    if AdvancedAI::RESPECT_RESERVE_LAST_POKEMON && ai_trainer && ai_trainer.respond_to?(:has_skill_flag?) && ai_trainer.has_skill_flag?("ReserveLastPokemon")
-      reserved_idx = party.length - 1
-      AdvancedAI.log("ReserveLastPokemon Active! Reserved Index: #{reserved_idx}", "Switch")
-      
-      # Strictly reserve the Ace — never include it in voluntary switch evaluation
-      non_ace = available_switches.reject { |pkmn| party.index(pkmn) == reserved_idx }
-      if non_ace.length > 0
-        available_switches = non_ace
-        AdvancedAI.log("Ace reserved — excluded from voluntary switch evaluation", "Switch")
-      end
-    else
-      AdvancedAI.log("ReserveLastPokemon skipped. Enabled: #{AdvancedAI::RESPECT_RESERVE_LAST_POKEMON}, Trainer Found: #{!!ai_trainer}", "Switch")
-      if ai_trainer
-        AdvancedAI.log("Has Flag? #{ai_trainer.has_skill_flag?("ReserveLastPokemon")}", "Switch")
-      end
+    party = @battle.pbParty(user.index & 1)
+    available_switches = []
+    party.each_with_index do |pkmn, i|
+      next unless pkmn && !pkmn.fainted? && !pkmn.egg?
+      next if @battle.pbFindBattler(i, user.index)
+      next unless aai_switch_candidate_legal?(user, i)
+      available_switches << [pkmn, nil, i]
     end
-    
+    available_switches = aai_filter_reserved_switches(available_switches, user).map(&:first)
+
     return 0 if available_switches.empty?
     
     # Find best alternative
-    best_matchup_score = -100
+    best_matchup_score = -Float::INFINITY
     best_switch = nil
     
     available_switches.each do |switch_mon|
@@ -427,29 +534,42 @@ class Battle::AI
     end
     
     return 0 unless best_switch
-    
+    @best_switch_matchup = best_matchup_score
+
     # Calculate current pokemon's matchup for comparison
-    # Pass user.pokemon (real Pokemon object) to evaluate current type effectiveness IGNORING Illusion
     current_matchup_score = evaluate_switch_matchup(user.pokemon, user)
     
     # Calculate improvement
     improvement = best_matchup_score - current_matchup_score
     
     echoln("[AAI Switch] Current: #{current_matchup_score} vs Best: #{best_matchup_score} (Diff: #{improvement})")
-    
-    # Bonus only if SIGNIFICANT improvement
-    if improvement > 25
+
+    # Revolving-door guard: a positive "improvement" is only worth a free switch-in
+    # turn if the destination is actually a viable matchup. When every benched
+    # Pokemon is still type-disadvantaged against the opponent (best_matchup_score
+    # < 0), switching just trades one losing matchup for another and feeds the
+    # incoming mon a free hit. Granting the switch bonus here produced the
+    # reported revolving-door: a team of Bug-types vs a Combusken spamming Flame
+    # Charge, where the AI pivoted into fresh OHKO fodder every single turn until
+    # its whole party was gone. In that case grant NO switch incentive so the AI
+    # stays in and acts (chip / status / pray for a miss) instead of sacrificing
+    # teammates one at a time. A still-negative "best" never escapes the
+    # disadvantage, so improvement alone must not justify the switch.
+    if best_matchup_score < 0
+      echoln("[AAI Switch] No favorable switch — best option #{best_switch.name} still unfavorable (#{best_matchup_score}); staying in")
+    # Bonus only if SIGNIFICANT improvement INTO a viable (>= neutral) matchup
+    elsif improvement > 25
       score += 35
       echoln("[AAI Switch] Best Option: #{best_switch.name} (Matchup +#{best_matchup_score}, Improvement +#{improvement})")
     elsif improvement > 15
       score += 25
       echoln("[AAI Switch] Good Option: #{best_switch.name} (Matchup +#{best_matchup_score}, Improvement +#{improvement})")
     elsif improvement > 5 && best_matchup_score > 40
-      # Only switch for small improvement if the matchup is absolutely excellent (Score > 40)
+      # Require a score above 40 for small matchup improvements.
       score += 15
       echoln("[AAI Switch] Solid Option: #{best_switch.name} (Matchup +#{best_matchup_score}, Improvement +#{improvement})")
     end
-    
+
     return score
   end
   
@@ -490,7 +610,7 @@ class Battle::AI
   
   # 6. Prediction Advantage (Skill 85+)
   def evaluate_prediction_advantage(user, skill)
-    return 0 unless skill >= 85
+    return 0 unless skill >= 85 && AdvancedAI.prediction_depth(skill) > 0
     score = 0
     
     # If opponent likely switches, stay in
@@ -499,23 +619,22 @@ class Battle::AI
     @battle.allOtherSideBattlers(user.index).each do |target|
       next unless target && !target.fainted?
       
-      # Analyze last moves
-      if @move_memory[target.index]
-        last_moves = @move_memory[target.index][:moves] || []
-        
-        # Pattern: Repeated Setup Moves
-        setup_count = last_moves.count do |m|
-          next false unless m
-          move_data = GameData::Move.try_get(m)
-          next false unless move_data
-          move_data.function_code.to_s.include?("RaiseUser") || move_data.function_code.to_s.include?("RaiseMulti")
+      memory = AdvancedAI.get_memory(@battle, target)
+      if AdvancedAI.tier_feature(skill, :learn_patterns)
+        usable_ids = target.moves.each_with_index.filter_map do |move, i|
+          move.id if move && @battle.pbCanChooseMove?(target.index, i, false)
+        end
+        setup_count = (memory[:move_counts] || {}).sum do |id, count|
+          next 0 unless usable_ids.include?(id)
+          data = GameData::Move.try_get(id)
+          next 0 unless data && data.function_code.start_with?("RaiseUser", "RaiseMulti")
+          count
         end
         score += 10 if setup_count >= 2
-        
-        # Pattern: Predict Opponent Switch (if low HP)
-        if target.hp < target.totalhp * 0.35
-          score -= 15  # Stay in, opponent likely switches
-        end
+      end
+      if target.hp < target.totalhp * 0.35 &&
+         @battle.pbParty(target.index).each_index.any? { |i| @battle.pbCanSwitch?(target.index, i) }
+        score -= 15
       end
     end
     
@@ -556,38 +675,23 @@ class Battle::AI
     counter_bonus = role_counter_pick_bonus(pkmn, current_user, skill)
     score += counter_bonus
     
-    # 5. ENTRY HAZARDS RESISTANCE (0-15 Points)
-    # Check hazards on OUR side (where the candidate will switch into)
-    if @battle.pbOwnedByPlayer?(get_battler_index(current_user))
-      our_side = @battle.sides[0]
-    else
-      our_side = @battle.sides[1]
-    end
-    
-    # Stealth Rock Resistance
-    if our_side.effects[PBEffects::StealthRock]
-      effectiveness = Effectiveness.calculate(:ROCK, *pkmn.types)
-      if Effectiveness.ineffective?(effectiveness)
-        score += 15
-      elsif Effectiveness.not_very_effective?(effectiveness)
-        score += 10
-      elsif Effectiveness.super_effective?(effectiveness)
-        score -= 15
+    if AdvancedAI.get_setting(:hazard_calc, 0) > 0
+      probe = switch_hazard_preview(pkmn, get_battler_index(current_user))
+      side = probe.pbOwnSide.effects
+      immune = probe.hasActiveItem?(:HEAVYDUTYBOOTS) || !probe.takesIndirectDamage?
+      if side[PBEffects::StealthRock]
+        effectiveness = Effectiveness.calculate(:ROCK, *probe.pbTypes(true))
+        if immune || Effectiveness.ineffective?(effectiveness)
+          score += 15
+        elsif Effectiveness.not_very_effective?(effectiveness)
+          score += 10
+        elsif Effectiveness.super_effective?(effectiveness)
+          score -= 15
+        end
       end
+      score += 10 if side[PBEffects::Spikes] > 0 && (immune || probe.airborne?)
     end
-    
-    # Spikes
-    if our_side.effects[PBEffects::Spikes] > 0
-      # Safe ability check with nil guard
-      has_levitate = false
-      begin
-        has_levitate = pkmn.hasAbility?(:LEVITATE) if pkmn.respond_to?(:hasAbility?)
-      rescue
-        has_levitate = false
-      end
-      score += 10 if pkmn.hasType?(:FLYING) || has_levitate
-    end
-    
+
     # 6. ABILITY SYNERGY (0-20 Points)
     # Use ability_id instead of ability to avoid Gen9 Pack recursion
     ability_id = nil
@@ -620,7 +724,6 @@ class Battle::AI
     switch_types = []
     
     if switch_mon.is_a?(Battle::Battler)
-       # Use real types helper if it's a battler (Illusion bypass)
        switch_types = get_real_types(switch_mon)
     elsif switch_mon.respond_to?(:types)
        # Pokemon object
@@ -652,8 +755,8 @@ class Battle::AI
       end
       
       # Defensive Type Advantage
-      target.moves.each do |move|
-        next unless move && move.damagingMove?
+      target.moves.each_with_index do |move, index|
+        next unless aai_switch_move_available?(target, index)
         next unless move.type  # Skip nil types
         # Use duck-typing for switch_mon (could be Battler or Pokemon)
         switch_types = switch_mon.is_a?(Battle::Battler) ? 
@@ -662,7 +765,8 @@ class Battle::AI
         next if switch_types.empty?
         resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(target, move)
         effectiveness = Effectiveness.calculate(resolved_type, *switch_types)
-        if Effectiveness.ineffective?(effectiveness)
+        if Effectiveness.ineffective?(effectiveness) ||
+           aai_switch_ability_immunity?(switch_mon, current_user, target, move, resolved_type)
           score += 40  # IMMUNITY is extremely valuable!
         elsif Effectiveness.not_very_effective?(effectiveness)
           score += 15  # Resistance is good
@@ -727,6 +831,28 @@ class Battle::AI
   
   # Find best switch Pokemon (public for Core.rb integration)
   # forced_switch: true when terrible_moves triggered the switch (not voluntary)
+  # Includes entry hazards when checking for a near-certain switch-in KO.
+  def ohkod_on_switch_in?(switch_pkmn, user)
+    return false unless switch_pkmn && user
+    # Effective HP fraction on entry, after Stealth Rock / Spikes / etc.
+    hazard = (calculate_entry_hazard_damage(switch_pkmn, get_battler_index(user), true) rescue 0.0) || 0.0
+    hp_fraction = switch_pkmn.hp.to_f / [switch_pkmn.totalhp, 1].max
+    survivable = hp_fraction - hazard
+    return true if survivable <= 0.0   # hazards alone already KO
+    worst = 0.0
+    @battle.allOtherSideBattlers(user.index).each do |target|
+      next unless target && !target.fainted?
+      target.moves.each_with_index do |move, index|
+        next unless aai_switch_move_available?(target, index)
+        dmg = (calculate_incoming_damage(switch_pkmn, move, target, user) rescue 0.0) || 0.0
+        worst = dmg if dmg > worst
+      end
+    end
+    # Treat >=95% of the post-hazard HP as an effective OHKO (damage estimate
+    # uses the average roll, so a 95% average is a near-certain kill).
+    worst >= survivable * 0.95
+  end
+
   def find_best_switch_advanced(user, skill, forced_switch = false)
     dbg = AdvancedAI::DEBUG_SWITCH_INTELLIGENCE
     if dbg
@@ -738,15 +864,10 @@ class Battle::AI
     party = @battle.pbParty(user.index & 1)
     available_switches = []
     
-    reserved_idx = -1
-    if AdvancedAI::RESPECT_RESERVE_LAST_POKEMON && @trainer && @trainer.has_skill_flag?("ReserveLastPokemon")
-      reserved_idx = party.length - 1
-    end
-    
     party.each_with_index do |pkmn, i|
       next unless pkmn && !pkmn.fainted? && !pkmn.egg?
       next if @battle.pbFindBattler(i, user.index) # Already in battle
-      next unless @battle.pbCanSwitchIn?(user.index, i)
+      next unless aai_switch_candidate_legal?(user, i, forced_switch)
       
       matchup_score = evaluate_switch_matchup_detailed(pkmn, user)
       available_switches.push([pkmn, matchup_score, i])
@@ -754,42 +875,9 @@ class Battle::AI
       echoln "  • #{pkmn.name}: Matchup = #{matchup_score}"
     end
     
-    # Filter reserved Pokemon (smart reserve)
-    # The Ace (last party slot) is normally kept in reserve, BUT:
-    # - If the Ace has a dramatically better matchup than all alternatives,
-    #   it makes no strategic sense to hold it back.
-    # - If forced (fainted/terrible_moves) and Ace is the only option, allow it.
-    
     is_voluntary_switch = user && !user.fainted? && !forced_switch
-    
-    if reserved_idx >= 0
-      ace_entry = available_switches.find { |item| item[2] == reserved_idx }
-      non_ace   = available_switches.reject { |item| item[2] == reserved_idx }
+    available_switches = aai_filter_reserved_switches(available_switches, user, forced_switch)
 
-      if ace_entry && non_ace.length > 0
-        # Smart reserve: allow the Ace if it has a dramatically better matchup
-        ace_score = ace_entry[1]
-        best_non_ace_score = non_ace.max_by { |item| item[1] }[1]
-        if ace_score > best_non_ace_score + 50
-          # Ace is the clear best counter — override reserve
-          echoln "  [AAI] ReserveLastPokemon: Ace has dominant matchup (#{ace_score} vs best alt #{best_non_ace_score}), overriding reserve"
-        else
-          # Reserve the Ace — alternatives are good enough
-          available_switches = non_ace
-          echoln "  [AAI] Reserved Pokemon at index #{reserved_idx} excluded from switch options"
-        end
-      elsif ace_entry && non_ace.empty?
-        # Ace is the only option
-        if is_voluntary_switch
-          # Voluntary switch with only Ace left — block it
-          available_switches = []
-          echoln "  [AAI] ReserveLastPokemon: Blocking voluntary switch to Ace (only option)"
-        else
-          echoln "  [AAI] ReserveLastPokemon: Forced switch — Ace is only option, allowing"
-        end
-      end
-    end
-    
     if available_switches.empty?
       echoln "  >>> No valid switches available!"
       return nil
@@ -798,7 +886,17 @@ class Battle::AI
     # Sort by matchup score (highest first)
     available_switches.sort_by! { |_, score, _| -score }
     best_pkmn, best_score, best_idx = available_switches.first
-    
+
+    # A voluntary switch prefers the first scored candidate that survives entry.
+    # If every candidate is lost, keep the highest score.
+    if is_voluntary_switch && best_pkmn && ohkod_on_switch_in?(best_pkmn, user)
+      safer = available_switches.find { |pk, _s, _i| pk && !ohkod_on_switch_in?(pk, user) }
+      if safer
+        best_pkmn, best_score, best_idx = safer
+        echoln "  [AAI] Switch-in safety: top pick is OHKO'd on entry — choosing safer #{best_pkmn.name} instead"
+      end
+    end
+
     echoln "  ─────────────────────────────────────"
     echoln "  ✅ BEST OPTION: #{best_pkmn.name}"
     echoln "  Matchup Score: #{best_score}"
@@ -832,7 +930,7 @@ class Battle::AI
     end
     
     # Sub-bullet: Entry hazard cost
-    hazard_dmg = calculate_entry_hazard_damage(best_pkmn, get_battler_index(user) & 1) rescue 0
+    hazard_dmg = calculate_entry_hazard_damage(best_pkmn, get_battler_index(user)) rescue 0
     if hazard_dmg > 0
       hazard_source = []
       side = @battle.sides[user.index & 1]  # own side (& 1 is safe in doubles)
@@ -841,7 +939,7 @@ class Battle::AI
       hazard_source << "Toxic Spikes" if side.effects[PBEffects::ToxicSpikes] > 0
       hazard_source << "Sticky Web" if side.effects[PBEffects::StickyWeb]
       source_str = hazard_source.empty? ? "hazards" : hazard_source.join(", ")
-      echoln "  - Entry hazard cost: #{(hazard_dmg * 100).round(0)}%% (#{source_str})"
+      echoln "  - Entry hazard cost: #{(hazard_dmg * 100).round(0)}% (#{source_str})"
     end
     
     # Return party index directly (Core.rb expects integer)
@@ -859,391 +957,17 @@ class Battle::AI
   
   # Calculate estimated incoming damage from a move
   # Returns damage as a percentage of switch_pkmn's total HP (0.0 to 1.0+)
-  def calculate_incoming_damage(switch_pkmn, move, attacker)
-    return 0.0 unless switch_pkmn && move && attacker
-    return 0.0 unless move.damagingMove?
-    return 0.0 unless move.power && move.power > 0
-    
-    # Resolve power for variable-power moves (power=1 → 60)
-    effective_power = AdvancedAI::CombatUtilities.resolve_move_power(move)
-    return 0.0 if effective_power == 0
-    
-    # Get move type (handle Move objects vs data)
-    move_type = move.pbCalcType(attacker) rescue move.type
-    return 0.0 unless move_type
-    
-    # Get types for effectiveness calculation (switch_pkmn is party Pokemon)
-    switch_types = switch_pkmn.types.compact
-    return 0.0 if switch_types.empty?
-    
-    # === ABILITY CHECKS ===
-    # Check defender abilities that grant immunities
-    defender_ability = switch_pkmn.ability_id
-    if defender_ability
-      # Levitate makes Ground immune
-      return 0.0 if defender_ability == :LEVITATE && move_type == :GROUND
-      # Volt Absorb, Lightning Rod, Motor Drive - Electric immunity
-      return 0.0 if [:VOLTABSORB, :LIGHTNINGROD, :MOTORDRIVE].include?(defender_ability) && move_type == :ELECTRIC
-      # Water Absorb, Storm Drain, Dry Skin - Water immunity
-      return 0.0 if [:WATERABSORB, :STORMDRAIN, :DRYSKIN].include?(defender_ability) && move_type == :WATER
-      # Flash Fire - Fire immunity
-      return 0.0 if defender_ability == :FLASHFIRE && move_type == :FIRE
-      # Well-Baked Body - Fire immunity (Gen 9)
-      return 0.0 if defender_ability == :WELLBAKEDBODY && move_type == :FIRE
-      # Sap Sipper - Grass immunity
-      return 0.0 if defender_ability == :SAPSIPPER && move_type == :GRASS
-      # Earth Eater - Ground immunity (Gen 9)
-      return 0.0 if defender_ability == :EARTHEATER && move_type == :GROUND
-      # Thick Fat - Fire/Ice resistance
-      # Wonder Guard - only super effective hits
-    end
-    
-    # Type effectiveness (Effectiveness.calculate returns multiplier like 8=2x, 4=1x, 2=0.5x)
-    # Account for Scrappy / Mind's Eye: Normal/Fighting can hit Ghost
-    effectiveness = AdvancedAI::CombatUtilities.scrappy_effectiveness(move_type, attacker, switch_types)
-    return 0.0 if Effectiveness.ineffective?(effectiveness)
-    
-    # Wonder Guard - only allows super effective moves
-    if defender_ability == :WONDERGUARD
-      return 0.0 unless Effectiveness.super_effective?(effectiveness)
-    end
-    
-    # Convert Essentials effectiveness value to actual multiplier (divide by NORMAL_EFFECTIVE)
-    effectiveness_multiplier = effectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
-    
-    # Thick Fat halves Fire/Ice damage
-    if defender_ability == :THICKFAT && [:FIRE, :ICE].include?(move_type)
-      effectiveness_multiplier *= 0.5
-    end
-    
-    # Filter reduces super effective damage
-    if defender_ability == :FILTER && Effectiveness.super_effective?(effectiveness)
-      effectiveness_multiplier *= 0.75
-    end
-    
-    # Solid Rock reduces super effective damage
-    if defender_ability == :SOLIDROCK && Effectiveness.super_effective?(effectiveness)
-      effectiveness_multiplier *= 0.75
-    end
-    
-    # Prism Armor reduces super effective damage
-    if defender_ability == :PRISMARMOR && Effectiveness.super_effective?(effectiveness)
-      effectiveness_multiplier *= 0.75
-    end
-    
-    # Fur Coat: physical damage halved
-    if defender_ability == :FURCOAT && move.physicalMove?
-      effectiveness_multiplier *= 0.5
-    end
-    
-    # Ice Scales: special damage halved
-    if defender_ability == :ICESCALES && move.specialMove?
-      effectiveness_multiplier *= 0.5
-    end
-    
-    # Heatproof: Fire damage halved
-    if defender_ability == :HEATPROOF && move_type == :FIRE
-      effectiveness_multiplier *= 0.5
-    end
-    
-    # Water Bubble (target): Fire damage halved
-    if defender_ability == :WATERBUBBLE && move_type == :FIRE
-      effectiveness_multiplier *= 0.5
-    end
-    
-    # Multiscale / Shadow Shield: damage halved at full HP (switch-in → assume full HP)
-    if [:MULTISCALE, :SHADOWSHIELD].include?(defender_ability)
-      effectiveness_multiplier *= 0.5
-    end
-    
-    # Tinted Lens (attacker): NVE damage doubled
-    attacker_ability = attacker.ability_id rescue nil
-    if attacker_ability == :TINTEDLENS && Effectiveness.not_very_effective?(effectiveness)
-      effectiveness_multiplier *= 2.0
-    end
-    
-    # === STAB CALCULATION ===
-    stab = attacker.pbHasType?(move_type) ? STAB_MULTIPLIER : 1.0
-    
-    # Adaptability boosts STAB to 2.0
-    if attacker_ability == :ADAPTABILITY && stab > 1.0
-      stab = 2.0
-    end
-    
-    # === STAT CALCULATION ===
-    # Select correct offensive/defensive stats based on move category
-    if move.physicalMove?
-      atk_stat = attacker.attack
-      def_stat = switch_pkmn.defense
-      
-      # === STAT STAGE MODIFIERS (Attacker) ===
-      # Attacker is Battle::Battler, has stat stages
-      atk_stage = attacker.stages[:ATTACK] || 0
-      if atk_stage != 0
-        stage_multiplier = [2.0/8.0, 2.0/7.0, 2.0/6.0, 2.0/5.0, 2.0/4.0, 2.0/3.0,
-                            1.0,
-                            3.0/2.0, 4.0/2.0, 5.0/2.0, 6.0/2.0, 7.0/2.0, 8.0/2.0][atk_stage + 6]
-        atk_stat = (atk_stat * stage_multiplier).floor
-      end
-      
-      # Guts boosts Attack when statused (attacker is Battler, has status)
-      if attacker_ability == :GUTS && attacker.status != :NONE
-        atk_stat = (atk_stat * 1.5).floor
-      end
-      
-      # Huge Power / Pure Power doubles Attack
-      if [:HUGEPOWER, :PUREPOWER].include?(attacker_ability)
-        atk_stat = (atk_stat * 2).floor
-      end
-      
-    elsif move.specialMove?
-      atk_stat = attacker.spatk
-      def_stat = switch_pkmn.spdef
-      
-      # === STAT STAGE MODIFIERS (Attacker) ===
-      spatk_stage = attacker.stages[:SPECIAL_ATTACK] || 0
-      if spatk_stage != 0
-        stage_multiplier = [2.0/8.0, 2.0/7.0, 2.0/6.0, 2.0/5.0, 2.0/4.0, 2.0/3.0,
-                            1.0,
-                            3.0/2.0, 4.0/2.0, 5.0/2.0, 6.0/2.0, 7.0/2.0, 8.0/2.0][spatk_stage + 6]
-        atk_stat = (atk_stat * stage_multiplier).floor
-      end
-      
-      # Solar Power boosts Sp.Atk in sun
-      if attacker_ability == :SOLARPOWER && @battle.pbWeather == :Sun
-        atk_stat = (atk_stat * 1.5).floor
-      end
-      
-    else
-      return 0.0  # Status move or unknown category
-    end
-    
-    # === DEFENDER STAT STAGES (switch_pkmn is party Pokemon, no stages yet) ===
-    # Note: Can't apply defender stat stages for party Pokemon (not in battle yet)
-    # This is intentional - we're predicting damage on switch-in before stat changes
-    
-    # Marvel Scale boosts Defense when statused (switch_pkmn is party Pokemon)
-    if move.physicalMove? && defender_ability == :MARVELSCALE && switch_pkmn.status != :NONE
-      def_stat = (def_stat * 1.5).floor
-    end
-    
-    # === ITEM MODIFIERS ===
-    # Attacker items
-    attacker_item = attacker.item_id rescue nil
-    if attacker_item
-      # Choice Band boosts physical moves
-      if move.physicalMove? && attacker_item == :CHOICEBAND
-        atk_stat = (atk_stat * 1.5).floor
-      end
-      # Choice Specs boosts special moves
-      if move.specialMove? && attacker_item == :CHOICESPECS
-        atk_stat = (atk_stat * 1.5).floor
-      end
-      # Life Orb boosts all moves
-      if [:LIFEORB].include?(attacker_item)
-        atk_stat = (atk_stat * 1.3).floor
-      end
-    end
-    
-    # Defender items
-    defender_item = switch_pkmn.item_id
-    if defender_item
-      # Assault Vest boosts Sp.Def
-      if move.specialMove? && defender_item == :ASSAULTVEST
-        def_stat = (def_stat * 1.5).floor
-      end
-      # Eviolite boosts both defenses for non-fully evolved
-      if defender_item == :EVIOLITE && !switch_pkmn.species_data.get_evolutions(true).empty?
-        def_stat = (def_stat * 1.5).floor
-      end
-    end
-    
-    # === WEATHER MODIFIERS ===
-    weather = @battle.pbWeather rescue nil
-    if weather
-      # Sun boosts Fire, nerfs Water
-      if weather == :Sun
-        effectiveness_multiplier *= WEATHER_BOOST if move_type == :FIRE
-        effectiveness_multiplier *= WEATHER_NERF if move_type == :WATER
-      end
-      # Rain boosts Water, nerfs Fire
-      if weather == :Rain
-        effectiveness_multiplier *= WEATHER_BOOST if move_type == :WATER
-        effectiveness_multiplier *= WEATHER_NERF if move_type == :FIRE
-      end
-      # Sandstorm: Rock-types get 1.5x SpDef (NOT in party Pokemon stats)
-      if weather == :Sandstorm && move.specialMove?
-        has_rock = switch_pkmn.respond_to?(:pbHasType?) ? switch_pkmn.pbHasType?(:ROCK) : (switch_pkmn.types.include?(:ROCK) rescue false)
-        if has_rock
-          def_stat = (def_stat * 1.5).floor
-        end
-      end
-      # Snow (Gen 9): Ice-types get 1.5x Def (NOT in party Pokemon stats)
-      if weather == :Snow && move.physicalMove?
-        has_ice = switch_pkmn.respond_to?(:pbHasType?) ? switch_pkmn.pbHasType?(:ICE) : (switch_pkmn.types.include?(:ICE) rescue false)
-        if has_ice
-          def_stat = (def_stat * 1.5).floor
-        end
-      end
-    end
-    
-    # === TERRAIN MODIFIERS ===
-    terrain = @battle.field.terrain rescue nil
-    if terrain
-      attacker_grounded = AdvancedAI.is_grounded?(attacker, @battle) rescue true
-      # Electric Terrain boosts Electric moves by 1.3x (attacker must be grounded)
-      if terrain == :Electric && move_type == :ELECTRIC && attacker_grounded
-        effectiveness_multiplier *= 1.3
-      end
-      # Grassy Terrain boosts Grass moves by 1.3x (attacker must be grounded)
-      if terrain == :Grassy && move_type == :GRASS && attacker_grounded
-        effectiveness_multiplier *= 1.3
-      end
-      # Psychic Terrain boosts Psychic moves by 1.3x (attacker must be grounded)
-      if terrain == :Psychic && move_type == :PSYCHIC && attacker_grounded
-        effectiveness_multiplier *= 1.3
-      end
-      # Misty Terrain reduces Dragon moves by 0.5x (target must be grounded)
-      # switch_pkmn may be a party mon; assume grounded as safe default
-      if terrain == :Misty && move_type == :DRAGON
-        effectiveness_multiplier *= 0.5
-      end
-      
-      # Grassy Terrain reduces Earthquake/Bulldoze/Magnitude damage (target grounded)
-      if terrain == :Grassy && [:EARTHQUAKE, :BULLDOZE, :MAGNITUDE].include?(move.id)
-        effectiveness_multiplier *= 0.5
-      end
-    end
-    
-    # === BURN MODIFIER ===
-    # Burn halves physical damage (unless attacker has Guts which we already handled)
-    if move.physicalMove? && attacker.status == :BURN && attacker_ability != :GUTS
-      atk_stat = (atk_stat * BURN_PHYSICAL_MODIFIER).floor
-    end
-    
-    # Prevent division by zero
-    def_stat = [def_stat, 1].max
-    
-    # === DAMAGE FORMULA ===
-    # Pokemon damage formula: ((2*Level/5 + 2) * Power * Atk/Def / 50 + 2) * Modifiers
-    level = attacker.level
-    base_damage = ((2.0 * level / 5 + 2) * effective_power * atk_stat / def_stat / 50 + 2)
-    
-    # === MULTI-HIT MOVE ADJUSTMENT ===
-    # Multi-hit moves hit multiple times (2-5 or fixed)
-    if move.multiHitMove?
-      # Skill Link: Always 5 hits
-      if attacker_ability == :SKILLLINK
-        base_damage *= 5
-      # Loaded Dice: 4-5 hits (average 4.5)
-      elsif attacker.hasActiveItem?(:LOADEDDICE)
-        base_damage *= 4.5
-      # Parental Bond: 2 hits (second is 25%) — NOT a multi-hit move in-game
-      # Parental Bond only activates on single-target non-multi-hit moves.
-      # Moved Parental Bond handling outside of this multiHitMove? block.
-      # Population Bomb: 10 hits (each 20 BP = 200 total)
-      elsif move.id == :POPULATIONBOMB
-        if attacker_ability == :SKILLLINK
-          base_damage = ((2.0 * level / 5 + 2) * 200 * atk_stat / def_stat / 50 + 2)  # 10 guaranteed hits
-        else
-          base_damage = ((2.0 * level / 5 + 2) * 140 * atk_stat / def_stat / 50 + 2)  # Average 7 hits
-        end
-      # Triple Kick: 3 hits (10, 20, 30 BP = 60 total)
-      elsif move.id == :TRIPLEKICK
-        base_damage = ((2.0 * level / 5 + 2) * 60 * atk_stat / def_stat / 50 + 2)
-      # Triple Axel: 3 hits (20, 40, 60 BP = 120 total)
-      elsif move.id == :TRIPLEAXEL
-        base_damage = ((2.0 * level / 5 + 2) * 120 * atk_stat / def_stat / 50 + 2)
-      # Standard multi-hit: 2-5 hits (average 3)
-      else
-        base_damage *= 3
-      end
-    end
-    
-    # === PARENTAL BOND ADJUSTMENT ===
-    # Parental Bond activates on single-target non-multi-hit moves (two hits: 100% + 25%)
-    if !move.multiHitMove? && attacker_ability == :PARENTALBOND
-      base_damage *= 1.25
-    end
-    
-    # === CRITICAL HIT ADJUSTMENT ===
-    # Factor in crit rates for damage expectation
-    if move.damagingMove?
-      crit_stage = 0
-      
-      # High crit moves (Slash, Stone Edge, etc.)
-      high_crit_moves = [:AEROBLAST, :AIRCUTTER, :ATTACKORDER, :BLAZEKICK, :CRABHAMMER,
-                         :CROSSCHOP, :CROSSPOISON, :DRILLRUN, :KARATECHOP, :LEAFBLADE,
-                         :NIGHTSLASH, :POISONTAIL, :PSYCHOCUT, :RAZORLEAF, :RAZORWIND,
-                         :SHADOWCLAW, :SLASH, :SPACIALREND, :STONEEDGE]
-      crit_stage += 1 if high_crit_moves.include?(move.id)
-      
-      # Always crit moves (Frost Breath, Storm Throw, etc.)
-      always_crit_moves = [:FROSTBREATH, :STORMTHROW, :WICKEDBLOW, :SURGINGSTRIKES, :FLOWERTRICK]
-      if always_crit_moves.include?(move.id)
-        crit_stage = 99  # Guaranteed crit
-      end
-      
-      # Super Luck ability
-      crit_stage += 1 if attacker_ability == :SUPERLUCK
-      
-      # Focus Energy (if tracked)
-      if attacker.effects[PBEffects::FocusEnergy] && attacker.effects[PBEffects::FocusEnergy] > 0
-        crit_stage += 2
-      end
-      
-      # Items (Scope Lens, Razor Claw)
-      attacker_item_safe = (attacker.item_id rescue nil)
-      if [:SCOPELENS, :RAZORCLAW].include?(attacker_item_safe)
-        crit_stage += 1
-      end
-      
-      # Calculate crit rate
-      crit_rate = case crit_stage
-                  when 0 then 0.0417  # 1/24 (4.17%)
-                  when 1 then 0.125   # 1/8 (12.5%)
-                  when 2 then 0.5     # 1/2 (50%)
-                  else 1.0            # Always crit at stage 3+
-                  end
-      
-      # Crit multiplier (1.5x damage, ignores defensive stat boosts)
-      # Note: We can't model defensive drops here since we're predicting on party Pokemon
-      # So we apply a conservative crit bonus as weighted average
-      if attacker_ability == :SNIPER
-        # Sniper crits are 2.25x → extra per crit = 1.25
-        if crit_rate >= 1.0
-          base_damage *= 2.25
-        elsif crit_rate > 0
-          base_damage *= (1.0 + crit_rate * 1.25)
-        end
-      else
-        # Normal crits are 1.5x → extra per crit = 0.5
-        if crit_rate >= 1.0
-          base_damage *= 1.5
-        elsif crit_rate > 0
-          base_damage *= (1.0 + crit_rate * 0.5)
-        end
-      end
-    end
-    
-    # Screen modifiers (Reflect / Light Screen / Aurora Veil)
-    screen_mod = AdvancedAI::CombatUtilities.screen_modifier(@battle, attacker, switch_pkmn, move.physicalMove?)
-    
-    # Apply modifiers (STAB, Type Effectiveness, Screens, Random roll average)
-    estimated_damage = base_damage * stab * effectiveness_multiplier * screen_mod * DAMAGE_RANDOM_MULTIPLIER
-    
-    # Return as percentage of switch_pkmn's HP
-    damage_percent = estimated_damage / [switch_pkmn.totalhp, 1].max
-    
-    # Log damage calculation in debug mode
-    if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE
-      PBDebug.log("[DAMAGE CALC] #{move.name} vs #{switch_pkmn.name}: #{(damage_percent * 100).round(1)}% " +
-                  "(Base: #{base_damage.round(1)}, STAB: #{stab}x, Eff: #{effectiveness_multiplier}x)")
-    end
-    
-    return damage_percent
+  def calculate_incoming_damage(switch_pkmn, move, attacker, current_user = nil)
+    return 0.0 unless switch_pkmn && move && attacker && move.damagingMove?
+    index = current_user ? get_battler_index(current_user) : (attacker.index ^ 1)
+    defender = switch_entry_hp_preview(switch_pkmn, index)
+    return 0.0 if defender.fainted?
+    projected_attacker = defender.battle.battlers[attacker.index]
+    projected_move = move.clone
+    projected_move.instance_variable_set(:@battle, defender.battle)
+    AdvancedAI::CombatUtilities.estimate_damage(projected_attacker, projected_move, defender, as_percent: true)
   end
-  
+
   # Detailed Matchup Evaluation for Switch Selection
   def evaluate_switch_matchup_detailed(switch_pkmn, current_user)
     score = 0
@@ -1254,20 +978,22 @@ class Battle::AI
     return 0 if switch_types.empty? || switch_types.any?(&:nil?)
     
     # === ENTRY HAZARD DAMAGE PENALTY ===
-    hazard_damage = calculate_entry_hazard_damage(switch_pkmn, get_battler_index(current_user) & 1)
-    if hazard_damage > 0
+    score_hazards = AdvancedAI.get_setting(:hazard_calc, 0) > 0
+    hazard_damage = score_hazards ? calculate_entry_hazard_damage(switch_pkmn, get_battler_index(current_user)) : 0.0
+    entry_damage = calculate_entry_hazard_damage(switch_pkmn, get_battler_index(current_user), true)
+    if hazard_damage != 0 || entry_damage > 0
       hazard_penalty = (hazard_damage * 100).to_i  # Scale: 50% hazard damage = -50 points
       score -= hazard_penalty
-      echoln "[HAZARD] #{(hazard_damage * 100).round(1)}%% HP on switch-in [-#{hazard_penalty}]"
+      echoln "[HAZARD] #{(hazard_damage * 100).round(1)}% HP on switch-in [-#{hazard_penalty}]"
       
       # Extra penalty if hazards would faint us immediately
       remaining_hp_fraction = switch_pkmn.hp.to_f / [switch_pkmn.totalhp, 1].max
-      if hazard_damage >= remaining_hp_fraction
+      if entry_damage >= remaining_hp_fraction
         score -= 100  # FATAL - would faint on switch-in!
         echoln "FATAL] Hazards would KO on switch-in! [-100]"
-      elsif hazard_damage >= 0.50
-        score -= 30   # Massive damage = very risky switch
-        echoln "[CRITICAL] 50%%+ hazard damage! [-30]"
+      elsif score_hazards && entry_damage >= 0.50
+        score -= 30
+        echoln "[CRITICAL] 50%+ hazard damage! [-30]"
       end
     end
     
@@ -1296,8 +1022,8 @@ class Battle::AI
       next if target_types.empty? || target_types.any?(&:nil?)
       
       # Defensive Matchup (Incoming Moves)
-      target.moves.each do |move|
-        next unless move && move.damagingMove?
+      target.moves.each_with_index do |move, index|
+        next unless aai_switch_move_available?(target, index)
         next unless move.type  # Skip if move has no type
         
         move_type = move.pbCalcType(target)  # target is already a Battle::Battler
@@ -1309,10 +1035,11 @@ class Battle::AI
         eff = Effectiveness.calculate(move_type, *switch_types)
         
         # Calculate actual damage to properly assess safety
-        damage_percent = calculate_incoming_damage(switch_pkmn, move, target)
+        damage_percent = calculate_incoming_damage(switch_pkmn, move, target, current_user)
         
         # Type effectiveness scoring (base scoring)
-        if Effectiveness.ineffective?(eff)
+        if Effectiveness.ineffective?(eff) ||
+           aai_switch_ability_immunity?(switch_pkmn, current_user, target, move, move_type)
           score += 40
         elsif Effectiveness.not_very_effective?(eff)
           score += 15
@@ -1327,17 +1054,17 @@ class Battle::AI
           # Convert damage to a penalty (higher damage = worse score)
           damage_penalty = (damage_percent * 50).to_i  # Scale: 100% damage = -50 points
           score -= damage_penalty
-          echoln "    [DAMAGE] #{move.name} (~#{(damage_percent * 100).to_i}%% HP) [-#{damage_penalty}]"
+          echoln "    [DAMAGE] #{move.name} (~#{(damage_percent * 100).to_i}% HP) [-#{damage_penalty}]"
         else
           # Normal scenario: Penalize based on OHKO/2HKO thresholds
           if damage_percent >= 0.85
-            # Likely OHKO - this is a FATAL switch!
+            # Likely OHKO on entry
             score -= 60
-            echoln "    [OHKO RISK] #{move.name} (~#{(damage_percent * 100).to_i}%% HP) [-60]"
+            echoln "    [OHKO RISK] #{move.name} (~#{(damage_percent * 100).to_i}% HP) [-60]"
           elsif damage_percent >= 0.45
             # Likely 2HKO - risky switch
             score -= 30
-            echoln "    [2HKO RISK] #{move.name} (~#{(damage_percent * 100).to_i}%% HP) [-30]"
+            echoln "    [2HKO RISK] #{move.name} (~#{(damage_percent * 100).to_i}% HP) [-30]"
           elsif damage_percent >= 0.30
             # Moderate damage - somewhat risky
             score -= 10
@@ -1348,6 +1075,7 @@ class Battle::AI
       # Offensive Matchup (Outgoing Moves)
       switch_pkmn.moves.each do |move|
         next unless move && move.id
+        next if move.pp == 0 && move.total_pp > 0
         move_data = GameData::Move.try_get(move.id)
         next unless move_data
         next if move_data.category == 2  # Skip status moves (0=Physical, 1=Special, 2=Status)
@@ -1367,6 +1095,12 @@ class Battle::AI
       end
     end
     
+    # === Gen 9 switch-in ability bonuses (Zero to Hero, Booster Energy paradox, Intimidate, etc.) ===
+    begin
+      score += gen9_switchin_bonus(switch_pkmn) if respond_to?(:gen9_switchin_bonus)
+    rescue
+    end
+    
     return score
   end
 
@@ -1381,8 +1115,9 @@ class Battle::AI
       next true unless target && !target.fainted?
       
       # Type advantage
-      user.moves.any? do |move|
-        next false unless move && move.damagingMove?
+      user.moves.each_index.any? do |index|
+        next false unless aai_switch_move_available?(user, index)
+        move = user.moves[index]
         next false unless move.type
         resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
         type_mod = Effectiveness.calculate(resolved_type, *target.pbTypes(true))
@@ -1394,8 +1129,9 @@ class Battle::AI
   def user_has_type_disadvantage?(user, target)
     my_types = get_real_types(user)
     
-    target.moves.any? do |move|
-      next false unless move && move.damagingMove?
+    target.moves.each_index.any? do |index|
+      next false unless aai_switch_move_available?(target, index)
+      move = target.moves[index]
       next false unless move.type
       resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(target, move)
       type_mod = Effectiveness.calculate(resolved_type, *my_types)
@@ -1409,10 +1145,12 @@ class Battle::AI
     return primary || :balanced
   end
   
-  # Helper to get REAL types (ignoring Illusion)
+  # Returns the types this battler should be evaluated against.
+  # When called on the AI's own side, returns real types (perception layer is
+  # a no-op for non-opposing battlers). When called on an opposing battler with
+  # an active Illusion, the perception layer in 1_Core/Illusion_Perception.rb
+  # transparently returns the disguised Pokemon's types instead.
   def get_real_types(battler)
-    # pbTypes(true) returns the Pokemon's actual effective types
-    # Illusion is purely cosmetic and never changes internal type data
     return battler.pbTypes(true)
   end
   
@@ -1430,8 +1168,8 @@ class Battle::AI
     @battle.allOtherSideBattlers(user.index).each do |target|
       next unless target && !target.fainted?
       
-      user.moves.each do |move|
-        next unless move && move.damagingMove?
+      user.moves.each_with_index do |move, index|
+        next unless aai_switch_move_available?(user, index)
         next unless move.type
         
         # Resolve effective type and power via shared helpers
@@ -1442,34 +1180,17 @@ class Battle::AI
         # Check type effectiveness
         type_mod = Effectiveness.calculate(effective_type, *target.pbTypes(true))
         next if Effectiveness.ineffective?(type_mod)  # Can't KO with immune move
-        
-        # STAB bonus
-        stab = user.pbHasType?(effective_type) ? 1.5 : 1.0
-        stab = 2.0 if stab == 1.5 && user.hasActiveAbility?(:ADAPTABILITY)
-        
-        # Choose attack stat based on move category
-        if move.physicalMove?
-          atk = user.attack
-          def_stat = target.defense
-        else
-          atk = user.spatk
-          def_stat = target.spdef
-        end
-        
-        # Simplified damage formula (conservative estimate)
-        # Real formula: ((2*Level/5 + 2) * Power * A/D / 50 + 2) * Modifiers
-        # Simplified: (A * Power / D) * STAB * Effectiveness / 100
-        # Huge Power / Pure Power (2x Attack for physical moves)
-        if move.physicalMove? && (user.hasActiveAbility?(:HUGEPOWER) || user.hasActiveAbility?(:PUREPOWER))
-          atk *= 2
-        end
-        base_damage = (atk * power) / [def_stat, 1].max
-        effectiveness_multiplier = type_mod.to_f  # calculate() returns float multiplier (preserves 4x SE etc.)
-        estimated_damage = (base_damage * stab * effectiveness_multiplier) / 100
-        
-        # Can KO? Add small buffer for random damage rolls
+
+        # Use the shared, level-accurate damage estimator — the SAME one the move
+        # scorer uses. The old inline formula dropped the (2*Level/5+2)/50 term and
+        # divided by 100, underestimating real damage ~40-80x, so this method
+        # almost never detected a KO and the -60 switch malus never fired.
+        # calculate_rough_damage already accounts for STAB, type, Huge/Pure Power,
+        # weather, terrain, items, screens and abilities.
+        estimated_damage = calculate_rough_damage(move, user, target)
+
+        # Can KO? (small buffer for low damage rolls)
         if estimated_damage >= target.hp * 0.85
-          # Additional check: Can we strike FIRST?
           # This is critical when both Pokemon are in KO range
           move_priority = move.priority || 0
           
@@ -1485,26 +1206,12 @@ class Battle::AI
             
             # Even if slower, if opponent CAN'T KO us back, still worth staying
             # (This handles the "I can 2HKO them but they can't touch me" scenario)
-            opponent_can_ko_us = target.moves.any? do |opp_move|
-              next false unless opp_move && opp_move.damagingMove?
-              opp_eff_type = AdvancedAI::CombatUtilities.resolve_move_type(target, opp_move)
-              opp_power = AdvancedAI::CombatUtilities.resolve_move_power(opp_move)
-              next false if opp_power == 0
-              opp_type_mod = Effectiveness.calculate(opp_eff_type, *user.pbTypes(true)) rescue 1.0
-              next false if Effectiveness.ineffective?(opp_type_mod)
-              
-              opp_stab = target.pbHasType?(opp_eff_type) ? 1.5 : 1.0
-              opp_stab = 2.0 if opp_stab == 1.5 && target.hasActiveAbility?(:ADAPTABILITY)
-              opp_atk = opp_move.physicalMove? ? target.attack : target.spatk
-              # Huge Power / Pure Power (2x Attack for physical moves)
-              opp_atk *= 2 if opp_move.physicalMove? && (target.hasActiveAbility?(:HUGEPOWER) || target.hasActiveAbility?(:PUREPOWER))
-              our_def = opp_move.physicalMove? ? user.defense : user.spdef
-              
-              opp_damage = (opp_atk * opp_power) / [our_def, 1].max
-              opp_eff_mult = opp_type_mod.to_f  # calculate() returns float multiplier (preserves 4x SE etc.)
-              opp_estimated = (opp_damage * opp_stab * opp_eff_mult) / 100
-              
-              opp_estimated >= user.hp * 0.85
+            opponent_can_ko_us = target.moves.each_index.any? do |opponent_index|
+              next false unless aai_switch_move_available?(target, opponent_index)
+              opp_move = target.moves[opponent_index]
+              # Same fix: use the level-accurate estimator instead of the old
+              # ~40-80x-too-low inline formula.
+              calculate_rough_damage(opp_move, target, user) >= user.hp * 0.85
             end
             
             return true unless opponent_can_ko_us
@@ -1533,8 +1240,8 @@ class Battle::AI
       
       # Check if opponent can OHKO us with priority or moves before us
       tr_active = (@battle.field.effects[PBEffects::TrickRoom] > 0 rescue false)
-      target.moves.each do |move|
-        next unless move && move.damagingMove?
+      target.moves.each_with_index do |move, index|
+        next unless aai_switch_move_available?(target, index)
         
         # Rough damage estimate
         rough_damage = estimate_sac_damage_percent(user, move, target)
@@ -1552,21 +1259,17 @@ class Battle::AI
     
     return 0 unless is_doomed
     
-    # Doomed mon has sacrifice value - what can we accomplish?
     sac_value = 0
     
-    # 1. Can we get a free switch to a sweeper?
     party = @battle.pbParty(user.index & 1)
     sweepers = party.select do |pkmn|
       next false unless pkmn && !pkmn.fainted? && !pkmn.egg?
       next false if @battle.pbFindBattler(party.index(pkmn), user.index)
-      # Is it a setup sweeper?
       pkmn.moves.any? { |m| m && AdvancedAI.setup_move?(m.id) }
     end
     
     sac_value += 20 if sweepers.any?
     
-    # 2. Can we burn opponent's Dynamax turn by dying?
     @battle.allOtherSideBattlers(user.index).each do |target|
       if target.respond_to?(:dynamax?) && target.dynamax?
         sac_value += 30  # They waste Dynamax damage on fodder
@@ -1576,7 +1279,6 @@ class Battle::AI
       end
     end
     
-    # 3. Can we use Explosion/Self-Destruct/Final Gambit to trade?
     trade_moves = user.moves.select { |m| m && [:EXPLOSION, :SELFDESTRUCT, :FINALGAMBIT, :MISTYEXPLOSION].include?(m.id) }
     if trade_moves.any?
       sac_value += 25  # Can at least trade
@@ -1594,28 +1296,11 @@ class Battle::AI
   end
   
   def estimate_sac_damage_percent(defender, move, attacker)
-    return 0 unless move && move.power && move.power > 0
-    
-    # Resolve effective type and power via shared helpers
-    effective_type = AdvancedAI::CombatUtilities.resolve_move_type(attacker, move)
-    power = AdvancedAI::CombatUtilities.resolve_move_power(move)
-    return 0 if power == 0
-    
-    atk = move.physicalMove? ? attacker.attack : attacker.spatk
-    # Huge Power / Pure Power (2x Attack for physical moves)
-    atk *= 2 if move.physicalMove? && (attacker.hasActiveAbility?(:HUGEPOWER) || attacker.hasActiveAbility?(:PUREPOWER))
-    defense = move.physicalMove? ? defender.defense : defender.spdef
-    defense = [defense, 1].max
-    
-    type_mod = Effectiveness.calculate(effective_type, *defender.pbTypes(true))
-    type_mult = type_mod.to_f / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
-    stab = attacker.pbHasType?(effective_type) ? 1.5 : 1.0
-    stab = 2.0 if stab == 1.5 && attacker.hasActiveAbility?(:ADAPTABILITY)
-    
-    damage = ((2 * attacker.level / 5.0 + 2) * power * atk / defense / 50 + 2)
-    damage *= type_mult * stab
-    
-    (damage / defender.totalhp.to_f * 100).to_i
+    return 0 unless move && attacker && defender
+    ratio = AdvancedAI::CombatUtilities.estimate_damage(
+      attacker, move, defender, as_percent: true
+    )
+    (ratio * 100).to_i
   end
   
   #=============================================================================
@@ -1624,131 +1309,91 @@ class Battle::AI
   
   # Calculate total damage from entry hazards on switch-in
   # Returns damage as percentage of total HP (0.0 to 1.0+)
-  def calculate_entry_hazard_damage(switch_pkmn, current_user)
-    return 0.0 unless switch_pkmn && current_user
-    
-    total_damage = 0.0
-    # Handle current_user being either a Battler or an index integer
-    user_index = get_battler_index(current_user)
-    opponent_side = @battle.sides[(user_index + 1) % 2]
-    our_side = @battle.sides[user_index % 2]
-    
-    # === STEALTH ROCK ===
-    if our_side.effects[PBEffects::StealthRock]
-      # Stealth Rock damage based on Rock-type effectiveness
-      sr_effectiveness = Effectiveness.calculate(:ROCK, *switch_pkmn.types.compact)
-      sr_multiplier = sr_effectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
-      
-      # Base damage is 12.5% (1/8 of max HP)
-      sr_damage = 0.125 * sr_multiplier
-      total_damage += sr_damage
-      
-      if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE
-        PBDebug.log("[HAZARD] Stealth Rock: #{(sr_damage * 100).round(1)}% (#{sr_multiplier}x effective)")
-      end
+  def switch_hazard_preview(pkmn, index)
+    preview = @battle.clone
+    copies = @battle.battlers.map do |b|
+      next unless b
+      copy = b.clone
+      copy.instance_variable_set(:@battle, preview)
+      copy.instance_variable_set(:@effects, b.effects.clone)
+      copy.instance_variable_set(:@stages, b.stages.clone)
+      copy
     end
-    
-    # === SPIKES ===
-    spikes_layers = our_side.effects[PBEffects::Spikes]
-    if spikes_layers && spikes_layers > 0
-      # Spikes don't affect Flying types or Levitate
-      grounded = !switch_pkmn.types.include?(:FLYING)
-      grounded = grounded && switch_pkmn.ability_id != :LEVITATE
-      
-      if grounded
-        # 1 layer = 12.5%, 2 layers = 16.67%, 3 layers = 25%
-        spikes_damage = case spikes_layers
-                        when 1 then 0.125   # 1/8
-                        when 2 then 0.16667 # 1/6
-                        else 0.25           # 1/4
-                        end
-        total_damage += spikes_damage
-        
-        if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE
-          PBDebug.log("[HAZARD] Spikes (#{spikes_layers} layers): #{(spikes_damage * 100).round(1)}%")
-        end
-      end
-    end
-    
-    # === TOXIC SPIKES ===
-    toxic_spikes_layers = our_side.effects[PBEffects::ToxicSpikes]
-    if toxic_spikes_layers && toxic_spikes_layers > 0
-      # Toxic Spikes don't affect Flying, Poison, or Steel types
-      grounded = !switch_pkmn.types.include?(:FLYING)
-      grounded = grounded && switch_pkmn.ability_id != :LEVITATE
-      immune = switch_pkmn.types.include?(:POISON) || switch_pkmn.types.include?(:STEEL)
-      
-      if grounded && !immune
-        # No immediate damage, but inflicts poison/bad poison
-        # We should penalize this in a different way (status condition value)
-        # For now, assign a moderate penalty value
-        total_damage += 0.10  # 10% "value" for getting poisoned
-        
-        if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE
-          status_type = toxic_spikes_layers >= 2 ? "Badly Poisoned" : "Poisoned"
-          PBDebug.log("[HAZARD] Toxic Spikes: #{status_type} on switch-in")
-        end
-      end
-    end
-    
-    # === STICKY WEB ===
-    if our_side.effects[PBEffects::StickyWeb]
-      # Sticky Web lowers Speed by 1 stage (no immediate damage)
-      # Flying types and Levitate are immune
-      grounded = !switch_pkmn.types.include?(:FLYING)
-      grounded = grounded && switch_pkmn.ability_id != :LEVITATE
-      
-      if grounded
-        # Assign a penalty for speed drop (especially bad for fast Pokemon)
-        # Speed-oriented Pokemon (high speed stat) should value this more
-        speed_ratio = switch_pkmn.speed.to_f / 130.0  # Normalize to common max speed
-        sticky_web_penalty = [0.05 * speed_ratio, 0.15].min  # 5-15% penalty
-        total_damage += sticky_web_penalty
-        
-        if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE
-          PBDebug.log("[HAZARD] Sticky Web: Speed -1 stage (~#{(sticky_web_penalty * 100).round(1)}% penalty)")
-        end
-      end
-    end
-    
-    # === HEAVY-DUTY BOOTS CHECK ===
-    # If Pokemon has Heavy-Duty Boots, it ignores all entry hazards
-    if switch_pkmn.item_id == :HEAVYDUTYBOOTS
-      if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE && total_damage > 0
-        PBDebug.log("[ITEM] Heavy-Duty Boots: Hazard damage negated!")
-      end
-      return 0.0
-    end
-    
-    # === MAGIC GUARD CHECK ===
-    # Magic Guard prevents indirect damage
-    if switch_pkmn.ability_id == :MAGICGUARD
-      if AdvancedAI::DEBUG_SWITCH_INTELLIGENCE && total_damage > 0
-        PBDebug.log("[ABILITY] Magic Guard: Hazard damage negated!")
-      end
-      # Still suffer from Sticky Web speed drop and Toxic Spikes status
-      # Return only the non-damage hazard penalties
-      non_damage_penalty = 0.0
-      if toxic_spikes_layers && toxic_spikes_layers > 0
-        # Toxic Spikes only affect grounded, non-Poison/Steel mons
-        grounded = !switch_pkmn.types.include?(:FLYING) && switch_pkmn.ability_id != :LEVITATE
-        immune = switch_pkmn.types.include?(:POISON) || switch_pkmn.types.include?(:STEEL)
-        non_damage_penalty += 0.10 if grounded && !immune
-      end
-      if our_side.effects[PBEffects::StickyWeb]
-        # Sticky Web only affects grounded mons
-        grounded = !switch_pkmn.types.include?(:FLYING) && switch_pkmn.ability_id != :LEVITATE
-        if grounded
-          speed_ratio = switch_pkmn.speed.to_f / 130.0
-          non_damage_penalty += [0.05 * speed_ratio, 0.15].min
-        end
-      end
-      return non_damage_penalty
-    end
-    
-    total_damage
+    preview.instance_variable_set(:@battlers, copies)
+    preview.moldBreaker = false
+    probe = Battle::Battler.new(preview, index)
+    probe.pbInitialize(pkmn.clone, -1)
+    copies[index] = probe
+    probe
   end
-  
+
+  def switch_entry_hp_preview(pkmn, index)
+    probe = switch_hazard_preview(pkmn, index)
+    return probe if probe.fainted? || probe.hasActiveItem?(:HEAVYDUTYBOOTS) || !probe.takesIndirectDamage?
+    side = probe.pbOwnSide
+    hits = []
+    if side.effects[PBEffects::StealthRock]
+      effectiveness = Effectiveness.calculate(:ROCK, *probe.pbTypes(true))
+      hits << [(probe.totalhp * effectiveness / 8).round, 1].max unless Effectiveness.ineffective?(effectiveness)
+    end
+    layers = side.effects[PBEffects::Spikes]
+    hits << [probe.totalhp / [8, 6, 4][layers - 1], 1].max if layers > 0 && !probe.airborne?
+    hits.each do |damage|
+      probe.hp = [probe.hp - damage, 0].max
+      break if probe.fainted?
+      heal_switch_entry_item(probe)
+    end
+    probe
+  end
+
+  def heal_switch_entry_item(probe)
+    return unless probe.itemActive? && probe.canHeal?
+    item = probe.item_id
+    berry = item != :BERRYJUICE
+    return if berry && !probe.canConsumeBerry?
+    case item
+    when :ORANBERRY, :SITRUSBERRY, :BERRYJUICE
+      return if probe.hp > probe.totalhp / 2
+      amount = { ORANBERRY: 10, SITRUSBERRY: probe.totalhp / 4, BERRYJUICE: 20 }[item]
+    when :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY
+      return unless probe.canConsumePinchBerry?(Settings::MECHANICS_GENERATION >= 7)
+      divisor = Settings::MECHANICS_GENERATION >= 8 ? 3 : (Settings::MECHANICS_GENERATION == 7 ? 2 : 8)
+      amount = probe.totalhp / divisor
+    else
+      return
+    end
+    amount *= 2 if berry && probe.hasActiveAbility?(:RIPEN)
+    probe.hp = [probe.hp + [amount, 1].max, probe.totalhp].min
+    if berry && probe.hasActiveAbility?(:CHEEKPOUCH) && probe.canHeal?
+      probe.hp = [probe.hp + [probe.totalhp / 3, 1].max, probe.totalhp].min
+    end
+    probe.effects[PBEffects::Unburden] = true if probe.hasActiveAbility?(:UNBURDEN)
+    probe.item = nil
+  end
+
+  def calculate_entry_hazard_damage(switch_pkmn, current_user, damage_only = false)
+    return 0.0 unless switch_pkmn && current_user
+    return 0.0 if switch_pkmn.fainted? || switch_pkmn.egg?
+    index = get_battler_index(current_user)
+    probe = switch_entry_hp_preview(switch_pkmn, index)
+    return 0.0 if probe.hasActiveItem?(:HEAVYDUTYBOOTS)
+    side = probe.pbOwnSide
+    cost = (switch_pkmn.hp - probe.hp).to_f / [probe.totalhp, 1].max
+    return cost if damage_only || probe.airborne? || probe.fainted?
+    if side.effects[PBEffects::ToxicSpikes] > 0 && !probe.pbHasType?(:POISON) && probe.pbCanPoison?(nil, false)
+      cost += 0.10
+    end
+    if side.effects[PBEffects::StickyWeb] && probe.pbCanLowerStatStage?(:SPEED)
+      web_cost = [0.05 * probe.speed / 130.0, 0.15].min
+      if probe.hasActiveAbility?(:CONTRARY)
+        cost -= web_cost
+      elsif !probe.hasActiveItem?(:WHITEHERB)
+        cost += web_cost
+      end
+    end
+    cost
+  end
+
   #=============================================================================
   # SETUP MOVE DETECTION
   #=============================================================================
@@ -1801,52 +1446,35 @@ class Battle::AI
   #=============================================================================
   
   # Check if switch-in can outspeed opponent
-  def can_outspeed?(switch_pkmn, opponent)
-    return false unless switch_pkmn && opponent
-    
-    # Get base speeds (party Pokemon doesn't have pbSpeed, calculate manually)
-    switch_speed = calculate_party_speed(switch_pkmn)
-    opponent_speed = opponent.pbSpeed
-    
-    # Account for priority moves (always "outspeed")
-    # This is checked elsewhere, but good to know
-    
-    switch_speed > opponent_speed
-  end
-  
-  # Calculate speed for party Pokemon (not in battle yet)
-  def calculate_party_speed(pkmn)
-    return 0 unless pkmn
-    
-    # Basic stat calculation (no stages since not in battle)
-    base_speed = pkmn.speed
-    
-    # Note: pkmn.speed already includes nature modifier via calc_stats
-    
-    # Item modifiers
-    if pkmn.item_id == :CHOICESCARF
-      base_speed = (base_speed * 1.5).floor
-    elsif pkmn.item_id == :IRONBALL
-      base_speed = (base_speed * 0.5).floor
+  def can_outspeed?(switch_pkmn, opponent, current_user = nil)
+    return false unless switch_pkmn && opponent && !switch_pkmn.fainted?
+    index = current_user || (opponent.index ^ 1)
+    speed = calculate_party_speed(switch_pkmn, index)
+    if @battle.field.effects[PBEffects::TrickRoom] > 0
+      return speed < opponent.pbSpeed
     end
-    
-    # Ability modifiers (basic ones)
-    case pkmn.ability_id
-    when :SWIFTSWIM
-      base_speed = (base_speed * 2).floor if @battle.pbWeather == :Rain
-    when :CHLOROPHYLL
-      base_speed = (base_speed * 2).floor if @battle.pbWeather == :Sun
-    when :SANDRUSH
-      base_speed = (base_speed * 2).floor if @battle.pbWeather == :Sandstorm
-    when :SLUSHRUSH
-      base_speed = (base_speed * 2).floor if [:Hail, :Snow].include?(@battle.pbWeather)
-    when :SPEEDBOOST
-      # Can't account for this pre-switch
-    end
-    
-    base_speed
+    speed > opponent.pbSpeed
   end
-  
+
+  def calculate_party_speed(pkmn, current_user = nil)
+    return 0 unless pkmn && !pkmn.fainted? && !pkmn.egg?
+    index = get_battler_index(current_user || @user || 1)
+    probe = switch_entry_hp_preview(pkmn, index)
+    return 0 if probe.fainted?
+    if probe.pbOwnSide.effects[PBEffects::StickyWeb] && !probe.airborne? &&
+       !probe.hasActiveItem?(:HEAVYDUTYBOOTS) && probe.pbCanLowerStatStage?(:SPEED)
+      change = probe.hasActiveAbility?(:CONTRARY) ? 1 : -1
+      change *= 2 if probe.hasActiveAbility?(:SIMPLE)
+      probe.stages[:SPEED] = change
+      if change < 0 && probe.hasActiveItem?(:WHITEHERB)
+        probe.stages[:SPEED] = 0
+        probe.item = nil
+        probe.effects[PBEffects::Unburden] = true
+      end
+    end
+    probe.pbSpeed
+  end
+
   # Evaluate speed advantage for switch decision
   def evaluate_speed_advantage(switch_pkmn, current_user)
     score = 0
@@ -1854,7 +1482,7 @@ class Battle::AI
     @battle.allOtherSideBattlers(get_battler_index(current_user)).each do |opponent|
       next unless opponent && !opponent.fainted?
       
-      if can_outspeed?(switch_pkmn, opponent)
+      if can_outspeed?(switch_pkmn, opponent, current_user)
         score += 15  # Outspeeding is valuable
         
         # Extra value if we can OHKO while outspeeding
@@ -1863,7 +1491,7 @@ class Battle::AI
           move_data = GameData::Move.try_get(move.id)
           next unless move_data && move_data.power > 0
           
-          # Rough damage check (would need full calc for accuracy)
+          # Reward super-effective coverage while faster.
           move_type = AdvancedAI::CombatUtilities.resolve_move_type(switch_pkmn, move_data)
           opp_types = opponent.pbTypes(true)
           effectiveness = Effectiveness.calculate(move_type, *opp_types)
@@ -1889,46 +1517,44 @@ class Battle::AI
   # Evaluate if pivot move is available and better than hard switch
   # Returns bonus to REDUCE switch score (prefer pivot over switch)
   def evaluate_pivot_move_option(user, skill)
-    return 0 unless user && skill >= 50
-    
-    pivot_moves = [:UTURN, :VOLTSWITCH, :FLIPTURN, :PARTINGSHOT, :TELEPORT, 
+    return 0 unless user && skill >= 50 && @battle.pbCanChooseNonActive?(user.index)
+    pivot_moves = [:UTURN, :VOLTSWITCH, :FLIPTURN, :PARTINGSHOT, :TELEPORT,
                    :BATONPASS, :SHEDTAIL, :CHILLYRECEPTION]
-    
+    opponents = @battle.allOtherSideBattlers(user.index).select { |t| t && !t.fainted? }
     bonus = 0
-    
-    user.moves.each do |move|
+    user.moves.each_with_index do |move, index|
       next unless move && pivot_moves.include?(move.id)
-      
-      # Base bonus for having a pivot move
-      bonus += 25
-      
-      # Extra bonus if pivot move is damaging and super effective
-      if [:UTURN, :VOLTSWITCH, :FLIPTURN].include?(move.id)
-        @battle.allOtherSideBattlers(user.index).each do |target|
-          next unless target && !target.fainted?
-          
-          move_data = GameData::Move.try_get(move.id)
-          next unless move_data
-          move_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move_data)
-          effectiveness = Effectiveness.calculate(move_type, *target.pbTypes(true))
-          
-          if Effectiveness.super_effective?(effectiveness)
-            bonus += 10  # Can deal damage + switch safely
-            break
-          end
-        end
+      next unless @battle.pbCanChooseMove?(user.index, index, false)
+      if move.id == :SHEDTAIL
+        preview = @battle.clone
+        preview.define_singleton_method(:pbDisplay) { |*args| }
+        preview_move = move.clone
+        preview_move.instance_variable_set(:@battle, preview)
+        next if preview_move.pbMoveFailed?(user, [])
       end
-      
-      # Parting Shot is especially valuable (debuff + safe switch)
-      bonus += 15 if move.id == :PARTINGSHOT
-      
-      # Only count first pivot move found
-      break
+      targets = opponents
+      if move.damagingMove?
+        targets = opponents.select { |t| AdvancedAI::CombatUtilities.estimate_damage(user, move, t) > 0 }
+        next if targets.empty?
+      elsif move.id == :PARTINGSHOT
+        targets = opponents.reject do |target|
+          reflected = target.effects[PBEffects::MagicCoat] ||
+                      (target.hasActiveAbility?(:MAGICBOUNCE) && !AdvancedAI::Utilities.ignores_ability?(user, move, target))
+          reflected || AdvancedAI::Utilities.soundproof_immune?(user, target, move) ||
+            aai_disruption_fails?(:PARTINGSHOT, user, target)
+        end
+        next if targets.empty?
+      end
+      value = 25
+      if move.damagingMove? && targets.any? { |t| Effectiveness.super_effective?(AdvancedAI::CombatUtilities.move_type_effectiveness(move, user, t)) }
+        value += 10
+      end
+      value += 15 if move.id == :PARTINGSHOT
+      bonus = [bonus, value].max
     end
-    
     bonus
   end
-  
+
   #=============================================================================
   # RECOVERY MOVE TIMING
   #=============================================================================
@@ -2033,32 +1659,11 @@ class Battle::AI
   
   # Quick damage estimate for recovery timing (simpler than full calc)
   def estimate_incoming_damage_percent(defender, move, attacker)
-    return 0 unless move && move.power && move.power > 0
-    
-    # Resolve power for variable-power moves (power=1 → 60)
-    power = AdvancedAI::CombatUtilities.resolve_move_power(move)
-    return 0 if power == 0
-    
-    atk = move.physicalMove? ? attacker.attack : attacker.spatk
-    # Huge Power / Pure Power (2x Attack for physical moves)
-    atk *= 2 if move.physicalMove? && (attacker.hasActiveAbility?(:HUGEPOWER) || attacker.hasActiveAbility?(:PUREPOWER))
-    defense = move.physicalMove? ? defender.defense : defender.spdef
-    defense = [defense, 1].max
-    
-    move_type = move.pbCalcType(attacker) rescue move.type
-    defender_types = defender.pbTypes(true)
-    effectiveness = Effectiveness.calculate(move_type, *defender_types)
-    type_mult = effectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
-    
-    stab = attacker.pbHasType?(move_type) ? STAB_MULTIPLIER : 1.0
-    # Adaptability: 2.0 STAB instead of 1.5
-    stab = 2.0 if stab == 1.5 && attacker.hasActiveAbility?(:ADAPTABILITY)
-    
-    level = attacker.level
-    base_damage = ((2.0 * level / 5 + 2) * power * atk / defense / 50 + 2)
-    estimated_damage = base_damage * stab * type_mult * DAMAGE_RANDOM_MULTIPLIER
-    
-    (estimated_damage / defender.totalhp.to_f * 100).round
+    return 0 unless move && attacker && defender
+    ratio = AdvancedAI::CombatUtilities.estimate_damage(
+      attacker, move, defender, as_percent: true
+    )
+    (ratio * 100).round
   end
   
 end

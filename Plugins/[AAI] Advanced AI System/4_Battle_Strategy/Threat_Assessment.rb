@@ -95,8 +95,8 @@ module AdvancedAI
           move_data = GameData::Move.try_get(move_id)
           next unless move_data
           
-          # Priority Moves
-          threat += 0.5 if move_data.priority > 0
+          # Priority Moves (only attacks threaten us)
+          threat += 0.5 if move_data.priority > 0 && move_data.power > 0
           
           # Super Effective Coverage
           if move_data.power > 0
@@ -285,7 +285,7 @@ module AdvancedAI
       
       # === ZERO TO HERO (Palafin) ===
       if ability == :ZEROTOHERO
-        # After switching in once, becomes Hero form (massive stat boost)
+        # After switching in once, becomes Hero form
         if opponent.respond_to?(:form) && opponent.form == 1
           threat += 1.5  # Hero form Palafin is extremely dangerous
         else

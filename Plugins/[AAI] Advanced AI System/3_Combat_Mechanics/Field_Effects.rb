@@ -21,6 +21,7 @@ module AdvancedAI
     
     # Weather Bonus
     def self.weather_bonus(battle, move, user, target)
+      return 0 unless AdvancedAI.get_setting(:weather_abuse) > 0
       return 0 unless AdvancedAI::Utilities.weather_active?(battle)
       
       # Utility Umbrella: weather effects don't apply to this Pokemon's moves
@@ -36,7 +37,7 @@ module AdvancedAI
         if move.type == :FIRE
           bonus += 30  # Fire moves x1.5
         elsif move.type == :WATER
-          # Hydro Steam gets BOOSTED in Sun instead of weakened!
+          # Sun boosts Hydro Steam instead of weakening it.
           if move.id == :HYDROSTEAM
             bonus += 35  # 1.5x power in Sun (reversed)
           elsif weather == :HarshSun
@@ -128,6 +129,20 @@ module AdvancedAI
         if target && target.hasActiveAbility?(:SNOWCLOAK)
           bonus -= 10
         end
+        
+      when :StrongWinds
+        # Delta Stream: Flying-type weaknesses are neutralized
+        # The engine handles type effectiveness, but we score moves that benefit
+        if move.type == :FLYING
+          bonus += 15  # Flying moves are safer (weaknesses neutralized for user)
+        end
+        # Penalize Ice/Rock/Electric vs Flying targets — they're no longer SE
+        if target && target.pbHasType?(:FLYING)
+          if [:ICE, :ROCK, :ELECTRIC].include?(move.type)
+            bonus -= 20  # Normally SE, but neutralized by Strong Winds
+          end
+        end
+        bonus += 20 if move.id == :WEATHERBALL
       end
       
       # Ability Synergies
@@ -162,6 +177,7 @@ module AdvancedAI
     
     # Terrain Bonus
     def self.terrain_bonus(battle, move, user, target)
+      return 0 unless AdvancedAI.get_setting(:terrain_abuse) > 0
       return 0 if !battle.field.terrain || battle.field.terrain == :None
       
       bonus = 0
@@ -342,6 +358,7 @@ module AdvancedAI
     
     # Weather Setting Bonus
     def self.weather_setting_bonus(battle, move, user, skill_level = 100)
+      return 0 unless AdvancedAI.get_setting(:weather_abuse) > 0
       return 0 unless skill_level >= 70
       
       bonus = 0
@@ -355,7 +372,7 @@ module AdvancedAI
         bonus += sun_users * 20
         
       when :RAINDANCE
-        rain_users = party.count { |p| p && [:SWIFTSWIM, :DRIZZLE, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC].include?(p.ability_id) }
+        rain_users = party.count { |p| p && [:SWIFTSWIM, :DRIZZLE, :RAINDISH, :DRYSKIN, :HYDRATION].include?(p.ability_id) }
         bonus += rain_users * 20
         
       when :SANDSTORM
@@ -376,6 +393,7 @@ module AdvancedAI
   #===========================================================================
   module FieldEffects
     def self.weather_war_bonus(battle, move, user, skill_level = 100)
+      return 0 unless AdvancedAI.get_setting(:weather_abuse) > 0
       return 0 unless skill_level >= 75
       
       bonus = 0
@@ -411,7 +429,7 @@ module AdvancedAI
             opponent_benefits = true
           end
         when :Rain, :HeavyRain
-          if opp.hasActiveAbility?(:SWIFTSWIM) || opp.hasActiveAbility?(:RAINDISH) || opp.hasActiveAbility?(:DRYSKIN) || opp.hasActiveAbility?(:HYDRATION) || opp.hasActiveAbility?(:HYDROPONIC)
+          if opp.hasActiveAbility?(:SWIFTSWIM) || opp.hasActiveAbility?(:RAINDISH) || opp.hasActiveAbility?(:DRYSKIN) || opp.hasActiveAbility?(:HYDRATION)
             opponent_benefits = true
           end
         when :Sandstorm
@@ -445,6 +463,7 @@ module AdvancedAI
     
     # Terrain War - Override opponent's terrain
     def self.terrain_war_bonus(battle, move, user, skill_level = 100)
+      return 0 unless AdvancedAI.get_setting(:terrain_abuse) > 0
       return 0 unless skill_level >= 75
       
       bonus = 0
@@ -498,7 +517,7 @@ module AdvancedAI
     def self.count_weather_synergy(party, weather)
       synergy = {
         :Sun  => [:CHLOROPHYLL, :SOLARPOWER, :LEAFGUARD, :FLOWERGIFT, :HARVEST, :PROTOSYNTHESIS],
-        :Rain => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION, :HYDROPONIC],
+        :Rain => [:SWIFTSWIM, :RAINDISH, :DRYSKIN, :HYDRATION],
         :Sandstorm => [:SANDRUSH, :SANDFORCE, :SANDVEIL],
         :Hail => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE],
         :Snow => [:SLUSHRUSH, :ICEBODY, :SNOWCLOAK, :ICEFACE]
@@ -522,6 +541,7 @@ module AdvancedAI
     end
     
     def self.mimicry_bonus(battle, move, user, target, skill_level = 100)
+      return 0 unless AdvancedAI.get_setting(:terrain_abuse) > 0
       return 0 unless skill_level >= 70
       
       bonus = 0
@@ -587,7 +607,7 @@ end
 # Integration in Battle::AI
 class Battle::AI
   def apply_field_effects(score, move, user, target)
-    skill = @trainer&.skill || 100
+    skill = @_resolved_skill || @trainer&.skill || 100
     return score unless AdvancedAI.feature_enabled?(:core, skill)
     return score unless target
     

@@ -274,7 +274,7 @@ module AdvancedAI
       :SPORE          => { status: :sleep, accuracy: 100 },
       :SLEEPPOWDER    => { status: :sleep, accuracy: 75 },
       :HYPNOSIS       => { status: :sleep, accuracy: 60 },
-      :DARKVOID       => { status: :sleep, accuracy: 80 },
+      :DARKVOID       => { status: :sleep, accuracy: 50 },
       :YAWN           => { status: :sleep, delayed: true },
       
       # Freeze
@@ -349,6 +349,8 @@ module AdvancedAI
       :OBSTRUCT       => { role: :protection, effect: :defense_drop },
       :SILKTRAP       => { role: :protection, effect: :speed_drop },
       :BURNINGBULWARK => { role: :protection, effect: :burn },
+      :MINIMIZE       => { role: :protection },
+      :DOUBLETEAM     => { role: :protection },
       
       # Recovery
       :RECOVER        => { role: :recovery, heal: 0.5 },
@@ -536,14 +538,6 @@ module AdvancedAI
       return SETUP_MOVES[move_id]
     end
     
-    # Returns the healing data for a move (or nil)
-    # Includes conditional requirements like sleep for Dream Eater
-    def self.get_healing_data(move_id)
-      return nil if !move_id
-      move_id = move_id.to_sym if move_id.is_a?(String)
-      return HEALING_MOVES[move_id]
-    end
-    
     # Categorizes Move
     def self.categorize_move(move_id)
       categories = []
@@ -626,10 +620,6 @@ module AdvancedAI
   
   def self.get_setup_data(move_id)
     MoveCategories.get_setup_data(move_id)
-  end
-  
-  def self.get_healing_data(move_id)
-    MoveCategories.get_healing_data(move_id)
   end
   
   def self.categorize_move(move_id)

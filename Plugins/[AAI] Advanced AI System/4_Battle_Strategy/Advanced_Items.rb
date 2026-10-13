@@ -6,7 +6,7 @@
 module AdvancedAI
   # Pinch Berry activation thresholds
   PINCH_BERRIES = {
-    :SITRUSBERRY  => 0.50,  # Heals when ≤50% HP
+    :SITRUSBERRY  => 0.50,  # Heals when â‰¤50% HP
     :ORANBERRY    => 0.50,  # Heals 10 HP
     :FIGYBERRY    => 0.25,  # Heals 1/3 HP at 25%
     :WIKIBERRY    => 0.25,  #
@@ -50,14 +50,20 @@ class Battle::AI
   # PINCH BERRY AWARENESS
   # ============================================================================
   
-  alias advanced_items_pbRegisterMove pbRegisterMove
+  alias_method :advanced_items_pbRegisterMove, :pbRegisterMove unless method_defined?(:advanced_items_pbRegisterMove) || private_method_defined?(:advanced_items_pbRegisterMove)
   def pbRegisterMove(user, move)
     score = advanced_items_pbRegisterMove(user, move)
     
     return score unless user && move
-    
-    @battle.allOtherSideBattlers(user.index).each do |target|
-      next unless target && !target.fainted? && target.item
+
+    target_data = move.pbTarget(user) rescue nil
+    targets = []
+    if target_data && target_data.num_targets > 0
+      targets = @_resolved_targets || [@_resolved_target].compact
+    end
+    targets.each do |target|
+      next unless target && !target.fainted?
+      next unless target.opposes?(user)
       
       # PINCH BERRIES: Damage threshold awareness
       if AdvancedAI::PINCH_BERRIES.key?(target.item_id)
@@ -103,12 +109,16 @@ class Battle::AI
   # ============================================================================
   
   def evaluate_pinch_berry(user, move, target)
+    return 0 unless target.item && target.itemActive?
+    return 0 unless target.canConsumeBerry?
     return 0 unless move.damagingMove?
     
     score = 0
     berry_id = target.item_id
     activation_threshold = AdvancedAI::PINCH_BERRIES[berry_id]
     
+    return 0 unless activation_threshold
+
     # Gluttony: pinch berries activate at 50% instead of 25%
     if target.respond_to?(:hasActiveAbility?) && target.hasActiveAbility?(:GLUTTONY) && activation_threshold < 0.50
       activation_threshold = 0.50
@@ -119,34 +129,17 @@ class Battle::AI
     hp_after = hp_percent - rough_damage
     
     # Check if damage will trigger berry
-    will_trigger = (hp_percent > activation_threshold && hp_after <= activation_threshold)
+    will_trigger = (hp_after > 0 && hp_percent > activation_threshold && hp_after <= activation_threshold)
     
     if will_trigger
       case berry_id
-      when :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY
-        # Healing berry - try to KO instead
-        if rough_damage < hp_percent
-          score -= 20  # Don't chip them into berry range
-          AdvancedAI.log("  #{berry_id}: -20 (triggers heal)", "Items")
-          
-          # Unless we can KO through the heal
-          heal_amount = (berry_id == :SITRUSBERRY) ? 0.25 : 0.33
-          if rough_damage >= hp_percent + heal_amount
-            score += 30  # KO through heal
-            AdvancedAI.log("  But KOs through heal: +30", "Items")
-          end
-        end
-        
+      when :ORANBERRY, :SITRUSBERRY, :FIGYBERRY, :WIKIBERRY, :MAGOBERRY, :AGUAVBERRY, :IAPAPABERRY
+        score -= 20
+        AdvancedAI.log("  #{berry_id}: -20 (triggers heal)", "Items")
       when :LIECHIBERRY, :PETAYABERRY, :SALACBERRY, :GANLONBERRY, :APICOTBERRY, :STARFBERRY
-        # Stat boost berry - DON'T trigger unless KO
-        if rough_damage >= hp_percent
-          score += 20  # KO before activation
-          AdvancedAI.log("  #{berry_id}: +20 (KO before boost)", "Items")
-        else
-          score -= 35  # Don't give them free +1
-          AdvancedAI.log("  #{berry_id}: -35 (triggers stat boost!)", "Items")
-        end
-        
+        score -= 35
+        AdvancedAI.log("  #{berry_id}: -35 (triggers stat boost)", "Items")
+      
       when :CUSTAPBERRY
         # Priority berry - less scary
         score -= 10
@@ -162,6 +155,8 @@ class Battle::AI
   # ============================================================================
   
   def evaluate_resist_berry(user, move, target)
+    return 0 unless target.item && target.itemActive?
+    return 0 unless target.canConsumeBerry?
     return 0 unless move.damagingMove?
     
     score = 0
@@ -173,10 +168,10 @@ class Battle::AI
     if resolved_type == resisted_type
       type_mod = Effectiveness.calculate(resolved_type, *target.pbTypes(true))
       
-      if Effectiveness.super_effective?(type_mod)
+      if Effectiveness.super_effective?(type_mod) || (berry_id == :CHILANBERRY && !Effectiveness.ineffective?(type_mod))
         # Berry will halve damage
         score -= 25
-        AdvancedAI.log("  #{berry_id}: -25 (halves SE damage)", "Items")
+        AdvancedAI.log("  #{berry_id}: -25 (reduces damage)", "Items")
         
         # Check if we'd still KO
         rough_damage = AdvancedAI::CombatUtilities.estimate_damage(user, move, target, as_percent: true)
@@ -197,10 +192,20 @@ class Battle::AI
   # ============================================================================
   
   def evaluate_eject_mechanics(user, move, target)
+    return 0 unless target.item && target.itemActive?
     return 0 unless move.damagingMove?
     
     score = 0
     item_id = target.item_id
+    damage = AdvancedAI::CombatUtilities.estimate_damage(user, move, target)
+    return 0 if damage <= 0 || damage >= target.hp
+    return 0 if user.hasActiveAbility?(:SHEERFORCE) && move.addlEffect.to_i > 0
+    switcher = item_id == :EJECTBUTTON ? target : user
+    return 0 unless @battle.pbCanChooseNonActive?(switcher.index)
+    if item_id == :REDCARD
+      return 0 if user.effects[PBEffects::Ingrain]
+      return 0 if user.hasActiveAbility?(:SUCTIONCUPS) && !@battle.moldBreaker
+    end
     
     # Eject Button: Target switches out when hit
     # Red Card: User switches out when hitting
@@ -239,12 +244,13 @@ class Battle::AI
   # ============================================================================
   
   def evaluate_air_balloon(user, move, target)
+    return 0 unless target.item && target.itemActive?
     return 0 unless move.damagingMove?
     
     score = 0
     
     # Air Balloon: Ground immunity until hit
-    if move.type == :GROUND
+    if AdvancedAI::CombatUtilities.resolve_move_type(user, move) == :GROUND && target.airborne?
       # Our Ground move does nothing
       score -= 80
       AdvancedAI.log("  Air Balloon: -80 (Ground immunity)", "Items")
@@ -268,6 +274,7 @@ class Battle::AI
   # ============================================================================
   
   def evaluate_weakness_policy(user, move, target)
+    return 0 unless target.item && target.itemActive?
     return 0 unless move.damagingMove?
     
     score = 0
@@ -286,7 +293,6 @@ class Battle::AI
         score -= 50
         AdvancedAI.log("  Weakness Policy: -50 (triggers +2/+2!)", "Items")
         
-        # CRITICAL if they're a sweeper
         if target.attack > 100 || target.spatk > 100
           score -= 30
           AdvancedAI.log("  High offense: -30 (becomes unstoppable)", "Items")
@@ -302,17 +308,18 @@ class Battle::AI
   # ============================================================================
   
   def evaluate_eject_pack(user, move, target)
-    # Eject Pack triggers on ANY stat drop — including from damaging moves
+    return 0 unless target.item && target.itemActive?
+    # Eject Pack triggers on ANY stat drop â€” including from damaging moves
     # (Snarl, Icy Wind, Moonblast secondary, Intimidate on switch, etc.)
     return 0 unless move.function_code.start_with?("LowerTarget")
     
     score = 0
     
-    # They escape stat drops for free — penalize
+    # They escape stat drops for free â€” penalize
     score -= 35
     AdvancedAI.log("  Eject Pack: -35 (escapes stat drop)", "Items")
     
-    # Unless we want them gone to break their setup — only count positive boosts
+    # Unless we want them gone to break their setup â€” only count positive boosts
     positive_boost_sum = target.stages.values.select { |v| v > 0 }.sum
     if positive_boost_sum >= 2
       score += 40  # Reset their boosts
@@ -328,12 +335,12 @@ class Battle::AI
   
   def evaluate_contact_damage(user, move, target)
     return 0 unless move.damagingMove?
-    return 0 unless move.contactMove?  # Only contact moves trigger
+    return 0 unless move.pbContactMove?(user) && user.affectedByContactEffect?
+    return 0 unless user.takesIndirectDamage?
+    return 0 unless target.hasActiveItem?(:ROCKYHELMET) || target.hasActiveAbility?([:IRONBARBS, :ROUGHSKIN])
     
     score = 0
     
-    # 1/6 max HP damage to user
-    recoil_damage = user.totalhp / 6.0
     user_hp_percent = user.hp.to_f / user.totalhp
     
     if user_hp_percent < 0.3

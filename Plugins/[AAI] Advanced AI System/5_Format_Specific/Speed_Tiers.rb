@@ -33,93 +33,12 @@ module AdvancedAI
     # Calculate actual speed including all modifiers
     def self.calculate_effective_speed(battle, battler)
       return 0 unless battler && !battler.fainted?
-      
-      # Party Pokemon objects lack stages/effects/hasActiveAbility? — return raw speed
-      unless battler.respond_to?(:stages)
-        return battler.speed
-      end
-      
-      # Base speed with stages
-      speed = battler.speed
-      
-      # Stat stage modifier
-      stage = battler.stages[:SPEED] || 0
-      if stage >= 0
-        speed = speed * (2 + stage) / 2
-      else
-        speed = speed * 2 / (2 - stage)
-      end
-      
-      # Paralysis halves speed (Gen 7+: 50%)
-      if battler.status == :PARALYSIS
-        speed /= 2 unless battler.hasActiveAbility?(:QUICKFEET)
-      end
-      
-      # Abilities
-      effective_weather = AdvancedAI::Utilities.current_weather(battle)
-      if battler.hasActiveAbility?(:SWIFTSWIM) && effective_weather == :Rain
-        speed *= 2
-      elsif battler.hasActiveAbility?(:CHLOROPHYLL) && effective_weather == :Sun
-        speed *= 2
-      elsif battler.hasActiveAbility?(:SANDRUSH) && effective_weather == :Sandstorm
-        speed *= 2
-      elsif battler.hasActiveAbility?(:SLUSHRUSH) && [:Hail, :Snow].include?(effective_weather)
-        speed *= 2
-      elsif battler.hasActiveAbility?(:SURGESURFER)
-        terrain = battle.field.terrain rescue nil
-        speed *= 2 if terrain == :Electric
-      elsif battler.hasActiveAbility?(:PROTOSYNTHESIS) && effective_weather == :Sun
-        # Protosynthesis boosts highest stat by 1.3x (1.5x for Speed)
-        # In Sun, check if Speed is the highest base stat
-        base = (GameData::Species.get(battler.species).base_stats rescue nil)
-        if base && base[:SPEED] >= [base[:ATTACK], base[:DEFENSE], base[:SPECIAL_ATTACK], base[:SPECIAL_DEFENSE]].max
-          speed = (speed * 1.5).to_i
-        end
-      elsif battler.hasActiveAbility?(:QUARKDRIVE)
-        terrain = battle.field.terrain rescue nil
-        if terrain == :Electric
-          # Same logic as Protosynthesis — 1.5x if Speed is highest stat
-          base = (GameData::Species.get(battler.species).base_stats rescue nil)
-          if base && base[:SPEED] >= [base[:ATTACK], base[:DEFENSE], base[:SPECIAL_ATTACK], base[:SPECIAL_DEFENSE]].max
-            speed = (speed * 1.5).to_i
-          end
-        end
-      elsif battler.hasActiveAbility?(:UNBURDEN) && battler.effects[PBEffects::Unburden]
-        speed *= 2
-      elsif battler.hasActiveAbility?(:QUICKFEET) && battler.status != :NONE
-        speed = speed * 1.5
-      elsif battler.hasActiveAbility?(:SLOWSTART) && battler.effects[PBEffects::SlowStart] && battler.effects[PBEffects::SlowStart] > 0
-        speed /= 2
-      end
-      
-      # Items
-      case battler.item_id
-      when :CHOICESCARF
-        speed = speed * 1.5
-      when :IRONBALL
-        speed /= 2
-      when :MACHOBRACE, :POWERANKLET, :POWERBAND, :POWERBELT,
-           :POWERBRACER, :POWERLENS, :POWERWEIGHT
-        speed /= 2
-      when :QUICKPOWDER
-        if battler.species == :DITTO && !battler.effects[PBEffects::Transform]
-          speed *= 2
-        end
-      end
-      
-      # Tailwind
-      own_side = battle.sides[battler.index & 1]
-      if own_side.effects[PBEffects::Tailwind] && own_side.effects[PBEffects::Tailwind] > 0
-        speed *= 2
-      end
-      
-      # Sticky Web
-      # Note: Already applied as stage drop, no additional calc needed
-      
-      speed.to_i
+      # Use engine modifiers and rounding; reserve Pokemon only have raw stats.
+      return battler.pbSpeed if battler.respond_to?(:pbSpeed)
+      return battler.speed
     end
-    
-    # Compare speeds considering Trick Room
+
+    # Compare move order at equal priority, including Trick Room.
     def self.compare_speed(battle, battler1, battler2)
       speed1 = calculate_effective_speed(battle, battler1)
       speed2 = calculate_effective_speed(battle, battler2)
@@ -212,7 +131,6 @@ module AdvancedAI
       (base_speed * 1.5).to_i
     end
     
-    # Would we still outspeed if they have Scarf?
     def self.outspeeds_with_scarf?(battle, user, target)
       our_speed = calculate_effective_speed(battle, user)
       their_scarf_speed = scarf_adjusted_speed(battle, target)
@@ -260,7 +178,6 @@ module AdvancedAI
       score = 0
       own_side = battle.sides[attacker.index & 1]
       
-      # Already have Tailwind?
       if own_side.effects[PBEffects::Tailwind] && own_side.effects[PBEffects::Tailwind] > 0
         return -80  # Already active
       end
@@ -342,7 +259,6 @@ module AdvancedAI
       
       opponents = battle.allOtherSideBattlers(attacker.index).select { |b| b && !b.fainted? }
       
-      # How many opponents would we flip speed on?
       flips = 0
       opponents.each do |opp|
         our_speed = calculate_effective_speed(battle, attacker)
@@ -375,7 +291,6 @@ module AdvancedAI
       score = 0
       opp_side = battle.sides[1 - (attacker.index & 1)]  # opponent side (safe in doubles)
       
-      # Already up?
       if opp_side.effects[PBEffects::StickyWeb]
         return -80
       end
@@ -434,12 +349,6 @@ module AdvancedAI
       score
     end
     
-    private
-    
-    # Helper for tracking turn order (future enhancement)
-    def self.record_turn_order(battle, first_battler, second_battler)
-      # Could track to detect Scarf users
-    end
   end
 end
 

@@ -21,25 +21,28 @@ module AdvancedAI
     def self.predict_switch_chance(battle, opponent)
       return 0 if !battle || !opponent
       
+      return 0 unless battle.pbParty(opponent.index).each_index.any? { |i| battle.pbCanSwitch?(opponent.index, i) }
       chance = 0
       
       # 1. Type Disadvantage (+30%)
       foes = battle.allOtherSideBattlers(opponent.index).select { |b| b && !b.fainted? }
-      user = foes.first
-      if user
-        memory = AdvancedAI.get_memory(battle, user)
-        if memory && memory[:moves]
-          memory[:moves].each do |move_id|
-            move = GameData::Move.try_get(move_id)
-            next if !move
-            
-            resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
-            effectiveness = Effectiveness.calculate(resolved_type, *opponent.pbTypes(true))
-            if Effectiveness.super_effective?(effectiveness)
-              chance += 30
-              break
-            end
-          end
+      foes.each do |foe|
+        memory = AdvancedAI.get_memory(battle, foe)
+        next unless memory && memory[:moves]
+        usable_ids = foe.moves.each_with_index.filter_map do |candidate, i|
+          candidate.id if candidate && battle.pbCanChooseMove?(foe.index, i, false)
+        end
+        threatened = memory[:moves].any? do |move_id|
+          next false unless usable_ids.include?(move_id)
+          move = GameData::Move.try_get(move_id)
+          next false if !move || move.category == 2
+          resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(foe, move)
+          effectiveness = Effectiveness.calculate(resolved_type, *opponent.pbTypes(true))
+          Effectiveness.super_effective?(effectiveness)
+        end
+        if threatened
+          chance += 30
+          break
         end
       end
       
@@ -68,8 +71,8 @@ module AdvancedAI
         chance += 10
       end
       
-      # 5. No effective moves left (+20%)
-      if opponent.moves.all? { |m| m && m.pp == 0 }
+      # 5. No selectable moves (+50%)
+      if opponent.moves.each_index.none? { |i| battle.pbCanChooseMove?(opponent.index, i, false) }
         chance += 50  # Struggle forced
       end
       
@@ -90,8 +93,8 @@ module AdvancedAI
       return nil if !battle || !opponent
       
       # Find best counters in team
-      party = battle.pbParty(opponent.index % 2)
-      return nil if !party
+      return nil unless battle.pbParty(opponent.index).each_index.any? { |i| battle.pbCanSwitch?(opponent.index, i) }
+      party = battle.pbParty(opponent.index)
       
       best_counter = nil
       best_score = 0
@@ -101,7 +104,7 @@ module AdvancedAI
       return nil if !user
       
       party.each_with_index do |pokemon, i|
-        next if !pokemon || pokemon.fainted? || pokemon.egg?
+        next unless battle.pbCanSwitch?(opponent.index, i)
         next if pokemon == opponent.pokemon  # Not current Pokemon
         next if battle.pbFindBattler(i, opponent.index % 2)  # Skip already-active Pokemon (doubles)
         
@@ -109,7 +112,7 @@ module AdvancedAI
         
         # Type Matchup
         user.moves.each do |move|
-          next if !move
+          next if !move || !move.damagingMove? || move.pp == 0
           resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
           effectiveness = Effectiveness.calculate(resolved_type, *pokemon.types)
           
@@ -141,68 +144,51 @@ module AdvancedAI
     #===========================================================================
     
     # Calculates most likely Move (based on Memory)
-    def self.predict_next_move(battle, opponent)
+    def self.predict_next_move(battle, opponent, skill = 100)
       return nil if !battle || !opponent
+      return nil if AdvancedAI.prediction_depth(skill) == 0
       
       memory = AdvancedAI.get_memory(battle, opponent)
       return nil if !memory || !memory[:move_counts]
       
-      # Find most used Move
-      most_used = nil
-      highest_count = 0
-      
-      memory[:move_counts].each do |move_id, count|
-        if count > highest_count
-          highest_count = count
-          most_used = move_id
-        end
+      usable = opponent.moves.each_with_index.select do |move, i|
+        move && battle.pbCanChooseMove?(opponent.index, i, false)
+      end.map { |move, i| move.id }
+      counts = memory[:move_counts].select { |id, count| usable.include?(id) && count > 0 }
+      most_used = counts.max_by { |id, count| count }&.first
+      if AdvancedAI.tier_feature(skill, :learn_patterns) && most_used == memory[:last_move] && counts.length > 1
+        alternative = counts.reject { |id, count| id == most_used }.max_by { |id, count| count }&.first
+        most_used = alternative if counts[most_used] - counts[alternative] <= 1
       end
-      
-      # But: Last Move Repeat is unlikely
-      if memory[:last_move] && most_used == memory[:last_move]
-        # Find second most frequent
-        second_most = nil
-        second_count = 0
-        
-        memory[:move_counts].each do |move_id, count|
-          next if move_id == most_used
-          if count > second_count
-            second_count = count
-            second_most = move_id
-          end
-        end
-        
-        most_used = second_most if second_most
-      end
-      
+
       return most_used
     end
     
     # Rates Move based on Prediction
-    def self.score_prediction_bonus(battle, user, target, move, predicted_move)
+    def self.score_prediction_bonus(battle, user, target, move, predicted_move, skill = 100)
       return 0 if !battle || !user || !target || !move || !predicted_move
+      return 0 if AdvancedAI.prediction_depth(skill) == 0
       
       bonus = 0
       predicted_move_data = GameData::Move.try_get(predicted_move)
       return 0 if !predicted_move_data
-      resolved_power = AdvancedAI::CombatUtilities.resolve_move_power(predicted_move_data)
+      predicted = Battle::Move.from_pokemon_move(battle, Pokemon::Move.new(predicted_move))
+      resolved_power = AdvancedAI::CombatUtilities.resolve_move_power(predicted, target, user)
       resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(target, predicted_move_data)
+      protection = AdvancedAI::MoveCategories::PROTECT_MOVES[move.id]
+      blocks_damage = protection && !protection[:team] && !protection[:hp]
 
       # 1. Protect against strong Attack (+40)
-      if AdvancedAI.protect_move?(move.id)
-        if resolved_power >= 80
+      if blocks_damage
+        if predicted.damagingMove? && predicted.canProtectAgainst? && resolved_power >= 80 &&
+           calculate_predicted_damage(target, user, predicted) > 0
           bonus += 40
-        end
-
-        # Extra Bonus against Setup
-        if AdvancedAI.setup_move?(predicted_move)
-          bonus += 20  # Block setup with Protect
         end
       end
 
       # 2. Resistance against predicted Move (+25)
       effectiveness = AdvancedAI::Utilities.type_mod(resolved_type, user)
-      if Effectiveness.not_very_effective?(effectiveness) || Effectiveness.ineffective?(effectiveness)
+      if predicted.damagingMove? && (Effectiveness.not_very_effective?(effectiveness) || Effectiveness.ineffective?(effectiveness))
         bonus += 25
       end
       
@@ -218,12 +204,12 @@ module AdvancedAI
       end
       
       # 4. Switch on predicted OHKO (+50)
-      if resolved_power >= 100
-        damage = calculate_predicted_damage(target, user, predicted_move_data)
+      if predicted.damagingMove?
+        damage = calculate_predicted_damage(target, user, predicted)
         if damage >= user.hp
           # Use Pivot move or Protect
-          bonus += 50 if AdvancedAI.pivot_move?(move.id)
-          bonus += 45 if AdvancedAI.protect_move?(move.id)
+          bonus += 50 if AdvancedAI.pivot_move?(move.id) && AdvancedAI.tier_feature(skill, :pivot_preference)
+          bonus += 45 if (blocks_damage || move.id == :ENDURE) && predicted.canProtectAgainst?
         end
       end
       
@@ -313,7 +299,6 @@ module AdvancedAI
           score += 40 if Effectiveness.super_effective?(effectiveness)
         end
         
-        # Resists predicted_switch moves?
         predicted_switch.moves.each do |move|
           next if !move
           move_data = GameData::Move.try_get(move.id)
@@ -340,58 +325,10 @@ module AdvancedAI
     
     def self.calculate_predicted_damage(attacker, defender, move)
       return 0 if !attacker || !defender || !move
-      
-      # Resolve effective type and power via shared helpers
-      effective_type = AdvancedAI::CombatUtilities.resolve_move_type(attacker, move)
-      power = AdvancedAI::CombatUtilities.resolve_move_power(move)
-      return 0 if power == 0
-      
-      attack = move.category == 0 ? attacker.attack : attacker.spatk  # 0=Physical, 1=Special
-      # Huge Power / Pure Power (2x Attack for physical moves)
-      if move.category == 0
-        has_huge = attacker.respond_to?(:hasActiveAbility?) ?
-          (attacker.hasActiveAbility?(:HUGEPOWER) || attacker.hasActiveAbility?(:PUREPOWER)) :
-          ([:HUGEPOWER, :PUREPOWER].include?(attacker.ability_id) rescue false)
-        attack *= 2 if has_huge
-      end
-      defense = move.category == 0 ? defender.defense : defender.spdef  # (GameData::Move has no .physicalMove?)
-      
-      defender_types = defender.respond_to?(:pbTypes) ? defender.pbTypes(true) : defender.types
-      effectiveness = AdvancedAI::CombatUtilities.scrappy_effectiveness(effective_type, attacker, defender_types)
-      # Effectiveness.calculate already returns the multiplier directly
-      multiplier = effectiveness.to_f / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER.to_f
-      
-      # STAB (Adaptability: 2.0 instead of 1.5)
-      has_stab = attacker.respond_to?(:pbHasType?) ? attacker.pbHasType?(effective_type) : attacker.hasType?(effective_type)
-      stab = has_stab ? 1.5 : 1.0
-      if stab == 1.5
-        has_adapt = attacker.respond_to?(:hasActiveAbility?) ?
-          attacker.hasActiveAbility?(:ADAPTABILITY) :
-          (attacker.ability_id == :ADAPTABILITY rescue false)
-        stab = 2.0 if has_adapt
-      end
 
-      is_physical = move.category == 0
-      damage = ((2 * attacker.level / 5.0 + 2) * power * attack / [defense, 1].max / 50 + 2) * multiplier * stab
-      
-      # Field & context modifiers (weather, terrain, items, burn)
-      damage *= AdvancedAI::CombatUtilities.field_modifier(nil, attacker, effective_type, move, is_physical, defender)
-      
-      # Defender modifiers (Assault Vest, Eviolite, weather defense)
-      damage *= AdvancedAI::CombatUtilities.defender_modifier(nil, defender, is_physical)
-      
-      # Screen modifiers (Reflect / Light Screen / Aurora Veil)
-      damage *= AdvancedAI::CombatUtilities.screen_modifier(nil, attacker, defender, is_physical)
-      
-      # Parental Bond (1.25x — two hits: 100% + 25%)
-      if attacker.respond_to?(:hasActiveAbility?) && attacker.hasActiveAbility?(:PARENTALBOND)
-        damage *= 1.25
-      end
-      
-      # Ability damage modifiers (Fur Coat, Ice Scales, Multiscale, Tinted Lens, etc.)
-      damage *= AdvancedAI::CombatUtilities.ability_damage_modifier(attacker, defender, effective_type, is_physical, effectiveness)
-      
-      return damage.to_i
+      battle_move = AdvancedAI::CombatUtilities.battle_move_for(attacker, move)
+      return 0 unless battle_move
+      AdvancedAI::CombatUtilities.estimate_damage(attacker, battle_move, defender)
     end
     
   end
@@ -409,12 +346,12 @@ module AdvancedAI
     PredictionSystem.predict_switch_target(battle, opponent)
   end
   
-  def self.predict_next_move(battle, opponent)
-    PredictionSystem.predict_next_move(battle, opponent)
+  def self.predict_next_move(battle, opponent, skill = 100)
+    PredictionSystem.predict_next_move(battle, opponent, skill)
   end
   
-  def self.score_prediction_bonus(battle, user, target, move, predicted_move)
-    PredictionSystem.score_prediction_bonus(battle, user, target, move, predicted_move)
+  def self.score_prediction_bonus(battle, user, target, move, predicted_move, skill = 100)
+    PredictionSystem.score_prediction_bonus(battle, user, target, move, predicted_move, skill)
   end
   
   def self.track_pattern(battle, trainer_name, action)
@@ -436,20 +373,25 @@ end
 class Battle::AI
   def apply_prediction_logic(score, move, user, target)
     return score unless move && target
-    skill = @trainer&.skill || 100
+    skill = @_resolved_skill || @trainer&.skill || 100
+    return score if AdvancedAI.prediction_depth(skill) == 0
     
     # Predict opponent's next move
-    predicted_move = AdvancedAI.predict_next_move(@battle, target)
+    predicted_move = AdvancedAI.predict_next_move(@battle, target, skill)
     if predicted_move
-      bonus = AdvancedAI.score_prediction_bonus(@battle, user, target, move, predicted_move)
+      bonus = AdvancedAI.score_prediction_bonus(@battle, user, target, move, predicted_move, skill)
       score += bonus if bonus && bonus > 0
     end
     
     # If opponent likely to switch, boost pursuit/pivot moves
-    switch_chance = AdvancedAI.predict_switch_chance(@battle, target)
+    switch_chance = if AdvancedAI.tier_feature(skill, :switch_prediction) && AdvancedAI.get_setting(:switch_prediction) > 0
+                      AdvancedAI.predict_switch_chance(@battle, target)
+                    else
+                      0
+                    end
     if switch_chance && switch_chance > 50
       # Pivot moves are great when opponent is about to switch
-      score += 15 if AdvancedAI.pivot_move?(move.id)
+      score += 15 if AdvancedAI.pivot_move?(move.id) && AdvancedAI.tier_feature(skill, :pivot_preference)
       # Pursuit-like trapping
       score += 20 if move.id == :PURSUIT
     end

@@ -49,10 +49,14 @@ module AdvancedAI
     end
     
     def self.get_current_skill(battle)
-      # Get skill of first opponent
+      # Get skill of first opponent (check override first)
       battle.battlers.each do |b|
         next unless b && b.opposes?
         owner = battle.pbGetOwnerFromBattlerIndex(b.index) rescue nil
+        next unless owner
+        # Check for our debug override first
+        override = owner.instance_variable_get(:@aai_skill_override) rescue nil
+        return override if override
         return owner&.skill_level || 50
       end
       return 50
@@ -142,11 +146,11 @@ module AdvancedAI
     end
     
     def self.force_personality(battle)
-      personalities = ["Aggressive", "Defensive", "Balanced", "Tactical", "Random"]
+      personalities = ["Aggressive", "Defensive", "Balanced", "Hyper Offensive"]
       choice = pbMessage(_INTL("Choose AI personality:"), personalities, -1)
       return if choice < 0
       
-      personality = personalities[choice].downcase.to_sym
+      personality = personalities[choice].downcase.gsub(" ", "_").to_sym
       
       battle.battlers.each do |b|
         next unless b && b.opposes?
@@ -192,14 +196,17 @@ module AdvancedAI
     def self.generate_reason(move, user, target, score, battle)
       reasons = []
       
-      # Type effectiveness
-      if move.damagingMove?
+      # Type effectiveness (requires target)
+      if move.damagingMove? && target
         resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
-        type_mod = Effectiveness.calculate(resolved_type, *target.pbTypes(true))
-        if Effectiveness.super_effective?(type_mod)
-          reasons << "Super effective"
-        elsif Effectiveness.not_very_effective?(type_mod)
-          reasons << "Coverage"
+        target_types = (target.pbTypes(true) rescue nil)
+        if target_types
+          type_mod = Effectiveness.calculate(resolved_type, *target_types)
+          if Effectiveness.super_effective?(type_mod)
+            reasons << "Super effective"
+          elsif Effectiveness.not_very_effective?(type_mod)
+            reasons << "Coverage"
+          end
         end
       end
       
@@ -238,8 +245,9 @@ module AdvancedAI
         end
       end
       
-      # Switch moves
-      if ["BatonPass", "VoltSwitch", "UTurn", "FlipTurn"].include?(move.function_code)
+      # Switch moves (PE v21.1 function codes)
+      fc = move.function_code.to_s
+      if fc.include?("SwitchOutUser") || [:BATONPASS, :UTURN, :VOLTSWITCH, :FLIPTURN].include?(move.id)
         reasons << "Gain momentum"
       end
       
@@ -264,7 +272,7 @@ end
 
 class Battle
   # Add debug menu shortcut
-  alias aai_debug_pbCommandPhase pbCommandPhase
+  alias_method :aai_debug_pbCommandPhase, :pbCommandPhase unless method_defined?(:aai_debug_pbCommandPhase) || private_method_defined?(:aai_debug_pbCommandPhase)
   def pbCommandPhase
     # Check for F9 press before processing commands
     if Input.trigger?(Input::F9) && ($DEBUG || AdvancedAI::DEBUG_MODE)
@@ -277,7 +285,7 @@ end
 # Hook into Battler class for move explanations
 class Battle::Battler
   # Hook move usage to show explanation
-  alias aai_explain_pbUseMove pbUseMove
+  alias_method :aai_explain_pbUseMove, :pbUseMove unless method_defined?(:aai_explain_pbUseMove) || private_method_defined?(:aai_explain_pbUseMove)
   def pbUseMove(choice, specialUsage = false)
     # Show explanation for AI-controlled battlers
     if !pbOwnedByPlayer? && AdvancedAI::SHOW_MOVE_EXPLANATIONS
@@ -293,6 +301,8 @@ class Battle::Battler
 end
 
 # Initialization complete
-echoln "[AAI Debug] Debug Menu & Move Explanations loaded ✅"
-echoln "[AAI Debug] Note: AI explanation integration will be loaded after Move_Scorer"
+if defined?(AdvancedAI) && AdvancedAI::DEBUG_MODE
+  echoln "[AAI Debug] Debug Menu & Move Explanations loaded"
+  echoln "[AAI Debug] Note: AI explanation integration will be loaded after Move_Scorer"
+end
 

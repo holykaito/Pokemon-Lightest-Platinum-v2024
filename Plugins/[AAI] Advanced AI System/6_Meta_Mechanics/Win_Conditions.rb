@@ -45,6 +45,7 @@ module AdvancedAI
     def self.identify_win_condition(battle, user, skill_level = 100)
       return nil unless skill_level >= 70
       
+      user = user.battler if user.respond_to?(:battler)
       conditions = []
       
       # Gather battle state info
@@ -100,7 +101,6 @@ module AdvancedAI
           
           # Check if we outspeed or have priority
           unless outspeeds?(mon, opp, battle) || has_priority_ko?(mon, opp)
-            # Can we survive a hit?
             opp_damage = estimate_max_damage_from(opp, mon)
             if opp_damage >= mon.hp
               can_sweep = false
@@ -153,7 +153,7 @@ module AdvancedAI
       # Check if we have hazard setters
       our_side.each do |mon|
         next unless mon && !mon.fainted?
-        if mon.moves.any? { |m| m && [:STEALTHROCK, :SPIKES, :TOXICSPIKES].include?(m.id) }
+        if mon.moves.any? { |m| hazard_can_set?(battle, mon, m, opp_side_index) }
           score += 15
         end
       end
@@ -161,7 +161,7 @@ module AdvancedAI
       # Check if we have recovery
       our_side.each do |mon|
         next unless mon && !mon.fainted?
-        if mon.moves.any? { |m| m && [:RECOVER, :ROOST, :SOFTBOILED, :SLACKOFF, :MOONLIGHT, :MORNINGSUN,
+        if mon.moves.any? { |m| move_available?(mon, m) && [:RECOVER, :ROOST, :SOFTBOILED, :SLACKOFF, :MOONLIGHT, :MORNINGSUN,
                                            :SYNTHESIS, :SHOREUP, :STRENGTHSAP, :WISH, :REST, :MILKDRINK,
                                            :HEALORDER, :LIFEDEW, :JUNGLEHEALING, :LUNARBLESSING].include?(m.id) }
           score += 20
@@ -196,25 +196,26 @@ module AdvancedAI
         end
         
         # Recovery moves
-        if mon.moves.any? { |m| m && [:RECOVER, :ROOST, :SOFTBOILED, :SLACKOFF, :MOONLIGHT, :MORNINGSUN,
+        if mon.moves.any? { |m| move_available?(mon, m) && [:RECOVER, :ROOST, :SOFTBOILED, :SLACKOFF, :MOONLIGHT, :MORNINGSUN,
                                            :SYNTHESIS, :SHOREUP, :STRENGTHSAP, :WISH, :REST, :MILKDRINK,
                                            :HEALORDER, :LIFEDEW, :JUNGLEHEALING, :LUNARBLESSING].include?(m.id) }
           mon_score += 30
         end
         
         # Toxic for stall
-        if mon.moves.any? { |m| m && m.id == :TOXIC }
+        if mon.moves.any? { |m| m && m.id == :TOXIC && move_available?(mon, m) &&
+                            opp_side.any? { |opp| toxic_plan_target?(battle, mon, opp, m) } }
           mon_score += 25
         end
         
         # Protect for Toxic stall
-        if mon.moves.any? { |m| m && [:PROTECT, :DETECT, :KINGSSHIELD, :SPIKYSHIELD,
+        if mon.moves.any? { |m| move_available?(mon, m) && [:PROTECT, :DETECT, :KINGSSHIELD, :SPIKYSHIELD,
                                            :BANEFULBUNKER, :OBSTRUCT, :SILKTRAP, :BURNINGBULWARK].include?(m.id) }
           mon_score += 15
         end
         
         # Wish + Protect
-        if mon.moves.any? { |m| m && m.id == :WISH }
+        if mon.moves.any? { |m| move_available?(mon, m) && m.id == :WISH }
           mon_score += 20
         end
         
@@ -270,12 +271,11 @@ module AdvancedAI
         
         # Check if setup would enable sweep
         # Look up active battler for this party mon to get stat stages
-        active_battler = battle.battlers.find { |b| b && !b.fainted? && b.pokemon == mon }
+        active_battler = mon.respond_to?(:stages) ? mon : nil
         mon_stages = (active_battler && active_battler.respond_to?(:stages)) ? active_battler.stages : {}
         current_stages = (mon_stages[:ATTACK] || 0) + (mon_stages[:SPECIAL_ATTACK] || 0)
         
         if current_stages >= 2
-          # Already set up - can we sweep?
           can_clean = opp_side.all? do |opp|
             next true unless opp && !opp.fainted?
             best = find_best_attacking_move(mon, opp)
@@ -291,7 +291,7 @@ module AdvancedAI
             }
           end
         else
-          # Need to set up - is there opportunity?
+          next unless setup_moves.any? { |m| move_available?(mon, m) }
           return {
             type: :setup,
             pokemon: mon,
@@ -314,23 +314,14 @@ module AdvancedAI
       our_side.each do |mon|
         next unless mon && !mon.fainted?
         
-        priority_moves = mon.moves.map { |m| resolve_move(m) }.compact.select do |rm|
-          rm.priority > 0 && rm.damagingMove?
-        end
-        
-        next if priority_moves.empty?
-        
         # Check if priority can KO weakened opponents
         opp_side.each do |opp|
           next unless opp && !opp.fainted?
           next unless opp.hp < opp.totalhp * 0.5  # Weakened
           
-          priority_moves.each do |pm|
-            damage = estimate_damage_percent(mon, opp, pm)
-            if damage >= (opp.hp.to_f / opp.totalhp * 100)
-              score += 20
-              revenge_mons << mon unless revenge_mons.include?(mon)
-            end
+          if has_priority_ko?(mon, opp)
+            score += 20
+            revenge_mons << mon unless revenge_mons.include?(mon)
           end
         end
       end
@@ -359,21 +350,24 @@ module AdvancedAI
         score += 40
       end
       
+      # Helper: base SPEED with fallback for unknown/removed species (default 100 = neutral)
+      base_speed = ->(m) { GameData::Species.try_get(m.species)&.base_stats&.[](:SPEED) || 100 }
+
       if battle.field.effects[PBEffects::TrickRoom] && battle.field.effects[PBEffects::TrickRoom] > 0
         # Check if we benefit from TR (use base stats for reliable thresholds)
-        our_slow = our_side.count { |m| m && !m.fainted? && GameData::Species.get(m.species).base_stats[:SPEED] < 80 }
-        opp_slow = opp_side.count { |m| m && !m.fainted? && GameData::Species.get(m.species).base_stats[:SPEED] < 80 }
-        
+        our_slow = our_side.count { |m| m && !m.fainted? && base_speed.call(m) < 80 }
+        opp_slow = opp_side.count { |m| m && !m.fainted? && base_speed.call(m) < 80 }
+
         if our_slow > opp_slow
           score += 35
         else
           score -= 20
         end
       end
-      
+
       # Natural speed advantage (use base stats for reliable thresholds)
-      our_fast = our_side.count { |m| m && !m.fainted? && GameData::Species.get(m.species).base_stats[:SPEED] >= 100 }
-      opp_fast = opp_side.count { |m| m && !m.fainted? && GameData::Species.get(m.species).base_stats[:SPEED] >= 100 }
+      our_fast = our_side.count { |m| m && !m.fainted? && base_speed.call(m) >= 100 }
+      opp_fast = opp_side.count { |m| m && !m.fainted? && base_speed.call(m) >= 100 }
       
       if our_fast > opp_fast
         score += (our_fast - opp_fast) * 15
@@ -395,6 +389,9 @@ module AdvancedAI
     def self.apply_win_condition_bonus(battle, user, move, target, skill_level = 100)
       return 0 unless skill_level >= 70
       
+      user = user.battler if user.respond_to?(:battler)
+      target = target.battler if target.respond_to?(:battler)
+      move = move.move if move.respond_to?(:move)
       win_con = identify_win_condition(battle, user, skill_level)
       return 0 unless win_con
       
@@ -419,19 +416,19 @@ module AdvancedAI
       when :attrition
         # Prioritize hazards
         if [:STEALTHROCK, :SPIKES, :TOXICSPIKES, :STICKYWEB].include?(move.id)
-          score += 25
+          score += 25 if hazard_can_set?(battle, user, move, 1 - (user.index & 1))
         end
         # Value recovery
         if [:RECOVER, :ROOST, :SOFTBOILED, :SLACKOFF, :MOONLIGHT, :MORNINGSUN,
             :SYNTHESIS, :SHOREUP, :STRENGTHSAP, :WISH, :REST, :MILKDRINK,
             :HEALORDER, :LIFEDEW, :JUNGLEHEALING, :LUNARBLESSING].include?(move.id)
-          score += 20 if user.hp < user.totalhp * 0.6
+          score += 20 if user.hp < user.totalhp * 0.6 && user.canHeal? && move_available?(user, move)
         end
         
       when :stall
         # Prioritize status
         if move.id == :TOXIC
-          score += 30 if target && !target.poisoned?
+          score += 30 if poison_damage_useful?(battle, target) && toxic_can_hit?(battle, user, target, move)
         end
         # Protect for stall
         if [:PROTECT, :DETECT, :KINGSSHIELD, :SPIKYSHIELD, :BANEFULBUNKER,
@@ -442,7 +439,7 @@ module AdvancedAI
         if [:RECOVER, :ROOST, :SOFTBOILED, :SLACKOFF, :MOONLIGHT, :MORNINGSUN,
             :SYNTHESIS, :SHOREUP, :STRENGTHSAP, :WISH, :REST, :MILKDRINK,
             :HEALORDER, :LIFEDEW, :JUNGLEHEALING, :LUNARBLESSING].include?(move.id)
-          score += 25 if user.hp < user.totalhp * 0.7
+          score += 25 if user.hp < user.totalhp * 0.7 && user.canHeal? && move_available?(user, move)
         end
         
       when :trade
@@ -467,7 +464,7 @@ module AdvancedAI
         
       when :revenge
         # Priority moves valuable
-        if move.priority > 0 && move.damagingMove?
+        if target && priority_ko_move?(user, target, move)
           if target && target.hp < target.totalhp * 0.5
             score += 25
           end
@@ -496,7 +493,10 @@ module AdvancedAI
       # battler.index is slot (0-3 in doubles); pbParty takes side index (0 or 1)
       own_side_index = user.index & 1
       side_index = own_side ? own_side_index : (1 - own_side_index)
-      battle.pbParty(side_index).select { |p| p && !p.fainted? }
+      active = battle.allSameSideBattlers(side_index)
+      battle.pbParty(side_index).select { |p| p && !p.egg? && !p.fainted? }.map do |pokemon|
+        active.find { |b| b.pokemon.equal?(pokemon) } || pokemon
+      end
     end
     
     def self.find_best_attacking_move(user, target)
@@ -506,6 +506,7 @@ module AdvancedAI
       best_damage = 0
       
       user.moves.each do |move|
+        next unless move_available?(user, move)
         resolved = resolve_move(move)
         next unless resolved && resolved.damagingMove?
         
@@ -522,69 +523,10 @@ module AdvancedAI
     def self.estimate_damage_percent(user, target, move)
       move = resolve_move(move) unless move.respond_to?(:damagingMove?)
       return 0 unless move && move.damagingMove?
-      
-      # Resolve effective type considering -ate abilities and Tera Blast
-      effective_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
-      
-      # Get attacking stat - handle both Battler and Pokemon objects
-      user_stages = user.respond_to?(:stages) ? user.stages : {}
-      target_stages = target.respond_to?(:stages) ? target.stages : {}
-      
-      if move.physicalMove?
-        atk = user.attack * stage_multiplier(user_stages[:ATTACK] || 0)
-        dfn = target.defense * stage_multiplier(target_stages[:DEFENSE] || 0)
-      else  # Special
-        atk = user.spatk * stage_multiplier(user_stages[:SPECIAL_ATTACK] || 0)
-        dfn = target.spdef * stage_multiplier(target_stages[:SPECIAL_DEFENSE] || 0)
-      end
-      
-      dfn = [dfn, 1].max  # Prevent division by zero
-      
-      # Base damage calculation (handle variable-power moves with power=1)
-      power = AdvancedAI::CombatUtilities.resolve_move_power(move)
-      return 0 if power == 0
-      
-      damage = ((2 * user.level / 5.0 + 2) * power * atk / dfn / 50 + 2)
-      
-      # STAB - handle both Battler (pbHasType?) and Pokemon (hasType?)
-      has_stab = user.respond_to?(:pbHasType?) ? user.pbHasType?(effective_type) : user.hasType?(effective_type)
-      if has_stab
-        # Adaptability: 2x STAB instead of 1.5x
-        adaptability = user.respond_to?(:hasActiveAbility?) && user.hasActiveAbility?(:ADAPTABILITY)
-        damage *= adaptability ? 2.0 : 1.5
-      end
-      
-      # Huge Power / Pure Power (2x Attack for physical moves)
-      if move.physicalMove? && user.respond_to?(:hasActiveAbility?)
-        if user.hasActiveAbility?(:HUGEPOWER) || user.hasActiveAbility?(:PUREPOWER)
-          damage *= 2
-        end
-      end
-      
-      # Type effectiveness (Scrappy/Mind's Eye: Normal/Fighting hits Ghost)
-      target_types = target.respond_to?(:pbTypes) ? target.pbTypes(true) : target.types
-      type_mod = AdvancedAI::CombatUtilities.scrappy_effectiveness(effective_type, user, target_types)
-      damage *= type_mod.to_f / Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
-      
-      # Field & context modifiers (weather, terrain, items, burn)
-      damage *= AdvancedAI::CombatUtilities.field_modifier(nil, user, effective_type, move, move.physicalMove?, target)
-      
-      # Defender modifiers (Assault Vest, Eviolite, weather defense)
-      damage *= AdvancedAI::CombatUtilities.defender_modifier(nil, target, move.physicalMove?)
-      
-      # Screen modifiers (Reflect / Light Screen / Aurora Veil)
-      damage *= AdvancedAI::CombatUtilities.screen_modifier(nil, user, target, move.physicalMove?)
-      
-      # Parental Bond (1.25x — two hits: 100% + 25%)
-      if !move.multiHitMove? && user.respond_to?(:hasActiveAbility?) && user.hasActiveAbility?(:PARENTALBOND)
-        damage *= 1.25
-      end
-      
-      # Ability damage modifiers (Fur Coat, Ice Scales, Multiscale, Tinted Lens, etc.)
-      damage *= AdvancedAI::CombatUtilities.ability_damage_modifier(user, target, effective_type, move.physicalMove?, type_mod)
-      
-      # Convert to percentage
-      (damage / target.totalhp.to_f) * 100
+
+      AdvancedAI::CombatUtilities.estimate_damage(
+        user, move, target, :as_percent => true
+      ) * 100
     end
     
     def self.estimate_max_damage_from(attacker, defender)
@@ -593,6 +535,7 @@ module AdvancedAI
       return 0 unless attacker.moves
       
       attacker.moves.each do |move|
+        next unless move_available?(attacker, move)
         resolved = resolve_move(move)
         next unless resolved && resolved.damagingMove?
         damage = estimate_damage_percent(attacker, defender, resolved)
@@ -614,19 +557,108 @@ module AdvancedAI
         target_speed = target.speed * stage_multiplier(target_stage)
       end
       
+      return user_speed < target_speed if battle && battle.field.effects[PBEffects::TrickRoom] > 0
       user_speed > target_speed
     end
     
-    def self.has_priority_ko?(user, target)
-      return false unless user.moves
-      
-      user.moves.any? do |move|
-        resolved = resolve_move(move)
-        next false unless resolved && resolved.priority > 0 && resolved.damagingMove?
-        estimate_damage_percent(user, target, resolved) >= (target.hp.to_f / target.totalhp * 100)
+    def self.hazard_can_set?(battle, user, move, opposing_side)
+      return false unless move_available?(user, move)
+      return false unless hazard_has_room?(battle.sides[opposing_side].effects, move.id)
+      return true unless user.is_a?(Battle::Battler)
+      battle.allOtherSideBattlers(user.index).none? do |foe|
+        next false if foe.fainted? || foe.semiInvulnerable?
+        foe.effects[PBEffects::MagicCoat] ||
+          (foe.hasActiveAbility?(:MAGICBOUNCE) && !user.hasMoldBreaker? && !foe.effects[PBEffects::MagicBounce])
       end
     end
-    
+
+    def self.hazard_has_room?(effects, id)
+      case id
+      when :STEALTHROCK then !effects[PBEffects::StealthRock]
+      when :SPIKES then effects[PBEffects::Spikes] < 3
+      when :TOXICSPIKES then effects[PBEffects::ToxicSpikes] < 2
+      when :STICKYWEB then !effects[PBEffects::StickyWeb]
+      else false
+      end
+    end
+
+    def self.poison_damage_useful?(battle, target)
+      return false unless target && !target.fainted?
+      return false if [:POISONHEAL, :MAGICGUARD].any? { |id| AdvancedAI::Utilities.ability_active?(target, id) }
+      berry = [:LUMBERRY, :PECHABERRY].any? { |id| AdvancedAI::Utilities.item_active?(target, id, battle) }
+      return false if berry && (!target.respond_to?(:canConsumeBerry?) || target.canConsumeBerry?)
+      true
+    end
+
+    def self.toxic_plan_target?(battle, user, target, move)
+      return false unless poison_damage_useful?(battle, target)
+      return true if target.status == :POISON
+      return false unless target.status == :NONE
+      if user.is_a?(Battle::Battler) && target.is_a?(Battle::Battler)
+        return toxic_can_hit?(battle, user, target, move)
+      end
+      # Reserves have no live field state; check their known types and abilities.
+      unless AdvancedAI::Utilities.ability_active?(user, :CORROSION)
+        return false if [:STEEL, :POISON].any? { |type| AdvancedAI::Utilities.has_type?(target, type) }
+      end
+      return false if AdvancedAI::Utilities.ability_active?(target, :COMATOSE)
+      unless AdvancedAI::Utilities.ignores_ability?(user, resolve_move(move), target)
+        return false if [:IMMUNITY, :PASTELVEIL, :PURIFYINGSALT, :MAGICBOUNCE, :GOODASGOLD].any? { |id| AdvancedAI::Utilities.ability_active?(target, id) }
+      end
+      true
+    end
+
+    def self.toxic_can_hit?(battle, user, target, move)
+      return false unless target && !target.fainted? && move_available?(user, move)
+      return false if AdvancedAI::Utilities.counter_priority_blocked?(battle, move, user, target)
+      return false if AdvancedAI::Utilities.counter_shield_blocked?(battle, move, user, target)
+      preview = battle.clone
+      battlers = battle.battlers.map do |b|
+        next nil unless b
+        copy = b.clone
+        copy.instance_variable_set(:@pokemon, b.pokemon.clone) if b.pokemon
+        copy.instance_variable_set(:@battle, preview)
+        copy.instance_variable_set(:@effects, b.effects.dup)
+        copy.instance_variable_set(:@stages, b.stages.dup)
+        copy
+      end
+      preview.instance_variable_set(:@battlers, battlers)
+      user = battlers[user.index]
+      target = battlers[target.index]
+      native = Battle::Move.from_pokemon_move(preview, Pokemon::Move.new(move.id))
+      preview.moldBreaker = AdvancedAI::Utilities.ignores_ability?(user, native, target)
+      return false if target.effects[PBEffects::MagicCoat]
+      return false if target.hasActiveAbility?(:MAGICBOUNCE) && !preview.moldBreaker
+      return false if native.pbImmunityByAbility(user, target, false)
+      target.pbCanPoison?(user, false, native)
+    end
+
+    def self.move_available?(user, move)
+      user = user.battler if user.respond_to?(:battler)
+      move = move.move if move.respond_to?(:move)
+      return false unless move && user && !user.fainted?
+      index = user.moves.index { |candidate| candidate && candidate.id == move.id }
+      return false unless index && user.moves[index].pp > 0
+      battle = user.instance_variable_get(:@battle)
+      return battle.pbCanChooseMove?(user.index, index, false) if battle && user.is_a?(Battle::Battler)
+      true
+    end
+
+    def self.priority_ko_move?(user, target, move)
+      return false unless target && !target.fainted? && move_available?(user, move)
+      resolved = resolve_move(move)
+      return false unless resolved && resolved.damagingMove?
+      if user.is_a?(Battle::Battler) && target.is_a?(Battle::Battler)
+        return false unless AdvancedAI::PriorityTiers.get_priority_tier(resolved, user) > 0
+        return AdvancedAI::EndgameScenarios.can_ko?(user, target, resolved)
+      end
+      resolved.priority > 0 && estimate_damage_percent(user, target, resolved) >= (target.hp.to_f / target.totalhp * 100)
+    end
+
+    def self.has_priority_ko?(user, target)
+      user.moves.any? { |move| priority_ko_move?(user, target, move) }
+    end
+
     def self.stage_multiplier(stage)
       stage = stage.clamp(-6, 6)
       if stage >= 0
@@ -654,6 +686,7 @@ module AdvancedAI
     # Wraps a Pokemon::Move (or Battle::Move) so callers always get the full
     # set of query methods.  Returns nil if the move data can't be resolved.
     def self.resolve_move(move)
+      return nil unless move
       return move if move.respond_to?(:damagingMove?)  # Already a Battle::Move
 
       data = GameData::Move.try_get(move.id)

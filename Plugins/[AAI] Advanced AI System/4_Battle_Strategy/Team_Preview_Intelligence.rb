@@ -72,27 +72,15 @@ module AdvancedAI
     #===========================================================================
     
     # Selects best Lead for Team
-    def self.select_best_lead(battle, party, opponent_party)
-      return 0 if !battle || !party || party.empty?
-      
-      best_lead_index = 0
-      best_score = 0
-      
-      party.each_with_index do |pokemon, i|
-        next if !pokemon || pokemon.fainted? || pokemon.egg?
-        
-        score = evaluate_lead(battle, pokemon, party, opponent_party)
-        
-        if score > best_score
-          best_score = score
-          best_lead_index = i
-        end
-      end
-      
-      AdvancedAI.log("[Team Preview] Best lead: #{party[best_lead_index].name} (Score: #{best_score})", :team_preview)
+    def self.select_best_lead(battle, party, opponent_party, reserved_index = -1)
+      return nil if !battle || !party || party.empty?
+      candidates = party.each_index.select { |i| party[i] && !party[i].fainted? && !party[i].egg? }
+      alternatives = candidates.reject { |i| i == reserved_index }
+      candidates = alternatives unless alternatives.empty?
+      best_lead_index = candidates.max_by { |i| evaluate_lead(battle, party[i], party, opponent_party) }
       return best_lead_index
     end
-    
+
     # Evaluates Pokemon as Lead
     def self.evaluate_lead(battle, pokemon, party, opponent_party)
       return 0 if !pokemon
@@ -392,11 +380,71 @@ end
 # API Wrapper
 #===============================================================================
 module AdvancedAI
-  def self.select_best_lead(battle, party, opponent_party = nil)
-    TeamPreviewIntelligence.select_best_lead(battle, party, opponent_party)
+  def self.select_best_lead(battle, party, opponent_party = nil, reserved_index = -1)
+    TeamPreviewIntelligence.select_best_lead(battle, party, opponent_party, reserved_index)
   end
   
   def self.detect_lead_roles(pokemon, party)
     TeamPreviewIntelligence.detect_lead_roles(pokemon, party)
+  end
+end
+
+#===============================================================================
+# Hook: Override pbSetUpSides to reorder AI trainer party for optimal lead
+#===============================================================================
+class Battle
+  alias_method :aai_pbSetUpSides, :pbSetUpSides unless method_defined?(:aai_pbSetUpSides) || private_method_defined?(:aai_pbSetUpSides)
+  def pbSetUpSides
+    # Reorder AI trainer parties before vanilla setup picks leads
+    if @opponent && !wildBattle? && AdvancedAI::ENABLE_LEAD_SELECTION
+      @opponent.each_with_index do |trainer, idxTrainer|
+        next unless trainer
+        skill = AdvancedAI.mode_skill_override ||
+                (trainer.respond_to?(:skill_level) ? trainer.skill_level : nil) || 100
+        next unless AdvancedAI.qualifies_for_advanced_ai?(skill)
+        # Respect UsePokemonInOrder — don't reorder party
+        ai_trainer = Battle::AI::AITrainer.new(@battleAI, 1, idxTrainer, trainer)
+        next if ai_trainer.has_skill_flag?("UsePokemonInOrder")
+        
+        party = pbParty(1)
+        starts = pbPartyStarts(1)
+        party_start = starts[idxTrainer] || 0
+        party_end = (starts[idxTrainer + 1] || party.length)
+        trainer_party = party[party_start...party_end]
+        next if trainer_party.length <= 1
+        
+        # Get opponent's party for matchup analysis
+        player_party = pbParty(0)
+        
+        reserved_index = -1
+        if AdvancedAI::RESPECT_RESERVE_LAST_POKEMON &&
+           (defined?(AdvancedAI::RESERVE_LAST_POKEMON_STRICT) && AdvancedAI::RESERVE_LAST_POKEMON_STRICT) &&
+           ai_trainer.has_skill_flag?("ReserveLastPokemon")
+          reserved_index = trainer_party.length - 1
+        end
+        best_lead = AdvancedAI.select_best_lead(self, trainer_party, player_party, reserved_index)
+        
+        if best_lead && best_lead > 0 && best_lead < trainer_party.length
+          # Swap the best lead to the front of this trainer's sub-party
+          real_idx = party_start + best_lead
+          party[party_start], party[real_idx] = party[real_idx], party[party_start]
+          [:@initialItems, :@recycleItems, :@belch, :@battleBond, :@corrosiveGas,
+           :@usedInBattle, :@abils_triggered, :@rage_hit_count, :@stolenItems].each do |key|
+            data = instance_variable_get(key)
+            next unless data && data[1]
+            data[1][party_start], data[1][real_idx] = data[1][real_idx], data[1][party_start]
+          end
+          # Also update party order array
+          order = pbPartyOrder(1)
+          if order
+            order[party_start], order[real_idx] = order[real_idx], order[party_start]
+          end
+          AdvancedAI.log("Swapped #{trainer_party[best_lead].name} to lead for #{trainer.name}", :team_preview)
+        end
+      end
+    end
+    
+    # Call vanilla pbSetUpSides
+    aai_pbSetUpSides
   end
 end

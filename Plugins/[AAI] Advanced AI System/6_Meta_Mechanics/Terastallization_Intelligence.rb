@@ -105,7 +105,37 @@ class Battle::AI
     
     return 0 unless tera_type
     
+    # === STELLAR TERA: Special handling ===
+    # Stellar doesn't change your type — you keep original types defensively.
+    # Offensively, you get a one-time 1.2x boost to each type (2x for existing STAB types).
+    # No STAB loss, no defensive type change, but no new resistances either.
+    if tera_type == :STELLAR
+      # Offensive: count how many different move types the user has
+      move_types = user.moves.select { |m| m && m.damagingMove? }.map { |m|
+        AdvancedAI::CombatUtilities.resolve_move_type(user, m)
+      }.uniq
+      current_types = user.pbTypes(true) rescue []
+      
+      # Stellar is better with diverse coverage (more types = more boosts)
+      score += [move_types.length * 5, 20].min
+      
+      # Bonus if moves are super effective vs opponents (one-time boost makes them hit harder)
+      @battle.allOtherSideBattlers(user.index).each do |target|
+        next unless target && !target.fainted?
+        move_types.each do |mtype|
+          type_mod = Effectiveness.calculate(mtype, *target.pbTypes(true))
+          score += 5 if Effectiveness.super_effective?(type_mod)
+        end
+      end
+      
+      # Stellar doesn't improve defenses, so no defensive scoring
+      return [score, 40].min
+    end
+    
+    # === Normal Tera types: original logic ===
     # Offensive Synergy
+    # Track current STAB types before Tera
+    current_types = user.pbTypes(true) rescue []
     user.moves.each do |move|
       next unless move && move.damagingMove?
       resolved_type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
@@ -120,6 +150,9 @@ class Battle::AI
           type_mod = Effectiveness.calculate(tera_type, *target.pbTypes(true))
           score += 10 if Effectiveness.super_effective?(type_mod)
         end
+      elsif current_types.include?(resolved_type) && resolved_type != tera_type
+        # This move currently has STAB but will LOSE it after Tera
+        score -= 10
       end
     end
     
@@ -165,12 +198,16 @@ class Battle::AI
     
     # Opponent Team Analysis
     user_tera_type = user.tera_type  # Cache once — avoid shadowing outer tera_type variable
-    weak_to_tera = @battle.allOtherSideBattlers(user.index).count do |target|
-      next false unless target && !target.fainted?
-      next false unless user_tera_type
-      
-      type_mod = Effectiveness.calculate(user_tera_type, *target.pbTypes(true))
-      Effectiveness.super_effective?(type_mod)
+    # Stellar doesn't have a single type for SE calculation — skip this part
+    weak_to_tera = 0
+    unless user_tera_type == :STELLAR
+      weak_to_tera = @battle.allOtherSideBattlers(user.index).count do |target|
+        next false unless target && !target.fainted?
+        next false unless user_tera_type
+        
+        type_mod = Effectiveness.calculate(user_tera_type, *target.pbTypes(true))
+        Effectiveness.super_effective?(type_mod)
+      end
     end
     score += weak_to_tera * 8
     
@@ -190,6 +227,9 @@ class Battle::AI
     tera_type = user.tera_type
     
     return 0 unless tera_type
+    
+    # Stellar doesn't change defensive typing — no survival benefit
+    return 0 if tera_type == :STELLAR
     
     # Emergency Situation
     if hp_percent < 0.3
@@ -235,7 +275,6 @@ class Battle::AI
     score = 0
     party = @battle.pbParty(user.index & 1)
     
-    # Better Tera Candidates?
     better_candidates = party.count do |pkmn|
       next false if !pkmn || pkmn.fainted? || pkmn.egg?
       next false unless pkmn.tera_type
@@ -285,24 +324,27 @@ class Battle::AI
   end
 end
 
-# Extended Battler Methods for Terastallization
+# Keep DBK's implementations and only provide fallbacks when they are absent.
 class Battle::Battler
-  def can_terastallize?
-    return false unless defined?(Settings::TERASTALLIZE_TRIGGER_KEY)
-    return false unless @battle.pbCanTerastallize?(@index)
-    return true
+  unless method_defined?(:can_terastallize?)
+    def can_terastallize?
+      return false unless @battle.respond_to?(:pbCanTerastallize?)
+      return @battle.pbCanTerastallize?(@index)
+    end
   end
-  
-  def tera?
-    return false unless defined?(Settings::TERASTALLIZE_TRIGGER_KEY)
-    # Check the pokemon's tera status, not self (would cause infinite recursion)
-    return @pokemon&.tera? || false
+
+  unless method_defined?(:tera?)
+    def tera?
+      return false unless @pokemon && @pokemon.respond_to?(:tera?)
+      @pokemon.tera?
+    end
   end
-  
-  def tera_type
-    return nil unless defined?(Settings::TERASTALLIZE_TRIGGER_KEY)
-    return @pokemon.tera_type if @pokemon
-    return nil
+
+  unless method_defined?(:tera_type)
+    def tera_type
+      return nil unless @pokemon && @pokemon.respond_to?(:tera_type)
+      @pokemon.tera_type
+    end
   end
 end
 

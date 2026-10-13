@@ -109,8 +109,8 @@ module AdvancedAI
       # Focus Sash (survive 1 hit at full HP)
       :FOCUSSASH    => { survive: true, full_hp: true },
       
-      # Focus Band (20% chance to survive at 1 HP)
-      :FOCUSBAND    => { survive: true, chance: 0.2 },
+      # Focus Band (10% chance to survive at 1 HP)
+      :FOCUSBAND    => { survive: true, chance: 0.1 },
       
       # Weakness Policy (+2 Atk/SpAtk when hit SE)
       :WEAKNESSPOLICY => { trigger: :super_effective, boost: 2 },
@@ -422,7 +422,6 @@ module AdvancedAI
       item == :SHEDSHELL
     end
 
-    # Weather extender evaluation: does holder extend weather?
     def self.extends_weather?(battler, weather_type = nil)
       return false unless battler
       item = battler.respond_to?(:item_id) ? battler.item_id : nil

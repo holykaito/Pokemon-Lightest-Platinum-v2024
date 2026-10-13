@@ -4,6 +4,26 @@
 #===============================================================================
 
 class Battle::AI
+  Z_CRYSTAL_TYPES = {
+    :NORMALIUMZ => :NORMAL, :FIRIUMZ => :FIRE, :WATERIUMZ => :WATER,
+    :ELECTRIUMZ => :ELECTRIC, :GRASSIUMZ => :GRASS, :ICIUMZ => :ICE,
+    :FIGHTINIUMZ => :FIGHTING, :POISONIUMZ => :POISON, :GROUNDIUMZ => :GROUND,
+    :FLYINIUMZ => :FLYING, :PSYCHIUMZ => :PSYCHIC, :BUGINIUMZ => :BUG,
+    :ROCKIUMZ => :ROCK, :GHOSTIUMZ => :GHOST, :DRAGONIUMZ => :DRAGON,
+    :DARKINIUMZ => :DARK, :STEELIUMZ => :STEEL, :FAIRIUMZ => :FAIRY
+  }
+  SPECIAL_Z_CRYSTAL_MOVES = {
+    :ALORAICHIUMZ => [:THUNDERBOLT], :DECIDIUMZ => [:SPIRITSHACKLE],
+    :EEVIUMZ => [:LASTRESORT], :INCINIUMZ => [:DARKESTLARIAT],
+    :KOMMONIUMZ => [:CLANGINGSCALES], :LUNALIUMZ => [:MOONGEISTBEAM],
+    :LYCANIUMZ => [:STONEEDGE], :MARSHADIUMZ => [:SPECTRALTHIEF],
+    :MEWNIUMZ => [:PSYCHIC], :MIMIKIUMZ => [:PLAYROUGH],
+    :PIKANIUMZ => [:VOLTTACKLE], :PIKASHUNIUMZ => [:THUNDERBOLT],
+    :PRIMARIUMZ => [:SPARKLINGARIA], :SNORLIUMZ => [:GIGAIMPACT],
+    :SOLGANIUMZ => [:SUNSTEELSTRIKE], :TAPUNIUMZ => [:NATURESMADNESS],
+    :ULTRANECROZIUMZ => [:PHOTONGEYSER]
+  }
+
   # Main entry point for checking Z-Moves usage
   def should_z_move?(user, skill)
     return false unless AdvancedAI.dbk_enabled?(:z_moves)
@@ -28,35 +48,57 @@ class Battle::AI
   end
   
   private
+
+  def z_move_compatible?(user, move)
+    item = user.item_id rescue nil
+    return false unless item
+    crystal_type = Z_CRYSTAL_TYPES[item]
+    if crystal_type
+      return AdvancedAI::CombatUtilities.resolve_move_type(user, move) == crystal_type
+    end
+    required_moves = SPECIAL_Z_CRYSTAL_MOVES[item]
+    return required_moves.include?(move.id) if required_moves
+
+    item_data = GameData::Item.try_get(item) rescue nil
+    return false unless item_data && item_data.respond_to?(:has_flag?) && item_data.has_flag?("ZCrystal")
+    move_data = GameData::Move.try_get(move.id) rescue nil
+    move_data && move_data.respond_to?(:z_power) && move_data.z_power.to_i > 0
+  end
+
+  def z_move_base_power(move, user, target)
+    power = AdvancedAI::CombatUtilities.resolve_move_power(move, user, target).to_i
+    return 0 if power <= 0
+    return 100 if power <= 55
+    return 120 if power <= 60
+    return 140 if power <= 70
+    return 160 if power <= 100
+    return 185 if power <= 110
+    return 190 if power <= 125
+    return 195 if power <= 130
+    200
+  end
   
   def evaluate_z_move_damage(user, skill)
     score = 0
-    best_move = nil
     max_damage = 0
-    
-    # Find best offensive Z-Move
-    user.moves.each_with_index do |move, i|
+
+    user.moves.each do |move|
       next unless move.damagingMove?
-      # Assuming logic exists to get Z-Move equivalent or calculating roughly based on power
-      # DBK_004 handles the actual conversion, but for AI we approximate:
-      # Z-Moves are usually high power (100-200 BP).
-      
-      # Simplified: Assume the Z-Move is available and super-strong
-      # Check coverage against targets
+      next unless z_move_compatible?(user, move)
       @battle.allOtherSideBattlers(user.index).each do |target|
         next unless target && !target.fainted?
-        
-        # Calculate rough damage with a "Z-Boost" (approx 1.5x - 2.0x normal max power)
-        rough_dmg = calculate_rough_damage(move, user, target) * 1.8
-        
+
+        z_power = z_move_base_power(move, user, target)
+        rough_dmg = calculate_rough_damage(move, user, target, z_power)
+
         if rough_dmg >= target.hp
-          score = 50 # Guaranteed KO found!
+          score = 50
           AdvancedAI.log("Z-Move KO predicted vs #{target.name}", "Z-Move")
-          return score # Return immediately if we found a kill
+          return score
         end
-        
+
         if rough_dmg > max_damage
-          max_damage = rough_dmg 
+          max_damage = rough_dmg
         end
       end
     end
@@ -73,20 +115,17 @@ class Battle::AI
     score = 0
     user.moves.each do |move|
       next unless move.statusMove?
-      # Check for specific high-value Status Z-Moves
-      # Z-Splash (Attack +3)
+      next unless z_move_compatible?(user, move)
       if move.id == :SPLASH
-        score += 30 
+        score = [score, 30].max
       end
-      
-      # Z-Belly Drum (Full Heal + Max Attack)
+
       if move.id == :BELLYDRUM
-        score += 30
+        score = [score, 30].max
       end
-      
-      # Omniboosting Z-Moves (Z-Celebrate, Z-Happy Hour, etc.)
+
       if [:CELEBRATE, :HAPPYHOUR, :CONVERSION, :GEOMANCY].include?(move.id)
-        score += 25
+        score = [score, 25].max
       end
     end
     return score

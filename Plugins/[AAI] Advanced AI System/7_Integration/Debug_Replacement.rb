@@ -3,7 +3,7 @@
 #===============================================================================
 
 class Battle::AI
-  alias debug_choose_best_replacement_pokemon choose_best_replacement_pokemon
+  alias_method :debug_choose_best_replacement_pokemon, :choose_best_replacement_pokemon unless method_defined?(:debug_choose_best_replacement_pokemon) || private_method_defined?(:debug_choose_best_replacement_pokemon)
   def choose_best_replacement_pokemon(idxBattler, terrible_moves = false)
     echoln "=" * 80
     echoln "=== AI REPLACEMENT POKEMON DEBUG ==="

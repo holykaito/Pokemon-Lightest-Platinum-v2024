@@ -81,9 +81,10 @@ module AdvancedAI
     
     # Detects best Personality for Trainer
     def self.detect_personality(battle, trainer_index)
-      return :balanced if !battle
-      
-      party = battle.pbParty(trainer_index & 1)  # trainer_index may be battler slot, & 1 gives side
+      return :balanced if !battle || !AdvancedAI::AUTO_DETECT_PERSONALITY
+
+      party = []
+      battle.eachInTeamFromBattlerIndex(trainer_index) { |pkmn, i| party << pkmn }
       return :balanced if !party || party.empty?
       
       # Count Pokemon Roles via stat heuristics
@@ -101,7 +102,9 @@ module AdvancedAI
         next if !pokemon || pokemon.egg?
         
         # Heuristic role detection from base stats (no active battler needed)
-        base = GameData::Species.get(pokemon.species).base_stats
+        species_data = GameData::Species.try_get(pokemon.species)
+        next unless species_data
+        base = species_data.base_stats
         spd = base[:SPEED]
         atk = [base[:ATTACK], base[:SPECIAL_ATTACK]].max
         def_ = [base[:DEFENSE], base[:SPECIAL_DEFENSE]].min
@@ -126,6 +129,7 @@ module AdvancedAI
       end  # party.each
       
       total = party.count { |p| p && !p.egg? }
+      return :balanced if total == 0
       
       # Hyper Offensive: Many Sweepers + Setup OR many Wallbreakers
       if sweeper_count >= total * 0.6
@@ -172,7 +176,7 @@ module AdvancedAI
       return score if !move || !personality
       return score if !PERSONALITIES.key?(personality)
       
-      modifiers = PERSONALITIES[personality][:modifiers]
+      modifiers = PERSONALITIES[personality][:modifiers].merge(AdvancedAI::PERSONALITY_MODIFIERS.fetch(personality, {}))
       return score if !modifiers
       
       # Damage Moves
@@ -197,8 +201,8 @@ module AdvancedAI
         score += modifiers[:status_bonus] if modifiers[:status_bonus]
       end
       
-      # Priority Moves
-      if move.priority > 0
+      # Priority Moves (attacks only - Protect never strikes first)
+      if move.priority > 0 && move.damagingMove?
         score += modifiers[:priority_bonus] if modifiers[:priority_bonus]
       end
       
@@ -240,7 +244,7 @@ module AdvancedAI
     def self.get_switch_threshold(personality)
       return 45 if !personality || !PERSONALITIES.key?(personality)
       
-      modifiers = PERSONALITIES[personality][:modifiers]
+      modifiers = PERSONALITIES[personality][:modifiers].merge(AdvancedAI::PERSONALITY_MODIFIERS.fetch(personality, {}))
       return modifiers[:switch_threshold] || 45
     end
     
@@ -272,12 +276,14 @@ module AdvancedAI
       return if !PERSONALITIES.key?(personality)
       
       @personality_overrides[trainer_name] = personality
-      AdvancedAI.log("[Personality] Set #{trainer_name} to #{get_name(personality)}", :personality)
+      AdvancedAI.log("Set #{trainer_name} to #{get_name(personality)}", :personality)
     end
     
     def self.get_personality(battle, trainer_index)
       return :balanced if !battle
       
+      explicit = battle.trainer_personalities[trainer_index]
+      return explicit if PERSONALITIES.key?(explicit)
       # Check override
       trainer = battle.pbGetOwnerFromBattlerIndex(trainer_index)
       if trainer && @personality_overrides[trainer.name]
@@ -322,16 +328,20 @@ end
 class Battle::AI
   def apply_personality_modifiers(score, move, user, target)
     return score unless move
-    skill = @trainer&.skill || 100
-    
-    # Determine trainer personality
-    trainer_index = user.respond_to?(:index) ? user.index : 1
-    personality = AdvancedAI.get_personality(@battle, trainer_index)
+    personality = AdvancedAI.get_personality(@battle, user.index)
     return score unless personality
-    
-    # Apply personality-driven score modifiers
     score = AdvancedAI.apply_personality(score, move, personality)
-    
-    return score
+    return score unless target && move.damagingMove?
+    real_user = user.respond_to?(:battler) ? user.battler : user
+    real_target = target.respond_to?(:battler) ? target.battler : target
+    native_move = move.respond_to?(:move) && move.move.is_a?(Battle::Move) ? move.move : move
+    move_type = AdvancedAI::CombatUtilities.resolve_move_type(real_user, native_move)
+    return score if real_user.pbHasType?(move_type)
+    effectiveness = Effectiveness.calculate(move_type, *real_target.pbTypes(true))
+    return score unless Effectiveness.super_effective?(effectiveness)
+    return score unless AdvancedAI::CombatUtilities.estimate_damage(real_user, native_move, real_target) > 0
+    base = AdvancedAI::BattlePersonalities::PERSONALITIES.dig(personality, :modifiers) || {}
+    modifiers = base.merge(AdvancedAI::PERSONALITY_MODIFIERS.fetch(personality, {}))
+    score + modifiers.fetch(:coverage_bonus, 0)
   end
 end

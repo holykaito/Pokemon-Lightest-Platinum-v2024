@@ -42,7 +42,7 @@ module AdvancedAI
     end
     
     #===========================================================================
-    # Mold Breaker / Ability Ignoring (CRITICAL)
+    # Mold Breaker and ability ignoring
     #===========================================================================
     
     ABILITY_IGNORING = [:MOLDBREAKER, :TURBOBLAZE, :TERAVOLT]
@@ -57,15 +57,46 @@ module AdvancedAI
         battler.ability_id == ability
       end
     end
-    
-    # Check if user ignores target's ability
-    # Mycelium Might only ignores abilities for status moves — pass move to check
-    def self.ignores_ability?(user, move = nil)
+
+    def self.item_active?(battler, item, battle = nil)
+      return false unless battler && item
+      return battler.hasActiveItem?(item) if battler.respond_to?(:hasActiveItem?)
+      battle ||= battler.battle if battler.respond_to?(:battle)
+      if battle && defined?(PBEffects::MagicRoom) &&
+         (battle.field.effects[PBEffects::MagicRoom] rescue 0).to_i > 0
+        return false
+      end
+      return false if ability_active?(battler, :KLUTZ)
+      battler.respond_to?(:item_id) && battler.item_id == item
+    end
+
+    def self.has_type?(battler, type)
+      return false unless battler
+      return battler.pbHasType?(type) if battler.respond_to?(:pbHasType?)
+      return battler.hasType?(type) if battler.respond_to?(:hasType?)
+      battler.respond_to?(:types) && battler.types.include?(type)
+    end
+
+    # Check if user ignores target's ability. Ability Shield protects the
+    # specific target, so pass it whenever one is known.
+    # Mycelium Might only ignores abilities for status moves â€” pass move to check.
+    def self.ignores_ability?(user, move = nil, target = nil)
       return false unless user
-      
+
+      real_target = target.respond_to?(:battler) ? target.battler : target
+      if real_target
+        battle = (user.battle rescue nil) || (real_target.battle rescue nil)
+        shielded = item_active?(real_target, :ABILITYSHIELD, battle)
+        return false if shielded
+      end
+
       # Check method if available (Essentials built-in, handles Mycelium Might properly)
       return true if user.respond_to?(:hasMoldBreaker?) && user.hasMoldBreaker?
-      
+      if move && move.respond_to?(:function_code) &&
+         ["IgnoreTargetAbility", "CategoryDependsOnHigherDamageIgnoreTargetAbility"].include?(move.function_code)
+        return true
+      end
+
       # Manual check
       ability = user.respond_to?(:ability_id) ? user.ability_id : nil
       return true if ABILITY_IGNORING.include?(ability)
@@ -77,13 +108,13 @@ module AdvancedAI
     # Check ability only if not ignored
     def self.target_has_ability?(user, target, *abilities)
       return false unless target
-      return false if ignores_ability?(user)
+      return false if ignores_ability?(user, nil, target)
       
       abilities.flatten.any? { |a| ability_active?(target, a) }
     end
     
     #===========================================================================
-    # Type-Absorbing Ability Immunities (CRITICAL FOR MOVE SCORING)
+    # Type-absorbing ability immunities
     #===========================================================================
     
     # Abilities that make a Pokemon IMMUNE to a type (and often boost a stat)
@@ -114,9 +145,9 @@ module AdvancedAI
     
     # Check if target is immune to a move's type due to ability
     # Returns: nil if not immune, or a hash with { ability: X, effect: Y }
-    def self.type_absorbing_immunity?(user, target, move_type)
+    def self.type_absorbing_immunity?(user, target, move_type, move = nil)
       return nil unless target
-      return nil if ignores_ability?(user)
+      return nil if ignores_ability?(user, move, target)
       
       type_sym = move_type.to_sym rescue move_type
       absorbers = TYPE_ABSORBING_ABILITIES[type_sym]
@@ -125,12 +156,20 @@ module AdvancedAI
       absorbers.each do |ability, effect|
         ability = [ability] unless ability.is_a?(Array)
         ability.each do |ab|
+          if ab == :LEVITATE && move && move.respond_to?(:function_code) &&
+             move.function_code == "HitsTargetInSkyGroundsTarget"
+            next
+          end
+          if ab == :LEVITATE
+            battle = (user.battle rescue nil) || (target.battle rescue nil)
+            next if grounded?(target, battle)
+          end
           if ability_active?(target, ab)
             return { ability: ab, effect: effect }
           end
         end
       end
-      
+
       nil
     end
     
@@ -141,15 +180,15 @@ module AdvancedAI
       return 0 unless move && move.damagingMove?
       
       move_type = override_type || move.type
-      immunity = type_absorbing_immunity?(user, target, move_type)
+      immunity = type_absorbing_immunity?(user, target, move_type, move)
       return 0 unless immunity
       
-      # This move will be ABSORBED - heavy penalty!
+      # Absorbed moves receive a heavy penalty.
       case immunity[:effect]
       when :heal
         return -150  # They heal, we waste turn
       when :boost_atk, :boost_spa, :boost_speed, :boost_def
-        return -180  # They get STRONGER, terrible
+        return -180
       when :boost_fire
         return -160  # Flash Fire boost
       when :immune
@@ -160,7 +199,7 @@ module AdvancedAI
     end
     
     # Additional single-ability type immunities (not stat-boosting)
-    # (ADDITIONAL_TYPE_IMMUNITIES removed — it was dead code with incorrect entries.
+    # (ADDITIONAL_TYPE_IMMUNITIES removed â€” it was dead code with incorrect entries.
     #  All type-absorbing ability logic uses TYPE_ABSORBING_ABILITIES instead.)
     
     # Bulletproof immunity (ball/bomb moves)
@@ -175,7 +214,7 @@ module AdvancedAI
     
     def self.bulletproof_immune?(user, target, move)
       return false unless target
-      return false if ignores_ability?(user)
+      return false if ignores_ability?(user, move, target)
       return false unless ability_active?(target, :BULLETPROOF)
       
       BALL_BOMB_MOVES.include?(move.id)
@@ -193,7 +232,7 @@ module AdvancedAI
     
     def self.soundproof_immune?(user, target, move)
       return false unless target
-      return false if ignores_ability?(user)
+      return false if ignores_ability?(user, move, target)
       return false unless ability_active?(target, :SOUNDPROOF)
       
       move.soundMove? rescue SOUND_MOVES.include?(move.id)
@@ -216,8 +255,7 @@ module AdvancedAI
       end
       
       # Iron Ball grounds
-      item = battler.respond_to?(:item_id) ? battler.item_id : nil
-      return true if item == :IRONBALL
+      return true if item_active?(battler, :IRONBALL, battle)
       
       # Ingrain grounds
       if battler.respond_to?(:effects) && battler.effects[PBEffects::Ingrain]
@@ -240,7 +278,7 @@ module AdvancedAI
       return false if ability_active?(battler, :LEVITATE)
       
       # Air Balloon
-      return false if item == :AIRBALLOON
+      return false if item_active?(battler, :AIRBALLOON, battle)
       
       # Effects (need battler in battle)
       if battler.respond_to?(:effects)
@@ -289,23 +327,22 @@ module AdvancedAI
       return 0 unless move && move.contactMove?
       return 0 unless defender
       
-      # Long Reach ability ignores contact
+      return 0 if move.respond_to?(:pbContactMove?) && !move.pbContactMove?(attacker)
       return 0 if ability_active?(attacker, :LONGREACH)
-      
-      # Protective Pads ignores contact effects
-      return 0 if attacker.item_id == :PROTECTIVEPADS
-      
+      return 0 if attacker.hasActiveItem?(:PROTECTIVEPADS)
+      indirect_damage = !ability_active?(attacker, :MAGICGUARD)
+
       score_penalty = 0
       
       # Ability punishment (check Mold Breaker)
-      unless ignores_ability?(attacker)
+      unless ignores_ability?(attacker, move, defender)
         ab_key = CONTACT_PUNISH_ABILITIES.keys.find { |a| ability_active?(defender, a) }
         ability_data = ab_key ? CONTACT_PUNISH_ABILITIES[ab_key] : nil
         if ability_data
           case ability_data[:type]
           when :fixed
             damage = attacker.totalhp / ability_data[:damage]
-            score_penalty += (damage * 100 / [attacker.hp, 1].max) / 3
+            score_penalty += (damage * 100 / [attacker.hp, 1].max) / 3 if indirect_damage
           when :status
             if attacker.status == :NONE
               score_penalty += 15 * (ability_data[:chance] / 100.0)
@@ -315,10 +352,10 @@ module AdvancedAI
           when :special
             score_penalty += 20
           when :self_boost
-            # Target gets a DEF boost when hit — penalize physical attacks
+            # Target gets a DEF boost when hit â€” penalize physical attacks
             score_penalty += 12
           when :self_mixed
-            # Weak Armor: -1 Def but +2 Speed — net threat increase
+            # Weak Armor: -1 Def but +2 Speed â€” net threat increase
             score_penalty += 8
           when :charge
             # Electromorphosis/Wind Power: target gains Charge (2x electric)
@@ -333,7 +370,7 @@ module AdvancedAI
       end
       
       # Rocky Helmet
-      if defender.item_id == :ROCKYHELMET
+      if indirect_damage && defender.hasActiveItem?(:ROCKYHELMET)
         damage = attacker.totalhp / 6
         score_penalty += (damage * 100 / [attacker.hp, 1].max) / 3
       end
@@ -411,10 +448,10 @@ module AdvancedAI
       return true if target.item_id == :FOCUSSASH && target.hp == target.totalhp
       
       # Sturdy
-      return true if ability_active?(target, :STURDY) && target.hp == target.totalhp && !ignores_ability?(attacker)
+      return true if ability_active?(target, :STURDY) && target.hp == target.totalhp && !ignores_ability?(attacker, move, target)
       
       # Disguise / Ice Face (form abilities)
-      return true if [:DISGUISE, :ICEFACE].any? { |a| ability_active?(target, a) } && !ignores_ability?(attacker)
+      return true if [:DISGUISE, :ICEFACE].any? { |a| ability_active?(target, a) } && !ignores_ability?(attacker, move, target)
       
       false
     end
@@ -446,10 +483,10 @@ module AdvancedAI
         return true if has_type.call(:GRASS) && is_powder
         
         # Ability immunity (check Mold Breaker)
-        unless ignores_ability?(attacker)
+        unless ignores_ability?(attacker, move, target)
           return true if [:VITALSPIRIT, :INSOMNIA, :COMATOSE].any? { |a| ability_active?(target, a) }
           
-          # Sweet Veil (ally immunity) - would need battle context
+          # Sweet Veil requires ally context.
           if battle
             allies = battle.allSameSideBattlers(target.index)
             return true if allies.any? { |a| a && ability_active?(a, :SWEETVEIL) }
@@ -467,14 +504,19 @@ module AdvancedAI
           return true if battle.field.terrain == :Misty && grounded?(target, battle)
         end
         
-        # Item immunity — Safety Goggles only blocks powder/spore moves
+        # Item immunity â€” Safety Goggles only blocks powder/spore moves
         return true if target.item_id == :SAFETYGOGGLES && is_powder
         
       when :POISON, :TOXIC
-        return true if has_type.call(:POISON)
-        return true if has_type.call(:STEEL)
+        # Corrosion bypasses Poison/Steel type immunity
+        attacker_has_corrosion = attacker && attacker.respond_to?(:hasActiveAbility?) && 
+                                 attacker.hasActiveAbility?(:CORROSION)
+        unless attacker_has_corrosion
+          return true if has_type.call(:POISON)
+          return true if has_type.call(:STEEL)
+        end
         
-        unless ignores_ability?(attacker)
+        unless ignores_ability?(attacker, move, target)
           return true if ability_active?(target, :IMMUNITY)
           return true if ability_active?(target, :PASTELVEIL)
           return true if ability_active?(target, :PURIFYINGSALT)
@@ -483,7 +525,7 @@ module AdvancedAI
       when :BURN
         return true if has_type.call(:FIRE)
         
-        unless ignores_ability?(attacker)
+        unless ignores_ability?(attacker, move, target)
           return true if ability_active?(target, :WATERVEIL)
           return true if ability_active?(target, :WATERBUBBLE)
           return true if ability_active?(target, :THERMALEXCHANGE)
@@ -493,7 +535,7 @@ module AdvancedAI
       when :PARALYSIS
         return true if has_type.call(:ELECTRIC)
         
-        unless ignores_ability?(attacker)
+        unless ignores_ability?(attacker, move, target)
           return true if ability_active?(target, :LIMBER)
           return true if ability_active?(target, :PURIFYINGSALT)
         end
@@ -501,7 +543,7 @@ module AdvancedAI
       when :FREEZE
         return true if has_type.call(:ICE)
         
-        unless ignores_ability?(attacker)
+        unless ignores_ability?(attacker, move, target)
           return true if ability_active?(target, :MAGMAARMOR)
           return true if ability_active?(target, :PURIFYINGSALT)
         end
@@ -513,7 +555,7 @@ module AdvancedAI
       end
       
       # Good as Gold (immune to status moves)
-      unless ignores_ability?(attacker)
+      unless ignores_ability?(attacker, move, target)
         return true if ability_active?(target, :GOODASGOLD)
       end
       
@@ -628,7 +670,10 @@ module AdvancedAI
       return false unless user && target && move
       return false unless ability_active?(user, :PRANKSTER)
       return false unless move.statusMove?
-      
+      target_data = move.pbTarget(user) rescue nil
+      return false unless target_data && target_data.num_targets > 0
+      return false unless target.opposes?(user)
+
       # Prankster status moves fail against Dark types
       has_dark = target.respond_to?(:pbHasType?) ? target.pbHasType?(:DARK) : target.hasType?(:DARK)
       has_dark
@@ -695,7 +740,10 @@ module AdvancedAI
     # Rage Fist - power increases with hits taken
     def self.rage_fist_power(user)
       base_power = 50
-      hits_taken = user.effects[PBEffects::RageFist] rescue 0
+      # The engine tracks Rage Fist hits via Battler#num_times_hit (Gen 9 Pack,
+      # backed by Battle#pbRageHitCount) â€” there is no PBEffects::RageFist.
+      real = (user.respond_to?(:battler) && user.battler) ? user.battler : user
+      hits_taken = (real.respond_to?(:num_times_hit) ? real.num_times_hit.to_i : 0) rescue 0
       # +50 power per hit, max 350
       [base_power + (hits_taken * 50), 350].min
     end
@@ -782,7 +830,7 @@ module AdvancedAI
                              :CLANGINGSCALES, :HYPERSPACEFURY]
       
       if ability_active?(user, :CONTRARY)
-        # Contrary makes stat-lowering moves into boosts!
+        # Contrary turns stat drops into boosts.
         return true if stat_lowering_moves.include?(move_id)
         # But regular setup moves become debuffs
         return false if Utilities::ALL_SETUP_MOVES.include?(move_id)
@@ -835,8 +883,8 @@ module AdvancedAI
     Utilities.type_mod(attack_type, defender)
   end
   
-  def self.ignores_ability?(user)
-    Utilities.ignores_ability?(user)
+  def self.ignores_ability?(user, move = nil, target = nil)
+    Utilities.ignores_ability?(user, move, target)
   end
   
   def self.target_has_ability?(user, target, *abilities)
@@ -884,8 +932,8 @@ module AdvancedAI
     Utilities::ALL_SETUP_MOVES.include?(move_id)
   end
   
-  def self.type_absorbing_immunity?(user, target, move_type)
-    Utilities.type_absorbing_immunity?(user, target, move_type)
+  def self.type_absorbing_immunity?(user, target, move_type, move = nil)
+    Utilities.type_absorbing_immunity?(user, target, move_type, move)
   end
   
   def self.score_type_absorption_penalty(user, target, move, override_type = nil)
@@ -1017,3 +1065,177 @@ AdvancedAI.log("  - Gen 9 ability awareness", "Utils")
 AdvancedAI.log("  - Centralized setup move list", "Utils")
 AdvancedAI.log("  - Type-absorbing ability immunities", "Utils")
 AdvancedAI.log("  - Bulletproof / Soundproof immunities", "Utils")
+
+module AdvancedAI::Utilities
+  def self.phazing_possible?(battle, move, user, target)
+    user = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    return false unless battle && user && target && !user.fainted? && !target.fainted?
+    return false if counter_priority_blocked?(battle, move, user, target)
+    return false unless [:ROAR, :WHIRLWIND, :DRAGONTAIL, :CIRCLETHROW].include?(move.id)
+    preview = battle.clone
+    native = Battle::Move.from_pokemon_move(preview, Pokemon::Move.new(move.id))
+    preview.moldBreaker = ignores_ability?(user, native, target)
+    if native.statusMove?
+      return false if target.effects[PBEffects::MagicCoat]
+      unless preview.moldBreaker
+        return false if target.hasActiveAbility?([:MAGICBOUNCE, :GOODASGOLD])
+        return false if target.hasActiveAbility?(:WINDRIDER) && native.respond_to?(:windMove?) && native.windMove?
+      end
+      return false if soundproof_immune?(user, target, native)
+      return !native.pbFailsAgainstTarget?(user, target, false)
+    end
+    return false if target.effects[PBEffects::Substitute] > 0 && !native.ignoresSubstitute?(user)
+    return false if AdvancedAI::CombatUtilities.estimate_damage(user, native, target) <= 0
+    if target.wild?
+      return target.allAllies.empty? && battle.canRun && target.level <= user.level
+    end
+    return false if target.effects[PBEffects::Ingrain]
+    return false if target.hasActiveAbility?([:SUCTIONCUPS, :GUARDDOG]) && !preview.moldBreaker
+    return false if target.respond_to?(:isCommander?) && target.isCommander?
+    battle.pbCanChooseNonActive?(target.index)
+  end
+end
+
+module AdvancedAI::Utilities
+  def self.stat_reset_hits_target?(battle, move, user, target)
+    user = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    return false unless battle && user && target && !user.fainted? && !target.fainted?
+    return false if counter_priority_blocked?(battle, move, user, target)
+    return true if move.id == :HAZE
+    return false unless move.id == :CLEARSMOG
+    native = Battle::Move.from_pokemon_move(battle, Pokemon::Move.new(move.id))
+    return false if target.effects[PBEffects::Substitute] > 0 && !native.ignoresSubstitute?(user)
+    AdvancedAI::CombatUtilities.estimate_damage(user, native, target) > 0
+  end
+end
+
+module AdvancedAI::Utilities
+  def self.setup_disruption_hits?(battle, move, user, target, future_setup = false)
+    user = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    return false unless battle && user && target && !user.fainted? && !target.fainted?
+    return false if counter_priority_blocked?(battle, move, user, target)
+    return false unless [:TOPSYTURVY, :ENCORE, :TAUNT].include?(move.id)
+    preview = battle.clone
+    native = Battle::Move.from_pokemon_move(preview, Pokemon::Move.new(move.id))
+    preview.moldBreaker = ignores_ability?(user, native, target)
+    return false if target.effects[PBEffects::Substitute] > 0 && !native.ignoresSubstitute?(user)
+    return false if target.effects[PBEffects::MagicCoat]
+    unless preview.moldBreaker
+      return false if target.hasActiveAbility?([:MAGICBOUNCE, :GOODASGOLD])
+      return false if move.id == :TAUNT && Settings::MECHANICS_GENERATION >= 6 && target.hasActiveAbility?(:OBLIVIOUS)
+    end
+    if [:ENCORE, :TAUNT].include?(move.id)
+      return false if native.pbMoveFailedAromaVeil?(user, target, false)
+    end
+    # Future setup changes the stages and last move that these handlers inspect.
+    future_setup || !native.pbFailsAgainstTarget?(user, target, false)
+  end
+end
+
+module AdvancedAI::Utilities
+  def self.delayed_setup_threat?(battle, move, user, target)
+    user = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    return false unless battle && user && target && !user.fainted? && !target.fainted?
+    return false if counter_priority_blocked?(battle, move, user, target)
+    return false unless [:YAWN, :PERISHSONG, :TRICK, :SWITCHEROO, :DISABLE].include?(move.id)
+    preview = battle.clone
+    battlers = battle.battlers.map do |b|
+      next nil unless b
+      copy = b.clone
+      copy.instance_variable_set(:@pokemon, b.pokemon.clone) if b.pokemon
+      copy.instance_variable_set(:@battle, preview)
+      copy.instance_variable_set(:@effects, b.effects.dup)
+      copy.instance_variable_set(:@stages, b.stages.dup)
+      copy
+    end
+    preview.instance_variable_set(:@battlers, battlers)
+    user = battlers[user.index]
+    target = battlers[target.index]
+    native = Battle::Move.from_pokemon_move(preview, Pokemon::Move.new(move.id))
+    preview.moldBreaker = ignores_ability?(user, native, target)
+    return false if target.effects[PBEffects::Substitute] > 0 && !native.ignoresSubstitute?(user)
+    if native.canMagicCoat?
+      return false if target.effects[PBEffects::MagicCoat]
+      return false if target.hasActiveAbility?(:MAGICBOUNCE) && !preview.moldBreaker
+    end
+    return false if native.pbImmunityByAbility(user, target, false)
+    case move.id
+    when :YAWN
+      return false if target.effects[PBEffects::Yawn] > 0
+      return false unless target.pbCanSleep?(user, false, native) && target.pbCanSleepYawn?
+      return false if target.hasActiveItem?([:LUMBERRY, :CHESTOBERRY]) && target.canConsumeBerry?
+      return true
+    when :TRICK, :SWITCHEROO
+      return false if user.wild? || ![:CHOICEBAND, :CHOICESPECS, :CHOICESCARF].include?(user.item_id)
+      return false if native.pbFailsAgainstTarget?(user, target, false)
+      target.item = user.item_id
+      return target.hasActiveItem?([:CHOICEBAND, :CHOICESPECS, :CHOICESCARF])
+    when :DISABLE
+      attack = target.moves.find { |m| m && m.damagingMove? && m.pp > 0 }
+      return false unless attack
+      # A future attack, rather than the setup move, must be available to disable.
+      target.lastRegularMoveUsed = attack.id
+    end
+    !native.pbFailsAgainstTarget?(user, target, false)
+  end
+end
+
+module AdvancedAI::Utilities
+  def self.counter_priority_blocked?(battle, move, user, target)
+    user = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    move = move.move if move.respond_to?(:move)
+    return false unless target.opposes?(user)
+    preview = battle.clone
+    native = Battle::Move.from_pokemon_move(preview, Pokemon::Move.new(move.id))
+    return false if native.pbTarget(user).num_targets == 0
+    if Settings::MECHANICS_GENERATION >= 7 && native.statusMove? &&
+       user.hasActiveAbility?(:PRANKSTER) && target.pbHasType?(:DARK)
+      return true
+    end
+    priority = AdvancedAI::PriorityTiers.get_priority_tier(native, user)
+    return false if priority <= 0
+    return true if battle.field.terrain == :Psychic && target.affectedByTerrain?
+    choices = battle.choices.map(&:dup)
+    choices[user.index][4] = priority
+    preview.instance_variable_set(:@choices, choices)
+    battle.allBattlers.any? do |bearer|
+      next false unless bearer.hasActiveAbility?([:DAZZLING, :QUEENLYMAJESTY, :ARMORTAIL])
+      Battle::AbilityEffects.triggerMoveBlocking(bearer.ability, bearer, user, [target], native, preview)
+    end
+  end
+end
+
+module AdvancedAI::Utilities
+  def self.counter_shield_blocked?(battle, move, user, target)
+    user = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    return false unless battle && user && target && user.index != target.index
+    native = Battle::Move.from_pokemon_move(battle, Pokemon::Move.new(move.id))
+    targets = native.pbTarget(user)
+    return false if targets.num_targets == 0
+    side = target.pbOwnSide.effects
+    return true if side[PBEffects::CraftyShield] && native.statusMove? && !targets.targets_all
+    return false if user.hasActiveAbility?(:UNSEENFIST) && native.contactMove?
+    if side[PBEffects::WideGuard] && targets.num_targets > 1 &&
+       (Settings::MECHANICS_GENERATION >= 7 || native.damagingMove?)
+      return true
+    end
+    return false unless native.canProtectAgainst?
+    if side[PBEffects::QuickGuard] && AdvancedAI::PriorityTiers.get_priority_tier(native, user) > 0
+      return true
+    end
+    return true if [:Protect, :SpikyShield, :BanefulBunker].any? { |effect| target.effects[PBEffects.const_get(effect)] }
+    if native.damagingMove?
+      return true if side[PBEffects::MatBlock]
+      return true if [:KingsShield, :Obstruct, :SilkTrap, :BurningBulwark].any? do |effect|
+        PBEffects.const_defined?(effect) && target.effects[PBEffects.const_get(effect)]
+      end
+    end
+    false
+  end
+end
