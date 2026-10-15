@@ -38,3 +38,31 @@ FieldUse = Direct
 Consumable = false
 Flags = Fling_30
 Description = A mysterious Master Ball with the best odds for rare Pokémon.
+#-------------------------------
+[TORTERITE]
+Name = Torterite
+NamePlural = Torterites
+Pocket = 1
+Price = 0
+BPPrice = 50
+Flags = MegaStone,Fling_80
+Description = One of a variety of mysterious Mega Stones. Have Torterra hold it, and it will be able to Mega Evolve.
+#-------------------------------
+[INFERNAPITE]
+Name = Infernapite
+NamePlural = Infernapites
+Pocket = 1
+Price = 0
+BPPrice = 50
+Flags = MegaStone,Fling_80
+Description = One of a variety of mysterious Mega Stones. Have Infernape hold it, and it will be able to Mega Evolve.
+#-------------------------------
+[EMPOLEONITE]
+Name = Empoleonite
+NamePlural = Empoleonites
+Pocket = 1
+Price = 0
+BPPrice = 50
+Flags = MegaStone,Fling_80
+Description = One of a variety of mysterious Mega Stones. Have Torterra hold it, and it will be able to Mega Evolve.
+#-------------------------------

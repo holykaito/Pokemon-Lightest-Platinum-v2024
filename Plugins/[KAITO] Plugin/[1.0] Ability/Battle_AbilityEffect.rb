@@ -10,8 +10,8 @@ Battle::AbilityEffects::PriorityChange.add(:AGILE,
 
 Battle::AbilityEffects::PriorityChange.add(:HYPERCHARGE,
   proc { |ability, battler, move, pri|
-    next pri + 1 if (Settings::MECHANICS_GENERATION <= 6 || battler.hp == battler.totalhp) &&
-                    move.type == :ELECTRIC
+  	next pri + 1 if (battler.hp >= battler.totalhp * 0.5) &&
+			move.type == :ELECTRIC
   }
 )
 
@@ -4794,5 +4794,2323 @@ end
 Battle::AbilityEffects::OnSwitchIn.add(:STONESCATTER,
   proc { |ability, battler, battle, switch_in|
     StoneScatter.trigger(battler, battle)
+  }
+)
+
+##------------------------------------------------------------------------------
+# Self-Sufficient
+#------------------------------------------------------------------------------
+
+module SelfSufficient
+  def self.heal_amount(hp, totalhp)
+    return [totalhp / ((hp * 2 < totalhp) ? 8 : 16), 1].max
+  end
+end
+
+Battle::AbilityEffects::EndOfRoundEffect.remove(:SELFSUFFICIENT)
+
+Battle::AbilityEffects::EndOfRoundHealing.add(:SELFSUFFICIENT,
+  proc { |ability, battler, battle|
+    next if !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    battler.pbRecoverHP(SelfSufficient.heal_amount(battler.hp, battler.totalhp))
+    battle.pbDisplay(_INTL("{1}'s {2} restored its HP.",
+                          battler.pbThis, GameData::Ability.get(ability).name))
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value { |ids| ids.delete(:SELFSUFFICIENT) }
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :SELFSUFFICIENT
+
+Battle::AI::Handlers::AbilityRanking.add(:SELFSUFFICIENT,
+  proc { |ability, score, battler, ai|
+    next (battler.hp * 2 < battler.totalhp) ? 9 : 8
+  }
+)
+
+module SelfSufficient::AIBattler
+  def rough_end_of_round_damage
+    damage = super
+    return damage if damage >= 999_999
+    return damage if !has_active_ability?(:SELFSUFFICIENT) || !battler.canHeal?
+    amount = SelfSufficient.heal_amount(hp, totalhp)
+    return damage - [amount, totalhp - hp].min
+  end
+end
+
+Battle::AI::AIBattler.prepend(SelfSufficient::AIBattler)
+
+if defined?(AdvancedAI::CustomContent::DEFENSIVE_ABILITIES)
+  AdvancedAI::CustomContent::DEFENSIVE_ABILITIES[:SELFSUFFICIENT] = -2.0
+end
+
+if defined?(AdvancedAI) && Battle::AI.method_defined?(:score_protect_utility)
+  module SelfSufficient::ProtectAI
+    def score_protect_utility(move, user, target)
+      score = super
+      return score if !AdvancedAI.protect_move?(move.id)
+      real_user = user.respond_to?(:battler) ? user.battler : user
+      return score if !real_user.hasActiveAbility?(:SELFSUFFICIENT)
+      return score if !real_user.canHeal? || score <= -300
+
+      weather = real_user.effectiveWeather
+      other_recovery =
+        user.hasActiveItem?(:LEFTOVERS) ||
+        (user.hasActiveItem?(:BLACKSLUDGE) && user.pbHasType?(:POISON)) ||
+        user.effects[PBEffects::Ingrain] ||
+        user.effects[PBEffects::AquaRing] ||
+        (user.hasActiveAbility?(:POISONHEAL) && user.poisoned?) ||
+        (user.hasActiveAbility?([:DRYSKIN, :RAINDISH]) &&
+          [:Rain, :HeavyRain].include?(weather)) ||
+        (user.hasActiveAbility?(:ICEBODY) &&
+          [:Hail, :Snow].include?(weather)) ||
+        (@battle.field.terrain == :Grassy && real_user.affectedByTerrain?)
+
+      return score if other_recovery || user.hp.to_f / user.totalhp >= 0.9
+      score += 40
+      score += 20 if user.hp * 2 < user.totalhp
+      return score
+    end
+  end
+
+  Battle::AI.prepend(SelfSufficient::ProtectAI)
+end
+
+#------------------------------------------------------------------------------
+# Refuge
+#------------------------------------------------------------------------------
+
+module Refuge
+  PopupBattler = Struct.new(:index, :name, :abilityName)
+
+	def self.with_popup(battler, owner_name)
+	  battle = battler.battle
+	  enabled = Battle::Scene::USE_ABILITY_SPLASH
+	  popup = PopupBattler.new(
+		battler.index, owner_name, GameData::Ability.get(:REFUGE).name
+	  )
+
+	  begin
+		battle.scene.pbShowAbilitySplash(popup) if enabled
+		yield
+	  ensure
+		battle.scene.pbHideAbilitySplash(popup) if enabled
+	  end
+	end
+
+  def self.ally_source(battle, index, entering = [])
+    return battle.allBattlers.find do |b|
+      b.index != index &&
+        !entering.include?(b.index) &&
+        !b.opposes?(index) &&
+        !b.fainted? &&
+        b.hasActiveAbility?(:REFUGE)
+    end
+  end
+
+  def self.restore(battler, divisor, source = nil, source_name = nil)
+    return if battler.fainted?
+
+    battle = battler.battle
+    ability_name = GameData::Ability.get(:REFUGE).name
+    source_name ||= source ? source.name : ability_name
+
+    battler.instance_variable_set(
+      :@refuge_cure_pending, [battler.pokemon, source_name]
+    )
+
+    return if !battler.canHeal?
+
+    with_popup(battler, source_name) do
+      battler.pbRecoverHP([battler.totalhp / divisor, 1].max)
+      battle.pbDisplay(_INTL("{1}'s {2} restored {3}'s HP!",
+                            source_name, ability_name, battler.pbThis(true)))
+    end
+  end
+
+  def self.ai_divisor(battle, index)
+    current = battle.battlers[index]
+    return 4 if battle.refuge_pending.key?(index)
+
+    if current && !current.fainted? && current.hasActiveAbility?(:REFUGE)
+      return 4
+    end
+
+    source = ally_source(battle, index)
+    return nil if !source
+    return nil if battle.choices[source.index][0] == :SwitchOut
+    return 8
+  end
+
+  def self.preview(pkmn, divisor)
+    return pkmn if !divisor || pkmn.fainted?
+
+    copy = pkmn.dup
+    amount = [copy.totalhp / divisor, 1].max
+    copy.hp = [copy.hp + amount, copy.totalhp].min
+    copy.status = :NONE
+    copy.statusCount = 0
+    return copy
+  end
+
+  def self.ai_bonus(pkmn, divisor)
+    return 0 if !divisor || pkmn.fainted?
+
+    amount = [[pkmn.totalhp / divisor, 1].max, pkmn.totalhp - pkmn.hp].min
+    score = 100 * amount / [pkmn.totalhp, 1].max
+    score += 20 if pkmn.status != :NONE
+    return score
+  end
+end
+
+class Battle
+  def refuge_pending
+    return @refuge_pending ||= {}
+  end
+
+  alias_method :refuge_original_entering_battle, :pbOnBattlerEnteringBattle
+
+  def pbOnBattlerEnteringBattle(battler_index, *args)
+    entering = [battler_index].flatten
+
+    entering.each do |index|
+      battler = @battlers[index]
+      source_name = refuge_pending.delete(index)
+      next if !battler || battler.fainted?
+
+      if source_name
+        Refuge.restore(battler, 4, nil, source_name)
+      else
+        source = Refuge.ally_source(self, index, entering)
+        Refuge.restore(battler, 8, source) if source
+      end
+    end
+
+    return refuge_original_entering_battle(battler_index, *args)
+  end
+
+  alias_method :refuge_original_entry_hazards, :pbEntryHazards
+
+  def pbEntryHazards(battler)
+    pending = battler.instance_variable_get(:@refuge_cure_pending)
+    battler.instance_variable_set(:@refuge_cure_pending, nil)
+
+    result = refuge_original_entry_hazards(battler)
+
+    if pending &&
+       battler.pokemon.equal?(pending[0]) &&
+       !battler.fainted? &&
+       battler.status != :NONE
+      Refuge.with_popup(battler, pending[1]) do
+        battler.pbCureStatus(false)
+        pbDisplay(_INTL("{1}'s {2} cured {3}'s status!",
+                        pending[1], GameData::Ability.get(:REFUGE).name,
+                        battler.pbThis(true)))
+      end
+    end
+
+    return result
+  end
+end
+
+Battle::AbilityEffects::OnSwitchOut.add(:REFUGE,
+  proc { |ability, battler, end_of_battle|
+    next if end_of_battle || battler.fainted?
+    next if !battler.hasActiveAbility?(:REFUGE)
+    battler.battle.refuge_pending[battler.index] = battler.name
+  }
+)
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value { |ids| ids.delete(:REFUGE) }
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :REFUGE
+
+Battle::AI::Handlers::AbilityRanking.add(:REFUGE,
+  proc { |ability, score, battler, ai|
+    reserves = ai.get_non_active_party_pokemon(battler.index)
+    next 0 if reserves.empty? && ai.battle.pbSideSize(battler.index) == 1
+    next 8
+  }
+)
+
+Battle::AI::Handlers::ShouldSwitch.add(:refuge_support,
+  proc { |battler, reserves, ai, battle|
+    next false if !battler.has_active_ability?(:REFUGE)
+    next false if battler.hp * 2 <= battler.totalhp
+
+    next reserves.any? { |pkmn|
+      useful = pkmn.status != :NONE ||
+               pkmn.totalhp - pkmn.hp >= [pkmn.totalhp / 4, 1].max
+
+      if useful && ai.respond_to?(:ohkod_on_switch_in?)
+        useful = !ai.ohkod_on_switch_in?(pkmn, battler)
+      end
+
+      useful
+    }
+  }
+)
+
+class Battle::AI
+  alias_method :refuge_original_replacement_rating, :rate_replacement_pokemon
+
+  def rate_replacement_pokemon(index, pkmn, score)
+    divisor = Refuge.ai_divisor(@battle, index)
+    preview = Refuge.preview(pkmn, divisor)
+    result = refuge_original_replacement_rating(index, preview, score)
+    return result + Refuge.ai_bonus(pkmn, divisor)
+  end
+
+  if method_defined?(:evaluate_switch_matchup_detailed)
+    alias_method :refuge_original_matchup, :evaluate_switch_matchup_detailed
+
+    def evaluate_switch_matchup_detailed(pkmn, current_user)
+      index = get_battler_index(current_user)
+      divisor = Refuge.ai_divisor(@battle, index)
+      preview = Refuge.preview(pkmn, divisor)
+      result = refuge_original_matchup(preview, current_user)
+      return result + Refuge.ai_bonus(pkmn, divisor)
+    end
+  end
+
+  if method_defined?(:evaluate_switch_candidate_detailed)
+    alias_method :refuge_original_candidate, :evaluate_switch_candidate_detailed
+
+    def evaluate_switch_candidate_detailed(pkmn, current_user, skill)
+      index = get_battler_index(current_user)
+      divisor = Refuge.ai_divisor(@battle, index)
+      preview = Refuge.preview(pkmn, divisor)
+      result = refuge_original_candidate(preview, current_user, skill)
+      return result + Refuge.ai_bonus(pkmn, divisor)
+    end
+  end
+
+  if method_defined?(:ohkod_on_switch_in?)
+    alias_method :refuge_original_switch_survival, :ohkod_on_switch_in?
+
+    def ohkod_on_switch_in?(pkmn, user)
+      return refuge_original_switch_survival(pkmn, user) if !pkmn || !user
+
+      index = get_battler_index(user)
+      divisor = Refuge.ai_divisor(@battle, index)
+      preview = Refuge.preview(pkmn, divisor)
+      return refuge_original_switch_survival(preview, user)
+    end
+  end
+end
+
+if defined?(AdvancedAI::CustomContent::SUPPORT_ABILITIES)
+  AdvancedAI::CustomContent::SUPPORT_ABILITIES[:REFUGE] = 1.5
+end
+
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+# Branch Swing
+#------------------------------------------------------------------------------
+module BranchSwing
+  def self.active?(battler)
+    return !battler.fainted? &&
+           battler.battle.field.terrain == :Grassy &&
+           battler.hasActiveAbility?(:BRANCHSWING)
+  end
+
+  def self.floating?(battler)
+    return false if !active?(battler)
+    return false if battler.battle.moldBreaker
+    return false if battler.hasActiveItem?(:IRONBALL)
+    return false if battler.effects[PBEffects::Ingrain]
+    return false if battler.effects[PBEffects::SmackDown]
+    return false if battler.battle.field.effects[PBEffects::Gravity] > 0
+    return true
+  end
+
+  def self.extra_terrain_healing?(battler)
+    return active?(battler) &&
+           !battler.semiInvulnerable? &&
+           !battler.affectedByTerrain? &&
+           battler.canHeal?
+  end
+
+  def self.pokemon_has_ability?(pkmn)
+    return true if pkmn.hasAbility?(:BRANCHSWING)
+    if pkmn.respond_to?(:set_innate_limits)
+      return pkmn.set_innate_limits.include?(:BRANCHSWING)
+    end
+    return false
+  end
+
+  # Hiển thị đúng Pokémon sở hữu và đúng tên ability,
+  # bao gồm trường hợp Branch Swing là innate.
+  def self.with_popup(battler, battle)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(:BRANCHSWING).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(battler)
+      yield
+    ensure
+      begin
+        battle.pbHideAbilitySplash(battler)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+  end
+
+  # Chỉ thông báo một lần trong mỗi lần sàn cỏ kích hoạt.
+  def self.notify_activation(battler, battle, reset = false)
+    if reset || !active?(battler)
+      battler.instance_variable_set(:@branch_swing_notified, false)
+    end
+
+    return if !active?(battler)
+    return if battler.instance_variable_get(:@branch_swing_notified)
+
+    battler.instance_variable_set(:@branch_swing_notified, true)
+
+    with_popup(battler, battle) do
+      battle.pbDisplay(_INTL(
+        "{1}'s {2} activated on the grassy terrain!",
+        battler.pbThis,
+        GameData::Ability.get(:BRANCHSWING).name
+      ))
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# Loại bỏ hiệu ứng tăng Speed cũ
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::SpeedCalc.remove(:BRANCHSWING)
+
+#------------------------------------------------------------------------------
+# Pop-up khi vào sân hoặc khi terrain thay đổi
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::OnSwitchIn.add(:BRANCHSWING,
+  proc { |ability, battler, battle, switch_in|
+    BranchSwing.notify_activation(battler, battle, switch_in)
+  }
+)
+
+Battle::AbilityEffects::OnTerrainChange.add(:BRANCHSWING,
+  proc { |ability, battler, battle, ability_changed|
+    BranchSwing.notify_activation(battler, battle, ability_changed)
+  }
+)
+
+#------------------------------------------------------------------------------
+# Lơ lửng như Levitate khi có Grassy Terrain
+#------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :branch_swing_original_airborne, :airborne?
+
+  def airborne?
+    return true if BranchSwing.floating?(self)
+    return branch_swing_original_airborne
+  end
+end
+
+#------------------------------------------------------------------------------
+# Miễn nhiễm chiêu Ground gây sát thương
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::MoveImmunity.add(:BRANCHSWING,
+  proc { |ability, user, target, move, type, battle, show_message|
+    next false if type != :GROUND || !move.damagingMove?
+    next false if move.hitsFlyingTargets?
+    next false if !BranchSwing.floating?(target)
+
+    if show_message
+      BranchSwing.with_popup(target, battle) do
+        battle.pbDisplay(_INTL(
+          "{1} avoided the attack with {2}!",
+          target.pbThis,
+          GameData::Ability.get(ability).name
+        ))
+      end
+    end
+
+    next true
+  }
+)
+
+#------------------------------------------------------------------------------
+# Tăng 10% evasion khi có Grassy Terrain
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::AccuracyCalcFromTarget.add(:BRANCHSWING,
+  proc { |ability, mods, user, target, move, type|
+    next if !BranchSwing.active?(target)
+    mods[:evasion_multiplier] *= 1.1
+  }
+)
+
+#------------------------------------------------------------------------------
+# Vẫn nhận hồi phục từ Grassy Terrain khi đang lơ lửng
+#------------------------------------------------------------------------------
+class Battle
+  alias_method :branch_swing_original_terrain_healing, :pbEORTerrainHealing
+
+  def pbEORTerrainHealing(battler)
+    result = branch_swing_original_terrain_healing(battler)
+    return result if !BranchSwing.extra_terrain_healing?(battler)
+
+    battler.pbRecoverHP([battler.totalhp / 16, 1].max)
+    pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis))
+    return result
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:BRANCHSWING)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :BRANCHSWING
+
+Battle::AI::Handlers::AbilityRanking.add(:BRANCHSWING,
+  proc { |ability, score, battler, ai|
+    next 8 if ai.battle.field.terrain == :Grassy
+    next 5 if battler.has_move_with_function?("StartGrassyTerrain")
+    next 3
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Tính lượng hồi phục cuối lượt
+#------------------------------------------------------------------------------
+class Battle::AI::AIBattler
+  alias_method :branch_swing_original_eor_damage, :rough_end_of_round_damage
+
+  def rough_end_of_round_damage
+    damage = branch_swing_original_eor_damage
+    return damage if damage >= 999_999
+    return damage if !BranchSwing.extra_terrain_healing?(battler)
+
+    amount = [totalhp / 16, 1].max
+    return damage - [amount, totalhp - hp].min
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Trạng thái lơ lửng và đánh giá Grassy Terrain
+#------------------------------------------------------------------------------
+class Battle::AI
+  alias_method :branch_swing_original_pokemon_airborne, :pokemon_airborne?
+
+  def pokemon_airborne?(pkmn)
+    return true if branch_swing_original_pokemon_airborne(pkmn)
+    return false if @battle.field.terrain != :Grassy
+    return false if pkmn.hasItem?(:IRONBALL)
+    return false if @battle.field.effects[PBEffects::Gravity] > 0
+    return false if !BranchSwing.pokemon_has_ability?(pkmn)
+
+    if @battle.pbCheckGlobalAbility(:NEUTRALIZINGGAS) &&
+       !pkmn.hasItem?(:ABILITYSHIELD)
+      return false
+    end
+
+    return true
+  end
+
+  alias_method :branch_swing_original_terrain_score, :get_score_for_terrain
+
+  def get_score_for_terrain(terrain, move_user, starting = false)
+    score = branch_swing_original_terrain_score(terrain, move_user, starting)
+    return score if terrain != :Grassy
+
+    each_battler do |b, i|
+      next if !b.has_active_ability?(:BRANCHSWING)
+      score += b.opposes?(move_user) ? -12 : 12
+    end
+
+    return score
+  end
+end
+
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+# Poseidon Guard
+#------------------------------------------------------------------------------
+module PoseidonGuard
+  def self.above_threshold?(battler)
+    return !battler.fainted? &&
+           battler.hp * 3 > battler.totalhp * 2
+  end
+
+  def self.active?(battler)
+    return above_threshold?(battler) &&
+           battler.hasActiveAbility?(:POSEIDONGUARD)
+  end
+end
+
+#------------------------------------------------------------------------------
+# Miễn nhiễm trạng thái chính khi HP trên 2/3
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::StatusImmunity.add(:POSEIDONGUARD,
+  proc { |ability, battler, status|
+    next PoseidonGuard.active?(battler)
+  }
+)
+
+#------------------------------------------------------------------------------
+# Giảm 25% sát thương từ chiêu thức khi HP trên 2/3
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromTarget.add(:POSEIDONGUARD,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !PoseidonGuard.active?(target)
+    mults[:final_damage_multiplier] *= 0.75
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Giá trị cơ bản của ability
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:POSEIDONGUARD)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :POSEIDONGUARD
+
+#------------------------------------------------------------------------------
+# AI: Đánh giá theo HP hiện tại
+#------------------------------------------------------------------------------
+Battle::AI::Handlers::AbilityRanking.add(:POSEIDONGUARD,
+  proc { |ability, score, battler, ai|
+    next 9 if PoseidonGuard.above_threshold?(battler.battler)
+    next 4
+  }
+)
+
+#------------------------------------------------------------------------------
+# Spell Fist
+#------------------------------------------------------------------------------
+module SpellFist
+  def self.converts?(user, move)
+    return user &&
+           move.damagingMove? &&
+           move.punchingMove? &&
+           user.hasActiveAbility?(:SPELLFIST)
+  end
+end
+
+#------------------------------------------------------------------------------
+# Chuyển chiêu đấm sang special trước khi tính chỉ số và các hiệu ứng liên quan.
+# Không thay đổi category gốc trong PBS.
+#------------------------------------------------------------------------------
+class Battle::Move
+  attr_accessor :spell_fist_user
+
+  alias_method :spell_fist_original_calc_type, :pbCalcType
+  def pbCalcType(user)
+    @spell_fist_user = user
+    return spell_fist_original_calc_type(user)
+  end
+
+  alias_method :spell_fist_original_physical_move, :physicalMove?
+  def physicalMove?(thisType = nil)
+    return false if SpellFist.converts?(@spell_fist_user, self)
+    return spell_fist_original_physical_move(thisType)
+  end
+
+  alias_method :spell_fist_original_special_move, :specialMove?
+  def specialMove?(thisType = nil)
+    return true if SpellFist.converts?(@spell_fist_user, self)
+    return spell_fist_original_special_move(thisType)
+  end
+
+  alias_method :spell_fist_original_category, :category
+  def category
+    return 1 if SpellFist.converts?(@spell_fist_user, self)
+    return spell_fist_original_category
+  end
+end
+
+#------------------------------------------------------------------------------
+# Spell Fist: +20%; cùng Iron Fist: tổng cộng +30%.
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromUser.add(:SPELLFIST,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !SpellFist.converts?(user, move)
+
+    bonus = user.hasActiveAbility?(:IRONFIST) ? 1.3 : 1.2
+    mults[:power_multiplier] *= bonus
+  }
+)
+
+#------------------------------------------------------------------------------
+# Iron Fist: nhường phần tăng sát thương cho Spell Fist nếu cả hai hoạt động.
+# Iron Fist đứng riêng vẫn tăng 20% như bình thường.
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromUser.add(:IRONFIST,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !move.damagingMove? || !move.punchingMove?
+    next if user.hasActiveAbility?(:SPELLFIST)
+
+    mults[:power_multiplier] *= 1.2
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: xác định người sử dụng trước khi đánh giá loại chiêu.
+# Bao gồm AI cấp thấp không gọi pbCalcType khi set_up.
+#------------------------------------------------------------------------------
+class Battle::AI::AIMove
+  alias_method :spell_fist_original_set_up, :set_up
+
+  def set_up(move)
+    move.spell_fist_user = @ai.user.battler
+    spell_fist_original_set_up(move)
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:SPELLFIST)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :SPELLFIST
+
+Battle::AI::Handlers::AbilityRanking.add(:SPELLFIST,
+  proc { |ability, score, battler, ai|
+    has_punch = battler.moves.any? do |move|
+      move.damagingMove? &&
+        move.punchingMove? &&
+        (move.pp > 0 || move.total_pp == 0)
+    end
+
+    next 0 if !has_punch
+    next 8 if battler.battler.spatk >= battler.battler.attack
+    next 3
+  }
+)
+
+#------------------------------------------------------------------------------
+# Bloodlust
+#------------------------------------------------------------------------------
+module Bloodlust
+  def self.heal_amount(totalhp)
+    return [totalhp / 5, 1].max
+  end
+end
+
+Battle::AbilityEffects::OnEndOfUsingMove.add(:BLOODLUST,
+  proc { |ability, user, targets, move, battle|
+    next if !move.damagingMove?
+    next if !user.hasActiveAbility?(:BLOODLUST)
+    next if !user.canHeal?
+
+    # Chỉ tính đối thủ bị chiêu vừa sử dụng hạ gục.
+    num_fainted = targets.count do |target|
+      target.opposes?(user) && target.damageState.fainted
+    end
+    next if num_fainted == 0
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(ability).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(user)
+      user.pbRecoverHP(Bloodlust.heal_amount(user.totalhp) * num_fainted)
+      battle.pbDisplay(_INTL(
+        "{1}'s {2} restored its HP!",
+        user.pbThis, ability_name
+      ))
+    ensure
+      begin
+        battle.pbHideAbilitySplash(user)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:BLOODLUST)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :BLOODLUST
+
+Battle::AI::Handlers::AbilityRanking.add(:BLOODLUST,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.moves.any? { |move| move.damagingMove? }
+    next 8 if battler.battler.canHeal?
+    next 6
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ưu tiên đòn kết liễu khi có thể hồi HP.
+#------------------------------------------------------------------------------
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :bloodlust_knockout_healing,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score if !user.has_active_ability?(:BLOODLUST)
+    next score if !user.battler.canHeal?
+    next score if !target.opposes?(user)
+    next score if !move.damagingMove?
+    next score if target.effects[PBEffects::Substitute] > 0
+    next score if move.rough_damage < target.hp
+    next score if target.effects[PBEffects::DestinyBond]
+
+    amount = Bloodlust.heal_amount(user.totalhp)
+    recovered = [amount, user.totalhp - user.hp].min
+
+    # Điểm thưởng tăng theo lượng HP thực sự có thể hồi.
+    score += (20.0 * recovered / amount).round
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# Battle Genes
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromUser.add(:BATTLEGENES,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !move.damagingMove?
+    next if !user.hasActiveAbility?(:BATTLEGENES)
+    next if !type || !target.pbHasType?(type)
+
+    mults[:final_damage_multiplier] *= 1.3
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+# AI tính sát thương bằng cùng handler phía trên.
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:BATTLEGENES)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :BATTLEGENES
+
+Battle::AI::Handlers::AbilityRanking.add(:BATTLEGENES,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.moves.any? { |move| move.damagingMove? }
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# Flying Nimbus
+#------------------------------------------------------------------------------
+module FlyingNimbus
+  def self.floating?(battler)
+    return false if battler.fainted?
+    return false if !battler.hasActiveAbility?(:FLYINGNIMBUS)
+    return false if battler.battle.moldBreaker
+    return false if battler.hasActiveItem?(:IRONBALL)
+    return false if battler.effects[PBEffects::Ingrain]
+    return false if battler.effects[PBEffects::SmackDown]
+    return false if battler.battle.field.effects[PBEffects::Gravity] > 0
+    return true
+  end
+
+  def self.pokemon_has_ability?(pkmn)
+    return true if pkmn.hasAbility?(:FLYINGNIMBUS)
+    if pkmn.respond_to?(:set_innate_limits)
+      return pkmn.set_innate_limits.include?(:FLYINGNIMBUS)
+    end
+    return false
+  end
+
+  def self.with_popup(battler, battle)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(:FLYINGNIMBUS).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(battler)
+      yield
+    ensure
+      begin
+        battle.pbHideAbilitySplash(battler)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# Lơ lửng như Levitate
+#------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :flying_nimbus_original_airborne, :airborne?
+
+  def airborne?
+    return true if FlyingNimbus.floating?(self)
+    return flying_nimbus_original_airborne
+  end
+end
+
+#------------------------------------------------------------------------------
+# Miễn nhiễm chiêu Ground gây sát thương
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::MoveImmunity.add(:FLYINGNIMBUS,
+  proc { |ability, user, target, move, type, battle, show_message|
+    next false if type != :GROUND || !move.damagingMove?
+    next false if move.hitsFlyingTargets?
+    next false if !FlyingNimbus.floating?(target)
+
+    if show_message
+      FlyingNimbus.with_popup(target, battle) do
+        battle.pbDisplay(_INTL(
+          "{1} avoided the attack with {2}!",
+          target.pbThis,
+          GameData::Ability.get(ability).name
+        ))
+      end
+    end
+
+    next true
+  }
+)
+
+#------------------------------------------------------------------------------
+# Tăng 20% sát thương nếu ra đòn trước mục tiêu
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromUser.add(:FLYINGNIMBUS,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !move.damagingMove?
+    next if !user.hasActiveAbility?(:FLYINGNIMBUS)
+
+    # AI đặt giá trị dự đoán tạm thời khi tính rough_damage.
+    first = move.instance_variable_get(:@flying_nimbus_ai_first)
+    first = !target.movedThisRound? if first.nil?
+    next if !first
+
+    mults[:final_damage_multiplier] *= 1.2
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Dự đoán thứ tự hành động khi tính sát thương
+#------------------------------------------------------------------------------
+class Battle::AI::AIMove
+  alias_method :flying_nimbus_original_rough_damage, :rough_damage
+
+  def rough_damage
+    user   = @ai.user
+    target = @ai.target
+
+    return flying_nimbus_original_rough_damage if !target
+    if !user.has_active_ability?(:FLYINGNIMBUS)
+      return flying_nimbus_original_rough_damage
+    end
+
+    old_first = @move.instance_variable_get(:@flying_nimbus_ai_first)
+
+    begin
+      first = false
+
+      if !target.battler.movedThisRound?
+        user_priority = rough_priority(user)
+
+        # Nếu mục tiêu đã chọn chiêu, lấy priority của chiêu đó.
+        # Khi chưa biết chiêu của mục tiêu, giả định priority = 0.
+        target_priority = 0
+        choice = @ai.battle.choices[target.index]
+
+        if choice && choice[0] == :UseMove && choice[2]
+          target_move = choice[2]
+          target_priority = target_move.pbPriority(target.battler)
+
+          if target.ability_active?
+            target_priority = Battle::AbilityEffects.triggerPriorityChange(
+              target.ability,
+              target.battler,
+              target_move,
+              target_priority
+            )
+          end
+        end
+
+        if choice && [:SwitchOut, :UseItem].include?(choice[0])
+          first = false
+        elsif user_priority != target_priority
+          first = user_priority > target_priority
+        else
+          first = user.faster_than?(target)
+        end
+      end
+
+      @move.instance_variable_set(:@flying_nimbus_ai_first, first)
+      return flying_nimbus_original_rough_damage
+    ensure
+      @move.instance_variable_set(:@flying_nimbus_ai_first, old_first)
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Nhận biết Pokémon ngoài sân đang lơ lửng
+#------------------------------------------------------------------------------
+class Battle::AI
+  alias_method :flying_nimbus_original_pokemon_airborne, :pokemon_airborne?
+
+  def pokemon_airborne?(pkmn)
+    return true if flying_nimbus_original_pokemon_airborne(pkmn)
+    return false if pkmn.hasItem?(:IRONBALL)
+    return false if @battle.field.effects[PBEffects::Gravity] > 0
+    return false if !FlyingNimbus.pokemon_has_ability?(pkmn)
+
+    if @battle.pbCheckGlobalAbility(:NEUTRALIZINGGAS) &&
+       !pkmn.hasItem?(:ABILITYSHIELD)
+      return false
+    end
+
+    return true
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:FLYINGNIMBUS)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :FLYINGNIMBUS
+
+#------------------------------------------------------------------------------
+# Worldroot
+#------------------------------------------------------------------------------
+module Worldroot
+  def self.affects?(target)
+    return false if !target || target.fainted?
+
+    return target.battle.allBattlers.any? do |owner|
+      owner.opposes?(target) &&
+        owner.hasActiveAbility?(:WORLDROOT)
+    end
+  end
+
+  # Tạm bỏ trạng thái airborne trong bước kiểm tra chiêu Ground.
+  # Không làm Pokémon bị grounded trong những cơ chế khác.
+  def self.with_ground_check(target)
+    old_value = target.instance_variable_get(:@worldroot_ground_check)
+
+    begin
+      target.instance_variable_set(:@worldroot_ground_check, true)
+      return yield
+    ensure
+      target.instance_variable_set(:@worldroot_ground_check, old_value)
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# Bỏ miễn nhiễm Ground do trạng thái airborne trong bước kiểm tra chiêu.
+# Prepend để áp dụng trước cả Branch Swing/Flying Nimbus.
+#------------------------------------------------------------------------------
+module WorldrootBattlerAirborne
+  def airborne?
+    if @worldroot_ground_check && Worldroot.affects?(self)
+      return false
+    end
+    return super
+  end
+end
+
+Battle::Battler.prepend(WorldrootBattlerAirborne)
+
+#------------------------------------------------------------------------------
+# Trận đấu: kiểm tra mục tiêu của chiêu Ground
+#------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :worldroot_original_success_check, :pbSuccessCheckAgainstTarget
+
+  def pbSuccessCheckAgainstTarget(move, user, target, targets)
+    if move.calcType == :GROUND && Worldroot.affects?(target)
+      return Worldroot.with_ground_check(target) do
+        worldroot_original_success_check(move, user, target, targets)
+      end
+    end
+
+    return worldroot_original_success_check(move, user, target, targets)
+  end
+end
+
+#------------------------------------------------------------------------------
+# Hệ Flying không còn miễn nhiễm Ground.
+# Vẫn tính kháng/yếu từ các hệ còn lại của mục tiêu.
+#------------------------------------------------------------------------------
+class Battle::Move
+  alias_method :worldroot_original_type_mod_single, :pbCalcTypeModSingle
+
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    if moveType == :GROUND && defType == :FLYING &&
+       Worldroot.affects?(target)
+      return Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
+    end
+
+    return worldroot_original_type_mod_single(moveType, defType, user, target)
+  end
+
+  #----------------------------------------------------------------------------
+  # Bỏ miễn nhiễm Ground từ ability, ngoại trừ Earth Eater.
+  # Các hệ chiêu khác giữ nguyên cơ chế hiện tại.
+  #----------------------------------------------------------------------------
+  alias_method :worldroot_original_immunity_by_ability, :pbImmunityByAbility
+
+  def pbImmunityByAbility(user, target, show_message)
+    if @calcType == :GROUND && Worldroot.affects?(target)
+      # Giữ nguyên quy tắc Mold Breaker của game.
+      return false if @battle.moldBreaker
+      return false if !target.hasActiveAbility?(:EARTHEATER)
+
+      # Gọi riêng Earth Eater, không gọi lại các innate miễn nhiễm khác.
+      return Battle::AbilityEffects::MoveImmunity.trigger(
+        :EARTHEATER, user, target, self, @calcType,
+        @battle, show_message
+      )
+    end
+
+    return worldroot_original_immunity_by_ability(user, target, show_message)
+  end
+end
+
+#------------------------------------------------------------------------------
+# Pop-up khi người sở hữu vào sân
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::OnSwitchIn.add(:WORLDROOT,
+  proc { |ability, battler, battle, switch_in|
+    next if !battler.hasActiveAbility?(:WORLDROOT)
+    next if !battle.allBattlers.any? { |b| b.opposes?(battler) }
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(ability).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL(
+        "{1}'s roots stripped opposing Pokémon of their Ground immunity!",
+        battler.pbThis
+      ))
+    ensure
+      begin
+        battle.pbHideAbilitySplash(battler)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: nhận biết chiêu Ground có thể đánh trúng mục tiêu
+#------------------------------------------------------------------------------
+class Battle::AI
+  alias_method :worldroot_original_predict_failure, :pbPredictMoveFailureAgainstTarget
+
+  def pbPredictMoveFailureAgainstTarget
+    if @target && @move.rough_type == :GROUND &&
+       Worldroot.affects?(@target.battler)
+      return Worldroot.with_ground_check(@target.battler) do
+        worldroot_original_predict_failure
+      end
+    end
+
+    return worldroot_original_predict_failure
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: tính hiệu quả Ground đối với hệ Flying
+#------------------------------------------------------------------------------
+class Battle::AI::AIBattler
+  alias_method :worldroot_original_single_type_effectiveness,
+               :effectiveness_of_type_against_single_battler_type
+
+  def effectiveness_of_type_against_single_battler_type(
+    type, defend_type, user = nil
+  )
+    if type == :GROUND && defend_type == :FLYING &&
+       Worldroot.affects?(battler)
+      return Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
+    end
+
+    return worldroot_original_single_type_effectiveness(
+      type, defend_type, user
+    )
+  end
+
+  private :effectiveness_of_type_against_single_battler_type
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:WORLDROOT)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :WORLDROOT
+
+Battle::AI::Handlers::AbilityRanking.add(:WORLDROOT,
+  proc { |ability, score, battler, ai|
+    next 8 if battler.has_damaging_move_of_type?(:GROUND)
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# Run Away - Complete effects
+#------------------------------------------------------------------------------
+
+module RunAwayEnhanced
+  def self.trigger_count(battler)
+    return battler.instance_variable_get(:@run_away_trigger_count) || 0
+  end
+
+  def self.raise_speed(battler)
+    return if !battler.hasActiveAbility?(:RUNAWAY)
+
+    # Ghi nhận cả khi Speed không thể tăng thêm để tránh kích hoạt lặp.
+    battler.instance_variable_set(
+      :@run_away_trigger_count, trigger_count(battler) + 1
+    )
+
+    return if !battler.pbCanRaiseStatStage?(:SPEED, battler)
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(:RUNAWAY).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battler.pbRaiseStatStageByAbility(:SPEED, 2, battler)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# Chắc chắn thoát trận hoang dã khi bị giữ chân.
+# Không phụ thuộc MAG_RUNAWAY hoặc CHAMPIONS_MECHANICS.
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::CertainEscapeFromBattle.add(:RUNAWAY,
+  proc { |ability, battler|
+    next true
+  }
+)
+
+#------------------------------------------------------------------------------
+# Cho phép đổi Pokémon khi bị giữ chân.
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::CertainSwitching.add(:RUNAWAY,
+  proc { |ability, battler, battle|
+    next true
+  }
+)
+
+#------------------------------------------------------------------------------
+# Sửa bước kiểm tra giữ chân bổ sung của Innate Abilities.
+# Giữ nguyên kiểm tra Pokémon thay thế và các giới hạn khác của trận đấu.
+#------------------------------------------------------------------------------
+class << Battle::AbilityEffects
+  alias_method :run_away_original_trapping_by_target,
+               :triggerTrappingByTarget
+
+  def triggerTrappingByTarget(ability, switcher, bearer, battle)
+    return false if switcher.hasActiveAbility?(:RUNAWAY)
+
+    return run_away_original_trapping_by_target(
+      ability, switcher, bearer, battle
+    )
+  end
+end
+
+#------------------------------------------------------------------------------
+# Speed +2 khi bị Intimidate.
+# Thay handler cũ, không cộng thêm một lần tăng thứ hai.
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::OnIntimidated.add(:RUNAWAY,
+  proc { |ability, battler, battle|
+    RunAwayEnhanced.raise_speed(battler)
+  }
+)
+
+#------------------------------------------------------------------------------
+# Bổ sung phản ứng với Terror Sower.
+# Giữ nguyên handler Terror Sower hiện có, gồm phần kiểm tra Overwhelm.
+# Không tăng Speed lần nữa nếu handler cũ đã kích hoạt Run Away.
+#------------------------------------------------------------------------------
+run_away_terror_sower_handler =
+  Battle::AbilityEffects::OnSwitchIn[:TERRORSOWER]
+
+if run_away_terror_sower_handler
+  Battle::AbilityEffects::OnSwitchIn.add(:TERRORSOWER,
+    proc { |ability, battler, battle, switch_in|
+      snapshots = []
+
+      battle.allOtherSideBattlers(battler.index).each do |target|
+        next if target.fainted?
+
+        snapshots << [
+          target,
+          target.stages[:SPECIAL_ATTACK],
+          RunAwayEnhanced.trigger_count(target)
+        ]
+      end
+
+      run_away_terror_sower_handler.call(
+        ability, battler, battle, switch_in
+      )
+
+      snapshots.each do |target, old_spatk_stage, old_count|
+        next if target.fainted?
+        next if !target.hasActiveAbility?(:RUNAWAY)
+        next if target.stages[:SPECIAL_ATTACK] == old_spatk_stage
+        next if RunAwayEnhanced.trigger_count(target) != old_count
+
+        RunAwayEnhanced.raise_speed(target)
+      end
+    }
+  )
+end
+
+#------------------------------------------------------------------------------
+# AI: Run Away có giá trị chiến đấu cả với Pokémon hoang dã.
+# Thay đánh giá cũ vốn cho Run Away điểm 0 khi Pokémon là wild.
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:RUNAWAY)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :RUNAWAY
+
+Battle::AI::Handlers::AbilityRanking.add(:RUNAWAY,
+  proc { |ability, score, battler, ai|
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# Cheek Pouch - Generates a random Berry when empty-handed
+#------------------------------------------------------------------------------
+module CheekPouchEnhanced
+  BERRIES = [
+    :LUMBERRY,
+    :ORANBERRY,
+    :SITRUSBERRY,
+    :FIGYBERRY,
+    :WIKIBERRY,
+    :MAGOBERRY,
+    :AGUAVBERRY,
+    :IAPAPABERRY,
+    :ENIGMABERRY,
+    :MICLEBERRY,
+    :LIECHIBERRY,
+    :GANLONBERRY,
+    :SALACBERRY,
+    :PETAYABERRY,
+    :APICOTBERRY,
+    :LANSATBERRY,
+    :STARFBERRY,
+    :CUSTAPBERRY,
+    :JABOCABERRY,
+    :ROWAPBERRY,
+    :KEEBERRY,
+    :MARANGABERRY
+  ].freeze
+end
+
+Battle::AbilityEffects::EndOfRoundGainItem.add(:CHEEKPOUCH,
+  proc { |ability, battler, battle|
+    next if battler.fainted?
+    next if !battler.hasActiveAbility?(:CHEEKPOUCH)
+    next if battler.item
+
+    # Chỉ tạo tối đa một Berry mỗi lượt, kể cả khi ăn ngay.
+    last_turn = battler.instance_variable_get(:@cheek_pouch_berry_turn)
+    next if last_turn == battle.turnCount
+
+    berry = CheekPouchEnhanced::BERRIES[
+      battle.pbRandom(CheekPouchEnhanced::BERRIES.length)
+    ]
+
+    battler.instance_variable_set(
+      :@cheek_pouch_berry_turn, battle.turnCount
+    )
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(ability).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(battler)
+      battler.item = berry
+
+      battle.pbDisplay(_INTL(
+        "{1} obtained a {2}!",
+        battler.pbThis,
+        GameData::Item.get(berry).name
+      ))
+    ensure
+      begin
+        battle.pbHideAbilitySplash(battler)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+
+    # Berry vừa nhận có thể được ăn ngay nếu đủ điều kiện.
+    # Hiệu ứng Cheek Pouch gốc sẽ tự hồi thêm HP khi ăn Berry.
+    # Berry vừa nhận có thể được ăn ngay nếu đủ điều kiện.
+    battler.pbHeldItemTriggerCheck
+
+    # Nếu ăn xong vẫn không có item, bổ sung ngay một Berry khác.
+    if !battler.fainted? &&
+       battler.hasActiveAbility?(:CHEEKPOUCH) &&
+       !battler.item
+
+      replacement = CheekPouchEnhanced::BERRIES[
+        battle.pbRandom(CheekPouchEnhanced::BERRIES.length)
+      ]
+
+      battler.item = replacement
+
+      battle.pbDisplay(_INTL(
+        "{1} obtained another {2}!",
+        battler.pbThis,
+        GameData::Item.get(replacement).name
+      ))
+
+      # Giữ Berry bổ sung trong ô item.
+      # Không kiểm tra ăn ngay lần nữa để tránh vòng lặp tạo–ăn vô hạn.
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Nâng giá trị của Cheek Pouch
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:CHEEKPOUCH)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :CHEEKPOUCH
+
+Battle::AI::Handlers::AbilityRanking.add(:CHEEKPOUCH,
+  proc { |ability, score, battler, ai|
+    next 9 if !battler.battler.item
+    next 8 if battler.battler.item.is_berry?
+    next 4
+  }
+)
+
+#------------------------------------------------------------------------------
+# Gnawing
+#------------------------------------------------------------------------------
+module Gnawing
+  # Các chiêu này có hai lần kiểm tra hiệu ứng phụ riêng,
+  # dù EffectChance bên ngoài có thể là 100.
+  FANG_FUNCTIONS = [
+    "BurnFlinchTarget",
+    "FreezeFlinchTarget",
+    "ParalyzeFlinchTarget"
+  ].freeze
+
+  def self.boostable?(move)
+    return false if !move.damagingMove? || !move.bitingMove?
+    return true if FANG_FUNCTIONS.include?(move.function_code)
+    return move.addlEffect > 0 && move.addlEffect < 100
+  end
+end
+
+#------------------------------------------------------------------------------
+# Nhân đôi xác suất sau các điều chỉnh hiện có.
+# Giữ nguyên Shield Dust, Covert Cloak và các hiệu ứng chặn khác.
+#------------------------------------------------------------------------------
+class Battle::Move
+  alias_method :gnawing_original_additional_effect_chance,
+               :pbAdditionalEffectChance
+
+  def pbAdditionalEffectChance(user, target, effectChance = 0)
+    chance = gnawing_original_additional_effect_chance(
+      user, target, effectChance
+    )
+
+    return chance if !damagingMove? || !bitingMove?
+    return chance if !user.hasActiveAbility?(:GNAWING)
+    return chance if chance <= 0 || chance >= 100
+
+    return [chance * 2, 100].min
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Đánh giá cao hiệu ứng phụ được tăng xác suất.
+#------------------------------------------------------------------------------
+class Battle::AI::AIMove
+  alias_method :gnawing_original_additional_effect_score,
+               :get_score_change_for_additional_effect
+
+  def get_score_change_for_additional_effect(user, target = nil)
+    score = gnawing_original_additional_effect_score(user, target)
+
+    return score if score < 0
+    return score if !user.has_active_ability?(:GNAWING)
+    return score if !Gnawing.boostable?(@move)
+
+    if target && user.index != target.index &&
+       target.has_active_item?(:COVERTCLOAK)
+      return score
+    end
+
+    return score + 5
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:GNAWING)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :GNAWING
+
+Battle::AI::Handlers::AbilityRanking.add(:GNAWING,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.moves.any? { |move| Gnawing.boostable?(move) }
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# Debilitate
+#------------------------------------------------------------------------------
+module Debilitate
+  STATS = [:ATTACK, :SPECIAL_ATTACK, :SPEED].freeze
+
+  def self.apply(user, target, battle)
+    return if user.fainted? || target.fainted?
+    return if !user.hasActiveAbility?(:DEBILITATE)
+
+    # Không kích hoạt lặp trên cùng mục tiêu trong một lần dùng chiêu.
+    affected = user.instance_variable_get(:@debilitate_affected)
+    affected ||= {}
+    user.instance_variable_set(:@debilitate_affected, affected)
+
+    key = target.object_id
+    return if affected[key]
+    affected[key] = true
+
+    return if !STATS.any? do |stat|
+      target.pbCanLowerStatStage?(stat, user)
+    end
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(:DEBILITATE).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(user)
+
+      STATS.each do |stat|
+        target.pbLowerStatStageByAbility(stat, 1, user, false)
+      end
+    ensure
+      begin
+        battle.pbHideAbilitySplash(user)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+  end
+end
+
+class Battle::Battler
+  #----------------------------------------------------------------------------
+  # Mỗi lần dùng chiêu có một danh sách mục tiêu đã kích hoạt riêng.
+  #----------------------------------------------------------------------------
+  alias_method :debilitate_original_use_move, :pbUseMove
+
+  def pbUseMove(choice, specialUsage = false)
+    old_affected = @debilitate_affected
+
+    begin
+      @debilitate_affected = {}
+      return debilitate_original_use_move(choice, specialUsage)
+    ensure
+      @debilitate_affected = old_affected
+    end
+  end
+
+  #----------------------------------------------------------------------------
+  # Xử lý sau mỗi hit, khi hiệu ứng phụ của hit đã được áp dụng.
+  #----------------------------------------------------------------------------
+  alias_method :debilitate_original_process_hit, :pbProcessMoveHit
+
+  def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck)
+    old_context = @battle.instance_variable_get(:@debilitate_hit_context)
+
+    context = {
+      :user       => user,
+      :targets    => targets,
+      :inflicted  => {}
+    }
+
+    previous_status = {}
+    targets.each do |target|
+      previous_status[target.object_id] = target.status != :NONE
+    end
+
+    begin
+      @battle.instance_variable_set(:@debilitate_hit_context, context)
+
+      result = debilitate_original_process_hit(
+        move, user, targets, hitNum, skipAccuracyCheck
+      )
+
+      if result && move.damagingMove? &&
+		 move.pbContactMove?(user) &&
+         user.hasActiveAbility?(:DEBILITATE)
+
+        targets.each do |target|
+          next if target.index == user.index
+          next if target.fainted?
+          next if target.damageState.unaffected
+          next if target.damageState.substitute
+          next if target.damageState.disguise || target.damageState.iceFace
+          next if target.damageState.calcDamage <= 0
+
+          key = target.object_id
+          eligible = previous_status[key] ||
+                     context[:inflicted][key] ||
+                     target.status != :NONE
+
+          next if !eligible
+          Debilitate.apply(user, target, @battle)
+        end
+      end
+
+      return result
+    ensure
+      @battle.instance_variable_set(
+        :@debilitate_hit_context, old_context
+      )
+    end
+  end
+
+  #----------------------------------------------------------------------------
+  # Ghi nhận trạng thái vừa gây ra.
+  # Vẫn ghi nhận nếu Lum Berry chữa trạng thái ngay sau đó.
+  #----------------------------------------------------------------------------
+  alias_method :debilitate_original_inflict_status, :pbInflictStatus
+
+  def pbInflictStatus(newStatus, newStatusCount = 0, msg = nil, user = nil)
+    context = @battle.instance_variable_get(:@debilitate_hit_context)
+
+    if context && newStatus != :NONE &&
+       context[:targets].include?(self) &&
+       self.index != context[:user].index &&
+       (!user || user == context[:user])
+
+      context[:inflicted][object_id] = true
+    end
+
+    return debilitate_original_inflict_status(
+      newStatus, newStatusCount, msg, user
+    )
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:DEBILITATE)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :DEBILITATE
+
+Battle::AI::Handlers::AbilityRanking.add(:DEBILITATE,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.moves.any? { |move| move.damagingMove? }
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ưu tiên đánh mục tiêu đã có trạng thái.
+# Không giả định đòn đánh chắc chắn gây thêm trạng thái.
+#------------------------------------------------------------------------------
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :debilitate_statused_target,
+  proc { |score, move, user, target, ai, battle|
+    next score if !user.has_active_ability?(:DEBILITATE)
+    next score if !move.damagingMove?
+	next score if !move.move.pbContactMove?(user.battler)
+    next score if !target.opposes?(user)
+    next score if target.status == :NONE
+    next score if target.effects[PBEffects::Substitute] > 0
+    next score if move.rough_damage >= target.hp
+
+    # Tránh giúp mục tiêu tăng chỉ số hoặc phản lại hiệu ứng.
+    if target.has_active_ability?([:CONTRARY, :MIRRORARMOR])
+      next score - 15
+    end
+
+    usable_stats = Debilitate::STATS.count do |stat|
+      target.battler.pbCanLowerStatStage?(stat, user.battler)
+    end
+
+    next score if usable_stats == 0
+    score += usable_stats * 5
+
+    if target.has_active_ability?([:DEFIANT, :COMPETITIVE])
+      score -= 15
+    end
+
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# Berry Bulk
+#------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :berry_bulk_original_held_item_triggered,
+               :pbHeldItemTriggered
+
+  def pbHeldItemTriggered(item_to_use, own_item = true, fling = false)
+    is_berry = GameData::Item.get(item_to_use).is_berry?
+
+    # Xử lý hiệu ứng gốc, Cheek Pouch và tiêu thụ vật phẩm.
+    result = berry_bulk_original_held_item_triggered(
+      item_to_use, own_item, fling
+    )
+
+    return result if !is_berry || fainted?
+    return result if !hasActiveAbility?(:BERRYBULK)
+
+    stats = [:DEFENSE, :SPECIAL_DEFENSE]
+    return result if !stats.any? do |stat|
+      pbCanRaiseStatStage?(stat, self)
+    end
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(:BERRYBULK).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      @battle.pbShowAbilitySplash(self)
+
+      stats.each do |stat|
+        pbRaiseStatStageByAbility(stat, 1, self, false)
+      end
+    ensure
+      begin
+        @battle.pbHideAbilitySplash(self)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+
+    return result
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:BERRYBULK)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :BERRYBULK
+
+Battle::AI::Handlers::AbilityRanking.add(:BERRYBULK,
+  proc { |ability, score, battler, ai|
+    b = battler.battler
+
+    next 8 if b.hasActiveAbility?(:CHEEKPOUCH)
+    next 7 if b.item && b.item.is_berry?
+    next 6 if b.hasActiveAbility?([:HARVEST, :CUDCHEW])
+    next 2
+  }
+)
+
+#------------------------------------------------------------------------------
+# Infiltrator Enhanced
+#------------------------------------------------------------------------------
+module InfiltratorEnhanced
+  PERSONAL_PROTECTION = [
+    :Protect,
+    :KingsShield,
+    :SpikyShield,
+    :BanefulBunker,
+    :Obstruct,
+    :SilkTrap,
+    :BurningBulwark
+  ].freeze
+
+  SIDE_PROTECTION = [
+    :CraftyShield,
+    :MatBlock,
+    :QuickGuard,
+    :WideGuard
+  ].freeze
+
+  # Tạm bỏ các lớp bảo vệ trong quá trình xử lý chiêu của Infiltrator.
+  # Khôi phục sau đó để không ảnh hưởng đòn đánh của Pokémon khác.
+  def self.with_bypass(user, targets)
+    return yield if !user || !user.hasActiveAbility?(:INFILTRATOR)
+
+    snapshots = []
+    recorded = {}
+
+    save_effect = proc do |effects, key, temporary_value|
+      identity = [effects.object_id, key]
+      next if recorded[identity]
+
+      recorded[identity] = true
+      snapshots << [effects, key, effects[key]]
+      effects[key] = temporary_value
+    end
+
+    begin
+      targets.compact.uniq.each do |target|
+        next if target.index == user.index
+
+        PERSONAL_PROTECTION.each do |name|
+          next if !PBEffects.const_defined?(name)
+          save_effect.call(
+            target.effects, PBEffects.const_get(name), false
+          )
+        end
+
+        SIDE_PROTECTION.each do |name|
+          next if !PBEffects.const_defined?(name)
+          save_effect.call(
+            target.pbOwnSide.effects, PBEffects.const_get(name), false
+          )
+        end
+
+        # Bao gồm cả những hiệu ứng phụ kiểm tra Substitute trực tiếp.
+        save_effect.call(target.effects, PBEffects::Substitute, 0)
+      end
+
+      return yield
+    ensure
+      snapshots.reverse_each do |effects, key, original_value|
+        effects[key] = original_value
+      end
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# Khai báo khả năng xuyên Substitute cho các kiểm tra thông thường.
+#------------------------------------------------------------------------------
+class Battle::Move
+  alias_method :infiltrator_enhanced_original_ignores_substitute,
+               :ignoresSubstitute?
+
+  def ignoresSubstitute?(user)
+    return true if user && user.hasActiveAbility?(:INFILTRATOR)
+    return infiltrator_enhanced_original_ignores_substitute(user)
+  end
+end
+
+#------------------------------------------------------------------------------
+# Trận đấu: xuyên Protect và Substitute ở bước kiểm tra mục tiêu.
+#------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :infiltrator_enhanced_original_success_check,
+               :pbSuccessCheckAgainstTarget
+
+  def pbSuccessCheckAgainstTarget(move, user, target, targets)
+    return InfiltratorEnhanced.with_bypass(user, [target]) do
+      infiltrator_enhanced_original_success_check(
+        move, user, target, targets
+      )
+    end
+  end
+
+  #----------------------------------------------------------------------------
+  # Xử lý toàn bộ hit, bao gồm sát thương và hiệu ứng phụ.
+  # Substitute được giữ nguyên lượng HP sau khi xử lý.
+  #----------------------------------------------------------------------------
+  alias_method :infiltrator_enhanced_original_process_hit,
+               :pbProcessMoveHit
+
+  def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck)
+    return InfiltratorEnhanced.with_bypass(user, targets) do
+      infiltrator_enhanced_original_process_hit(
+        move, user, targets, hitNum, skipAccuracyCheck
+      )
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Kiểm tra khả năng đánh trúng và chấm điểm theo cùng cơ chế.
+#------------------------------------------------------------------------------
+class Battle::AI
+  alias_method :infiltrator_enhanced_original_predict_failure,
+               :pbPredictMoveFailureAgainstTarget
+
+  def pbPredictMoveFailureAgainstTarget
+    return infiltrator_enhanced_original_predict_failure if !@target
+
+    return InfiltratorEnhanced.with_bypass(
+      @user.battler, [@target.battler]
+    ) do
+      infiltrator_enhanced_original_predict_failure
+    end
+  end
+
+  alias_method :infiltrator_enhanced_original_target_score,
+               :pbGetMoveScoreAgainstTarget
+
+  def pbGetMoveScoreAgainstTarget
+    return infiltrator_enhanced_original_target_score if !@target
+
+    return InfiltratorEnhanced.with_bypass(
+      @user.battler, [@target.battler]
+    ) do
+      infiltrator_enhanced_original_target_score
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:INFILTRATOR)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :INFILTRATOR
+
+
+#------------------------------------------------------------------------------
+# Leaf Guard Enhanced
+#------------------------------------------------------------------------------
+module LeafGuardEnhanced
+  def self.conditions_met?(battler)
+    return [:Sun, :HarshSun].include?(battler.effectiveWeather) ||
+           battler.battle.field.terrain == :Grassy
+  end
+
+  def self.active?(battler)
+    return !battler.fainted? &&
+           battler.hasActiveAbility?(:LEAFGUARD) &&
+           conditions_met?(battler)
+  end
+end
+
+#------------------------------------------------------------------------------
+# Miễn nhiễm trạng thái khi có nắng hoặc Grassy Terrain
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::StatusImmunity.add(:LEAFGUARD,
+  proc { |ability, battler, status|
+    next LeafGuardEnhanced.active?(battler)
+  }
+)
+
+#------------------------------------------------------------------------------
+# Giảm 20% sát thương từ chiêu thức
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromTarget.add(:LEAFGUARD,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !LeafGuardEnhanced.active?(target)
+    mults[:final_damage_multiplier] *= 0.8
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:LEAFGUARD)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :LEAFGUARD
+
+Battle::AI::Handlers::AbilityRanking.add(:LEAFGUARD,
+  proc { |ability, score, battler, ai|
+    next 8 if LeafGuardEnhanced.conditions_met?(battler.battler)
+
+    if battler.has_move_with_function?(
+      "StartSunWeather", "StartGrassyTerrain"
+    )
+      next 6
+    end
+
+    next 3
+  }
+)
+
+#------------------------------------------------------------------------------
+# Shell Armor - Preserve existing effects, add special damage reduction
+#------------------------------------------------------------------------------
+shell_armor_previous_handler =
+  Battle::AbilityEffects::DamageCalcFromTarget[:SHELLARMOR]
+
+Battle::AbilityEffects::DamageCalcFromTarget.add(:SHELLARMOR,
+  proc { |ability, user, target, move, mults, power, type|
+    if shell_armor_previous_handler
+      shell_armor_previous_handler.call(
+        ability, user, target, move, mults, power, type
+      )
+    end
+
+    if move.specialMove?
+      mults[:final_damage_multiplier] *= 0.85
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# Battle Armor - Preserve existing effects, add physical damage reduction
+#------------------------------------------------------------------------------
+battle_armor_previous_handler =
+  Battle::AbilityEffects::DamageCalcFromTarget[:BATTLEARMOR]
+
+Battle::AbilityEffects::DamageCalcFromTarget.add(:BATTLEARMOR,
+  proc { |ability, user, target, move, mults, power, type|
+    if battle_armor_previous_handler
+      battle_armor_previous_handler.call(
+        ability, user, target, move, mults, power, type
+      )
+    end
+
+    if move.physicalMove?
+      mults[:final_damage_multiplier] *= 0.85
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# Florescence
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::PriorityChange.add(:FLORESCENCE,
+  proc { |ability, battler, move, priority|
+    next priority if battler.hp * 2 <= battler.totalhp
+    next priority if move.type != :GRASS
+
+    next priority + 1
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+# AI dùng chung PriorityChange để tính thứ tự hành động.
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:FLORESCENCE)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :FLORESCENCE
+
+Battle::AI::Handlers::AbilityRanking.add(:FLORESCENCE,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.check_for_move { |move| move.type == :GRASS }
+    next 8 if battler.hp * 2 > battler.totalhp
+    next 4
+  }
+)
+
+#------------------------------------------------------------------------------
+# Spore Veil - Once per move, not once per hit
+#------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :spore_veil_original_use_move, :pbUseMove
+
+  def pbUseMove(choice, specialUsage = false)
+    old_targets = @spore_veil_targets_hit
+
+    begin
+      @spore_veil_targets_hit = {}
+      return spore_veil_original_use_move(choice, specialUsage)
+    ensure
+      @spore_veil_targets_hit = old_targets
+    end
+  end
+end
+
+Battle::AbilityEffects::OnBeingHit.add(:SPOREVEIL,
+  proc { |ability, user, target, move, battle|
+    next if target.fainted?
+    next if !target.hasActiveAbility?(:SPOREVEIL)
+    next if !move.damagingMove?
+    next if target.damageState.substitute
+    next if target.damageState.calcDamage <= 0
+
+    # Danh sách được làm mới mỗi lần người tấn công dùng chiêu.
+    affected = user.instance_variable_get(:@spore_veil_targets_hit)
+    affected ||= {}
+    user.instance_variable_set(:@spore_veil_targets_hit, affected)
+
+    key = [target.index, target.pokemon.object_id]
+    next if affected[key]
+    affected[key] = true
+
+    next if !target.pbCanRaiseStatStage?(:EVASION, target)
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(ability).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      target.pbRaiseStatStageByAbility(:EVASION, 1, target)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# Wind Rider Enhanced
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::MoveImmunity.add(:WINDRIDER,
+  proc { |ability, user, target, move, type, battle, show_message|
+    next false if user.index == target.index
+    next false if !target.hasActiveAbility?(:WINDRIDER)
+    next false if type != :FLYING && !move.windMove?
+
+    # Khi AI chỉ kiểm tra miễn nhiễm, không thay đổi chỉ số.
+    if show_message
+      old_name  = $aamName
+      old_name2 = $aamName2
+
+      begin
+        ability_name = GameData::Ability.get(ability).name
+        $aamName  = ability_name
+        $aamName2 = ability_name
+
+        battle.pbShowAbilitySplash(target)
+
+        stats = [:ATTACK]
+        stats << :SPEED if move.windMove?
+
+        raised = false
+
+        stats.each do |stat|
+          next if !target.pbCanRaiseStatStage?(stat, target)
+
+          changed = target.pbRaiseStatStageByAbility(
+            stat, 1, target, false
+          )
+          raised = true if changed
+        end
+
+        if !raised
+          battle.pbDisplay(_INTL(
+            "{1}'s {2} made {3} ineffective!",
+            target.pbThis, ability_name, move.name
+          ))
+        end
+      ensure
+        begin
+          battle.pbHideAbilitySplash(target)
+        ensure
+          $aamName  = old_name
+          $aamName2 = old_name2
+        end
+      end
+    end
+
+    next true
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Nhận biết miễn nhiễm Flying/Wind khi đánh giá Pokémon đổi vào.
+# Bao gồm Wind Rider là innate.
+#------------------------------------------------------------------------------
+class Battle::AI
+  alias_method :wind_rider_enhanced_original_absorb_move,
+               :pokemon_can_absorb_move?
+
+  def pokemon_can_absorb_move?(pkmn, move, move_type)
+    wind_rider = false
+
+    if pkmn.is_a?(Battle::AI::AIBattler)
+      wind_rider = pkmn.has_active_ability?(:WINDRIDER)
+    else
+      wind_rider = pkmn.hasAbility?(:WINDRIDER)
+
+      if !wind_rider && pkmn.respond_to?(:set_innate_limits)
+        wind_rider = pkmn.set_innate_limits.include?(:WINDRIDER)
+      end
+    end
+
+    if wind_rider
+      move_data = GameData::Move.get(move.id)
+      return true if move_type == :FLYING || move_data.has_flag?("Wind")
+    end
+
+    return wind_rider_enhanced_original_absorb_move(
+      pkmn, move, move_type
+    )
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:WINDRIDER)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :WINDRIDER
+
+#------------------------------------------------------------------------------
+# Seed Stimulus
+#------------------------------------------------------------------------------
+
+# Xóa hiệu ứng cũ kích hoạt theo từng hit.
+Battle::AbilityEffects::OnDealingHit.remove(:SEEDSTIMULUS)
+
+Battle::AbilityEffects::OnEndOfUsingMove.add(:SEEDSTIMULUS,
+  proc { |ability, user, targets, move, battle|
+    next if user.fainted?
+    next if !user.hasActiveAbility?(:SEEDSTIMULUS)
+    next if user.status != :NONE
+    next if move.calcType != :GRASS
+
+    # Không kích hoạt ở lượt tích lực của Solar Beam/Solar Blade.
+    next if user.effects[PBEffects::TwoTurnAttack]
+
+    stats = [:ATTACK, :SPECIAL_ATTACK]
+    next if !stats.any? do |stat|
+      user.pbCanRaiseStatStage?(stat, user)
+    end
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(ability).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(user)
+
+      stats.each do |stat|
+        user.pbRaiseStatStageByAbility(stat, 1, user, false)
+      end
+    ensure
+      begin
+        battle.pbHideAbilitySplash(user)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:SEEDSTIMULUS)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :SEEDSTIMULUS
+
+Battle::AI::Handlers::AbilityRanking.add(:SEEDSTIMULUS,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.check_for_move { |move| move.type == :GRASS }
+    next 8 if battler.status == :NONE
+    next 3
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ưu tiên chiêu Grass khi có thể nhận tăng chỉ số.
+#------------------------------------------------------------------------------
+Battle::AI::Handlers::GeneralMoveScore.add(:seed_stimulus_boost,
+  proc { |score, move, user, ai, battle|
+    next score if !user.has_active_ability?(:SEEDSTIMULUS)
+    next score if user.status != :NONE
+    next score if move.rough_type != :GRASS
+
+    if user.has_active_ability?(:CONTRARY)
+      next score - 15
+    end
+
+    [:ATTACK, :SPECIAL_ATTACK].each do |stat|
+      if user.battler.pbCanRaiseStatStage?(stat, user.battler)
+        score += 8
+      end
+    end
+
+    next score
   }
 )

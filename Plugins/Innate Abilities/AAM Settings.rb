@@ -48,7 +48,7 @@ module Settings
   # Having both of them true simply results in all innates being active from the start as if both settings were false... but it messes up the summary Screen.
   # This affects each pokemon individually.
   #-----------------------------------------------------------------------------
-  INNATE_PROGRESS_WITH_LEVEL = false
+  INNATE_PROGRESS_WITH_LEVEL = true
   
   #-----------------------------------------------------------------------------
   # If you are using the Innate Progress with level Variable, define here at which levels you want to unlock each Innate
@@ -63,13 +63,19 @@ module Settings
   # to be unloked at level 45, 70 and 90. You can use as many of these special cases as you want. You can use this to make let pokemon unlock their innates
   # sooner or later than the rest.
   # LEVELS_TO_UNLOCK =  [
-  # [:MEWTWO, 45, 70, 90],
-  # [:ARCEUS, 80, 90, 100],
-  # [:BUTTERFREE, 10, 14, 30], #<- Always remember to end with a "," in arrays prior to the "nameless" one.
+  # [:TORTERRA, 1, 1, 55],
+  # [:INFERNAPE, 1, 1, 50],
+  # [:EMPOLEON, 1, 1, 60], #<- Always remember to end with a "," in arrays prior to the "nameless" one.
   # [1, 15, 45]
   # ]
   #-----------------------------------------------------------------------------
-  LEVELS_TO_UNLOCK = [[1, 15, 45]]
+  LEVELS_TO_UNLOCK =  [
+  [:TORTERRA, 1, 1, 55],
+  [:INFERNAPE, 1, 1, 50],
+  [:EMPOLEON, 1, 1, 60],
+  [:STARAPTOR, 1, 1, 65],
+  [1, 1, 1]
+  ]
 
   #-----------------------------------------------------------------------------
   #With the following 2-4 settings you can give pokemon a bigger pool a set of "random" innates.

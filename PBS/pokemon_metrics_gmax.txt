@@ -1,4 +1,4 @@
-﻿# See the documentation on the wiki to learn how to edit this file.
+﻿# Hãy xem tài liệu trên wiki để biết cách chỉnh sửa file này.
 #-------------------------------
 [VENUSAUR,2]
 BackSprite = 0,0

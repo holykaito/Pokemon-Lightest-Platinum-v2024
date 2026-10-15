@@ -82,8 +82,8 @@ module AdvancedAI
       :ZEROTOHERO         => 2.5,
       
       # As One (Calyrex fusions) - Unnerve + KO momentum
-      :ASONEGLASTRIER     => 2.5,  # Unnerve + Chilling Neigh (+1 Atk on KO)
-      :ASONESPECTRIER     => 2.5,  # Unnerve + Grim Neigh (+1 SpAtk on KO)
+      :ASONECHILLINGNEIGH     => 2.5,  # Unnerve + Chilling Neigh (+1 Atk on KO)
+      :ASONEGRIMNEIGH     => 2.5,  # Unnerve + Grim Neigh (+1 SpAtk on KO)
       
       # Mind's Eye - ignore evasion + hit Ghost with Normal/Fighting
       :MINDSEYE           => 1.5,  # Scrappy + accuracy bypass

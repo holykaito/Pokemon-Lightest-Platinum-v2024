@@ -327,11 +327,11 @@ module AdvancedAI
       end
       
       # === AS ONE (Calyrex - Glastrier/Spectrier) ===
-      if ability == :ASONEGLASTRIER
+      if ability == :ASONECHILLINGNEIGH
         # Unnerve + Chilling Neigh: +1 Atk on KO + suppresses berries
         threat += 1.2
       end
-      if ability == :ASONESPECTRIER
+      if ability == :ASONEGRIMNEIGH
         # Unnerve + Grim Neigh: +1 SpAtk on KO + suppresses berries
         threat += 1.2
       end

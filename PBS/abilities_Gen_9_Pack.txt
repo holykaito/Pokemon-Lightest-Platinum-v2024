@@ -116,9 +116,9 @@ Description = Fire-type moves deal no damage and sharply boost Defense.
 Name = Wind Power
 Description = The Pokémon becomes charged from taking wind damage.
 #-------------------------------
-[WINDRIDER]
+[WINDRIDER] ###
 Name = Wind Rider
-Description = Boosts Attack in Tailwind or when attacked by wind moves.
+Description = Absorbs Flying and wind moves to boost its stats.
 #-------------------------------
 [ZEROTOHERO]
 Name = Zero to Hero

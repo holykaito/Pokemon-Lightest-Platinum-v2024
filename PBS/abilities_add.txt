@@ -31,17 +31,29 @@ Description = Adds the Ghost-type to all Pokémon on the field.
 Name = Aura Manipulation
 Description = Buff damage of Aura Sphere.
 #-------------------------------
+[BATTLEGENES] ###
+Name = Battle Genes
+Description = Powers up moves that match the target's type.
+#-------------------------------
+[BERRYBULK] ###
+Name = Berry Bulk
+Description = Eating a Berry boosts both defenses.
+#-------------------------------
 [BLACKSTAIN] ###
 Name = Black Stain
 Description = Can curse the enemy, removing 10% of their HP each turn.
 #-------------------------------
-[BRANCHSWING]
+[BRANCHSWING] ###
 Name = Branch Swing
-Description = When Grassy Terrain, gives immunity to all Ground-type moves.
+Description = Levitates and boosts evasion on Grassy Terrain.
 #-------------------------------
 [BRAVEHEART] ####
 Name = Brave Heart
 Description = Raises Attack when an opposing Pokémon gains stats.
+#-------------------------------
+[BLOODLUST] ###
+Name = Bloodlust
+Description = Restores HP upon knocking out a foe.
 #-------------------------------
 [BUGBOUND]
 Name = Bugbound
@@ -91,6 +103,10 @@ Description = Creates Cursed Terrain when entering battle.
 Name = Dancing Panic
 Description = Reverses stat changes of other's dance moves.
 #-------------------------------
+[DEBILITATE] ###
+Name = Debilitate
+Description = Contact moves weaken targets with status conditions.
+#-------------------------------
 [DISTORTION] ###
 Name = Distortion
 Description = When this Pokémon hits an enemy, it reduces any stat.
@@ -119,6 +135,10 @@ Description = It recovers HP when attacking a sleeping enemy.
 Name = Fatal Precision
 Description = Super-effective moves cannot miss.
 #-------------------------------
+[FLORESCENCE] ###
+Name = Florescence
+Description = Gives Grass-type moves priority at high HP.
+#-------------------------------
 [FORTITUDE] ###
 Name = Fortitude
 Description = When a stat is lowered by an opponent, its Defense is increased.
@@ -137,7 +157,15 @@ Description = Powers up Flying-type moves when suffering.
 #-------------------------------
 [FLUFFUP] ###
 Name = Fluff Up
-Description = Can increase the attack or special attack after each attack.
+Description = Levitates and powers up moves when striking first.
+#-------------------------------
+[FLYINGNIMBUS]
+Name = Flying Nimbus
+Description = Grants immunity to Ground-type moves and powers up moves by 20% when the Pokémon moves before the target.
+#-------------------------------
+[GNAWING]
+Name = Gnawing
+Description = Doubles the additional effect chance of biting moves.
 #-------------------------------
 [GRIPPINCER]
 Name = Grip Pincer
@@ -247,6 +275,10 @@ Description = Reduces foe's Defense when hit with a contact move.
 Name = Phenomonelure
 Description = Opposite-gendered Pokémon may not escape.
 #-------------------------------
+[POSEIDONGUARD]
+Name = Poseidon Guard
+Description = Guards against status and damage when HP is high.
+#-------------------------------
 [POWDERBURST]
 Name = Powder Burst
 Description = Gives powder moves +1 priority.
@@ -285,7 +317,7 @@ Description = Increases Defense and Special Defense when HP is below half.
 #-------------------------------
 [HYPERCHARGE] ###
 Name = HYPERCHARGE
-Description = Electric-type moves gain priority when its HP is full.
+Description = Gives Electric-type moves priority at high HP.
 #-------------------------------
 [RAINMIRAGE] ###
 Name = Rain Mirage
@@ -298,6 +330,10 @@ Description = No recharge move needed when K.O. target.
 [PARASITEHOST] ###
 Name = Parasite Host
 Description = Lets the Pokémon act once even after being knocked out.
+#-------------------------------
+[REFUGE] ###
+Name = Refuge
+Description = Heals and cures allies switching in.
 #-------------------------------
 [RESILIENCE]
 Name = Resilience
@@ -319,13 +355,13 @@ Description = Grass-type takes half damage and deal double damage to Fire-type P
 Name = Seed Parasite
 Description = Seeds attackers if knocked out by contact moves.
 #-------------------------------
-[SEEDSTIMULUS]
+[SEEDSTIMULUS] ###
 Name = Seed Stimulus
-Description = Raise user's Attack and Sp. Attack after using a Grass-type move.
+Description = Grass-type moves boost offenses while free of status.
 #-------------------------------
 [SELFSUFFICIENT] ###
 Name = Self-Sufficient
-Description = Heal user every turn.
+Description = Restores HP each turn, healing more below half HP.
 #-------------------------------
 [SHOWDOWNMODE] ###
 Name = Showdown Mode
@@ -351,11 +387,11 @@ Description = Boosts elements and Psychic moves, except against Dark types.
 Name = Spike Burst
 Description = Scatters spikes when a Pokémon makes contact.
 #-------------------------------
-[SPELLFIST]
+[SPELLFIST] ###
 Name = Spell Fist
-Description = Punching moves will use Sp.Attack as damage calculation.
+Description = Powers up punches and makes them special.
 #-------------------------------
-[SPOREVEIL]
+[SPOREVEIL] ###
 Name = Spore Veil
 Description = Boosts the Evasion stat when hit by an attack.
 #-------------------------------
@@ -402,6 +438,10 @@ Description = Sets Haunted Orbs on the opposing side when this Pokémon enters b
 [WILDTANTRUM] ###
 Name = Wild Tantrum
 Description = Rage builds when struck, boosting Attack.
+#-------------------------------
+[WORLDROOT] ###
+Name = Worldroot
+Description = Removes foes' Ground immunity, except Earth Eater.
 #-------------------------------
 [ZENAURA]
 Name = Zen Aura

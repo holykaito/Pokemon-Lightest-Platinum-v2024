@@ -625,8 +625,8 @@ module AdvancedAI
       ZEROTOHERO: { form_change: true, hero_form: 1 },
       POISONPUPPETEER: { poison_confuse: true },
       EMBODYASPECT: { boost_on_entry: true },
-      ASONEGLASTRIER: { ko_boost: :ATK, includes: :UNNERVE },
-      ASONESPECTRIER: { ko_boost: :SPATK, includes: :UNNERVE },
+      ASONECHILLINGNEIGH: { ko_boost: :ATK, includes: :UNNERVE },
+      ASONEGRIMNEIGH: { ko_boost: :SPATK, includes: :UNNERVE },
       MINDSEYE: { ignore_evasion: true, ghost_hit: true },
     }
     

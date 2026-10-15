@@ -12,7 +12,7 @@ Description = The Pokémon makes it rain if it appears in battle.
 Name = Speed Boost
 Description = Its Speed stat is gradually boosted.
 #-------------------------------
-[BATTLEARMOR]
+[BATTLEARMOR] ###
 Name = Battle Armor
 Description = The Pokémon is protected against critical hits.
 #-------------------------------
@@ -198,9 +198,9 @@ Name = Flame Body
 Description = Contact with the Pokémon may burn the attacker.
 Flags = FasterEggHatching
 #-------------------------------
-[RUNAWAY]
+[RUNAWAY] ###
 Name = Run Away
-Description = Enables a sure getaway from wild Pokémon.
+Description = Escapes traps and sharply boosts Speed when intimidated.
 #-------------------------------
 [KEENEYE]
 Name = Keen Eye
@@ -298,7 +298,7 @@ Description = Prevents other Pokémon from lowering its stats.
 Name = Pure Power
 Description = Raises the Pokémon's Attack stat.
 #-------------------------------
-[SHELLARMOR]
+[SHELLARMOR] ###
 Name = Shell Armor
 Description = The Pokémon is protected against critical hits.
 #-------------------------------
@@ -406,9 +406,9 @@ Description = The Pokémon moves after all other Pokémon do.
 Name = Technician
 Description = Powers up the Pokémon's weaker moves.
 #-------------------------------
-[LEAFGUARD]
+[LEAFGUARD] ###
 Name = Leaf Guard
-Description = Prevents problems with status in sunny weather.
+Description = Guards against status and damage in sun or grassy terrain.
 #-------------------------------
 [KLUTZ]
 Name = Klutz
@@ -602,9 +602,9 @@ Description = Comes out disguised as the Pokémon in back.
 Name = Imposter
 Description = It transforms itself into the Pokémon it is facing.
 #-------------------------------
-[INFILTRATOR]
+[INFILTRATOR] ###
 Name = Infiltrator
-Description = Passes through the foe's barrier and strikes.
+Description = Bypasses barriers, protection, and substitutes.
 #-------------------------------
 [MUMMY]
 Name = Mummy
@@ -668,7 +668,7 @@ Description = Protects Grass-type allies from stat/status effects.
 #-------------------------------
 [CHEEKPOUCH]
 Name = Cheek Pouch
-Description = Restores HP as well when the Pokémon eats a Berry.
+Description = Finds Berries when empty-handed and restores HP after eating them.
 #-------------------------------
 [PROTEAN]
 Name = Protean

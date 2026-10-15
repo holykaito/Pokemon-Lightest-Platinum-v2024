@@ -34,7 +34,7 @@ MAG_FLYDIGDIVE   = true # Makes Fly/Dig/Dive attack the target before they are a
 # them. You can change which abilities you want to activate or turn off through
 # the list below.
 #-------------------------------------------------------------------------------
-MAG_GALEWINGS    = 2      # Changes the HP needed to activate. 0 = Vanilla || 1 = 50% || 2 = 75% (This also applies to clones like Hell's Blaze)
+MAG_GALEWINGS    = 1      # Changes the HP needed to activate. 0 = Vanilla || 1 = 50% || 2 = 75% (This also applies to clones like Hell's Blaze)
 MAG_RUNAWAY      = true   # Allows to switch when trapped. Gets a +2 to speed when intimidated
 MAG_LIGHTMETAL   = true   # Increases speed by 20%
 MAG_HEAVYMETAL   = true   # Decreases speed by 20% and reduces fighting damage by 50%

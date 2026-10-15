@@ -72,3 +72,111 @@ FunctionCode = SleepTargetChangeUserMeloettaForm
 Flags = CanProtect,CanMirrorMove,Sound,CannotMetronome,Kick,Dance
 EffectChance = 20
 Description = An ancient song appeals to the hearts of those listening. It may also induce sleep.
+#-------------------------------
+[SOVEREIGNSLIDE]
+Name = Sovereign Slide
+Type = WATER
+Category = Physical
+Power = 40
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+Priority = 3
+FunctionCode = LowerTargetSpeed1FlinchTargetIfUserFirstTurn
+Flags = Contact,CanProtect,CanMirrorMove
+EffectChance = 100
+Description = Lowers Speed. Flinches on the user's first turn.
+Animation = SACREDSWORD,BRINE
+#-------------------------------
+[FRAGMENTATION]
+Name = Fragmentation
+Type = STEEL
+Category = Special
+Power = 110
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = UserLosesEighthOfTotalHP
+Flags = CanProtect
+Description = Fires body shards. The user loses 1/4 of its max HP.
+Animation = SPIKECANNON,FLASH
+#-------------------------------
+[FERTILEFANGS]
+Name = Fertile Fangs
+Type = GRASS
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+Priority = 0
+FunctionCode = DamageTargetAddGrassType
+Flags = Contact,CanProtect,CanMirrorMove,Biting
+Description = Bites the target with grass-infused fangs.
+Animation = SUPERFANG,INGRAIN@Target
+#-------------------------------
+[SEISMICSLAM]
+Name = Seismic Slam
+Type = GROUND
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = RecoilThirdOfDamageDealt
+Flags = Contact,CanProtect,CanMirrorMove
+Description = A powerful slam that also hurts the user.
+Animation = FISSURE,BODYSLAM
+#-------------------------------
+[FIGHTFOREVER]
+Name = Fight Forever
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+Priority = 4
+FunctionCode = UserEnduresFaintingThisTurnRaiseUserAtk2IfActivates
+Description = Endures with 1 HP, then sharply raises Attack. Fails in succession.
+Animation = ENDURE,BIDE
+#-------------------------------
+[WHIRLWINDKICK]
+Name = Whirlwind Kick
+Type = FIGHTING
+Category = Physical
+Power = 95
+Accuracy = 100
+TotalPP = 10
+Target = AllNearOthers
+FunctionCode = None
+Flags = Contact,CanProtect,CanMirrorMove,Kick
+Description = A spinning kick that hits all nearby Pokemon.
+Animation = ROLLINGKICK,WHIRLWIND
+#-------------------------------
+[LOVELYBITE]
+Name = Lovely Bite
+Type = FAIRY
+Category = Physical
+Power = 85
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = AttractTargetContactBite
+Flags = Contact,CanProtect,CanMirrorMove,Biting
+EffectChance = 10
+Description = A loving bite that may infatuate the target.
+Animation = CHARM@Target,BITE
+#-------------------------------
+[FRANTICFANG]
+Name = Frantic Fang
+Type = NORMAL
+Category = Physical
+Power = 60
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = DoubleDamageUserBelowHalf
+Flags = Contact,CanProtect,CanMirrorMove,Biting
+Description = Doubles in power if the user's HP is below half.
+Animation = HYPERFANG,LOCKON

@@ -267,17 +267,6 @@ class Battle::Move
       defStage = max_stage if target.damageState.critical && defStage > max_stage
       defense = (defense.to_f * stageMul[defStage] / stageDiv[defStage]).floor
     end
-    #Spell Fist Damage calc
-    if user.hasActiveAbility?(:SPELLFIST) && move.punchingMove?
-      # Temporarily change the move's category to special
-      old_category = move.category
-      move.category = 1 if move.category == 0  # Change to special if it's physical
-      # Call the original damage calculation method
-      damage = original_pbCalcDamage(move, user, target, numTargets)
-      # Restore the move's original category
-      move.category = old_category
-      return damage
-    end
     # Calculate all multiplier effects
     multipliers = {
       :power_multiplier        => 1.0,

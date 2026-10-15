@@ -11,6 +11,18 @@ Innates = SWARM,LEVITATE,MERCILESS
 [BEEDRILL_1]
 Innates = SWARM,LEVITATE,MERCILESS
 #----------------------------------------
+[RATTATA]
+Innates = RUNAWAY
+#----------------------------------------
+[RATTATA_1]
+Innates = GLUTTONY
+#----------------------------------------
+[RATICATE]
+Innates = RUNAWAY,GROWINGTOOTH,GNAWING
+#----------------------------------------
+[RATICATE_1]
+Innates = GLUTTONY,GROWINGTOOTH,BERRYBULK
+#----------------------------------------
 [TENTACOOL]
 Innates = CLEARBODY,LIQUIDOOZE
 #----------------------------------------
@@ -138,6 +150,42 @@ Innates = LEVITATE
 #----------------------------------------
 [FLYGON]
 Innates = LEVITATE
+#----------------------------------------
+[TURTWIG]
+Innates = SELFSUFFICIENT
+#----------------------------------------
+[GROTLE]
+Innates = SELFSUFFICIENT,SHELLARMOR
+#----------------------------------------
+[TORTERRA]
+Innates = SELFSUFFICIENT,SHELLARMOR,SOLIDROCK
+#----------------------------------------
+[TORTERRA_1]
+Innates = SELFSUFFICIENT,SHELLARMOR,SOLIDROCK
+#----------------------------------------
+[CHIMCHAR]
+Innates = PRANKSTER
+#----------------------------------------
+[MONFERNO]
+Innates = PRANKSTER,IRONFIST
+#----------------------------------------
+[INFERNAPE]
+Innates = PRANKSTER,IRONFIST,QUICKFEET
+#----------------------------------------
+[INFERNAPE_1]
+Innates = PRANKSTER,IRONFIST,QUICKFEET
+#----------------------------------------
+[PIPLUP]
+Innates = ANTARTICBIRD
+#----------------------------------------
+[PRINPLUP]
+Innates = ANTARTICBIRD,BATTLEARMOR
+#----------------------------------------
+[EMPOLEON]
+Innates = ANTARTICBIRD,BATTLEARMOR,POSEIDONGUARD
+#----------------------------------------
+[EMPOLEON_1]
+Innates = ANTARTICBIRD,BATTLEARMOR,POSEIDONGUARD
 #----------------------------------------
 [GIBLE]
 Innates = SANDVEIL
