@@ -180,3 +180,204 @@ FunctionCode = DoubleDamageUserBelowHalf
 Flags = Contact,CanProtect,CanMirrorMove,Biting
 Description = Doubles in power if the user's HP is below half.
 Animation = HYPERFANG,LOCKON
+#-------------------------------
+[COTTONPUNCH]
+Name = Cotton Punch
+Type = GRASS
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = LowerTargetSpeed1SeedTarget
+Flags = Contact,CanProtect,CanMirrorMove,Punching
+EffectChance = 100
+Description = A cotton punch that lowers Speed and plants a seed.
+Animation = MEGAPUNCH,COTTONSPORE
+#-------------------------------
+[FAIRYSPHERES]
+Name = Fairy Spheres
+Type = FAIRY
+Category = Special
+Power = 25
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+Priority = 0
+FunctionCode = HitTwoToFiveTimes
+Flags = CanProtect,CanMirrorMove,Pulse
+Description = Magical spheres strike the target 2 to 5 times.
+Animation = AURASPHERE,FAIRYWIND
+#-------------------------------
+[SYLPHSPELL]
+Name = Sylph Spell
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = RaiseUserSpAtkSpdAcc1
+Flags = CanSnatch,Wind
+Description = A mystical wind raises Sp. Atk, Speed, and accuracy.
+Animation = QUIVERDANCE,FAIRYWIND
+#-------------------------------
+[SMITE]
+Name = Smite
+Type = ELECTRIC
+Category = Physical
+Power = 120
+Accuracy = 80
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = HitsTargetInSkyGroundsTargetParalyzeTarget
+Flags = CanProtect,CanMirrorMove
+EffectChance = 20
+Description = Strikes from above, grounding the target. May paralyze.
+Animation = THUNDER,SMACKDOWN
+#-------------------------------
+[STARCRASH]
+Name = Star Crash
+Type = FAIRY
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = RecoilThirdOfDamageDealt
+Flags = Contact,CanProtect,CanMirrorMove
+Description = Crashes into the target like a star. Also hurts the user.
+Animation = TAKEDOWN,SWIFT
+#-------------------------------
+[STORMDRIVE]
+Name = Storm Drive
+Type = ELECTRIC
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = TwoTurnAttackOneTurnInRainstorm
+Flags = CanProtect,CanMirrorMove
+Description = Charges first, then attacks. Strikes immediately in rain.
+Animation = FREEZESHOCK,WILDCHARGE
+#-------------------------------
+[DRAGONCURRENT]
+Name = Dragon Current
+Type = WATER
+Category = Physical
+Power = 120
+Accuracy = 85
+TotalPP = 5
+Target = NearOther
+FunctionCode = TwoTurnAttackInvulnerableUnderwater
+Flags = Contact,CanProtect,CanMirrorMove
+Description = Dives first, then strikes and traps the target for 2-5 turns.
+Animation = DIVE,WHIRLPOOL
+#-------------------------------
+[AQUAFANG]
+Name = Aqua Fang
+Type = WATER
+Category = Physical
+Power = 65
+Accuracy = 95
+TotalPP = 15
+Target = NearOther
+FunctionCode = LowerTargetDefense1
+Flags = Contact,CanProtect,CanMirrorMove,Biting
+EffectChance = 10
+Description = A watery bite that may lower the target's Defense.
+Animation = SUPERFANG,WATERSPORT@Target
+#-------------------------------
+[MYSTICDANCE]
+Name = Mystic Dance
+Type = DRAGON
+Category = Status
+Accuracy = 0
+TotalPP = 20
+Target = User
+FunctionCode = RaiseUserSpAtkSpd1
+Flags = CanSnatch,Dance
+Description = A mystic dance that raises Sp. Atk and Speed.
+Animation = DRAGONDANCE,MIST
+#-------------------------------
+[HYPERDRILL]
+Name = Hyper Drill
+Type = NORMAL
+Category = Physical
+Power = 120
+Accuracy = 90
+TotalPP = 5
+Target = NearOther
+Priority = 0
+FunctionCode = IgnoreProtections
+Flags = Contact,CanMirrorMove,Horn,Drill
+Description = A spinning strike that pierces through Protect.
+Animation = HORNDRILL,GIGAIMPACT
+#-------------------------------
+[FISHHARPOON]
+Name = Fish Harpoon
+Type = WATER
+Category = Physical
+Power = 85
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = SuperEffectiveAgainstWaterIgnoreDefenseStages
+Flags = Contact,CanProtect,CanMirrorMove,Horn
+Description = Pierces Defense stat changes. Super effective on Water types.
+Animation = HORNATTACK,AQUAJET
+#-------------------------------
+[HONEHORNS]
+Name = Hone Horns
+Type = DARK
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = User
+FunctionCode = RaiseUserAtk1CriticalHitRate1
+Flags = CanSnatch,Horn
+Description = Sharpens its horns, raising Attack and critical-hit ratio.
+Animation = HONECLAWS,FOCUSENERGY
+#-------------------------------
+[RIDERKICK]
+Name = Rider Kick
+Type = BUG
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = IgnoreTargetAbility
+Flags = Contact,CanProtect,CanMirrorMove,Kick
+Description = A powerful kick that ignores the target's Ability.
+Animation = HIGHJUMPKICK
+#-------------------------------
+[SKYKICK]
+Name = Sky Kick
+Type = FLYING
+Category = Physical
+Power = 90
+Accuracy = 95
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = CrashDamageFirstTurnBoostSkyKick
+Flags = Contact,CanProtect,CanMirrorMove,Kick
+Description = Stronger and faster on the user's first turn. Hurts if it misses.
+Animation = HIGHJUMPKICK,SKYUPPERCUT
+#-------------------------------
+[PUNISHINGKICK]
+Name = Punishing Kick
+Type = DARK
+Category = Physical
+Power = 1
+Accuracy = 95
+TotalPP = 10
+Target = NearOther
+FunctionCode = PowerLowerWithUserHPCrashIfMiss
+Flags = Contact,CanProtect,CanMirrorMove,Kick
+Description = Stronger at low HP. The user crashes if it misses.
+Animation = HIGHJUMPKICK,PAYBACK

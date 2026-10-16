@@ -1430,7 +1430,7 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:PACKLEADER,
     next false if user.battle.pbAbleCount(user) < 3
     next false if user.battle.pbTeamLengthFromBattlerIndex(user) < 3
     next false if user.battle.pbParty(user)[0] != user.pokemon
-    mults[:attack_multiplier] *= 1.5
+    mults[:attack_multiplier] *= 1.3
   }
 )
 

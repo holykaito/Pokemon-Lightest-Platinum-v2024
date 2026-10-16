@@ -100,9 +100,9 @@ def pbEffectsOnMakingHit(move, user, target)
 
 alias mag_hasMoldBreaker? hasMoldBreaker?
   def hasMoldBreaker?
-   mag_hasMoldBreaker?
+    return true if mag_hasMoldBreaker?
     return hasActiveAbility?([:FROZENYIN, :FROZENYANG])
-  end  
+  end
 
 alias mag_pbRemoveItem pbRemoveItem
   def pbRemoveItem(permanent = true)

@@ -100,8 +100,8 @@ Description = When using a flying type move set a tailwind.
 Name = Quick Charge
 Description = Two turn moves only take one turn instead.
 #-------------------------------
-[KINGSWRATH]
-Name = King's Wrath
+[MIGHTYHORN]
+Name = Mighty Horn
 Description = Horn or Drill moves are stronger and can flinch.
 #-------------------------------
 [CHEMICALREACTION]

@@ -111,7 +111,7 @@ Description = Contact moves weaken targets with status conditions.
 Name = Distortion
 Description = When this Pokémon hits an enemy, it reduces any stat.
 #-------------------------------
-[DODGE]
+[DODGE] ###
 Name = Dodge
 Description = User has chance to avoid any moves.
 #-------------------------------
@@ -161,7 +161,11 @@ Description = Levitates and powers up moves when striking first.
 #-------------------------------
 [FLYINGNIMBUS]
 Name = Flying Nimbus
-Description = Grants immunity to Ground-type moves and powers up moves by 20% when the Pokémon moves before the target.
+Description = Immune to Ground-type moves and powers up moves first.
+#-------------------------------
+[FALSEFRONT]
+Name = False Front
+Description = Adds Fighting or Fairy or Dark-type when entering battle.
 #-------------------------------
 [GNAWING]
 Name = Gnawing
@@ -218,6 +222,10 @@ Description = Inhales wind-based moves to expand the body & boost defense.
 [INTOXICATE] ###
 Name = Intoxicate
 Description = Normal-moves becomes Poison-moves and be boosted.
+#-------------------------------
+[KAMENRIDER] ###
+Name = Kamen Rider
+Description = Powers up attacks after an ally falls.
 #-------------------------------
 [KINTSUGI] ###
 Name = Kintsugi
@@ -407,9 +415,17 @@ Description = Sets Stealth Rock on the opposing side on first entry.
 Name = Striker
 Description = Powers up kicking moves.
 #-------------------------------
+[SUBJUGATE] ###
+Name = Subjugate
+Description = Lowering a foe's stats with moves raises its own.
+#-------------------------------
 [SUDDENSLASH] ###
 Name = Sudden Slash
 Description = On first turn out, slicing moves gain priority.
+#-------------------------------
+[TENACITY] ###
+Name = Tenacity
+Description = May endure a knockout blow with 1 HP.
 #-------------------------------
 [TERRORSOWER] ###
 Name = Terror Sower
@@ -437,7 +453,7 @@ Description = Sets Haunted Orbs on the opposing side when this Pokémon enters b
 #-------------------------------
 [WILDTANTRUM] ###
 Name = Wild Tantrum
-Description = Rage builds when struck, boosting Attack.
+Description = May boost the Pokémon's Attack when hit by an attack.
 #-------------------------------
 [WORLDROOT] ###
 Name = Worldroot

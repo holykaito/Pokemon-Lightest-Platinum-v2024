@@ -161,9 +161,9 @@ Name = Magma Armor
 Description = Prevents the Pokémon from becoming frozen.
 Flags = FasterEggHatching
 #-------------------------------
-[WATERVEIL]
+[WATERVEIL] ###
 Name = Water Veil
-Description = Prevents the Pokémon from getting a burn.
+Description = Blocks burns, weakens Fire attacks, and creates Aqua Ring.
 #-------------------------------
 [MAGNETPULL]
 Name = Magnet Pull
@@ -187,7 +187,7 @@ Description = The Pokémon raises the foe's PP usage.
 #-------------------------------
 [THICKFAT]
 Name = Thick Fat
-Description = Ups resistance to Fire- and Ice-type moves.
+Description = Resists heat and cold and powers up Slam and Body Slam.
 #-------------------------------
 [EARLYBIRD]
 Name = Early Bird
@@ -946,9 +946,9 @@ Description = Boosts Defense when entering battle one time.
 Name = Libero
 Description = Changes type to the first selected move.
 #-------------------------------
-[BALLFETCH]
+[BALLFETCH] ###
 Name = Ball Fetch
-Description = Retrieves the first thrown Poké Ball if it failed.
+Description = Returns ball and bomb moves and retrieves Poké Balls.
 #-------------------------------
 [COTTONDOWN]
 Name = Cotton Down

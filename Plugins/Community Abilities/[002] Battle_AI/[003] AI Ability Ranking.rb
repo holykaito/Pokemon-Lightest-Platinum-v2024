@@ -102,7 +102,7 @@ Battle::AI::Handlers::AbilityRanking.add(:QUICKCHARGE,
 ###########################################################################
 ###########################################################################
 
-Battle::AI::Handlers::AbilityRanking.add(:KINGSWRATH,
+Battle::AI::Handlers::AbilityRanking.add(:MIGHTYHORN,
   proc { |ability, score, battler, ai|
     next score if battler.check_for_move { |m| m.drillMove? }
 	next score if battler.check_for_move { |m| m.hornMove? }

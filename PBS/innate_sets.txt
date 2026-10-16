@@ -68,6 +68,15 @@ Innates = NATURALCURE
 [STARMIE_1]
 Innates = NATURALCURE
 #----------------------------------------
+[MAGIKARP]
+Innates = MARVELSCALE
+#----------------------------------------
+[GYARADOS]
+Innates = INTIMIDATE,STRONGJAW,MOLDBREAKER
+#----------------------------------------
+[GYARADOS_1]
+Innates = INTIMIDATE,STRONGJAW,MOLDBREAKER
+#----------------------------------------
 [LAPRAS]
 Innates = SHELLARMOR,HYDRATION
 #----------------------------------------
@@ -95,6 +104,15 @@ Innates = TORRENT,STRONGJAW,ROUGHSKIN
 [FERALIGATR_1]
 Innates = TORRENT,STRONGJAW,ROUGHSKIN
 #----------------------------------------
+[HOPPIP]
+Innates = WINDRIDER
+#----------------------------------------
+[SKIPLOOM]
+Innates = WINDRIDER,FLORESCENCE
+#----------------------------------------
+[JUMPLUFF]
+Innates = WINDRIDER,FLORESCENCE,SPOREVEIL
+#----------------------------------------
 [GLIGAR]
 Innates = HYPERCUTTER,SANDVEIL
 #----------------------------------------
@@ -103,6 +121,12 @@ Innates = HYPERCUTTER,SANDVEIL,VAMPIRIC
 #----------------------------------------
 [BLAZIKEN]
 Innates = BLAZE,FLAMEBODY,SPEEDBOOST
+#----------------------------------------
+[POOCHYENA]
+Innates = RUNAWAY
+#----------------------------------------
+[MIGHTYENA]
+Innates = INTIMIDATE,STRONGJAW,SUBJUGATE
 #----------------------------------------
 [LOTAD]
 Innates = SEAWEED,HYDROPONIC
@@ -186,6 +210,12 @@ Innates = ANTARTICBIRD,BATTLEARMOR,POSEIDONGUARD
 #----------------------------------------
 [EMPOLEON_1]
 Innates = ANTARTICBIRD,BATTLEARMOR,POSEIDONGUARD
+#----------------------------------------
+[GLAMEOW]
+Innates = THICKFAT,CATSLUCK
+#----------------------------------------
+[PURUGLY]
+Innates = THICKFAT,CATSLUCK,FALSEFRONT
 #----------------------------------------
 [GIBLE]
 Innates = SANDVEIL
@@ -484,6 +514,12 @@ Innates = BEASTBOOST
 [TOXEL]
 Innates = PUNKROCK,STATIC
 #----------------------------------------
+[YAMPER]
+Innates = BALLFETCH
+#----------------------------------------
+[BOLTUND]
+Innates = BALLFETCH,STRONGJAW,DODGE
+#----------------------------------------
 [TOXTRICITY]
 Innates = PUNKROCK,PLUS
 #----------------------------------------
@@ -522,6 +558,12 @@ Innates = BLAZE,UNAWARE
 #----------------------------------------
 [SKELEDIRGE]
 Innates = BLAZE,UNAWARE,AMPLIFIER
+#----------------------------------------
+[NYMBLE]
+Innates = SWARM
+#----------------------------------------
+[LOKIX]
+Innates = SWARM,STRIKER,SHOWDOWNMODE
 #----------------------------------------
 [FLUTTERMANE]
 Innates = PROTOSYNTHESIS

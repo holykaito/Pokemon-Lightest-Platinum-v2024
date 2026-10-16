@@ -211,10 +211,6 @@ Description = Takes less contact damage but more Water damage.
 Name = Loud Bang
 Description = Sound attacks may confuse the target.
 #-------------------------------
-[MIGHTYHORN] ###
-Name = Mighty Horn
-Description = Boosts the power of its horn and drill moves.
-#-------------------------------
 [MULTIHEADED] ###
 Name = Multi Headed
 Description = Hits extra times based on the Pokémon's heads.

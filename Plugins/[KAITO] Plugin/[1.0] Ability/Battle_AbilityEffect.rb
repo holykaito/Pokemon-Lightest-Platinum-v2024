@@ -928,86 +928,6 @@ if defined?(Battle::AI) && Battle::AI.method_defined?(:pbGetMoveScore)
 end
 
 #===============================================================================
-# Mighty Horn#===============================================================================
-
-module MightyHorn
-  BOOST_MULTIPLIER = 1.3
-  BOOSTED_FLAGS = ["Horn", "Drill"]
-
-  def self.move_flags(move)
-    return [] if move.nil?
-
-    # Some projects expose flags directly.
-    if move.respond_to?(:flags)
-      return move.flags || []
-    end
-
-    # Pokemon Essentials Battle::Move stores PBS flags internally as @flags.
-    if move.instance_variable_defined?(:@flags)
-      return move.instance_variable_get(:@flags) || []
-    end
-
-    return []
-  end
-
-  def self.horn_or_drill_move?(move)
-    flags = move_flags(move)
-    return false if flags.empty?
-
-    flags.each do |flag|
-      return true if BOOSTED_FLAGS.include?(flag.to_s.upcase)
-    end
-
-    return false
-  end
-end
-
-#===============================================================================
-# Ability effect
-#===============================================================================
-
-Battle::AbilityEffects::DamageCalcFromUser.add(:MIGHTYHORN,
-  proc { |ability, user, target, move, mults, power, type|
-    next if !MightyHorn.horn_or_drill_move?(move)
-
-    mults[:power_multiplier] *= MightyHorn::BOOST_MULTIPLIER
-  }
-)
-
-if defined?(Battle::AI) && Battle::AI.method_defined?(:pbGetMoveScore)
-  class Battle::AI
-    alias mighty_horn_pbGetMoveScore pbGetMoveScore
-
-    def pbGetMoveScore(*args)
-      score = mighty_horn_pbGetMoveScore(*args)
-
-      move = nil
-      user = nil
-
-      args.each do |arg|
-        if arg.respond_to?(:damagingMove?) &&
-           (arg.instance_variable_defined?(:@flags) || arg.respond_to?(:flags))
-          move = arg
-        elsif arg.respond_to?(:hasActiveAbility?)
-          user = arg if user.nil?
-        end
-      end
-
-      if score.is_a?(Numeric) &&
-         user &&
-         move &&
-         user.hasActiveAbility?(:MIGHTYHORN) &&
-         MightyHorn.horn_or_drill_move?(move)
-        score += 20
-        PBDebug.log_ai("     + Mighty Horn boosts this horn/drill move: 20") if defined?(PBDebug)
-      end
-
-      return score
-    end
-  end
-end
-
-#===============================================================================
 # Charge Rush
 #===============================================================================
 
@@ -2037,7 +1957,13 @@ end
 
 module CursedTerrain_TwoTurnPatch
   def pbIsChargingTurn?(user)
-    return false if CursedTerrain.quick_execute_shadow_move?(self, user)
+    if CursedTerrain.quick_execute_shadow_move?(self, user)
+      @powerHerb = false
+      @chargingTurn = true
+      @damagingTurn = true
+      return false
+    end
+
     return super
   end
 
@@ -3428,7 +3354,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:TERAVOLT,
     end
 
     if !battler.pbHasType?(:ELECTRIC)
-      battler.pbAddType(:ELECTRIC)
+      battler.effects[PBEffects::ExtraType] = :ELECTRIC
       battle.pbDisplay(_INTL("{1} gained the Electric type!", battler.pbThis))
     end
 
@@ -3448,7 +3374,7 @@ Battle::AbilityEffects::OnSwitchIn.add(:TURBOBLAZE,
     end
 
     if !battler.pbHasType?(:FIRE)
-      battler.pbAddType(:FIRE)
+      battler.effects[PBEffects::ExtraType] = :FIRE
       battle.pbDisplay(_INTL("{1} gained the Fire type!", battler.pbThis))
     end
 
@@ -7114,3 +7040,1930 @@ Battle::AI::Handlers::GeneralMoveScore.add(:seed_stimulus_boost,
     next score
   }
 )
+
+#------------------------------------------------------------------------------
+# False Front
+#------------------------------------------------------------------------------
+module FalseFront
+  TYPES = [:FIGHTING, :FAIRY, :DARK].freeze
+
+  def self.choose_type(battler, battle)
+    if battler.pbOwnedByPlayer?
+      commands = TYPES.map { |type| GameData::Type.get(type).name }
+
+      loop do
+        choice = battle.pbShowCommands(
+          _INTL("Choose an additional type for {1}.", battler.pbThis(true)),
+          commands,
+          -1
+        )
+
+        return TYPES[choice] if choice && choice >= 0 &&
+                                      choice < TYPES.length
+      end
+    end
+
+    return choose_ai_type(battler, battle)
+  end
+
+  # AI cân nhắc hệ phòng thủ trước chiêu của đối thủ
+  # và khả năng nhận STAB cho các chiêu đang có.
+  def self.choose_ai_type(battler, battle)
+    scores = TYPES.map do |type|
+      types = (battler.pbTypes + [type]).uniq
+      score = 0.0
+
+      battle.allOtherSideBattlers(battler.index).each do |foe|
+        next if foe.fainted?
+
+        threats = foe.moves.select { |move| move.damagingMove? }
+        next if threats.empty?
+
+        worst = threats.map do |move|
+          effectiveness = Effectiveness.calculate(move.type, *types)
+          stab = foe.pbHasType?(move.type) ? 1.5 : 1.0
+          effectiveness * stab
+        end.max
+
+        score -= worst * 10
+      end
+
+      if !battler.pbHasType?(type) &&
+         battler.moves.any? { |move| move.damagingMove? && move.type == type }
+        score += 8
+      end
+
+      score
+    end
+
+    best = scores.max
+    candidates = TYPES.each_index.select { |i| scores[i] == best }
+    return TYPES[candidates[battle.pbRandom(candidates.length)]]
+  end
+end
+
+#------------------------------------------------------------------------------
+# Reset lựa chọn khi chuẩn bị một lần vào sân mới.
+# Bao gồm cả trường hợp Baton Pass.
+#------------------------------------------------------------------------------
+class Battle::Battler
+  attr_accessor :false_front_chosen_type
+
+  alias_method :false_front_original_init_effects, :pbInitEffects
+
+  def pbInitEffects(batonPass)
+    false_front_original_init_effects(batonPass)
+    @false_front_chosen_type = nil
+  end
+end
+
+#------------------------------------------------------------------------------
+# Chọn và thêm hệ khi vào sân.
+# Chặn việc mở lại menu nhiều lần trong cùng một lần ở trên sân.
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::OnSwitchIn.add(:FALSEFRONT,
+  proc { |ability, battler, battle, switch_in|
+    next if battler.fainted?
+    next if !battler.hasActiveAbility?(:FALSEFRONT)
+    next if battler.false_front_chosen_type
+    next if !battler.canChangeType?
+
+    chosen_type = FalseFront.choose_type(battler, battle)
+    battler.false_front_chosen_type = chosen_type
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(ability).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(battler)
+
+      # Giữ nguyên hệ gốc, sử dụng ô hệ bổ sung của Essentials.
+      battler.effects[PBEffects::ExtraType] =
+        battler.pbTypes.include?(chosen_type) ? nil : chosen_type
+
+      battle.pbDisplay(_INTL(
+        "{1} gained the {2} type!",
+        battler.pbThis,
+        GameData::Type.get(chosen_type).name
+      ))
+    ensure
+      begin
+        battle.pbHideAbilitySplash(battler)
+      ensure
+        $aamName  = old_name
+        $aamName2 = old_name2
+      end
+    end
+  }
+)
+
+#------------------------------------------------------------------------------
+# Xóa hệ do False Front thêm khi rút về.
+# Không xóa hệ bổ sung khác nếu nó đã thay thế hệ của False Front.
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::OnSwitchOut.add(:FALSEFRONT,
+  proc { |ability, battler, end_of_battle|
+    chosen_type = battler.false_front_chosen_type
+
+    if chosen_type &&
+       battler.effects[PBEffects::ExtraType] == chosen_type
+      battler.effects[PBEffects::ExtraType] = nil
+    end
+
+    battler.false_front_chosen_type = nil
+  }
+)
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:FALSEFRONT)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :FALSEFRONT
+
+#------------------------------------------------------------------------------
+# Thick Fat - Boosts Slam and Body Slam
+#------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromUser.add(:THICKFAT,
+  proc { |ability, user, target, move, mults, power, type|
+    next if ![:SLAM, :BODYSLAM].include?(move.id)
+
+    mults[:final_damage_multiplier] *= 1.5
+  }
+)
+
+#------------------------------------------------------------------------------
+# Ball Fetch - Copies opposing ball and bomb moves
+#------------------------------------------------------------------------------
+module BallFetchEnhanced
+  def self.copy_move(battler, source, move, battle)
+    return if battler.fainted?
+    return if !battler.hasActiveAbility?(:BALLFETCH)
+
+    copied_move = Battle::Move.from_pokemon_move(
+      battle, Pokemon::Move.new(move.id)
+    )
+
+    # Kiểm tra các giới hạn dùng chiêu theo cơ chế gọi chiêu.
+    return if !battler.pbCanChooseMove?(
+      copied_move, false, false, true
+    )
+
+    old_name         = $aamName
+    old_name2        = $aamName2
+    old_round_moved  = battler.lastRoundMoved
+    old_current_move = battler.currentMove
+    old_outrage      = battler.effects[PBEffects::Outrage]
+    old_dancer       = battler.effects[PBEffects::Dancer]
+
+    begin
+      ability_name = GameData::Ability.get(:BALLFETCH).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL(
+        "{1} fetched and returned {2}!",
+        battler.pbThis, move.name
+      ))
+      battle.pbHideAbilitySplash(battler)
+
+      # Giống cơ chế gọi chiêu của Dancer:
+      # không biến đòn sao chép thành hành động chính của lượt.
+      battler.effects[PBEffects::Dancer] = true
+      if old_outrage > 0
+        battler.effects[PBEffects::Outrage] += 1
+      end
+
+      battler.pbUseMoveSimple(move.id, source.index)
+    ensure
+      battler.lastRoundMoved = old_round_moved
+      battler.currentMove = old_current_move
+      battler.effects[PBEffects::Outrage] = old_outrage
+      battler.effects[PBEffects::Dancer] = old_dancer
+
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# Ghi nhận Bomb/Ball move khi chiêu được tung ra, trước kiểm tra trúng/trượt.
+#------------------------------------------------------------------------------
+class Battle::Move
+  alias_method :ball_fetch_original_display_use_message,
+               :pbDisplayUseMessage
+
+  def pbDisplayUseMessage(user)
+    result = ball_fetch_original_display_use_message(user)
+
+    if bombMove? &&
+       !@battle.instance_variable_get(:@ball_fetch_copying)
+
+      fetchers = @battle.pbPriority(true).select do |battler|
+        battler.opposes?(user) &&
+          !battler.fainted? &&
+          battler.hasActiveAbility?(:BALLFETCH)
+      end
+
+      # Lưu cả Pokémon để tránh nhầm khi slot đã đổi chủ.
+      fetchers = fetchers.map do |battler|
+        [battler, battler.pokemon]
+      end
+
+      user.instance_variable_set(
+        :@ball_fetch_announced_move,
+        [self, fetchers]
+      )
+    end
+
+    return result
+  end
+end
+
+#------------------------------------------------------------------------------
+# Sau khi xử lý xong chiêu gốc, thực hiện các đòn sao chép.
+# Không yêu cầu chiêu gốc đánh trúng.
+#------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :ball_fetch_original_use_move, :pbUseMove
+
+  def pbUseMove(choice, specialUsage = false)
+    old_record = @ball_fetch_announced_move
+
+    begin
+      @ball_fetch_announced_move = nil
+      result = ball_fetch_original_use_move(choice, specialUsage)
+      record = @ball_fetch_announced_move
+
+      return result if !record
+      return result if @battle.decision > 0
+      return result if @battle.instance_variable_get(:@ball_fetch_copying)
+
+      copied_move, fetchers = record
+      return result if fetchers.empty?
+
+      begin
+        @battle.instance_variable_set(:@ball_fetch_copying, true)
+
+        fetchers.each do |battler, original_pokemon|
+          break if @battle.decision > 0
+          next if battler.pokemon != original_pokemon
+          next if battler.fainted?
+          next if !battler.hasActiveAbility?(:BALLFETCH)
+
+          BallFetchEnhanced.copy_move(
+            battler, self, copied_move, @battle
+          )
+
+          @battle.pbJudge
+        end
+      ensure
+        @battle.instance_variable_set(:@ball_fetch_copying, false)
+      end
+
+      return result
+    ensure
+      @ball_fetch_announced_move = old_record
+    end
+  end
+end
+
+#------------------------------------------------------------------------------
+# AI: Ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:BALLFETCH)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :BALLFETCH
+
+#------------------------------------------------------------------------------
+# AI: Hạn chế dùng chiêu Bomb/Ball khi đối thủ có thể sao chép.
+#------------------------------------------------------------------------------
+Battle::AI::Handlers::GeneralMoveScore.add(
+  :ball_fetch_opposing_copy,
+  proc { |score, move, user, ai, battle|
+    next score if !move.move.bombMove?
+
+    battle.allOtherSideBattlers(user.index).each do |opponent|
+      next if opponent.fainted?
+      next if !opponent.hasActiveAbility?(:BALLFETCH)
+
+      score -= 15
+    end
+
+    next score
+  }
+)
+
+#------------------------------------------------------------------------------
+# Dodge - AI ability rating
+#------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:DODGE)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :DODGE
+
+Battle::AI::Handlers::AbilityRanking.add(:DODGE,
+  proc { |ability, score, battler, ai|
+    next score
+  }
+)
+
+#===============================================================================
+# Wild Tantrum - AI
+#===============================================================================
+module WildTantrumAI
+  def self.physical_attacker?(battler)
+    return battler.moves.any? { |m| m.damagingMove? && m.physicalMove? }
+  end
+
+  # Estimate hit count without calling pbNumHits or consuming battle RNG.
+  def self.expected_hits(move, user)
+    function = move.function_code
+
+    return 2.0 if function.start_with?("HitTwoTimes")
+    return 3.0 if function.start_with?("HitThreeTimes")
+
+    if function.start_with?("HitTwoToFiveTimes")
+      if function == "HitTwoToFiveTimesOrThreeForAshGreninja" &&
+         user.isSpecies?(:GRENINJA) && user.form == 2
+        return 3.0
+      end
+      return 5.0 if user.hasActiveAbility?(:SKILLLINK)
+      return 4.5 if user.hasActiveItem?(:LOADEDDICE)
+      return 3.1
+    end
+
+    return 10.0 if function.start_with?("HitTenTimes")
+    return move.multiHitMove? ? 3.0 : 1.0
+  end
+
+  # Positive = Attack increases; negative = Contrary lowers Attack.
+  def self.attack_change(target, battle)
+    change = 1
+    if !battle.moldBreaker
+      change = -1 if target.hasActiveAbility?(:CONTRARY)
+      change *= 2 if target.hasActiveAbility?(:SIMPLE)
+    end
+
+    limit = Battle::Battler::STAT_STAGE_MAXIMUM
+    stage = target.stages[:ATTACK]
+
+    return [change, limit - stage].min if change > 0
+    return -[-change, stage + limit].min
+  end
+
+  def self.relevant?(move, user, target)
+    return false if !user || !target || target.fainted?
+    return false if !user.opposes?(target)
+    return false if !move.damagingMove?
+    return false if !target.hasActiveAbility?(:WILDTANTRUM)
+    return false if !physical_attacker?(target)
+
+    # Conservative estimate: don't predict breaking a Substitute.
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !move.ignoresSubstitute?(user)
+      return false
+    end
+
+    return true
+  end
+
+  def self.score_change(move, user, target, battle, damage)
+    return 0 if damage <= 0
+    return 0 if damage >= target.hp
+
+    change = attack_change(target, battle)
+    return 0 if change == 0
+
+    hits = expected_hits(move, user)
+    expected_change = 0.30 * hits * change.abs
+    penalty = [(10 * expected_change).round, 18].min
+
+    # Lowering an opposing physical attacker's Attack is beneficial.
+    return change > 0 ? -penalty : penalty
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Ability value
+#-------------------------------------------------------------------------------
+Battle::AI::Handlers::AbilityRanking.add(:WILDTANTRUM,
+  proc { |ability, score, battler, ai|
+    next 0 if !WildTantrumAI.physical_attacker?(battler.battler)
+    next(-3) if battler.has_active_ability?(:CONTRARY)
+    next 1 if battler.statStageAtMax?(:ATTACK)
+    next 8 if battler.has_active_ability?(:SIMPLE)
+    next 6
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Remove the generic OnBeingHit penalty for a primary Wild Tantrum.
+# Its specific scoring below replaces that penalty.
+# Preserve the existing handling of other abilities and items.
+#-------------------------------------------------------------------------------
+wild_tantrum_previous_hit_score =
+  Battle::AI::Handlers::GeneralMoveAgainstTargetScore[
+    :trigger_target_ability_or_item_upon_hit
+  ]
+
+if wild_tantrum_previous_hit_score
+  Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+    :trigger_target_ability_or_item_upon_hit,
+    proc { |score, move, user, target, ai, battle|
+      score = wild_tantrum_previous_hit_score.call(
+        score, move, user, target, ai, battle
+      )
+
+      if ai.trainer.high_skill? && move.damagingMove? &&
+         target.effects[PBEffects::Substitute] == 0 &&
+         target.ability_active? &&
+         target.battler.ability_id == :WILDTANTRUM
+        score += 8
+      end
+
+      next score
+    }
+  )
+end
+
+#-------------------------------------------------------------------------------
+# Essentials AI
+#-------------------------------------------------------------------------------
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:wild_tantrum,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+
+    attacker = user.battler
+    defender = target.battler
+    native_move = move.move
+
+    next score if !WildTantrumAI.relevant?(
+      native_move, attacker, defender
+    )
+
+    score += WildTantrumAI.score_change(
+      native_move, attacker, defender, battle, move.rough_damage
+    )
+
+    next score
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI - uses a separate scoring pipeline.
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  class Battle::AI
+    alias_method :wild_tantrum_original_advanced_score,
+                 :score_move_advanced
+
+    def score_move_advanced(move, user, target, skill)
+      score = wild_tantrum_original_advanced_score(
+        move, user, target, skill
+      )
+      return score if score <= 0
+
+      attacker = user.respond_to?(:battler) ? user.battler : user
+      defender = target.respond_to?(:battler) ? target.battler : target
+      native_move = move.respond_to?(:move) ? move.move : move
+
+      return score if !WildTantrumAI.relevant?(
+        native_move, attacker, defender
+      )
+
+      damage = AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, native_move, defender
+      )
+
+      return score + WildTantrumAI.score_change(
+        native_move, attacker, defender, @battle, damage
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Added types retain their benefits without adding weaknesses.
+# Uses the same damage-compensation approach as Aquatic.
+#===============================================================================
+{
+  :HALFDRAKE => {
+    :type       => :DRAGON,
+    :weaknesses => [:ICE, :DRAGON, :FAIRY]
+  },
+  :BUGBOUND => {
+    :type       => :BUG,
+    :weaknesses => [:FIRE, :FLYING, :ROCK]
+  },
+  :FIERYSPIRIT => {
+    :type       => :FIRE,
+    :weaknesses => [:WATER, :GROUND, :ROCK]
+  }
+}.each do |ability_id, data|
+  Battle::AbilityEffects::DamageCalcFromTarget.add(ability_id,
+    proc { |ability, user, target, move, mults, power, type|
+      added_type = data[:type]
+
+      # Only compensate when this is the currently added type.
+      next if target.effects[PBEffects::ExtraType] != added_type
+
+      # The type must actually be present as an additional type,
+      # rather than already being part of the Pokémon's current base types.
+      next if !target.pbHasType?(added_type)
+      next if target.pbTypes(false).include?(added_type)
+
+      next if !data[:weaknesses].include?(type)
+
+      # Cancel the added type's x2 weakness.
+      mults[:final_damage_multiplier] /= 2.0
+    }
+  )
+end
+
+
+#===============================================================================
+# Half Drake / Bugbound / Fiery Spirit - AI
+#===============================================================================
+module AddedTypeGuardAI
+  DATA = {
+    :HALFDRAKE   => [:DRAGON, [:ICE, :DRAGON, :FAIRY]],
+    :BUGBOUND    => [:BUG,    [:FIRE, :FLYING, :ROCK]],
+	:AQUATIC     => [:WATER,  [:ELECTRIC, :GRASS]],
+    :FIERYSPIRIT => [:FIRE,   [:WATER, :GROUND, :ROCK]]
+  }
+
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  # Compensation for the weakness caused by the added type.
+  def self.damage_factor(attacker, target, move, type)
+    attacker = real_battler(attacker)
+    target   = real_battler(target)
+    return 1.0 if !attacker || !target
+    return 1.0 if !target.respond_to?(:effects)
+    return 1.0 if !target.respond_to?(:hasActiveAbility?)
+
+    if AdvancedAI::Utilities.ignores_ability?(attacker, move, target)
+      return 1.0
+    end
+
+    DATA.each do |ability, data|
+      added_type, weaknesses = data
+
+      next if target.effects[PBEffects::ExtraType] != added_type
+      next if !target.hasActiveAbility?(ability)
+      next if !target.pbHasType?(added_type)
+      next if target.pbTypes(false).include?(added_type)
+      next if !weaknesses.include?(type)
+
+      return 0.5
+    end
+
+    return 1.0
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Essentials AI - ability ranking
+#-------------------------------------------------------------------------------
+AddedTypeGuardAI::DATA.each do |ability_id, data|
+  Battle::AI::Handlers::AbilityRanking.add(ability_id,
+    proc { |ability, score, battler, ai|
+      added_type, weaknesses = data
+      real = battler.battler
+      base_types = real.pbTypes(false)
+
+      # No benefit if the Pokémon already has this type naturally/currently.
+      next 0 if base_types.include?(added_type)
+      next 0 if real.respond_to?(:tera?) && real.tera?
+
+      # Additional typing without its added weaknesses.
+      value = 7
+
+      # Offensive value: an additional STAB.
+      if battler.check_for_move { |m|
+           m.damagingMove? && m.type == added_type
+         }
+        value += 2
+      end
+
+      # Defensive value against the opponents' damaging moves.
+      defensive_value = 0
+      real.allOpposing.each do |foe|
+        useful_resistance = foe.moves.any? do |m|
+          next false if !m.damagingMove?
+
+          # Weaknesses of the added type are compensated, not resisted.
+          next false if weaknesses.include?(m.type)
+
+          before = Effectiveness.calculate(m.type, *base_types)
+          after  = Effectiveness.calculate(
+            m.type, *(base_types + [added_type]).uniq
+          )
+
+          next after < before
+        end
+
+        defensive_value += 1 if useful_resistance
+      end
+
+      value += [defensive_value, 2].min
+      next value
+    }
+  )
+end
+
+#-------------------------------------------------------------------------------
+# Advanced AI - shared damage estimator
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI::CombatUtilities)
+  module AddedTypeGuardAdvancedModifier
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = super
+      return result * AddedTypeGuardAI.damage_factor(
+        attacker, target, move, type
+      )
+    end
+  end
+
+  AdvancedAI::CombatUtilities.singleton_class.prepend(
+    AddedTypeGuardAdvancedModifier
+  )
+end
+
+#-------------------------------------------------------------------------------
+# Advanced AI - separate rough damage calculation
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:calculate_rough_damage)
+  module AddedTypeGuardAdvancedDamage
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = super
+      return result if result <= 0
+
+      native_move = move.respond_to?(:move) ? move.move : move
+
+      # Fixed damage and OHKO moves don't use damage multipliers.
+      return result if native_move.is_a?(Battle::Move::FixedDamageMove)
+      return result if native_move.function_code.start_with?("OHKO")
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      factor = AddedTypeGuardAI.damage_factor(
+        user, target, native_move, type
+      )
+
+      return result if factor == 1.0
+      return [(result * factor).to_i, 1].max
+    end
+  end
+
+  Battle::AI.prepend(AddedTypeGuardAdvancedDamage)
+end
+
+#===============================================================================
+# Pack Leader - effect and AI
+#===============================================================================
+module PackLeader
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  # Check the owner's team, not all Pokémon on the same side.
+  def self.team_ready?(value)
+    battler = real_battler(value)
+    return false if !battler || battler.fainted?
+
+    battle = battler.battle
+    index  = battler.index
+    first, last = battle.pbTeamIndexRangeFromBattlerIndex(index)
+    party = battle.pbParty(index)
+
+    return false if party[first] != battler.pokemon
+
+    able_count = 0
+    (first...last).each do |i|
+      able_count += 1 if party[i] && party[i].able?
+    end
+
+    return able_count >= 3
+  end
+
+  def self.active?(value)
+    battler = real_battler(value)
+    return false if !battler
+    return false if !battler.hasActiveAbility?(:PACKLEADER)
+    return team_ready?(battler)
+  end
+
+  def self.show_message(battler, battle)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:PACKLEADER).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL("{1} leads the pack!", battler.pbThis))
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Battle effect
+#-------------------------------------------------------------------------------
+Battle::AbilityEffects::DamageCalcFromUser.add(:PACKLEADER,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !PackLeader.team_ready?(user)
+    mults[:attack_multiplier] *= 1.3
+  }
+)
+
+Battle::AbilityEffects::OnSwitchIn.add(:PACKLEADER,
+  proc { |ability, battler, battle, switch_in|
+    next if !PackLeader.team_ready?(battler)
+    PackLeader.show_message(battler, battle)
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Essentials AI
+# Native damage prediction already uses DamageCalcFromUser.
+#-------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:PACKLEADER)
+end
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :PACKLEADER
+
+Battle::AI::Handlers::AbilityRanking.add(:PACKLEADER,
+  proc { |ability, score, battler, ai|
+    next 0 if !PackLeader.team_ready?(battler)
+    next 0 if !battler.check_for_move { |m| m.damagingMove? }
+    next 9
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI - shared damage estimator
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI::CombatUtilities)
+  module PackLeaderAdvancedModifier
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = super
+      result *= 1.3 if PackLeader.active?(attacker)
+      return result
+    end
+  end
+
+  AdvancedAI::CombatUtilities.singleton_class.prepend(
+    PackLeaderAdvancedModifier
+  )
+end
+
+#-------------------------------------------------------------------------------
+# Advanced AI - separate rough damage calculation
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:calculate_rough_damage)
+  module PackLeaderAdvancedDamage
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = super
+      return result if result <= 0
+      return result if !PackLeader.active?(user)
+
+      native_move = move.respond_to?(:move) ? move.move : move
+
+      # Fixed damage and OHKO moves don't benefit from offensive stats.
+      return result if native_move.is_a?(Battle::Move::FixedDamageMove)
+      return result if native_move.function_code.start_with?("OHKO")
+
+      return (result * 1.3).to_i
+    end
+  end
+
+  Battle::AI.prepend(PackLeaderAdvancedDamage)
+end
+
+#===============================================================================
+# Pack Leader - only works during the Pokémon's first appearance per battle.
+#===============================================================================
+class Battle
+  def pack_leader_entry_counts
+    @pack_leader_entry_counts ||= {}
+    return @pack_leader_entry_counts
+  end
+end
+
+# Track actual entries, including entries made while the ability is suppressed.
+module PackLeaderFirstEntryTracking
+  def pbInitialize(pkmn, idxParty, batonPass = false)
+    result = super
+
+    # Exclude temporary battlers created for AI simulations.
+    if idxParty >= 0 && @battle.battlers[@index].equal?(self)
+      counts = @battle.pack_leader_entry_counts
+      key = pkmn.object_id
+      counts[key] = (counts[key] || 0) + 1
+    end
+
+    return result
+  end
+end
+
+Battle::Battler.prepend(PackLeaderFirstEntryTracking)
+
+# Extend the shared condition used by battle effects and AI.
+module PackLeader
+  class << self
+    alias_method :team_ready_without_entry_limit?, :team_ready?
+
+    def team_ready?(value)
+      battler = real_battler(value)
+      return false if !battler || !battler.pokemon
+
+      counts = battler.battle.pack_leader_entry_counts
+      entries = counts[battler.pokemon.object_id] || 0
+
+      return false if entries > 1
+      return team_ready_without_entry_limit?(battler)
+    end
+  end
+end
+
+#===============================================================================
+# Tenacity
+#===============================================================================
+module Tenacity
+  CHANCE = 30
+
+  def self.show_message(target, battle)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:TENACITY).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(target)
+      battle.pbDisplay(_INTL("{1} held on with {2}!",
+                            target.pbThis, name))
+      battle.pbHideAbilitySplash(target)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Battle effect
+#-------------------------------------------------------------------------------
+module TenacityMoveEffects
+  def pbReduceDamage(user, target)
+    state = target.damageState
+    state.instance_variable_set(:@tenacity_triggered, false)
+
+    result = super
+
+    return result if target.fainted?
+    return result if !user || user.index == target.index
+    return result if state.substitute || state.disguise || state.iceFace
+    return result if !target.hasActiveAbility?(:TENACITY)
+    return result if @battle.moldBreaker
+
+    # Existing survival effects take precedence.
+    return result if state.hpLost < target.hp
+    return result if @battle.pbRandom(100) >= Tenacity::CHANCE
+
+    old_damage = state.hpLost
+    state.hpLost = [target.hp - 1, 0].max
+    state.totalHPLost -= old_damage - state.hpLost
+    state.instance_variable_set(:@tenacity_triggered, true)
+
+    return result
+  end
+
+  def pbEndureKOMessage(target)
+    result = super
+    state = target.damageState
+
+    if state.instance_variable_get(:@tenacity_triggered)
+      state.instance_variable_set(:@tenacity_triggered, false)
+      Tenacity.show_message(target, @battle)
+    end
+
+    return result
+  end
+end
+
+Battle::Move.prepend(TenacityMoveEffects)
+
+#-------------------------------------------------------------------------------
+# AI helpers
+#-------------------------------------------------------------------------------
+module TenacityAI
+  def self.score_change(user, target, move, battle, damage)
+    attacker = user.respond_to?(:battler) ? user.battler : user
+    defender = target.respond_to?(:battler) ? target.battler : target
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !attacker || !defender
+    return 0 if !attacker.opposes?(defender)
+    return 0 if !native.damagingMove?
+    return 0 if !defender.hasActiveAbility?(:TENACITY)
+    return 0 if damage < defender.hp
+
+    if defender.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(attacker)
+      return 0
+    end
+
+    if defined?(AdvancedAI::Utilities)
+      return 0 if AdvancedAI::Utilities.ignores_ability?(
+        attacker, native, defender
+      )
+    else
+      return 0 if battle.moldBreaker
+    end
+
+    # A predicted KO is less reliable. Multi-hit attacks can finish
+    # the target after an earlier hit activates Tenacity.
+    return native.multiHitMove? ? -1 : -3
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Essentials AI
+#-------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:TENACITY)
+end
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :TENACITY
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:tenacity,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score if !move.damagingMove?
+    next score if !target.has_active_ability?(:TENACITY)
+
+    score += TenacityAI.score_change(
+      user, target, move, battle, move.rough_damage
+    )
+    next score
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI::CombatUtilities) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  module TenacityAdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if score <= 0 || !user || !target
+
+      attacker = user.respond_to?(:battler) ? user.battler : user
+      defender = target.respond_to?(:battler) ? target.battler : target
+      native = move.respond_to?(:move) ? move.move : move
+
+      return score if !native.damagingMove?
+      return score if !defender.hasActiveAbility?(:TENACITY)
+
+      damage = AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, native, defender
+      )
+
+      return score + TenacityAI.score_change(
+        attacker, defender, native, @battle, damage
+      )
+    end
+  end
+
+  Battle::AI.prepend(TenacityAdvancedScoring)
+end
+
+#===============================================================================
+# Water Veil - protect allies from Fire-type damage
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromTargetAlly.add(:WATERVEIL,
+  proc { |ability, user, target, move, mults, power, type|
+    next if type != :FIRE
+    mults[:final_damage_multiplier] *= 0.75
+  }
+)
+
+#===============================================================================
+# AI
+#===============================================================================
+module WaterVeilAI
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.fire_damage_factor(attacker, target, move, type)
+    return 1.0 if type != :FIRE
+
+    attacker = real_battler(attacker)
+    target   = real_battler(target)
+    return 1.0 if !attacker || !target
+    return 1.0 if !target.respond_to?(:allAllies)
+
+    return 1.0 if AdvancedAI::Utilities.ignores_ability?(
+      attacker, move, target
+    )
+
+    protectors = [target] + target.allAllies.to_a
+    count = protectors.count do |b|
+      !b.fainted? && b.hasActiveAbility?(:WATERVEIL)
+    end
+
+    return 0.75 ** count
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Essentials AI
+# Damage handlers and Aqua Ring healing are already predicted natively.
+#-------------------------------------------------------------------------------
+Battle::AI::Handlers::AbilityRanking.add(:WATERVEIL,
+  proc { |ability, score, battler, ai|
+    value = 7
+    value += 1 if battler.battler.allAllies.any? { |b| !b.fainted? }
+
+    fire_threat = battler.battler.allOpposing.any? do |foe|
+      foe.moves.any? { |m| m.damagingMove? && m.type == :FIRE }
+    end
+
+    value += 1 if fire_threat
+    next value
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI - shared damage estimator
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI::CombatUtilities)
+  module WaterVeilAdvancedModifier
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = super
+
+      return result * WaterVeilAI.fire_damage_factor(
+        attacker, target, move, type
+      )
+    end
+  end
+
+  AdvancedAI::CombatUtilities.singleton_class.prepend(
+    WaterVeilAdvancedModifier
+  )
+end
+
+#-------------------------------------------------------------------------------
+# Advanced AI - separate rough damage calculation
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI::CombatUtilities) &&
+   Battle::AI.method_defined?(:calculate_rough_damage)
+  module WaterVeilAdvancedDamage
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = super
+      return result if result <= 0
+
+      native = move.respond_to?(:move) ? move.move : move
+      return result if native.is_a?(Battle::Move::FixedDamageMove)
+      return result if native.function_code.start_with?("OHKO")
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      factor = WaterVeilAI.fire_damage_factor(
+        user, target, native, type
+      )
+
+      return result if factor == 1.0
+      return [(result * factor).to_i, 1].max
+    end
+  end
+
+  Battle::AI.prepend(WaterVeilAdvancedDamage)
+end
+
+#===============================================================================
+# Pierce Armor - corrected effect
+#===============================================================================
+module PierceArmorAI
+  def self.eligible_move?(move)
+    native = move.respond_to?(:move) ? move.move : move
+    return native.damagingMove? &&
+           (native.hornMove? || native.drillMove?)
+  end
+end
+
+Battle::AbilityEffects::OnDealingHit.add(:PIERCEARMOR,
+  proc { |ability, user, target, move, battle|
+    next if user.fainted? || target.fainted?
+    next if !PierceArmorAI.eligible_move?(move)
+    next if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+    next if !target.pbCanLowerStatStage?(:DEFENSE, user, move)
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(ability).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(user)
+      target.pbLowerStatStage(:DEFENSE, 1, user)
+      battle.pbHideAbilitySplash(user)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  }
+)
+
+#===============================================================================
+# Pierce Armor - AI
+#===============================================================================
+module PierceArmorAI
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.score_change(user, target, move, battle, damage)
+    user   = real_battler(user)
+    target = real_battler(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target || target.fainted?
+    return 0 if !user.opposes?(target)
+    return 0 if !user.hasActiveAbility?(:PIERCEARMOR)
+    return 0 if !native.damagingMove?
+    return 0 if !eligible_move?(native)
+    return 0 if damage <= 0 || damage >= target.hp
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(user)
+      return 0
+    end
+
+    old_mold_breaker = battle.moldBreaker
+
+    begin
+      if defined?(AdvancedAI::Utilities)
+        battle.moldBreaker = AdvancedAI::Utilities.ignores_ability?(
+          user, native, target
+        )
+      end
+
+      return 0 if target.hasActiveAbility?(:SHIELDDUST) &&
+                  !battle.moldBreaker
+      return 0 if !target.pbCanLowerStatStage?(:DEFENSE, user, native)
+
+      unless battle.moldBreaker
+        return -10 if target.hasActiveAbility?(:CONTRARY)
+        return -10 if target.hasActiveAbility?(:MIRRORARMOR)
+      end
+
+      # More useful if the user can exploit the reduced Defense.
+      physical = user.moves.any? do |m|
+        m.damagingMove? && m.physicalMove?
+      end
+
+      value = physical ? 8 : 3
+      value += 3 if native.multiHitMove?
+
+      unless battle.moldBreaker
+        value += 2 if target.hasActiveAbility?(:SIMPLE)
+        value -= 12 if target.hasActiveAbility?([:DEFIANT, :COMPETITIVE])
+      end
+
+      return value
+    ensure
+      battle.moldBreaker = old_mold_breaker
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Ability ranking
+#-------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:PIERCEARMOR)
+end
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :PIERCEARMOR
+
+Battle::AI::Handlers::AbilityRanking.add(:PIERCEARMOR,
+  proc { |ability, score, battler, ai|
+	useful = battler.check_for_move do |m|
+	  PierceArmorAI.eligible_move?(m)
+	end
+
+    next 0 if !useful
+    next 8 if battler.check_for_move { |m|
+      m.damagingMove? && m.physicalMove?
+    }
+    next 5
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Essentials AI
+#-------------------------------------------------------------------------------
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:pierce_armor,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score if !user.has_active_ability?(:PIERCEARMOR)
+    next score if !move.damagingMove?
+    next score if !PierceArmorAI.eligible_move?(move)
+
+    score += PierceArmorAI.score_change(
+      user, target, move, battle, move.rough_damage
+    )
+    next score
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI::CombatUtilities) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  module PierceArmorAdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if score <= 0 || !user || !target
+
+      attacker = PierceArmorAI.real_battler(user)
+      defender = PierceArmorAI.real_battler(target)
+      native = move.respond_to?(:move) ? move.move : move
+
+      return score if !attacker.hasActiveAbility?(:PIERCEARMOR)
+      return score if !native.damagingMove?
+      return score if !PierceArmorAI.eligible_move?(native)
+
+      damage = AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, native, defender
+      )
+
+      return score + PierceArmorAI.score_change(
+        attacker, defender, native, @battle, damage
+      )
+    end
+  end
+
+  Battle::AI.prepend(PierceArmorAdvancedScoring)
+end
+
+#===============================================================================
+# Kamen Rider
+#===============================================================================
+module KamenRider
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.ready?(value)
+    battler = real_battler(value)
+    return false if !battler || battler.fainted?
+
+    battle = battler.battle
+    previous_round = battle.turnCount - 1
+    records = battle.kamen_rider_faints[previous_round] || []
+
+    return records.any? do |side, pokemon|
+      side == battler.idxOwnSide &&
+        !pokemon.equal?(battler.pokemon)
+    end
+  end
+
+  def self.active?(value)
+    battler = real_battler(value)
+    return false if !battler
+    return battler.hasActiveAbility?(:KAMENRIDER) && ready?(battler)
+  end
+end
+
+class Battle
+  def kamen_rider_faints
+    @kamen_rider_faints ||= {}
+    return @kamen_rider_faints
+  end
+end
+
+# Record fainting independently of LastRoundFainted, so a new faint
+# this round won't erase the record needed from the previous round.
+module KamenRiderFaintTracking
+  def pbFaint(showMessage = true)
+    if fainted? && !@fainted && @pokemon
+      history = @battle.kamen_rider_faints
+      round   = @battle.turnCount
+      history[round] ||= []
+
+      record = [idxOwnSide, @pokemon]
+      history[round] << record if !history[round].include?(record)
+    end
+
+    return super
+  end
+end
+
+Battle::Battler.prepend(KamenRiderFaintTracking)
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:KAMENRIDER,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !move.damagingMove?
+    next if !KamenRider.ready?(user)
+
+    mults[:final_damage_multiplier] *= 1.5
+  }
+)
+
+#===============================================================================
+# Essentials AI
+# Native damage prediction uses the ability's damage handler.
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:KAMENRIDER)
+end
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :KAMENRIDER
+
+Battle::AI::Handlers::AbilityRanking.add(:KAMENRIDER,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.check_for_move { |m| m.damagingMove? }
+    next KamenRider.ready?(battler) ? 9 : 4
+  }
+)
+
+#===============================================================================
+# Advanced AI - shared damage estimator
+#===============================================================================
+if defined?(AdvancedAI::CombatUtilities)
+  module KamenRiderAdvancedModifier
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = super
+      result *= 1.5 if KamenRider.active?(attacker)
+      return result
+    end
+  end
+
+  AdvancedAI::CombatUtilities.singleton_class.prepend(
+    KamenRiderAdvancedModifier
+  )
+end
+
+#===============================================================================
+# Advanced AI - separate rough damage calculation
+#===============================================================================
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:calculate_rough_damage)
+  module KamenRiderAdvancedDamage
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = super
+      return result if result <= 0
+      return result if !KamenRider.active?(user)
+
+      native = move.respond_to?(:move) ? move.move : move
+      return result if native.is_a?(Battle::Move::FixedDamageMove)
+      return result if native.function_code.start_with?("OHKO")
+
+      return (result * 1.5).to_i
+    end
+  end
+
+  Battle::AI.prepend(KamenRiderAdvancedDamage)
+end
+
+#===============================================================================
+# Showdown Mode
+#===============================================================================
+module ShowdownModePlus
+  STATS = [
+    :ATTACK, :DEFENSE, :SPECIAL_ATTACK, :SPECIAL_DEFENSE, :SPEED
+  ]
+
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.running?(value)
+    b = real_battler(value)
+    return b && !b.fainted? &&
+           b.hasActiveAbility?(:SHOWDOWNMODE) &&
+           b.effects[PBEffects::ShowdownMode] == true
+  end
+
+  def self.hp_loss(value)
+    b = real_battler(value)
+    return 0 if !running?(b)
+    return 0 if !b.takesIndirectDamage?
+    return 0 if b.hp <= 1
+
+    return [[b.totalhp / 18, 1].max, b.hp - 1].min
+  end
+
+  def self.with_splash(battler, battle)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:SHOWDOWNMODE).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+      yield
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+
+  # Additional scoring when an attack is predicted to activate the ability.
+  def self.score_change(user, target, move, damage, battle)
+    user   = real_battler(user)
+    target = real_battler(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target
+    return 0 if !user.opposes?(target)
+    return 0 if !native.damagingMove?
+    return 0 if !target.hasActiveAbility?(:SHOWDOWNMODE)
+    return 0 if target.effects[PBEffects::ShowdownMode] == true
+    return 0 if target.hp * 2 <= target.totalhp
+    return 0 if damage <= 0 || damage >= target.hp
+    return 0 if (target.hp - damage) * 2 > target.totalhp
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(user)
+      return 0
+    end
+
+    useful_stats = STATS.count do |stat|
+      target.pbCanRaiseStatStage?(stat, target)
+    end
+    return 0 if useful_stats == 0
+
+    # Contrary turns the self-inflicted increases into decreases.
+    if target.hasActiveAbility?(:CONTRARY) && !battle.moldBreaker
+      return 8
+    end
+
+    penalty = [useful_stats * 2, 10].min
+    if target.hasActiveAbility?(:SIMPLE) && !battle.moldBreaker
+      penalty += 4
+    end
+
+    # The continuing HP cost offsets some of the benefit.
+    penalty -= 2 if target.takesIndirectDamage?
+    return -penalty
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Reset on entry, including Baton Pass.
+#-------------------------------------------------------------------------------
+module ShowdownModeReset
+  def pbInitEffects(batonPass)
+    super
+    @effects[PBEffects::ShowdownMode] = false
+    @showdown_mode_eor_round = nil
+  end
+end
+
+Battle::Battler.prepend(ShowdownModeReset)
+
+#-------------------------------------------------------------------------------
+# Activate once per stay on the field.
+#-------------------------------------------------------------------------------
+Battle::AbilityEffects::AfterMoveUseFromTarget.add(:SHOWDOWNMODE,
+  proc { |ability, target, user, move, switched_battlers, battle|
+    next if target.fainted?
+    next if !move.damagingMove?
+    next if target.damageState.substitute
+    next if !target.droppedBelowHalfHP
+    next if target.effects[PBEffects::ShowdownMode] == true
+
+    next if !ShowdownModePlus::STATS.any? { |stat|
+      target.pbCanRaiseStatStage?(stat, target)
+    }
+
+    target.effects[PBEffects::ShowdownMode] = true
+
+    ShowdownModePlus.with_splash(target, battle) do
+      ShowdownModePlus::STATS.each do |stat|
+        next if !target.pbCanRaiseStatStage?(stat, target)
+        target.pbRaiseStatStageByAbility(stat, 1, target, false)
+      end
+    end
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Only damage this ability's owner, at most once each round.
+#-------------------------------------------------------------------------------
+Battle::AbilityEffects::EndOfRoundEffect.add(:SHOWDOWNMODE,
+  proc { |ability, battler, battle|
+    loss = ShowdownModePlus.hp_loss(battler)
+    next if loss <= 0
+
+    previous_round = battler.instance_variable_get(
+      :@showdown_mode_eor_round
+    )
+    next if previous_round == battle.turnCount
+
+    battler.instance_variable_set(
+      :@showdown_mode_eor_round, battle.turnCount
+    )
+
+    ShowdownModePlus.with_splash(battler, battle) do
+      battle.pbDisplay(_INTL("{1} is losing health from Showdown Mode!",
+                            battler.pbThis))
+      battler.pbReduceHP(loss)
+    end
+
+    battler.pbItemHPHealCheck
+  }
+)
+
+#===============================================================================
+# Essentials AI
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:SHOWDOWNMODE)
+end
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :SHOWDOWNMODE
+
+Battle::AI::Handlers::AbilityRanking.add(:SHOWDOWNMODE,
+  proc { |ability, score, battler, ai|
+    next(-4) if battler.has_active_ability?(:CONTRARY)
+    next 0 if battler.effects[PBEffects::ShowdownMode] == true
+    next 10 if battler.has_active_ability?(:SIMPLE)
+    next battler.hp * 2 > battler.totalhp ? 8 : 3
+  }
+)
+
+# Predict the continuing HP cost.
+module ShowdownModeEndOfRoundAI
+  def rough_end_of_round_damage
+    damage = super
+    return damage if damage >= 999_999
+    return damage + ShowdownModePlus.hp_loss(battler)
+  end
+end
+
+Battle::AI::AIBattler.prepend(ShowdownModeEndOfRoundAI)
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:showdown_mode,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score if !move.damagingMove?
+    next score if !target.has_active_ability?(:SHOWDOWNMODE)
+
+    score += ShowdownModePlus.score_change(
+      user, target, move, move.rough_damage, battle
+    )
+    next score
+  }
+)
+
+#===============================================================================
+# Advanced AI - activation scoring
+#===============================================================================
+if defined?(AdvancedAI::CombatUtilities) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  module ShowdownModeAdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if score <= 0 || !user || !target
+
+      attacker = ShowdownModePlus.real_battler(user)
+      defender = ShowdownModePlus.real_battler(target)
+      native = move.respond_to?(:move) ? move.move : move
+
+      return score if !native.damagingMove?
+      return score if !defender.hasActiveAbility?(:SHOWDOWNMODE)
+
+      damage = AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, native, defender
+      )
+
+      return score + ShowdownModePlus.score_change(
+        attacker, defender, native, damage, @battle
+      )
+    end
+  end
+
+  Battle::AI.prepend(ShowdownModeAdvancedScoring)
+end
+
+#===============================================================================
+# Subjugate
+# Moves that lower an opponent's stats raise the user's matching stats
+# by the number of stages actually lowered.
+#===============================================================================
+module Subjugate
+  class << self
+    attr_accessor :move_user, :non_move_depth
+  end
+
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.move_source?(user)
+    return user && move_user.equal?(user) &&
+           (non_move_depth || 0) == 0
+  end
+
+  def self.activate(user, target, stat, amount)
+    return if amount <= 0 || !move_source?(user)
+    return if !user.opposes?(target)
+    return if user.fainted?
+    return if !user.hasActiveAbility?(:SUBJUGATE)
+    return if !user.pbCanRaiseStatStage?(stat, user)
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:SUBJUGATE).name
+      $aamName  = name
+      $aamName2 = name
+
+      user.battle.pbShowAbilitySplash(user)
+      user.pbRaiseStatStageByAbility(stat, amount, user, false)
+      user.battle.pbHideAbilitySplash(user)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Track the move's user and actual stat reductions.
+#-------------------------------------------------------------------------------
+module SubjugateBattlerEffects
+  def pbUseMove(choice, specialUsage = false)
+    old_user  = Subjugate.move_user
+    old_depth = Subjugate.non_move_depth
+
+    begin
+      Subjugate.move_user = self
+      Subjugate.non_move_depth = 0
+      return super
+    ensure
+      Subjugate.move_user = old_user
+      Subjugate.non_move_depth = old_depth
+    end
+  end
+
+  def subjugate_track_drop(user)
+    @subjugate_frames ||= []
+    frame = {
+      :changes  => [],
+      :captured => false,
+      :eligible => Subjugate.move_source?(user)
+    }
+    @subjugate_frames.push(frame)
+
+    begin
+      result = yield
+    ensure
+      @subjugate_frames.pop
+    end
+
+    if frame[:eligible]
+      frame[:changes].each do |stat, amount|
+        Subjugate.activate(user, self, stat, amount)
+      end
+    end
+
+    return result
+  end
+
+  def pbLowerStatStage(stat, increment, user, *args)
+    return subjugate_track_drop(user) { super }
+  end
+
+  def pbLowerStatStageByCause(stat, increment, user, cause, *args)
+    return subjugate_track_drop(user) { super }
+  end
+
+  def pbLowerStatStageBasic(stat, increment, ignoreContrary = false)
+    frame = @subjugate_frames && @subjugate_frames.last
+    capture = frame && !frame[:captured]
+    frame[:captured] = true if capture
+
+    before = @stages[stat]
+    result = super
+    reduction = before - @stages[stat]
+
+    if capture && reduction > 0
+      frame[:changes].push([stat, reduction])
+    end
+
+    return result
+  end
+end
+
+Battle::Battler.prepend(SubjugateBattlerEffects)
+
+#-------------------------------------------------------------------------------
+# Exclude Ability/item effects, including those triggered during a move.
+#-------------------------------------------------------------------------------
+module SubjugateNonMoveEffects
+  def trigger(*args)
+    old_depth = Subjugate.non_move_depth || 0
+
+    begin
+      Subjugate.non_move_depth = old_depth + 1
+      return super
+    ensure
+      Subjugate.non_move_depth = old_depth
+    end
+  end
+end
+
+AbilityHandlerHash.prepend(SubjugateNonMoveEffects)
+ItemHandlerHash.prepend(SubjugateNonMoveEffects)
+
+#===============================================================================
+# AI
+#===============================================================================
+module SubjugateAI
+  def self.stat_lowering_move?(move)
+    return move.is_a?(Battle::Move::TargetStatDownMove) ||
+           move.is_a?(Battle::Move::TargetMultiStatDownMove)
+  end
+
+  def self.bonus(user, target, native, changes, battle)
+    user   = Subjugate.real_battler(user)
+    target = Subjugate.real_battler(target)
+
+    return 0 if !user || !target
+    return 0 if !user.opposes?(target)
+    return 0 if !user.hasActiveAbility?(:SUBJUGATE)
+
+    old_mold_breaker = battle.moldBreaker
+
+    begin
+      if defined?(AdvancedAI::Utilities)
+        battle.moldBreaker = AdvancedAI::Utilities.ignores_ability?(
+          user, native, target
+        )
+      end
+
+      unless battle.moldBreaker
+        return 0 if target.hasActiveAbility?([:CONTRARY, :MIRRORARMOR])
+      end
+
+      chance = 100
+      if native.damagingMove?
+        return 0 if user.hasActiveAbility?(:SHEERFORCE) &&
+                    native.addlEffect > 0
+        return 0 if target.hasActiveItem?(:COVERTCLOAK)
+        return 0 if target.hasActiveAbility?(:SHIELDDUST) &&
+                    !battle.moldBreaker
+
+        chance = [native.addlEffect, 100].min
+        return 0 if chance <= 0
+        if user.hasActiveAbility?(:SERENEGRACE) ||
+           user.pbOwnSide.effects[PBEffects::Rainbow] > 0
+          chance = [chance * 2, 100].min
+        end
+      end
+
+      value = 0
+      limit = Battle::Battler::STAT_STAGE_MAXIMUM
+
+      changes.each_slice(2) do |stat, amount|
+        next if !stat || !amount
+        next if !target.pbCanLowerStatStage?(stat, user, native)
+        next if !user.pbCanRaiseStatStage?(stat, user)
+
+        drop = amount
+        if target.hasActiveAbility?(:SIMPLE) && !battle.moldBreaker
+          drop *= 2
+        end
+        drop = [drop, target.stages[stat] + limit].min
+        next if drop <= 0
+
+        if user.hasActiveAbility?(:CONTRARY) && !battle.moldBreaker
+          loss = [drop, user.stages[stat] + limit].min
+          value -= 5 * loss
+        else
+          gain = drop
+          gain *= 2 if user.hasActiveAbility?(:SIMPLE) &&
+                       !battle.moldBreaker
+          gain = [gain, limit - user.stages[stat]].min
+          value += 5 * gain
+        end
+      end
+
+      value = (value * chance / 100.0).round
+      return [[value, -20].max, 20].min
+    ensure
+      battle.moldBreaker = old_mold_breaker
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Ability ranking
+#-------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:SUBJUGATE)
+end
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :SUBJUGATE
+
+Battle::AI::Handlers::AbilityRanking.add(:SUBJUGATE,
+  proc { |ability, score, battler, ai|
+    useful = battler.check_for_move do |move|
+      SubjugateAI.stat_lowering_move?(move)
+    end
+
+    next 0 if !useful
+    next(-3) if battler.has_active_ability?(:CONTRARY)
+    next 9 if battler.has_active_ability?(:SIMPLE)
+    next 7
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Essentials AI - augment existing stat-drop scoring.
+#-------------------------------------------------------------------------------
+module SubjugateNativeScoring
+  def get_score_for_target_stat_drop(score, target, stat_changes, *args)
+    result = super
+    return result if result == Battle::AI::MOVE_USELESS_SCORE
+    return result if !@user || !@move
+
+    return result + SubjugateAI.bonus(
+      @user, target, @move.move, stat_changes, @battle
+    )
+  end
+end
+
+Battle::AI.prepend(SubjugateNativeScoring)
+
+#-------------------------------------------------------------------------------
+# Advanced AI - standard target stat-lowering moves.
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  module SubjugateAdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if score <= 0 || !user || !target
+
+      native = move.respond_to?(:move) ? move.move : move
+      return score if !SubjugateAI.stat_lowering_move?(native)
+
+      return score + SubjugateAI.bonus(
+        user, target, native, native.statDown, @battle
+      )
+    end
+  end
+
+  Battle::AI.prepend(SubjugateAdvancedScoring)
+end

@@ -88,3 +88,229 @@ class Battle::Move::DoubleDamageUserBelowHalf < Battle::Move
     return baseDmg
   end
 end
+
+#===============================================================================
+# Cotton Punch
+# Lowers Speed by 1 stage and applies Leech Seed.
+#===============================================================================
+class Battle::Move::LowerTargetSpeed1SeedTarget <
+      Battle::Move::LowerTargetSpeed1
+
+  def pbAdditionalEffect(user, target)
+    return if target.fainted?
+    return if target.damageState.substitute
+
+    # Standard Speed reduction, including ability interactions.
+    super
+
+    # Seed independently of whether Speed can be lowered.
+    return if target.pbHasType?(:GRASS)
+    return if target.effects[PBEffects::LeechSeed] >= 0
+
+    target.effects[PBEffects::LeechSeed] = user.index
+    @battle.pbDisplay(_INTL("{1} was seeded!", target.pbThis))
+  end
+end
+
+#===============================================================================
+# Sylph Spell
+# Raises Special Attack, Speed and Accuracy by 1 stage each.
+#===============================================================================
+class Battle::Move::RaiseUserSpAtkSpdAcc1 < Battle::Move::MultiStatUpMove
+  def initialize(battle, move)
+    super
+    @statUp = [:SPECIAL_ATTACK, 1, :SPEED, 1, :ACCURACY, 1]
+  end
+end
+
+#===============================================================================
+# Smite
+# Grounds the target like Smack Down. Has a chance to paralyze.
+#===============================================================================
+class Battle::Move::HitsTargetInSkyGroundsTargetParalyzeTarget <
+      Battle::Move::HitsTargetInSkyGroundsTarget
+
+  def pbAdditionalEffect(user, target)
+    return if target.fainted?
+    return if target.damageState.substitute
+
+    if target.pbCanParalyze?(user, false, self)
+      target.pbParalyze(user)
+    end
+  end
+end
+
+#===============================================================================
+# Storm Drive
+# Two-turn attack. Skips the charging turn in rain or heavy rain.
+#===============================================================================
+class Battle::Move::TwoTurnAttackOneTurnInRainstorm <
+      Battle::Move::TwoTurnMove
+
+  def pbIsChargingTurn?(user)
+    ret = super
+    if !user.effects[PBEffects::TwoTurnAttack] &&
+       [:Rain, :HeavyRain].include?(user.effectiveWeather)
+      @powerHerb = false
+      @chargingTurn = true
+      @damagingTurn = true
+      return false
+    end
+    return ret
+  end
+
+  def pbChargingTurnMessage(user, targets)
+    @battle.pbDisplay(_INTL("{1} gathered storm energy!", user.pbThis))
+  end
+end
+
+#===============================================================================
+# Dragon Current
+# Uses Dive's underwater mechanics and traps the target after attacking.
+#===============================================================================
+module DragonCurrentVortex
+  def pbEffectAfterAllHits(user, target)
+    super
+    return if @id != :DRAGONCURRENT
+    return if !@damagingTurn
+    return if target.fainted?
+    return if target.damageState.unaffected
+    return if target.damageState.substitute
+    return if target.effects[PBEffects::Trapping] > 0
+
+    # Includes the end-of-round damage on the turn the move hits.
+    duration = 2 + @battle.pbRandom(4)
+    if user.hasActiveItem?(:GRIPCLAW)
+      duration = (Settings::MECHANICS_GENERATION >= 5) ? 7 : 5
+    end
+
+    target.effects[PBEffects::Trapping] = duration + 1
+    target.effects[PBEffects::TrappingMove] = @id
+    target.effects[PBEffects::TrappingUser] = user.index
+
+    @battle.pbDisplay(_INTL("{1} became trapped in the vortex!",
+                           target.pbThis))
+  end
+end
+
+Battle::Move::TwoTurnAttackInvulnerableUnderwater.prepend(
+  DragonCurrentVortex
+)
+
+#===============================================================================
+# Mystic Dance
+# Raises Special Attack and Speed by 1 stage each.
+#===============================================================================
+class Battle::Move::RaiseUserSpAtkSpd1 < Battle::Move::MultiStatUpMove
+  def initialize(battle, move)
+    super
+    @statUp = [:SPECIAL_ATTACK, 1, :SPEED, 1]
+  end
+end
+
+#===============================================================================
+# Fish Harpoon
+# Super effective against Water.
+# Ignores the target's Defense/Sp. Def stat stages.
+#===============================================================================
+class Battle::Move::SuperEffectiveAgainstWaterIgnoreDefenseStages <
+      Battle::Move
+
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    if defType == :WATER
+      return Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+    end
+    return super
+  end
+
+  def pbGetDefenseStats(user, target)
+    defense, _stage = super
+    return defense, Battle::Battler::STAT_STAGE_MAXIMUM
+  end
+end
+
+#===============================================================================
+# Hyper Drill - bypasses protection.
+#===============================================================================
+class Battle::Move::IgnoreProtections < Battle::Move
+  def canProtectAgainst?
+    return false
+  end
+end
+
+#===============================================================================
+# Hone Horns
+# Raises Attack by 1 stage and critical-hit ratio by 1 stage.
+#===============================================================================
+class Battle::Move::RaiseUserAtk1CriticalHitRate1 < Battle::Move
+  attr_reader :statUp
+
+  def initialize(battle, move)
+    super
+    @statUp = [:ATTACK, 1]
+  end
+
+  def canSnatch?; return true; end
+
+  def pbMoveFailed?(user, targets)
+    can_raise_attack = user.pbCanRaiseStatStage?(:ATTACK, user, self)
+    can_raise_critical = user.effects[PBEffects::FocusEnergy] < 3
+    return false if can_raise_attack || can_raise_critical
+
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbCanRaiseStatStage?(:ATTACK, user, self)
+      user.pbRaiseStatStage(:ATTACK, 1, user)
+    end
+
+    if user.effects[PBEffects::FocusEnergy] < 3
+      user.effects[PBEffects::FocusEnergy] += 1
+      @battle.pbDisplay(_INTL("{1} is getting pumped!", user.pbThis))
+    end
+  end
+end
+
+#===============================================================================
+# Sky Kick
+# First turn: 1.5x power and +1 priority.
+# Crash damage follows High Jump Kick's mechanics.
+#===============================================================================
+class Battle::Move::CrashDamageFirstTurnBoostSkyKick <
+      Battle::Move::CrashDamageIfFailsUnusableInGravity
+
+  def pbPriority(user)
+    ret = super
+    ret += 1 if user.turnCount <= 1
+    return ret
+  end
+
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg = super
+    baseDmg = (baseDmg * 1.5).round if user.turnCount <= 1
+    return baseDmg
+  end
+end
+
+#===============================================================================
+# Punishing Kick
+# Reversal/Flail power scaling, with crash damage on failure.
+#===============================================================================
+class Battle::Move::PowerLowerWithUserHPCrashIfMiss <
+      Battle::Move::PowerLowerWithUserHP
+
+  def recoilMove?; return true; end
+
+  def pbCrashDamage(user)
+    return if user.fainted?
+    return if !user.takesIndirectDamage?
+
+    @battle.pbDisplay(_INTL("{1} kept going and crashed!", user.pbThis))
+    @battle.scene.pbDamageAnimation(user)
+    user.pbReduceHP([user.totalhp / 2, 1].max, false)
+    user.pbItemHPHealCheck
+    user.pbFaint if user.fainted?
+  end
+end

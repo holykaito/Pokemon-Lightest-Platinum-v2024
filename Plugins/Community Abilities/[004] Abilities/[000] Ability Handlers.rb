@@ -429,7 +429,7 @@ Battle::AbilityEffects::OnHPDroppedBelowHalf.add(:SCARECROW,
 ###########################################################################
 ###########################################################################
 
-Battle::AbilityEffects::DamageCalcFromUser.add(:KINGSWRATH,
+Battle::AbilityEffects::DamageCalcFromUser.add(:MIGHTYHORN,
   proc { |ability, user, target, move, mults, power, type|
 	next if !move.drillMove? && !move.hornMove?
 	

@@ -144,7 +144,7 @@ class Battle
 end
 
 class Battle::Move
-	#KINGSWRATH
+	#MIGHTYHORN
 	def hornMove?;         	return @flags.any? { |f| f[/^Horn$/i] };         	end
 	def drillMove?;         return @flags.any? { |f| f[/^Drill$/i] };   		end
 
@@ -162,7 +162,7 @@ class Battle::Move
 		return CAL_pbGetDefenseStats(user, target)
 	end
 	
-	#KINGSWRATH
+	#MIGHTYHORN
 	alias CAL_pbFlinchChance pbFlinchChance
 	def pbFlinchChance(user, target)
 		return 0 if flinchingMove?
@@ -170,7 +170,7 @@ class Battle::Move
 		ret = CAL_pbFlinchChance(user, target) 
 		
 		if ret == 0
-			if user.hasActiveAbility?(:KINGSWRATH) && (hornMove? || drillMove?)
+			if user.hasActiveAbility?(:MIGHTYHORN) && (hornMove? || drillMove?)
 			  ret = 10
 			end
 			ret *= 2 if user.hasActiveAbility?(:SERENEGRACE) || user.pbOwnSide.effects[PBEffects::Rainbow] > 0
@@ -183,22 +183,26 @@ class Battle::Move
 	
 end
 
-class Battle::Move::TwoTurnMove < Battle::Move	
-	#QUICKCHARGE
-	alias CAL_pbIsChargingTurn? pbIsChargingTurn?
-	def pbIsChargingTurn?(user)
-		ret = CAL_pbIsChargingTurn?(user)
-	
-		if !user.effects[PBEffects::TwoTurnAttack] && user.hasActiveAbility?(:QUICKCHARGE)
-			@powerHerb = false
-			@chargingTurn = true
-			@damagingTurn = true
-			return !@damagingTurn 
-		end
-		
-		return ret
-	end
+#===============================================================================
+# Quick Charge - use prepend to avoid alias/prepend recursion.
+#===============================================================================
+module CommunityAbilitiesQuickCharge
+  def pbIsChargingTurn?(user)
+    ret = super
+
+    if !user.effects[PBEffects::TwoTurnAttack] &&
+       user.hasActiveAbility?(:QUICKCHARGE)
+      @powerHerb = false
+      @chargingTurn = true
+      @damagingTurn = true
+      return false
+    end
+
+    return ret
+  end
 end
+
+Battle::Move::TwoTurnMove.prepend(CommunityAbilitiesQuickCharge)
 
 class Battle::Move::UserFaintsExplosive < Battle::Move
   #CONCUSSION
