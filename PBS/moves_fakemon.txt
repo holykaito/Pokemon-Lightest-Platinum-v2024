@@ -523,14 +523,67 @@ FunctionCode = StartPollinationTerrain
 Flags = CanSnatch
 Description = Boosts grounded Bug moves. Ignores Bug types' negative stat stages and positive stages of Pokemon that are neither Bug nor Grass.
 #-------------------------------
-[WINDYTERRAIN]
-Name = Windy Terrain
+[RAVINETERRAIN]
+Name = Ravine Terrain
 Type = FLYING
 Category = Status
 Accuracy = 0
 TotalPP = 10
 Target = User
-FunctionCode = StartWindyTerrain
+FunctionCode = StartRavineTerrain
 Flags = CanSnatch
-Description = Boosts airborne Flying moves, weakens supereffective hits on airborne Flying types, and prevents powder moves for five turns.
+Description = For five turns, boosts airborne Flying moves, weakens supereffective hits on airborne Flying types, and prevents powder moves.
+#-------------------------------
+[RIPANDTEAR]
+Name = Rip and Tear
+Type = DARK
+Category = Physical
+Power = 110
+Accuracy = 90
+TotalPP = 5
+Target = NearOther
+Priority = 0
+FunctionCode = LowerUserSpeed1BleedTarget
+Flags = Contact,CanProtect,CanMirrorMove
+EffectChance = 50
+Description = Slows the user and may cause bleeding.
+Animation = CRUNCH
+#-------------------------------
+[NIGHTFELLING]
+Name = Nightfelling
+Type = DARK
+Category = Physical
+Power = 120
+Accuracy = 70
+TotalPP = 10
+Target = NearOther
+FunctionCode = AlwaysHitsInGloomMoonlight
+Flags = CanProtect
+Description = Never misses in Gloom Moonlight.
+Animation = NIGHTSLASH
+#-------------------------------
+[DEEPBREATHING]
+Name = Deep Breathing
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 15
+Target = User
+FunctionCode = RaiseUserSpeed1CriticalHitRate1
+Flags = CanSnatch
+Description = Raises Speed and critical-hit ratio.
+Animation = BULKUP,FOCUSENERGY
+#-------------------------------
+[PHOTONEDGE]
+Name = Photon Edge
+Type = ELECTRIC
+Category = Physical
+Power = 85
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = None
+Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing
+Description = Slashes with light. Critical hits land more easily.
+Animation = PSYCHOCUT
 #-------------------------------

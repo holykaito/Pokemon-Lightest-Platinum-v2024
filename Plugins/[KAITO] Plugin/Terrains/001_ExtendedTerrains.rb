@@ -1,6 +1,6 @@
 #===============================================================================
 # Extended Terrains - Pokemon Essentials v21.1
-# Sandy / Swamp / Toxic / Draconic / Colosseum / Pollination / Windy
+# Sandy / Swamp / Toxic / Draconic / Colosseum / Pollination
 #===============================================================================
 module ExtendedTerrains
   # Set a common animation name here when you have created its animation.
@@ -11,7 +11,7 @@ module ExtendedTerrains
     :Draconic    => ["Draconic Terrain",    "DraconicTerrain"],
     :Colosseum   => ["Colosseum Terrain",   "ColosseumTerrain"],
     :Pollination => ["Pollination Terrain", "PollinationTerrain"],
-    :Windy       => ["Windy Terrain",       "WindyTerrain"]
+	:Ravine 	 => ["Ravine Terrain",      "RavineTerrain"]
   }
 
   # Add custom mud move IDs here, or give them the PBS flag "Mud".
@@ -84,46 +84,70 @@ module ExtendedTerrains
     end
   end
 
+  #=============================================================================
+  # Restrictions imposed by terrain.
+  #=============================================================================
   def self.move_block_reason(battler, move)
     case battle_of(battler).field.terrain
     when :Colosseum
-      return _INTL("Colosseum Terrain prevents status moves!") if move.statusMove?
-    when :Windy
-      return _INTL("Windy Terrain blows away spores and powder!") if move.powderMove?
+      if move.statusMove?
+        return _INTL("Colosseum Terrain prevents status moves!")
+      end
+
+    when :Ravine
+      if move.powderMove?
+        return _INTL("Ravine Terrain blows away spores and powder!")
+      end
     end
+
     return nil
   end
 
+  #=============================================================================
+  # Terrain damage modifiers.
+  #=============================================================================
   def self.apply_damage(move, user, target, type, multipliers)
     battle = battle_of(user)
     boost = false
+
     case battle.field.terrain
     when :Sandy
       boost = grounded?(user) && type == :GROUND
+
     when :Swamp
-      boost = grounded?(user) && (type == :WATER || mud_move?(move))
+      boost = grounded?(user) &&
+              (type == :WATER || mud_move?(move))
+
     when :Toxic
-      boost = grounded?(user) && (type == :POISON || mud_move?(move))
+      boost = grounded?(user) &&
+              (type == :POISON || mud_move?(move))
+
     when :Colosseum
       boost = grounded?(user) && type == :FIGHTING
+
     when :Pollination
       boost = grounded?(user) && type == :BUG
+
     when :Draconic
       if type == :FAIRY && grounded?(target)
         multipliers[:final_damage_multiplier] *= 0.5
       end
-    when :Windy
+
+    when :Ravine
       boost = in_air?(user) && type == :FLYING
+
       if in_air?(target) && target.pbHasType?(:FLYING)
         effectiveness = move.pbCalcTypeMod(type, user, target)
+
         if Effectiveness.super_effective?(effectiveness)
           multipliers[:final_damage_multiplier] *= 0.75
         end
       end
-    end
-    # Water + Mud / Poison + Mud is one boost, not two boosts.
+    end # Closes case battle.field.terrain
+
+    # Apply the power boost once.
     multipliers[:power_multiplier] *= 1.3 if boost
-  end
+  end # Closes def self.apply_damage
 
   #=============================================================================
   # Battle: terrain registration, messages, expiration and Toxic poisoning.
@@ -229,14 +253,22 @@ module ExtendedTerrains
       end
       super
     end
+	
+	#---------------------------------------------------------------------------
+	# Ravine Terrain - protects against powder and spore moves.
+	#---------------------------------------------------------------------------
+	def affectedByPowder?(showMsg = false)
+	  if @battle.field.terrain == :Ravine
+		if showMsg
+		  @battle.pbDisplay(
+			_INTL("Ravine Terrain blows away spores and powder!")
+		  )
+		end
+		return false
+	  end
 
-    def affectedByPowder?(showMsg = false)
-      if @battle.field.terrain == :Windy
-        @battle.pbDisplay(_INTL("Windy Terrain blows away spores and powder!")) if showMsg
-        return false
-      end
-      super
-    end
+	  super
+	end
   end
 
   #=============================================================================
@@ -337,47 +369,69 @@ ExtendedTerrains::DATA.each do |id, data|
   GameData::BattleTerrain.register({ :id => id, :name => _INTL(data[0]), :animation => data[1] })
 end
 
-Battle.prepend(ExtendedTerrains::BattleHooks)
-Battle::Battler.prepend(ExtendedTerrains::BattlerHooks)
-Battle::Move.prepend(ExtendedTerrains::MoveHooks)
-Battle::ItemEffects.singleton_class.prepend(ExtendedTerrains::BerryItemHooks)
-Battle::AI::AIMove.prepend(ExtendedTerrains::AIMoveHooks)
-Battle::AI::AIBattler.prepend(ExtendedTerrains::AIBattlerHooks)
+#===============================================================================
+# Install only when Battle.new is first called, after plugin loading is complete.
+# An alias made AFTER a prepend can capture that prepended method and make its
+# super call cycle back through the alias. Delaying installation avoids this.
+#===============================================================================
+module ExtendedTerrains
+  def self.install!
+    return if @installed
+    Battle.prepend(ExtendedTerrains::BattleHooks)
+    Battle::Battler.prepend(ExtendedTerrains::BattlerHooks)
+    Battle::Move.prepend(ExtendedTerrains::MoveHooks)
+    Battle::ItemEffects.singleton_class.prepend(ExtendedTerrains::BerryItemHooks)
+    Battle::AI::AIMove.prepend(ExtendedTerrains::AIMoveHooks)
+    Battle::AI::AIBattler.prepend(ExtendedTerrains::AIBattlerHooks)
 
-#===============================================================================
-# Pollination: wrap each existing override of stat getter methods, including
-# Body Press, Foul Play, Psyshock and custom moves that use another stat.
-# Each class receives its own module. No aliasing of prepended methods.
-#===============================================================================
-ObjectSpace.each_object(Class) do |klass|
-  next if !(klass == Battle::Move || klass < Battle::Move)
-  own = klass.instance_methods(false)
-  methods = [:pbGetAttackStats, :pbGetDefenseStats].select { |name| own.include?(name) }
-  next if methods.empty?
-  hook = Module.new
-  methods.each do |name|
-    hook.send(:define_method, name) do |user, target|
-      ExtendedTerrains.with_effective_stages([user, target]) { super(user, target) }
+    #===============================================================================
+    # Pollination: wrap each existing override of stat getter methods, including
+    # Body Press, Foul Play, Psyshock and custom moves that use another stat.
+    # Each class receives its own module. No aliasing of prepended methods.
+    #===============================================================================
+    ObjectSpace.each_object(Class) do |klass|
+      next if !(klass == Battle::Move || klass < Battle::Move)
+      own = klass.instance_methods(false)
+      methods = [:pbGetAttackStats, :pbGetDefenseStats].select { |name| own.include?(name) }
+      next if methods.empty?
+      hook = Module.new
+      methods.each do |name|
+        hook.send(:define_method, name) do |user, target|
+          ExtendedTerrains.with_effective_stages([user, target]) { super(user, target) }
+        end
+      end
+      klass.prepend(hook)
+    end
+
+    # Read-only dynamic-category comparisons also need Pollination's effective
+    # stages. These classes override pbOnStartUse without calling the base method.
+    [:CategoryDependsOnHigherDamagePoisonTarget,
+     :CategoryDependsOnHigherDamageIgnoreTargetAbility,
+     :CategoryDependsOnHigherDamageTera,
+     :TerapagosCategoryDependsOnHigherDamage].each do |name|
+      next if !Battle::Move.const_defined?(name, false)
+      klass = Battle::Move.const_get(name)
+      hook = Module.new do
+        def pbOnStartUse(user, targets)
+          ExtendedTerrains.with_effective_stages([user]) { super }
+        end
+      end
+      klass.prepend(hook)
+    end
+
+    install_advanced_ai! if respond_to?(:install_advanced_ai!)
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      ExtendedTerrains.install!
+      super(*args, &block)
     end
   end
-  klass.prepend(hook)
 end
 
-# Read-only dynamic-category comparisons also need Pollination's effective
-# stages. These classes override pbOnStartUse without calling the base method.
-[:CategoryDependsOnHigherDamagePoisonTarget,
- :CategoryDependsOnHigherDamageIgnoreTargetAbility,
- :CategoryDependsOnHigherDamageTera,
- :TerapagosCategoryDependsOnHigherDamage].each do |name|
-  next if !Battle::Move.const_defined?(name, false)
-  klass = Battle::Move.const_get(name)
-  hook = Module.new do
-    def pbOnStartUse(user, targets)
-      ExtendedTerrains.with_effective_stages([user]) { super }
-    end
-  end
-  klass.prepend(hook)
-end
+Battle.singleton_class.prepend(ExtendedTerrains::BattleConstruction)
 
 #===============================================================================
 # Sandy Terrain - summon Sandy Terrain for five turns.
@@ -452,15 +506,22 @@ class Battle::Move::StartPollinationTerrain < Battle::Move
 end
 
 #===============================================================================
-# Windy Terrain - summon Windy Terrain for five turns.
+# Ravine Terrain
+# Creates Ravine Terrain for five turns.
 #===============================================================================
-class Battle::Move::StartWindyTerrain < Battle::Move
+class Battle::Move::StartRavineTerrain < Battle::Move
   def pbMoveFailed?(user, targets)
-    return false if @battle.field.terrain != :Windy
-    @battle.pbDisplay(_INTL("But it failed!"))
-    return true
+    if @battle.field.terrain == :Ravine
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+
+    return false
   end
-  def pbEffectGeneral(user); @battle.pbStartTerrain(user, :Windy); end
+
+  def pbEffectGeneral(user)
+    @battle.pbStartTerrain(user, :Ravine)
+  end
 end
 
 #===============================================================================
@@ -471,4 +532,3 @@ ExtendedTerrains::DATA.each_key do |terrain|
     proc { |move, user, ai, battle| next battle.field.terrain == terrain }
   )
 end
-

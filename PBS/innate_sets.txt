@@ -229,6 +229,15 @@ Innates = ANTARTICBIRD,BATTLEARMOR,POSEIDONGUARD
 [EMPOLEON_1]
 Innates = ANTARTICBIRD,BATTLEARMOR,POSEIDONGUARD
 #----------------------------------------
+[SHINX]
+Innates = INTIMIDATE
+#----------------------------------------
+[LUXIO]
+Innates = INTIMIDATE,HYPERCHARGE
+#----------------------------------------
+[LUXRAY]
+Innates = INTIMIDATE,HYPERCHARGE,STRONGJAW
+#----------------------------------------
 [GLAMEOW]
 Innates = THICKFAT,CATSLUCK
 #----------------------------------------

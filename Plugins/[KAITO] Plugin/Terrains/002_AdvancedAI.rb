@@ -3,7 +3,6 @@
 # Loaded after Advanced AI by the optional dependency in meta.txt.
 # All predictions are heuristic; the battle engine remains authoritative.
 #===============================================================================
-if defined?(AdvancedAI::CombatUtilities) && defined?(AdvancedAI::Utilities)
   module ExtendedTerrains
     module Advanced
       SETTERS = ExtendedTerrains::DATA.keys.each_with_object({}) do |terrain, map|
@@ -153,13 +152,18 @@ if defined?(AdvancedAI::CombatUtilities) && defined?(AdvancedAI::Utilities)
               value -= [stages.values.select { |s| s > 0 }.sum * 6, 36].min
             end
           end
-        when :Windy
+        when :Ravine
           value += power_opportunity(battler, :FLYING, false, true)
-          value += 14 if ExtendedTerrains.in_air?(battler) && battler.pbHasType?(:FLYING)
-          value -= [usable_moves(battler).count { |m| m.powderMove? } * 18, 36].min
-        end
+          if ExtendedTerrains.in_air?(battler) &&
+             battler.pbHasType?(:FLYING)
+            value += 14
+          end
+          powder_count = usable_moves(battler).count { |m| m.powderMove? }
+          value -= [powder_count * 18, 36].min
+        end # case terrain
+
         return value
-      end
+      end # def self.battler_value
 
       # Score both teams, including the partner in double/triple battles.
       def self.terrain_value(battle, perspective, terrain)
@@ -361,7 +365,12 @@ if defined?(AdvancedAI::CombatUtilities) && defined?(AdvancedAI::Utilities)
     end
   end
 
+# Installed by ExtendedTerrains.install! after all plugin scripts have loaded.
+def ExtendedTerrains.install_advanced_ai!
+  return if @advanced_installed
+  return if !defined?(AdvancedAI::CombatUtilities) || !defined?(AdvancedAI::Utilities)
   AdvancedAI::CombatUtilities.singleton_class.prepend(ExtendedTerrains::AdvancedCombatHooks)
   AdvancedAI::Utilities.singleton_class.prepend(ExtendedTerrains::AdvancedUtilityHooks)
   Battle::AI.prepend(ExtendedTerrains::AdvancedScorerHooks)
+  @advanced_installed = true
 end

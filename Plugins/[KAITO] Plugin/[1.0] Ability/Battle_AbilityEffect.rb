@@ -10107,16 +10107,192 @@ if defined?(AdvancedAI::CombatUtilities) &&
 end
 
 #===============================================================================
-# Tough It Out
-# Protects the user and raises its Speed by 1 stage if successful.
-# Repeated use follows Protect's success rate.
+# X-Ray Vision
+# Reveals all opposing held items on entry and disables them for 2 rounds.
+# Only held items are disabled; items used from the Bag are unaffected.
 #===============================================================================
-class Battle::Move::ProtectUserRaiseSpeed1 < Battle::Move::ProtectUser
-  def pbEffectGeneral(user)
-    super
-    return if !user.effects[PBEffects::Protect]
-    return if !user.pbCanRaiseStatStage?(:SPEED, user, self)
+module XRayVision
+  DURATION = 2
 
-    user.pbRaiseStatStage(:SPEED, 1, user)
+  def self.real(value)
+    return value.battler if value && value.respond_to?(:battler)
+    return value
+  end
+
+  def self.turns(battler)
+    battler = real(battler)
+    return 0 if !battler
+    return battler.instance_variable_get(:@xray_vision_turns).to_i
+  end
+
+  def self.locked?(battler)
+    return turns(battler) > 0
+  end
+
+  def self.apply(target)
+    target.instance_variable_set(:@xray_vision_turns, DURATION)
+    target.instance_variable_set(:@xray_vision_token, Object.new)
+  end
+
+  #-----------------------------------------------------------------------------
+  # Held item suppression and reset on switching, including Baton Pass.
+  #-----------------------------------------------------------------------------
+  module BattlerHooks
+    def pbInitEffects(batonPass)
+      @xray_vision_turns = 0
+      @xray_vision_token = nil
+      super
+    end
+
+    def itemActive?(ignoreFainted = false)
+      return false if XRayVision.locked?(self)
+      super
+    end
+
+    def hasWorkingItem(*args)
+      return false if XRayVision.locked?(self)
+      super
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Count down after all end-of-round item effects.
+  # Tokens prevent newly switched-in Pokemon from losing a turn immediately.
+  #-----------------------------------------------------------------------------
+  module BattleHooks
+    def pbEndOfRoundPhase
+      pending = allBattlers.select { |b| XRayVision.locked?(b) }.map do |b|
+        [b, b.instance_variable_get(:@xray_vision_token)]
+      end
+
+      result = super
+      return result if @decision > 0
+
+      pending.each do |battler, token|
+        next if battler.fainted?
+        next if !battler.instance_variable_get(:@xray_vision_token).equal?(token)
+
+        remaining = XRayVision.turns(battler) - 1
+        battler.instance_variable_set(:@xray_vision_turns, remaining)
+        next if remaining > 0
+
+        battler.instance_variable_set(:@xray_vision_token, nil)
+        pbDisplay(_INTL("X-Ray Vision's effect on {1} wore off!",
+                        battler.pbThis(true)))
+
+        # Check berries, herbs and seeds when held items become usable again.
+        battler.pbHeldItemTriggerCheck
+        battler.pbItemTerrainStatBoostCheck
+      end
+
+      return result
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Install optional AdvancedAI hooks after all plugins have loaded.
+  #-----------------------------------------------------------------------------
+  module AIBootHooks
+    def initialize(*args, &block)
+      XRayVision.install_advanced_ai!
+      super
+    end
+  end
+
+  module AdvancedUtilityHooks
+    def has_resist_berry?(target, move_type)
+      return false if XRayVision.locked?(target)
+      super
+    end
+  end
+
+  module AdvancedScorerHooks
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if !move || !user
+      return score if !score.is_a?(Numeric) || score <= -999
+
+      source = XRayVision.real(user)
+      victim = XRayVision.real(target)
+
+      # Fling and Natural Gift fail while the user's held item is disabled.
+      if source && XRayVision.locked?(source) &&
+         ["ThrowUserItemAtTarget",
+          "TypeAndPowerDependOnUserBerry"].include?(move.function_code)
+        return -1000
+      end
+
+      # Embargo is less urgent while the target's item is already disabled.
+      if victim && XRayVision.turns(victim) >= 2 &&
+         move.function_code == "StartTargetCannotUseItem"
+        score -= 25
+      end
+
+      return score
+    end
+  end
+
+  def self.install_advanced_ai!
+    if defined?(AdvancedAI::Utilities) &&
+       AdvancedAI::Utilities.respond_to?(:has_resist_berry?) &&
+       !AdvancedAI::Utilities.singleton_class.ancestors.include?(AdvancedUtilityHooks)
+      AdvancedAI::Utilities.singleton_class.prepend(AdvancedUtilityHooks)
+    end
+
+    if Battle::AI.method_defined?(:score_move_advanced) &&
+       !Battle::AI.ancestors.include?(AdvancedScorerHooks)
+      Battle::AI.prepend(AdvancedScorerHooks)
+    end
   end
 end
+
+Battle::Battler.prepend(XRayVision::BattlerHooks)
+Battle.prepend(XRayVision::BattleHooks)
+Battle::AI.prepend(XRayVision::AIBootHooks)
+
+#===============================================================================
+# X-Ray Vision - On entering battle
+# Works for both player and opposing Pokemon.
+#===============================================================================
+Battle::AbilityEffects::OnSwitchIn.add(:XRAYVISION,
+  proc { |ability, battler, battle, switch_in|
+    foes = battle.allOtherSideBattlers(battler.index).select do |b|
+      !b.fainted? && b.item
+    end
+    next if foes.empty?
+
+    battle.pbShowAbilitySplash(battler)
+    begin
+      foes.each do |foe|
+        battle.pbDisplay(_INTL("{1} frisked {2} and found its {3}!",
+                              battler.pbThis, foe.pbThis(true), foe.itemName))
+
+        XRayVision.apply(foe)
+
+        battle.pbDisplay(_INTL("{1}'s held item was disabled for {2} turns!",
+                              foe.pbThis, XRayVision::DURATION))
+      end
+    ensure
+      battle.pbHideAbilitySplash(battler)
+    end
+  }
+)
+
+#===============================================================================
+# X-Ray Vision - Standard AI ability ranking
+# Disabling useful items is beneficial; disabling harmful items can be harmful.
+# Native AI item calculations also respect the patched itemActive? method.
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS[5] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[5] |= [:XRAYVISION]
+
+Battle::AI::Handlers::AbilityRanking.add(:XRAYVISION,
+  proc { |ability, score, battler, ai|
+    utility = 0
+    ai.each_foe_battler(battler.side) do |foe, index|
+      next if !foe.item || !foe.item_active?
+      utility += foe.wants_item?(foe.item_id) - foe.wants_item?(:NONE)
+    end
+    next [[(utility / 2.0).round, -5].max, 8].min
+  }
+)

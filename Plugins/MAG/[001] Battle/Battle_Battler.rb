@@ -119,7 +119,6 @@ alias mag_pbRemoveItem pbRemoveItem
 
 alias mag_pbSpeed pbSpeed  
   def pbSpeed
-   mag_pbSpeed
     return 1 if fainted?
     stage = @stages[:SPEED] + STAT_STAGE_MAXIMUM
     speed = @speed * STAT_STAGE_MULTIPLIERS[stage] / STAT_STAGE_DIVISORS[stage]

@@ -475,6 +475,10 @@ Description = May boost the Pokémon's Attack when hit by an attack.
 Name = Worldroot
 Description = Removes foes' Ground immunity, except Earth Eater.
 #-------------------------------
+[XRAYVISION] ###
+Name = X-Ray Vision
+Description = Reveals opposing held items and disables them for 2 turns.
+#-------------------------------
 [ZENAURA]
 Name = Zen Aura
 Description = Damages opposing Pokémon that hit it with special moves.

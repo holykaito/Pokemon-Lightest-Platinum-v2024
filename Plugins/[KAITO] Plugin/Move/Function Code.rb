@@ -362,3 +362,58 @@ class Battle::Move::ProtectUserRaiseSpeed1 < Battle::Move::ProtectUser
     user.pbRaiseStatStage(:SPEED, 1, user)
   end
 end
+
+#===============================================================================
+# Rip and Tear
+# Lowers the user's Speed by 1 stage upon hitting.
+# May inflict Bleed according to EffectChance.
+#===============================================================================
+class Battle::Move::LowerUserSpeed1BleedTarget < Battle::Move::LowerUserSpeed1
+  def pbAdditionalEffect(user, target)
+    return if target.fainted?
+    return if target.damageState.substitute
+    return if !target.pbCanBleed?
+
+    target.pbInflictBleed
+  end
+end
+
+#===============================================================================
+# Nightfelling
+# Always hits while Gloom Moonlight is active.
+# Uses normal accuracy otherwise.
+#===============================================================================
+class Battle::Move::AlwaysHitsInGloomMoonlight < Battle::Move
+  def pbBaseAccuracy(user, target)
+    return 0 if user.effectiveWeather == :GloomMoonlight
+    return super
+  end
+end
+
+#===============================================================================
+# Deep Breathing
+# Raises the user's Speed and critical-hit ratio by 1 stage each.
+# Critical-hit boosts stack up to 3 stages.
+#===============================================================================
+class Battle::Move::RaiseUserSpeed1CriticalHitRate1 < Battle::Move
+  def pbMoveFailed?(user, targets)
+    return false if user.pbCanRaiseStatStage?(:SPEED, user, self)
+    return false if user.effects[PBEffects::FocusEnergy] < 3
+
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbCanRaiseStatStage?(:SPEED, user, self)
+      user.pbRaiseStatStage(:SPEED, 1, user)
+    end
+
+    if user.effects[PBEffects::FocusEnergy] < 3
+      user.effects[PBEffects::FocusEnergy] += 1
+      @battle.pbDisplay(
+        _INTL("{1} is getting pumped!", user.pbThis)
+      )
+    end
+  end
+end

@@ -4190,7 +4190,7 @@ Accuracy = 85
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetAccuracy1
-Flags = CanProtect,CanMirrorMove,Bomb
+Flags = CanProtect,CanMirrorMove,Bomb,Mud
 EffectChance = 30
 Description = The user launches a hard-packed mud ball to attack. It may also lower the target's accuracy.
 #-------------------------------
@@ -4216,7 +4216,7 @@ Accuracy = 95
 TotalPP = 15
 Target = NearOther
 FunctionCode = LowerTargetSpeed1
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Mud
 EffectChance = 100
 Description = The user attacks by hurling a blob of mud at the target. It also reduces the target's Speed.
 #-------------------------------
@@ -4265,7 +4265,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetAccuracy1
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Mud
 EffectChance = 100
 Description = The user hurls mud in the target's face to inflict damage and lower its accuracy.
 #-------------------------------
@@ -4302,7 +4302,7 @@ TotalPP = 15
 Target = BothSides
 FunctionCode = StartWeakenElectricMoves
 Description = The user covers itself with mud. It weakens Electric-type moves while the user is in the battle.
-Flags = ZPower_SPECIAL_DEFENSE_1
+Flags = ZPower_SPECIAL_DEFENSE_1,Mud
 #-------------------------------
 [ROTOTILLER]
 Name = Rototiller
@@ -8493,7 +8493,7 @@ Accuracy = 85
 TotalPP = 10
 Target = AllNearFoes
 FunctionCode = LowerTargetAccuracy1
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Mud
 EffectChance = 30
 Description = The user attacks by shooting muddy water at the opposing team. It may also lower the target's accuracy.
 #-------------------------------
