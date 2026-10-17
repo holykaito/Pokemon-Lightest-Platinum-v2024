@@ -261,7 +261,6 @@ Target = NearOther
 FunctionCode = TwoTurnAttackOneTurnInRainstorm
 Flags = CanProtect,CanMirrorMove
 Description = Charges first, then attacks. Strikes immediately in rain.
-Animation = FREEZESHOCK,WILDCHARGE
 #-------------------------------
 [DRAGONCURRENT]
 Name = Dragon Current
@@ -274,7 +273,6 @@ Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableUnderwater
 Flags = Contact,CanProtect,CanMirrorMove
 Description = Dives first, then strikes and traps the target for 2-5 turns.
-Animation = DIVE,WHIRLPOOL
 #-------------------------------
 [AQUAFANG]
 Name = Aqua Fang
@@ -300,21 +298,6 @@ Target = User
 FunctionCode = RaiseUserSpAtkSpd1
 Flags = CanSnatch,Dance
 Description = A mystic dance that raises Sp. Atk and Speed.
-Animation = DRAGONDANCE,MIST
-#-------------------------------
-[HYPERDRILL]
-Name = Hyper Drill
-Type = NORMAL
-Category = Physical
-Power = 120
-Accuracy = 90
-TotalPP = 5
-Target = NearOther
-Priority = 0
-FunctionCode = IgnoreProtections
-Flags = Contact,CanMirrorMove,Horn,Drill
-Description = A spinning strike that pierces through Protect.
-Animation = HORNDRILL,GIGAIMPACT
 #-------------------------------
 [FISHHARPOON]
 Name = Fish Harpoon
@@ -353,7 +336,6 @@ Priority = 0
 FunctionCode = IgnoreTargetAbility
 Flags = Contact,CanProtect,CanMirrorMove,Kick
 Description = A powerful kick that ignores the target's Ability.
-Animation = HIGHJUMPKICK
 #-------------------------------
 [SKYKICK]
 Name = Sky Kick
@@ -367,7 +349,6 @@ Priority = 0
 FunctionCode = CrashDamageFirstTurnBoostSkyKick
 Flags = Contact,CanProtect,CanMirrorMove,Kick
 Description = Stronger and faster on the user's first turn. Hurts if it misses.
-Animation = HIGHJUMPKICK,SKYUPPERCUT
 #-------------------------------
 [PUNISHINGKICK]
 Name = Punishing Kick
@@ -381,3 +362,175 @@ FunctionCode = PowerLowerWithUserHPCrashIfMiss
 Flags = Contact,CanProtect,CanMirrorMove,Kick
 Description = Stronger at low HP. The user crashes if it misses.
 Animation = HIGHJUMPKICK,PAYBACK
+#-------------------------------
+[MOONYNIGHT]
+Name = Moony Night
+Type = DARK
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+Priority = 0
+FunctionCode = StartGloomMoonlightWeather
+Description = Calls gloomy moonlight for five turns, powering up Dark moves.
+#-------------------------------
+[SHADOWFANGS]
+Name = Shadow Fangs
+Type = GHOST
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = DamageTargetMayCurse
+Flags = Contact,CanProtect,CanMirrorMove,Biting
+EffectChance = 10
+Description = Shadowy fangs bite the target and may leave it cursed.
+#-------------------------------
+[SOILDRAIN]
+Name = Soil Drain
+Type = GROUND
+Category = Special
+Power = 75
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = HealUserByHalfOfDamageDone
+Flags = CanProtect,CanMirrorMove
+Description = Drains half the damage dealt as HP.
+Animation = GIGADRAIN,EARTHPOWER
+#-------------------------------
+[UNDERTOW]
+Name = Undertow
+Type = STEEL
+Category = Physical
+Power = 60
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+Priority = 0
+FunctionCode = LowerTargetDefenseOrSpeed1
+Flags = Contact,CanProtect,CanMirrorMove
+EffectChance = 30
+Description = Slashes with claws. May lower Defense or Speed.
+Animation = METALCLAW
+#-------------------------------
+[RECKLESSSWING]
+Name = Reckless Swing
+Type = DARK
+Category = Physical
+Power = 150
+Accuracy = 90
+TotalPP = 5
+Target = NearOther
+Priority = 0
+FunctionCode = RecoilHalfOfDamageDealt
+Flags = Contact,CanProtect,CanMirrorMove
+Description = A reckless strike with heavy recoil.
+Animation = BRUTALSWING
+#-------------------------------
+[TOUGHITOUT]
+Name = Tough It Out
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+Priority = 4
+FunctionCode = ProtectUserRaiseSpeed1
+Flags = CanSnatch
+Description = Protects the user and raises its Speed.
+Animation = PROTECT
+#-------------------------------
+[GEMMISSILE]
+Name = Gem Missile
+Type = ROCK
+Category = Special
+Power = 40
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+Priority = 1
+FunctionCode = None
+Flags = CanProtect,CanMirrorMove
+Description = Fires a sharp gem to strike first.
+Animation = POWERGEM,SWIFT
+#-------------------------------
+[SANDYTERRAIN]
+Name = Sandy Terrain
+Type = GROUND
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = StartSandyTerrain
+Flags = CanSnatch
+Description = Boosts grounded Ground moves and lowers the evasiveness of Pokemon that are neither Ground nor Rock for five turns.
+#-------------------------------
+[SWAMPTERRAIN]
+Name = Swamp Terrain
+Type = WATER
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = StartSwampTerrain
+Flags = CanSnatch
+Description = Boosts grounded Water and mud moves and slows grounded Pokemon that are not Water-type for five turns.
+#-------------------------------
+[TOXICTERRAIN]
+Name = Toxic Terrain
+Type = POISON
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = StartToxicTerrain
+Flags = CanSnatch
+Description = Boosts grounded Poison and mud moves. Grounded non-Poison Pokemon cannot eat Berries and may be poisoned each turn.
+#-------------------------------
+[DRACONICTERRAIN]
+Name = Draconic Terrain
+Type = DRAGON
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = StartDraconicTerrain
+Flags = CanSnatch
+Description = Halves Fairy damage to grounded Pokemon. Dragon moves from grounded Pokemon can hit Fairy types for five turns.
+#-------------------------------
+[COLOSSEUMTERRAIN]
+Name = Colosseum Terrain
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = StartColosseumTerrain
+Flags = CanSnatch
+Description = Boosts grounded Fighting moves and prevents all Pokemon from using status moves for five turns.
+#-------------------------------
+[POLLINATIONTERRAIN]
+Name = Pollination Terrain
+Type = BUG
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = StartPollinationTerrain
+Flags = CanSnatch
+Description = Boosts grounded Bug moves. Ignores Bug types' negative stat stages and positive stages of Pokemon that are neither Bug nor Grass.
+#-------------------------------
+[WINDYTERRAIN]
+Name = Windy Terrain
+Type = FLYING
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = StartWindyTerrain
+Flags = CanSnatch
+Description = Boosts airborne Flying moves, weakens supereffective hits on airborne Flying types, and prevents powder moves for five turns.
+#-------------------------------

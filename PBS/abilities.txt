@@ -189,9 +189,9 @@ Description = The Pokémon raises the foe's PP usage.
 Name = Thick Fat
 Description = Resists heat and cold and powers up Slam and Body Slam.
 #-------------------------------
-[EARLYBIRD]
+[EARLYBIRD] ###
 Name = Early Bird
-Description = The Pokémon awakens quickly from sleep.
+Description = Wakes quickly and acts with greater priority.
 #-------------------------------
 [FLAMEBODY]
 Name = Flame Body

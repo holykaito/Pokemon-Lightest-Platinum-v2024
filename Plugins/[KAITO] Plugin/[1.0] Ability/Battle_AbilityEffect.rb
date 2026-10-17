@@ -8385,7 +8385,14 @@ end
 
 # Record fainting independently of LastRoundFainted, so a new faint
 # this round won't erase the record needed from the previous round.
-module KamenRiderFaintTracking
+#===============================================================================
+# Kamen Rider - faint tracking compatible with M.A.G
+#===============================================================================
+class Battle::Battler
+  unless method_defined?(:kamen_rider_original_pbFaint)
+    alias_method :kamen_rider_original_pbFaint, :pbFaint
+  end
+
   def pbFaint(showMessage = true)
     if fainted? && !@fainted && @pokemon
       history = @battle.kamen_rider_faints
@@ -8393,14 +8400,14 @@ module KamenRiderFaintTracking
       history[round] ||= []
 
       record = [idxOwnSide, @pokemon]
-      history[round] << record if !history[round].include?(record)
+      unless history[round].include?(record)
+        history[round] << record
+      end
     end
 
-    return super
+    return kamen_rider_original_pbFaint(showMessage)
   end
 end
-
-Battle::Battler.prepend(KamenRiderFaintTracking)
 
 Battle::AbilityEffects::DamageCalcFromUser.add(:KAMENRIDER,
   proc { |ability, user, target, move, mults, power, type|
@@ -8559,15 +8566,19 @@ end
 #-------------------------------------------------------------------------------
 # Reset on entry, including Baton Pass.
 #-------------------------------------------------------------------------------
-module ShowdownModeReset
+#===============================================================================
+# Showdown Mode - reset compatible with Community Abilities
+#===============================================================================
+class Battle::Battler
+  alias_method :showdown_mode_original_init_effects, :pbInitEffects
+
   def pbInitEffects(batonPass)
-    super
+    showdown_mode_original_init_effects(batonPass)
+
     @effects[PBEffects::ShowdownMode] = false
     @showdown_mode_eor_round = nil
   end
 end
-
-Battle::Battler.prepend(ShowdownModeReset)
 
 #-------------------------------------------------------------------------------
 # Activate once per stay on the field.
@@ -8741,7 +8752,21 @@ end
 #-------------------------------------------------------------------------------
 # Track the move's user and actual stat reductions.
 #-------------------------------------------------------------------------------
-module SubjugateBattlerEffects
+#===============================================================================
+# Subjugate - stat reduction tracking
+# Compatible with Community Abilities alias hooks.
+#===============================================================================
+class Battle::Battler
+  unless method_defined?(:subjugate_original_pbUseMove)
+    alias_method :subjugate_original_pbUseMove, :pbUseMove
+    alias_method :subjugate_original_pbLowerStatStage,
+                 :pbLowerStatStage
+    alias_method :subjugate_original_pbLowerStatStageByCause,
+                 :pbLowerStatStageByCause
+    alias_method :subjugate_original_pbLowerStatStageBasic,
+                 :pbLowerStatStageBasic
+  end
+
   def pbUseMove(choice, specialUsage = false)
     old_user  = Subjugate.move_user
     old_depth = Subjugate.non_move_depth
@@ -8749,7 +8774,7 @@ module SubjugateBattlerEffects
     begin
       Subjugate.move_user = self
       Subjugate.non_move_depth = 0
-      return super
+      return subjugate_original_pbUseMove(choice, specialUsage)
     ensure
       Subjugate.move_user = old_user
       Subjugate.non_move_depth = old_depth
@@ -8781,11 +8806,19 @@ module SubjugateBattlerEffects
   end
 
   def pbLowerStatStage(stat, increment, user, *args)
-    return subjugate_track_drop(user) { super }
+    return subjugate_track_drop(user) do
+      subjugate_original_pbLowerStatStage(
+        stat, increment, user, *args
+      )
+    end
   end
 
   def pbLowerStatStageByCause(stat, increment, user, cause, *args)
-    return subjugate_track_drop(user) { super }
+    return subjugate_track_drop(user) do
+      subjugate_original_pbLowerStatStageByCause(
+        stat, increment, user, cause, *args
+      )
+    end
   end
 
   def pbLowerStatStageBasic(stat, increment, ignoreContrary = false)
@@ -8794,7 +8827,9 @@ module SubjugateBattlerEffects
     frame[:captured] = true if capture
 
     before = @stages[stat]
-    result = super
+    result = subjugate_original_pbLowerStatStageBasic(
+      stat, increment, ignoreContrary
+    )
     reduction = before - @stages[stat]
 
     if capture && reduction > 0
@@ -8804,8 +8839,6 @@ module SubjugateBattlerEffects
     return result
   end
 end
-
-Battle::Battler.prepend(SubjugateBattlerEffects)
 
 #-------------------------------------------------------------------------------
 # Exclude Ability/item effects, including those triggered during a move.
@@ -8966,4 +8999,1124 @@ if defined?(AdvancedAI) &&
   end
 
   Battle::AI.prepend(SubjugateAdvancedScoring)
+end
+
+#===============================================================================
+# Early Bird - +2 move priority on the waking turn
+#===============================================================================
+module EarlyBirdWake
+  def self.ready?(value)
+    battler = value.respond_to?(:battler) ? value.battler : value
+    return false if !battler || battler.fainted?
+    return false if !battler.hasActiveAbility?(:EARLYBIRD)
+
+    # Priority is calculated before the sleep counter is reduced.
+    # A counter of 1 means the Pokémon will wake when attempting its move.
+    if battler.status == :SLEEP
+      return battler.statusCount <= 1
+    end
+
+    # Already woke/cured earlier during this same round.
+    record = battler.instance_variable_get(:@early_bird_wake_record)
+    return record == [
+      battler.battle.turnCount,
+      battler.pokemon.object_id
+    ]
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Remember when sleep is cured.
+# Use an alias to remain compatible with the existing plugin alias chains.
+#-------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :early_bird_original_cure_status, :pbCureStatus
+
+  def pbCureStatus(showMessages = true)
+    was_asleep = (@status == :SLEEP)
+    result = early_bird_original_cure_status(showMessages)
+
+    if was_asleep && @status != :SLEEP && @pokemon
+      @early_bird_wake_record = [
+        @battle.turnCount,
+        @pokemon.object_id
+      ]
+    end
+
+    return result
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Actual priority and Essentials AI prediction.
+#-------------------------------------------------------------------------------
+Battle::AbilityEffects::PriorityChange.add(:EARLYBIRD,
+  proc { |ability, battler, move, priority|
+    next priority if !EarlyBirdWake.ready?(battler)
+    next priority + 2
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Ability ranking.
+#-------------------------------------------------------------------------------
+Battle::AI::Handlers::AbilityRanking.add(:EARLYBIRD,
+  proc { |ability, score, battler, ai|
+    next 8 if EarlyBirdWake.ready?(battler)
+
+    has_rest = battler.check_for_move { |m| m.id == :REST }
+    next has_rest ? 7 : 5
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI has a separate priority utility.
+# Its PriorityTiers helper already calls the engine's priority handlers.
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI::Utilities)
+  module EarlyBirdAdvancedPriority
+    def effective_priority(user, move, battle = nil)
+      priority = super
+      return priority if !move
+      return priority + (EarlyBirdWake.ready?(user) ? 2 : 0)
+    end
+  end
+
+  AdvancedAI::Utilities.singleton_class.prepend(
+    EarlyBirdAdvancedPriority
+  )
+end
+
+#===============================================================================
+# Cat's Luck
+#===============================================================================
+module CatsLuck
+  STATS = [
+    :ATTACK,
+    :DEFENSE,
+    :SPECIAL_ATTACK,
+    :SPECIAL_DEFENSE,
+    :SPEED,
+    :ACCURACY,
+    :EVASION
+  ]
+
+  def self.available_stats(battler)
+    return STATS.select do |stat|
+      battler.pbCanRaiseStatStage?(stat, battler)
+    end
+  end
+
+  def self.activate(user, battle)
+    stats = available_stats(user)
+    return if stats.empty?
+
+    stat = stats[battle.pbRandom(stats.length)]
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:CATSLUCK).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(user)
+      user.pbRaiseStatStageByAbility(stat, 1, user, false)
+      battle.pbHideAbilitySplash(user)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+Battle::AbilityEffects::OnDealingHit.add(:CATSLUCK,
+  proc { |ability, user, target, move, battle|
+    next if user.fainted?
+    next if !move.damagingMove?
+    next if !target.damageState.critical
+    next if target.damageState.substitute
+    next if target.damageState.disguise || target.damageState.iceFace
+
+    CatsLuck.activate(user, battle)
+  }
+)
+
+#===============================================================================
+# AI helpers - estimate critical-hit chance without rolling RNG.
+#===============================================================================
+module CatsLuckAI
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.critical_chance(user, target, move, battle)
+    return 0.0 if target.pbOwnSide.effects[PBEffects::LuckyChant] > 0
+
+    ignored = battle.moldBreaker
+    if defined?(AdvancedAI::Utilities)
+      ignored = AdvancedAI::Utilities.ignores_ability?(
+        user, move, target
+      )
+    end
+
+    stage = 0
+
+    if user.abilityActive?
+      stage = Battle::AbilityEffects.triggerCriticalCalcFromUser(
+        user.ability, user, target, stage
+      )
+    end
+    return 0.0 if stage < 0
+
+    if target.abilityActive? && !ignored
+      stage = Battle::AbilityEffects.triggerCriticalCalcFromTarget(
+        target.ability, user, target, stage
+      )
+    end
+    return 0.0 if stage < 0
+
+    if user.itemActive?
+      stage = Battle::ItemEffects.triggerCriticalCalcFromUser(
+        user.item, user, target, stage
+      )
+    end
+    return 0.0 if stage < 0
+
+    if target.itemActive?
+      stage = Battle::ItemEffects.triggerCriticalCalcFromTarget(
+        target.item, user, target, stage
+      )
+    end
+    return 0.0 if stage < 0
+
+    override = move.pbCritialOverride(user, target)
+    return 0.0 if override == -1
+    return 1.0 if override == 1 || stage > 50
+    return 1.0 if user.effects[PBEffects::LaserFocus] > 0
+
+    stage += 1 if move.highCriticalRate?
+    stage += user.effects[PBEffects::FocusEnergy]
+    stage += 1 if user.inHyperMode? && move.type == :SHADOW
+
+    ratios = Battle::Move::CRITICAL_HIT_RATIOS
+    stage = [[stage, 0].max, ratios.length - 1].min
+    return 1.0 / ratios[stage]
+  end
+
+  def self.bonus(user, target, move, battle)
+    user   = real_battler(user)
+    target = real_battler(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target
+    return 0 if !user.opposes?(target)
+    return 0 if !user.hasActiveAbility?(:CATSLUCK)
+    return 0 if !native.damagingMove?
+    return 0 if native.is_a?(Battle::Move::FixedDamageMove)
+    return 0 if CatsLuck.available_stats(user).empty?
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(user)
+      return 0
+    end
+
+    chance = critical_chance(user, target, native, battle)
+    return 0 if chance <= 0
+
+    hits = native.multiHitMove? ? 3.0 : 1.0
+    if defined?(AdvancedAI::CombatUtilities)
+      hits = AdvancedAI::CombatUtilities.expected_hit_multiplier(
+        native, user
+      )
+    end
+
+    value = [(10 * chance * hits).round, 20].min
+    value *= 2 if user.hasActiveAbility?(:SIMPLE)
+    value = -value if user.hasActiveAbility?(:CONTRARY)
+
+    return value
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Ability ranking
+#-------------------------------------------------------------------------------
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:CATSLUCK)
+end
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :CATSLUCK
+
+Battle::AI::Handlers::AbilityRanking.add(:CATSLUCK,
+  proc { |ability, score, battler, ai|
+    next 0 if CatsLuck.available_stats(battler.battler).empty?
+    next 0 if !battler.check_for_move { |m| m.damagingMove? }
+    next(-3) if battler.has_active_ability?(:CONTRARY)
+    next 9 if battler.has_active_ability?(:SIMPLE)
+    next 8 if battler.has_active_ability?(:SUPERLUCK)
+    next 7
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Essentials AI
+#-------------------------------------------------------------------------------
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:cats_luck,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score + CatsLuckAI.bonus(user, target, move, battle)
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI
+# Use an alias rather than prepending the scoring method.
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  class Battle::AI
+    alias_method :cats_luck_original_advanced_score,
+                 :score_move_advanced
+
+    def score_move_advanced(move, user, target, skill)
+      score = cats_luck_original_advanced_score(
+        move, user, target, skill
+      )
+      return score if score <= 0
+
+      return score + CatsLuckAI.bonus(
+        user, target, move, @battle
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Great Wisdom - doubles Special Attack
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromUser.add(:GREATWISDOM,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !move.specialMove?
+    mults[:attack_multiplier] *= 2.0
+  }
+)
+
+#===============================================================================
+# Essentials AI
+# Native damage prediction uses the same damage handler.
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:GREATWISDOM)
+end
+Battle::AI::BASE_ABILITY_RATINGS[9] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[9] << :GREATWISDOM
+
+Battle::AI::Handlers::AbilityRanking.add(:GREATWISDOM,
+  proc { |ability, score, battler, ai|
+    useful = battler.check_for_move do |move|
+      move.damagingMove? &&
+        move.specialMove? &&
+        !move.is_a?(Battle::Move::FixedDamageMove)
+    end
+
+    next useful ? 9 : 0
+  }
+)
+
+#===============================================================================
+# Advanced AI - shared damage estimator
+#===============================================================================
+if defined?(AdvancedAI::CombatUtilities)
+  class << AdvancedAI::CombatUtilities
+    alias_method :great_wisdom_original_ability_modifier,
+                 :ability_damage_modifier
+
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = great_wisdom_original_ability_modifier(
+        attacker, target, type, physical,
+        effectiveness, move, physical_defense
+      )
+
+      user = attacker.respond_to?(:battler) ? attacker.battler : attacker
+      return result if !user || physical
+      return result if !user.respond_to?(:hasActiveAbility?)
+
+      result *= 2.0 if user.hasActiveAbility?(:GREATWISDOM)
+      return result
+    end
+  end
+end
+
+#===============================================================================
+# Advanced AI - separate rough damage calculation
+#===============================================================================
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:calculate_rough_damage)
+  class Battle::AI
+    alias_method :great_wisdom_original_rough_damage,
+                 :calculate_rough_damage
+
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = great_wisdom_original_rough_damage(
+        move, user, target, override_bp
+      )
+      return result if result <= 0
+
+      attacker = user.respond_to?(:battler) ? user.battler : user
+      native = move.respond_to?(:move) ? move.move : move
+
+      return result if !attacker
+      return result if !attacker.hasActiveAbility?(:GREATWISDOM)
+      return result if !native.specialMove?
+      return result if native.is_a?(Battle::Move::FixedDamageMove)
+      return result if native.function_code.start_with?("OHKO")
+
+      return (result * 2.0).to_i
+    end
+  end
+end
+
+#===============================================================================
+# Perfectionist
+#===============================================================================
+module Perfectionist
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.bonus(move)
+    native = move.respond_to?(:move) ? move.move : move
+    return 0 if !native || !native.damagingMove?
+    return 0 if native.is_a?(Battle::Move::FixedDamageMove)
+    return 0 if native.function_code.start_with?("OHKO")
+
+    power = native.power
+    # Power 0/1 is commonly used as a placeholder for special formulas.
+    return 0 if power <= 1
+    return 2 if power < 26
+    return 1 if power < 51
+    return 0
+  end
+
+  # Temporarily add critical stages while the engine performs its normal
+  # critical-hit calculation. Always restore the original effect afterward.
+  def self.with_bonus(value, move)
+    user = real_battler(value)
+    extra = user && user.hasActiveAbility?(:PERFECTIONIST) ? bonus(move) : 0
+    return yield if extra == 0
+
+    original = user.effects[PBEffects::FocusEnergy]
+
+    begin
+      user.effects[PBEffects::FocusEnergy] = original + extra
+      return yield
+    ensure
+      user.effects[PBEffects::FocusEnergy] = original
+    end
+  end
+
+  def self.ai_bonus(user, target, move)
+    user   = real_battler(user)
+    target = real_battler(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target || !user.opposes?(target)
+    return 0 if !user.hasActiveAbility?(:PERFECTIONIST)
+
+    extra = bonus(native)
+    return 0 if extra == 0
+    return 0 if target.pbOwnSide.effects[PBEffects::LuckyChant] > 0
+
+    ignored = user.battle.moldBreaker
+    if defined?(AdvancedAI::Utilities)
+      ignored = AdvancedAI::Utilities.ignores_ability?(
+        user, native, target
+      )
+    end
+
+    return 0 if !ignored &&
+                target.hasActiveAbility?([:BATTLEARMOR, :SHELLARMOR])
+
+    override = native.pbCritialOverride(user, target)
+    return 0 if override != 0
+    return 0 if user.effects[PBEffects::LaserFocus] > 0
+
+    return extra * 3
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Battle effect - preserve the existing critical-hit calculation.
+#-------------------------------------------------------------------------------
+class Battle::Move
+  alias_method :perfectionist_original_is_critical, :pbIsCritical?
+
+  def pbIsCritical?(user, target)
+    return Perfectionist.with_bonus(user, self) do
+      perfectionist_original_is_critical(user, target)
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Essentials AI - predict the correct critical-hit stage.
+#-------------------------------------------------------------------------------
+class Battle::AI::AIMove
+  alias_method :perfectionist_original_critical_stage,
+               :rough_critical_hit_stage
+
+  def rough_critical_hit_stage
+    return Perfectionist.with_bonus(@ai.user, @move) do
+      perfectionist_original_critical_stage
+    end
+  end
+end
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:PERFECTIONIST)
+end
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :PERFECTIONIST
+
+Battle::AI::Handlers::AbilityRanking.add(:PERFECTIONIST,
+  proc { |ability, score, battler, ai|
+    best = battler.moves.map { |m| Perfectionist.bonus(m) }.max || 0
+    next 0 if best == 0
+    next best == 2 ? 8 : 7
+  }
+)
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:perfectionist,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score + Perfectionist.ai_bonus(user, target, move)
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Advanced AI - additional move preference.
+#-------------------------------------------------------------------------------
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  class Battle::AI
+    alias_method :perfectionist_original_advanced_score,
+                 :score_move_advanced
+
+    def score_move_advanced(move, user, target, skill)
+      score = perfectionist_original_advanced_score(
+        move, user, target, skill
+      )
+      return score if score <= 0
+
+      return score + Perfectionist.ai_bonus(user, target, move)
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Keep Cat's Luck's custom critical-chance prediction compatible.
+#-------------------------------------------------------------------------------
+if defined?(CatsLuckAI) && CatsLuckAI.respond_to?(:critical_chance)
+  class << CatsLuckAI
+    alias_method :perfectionist_original_critical_chance,
+                 :critical_chance
+
+    def critical_chance(user, target, move, battle)
+      return Perfectionist.with_bonus(user, move) do
+        perfectionist_original_critical_chance(user, target, move, battle)
+      end
+    end
+  end
+end
+
+#===============================================================================
+# Nine Lives
+#===============================================================================
+module NineLives
+  CHANCE = 15
+
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.priority_active?(value)
+    b = real_battler(value)
+    return false if !b || b.fainted?
+    return b.hasActiveAbility?(:NINELIVES) && b.hp * 4 < b.totalhp
+  end
+
+  def self.roll?(battler, ignore_fainted = false)
+    return false if !battler.hasActiveAbility?(:NINELIVES, ignore_fainted)
+    return battler.battle.pbRandom(100) < CHANCE
+  end
+
+  def self.show_message(battler)
+    battle = battler.battle
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:NINELIVES).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(_INTL("{1} held on with {2}!",
+                            battler.pbThis, name))
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+
+  def self.ai_survival_adjustment(user, target, move, damage)
+    target = real_battler(target)
+    user   = real_battler(user)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target
+    return 0 if !user.opposes?(target)
+    return 0 if !native.damagingMove?
+    return 0 if !target.hasActiveAbility?(:NINELIVES)
+    return 0 if damage < target.hp
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(user)
+      return 0
+    end
+
+    return native.multiHitMove? ? -1 : -2
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Survival against lethal HP loss.
+#-------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :nine_lives_original_reduce_hp, :pbReduceHP
+
+  def pbReduceHP(amt, anim = true, registerDamage = true, anyAnim = true)
+    @nine_lives_lethal_checked = false
+    amount = amt.round
+    saved = false
+
+    if hp > 0 && amount >= hp
+      # Prevent a second roll in pbFaint after a failed survival attempt.
+      @nine_lives_lethal_checked = true
+
+      if NineLives.roll?(self)
+        amount = hp - 1
+        saved = true
+
+        # Keep direct move-damage bookkeeping accurate.
+        if @nine_lives_direct_hp_damage
+          state = damageState
+          difference = state.hpLost - amount
+          state.hpLost = amount
+          state.totalHPLost -= difference
+        end
+      end
+    end
+
+    # The engine normally forces a minimum loss of 1 HP.
+    # Skip it when Nine Lives protects a Pokémon already at 1 HP.
+    if saved && amount == 0
+      NineLives.show_message(self)
+      return 0
+    end
+
+    result = nine_lives_original_reduce_hp(
+      amount, anim, registerDamage, anyAnim
+    )
+
+    NineLives.show_message(self) if saved && !fainted?
+    return result
+  end
+
+  # Fallback for effects that directly set HP to 0 before calling pbFaint.
+  alias_method :nine_lives_original_faint, :pbFaint
+
+  def pbFaint(showMessage = true)
+    already_checked = @nine_lives_lethal_checked
+    @nine_lives_lethal_checked = false
+
+    if fainted? && !@fainted && !already_checked
+      if NineLives.roll?(self, true)
+        self.hp = 1
+        @battle.scene.pbHPChanged(self, 0, false)
+        NineLives.show_message(self)
+        return
+      end
+    end
+
+    return nine_lives_original_faint(showMessage)
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Identify the direct move-damage HP update.
+#-------------------------------------------------------------------------------
+class Battle::Move
+  alias_method :nine_lives_original_inflict_hp_damage, :pbInflictHPDamage
+
+  def pbInflictHPDamage(target)
+    old_flag = target.instance_variable_get(:@nine_lives_direct_hp_damage)
+
+    begin
+      target.instance_variable_set(:@nine_lives_direct_hp_damage, true)
+      return nine_lives_original_inflict_hp_damage(target)
+    ensure
+      target.instance_variable_set(
+        :@nine_lives_direct_hp_damage, old_flag
+      )
+    end
+  end
+end
+
+#-------------------------------------------------------------------------------
+# +1 priority for damaging moves below 1/4 HP.
+#-------------------------------------------------------------------------------
+Battle::AbilityEffects::PriorityChange.add(:NINELIVES,
+  proc { |ability, battler, move, priority|
+    next priority if !move.damagingMove?
+    next priority if !NineLives.priority_active?(battler)
+    next priority + 1
+  }
+)
+
+#===============================================================================
+# Essentials AI
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:NINELIVES)
+end
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :NINELIVES
+
+Battle::AI::Handlers::AbilityRanking.add(:NINELIVES,
+  proc { |ability, score, battler, ai|
+    damaging = battler.check_for_move { |m| m.damagingMove? }
+    next 6 if !damaging
+    next NineLives.priority_active?(battler) ? 9 : 8
+  }
+)
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:nine_lives,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score if !move.damagingMove?
+    next score if !target.has_active_ability?(:NINELIVES)
+
+    next score + NineLives.ai_survival_adjustment(
+      user, target, move, move.rough_damage
+    )
+  }
+)
+
+#===============================================================================
+# Advanced AI
+#===============================================================================
+if defined?(AdvancedAI::Utilities)
+  class << AdvancedAI::Utilities
+    alias_method :nine_lives_original_effective_priority,
+                 :effective_priority
+
+    def effective_priority(user, move, battle = nil)
+      result = nine_lives_original_effective_priority(user, move, battle)
+      return result if !move || !move.damagingMove?
+      return result + (NineLives.priority_active?(user) ? 1 : 0)
+    end
+  end
+end
+
+if defined?(AdvancedAI::CombatUtilities) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  class Battle::AI
+    alias_method :nine_lives_original_advanced_score,
+                 :score_move_advanced
+
+    def score_move_advanced(move, user, target, skill)
+      score = nine_lives_original_advanced_score(move, user, target, skill)
+      return score if score <= 0 || !user || !target
+
+      attacker = NineLives.real_battler(user)
+      defender = NineLives.real_battler(target)
+      native = move.respond_to?(:move) ? move.move : move
+
+      return score if !native.damagingMove?
+      return score if !defender.hasActiveAbility?(:NINELIVES)
+
+      damage = AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, native, defender
+      )
+
+      return score + NineLives.ai_survival_adjustment(
+        attacker, defender, native, damage
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Berserker Rage
+#===============================================================================
+module BerserkerRage
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  # Reaches 1.0 at 95% missing HP.
+  def self.intensity(value)
+    b = real_battler(value)
+    return 0.0 if !b || b.totalhp <= 0
+
+    missing = b.totalhp - b.hp
+    return [[missing * 20.0 / (b.totalhp * 19), 0.0].max, 1.0].min
+  end
+
+  def self.speed_multiplier(value)
+    return 1.0 + intensity(value)
+  end
+
+  def self.healing_rate(value)
+    return 0.5 * intensity(value)
+  end
+
+  def self.heal_amount(value, damage)
+    b = real_battler(value)
+    return 0 if !b || damage <= 0 || !b.canHeal?
+
+    rate = healing_rate(b)
+    return 0 if rate <= 0
+
+    amount = [(damage * rate).floor, 1].max
+    return [amount, b.totalhp - b.hp].min
+  end
+
+  def self.recover(user, amount, battle)
+    return if amount <= 0
+
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:BERSERKERRAGE).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(user)
+      user.pbRecoverHP(amount)
+      battle.pbDisplay(_INTL("{1}'s {2} restored its HP!",
+                            user.pbThis, name))
+      battle.pbHideAbilitySplash(user)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+
+  def self.ai_bonus(user, target, move, damage)
+    user   = real_battler(user)
+    target = real_battler(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target
+    return 0 if !user.opposes?(target)
+    return 0 if !user.hasActiveAbility?(:BERSERKERRAGE)
+    return 0 if !native.damagingMove?
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(user)
+      return 0
+    end
+
+    actual_damage = [damage, target.hp].min
+    heal = heal_amount(user, actual_damage)
+    return 0 if heal <= 0
+
+    # Prefer attacks that recover a meaningful portion of total HP.
+    value = (40.0 * heal / user.totalhp).round
+    return [value, 20].min
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Speed
+#-------------------------------------------------------------------------------
+Battle::AbilityEffects::SpeedCalc.add(:BERSERKERRAGE,
+  proc { |ability, battler, mult|
+    next mult * BerserkerRage.speed_multiplier(battler)
+  }
+)
+
+#-------------------------------------------------------------------------------
+# Recover HP after each successful damaging hit.
+#-------------------------------------------------------------------------------
+Battle::AbilityEffects::OnDealingHit.add(:BERSERKERRAGE,
+  proc { |ability, user, target, move, battle|
+    next if user.fainted?
+    next if user.index == target.index
+    next if !move.damagingMove?
+    next if target.damageState.substitute
+    next if target.damageState.disguise || target.damageState.iceFace
+
+    damage = target.damageState.hpLost
+    amount = BerserkerRage.heal_amount(user, damage)
+    next if amount <= 0
+
+    BerserkerRage.recover(user, amount, battle)
+  }
+)
+
+#===============================================================================
+# Essentials AI
+# Speed prediction uses the SpeedCalc handler at high skill.
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:BERSERKERRAGE)
+end
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :BERSERKERRAGE
+
+Battle::AI::Handlers::AbilityRanking.add(:BERSERKERRAGE,
+  proc { |ability, score, battler, ai|
+    next 5 if !battler.check_for_move { |m| m.damagingMove? }
+    next 10 if battler.hp * 4 <= battler.totalhp
+    next 9 if battler.hp * 2 <= battler.totalhp
+    next 8
+  }
+)
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:berserker_rage,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score if !move.damagingMove?
+    next score if !user.has_active_ability?(:BERSERKERRAGE)
+
+    next score + BerserkerRage.ai_bonus(
+      user, target, move, move.rough_damage
+    )
+  }
+)
+
+#===============================================================================
+# Advanced AI
+# Its existing pbSpeed calls include the SpeedCalc handler.
+#===============================================================================
+if defined?(AdvancedAI::CombatUtilities) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  class Battle::AI
+    alias_method :berserker_rage_original_advanced_score,
+                 :score_move_advanced
+
+    def score_move_advanced(move, user, target, skill)
+      score = berserker_rage_original_advanced_score(
+        move, user, target, skill
+      )
+      return score if score <= 0 || !user || !target
+
+      attacker = BerserkerRage.real_battler(user)
+      defender = BerserkerRage.real_battler(target)
+      native = move.respond_to?(:move) ? move.move : move
+
+      return score if !native.damagingMove?
+      return score if !attacker.hasActiveAbility?(:BERSERKERRAGE)
+
+      damage = AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, native, defender
+      )
+
+      return score + BerserkerRage.ai_bonus(
+        attacker, defender, native, damage
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Ragnarok
+#===============================================================================
+module Ragnarok
+  def self.real_battler(value)
+    return value.respond_to?(:battler) ? value.battler : value
+  end
+
+  def self.negative_stats(value)
+    b = real_battler(value)
+    return [] if !b
+
+    return b.stages.keys.select { |stat| b.stages[stat] < 0 }
+  end
+
+  def self.activate(battler)
+    return if battler.fainted?
+    return if !battler.hasActiveAbility?(:RAGNAROK)
+    return if battler.instance_variable_get(:@ragnarok_activating)
+
+    negatives = negative_stats(battler)
+    has_status = battler.status != :NONE
+    return if !has_status && negatives.empty?
+
+    battle = battler.battle
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      battler.instance_variable_set(:@ragnarok_activating, true)
+
+      name = GameData::Ability.get(:RAGNAROK).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+
+      battler.pbCureStatus if has_status
+
+      if !negatives.empty?
+        negatives.each { |stat| battler.stages[stat] = 0 }
+        battle.pbDisplay(_INTL(
+          "{1}'s lowered stats were restored!",
+          battler.pbThis
+        ))
+      end
+
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      battler.instance_variable_set(:@ragnarok_activating, false)
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+
+  def self.ai_adjustment(user, target, move, damage)
+    user   = real_battler(user)
+    target = real_battler(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target
+    return 0 if !user.opposes?(target)
+    return 0 if !native.damagingMove?
+    return 0 if !target.hasActiveAbility?(:RAGNAROK)
+    return 0 if target.hp * 2 < target.totalhp
+    return 0 if damage <= 0 || damage >= target.hp
+    return 0 if (target.hp - damage) * 2 >= target.totalhp
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(user)
+      return 0
+    end
+
+    benefit = target.status != :NONE ? 5 : 0
+    negative_stats(target).each do |stat|
+      benefit += [-target.stages[stat], 3].min * 2
+    end
+
+    return -[benefit, 15].min
+  end
+end
+
+#-------------------------------------------------------------------------------
+# Detect actual threshold crossings, including indirect damage and HP costs.
+#-------------------------------------------------------------------------------
+class Battle::Battler
+  alias_method :ragnarok_original_reduce_hp, :pbReduceHP
+
+  def pbReduceHP(amt, anim = true, registerDamage = true, anyAnim = true)
+    old_hp = hp
+
+    result = ragnarok_original_reduce_hp(
+      amt, anim, registerDamage, anyAnim
+    )
+
+    if !fainted? &&
+       old_hp * 2 >= totalhp &&
+       hp * 2 < totalhp
+      Ragnarok.activate(self)
+    end
+
+    return result
+  end
+end
+
+#===============================================================================
+# Essentials AI
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+  ids.delete(:RAGNAROK)
+end
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[7] << :RAGNAROK
+
+Battle::AI::Handlers::AbilityRanking.add(:RAGNAROK,
+  proc { |ability, score, battler, ai|
+    impaired = battler.status != :NONE ||
+               !Ragnarok.negative_stats(battler).empty?
+
+    next 9 if impaired && battler.hp * 2 >= battler.totalhp
+    next battler.hp * 2 >= battler.totalhp ? 7 : 4
+  }
+)
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:ragnarok,
+  proc { |score, move, user, target, ai, battle|
+    next score if !ai.trainer.medium_skill?
+    next score if !move.damagingMove?
+    next score if !target.has_active_ability?(:RAGNAROK)
+
+    next score + Ragnarok.ai_adjustment(
+      user, target, move, move.rough_damage
+    )
+  }
+)
+
+#===============================================================================
+# Advanced AI
+#===============================================================================
+if defined?(AdvancedAI::CombatUtilities) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  class Battle::AI
+    alias_method :ragnarok_original_advanced_score,
+                 :score_move_advanced
+
+    def score_move_advanced(move, user, target, skill)
+      score = ragnarok_original_advanced_score(
+        move, user, target, skill
+      )
+      return score if score <= 0 || !user || !target
+
+      attacker = Ragnarok.real_battler(user)
+      defender = Ragnarok.real_battler(target)
+      native = move.respond_to?(:move) ? move.move : move
+
+      return score if !native.damagingMove?
+      return score if !defender.hasActiveAbility?(:RAGNAROK)
+
+      damage = AdvancedAI::CombatUtilities.estimate_damage(
+        attacker, native, defender
+      )
+
+      return score + Ragnarok.ai_adjustment(
+        attacker, defender, native, damage
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Tough It Out
+# Protects the user and raises its Speed by 1 stage if successful.
+# Repeated use follows Protect's success rate.
+#===============================================================================
+class Battle::Move::ProtectUserRaiseSpeed1 < Battle::Move::ProtectUser
+  def pbEffectGeneral(user)
+    super
+    return if !user.effects[PBEffects::Protect]
+    return if !user.pbCanRaiseStatStage?(:SPEED, user, self)
+
+    user.pbRaiseStatStage(:SPEED, 1, user)
+  end
 end

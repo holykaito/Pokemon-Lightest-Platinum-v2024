@@ -23,6 +23,24 @@ Innates = RUNAWAY,GROWINGTOOTH,GNAWING
 [RATICATE_1]
 Innates = GLUTTONY,GROWINGTOOTH,BERRYBULK
 #----------------------------------------
+[MEOWTH]
+Innates = PICKUP,CATSLUCK
+#----------------------------------------
+[MEOWTH_1]
+Innates = PICKUP,PRANKSTER
+#----------------------------------------
+[MEOWTH_2]
+Innates = PICKUP,TOUGHCLAWS
+#----------------------------------------
+[PERSIAN]
+Innates = LIMBER,CATSLUCK,NINELIVES
+#----------------------------------------
+[PERSIAN_1]
+Innates = FURCOAT,PRANKSTER,NINELIVES
+#----------------------------------------
+[PERRSERKER]
+Innates = BATTLEARMOR,TOUGHCLAWS,BERSERKERRAGE
+#----------------------------------------
 [TENTACOOL]
 Innates = CLEARBODY,LIQUIDOOZE
 #----------------------------------------
@@ -564,6 +582,15 @@ Innates = SWARM
 #----------------------------------------
 [LOKIX]
 Innates = SWARM,STRIKER,SHOWDOWNMODE
+#----------------------------------------
+[SMOLIV]
+Innates = EARLYBIRD
+#----------------------------------------
+[DOLLIV]
+Innates = EARLYBIRD,CUTECHARM
+#----------------------------------------
+[ARBOLIVA]
+Innates = EARLYBIRD,OVERCOAT,SEEDSOWER
 #----------------------------------------
 [FLUTTERMANE]
 Innates = PROTOSYNTHESIS

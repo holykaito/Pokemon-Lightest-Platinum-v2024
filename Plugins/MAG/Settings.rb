@@ -114,19 +114,32 @@ Battle::AbilityEffects::DamageCalcFromTarget.add(:WATERVEIL,
 
 Battle::AbilityEffects::OnSwitchIn.add(:WATERVEIL,
   proc { |ability, battler, battle, switch_in|
-    next if WaterVeilPlus.has_aqua_ring?(battler)
+    next if battler.fainted?
+    next if battler.effects[PBEffects::AquaRing]
 
-    battle.pbShowAbilitySplash(battler)
+    old_name  = $aamName
+    old_name2 = $aamName2
 
-    WaterVeilPlus.set_aqua_ring(battler)
+    begin
+      name = GameData::Ability.get(ability).name
+      $aamName  = name
+      $aamName2 = name
 
-    if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} surrounded itself with a veil of water!", battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} surrounded it with a veil of water!",
-        battler.pbThis, battler.abilityName))
+      battle.pbShowAbilitySplash(battler)
+
+      # Play Aqua Ring's move animation while the splash is visible.
+      battle.pbAnimation(:AQUARING, battler, battler)
+
+      battler.effects[PBEffects::AquaRing] = true
+      battle.pbDisplay(_INTL(
+        "{1} surrounded itself with a veil of water!",
+        battler.pbThis
+      ))
+
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
     end
-
-    battle.pbHideAbilitySplash(battler)
   }
 )

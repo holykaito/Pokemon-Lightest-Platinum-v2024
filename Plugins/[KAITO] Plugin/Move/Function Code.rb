@@ -314,3 +314,51 @@ class Battle::Move::PowerLowerWithUserHPCrashIfMiss <
     user.pbFaint if user.fainted?
   end
 end
+
+#===============================================================================
+# Shadow Fangs
+# May inflict the Ghost-type Curse effect without costing the user HP.
+#===============================================================================
+class Battle::Move::DamageTargetMayCurse < Battle::Move
+  def pbAdditionalEffect(user, target)
+    return if target.fainted?
+    return if target.damageState.substitute
+    return if target.effects[PBEffects::Curse]
+
+    target.effects[PBEffects::Curse] = true
+    @battle.pbDisplay(_INTL("{1} was afflicted by a curse!",
+                           target.pbThis))
+  end
+end
+
+#===============================================================================
+# Shadow Fangs
+# May inflict the Ghost-type Curse effect without costing the user HP.
+#===============================================================================
+
+class Battle::Move::LowerTargetDefenseOrSpeed1 < Battle::Move
+  def pbAdditionalEffect(user, target)
+    return if target.fainted?
+    return if target.damageState.substitute
+
+    stat = [:DEFENSE, :SPEED][@battle.pbRandom(2)]
+    return if !target.pbCanLowerStatStage?(stat, user, self)
+
+    target.pbLowerStatStage(stat, 1, user)
+  end
+end
+
+#===============================================================================
+# Tough It Out
+# Protects the user and raises its Speed by 1 stage if successful.
+# Repeated use follows Protect's success rate.
+#===============================================================================
+class Battle::Move::ProtectUserRaiseSpeed1 < Battle::Move::ProtectUser
+  def pbEffectGeneral(user)
+    super
+    return if !user.effects[PBEffects::Protect]
+    return if !user.pbCanRaiseStatStage?(:SPEED, user, self)
+
+    user.pbRaiseStatStage(:SPEED, 1, user)
+  end
+end

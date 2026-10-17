@@ -39,6 +39,10 @@ Description = Powers up moves that match the target's type.
 Name = Berry Bulk
 Description = Eating a Berry boosts both defenses.
 #-------------------------------
+[BERSERKERRAGE]
+Name = Berserker Rage
+Description = Lower HP boosts Speed and recovery from attacks.
+#-------------------------------
 [BLACKSTAIN] ###
 Name = Black Stain
 Description = Can curse the enemy, removing 10% of their HP each turn.
@@ -69,7 +73,7 @@ Description = Weakens super-effective hits and heals after KOing foes.
 #-------------------------------
 [CATSLUCK] ####
 Name = Cat's Luck
-Description = Increases random stat when dealing a critical hit.
+Description = Critical hits raise a random stat.
 #-------------------------------
 [CHAOSSPACE] ####
 Name = Chaos Space
@@ -171,6 +175,10 @@ Description = Adds Fighting or Fairy or Dark-type when entering battle.
 Name = Gnawing
 Description = Doubles the additional effect chance of biting moves.
 #-------------------------------
+[GREATWISDOM] ###
+Name = Great Wisdom
+Description = Doubles the Pokémon's Sp. Atk stat.
+#-------------------------------
 [GRIPPINCER]
 Name = Grip Pincer
 Description = Contact moves may trap. Trapped targets can't evade and lose defensive boosts.
@@ -247,10 +255,6 @@ Description = Takes less contact damage but more Water damage.
 Name = Loud Bang
 Description = Sound attacks may confuse the target.
 #-------------------------------
-[MIGHTYHORN] ###
-Name = Mighty Horn
-Description = Boosts the power of its horn and drill moves.
-#-------------------------------
 [MULTIHEADED] ###
 Name = Multi Headed
 Description = Hits extra times based on the Pokémon's heads.
@@ -262,6 +266,10 @@ Description = Dragon moves hit Fairy-types.
 [PACKLEADER] ###
 Name = Pack Leader
 Description = Boosts damage when in the lead position of the party.
+#-------------------------------
+[PERFECTIONIST]
+Name = Perfectionist
+Description = Weaker moves have a higher critical-hit ratio.
 #-------------------------------
 [PERMAFROST]
 Name = Permafrost
@@ -294,6 +302,10 @@ Description = Gives powder moves +1 priority.
 [PYROMANCY] ###
 Name = Pyromancy
 Description = Move inflicts burn x5 as often.
+#-------------------------------
+[NINELIVES]
+Name = Nine Lives
+Description = May survive with 1 HP and attacks faster in a pinch.
 #-------------------------------
 [NINJASTYLE]
 Name = Ninja Style
@@ -346,6 +358,10 @@ Description = Heals and cures allies switching in.
 [RESILIENCE]
 Name = Resilience
 Description = Recovers health gradually when seriously injured.
+#-------------------------------
+[RAGNAROK] ###
+Name = Ragnarok
+Description = Cures status and lowered stats when HP falls below half.
 #-------------------------------
 [ROLLER] ###
 Name = Roller

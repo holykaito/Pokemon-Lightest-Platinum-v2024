@@ -434,19 +434,6 @@ class Battle::Move
       else
         multipliers[:final_damage_multiplier] *= 2
       end
-      if user.hasActiveAbility?(:CATSLUCK)
-       # Array of all stats
-       stats = [:ATTACK, :DEFENSE, :SPEED, :SPATK, :SPDEF, :EVASION, :ACCURACY]
-       # Choose a random stat
-       random_stat = stats.sample
-       # Increase the chosen stat by 1 stage
-       if user.pbCanRaiseStatStage?(random_stat, user)
-        user.pbRaiseStatStage(random_stat, 1, user)
-        user.pbDisplay(_INTL("{1}'s {2} raised its {3} due to Cat's Luck!", 
-        user.pbThis, PBAbilities.getName(user.ability), 
-        PBStats.getName(random_stat)))
-       end
-      end
     end
     # Random variance
     if !self.is_a?(Battle::Move::Confusion)

@@ -90,7 +90,31 @@ module GloomMoonlight
 end
 
 Battle.prepend(GloomMoonlight::BattleHooks)
-Battle::Move.prepend(GloomMoonlight::DamageHooks)
+
+#===============================================================================
+# Gloom Moonlight damage boost - compatible with M.A.G alias hooks
+#===============================================================================
+class Battle::Move
+  unless method_defined?(:gloom_moonlight_original_damage_multipliers)
+    alias_method :gloom_moonlight_original_damage_multipliers,
+                 :pbCalcDamageMultipliers
+  end
+
+  def pbCalcDamageMultipliers(user, target, numTargets, type,
+                             baseDmg, multipliers)
+    result = gloom_moonlight_original_damage_multipliers(
+      user, target, numTargets, type, baseDmg, multipliers
+    )
+
+    if type == :DARK &&
+       user.effectiveWeather == GloomMoonlight::WEATHER
+      multipliers[:final_damage_multiplier] *= 1.5
+    end
+
+    return result
+  end
+end
+
 Battle::Move::HealUserDependingOnWeather.prepend(
   GloomMoonlight::HealingHooks
 )
