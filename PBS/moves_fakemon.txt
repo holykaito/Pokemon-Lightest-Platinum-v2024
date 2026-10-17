@@ -411,7 +411,7 @@ TotalPP = 15
 Target = NearOther
 Priority = 0
 FunctionCode = LowerTargetDefenseOrSpeed1
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Slicing
 EffectChance = 30
 Description = Slashes with claws. May lower Defense or Speed.
 Animation = METALCLAW
@@ -435,7 +435,7 @@ Name = Tough It Out
 Type = FIGHTING
 Category = Status
 Accuracy = 0
-TotalPP = 10
+TotalPP = 5
 Target = User
 Priority = 4
 FunctionCode = ProtectUserRaiseSpeed1
@@ -587,3 +587,29 @@ Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing
 Description = Slashes with light. Critical hits land more easily.
 Animation = PSYCHOCUT
 #-------------------------------
+[BACKSTAB]
+Name = Back Stab
+Type = DARK
+Category = Physical
+Power = 40
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 3
+FunctionCode = FlinchTargetFailsUnlessFirstTurnOrVanished
+Flags = Contact,CanProtect,CanMirrorMove,Slicing
+EffectChance = 100
+Description = Flinches the target. Only works first turn or while vanished.
+Animation = NIGHTSLASH
+#-------------------------------
+[LURK]
+Name = Lurk
+Type = DARK
+Category = Physical
+Power = 100
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
+Flags = Contact,CanMirrorMove
+Description = The user hides stealthily, then strikes on the next turn. Hits through protections.

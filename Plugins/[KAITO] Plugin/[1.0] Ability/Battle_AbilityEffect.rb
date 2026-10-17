@@ -2000,332 +2000,6 @@ class Battle
 end
 
 #===============================================================================
-# Stealth
-# Pokemon Essentials v21.1
-#
-# Effect:
-#   The first time this Pokemon enters battle, it vanishes.
-#   While vanished:
-#     - It avoids entry hazards on switch-in.
-#     - It avoids attacks/moves from opposing Pokemon.
-#   After it uses any move, it reappears.
-#
-# Extra:
-#   If it uses Phantom Force or Shadow Force while vanished, the move is executed
-#   immediately and ignores its first-turn charge.
-#===============================================================================
-
-module StealthAbility
-  ABILITY = :STEALTH
-
-  HAZARDS = {
-    :StealthRock => false,
-    :Spikes      => 0,
-    :ToxicSpikes => 0,
-    :StickyWeb   => false,
-    :Steelsurge  => false
-  }
-
-  #-----------------------------------------------------------------------------
-  # Battle/Pokemon tracking
-  #-----------------------------------------------------------------------------
-
-  def self.pokemon_key(battler)
-    return nil if !battler || !battler.pokemon
-    return battler.pokemon.object_id
-  end
-
-  def self.used_hash(battle)
-    hash = battle.instance_variable_get(:@stealth_ability_used)
-    if !hash
-      hash = {}
-      battle.instance_variable_set(:@stealth_ability_used, hash)
-    end
-    return hash
-  end
-
-  def self.used?(battler)
-    return true if !battler || !battler.battle
-    key = pokemon_key(battler)
-    return true if !key
-    return used_hash(battler.battle)[key] == true
-  end
-
-  def self.mark_used(battler)
-    return if !battler || !battler.battle
-    key = pokemon_key(battler)
-    return if !key
-    used_hash(battler.battle)[key] = true
-  end
-
-  def self.can_activate?(battler)
-    return false if !battler
-    return false if battler.fainted?
-    return false if used?(battler)
-    return false if !battler.hasActiveAbility?(ABILITY)
-    return true
-  end
-
-  #-----------------------------------------------------------------------------
-  # Vanish/reappear state
-  #-----------------------------------------------------------------------------
-
-  def self.vanished?(battler)
-    return false if !battler
-    return battler.instance_variable_get(:@stealth_vanished) == true
-  end
-
-  def self.set_vanished(battler, value)
-    return if !battler
-    battler.instance_variable_set(:@stealth_vanished, value)
-  end
-
-  def self.activate(battler, show_message = true)
-    return false if !can_activate?(battler)
-
-    mark_used(battler)
-    set_vanished(battler, true)
-
-    battle = battler.battle
-
-    if show_message
-      battle.pbShowAbilitySplash(battler)
-      if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} vanished into the shadows!", battler.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1}'s {2} made it vanish into the shadows!",
-          battler.pbThis, battler.abilityName))
-      end
-      battle.pbHideAbilitySplash(battler)
-    end
-
-    return true
-  end
-
-  def self.reappear(battler, show_message = true)
-    return false if !vanished?(battler)
-
-    set_vanished(battler, false)
-
-    return true if !show_message
-    return true if battler.fainted?
-
-    battle = battler.battle
-    battle.pbDisplay(_INTL("{1} reappeared!", battler.pbThis))
-    return true
-  end
-
-  #-----------------------------------------------------------------------------
-  # Entry hazard suppression
-  #-----------------------------------------------------------------------------
-
-  def self.effect_key(effect_name)
-    return nil if !PBEffects.const_defined?(effect_name)
-    return PBEffects.const_get(effect_name)
-  end
-
-  def self.suppress_hazards_for_entry(battler)
-    side = battler.pbOwnSide
-    stored = {}
-
-    HAZARDS.each do |effect_name, empty_value|
-      effect = effect_key(effect_name)
-      next if effect.nil?
-      stored[effect] = side.effects[effect]
-      side.effects[effect] = empty_value
-    end
-
-    return stored
-  end
-
-  def self.restore_hazards_after_entry(battler, stored)
-    return if !battler || !stored
-    side = battler.pbOwnSide
-    stored.each do |effect, value|
-      side.effects[effect] = value
-    end
-  end
-
-  #-----------------------------------------------------------------------------
-  # Phantom Force / Shadow Force
-  #-----------------------------------------------------------------------------
-
-  def self.phantom_shadow_force?(move)
-    return false if !move
-
-    move_id = nil
-    begin
-      move_id = move.id
-    rescue
-      move_id = nil
-    end
-
-    return true if [:PHANTOMFORCE, :SHADOWFORCE].include?(move_id)
-
-    code = ""
-    begin
-      code = move.function_code.to_s.upcase
-    rescue
-      code = ""
-    end
-
-    return true if code.include?("PHANTOMFORCE")
-    return true if code.include?("SHADOWFORCE")
-    return false
-  end
-
-  def self.skip_charge_turn?(move, user)
-    return false if !user
-    return false if !vanished?(user)
-    return false if !phantom_shadow_force?(move)
-    return true
-  end
-end
-
-# Activate before entry hazards are processed
-# pbOnBattlerEnteringBattle is the safest hook because hazards and switch-in
-# effects are usually handled inside this switch-in flow.
-
-class Battle
-  if method_defined?(:pbOnBattlerEnteringBattle) &&
-     !method_defined?(:stealth_ability_safe_pbOnBattlerEnteringBattle)
-    alias stealth_ability_safe_pbOnBattlerEnteringBattle pbOnBattlerEnteringBattle
-  end
-
-  def pbOnBattlerEnteringBattle(idxBattler, *args)
-    # Some projects pass an Array of battler indexes here.
-    battler_indexes = idxBattler.is_a?(Array) ? idxBattler : [idxBattler]
-
-    stealth_battlers = []
-    stored_hazards = {}
-
-    battler_indexes.each do |idx|
-      next if !idx.is_a?(Integer)
-      battler = @battlers[idx]
-      next if !StealthAbility.can_activate?(battler)
-
-      StealthAbility.activate(battler, true)
-      stealth_battlers.push(battler)
-      stored_hazards[battler.index] = StealthAbility.suppress_hazards_for_entry(battler)
-    end
-
-    begin
-      ret = stealth_ability_safe_pbOnBattlerEnteringBattle(idxBattler, *args)
-    ensure
-      stealth_battlers.each do |battler|
-        next if !battler
-        StealthAbility.restore_hazards_after_entry(
-          battler,
-          stored_hazards[battler.index]
-        )
-      end
-    end
-
-    return ret
-  end
-end
-# Fallback OnSwitchIn handler
-# If another plugin changes the switch-in flow and the Battle patch above misses,
-# this still lets Stealth activate. It may be after hazards, but it prevents the
-# ability from doing nothing.
-
-
-Battle::AbilityEffects::OnSwitchIn.add(:STEALTH,
-  proc { |ability, battler, battle, switch_in|
-    StealthAbility.activate(battler, true)
-  }
-)
-
-# Avoid attacks while vanished
-
-Battle::AbilityEffects::MoveImmunity.add(:STEALTH,
-  proc { |ability, user, target, move, type, battle, show_message|
-    next false if !StealthAbility.vanished?(target)
-    next false if !user
-    next false if !user.opposes?(target)
-
-    if show_message
-      battle.pbShowAbilitySplash(target)
-      if Battle::Scene::USE_ABILITY_SPLASH
-        battle.pbDisplay(_INTL("{1} avoided the attack while vanished!", target.pbThis))
-      else
-        battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",
-          target.pbThis, target.abilityName))
-      end
-      battle.pbHideAbilitySplash(target)
-    end
-
-    next true
-  }
-)
-
-# Reappear after using any move
-
-class Battle::Battler
-  if !method_defined?(:stealth_ability_pbEndTurn)
-    alias stealth_ability_pbEndTurn pbEndTurn
-  end
-
-  def pbEndTurn(choice)
-    stealth_ability_pbEndTurn(choice)
-
-    # Reappear after attempting to use any move, even if the move failed.
-    if choice && choice[0] == :UseMove
-      StealthAbility.reappear(self, true)
-    end
-  end
-
-  if method_defined?(:pbAbilitiesOnSwitchOut) &&
-     !method_defined?(:stealth_ability_pbAbilitiesOnSwitchOut)
-    alias stealth_ability_pbAbilitiesOnSwitchOut pbAbilitiesOnSwitchOut
-  end
-
-  def pbAbilitiesOnSwitchOut(*args)
-    StealthAbility.reappear(self, false)
-    return stealth_ability_pbAbilitiesOnSwitchOut(*args)
-  end
-end
-
-if defined?(Battle::AI) && Battle::AI.method_defined?(:pbGetMoveScore)
-  class Battle::AI
-    if !method_defined?(:stealth_ability_pbGetMoveScore)
-      alias stealth_ability_pbGetMoveScore pbGetMoveScore
-    end
-
-    def pbGetMoveScore(*args)
-      score = stealth_ability_pbGetMoveScore(*args)
-
-      move = nil
-      user = nil
-      target = nil
-
-      args.each do |arg|
-        if arg.respond_to?(:damagingMove?) || arg.respond_to?(:pbDamagingMove?)
-          move = arg
-        elsif arg.respond_to?(:hasActiveAbility?) && arg.respond_to?(:opposes?)
-          if user.nil?
-            user = arg
-          elsif target.nil? && arg != user
-            target = arg
-          end
-        end
-      end
-
-      if score.is_a?(Numeric) &&
-         user &&
-         target &&
-         user.opposes?(target) &&
-         StealthAbility.vanished?(target)
-        score -= 80
-        PBDebug.log_ai("     - Target is vanished by Stealth: 80") if defined?(PBDebug)
-      end
-
-      return score
-    end
-  end
-end
-
-#===============================================================================
 # Dreamcatcher
 # Pokemon Essentials v21.1
 #
@@ -10296,3 +9970,630 @@ Battle::AI::Handlers::AbilityRanking.add(:XRAYVISION,
     next [[(utility / 2.0).round, -5].max, 8].min
   }
 )
+
+#===============================================================================
+# Malignate
+# Converts Normal-type moves into Dark-type moves.
+# Moves converted by this ability gain 20% power.
+#===============================================================================
+Battle::AbilityEffects::ModifyMoveBaseType.add(:MALIGNATE,
+  proc { |ability, user, move, type|
+    next if type != :NORMAL || !GameData::Type.exists?(:DARK)
+    move.powerBoost = true
+    next :DARK
+  }
+)
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:MALIGNATE,
+  proc { |ability, user, target, move, mults, power, type|
+    mults[:power_multiplier] *= 1.2 if move.powerBoost
+  }
+)
+
+#===============================================================================
+# Malignate - AI ability rating
+# Native AI damage calculations use the ability handlers above.
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] |= [:MALIGNATE]
+
+#===============================================================================
+# PHANTOM IMAGE
+# Load after Innate Abilities and Advanced AI.
+#===============================================================================
+module PhantomImage
+  # Returns the evasion multiplier, without checking ability ownership.
+  def self.multiplier(user, target)
+    user_speed   = [user.pbSpeed, 1].max
+    target_speed = [target.pbSpeed, 1].max
+
+    return 2.0  if target_speed >= user_speed * 2
+    return 1.5  if target_speed * 2 >= user_speed * 3
+    return 1.25 if target_speed * 4 >= user_speed * 5
+    return 1.0
+  end
+
+  # Preserve the Innate Abilities splash name.
+  def self.show_splash(battler, battle)
+    old_name  = $aamName
+    old_name2 = $aamName2
+    name = GameData::Ability.get(:PHANTOMIMAGE).name
+
+    begin
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(
+        _INTL("{1} is moving in an elusive way!", battler.pbThis)
+      )
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+
+  # Approximate additional accuracy penalty for Advanced AI.
+  # This does not perform a hit check or consume the battle's RNG.
+  def self.advanced_penalty(move, user, target)
+    return 0 if !move || !user || !target
+
+    user   = user.battler if user.respond_to?(:battler)
+    target = target.battler if target.respond_to?(:battler)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if user.fainted? || target.fainted?
+    return 0 if !user.opposes?(target)
+    return 0 if !target.hasActiveAbility?(:PHANTOMIMAGE)
+
+    factor = multiplier(user, target)
+    return 0 if factor <= 1.0
+
+    # Mold Breaker and ability-ignoring moves.
+    # The existing utility also checks Ability Shield.
+    return 0 if AdvancedAI::Utilities.ignores_ability?(
+      user, native, target
+    )
+
+    return 0 if user.hasActiveAbility?(:NOGUARD)
+    return 0 if target.hasActiveAbility?(:NOGUARD)
+
+    # OHKO moves have their own accuracy calculation.
+    return 0 if native.is_a?(Battle::Move::OHKO)
+
+    # Lock-On / Mind Reader.
+    if user.effects[PBEffects::LockOn] > 0 &&
+       user.effects[PBEffects::LockOnPos] == target.index
+      return 0
+    end
+
+    return 0 if target.effects[PBEffects::Telekinesis] > 0
+
+    if Settings::MECHANICS_GENERATION >= 6 &&
+       target.effects[PBEffects::Minimize] &&
+       native.tramplesMinimize?
+      return 0
+    end
+
+    # Includes weather-dependent accuracy, e.g. Thunder in rain.
+    accuracy = native.pbBaseAccuracy(user, target)
+    return 0 if accuracy <= 0
+
+    # Heuristic score adjustment, not a replacement accuracy formula.
+    return (40.0 * (1.0 - 1.0 / factor)).round
+  end
+end
+
+#===============================================================================
+# Actual battle effect.
+# Native AI also reads this handler when estimating accuracy.
+#===============================================================================
+Battle::AbilityEffects::AccuracyCalcFromTarget.add(:PHANTOMIMAGE,
+  proc { |ability, mods, user, target, move, type|
+    mods[:evasion_multiplier] *= PhantomImage.multiplier(user, target)
+  }
+)
+
+#===============================================================================
+# Correct the old misspelled splash handler.
+#===============================================================================
+Battle::AbilityEffects::OnSwitchIn.remove(:PHANTOMPIMAGE)
+
+Battle::AbilityEffects::OnSwitchIn.add(:PHANTOMIMAGE,
+  proc { |ability, battler, battle, switch_in|
+    next if battler.fainted?
+    PhantomImage.show_splash(battler, battle)
+  }
+)
+
+#===============================================================================
+# Native AI: ability rating.
+# No extra accuracy penalty here, because rough_accuracy already uses the handler.
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:PHANTOMIMAGE)
+end
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :PHANTOMIMAGE
+
+Battle::AI::Handlers::AbilityRanking.add(:PHANTOMIMAGE,
+  proc { |ability, score, battler, ai|
+    holder = battler.battler
+    next 0 if holder.fainted?
+
+    # No Guard on the holder makes ordinary accuracy checks always succeed.
+    next 0 if holder.hasActiveAbility?(:NOGUARD)
+
+    values = []
+
+    ai.battle.battlers.each do |foe|
+      next if !foe || foe.fainted?
+      next if !holder.opposes?(foe)
+
+      if foe.hasActiveAbility?(:NOGUARD)
+        values << 0.0
+      else
+        factor = PhantomImage.multiplier(foe, holder)
+        values << (factor - 1.0)
+      end
+    end
+
+    next score if values.empty?
+
+    average = values.inject(0.0) { |sum, value| sum + value }
+    average /= values.length
+
+    # Contextual rating: 3 to 9.
+    next 3 + (average * 6).round
+  }
+)
+
+#===============================================================================
+# Advanced AI: additional per-target move score adjustment.
+#===============================================================================
+class Battle::AI
+  if method_defined?(:score_move_advanced)
+    unless method_defined?(:phantom_image_original_advanced_score)
+      alias_method :phantom_image_original_advanced_score,
+                   :score_move_advanced
+    end
+
+    def score_move_advanced(move, user, target, skill)
+      score = phantom_image_original_advanced_score(
+        move, user, target, skill
+      )
+      return score if !score.is_a?(Numeric) || score <= 0
+
+      penalty = PhantomImage.advanced_penalty(move, user, target)
+      return score if penalty <= 0
+
+      return [score - penalty, 1].max
+    end
+  end
+end
+
+#===============================================================================
+# STALK - complete replacement with knockout reactivation for Pokemon Essentials v21.1
+#===============================================================================
+if defined?(StealthAbility::ABILITY)
+  raise "Remove the old Stealth block before loading Stalk_Complete.rb."
+end
+
+module StealthAbility
+  ABILITY = :STALK
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.native(move)
+    return move.move if move.respond_to?(:move)
+    return move
+  end
+
+  def self.used?(battle, pokemon)
+    return true if !battle || !pokemon
+    used = battle.instance_variable_get(:@stealth_ability_used)
+    return used && used[pokemon.object_id] == true
+  end
+
+  def self.can_activate?(battler)
+    return false if !battler || battler.fainted? || !battler.pokemon
+    return false if used?(battler.battle, battler.pokemon)
+    return battler.hasActiveAbility?(ABILITY)
+  end
+
+  def self.vanished?(battler)
+    return false if !battler || battler.fainted?
+    return battler.instance_variable_get(:@stealth_vanished) == true
+  end
+
+  def self.active?(battler)
+    return vanished?(battler) && battler.hasActiveAbility?(ABILITY)
+  end
+
+  def self.splash(battler)
+    old_name, old_name2 = $aamName, $aamName2
+    begin
+      name = GameData::Ability.get(ABILITY).name
+      $aamName = $aamName2 = name
+      battler.battle.pbShowAbilitySplash(battler)
+      yield
+      battler.battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName, $aamName2 = old_name, old_name2
+    end
+  end
+
+  def self.activate(battler)
+    return false if !can_activate?(battler)
+    battle = battler.battle
+    used = battle.instance_variable_get(:@stealth_ability_used) || {}
+    used[battler.pokemon.object_id] = true
+    battle.instance_variable_set(:@stealth_ability_used, used)
+    battler.instance_variable_set(:@stealth_vanished, true)
+    splash(battler) do
+      battle.pbDisplay(_INTL("{1} vanished into the shadows!", battler.pbThis))
+    end
+    return true
+  end
+
+  # A knockout restores vanishing independently of the entry activation limit.
+  def self.recloak_after_ko(user)
+    return false if !user || user.fainted?
+    return false if !user.hasActiveAbility?(ABILITY)
+    return false if user.instance_variable_get(:@stalk_ko_pokemon).equal?(user.pokemon)
+    user.instance_variable_set(:@stalk_ko_pokemon, user.pokemon)
+    user.instance_variable_set(:@stealth_vanished, true)
+    splash(user) do
+      user.battle.pbDisplay(_INTL("{1} vanished into the shadows!", user.pbThis))
+    end
+    return true
+  end
+
+  def self.reappear(battler, show_message = true)
+    earned_this_action =
+      battler.instance_variable_get(:@stalk_move_depth).to_i > 0 &&
+      battler.instance_variable_get(:@stalk_ko_pokemon).equal?(battler.pokemon)
+    return if show_message && earned_this_action && !battler.fainted?
+    battler.instance_variable_set(:@stalk_ko_pokemon, nil) if !show_message
+    was_hidden = battler.instance_variable_get(:@stealth_vanished)
+    battler.instance_variable_set(:@stealth_vanished, false)
+    if was_hidden && show_message && !battler.fainted?
+      battler.battle.pbDisplay(_INTL("{1} reappeared!", battler.pbThis))
+    end
+  end
+
+  def self.instant_force?(move, user)
+    return false if !active?(real(user))
+    return [:PHANTOMFORCE, :SHADOWFORCE].include?(native(move).id)
+  end
+
+  def self.ignored?(user, target, move)
+    if defined?(AdvancedAI::Utilities) &&
+       AdvancedAI::Utilities.respond_to?(:ignores_ability?)
+      return AdvancedAI::Utilities.ignores_ability?(user, move, target)
+    end
+    return false if target.hasActiveItem?(:ABILITYSHIELD)
+    return true if user.hasMoldBreaker?
+    return true if ["IgnoreTargetAbility",
+      "CategoryDependsOnHigherDamageIgnoreTargetAbility"].include?(move.function_code)
+    return user.hasActiveAbility?(:MYCELIUMMIGHT) && move.statusMove?
+  end
+
+  # Compute priority using a copy so handlers cannot set Prankster or other
+  # effects on the real battler during prediction.
+  def self.priority(move, battler)
+    move = native(move)
+    copy = battler.clone
+    copy.instance_variable_set(:@effects, battler.effects.dup)
+    copy.instance_variable_set(:@stages, battler.stages.dup)
+    value = move.pbPriority(copy)
+    if copy.abilityActive?
+      value = Battle::AbilityEffects.triggerPriorityChange(
+        copy.ability, copy, move, value
+      )
+    end
+    return value
+  end
+
+  # Probability that user acts before target, assuming target uses each of
+  # its currently usable moves equally often. A speed tie is treated as 50/50.
+  def self.before_chance(move, user, target)
+    up = priority(move, user)
+    moves = target.moves.each_with_index.select do |m, index|
+      m && (m.pp > 0 || m.total_pp == 0) &&
+        target.battle.pbCanChooseMove?(target.index, index, false)
+    end.map { |pair| pair[0] }
+    priorities = moves.map { |m| priority(m, target) }
+    priorities = [0] if priorities.empty?
+    us, ts = user.pbSpeed, target.pbSpeed
+    trick_room = user.battle.field.effects[PBEffects::TrickRoom] > 0
+    total = priorities.inject(0.0) do |sum, tp|
+      chance = if up != tp
+                 up > tp ? 1.0 : 0.0
+               elsif us == ts
+                 0.5
+               else
+                 faster = us > ts
+                 faster = !faster if trick_room
+                 faster ? 1.0 : 0.0
+               end
+      sum + chance
+    end
+    return total / priorities.length
+  end
+
+  def self.block_chance(move, user, target)
+    user, target, move = real(user), real(target), native(move)
+    return 0.0 if !user || !target || !move || !user.opposes?(target)
+    data = move.pbTarget(user)
+    return 0.0 if !data.targets_foe && data.id != :None
+    return 0.0 if !active?(target) || ignored?(user, target, move)
+    return before_chance(move, user, target)
+  end
+
+  # Query availability on a cloned battlefield. Never consume the original
+  # Pokemon's activation, and include active Innates and ability suppression.
+  def self.entry_available?(battle, pokemon, index)
+    return false if !pokemon || pokemon.fainted? || pokemon.egg?
+    return false if used?(battle, pokemon)
+    preview = battle.clone
+    copies = battle.battlers.map do |b|
+      next nil if !b
+      copy = b.clone
+      copy.instance_variable_set(:@battle, preview)
+      copy.instance_variable_set(:@effects, b.effects.dup)
+      copy.instance_variable_set(:@stages, b.stages.dup)
+      copy
+    end
+    preview.instance_variable_set(:@battlers, copies)
+    preview.moldBreaker = false
+    probe = Battle::Battler.new(preview, index)
+    probe.pbInitialize(pokemon.clone, -1)
+    copies[index] = probe
+    return probe.hasActiveAbility?(ABILITY)
+  end
+
+  def self.adjust_score(score, move, user, target)
+    ai_move = move
+    return score if !score.is_a?(Numeric) || score <= Battle::AI::MOVE_USELESS_SCORE
+    user, target, move = real(user), real(target), native(move)
+    return score if !user || !move
+    if target && user.opposes?(target)
+      chance = block_chance(move, user, target)
+      score -= (60 * chance).round
+    end
+    # A safe turn has value, but do not revive a move already judged useless.
+    if active?(user) && move.statusMove?
+      chances = user.battle.battlers.map do |foe|
+        next if !foe || foe.fainted? || !user.opposes?(foe)
+        next if ignored?(foe, user, move)
+        1.0 - before_chance(move, user, foe)
+      end.compact
+      safe = chances.empty? ? 0.0 : chances.inject(1.0) { |v, c| v * c }
+      score += ((move.healingMove? ? 12 : 8) * safe).round
+    end
+    # Reward opposing knockouts that would restore the user's cloak.
+    # Never reward deliberately knocking out allies.
+    if user.hasActiveAbility?(ABILITY) && target && !target.fainted? &&
+       user.opposes?(target) && move.damagingMove? &&
+       block_chance(move, user, target) < 1.0
+      damage = nil
+      if defined?(AdvancedAI::CombatUtilities) &&
+         AdvancedAI::CombatUtilities.respond_to?(:estimate_damage)
+        damage = AdvancedAI::CombatUtilities.estimate_damage(user, move, target)
+      elsif ai_move.respond_to?(:rough_damage)
+        damage = ai_move.rough_damage
+      end
+      score += 12 if damage && damage >= target.hp
+    end
+    return [score, Battle::AI::MOVE_USELESS_SCORE + 1].max
+  end
+end
+
+#===============================================================================
+# Entry hazards: skip ONLY this Pokemon's hazard processing.
+# OnSwitchIn is a fallback for alternate entry flows.
+#===============================================================================
+class Battle
+  alias_method :stealth_v2_entry_hazards, :pbEntryHazards
+  def pbEntryHazards(battler)
+    StealthAbility.activate(battler) if StealthAbility.can_activate?(battler)
+    return if StealthAbility.active?(battler)
+    return stealth_v2_entry_hazards(battler)
+  end
+end
+
+Battle::AbilityEffects::OnSwitchIn.add(:STALK,
+  proc { |ability, battler, battle, switch_in|
+    StealthAbility.activate(battler)
+  }
+)
+
+Battle::AbilityEffects::MoveImmunity.add(:STALK,
+  proc { |ability, user, target, move, type, battle, show_message|
+    next false if !user || !user.opposes?(target)
+    next false if !StealthAbility.active?(target)
+    # The normal engine handles ability suppression/Mold Breaker before here.
+    # During AI queries, reject only when Stealth is predicted to block for sure.
+    if battle.instance_variable_get(:@stealth_ai_depth).to_i > 0
+      next StealthAbility.block_chance(move, user, target) >= 1.0
+    end
+    if show_message
+      StealthAbility.splash(target) do
+        battle.pbDisplay(_INTL("{1} avoided the move while vanished!", target.pbThis))
+      end
+    end
+    next true
+  }
+)
+
+Battle::AbilityEffects::OnDealingHit.add(:STALK,
+  proc { |ability, user, target, move, battle|
+    next if !user || !target || user.fainted? || user.equal?(target)
+    next if !user.hasActiveAbility?(:STALK) || !target.fainted?
+    next if target.damageState.unaffected || target.damageState.substitute
+    next if target.damageState.hpLost <= 0
+    StealthAbility.recloak_after_ko(user)
+  }
+)
+
+class Battle::Battler
+  # Preserve a cloak earned during nested/called moves until the whole action
+  # completes. The next attempted move may remove it normally.
+  alias_method :stalk_ko_original_use_move, :pbUseMove
+  def pbUseMove(*args)
+    previous_depth = @stalk_move_depth.to_i
+    @stalk_ko_pokemon = nil if previous_depth == 0
+    @stalk_move_depth = previous_depth + 1
+    begin
+      return stalk_ko_original_use_move(*args)
+    ensure
+      @stalk_move_depth = previous_depth
+      @stalk_ko_pokemon = nil if previous_depth == 0
+    end
+  end
+
+  alias_method :stealth_v2_initialize, :pbInitialize
+  def pbInitialize(*args)
+    @stealth_vanished = false
+    return stealth_v2_initialize(*args)
+  end
+
+  alias_method :stealth_v2_end_turn, :pbEndTurn
+  def pbEndTurn(choice)
+    original_pokemon = pokemon
+    result = stealth_v2_end_turn(choice)
+    if pokemon.equal?(original_pokemon) && choice && choice[0] == :UseMove
+      StealthAbility.reappear(self)
+    end
+    return result
+  end
+
+  alias_method :stealth_v2_switch_out, :pbAbilitiesOnSwitchOut
+  def pbAbilitiesOnSwitchOut(*args)
+    StealthAbility.reappear(self, false)
+    return stealth_v2_switch_out(*args)
+  end
+end
+
+# A narrowly scoped, LAST-loaded move wrapper also works with the existing
+# CursedTerrain prepend. No aliases are created on a prepended method.
+module StealthInstantForce
+  def pbIsChargingTurn?(user)
+    if StealthAbility.instant_force?(self, user)
+      @powerHerb = false
+      @chargingTurn = false
+      @damagingTurn = true
+      return false
+    end
+    return super
+  end
+end
+Battle::Move::TwoTurnAttackInvulnerableRemoveProtections.prepend(StealthInstantForce)
+
+#===============================================================================
+# Native and Advanced AI prediction context. Always restore it, even on errors.
+#===============================================================================
+class Battle::AI
+  alias_method :stealth_v2_move_score, :pbGetMoveScore
+  def pbGetMoveScore(*args)
+    depth = @battle.instance_variable_get(:@stealth_ai_depth).to_i
+    begin
+      @battle.instance_variable_set(:@stealth_ai_depth, depth + 1)
+      return stealth_v2_move_score(*args)
+    ensure
+      @battle.instance_variable_set(:@stealth_ai_depth, depth)
+    end
+  end
+
+  alias_method :stealth_v2_predict_failure, :pbPredictMoveFailureAgainstTarget
+  def pbPredictMoveFailureAgainstTarget
+    depth = @battle.instance_variable_get(:@stealth_ai_depth).to_i
+    begin
+      @battle.instance_variable_set(:@stealth_ai_depth, depth + 1)
+      return stealth_v2_predict_failure
+    ensure
+      @battle.instance_variable_set(:@stealth_ai_depth, depth)
+    end
+  end
+
+  alias_method :stealth_v2_target_score, :pbGetMoveScoreAgainstTarget
+  def pbGetMoveScoreAgainstTarget
+    score = stealth_v2_target_score
+    return score if @stealth_v2_advanced_scoring
+    return StealthAbility.adjust_score(score, @move, @user, @target)
+  end
+
+  if method_defined?(:score_move_advanced)
+    alias_method :stealth_v2_advanced_score, :score_move_advanced
+    def score_move_advanced(move, user, target, skill)
+      previous = @stealth_v2_advanced_scoring
+      begin
+        @stealth_v2_advanced_scoring = true
+        score = stealth_v2_advanced_score(move, user, target, skill)
+      ensure
+        @stealth_v2_advanced_scoring = previous
+      end
+      return StealthAbility.adjust_score(score, move, user, target)
+    end
+  end
+
+  # Advanced AI extends this signature with damage_only. Forward all args.
+  alias_method :stealth_v2_hazard_damage, :calculate_entry_hazard_damage
+  def calculate_entry_hazard_damage(pokemon, position, *args)
+    index = respond_to?(:get_battler_index) ? get_battler_index(position) : position
+    return 0 if StealthAbility.entry_available?(@battle, pokemon, index)
+    return stealth_v2_hazard_damage(pokemon, position, *args)
+  end
+
+  if method_defined?(:switch_entry_hp_preview)
+    alias_method :stealth_v2_entry_preview, :switch_entry_hp_preview
+    def switch_entry_hp_preview(pokemon, index)
+      if StealthAbility.entry_available?(@battle, pokemon, index)
+        return switch_hazard_preview(pokemon, index)
+      end
+      return stealth_v2_entry_preview(pokemon, index)
+    end
+  end
+end
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value { |ids| ids.delete(:STALK) }
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :STALK
+Battle::AI::Handlers::AbilityRanking.add(:STALK,
+  proc { |ability, score, battler, ai|
+    holder = battler.battler
+    next 9 if StealthAbility.vanished?(holder)
+    next 8 if !StealthAbility.used?(ai.battle, holder.pokemon)
+    next holder.moves.any? { |move| move && move.damagingMove? } ? 6 : 0
+  }
+)
+
+# Native AI: instant Phantom/Shadow Force is a damaging turn, not a charge turn.
+class Battle::AI::AIMove
+  alias_method :stealth_v2_function_score, :function_code
+  def function_code
+    if @ai && @ai.user && StealthAbility.instant_force?(@move, @ai.user)
+      return "RemoveProtections"
+    end
+    return stealth_v2_function_score
+  end
+end
+
+if defined?(AdvancedAI::HazardControl)
+  class << AdvancedAI::HazardControl
+    alias_method :stealth_v2_hazard_estimate, :calculate_hazard_damage
+    def calculate_hazard_damage(battle, battler, side_effects)
+      holder = StealthAbility.real(battler)
+      if holder && holder.respond_to?(:pokemon) &&
+         StealthAbility.entry_available?(battle, holder.pokemon, holder.index)
+        return 0
+      end
+      return stealth_v2_hazard_estimate(battle, battler, side_effects)
+    end
+  end
+end

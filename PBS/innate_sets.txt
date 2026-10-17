@@ -287,10 +287,10 @@ Innates = PRESSURE,TELEPATHY
 Innates = PRESSURE,TELEPATHY,LEVITATE
 #----------------------------------------
 [PURRLOIN]
-Innates = LIMBER,UNBURDEN
+Innates = CATSLUCK,LIMBER
 #----------------------------------------
 [LIEPARD]
-Innates = LIMBER,UNBURDEN,SUPERLUCK
+Innates = CATSLUCK,LIMBER,STALK
 #----------------------------------------
 [LILLIPUP]
 Innates = PICKUP,SCRAPPY

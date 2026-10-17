@@ -255,6 +255,10 @@ Description = Takes less contact damage but more Water damage.
 Name = Loud Bang
 Description = Sound attacks may confuse the target.
 #-------------------------------
+[MALIGNATE]
+Name = Malignate
+Description = Normal-type moves become Dark-type moves and boosted.
+#-------------------------------
 [MULTIHEADED] ###
 Name = Multi Headed
 Description = Hits extra times based on the Pokémon's heads.
@@ -419,9 +423,9 @@ Description = Powers up punches and makes them special.
 Name = Spore Veil
 Description = Boosts the Evasion stat when hit by an attack.
 #-------------------------------
-[STEALTH] ###
-Name = Stealth
-Description = Vanishes when entry, avoiding attacks until it moves.
+[STALK] ###
+Name = Stalk
+Description = Vanishes on entry and after scoring a knockout.
 #-------------------------------
 [STONESCATTER] ###
 Name = Stone Scatter
