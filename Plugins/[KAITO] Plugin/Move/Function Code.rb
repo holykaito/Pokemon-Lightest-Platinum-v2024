@@ -624,9 +624,17 @@ class Battle::Move
       return 2
     end
 
-    # This alias was created by MAG before its own overwrite.
-    # Preserve the original result, including ordinary Parental Bond.
-    original_hits = mag_pbNumHits(user, targets)
+	# Calculate the standard hit count directly.
+	# Avoid calling MAG's alias, which loops through DBK wrappers.
+	original_hits = 1
+
+	if user.hasActiveAbility?(:PARENTALBOND) &&
+	   pbDamagingMove? &&
+	   !chargingTurnMove? &&
+	   targets.length == 1
+	  user.effects[PBEffects::ParentalBond] = 3
+	  original_hits = 2
+	end
 
     return original_hits if original_hits != 1
     return original_hits if multiHitMove? || pbRepeatHit?
@@ -840,5 +848,38 @@ if defined?(AdvancedAI::CombatUtilities)
         end
       end
     end
+  end
+end
+
+#===============================================================================
+# Witchcraft
+# Changes the target to pure Dragon type and lowers its Attack by 2 stages.
+# Either effect can succeed independently.
+# Can be reflected by Magic Coat/Magic Bounce.
+#===============================================================================
+class Battle::Move::SetTargetTypeDragonLowerTargetAttack2 <
+      Battle::Move::LowerTargetAttack2
+  def canMagicCoat?; return true; end
+
+  def can_change_to_dragon?(target)
+    return target.canChangeType? &&
+           GameData::Type.exists?(:DRAGON) &&
+           target.pbHasOtherType?(:DRAGON)
+  end
+
+  def pbFailsAgainstTarget?(user, target, show_message)
+    return false if can_change_to_dragon?(target)
+    return super
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    if can_change_to_dragon?(target)
+      target.pbChangeTypes(:DRAGON)
+      @battle.pbDisplay(
+        _INTL("{1}'s type changed to {2}!",
+              target.pbThis, GameData::Type.get(:DRAGON).name)
+      )
+    end
+    super
   end
 end

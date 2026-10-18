@@ -39,9 +39,13 @@ Description = Powers up moves that match the target's type.
 Name = Berry Bulk
 Description = Eating a Berry boosts both defenses.
 #-------------------------------
-[BERSERKERRAGE]
+[BERSERKERRAGE] ###
 Name = Berserker Rage
 Description = Lower HP boosts Speed and recovery from attacks.
+#-------------------------------
+[BLADEMASTER] ###
+Name = Blademaster
+Description = May parry attacks, especially slicing moves, and counterattack.
 #-------------------------------
 [BLACKSTAIN] ###
 Name = Black Stain

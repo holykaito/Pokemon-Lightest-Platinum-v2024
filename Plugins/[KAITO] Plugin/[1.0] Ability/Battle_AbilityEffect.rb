@@ -7467,9 +7467,12 @@ end
 # Track actual entries, including entries made while the ability is suppressed.
 module PackLeaderFirstEntryTracking
   def pbInitialize(pkmn, idxParty, batonPass = false)
+    # Reset Stalk whenever this battler initializes a Pokemon.
+    @stealth_vanished = false
+
     result = super
 
-    # Exclude temporary battlers created for AI simulations.
+    # Only track real battle entries, excluding temporary AI battlers.
     if idxParty >= 0 && @battle.battlers[@index].equal?(self)
       counts = @battle.pack_leader_entry_counts
       key = pkmn.object_id
@@ -9721,12 +9724,6 @@ module XRayVision
   # Held item suppression and reset on switching, including Baton Pass.
   #-----------------------------------------------------------------------------
   module BattlerHooks
-    def pbInitEffects(batonPass)
-      @xray_vision_turns = 0
-      @xray_vision_token = nil
-      super
-    end
-
     def itemActive?(ignoreFainted = false)
       return false if XRayVision.locked?(self)
       super
@@ -9829,9 +9826,79 @@ module XRayVision
   end
 end
 
+class Battle::Battler
+  unless method_defined?(:xray_vision_original_pbInitEffects)
+    alias_method :xray_vision_original_pbInitEffects, :pbInitEffects
+  end
+
+  def pbInitEffects(batonPass)
+    @xray_vision_turns = 0
+    @xray_vision_token = nil
+    return xray_vision_original_pbInitEffects(batonPass)
+  end
+end
+
 Battle::Battler.prepend(XRayVision::BattlerHooks)
-Battle.prepend(XRayVision::BattleHooks)
-Battle::AI.prepend(XRayVision::AIBootHooks)
+
+#===============================================================================
+# X-Ray Vision - end-of-round countdown compatible with M.A.G
+#===============================================================================
+class Battle
+  unless method_defined?(:xray_vision_original_end_of_round)
+    alias_method :xray_vision_original_end_of_round,
+                 :pbEndOfRoundPhase
+  end
+
+  def pbEndOfRoundPhase
+    pending = allBattlers.select do |b|
+      XRayVision.locked?(b)
+    end.map do |b|
+      [b, b.instance_variable_get(:@xray_vision_token)]
+    end
+
+    result = xray_vision_original_end_of_round
+    return result if @decision > 0
+
+    pending.each do |battler, token|
+      next if battler.fainted?
+      next if !battler.instance_variable_get(
+        :@xray_vision_token
+      ).equal?(token)
+
+      remaining = XRayVision.turns(battler) - 1
+      battler.instance_variable_set(
+        :@xray_vision_turns, remaining
+      )
+      next if remaining > 0
+
+      battler.instance_variable_set(:@xray_vision_token, nil)
+
+      pbDisplay(
+        _INTL("X-Ray Vision's effect on {1} wore off!",
+              battler.pbThis(true))
+      )
+
+      battler.pbHeldItemTriggerCheck
+      battler.pbItemTerrainStatBoostCheck
+    end
+
+    return result
+  end
+end
+
+class Battle::AI
+  unless method_defined?(:xray_vision_original_initialize) ||
+         private_method_defined?(:xray_vision_original_initialize)
+    alias_method :xray_vision_original_initialize, :initialize
+  end
+
+  def initialize(*args, &block)
+    XRayVision.install_advanced_ai!
+    xray_vision_original_initialize(*args, &block)
+  end
+
+  private :initialize
+end
 
 #===============================================================================
 # X-Ray Vision - On entering battle
@@ -10364,12 +10431,6 @@ class Battle::Battler
       @stalk_move_depth = previous_depth
       @stalk_ko_pokemon = nil if previous_depth == 0
     end
-  end
-
-  alias_method :stealth_v2_initialize, :pbInitialize
-  def pbInitialize(*args)
-    @stealth_vanished = false
-    return stealth_v2_initialize(*args)
   end
 
   alias_method :stealth_v2_end_turn, :pbEndTurn
@@ -11171,7 +11232,7 @@ Battle::AbilityEffects::CriticalCalcFromUser.add(:FATALPRECISION,
 
 class Battle::Move
   unless method_defined?(:fatal_precision_original_critical)
-    alias_method :fatal_precision_original_critical, :pbIsCritical
+    alias_method :fatal_precision_original_critical, :pbIsCritical?
   end
 
   def pbIsCritical?(user, target)
@@ -11312,4 +11373,464 @@ class Battle::AI
       return score
     end
   end
+end
+
+#===============================================================================
+# BLADEMASTER
+# Pokemon Essentials v21.1
+#
+# Parry:
+#   20% against opposing damaging moves.
+#   60% against opposing slicing moves.
+#   One roll per move against each target; blocks all hits.
+#
+# Counter:
+#   30% after a successful parry or a connected damaging hit.
+#   One counter opportunity per incoming move.
+#   Physical Normal-type damage, base power 25.
+#   Does not consume the holder's normal action.
+#
+# LOAD LAST, after other battle ability patches.
+#===============================================================================
+
+module Blademaster
+  PARRY_CHANCE         = 20
+  SLICING_PARRY_CHANCE = 60
+  COUNTER_CHANCE       = 30
+  COUNTER_MOVE         = :BLADEMASTERCOUNTER
+
+  #-----------------------------------------------------------------------------
+  # Helpers
+  #-----------------------------------------------------------------------------
+  def self.real_battler(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.real_move(object)
+    return object.move if object.respond_to?(:move)
+    return object
+  end
+
+  def self.context(battle)
+    return battle.instance_variable_get(:@blademaster_context)
+  end
+
+  def self.parry_chance(move)
+    move = real_move(move)
+
+    if move.respond_to?(:slicingMove?) && move.slicingMove?
+      return SLICING_PARRY_CHANCE
+    end
+
+    return PARRY_CHANCE
+  end
+
+  def self.key(move, user, target)
+    return [
+      move.object_id,
+      user.pokemon.object_id,
+      target.pokemon.object_id
+    ]
+  end
+
+  #-----------------------------------------------------------------------------
+  # Eligibility; no RNG is used here.
+  #-----------------------------------------------------------------------------
+  def self.eligible?(move, user, target, battle, predicting = false)
+    move   = real_move(move)
+    user   = real_battler(user)
+    target = real_battler(target)
+
+    return false if !move || !user || !target
+    return false if !user.respond_to?(:effects)
+    return false if !target.respond_to?(:hasActiveAbility?)
+    return false if user.fainted? || target.fainted?
+    return false if !user.opposes?(target)
+    return false if !move.damagingMove?
+    return false if !target.hasActiveAbility?(:BLADEMASTER)
+
+    if !predicting
+      return false if user.effects[PBEffects::TwoTurnAttack]
+
+      if battle.moldBreaker &&
+         !target.hasActiveItem?(:ABILITYSHIELD)
+        return false
+      end
+    elsif !target.hasActiveItem?(:ABILITYSHIELD)
+      if defined?(AdvancedAI::Utilities) &&
+         AdvancedAI::Utilities.respond_to?(:ignores_ability?)
+
+        return false if AdvancedAI::Utilities.ignores_ability?(
+          user, move, target
+        )
+      elsif user.respond_to?(:hasMoldBreaker?)
+        return false if user.hasMoldBreaker?
+      end
+    end
+
+    return true
+  end
+
+  #-----------------------------------------------------------------------------
+  # Correct splash name when Blademaster is an Innate.
+  #-----------------------------------------------------------------------------
+  def self.show_splash(battler, battle)
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:BLADEMASTER).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+      yield
+    ensure
+      battle.pbHideAbilitySplash(battler)
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # One independent parry roll per incoming move/target.
+  # Only runs inside actual move execution.
+  #-----------------------------------------------------------------------------
+  def self.try_parry(move, user, target, battle, show_message)
+    ctx = context(battle)
+
+    return false if !ctx
+    return false if !eligible?(move, user, target, battle)
+
+    event_key = key(move, user, target)
+
+    if ctx[:parry].key?(event_key)
+      return ctx[:parry][event_key]
+    end
+
+    parried = battle.pbRandom(100) < parry_chance(move)
+    ctx[:parry][event_key] = parried
+
+    return false if !parried
+
+    if show_message
+      show_splash(target, battle) do
+        battle.pbDisplay(
+          _INTL("{1} parried the attack!", target.pbThis)
+        )
+      end
+    end
+
+    register_counter(move, user, target, battle)
+    return true
+  end
+
+  #-----------------------------------------------------------------------------
+  # Roll the independent counter chance once.
+  # Queue the counter until the incoming move has finished.
+  #-----------------------------------------------------------------------------
+  def self.register_counter(move, user, target, battle)
+    ctx = context(battle)
+
+    return if !ctx
+    return if battle.instance_variable_get(:@blademaster_countering)
+    return if !eligible?(move, user, target, battle)
+
+    event_key = key(move, user, target)
+    return if ctx[:counter_checked][event_key]
+
+    ctx[:counter_checked][event_key] = true
+
+    return if battle.pbRandom(100) >= COUNTER_CHANCE
+
+    ctx[:queue] << [
+      target,
+      user,
+      target.pokemon,
+      user.pokemon
+    ]
+  end
+
+  #-----------------------------------------------------------------------------
+  # Resolve queued counters.
+  # Do not attack a replacement Pokemon after either battler switches.
+  #-----------------------------------------------------------------------------
+  def self.flush(battle, ctx)
+    return if battle.instance_variable_get(:@blademaster_countering)
+
+    ctx[:queue].each do |holder, attacker, holder_pokemon, attacker_pokemon|
+      break if battle.decision > 0
+      next if !holder.pokemon.equal?(holder_pokemon)
+      next if !attacker.pokemon.equal?(attacker_pokemon)
+      next if holder.fainted? || attacker.fainted?
+      next if !holder.hasActiveAbility?(:BLADEMASTER)
+
+      perform_counter(holder, attacker, battle)
+    end
+
+    ctx[:queue].clear
+  end
+
+  #-----------------------------------------------------------------------------
+  # Execute a single reactive strike through the engine's hit pipeline.
+  #
+  # Does not call pbUseMove/pbBeginTurn/pbEndTurn:
+  #   - does not consume the holder's action;
+  #   - does not replace its selected move;
+  #   - does not alter lastRoundMoved.
+  #-----------------------------------------------------------------------------
+  def self.perform_counter(holder, attacker, battle)
+    return if !GameData::Move.exists?(COUNTER_MOVE)
+
+    counter = Battle::Move.from_pokemon_move(
+      battle,
+      Pokemon::Move.new(COUNTER_MOVE)
+    )
+
+    old_countering = battle.instance_variable_get(
+      :@blademaster_countering
+    )
+    old_mold_breaker = battle.moldBreaker
+    original_pokemon = holder.pokemon
+    old_current_move = holder.instance_variable_get(:@currentMove)
+
+    # Preserve ongoing move sequences if a failed counter calls pbCancelMoves.
+    saved_effects = {}
+
+    [
+      :ParentalBond,
+      :TwoTurnAttack,
+      :Prankster,
+      :FuryCutter,
+      :Rollout,
+      :Outrage,
+      :Uproar,
+      :Bide
+    ].each do |name|
+      effect = PBEffects.const_get(name)
+      saved_effects[effect] = holder.effects[effect]
+    end
+
+    choice = battle.choices[holder.index]
+    old_priority = choice[4] if choice
+
+    begin
+      battle.instance_variable_set(:@blademaster_countering, true)
+      battle.moldBreaker = holder.hasMoldBreaker?
+
+      holder.effects[PBEffects::ParentalBond] = 0
+      holder.effects[PBEffects::TwoTurnAttack] = nil
+      holder.effects[PBEffects::Prankster] = false
+
+      # This reactive strike has ordinary priority.
+      choice[4] = 0 if choice
+
+      counter.calcType = counter.pbCalcType(holder)
+      attacker.damageState.reset
+
+      show_splash(holder, battle) do
+        battle.pbDisplay(
+          _INTL("{1} counterattacked with a swift slash!",
+                holder.pbThis)
+        )
+      end
+
+      targets = [attacker]
+
+      if !holder.pbSuccessCheckAgainstTarget(
+        counter, holder, attacker, targets
+      )
+        attacker.damageState.unaffected = true
+        return
+      end
+
+      success = holder.pbProcessMoveHit(
+        counter, holder, targets, 0, false
+      )
+
+      # Standard post-move effects: KO abilities, items, forced switches, etc.
+      holder.pbEffectsAfterMove(
+        holder, targets, counter, success ? 1 : 0
+      )
+
+      battle.pbJudge
+    ensure
+      if holder.pokemon.equal?(original_pokemon)
+        saved_effects.each do |effect, value|
+          holder.effects[effect] = value
+        end
+
+        holder.instance_variable_set(
+          :@currentMove, old_current_move
+        )
+      end
+
+      choice[4] = old_priority if choice
+
+      battle.moldBreaker = old_mold_breaker
+      battle.instance_variable_set(
+        :@blademaster_countering, old_countering
+      )
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Deterministic AI preference; never rolls battle RNG.
+  #-----------------------------------------------------------------------------
+  def self.adjust_score(score, move, user, target, battle)
+    return score if !score.is_a?(Numeric)
+    return score if score <= 0
+
+    return score if !eligible?(
+      move, user, target, battle, true
+    )
+
+    # Modest heuristic for parry risk and potential retaliation.
+    penalty = (parry_chance(move) == SLICING_PARRY_CHANCE) ? 18 : 6
+    return [score - penalty - 3, 1].max
+  end
+end
+
+#===============================================================================
+# Dedicated counter move.
+# Always Normal-type, single-hit, with Slash's animation.
+#===============================================================================
+
+class Battle::Move::BlademasterCounter < Battle::Move
+  def pbBaseType(user)
+    return :NORMAL
+  end
+
+  def pbCalcType(user)
+    @powerBoost = false
+    return :NORMAL
+  end
+
+  def pbNumHits(user, targets)
+    return 1
+  end
+
+  def pbShowAnimation(
+    id, user, targets, hitNum = 0, showAnimation = true
+  )
+    return if !showAnimation
+
+    @battle.pbAnimation(:SLASH, user, targets, 0)
+  end
+end
+
+#===============================================================================
+# Real battle hooks.
+# No aliases are created on previously prepended methods.
+#===============================================================================
+
+module BlademasterBattleHooks
+  def pbUseMove(*args)
+    previous_context = @battle.instance_variable_get(
+      :@blademaster_context
+    )
+
+    ctx = {
+      :parry           => {},
+      :counter_checked => {},
+      :queue           => []
+    }
+
+    begin
+      @battle.instance_variable_set(:@blademaster_context, ctx)
+
+      result = super
+
+      Blademaster.flush(@battle, ctx)
+      return result
+    ensure
+      @battle.instance_variable_set(
+        :@blademaster_context, previous_context
+      )
+    end
+  end
+
+  # Parry after Protect/immunity checks, before individual hit checks.
+  def pbSuccessCheckAgainstTarget(move, user, target, targets)
+    success = super
+    return success if !success
+    return success if !move.pbDamagingMove?
+
+    if Blademaster.try_parry(
+      move, user, target, @battle,
+      move.pbShowFailMessages?(targets)
+    )
+      return false
+    end
+
+    return success
+  end
+
+  # A connected hit can trigger a counter even if no parry occurred.
+  def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck)
+    result = super
+
+    if result && move.damagingMove?
+      targets.each do |target|
+        next if target.damageState.unaffected
+        next if target.damageState.calcDamage <= 0
+
+        Blademaster.register_counter(
+          move, user, target, @battle
+        )
+      end
+    end
+
+    return result
+  end
+end
+
+unless Battle::Battler.ancestors.include?(BlademasterBattleHooks)
+  Battle::Battler.prepend(BlademasterBattleHooks)
+end
+
+#===============================================================================
+# Native AI.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+
+unless Battle::AI::BASE_ABILITY_RATINGS[8].include?(:BLADEMASTER)
+  Battle::AI::BASE_ABILITY_RATINGS[8] << :BLADEMASTER
+end
+
+Battle::AI::Handlers::AbilityRanking.add(:BLADEMASTER,
+  proc { |ability, score, battler, ai|
+    next score
+  }
+)
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :blademaster_parry_and_counter,
+  proc { |score, move, user, target, ai, battle|
+    next Blademaster.adjust_score(
+      score, move, user, target, battle
+    )
+  }
+)
+
+#===============================================================================
+# Advanced AI's separate scoring pipeline.
+#===============================================================================
+
+module BlademasterAdvancedAI
+  def score_move_advanced(move, user, target, skill)
+    score = super
+
+    return Blademaster.adjust_score(
+      score, move, user, target, @battle
+    )
+  end
+end
+
+if Battle::AI.method_defined?(:score_move_advanced) &&
+   !Battle::AI.ancestors.include?(BlademasterAdvancedAI)
+
+  Battle::AI.prepend(BlademasterAdvancedAI)
 end

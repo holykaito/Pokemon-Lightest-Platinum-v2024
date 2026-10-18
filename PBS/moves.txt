@@ -5830,7 +5830,7 @@ TotalPP = 20
 Target = NearOther
 Priority = 0
 FunctionCode = LowerTargetSpAtk1Or2DoubleDamageIfInfatuated
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,ZPower_SPECIAL_DEFENSE_2
 EffectChance = 100
 Description = Lowers Sp. Atk, more if opposite gender. Stronger on infatuated foes.
 #-------------------------------

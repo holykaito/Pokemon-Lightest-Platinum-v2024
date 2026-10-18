@@ -545,7 +545,7 @@ Target = NearOther
 Priority = 0
 FunctionCode = LowerUserSpeed1BleedTarget
 Flags = Contact,CanProtect,CanMirrorMove
-EffectChance = 50
+EffectChance = 100
 Description = Slows the user and may cause bleeding.
 Animation = CRUNCH
 #-------------------------------
@@ -628,4 +628,85 @@ FunctionCode = None
 Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing
 Description = Slashes with a whimsical blade. High critical-hit ratio.
 Animation = PSYCHOCUT,FAIRYWIND
+#-------------------------------
+[PSYSHIELD]
+Name = Psyshield
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+Priority = 0
+FunctionCode = GiveUserShield
+Flags = CanSnatch,ShieldPercent_50
+Description = Creates a shield worth half the user's max HP.
+Animation = BARRIER,REFLECT
+#-------------------------------
+[WITCHCRAFT]
+Name = Witchcraft
+Type = FAIRY
+Category = Status
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+Priority = 0
+FunctionCode = SetTargetTypeDragonLowerTargetAttack2
+Flags = CanProtect,CanMirrorMove
+Description = Turns the target into a Dragon type and sharply lowers Attack.
+Animation = DRAGONBREATH,CHARM
+#-------------------------------
+[BLADEMASTERCOUNTER]
+Name = Swift Slash
+Type = NORMAL
+Category = Physical
+Power = 25
+Accuracy = 100
+TotalPP = 1
+Target = NearOther
+FunctionCode = BlademasterCounter
+Flags = Contact,CanProtect,Slicing
+Description = A swift slash delivered as a counterattack.
+#-------------------------------
+[MOONFALL]
+Name = Moonfall
+Type = FAIRY
+Category = Physical
+Power = 180
+Accuracy = 80
+TotalPP = 5
+Target = AllBattlers
+Priority = 0
+FunctionCode = None
+Flags = CanProtect,CanMirrorMove,Cosmic
+Description = Drops the moon on all battlers, including the user.
+Animation = MOONBLAST,DRACOMETEOR
+#-------------------------------
+[FAECORE]
+Name = Fae Core
+Type = FAIRY
+Category = Special
+Power = 140
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+Priority = 0
+FunctionCode = TwoTurnAttackTrapTargetFaeCore
+Flags = CanProtect,CanMirrorMove
+Description = Traps the target, then explodes on the next turn.
+Animation = FAIRYLOCK,MOONBLAST
+#-------------------------------
+[ESPERWALTZ]
+Name = Esper Waltz
+Type = PSYCHIC
+Category = Special
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = RaiseUserSpAtk1
+Flags = CanProtect,CanMirrorMove,Dance
+EffectChance = 50
+Description = A psychic dance that may raise the user's Sp. Atk.
+Animation = QUIVERDANCE,PSYCHIC@User
 #-------------------------------

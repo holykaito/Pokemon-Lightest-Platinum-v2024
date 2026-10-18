@@ -44,7 +44,7 @@ def pbPrintException(e)
     backtrace_text = ""
     if e.backtrace
       # maxlength = ($INTERNAL) ? 25 : 10
-      maxlength = 100
+      maxlength = 50
       e.backtrace[0, maxlength].each { |i| backtrace_text += "#{i}\r\n" }
     end
     backtrace_text.gsub!(/Section(\d+)/) { $RGSS_SCRIPTS[$1.to_i][1] } rescue nil

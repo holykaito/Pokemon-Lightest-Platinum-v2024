@@ -42,31 +42,49 @@
       end
 
       # Keep access to raw stages for Stored Power/Power Trip/Punishment.
-      def self.with_stages(battlers)
-        saved = []
-        begin
-          battlers.compact.map { |b| real(b) }.uniq.each do |b|
-            defined_before = b.instance_variable_defined?(:@et_ai_raw_stages)
-            previous = b.instance_variable_get(:@et_ai_raw_stages)
-            saved << [b, defined_before, previous]
-            b.instance_variable_set(:@et_ai_raw_stages, b.stages) if !defined_before
-          end
-          return ExtendedTerrains.with_effective_stages(battlers.compact.map { |b| real(b) }) { yield }
-        ensure
-          saved.reverse_each do |b, defined_before, previous|
-            if defined_before
-              b.instance_variable_set(:@et_ai_raw_stages, previous)
-            else
-              b.remove_instance_variable(:@et_ai_raw_stages)
-            end
-          end
-        end
-      end
+	def self.with_stages(battlers)
+	  saved = []
 
-      def self.raw_stages(battler)
-        b = real(battler)
-        return b.instance_variable_get(:@et_ai_raw_stages) || b.stages
-      end
+	  # Only battlers currently in battle have stat stages.
+	  actual_battlers = battlers.compact.map do |b|
+		real(b)
+	  end.compact.select do |b|
+		b.respond_to?(:stages)
+	  end.uniq { |b| b.object_id }
+
+	  begin
+		actual_battlers.each do |b|
+		  existed = b.instance_variable_defined?(:@et_ai_raw_stages)
+		  previous = b.instance_variable_get(:@et_ai_raw_stages)
+
+		  saved << [b, existed, previous]
+
+		  unless existed
+			b.instance_variable_set(:@et_ai_raw_stages, b.stages)
+		  end
+		end
+
+		return ExtendedTerrains.with_effective_stages(
+		  actual_battlers
+		) { yield }
+	  ensure
+		saved.reverse_each do |b, existed, previous|
+		  if existed
+			b.instance_variable_set(:@et_ai_raw_stages, previous)
+		  elsif b.instance_variable_defined?(:@et_ai_raw_stages)
+			b.remove_instance_variable(:@et_ai_raw_stages)
+		  end
+		end
+	  end
+	end
+
+	def self.raw_stages(battler)
+	  b = real(battler)
+	  return {} if !b || !b.respond_to?(:stages)
+
+	  return b.instance_variable_get(:@et_ai_raw_stages) ||
+			 b.stages || {}
+end
 
       # Query a proposed terrain without starting it, triggering abilities/items,
       # decrementing duration or displaying animations. Always restore the field.

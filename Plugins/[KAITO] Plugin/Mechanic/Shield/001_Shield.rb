@@ -7,7 +7,7 @@
 # Plugins/[KAITO] Shield/001_KaitoShield.rb
 # Add meta.txt beside it:
 #   Name       = Kaito Shield
-#   Version    = 1.0.0
+#   Version    = 1.0.2
 #   Essentials = 21.1
 # Close the game and recompile plugins in Debug (hold Ctrl on startup).
 #
@@ -82,9 +82,9 @@
 # battle strategy/damage predictions are not extended by this core plugin.
 #===============================================================================
 module KaitoShield
-  VERSION = "1.0.0"
+  VERSION = "1.0.2"
   MINT_RGB = [113, 238, 195]
-  BAR_ANIMATION_SECONDS = 0.30
+  BAR_ANIMATION_SECONDS = Battle::Scene::PokemonDataBox::HP_BAR_CHANGE_TIME
   ABSORB_LIFE_ORB = true
 
   Attack = Struct.new(:battle, :user, :choice) do
@@ -399,8 +399,8 @@ module KaitoShield
   end
 
   #---------------------------------------------------------------------------
-  # Draw mint shield in the upper half INSIDE the existing HP bar.
-  # The lower half always retains the real HP bar's original color/width.
+  # Draw mint shield across the full height of the existing HP bar.
+  # HP numbers are kept above the shield sprite.
   # Uses @hpBar's actual dimensions/coordinates for standard/DBK databoxes.
   #---------------------------------------------------------------------------
   module DataBoxHooks
@@ -412,23 +412,30 @@ module KaitoShield
       return if width <= 0 || height <= 0
       value = @battler.pbShieldHP
       now = System.uptime
-      elapsed = @kaito_shield_last_time ? [now - @kaito_shield_last_time, 0.1].min : 0
-      @kaito_shield_last_time = now
       @kaito_shield_display ||= 0.0
       if @kaito_shield_battler != @battler.pokemon
         @kaito_shield_battler = @battler.pokemon
         @kaito_shield_display = value.to_f
+        @kaito_shield_target = value
+        @kaito_shield_timer = nil
       end
-      speed = [@battler.totalhp, 1].max / KaitoShield::BAR_ANIMATION_SECONDS
-      step = speed * elapsed
-      if @kaito_shield_display < value
-        @kaito_shield_display = [@kaito_shield_display + step, value].min
-      else
-        @kaito_shield_display = [@kaito_shield_display - step, value].max
+      if @kaito_shield_target != value
+        @kaito_shield_start = @kaito_shield_display
+        @kaito_shield_target = value
+        @kaito_shield_timer = now
+      end
+      if @kaito_shield_timer
+        fraction = [[(now - @kaito_shield_timer) /
+                     KaitoShield::BAR_ANIMATION_SECONDS, 0.0].max, 1.0].min
+        @kaito_shield_display = @kaito_shield_start +
+          (@kaito_shield_target - @kaito_shield_start) * fraction
+        @kaito_shield_timer = nil if fraction >= 1.0
       end
       return if !@kaito_shield_overlay && @kaito_shield_display <= 0
       if !@kaito_shield_overlay || @kaito_shield_overlay.disposed?
         @kaito_shield_overlay = Sprite.new(@hpBar.viewport)
+        # Parent databox propagates fade color/opacity/visibility immediately.
+        @sprites["kaitoShield"] = @kaito_shield_overlay
       end
       overlay = @kaito_shield_overlay
       if !overlay.bitmap || overlay.bitmap.width != width || overlay.bitmap.height != height
@@ -437,15 +444,22 @@ module KaitoShield
       end
       pixels = (width * @kaito_shield_display / [@battler.totalhp, 1].max).round
       pixels = [[pixels, 0].max, width].min
-      strip = [[height / 2, 2].max, height].min
+      strip = height
       signature = [pixels, width, height]
       if @kaito_shield_draw_signature != signature
         overlay.bitmap.clear
         if pixels > 0
-          overlay.bitmap.fill_rect(0, 0, pixels, strip, Color.new(*KaitoShield::MINT_RGB))
-          overlay.bitmap.fill_rect(0, 0, pixels, 1, Color.new(190, 255, 231))
-          if strip > 2
-            overlay.bitmap.fill_rect(0, strip - 1, pixels, 1, Color.new(46, 162, 132))
+          edge = Color.new(28, 112, 92)
+          overlay.bitmap.fill_rect(0, 0, pixels, strip, edge)
+          # Vertical mint gradient, bounded by a one-pixel dark outline.
+          if pixels > 2 && strip > 2
+            top = [187, 255, 229]
+            bottom = [62, 188, 153]
+            (1...(strip - 1)).each do |row|
+              t = (row - 1).to_f / [strip - 3, 1].max
+              rgb = 3.times.map { |i| (top[i] + (bottom[i] - top[i]) * t).round }
+              overlay.bitmap.fill_rect(1, row, pixels - 2, 1, Color.new(*rgb))
+            end
           end
         end
         @kaito_shield_draw_signature = signature
@@ -453,6 +467,9 @@ module KaitoShield
       overlay.x = @hpBar.x
       overlay.y = @hpBar.y
       overlay.z = @hpBar.z + 1
+      if @hpNumbers && !@hpNumbers.disposed?
+        @hpNumbers.z = overlay.z + 1 if @hpNumbers.z <= overlay.z
+      end
       overlay.ox = @hpBar.ox
       overlay.oy = @hpBar.oy
       overlay.zoom_x = @hpBar.zoom_x
@@ -462,6 +479,25 @@ module KaitoShield
       overlay.opacity = @hpBar.opacity
       overlay.color = @hpBar.color
       overlay.visible = visible && @hpBar.visible && !@battler.fainted? && pixels > 0
+    end
+
+    def hp
+      if @kaito_shield_timer && !@anim_hp_timer_start
+        return @battler.hp
+      end
+      super
+    end
+
+    # The scene waits for shield-only hits just as it waits for HP animation.
+    def animating_hp?
+      return super || !@kaito_shield_timer.nil?
+    end
+
+    def update_hp_animation
+      # Core code uses animating_hp? as its guard. During a shield-only
+      # animation it has no real HP endpoints, so do not invoke that code.
+      return if !@anim_hp_timer_start
+      super
     end
 
     def update
@@ -477,6 +513,7 @@ module KaitoShield
     end
 
     def dispose
+      @sprites.delete("kaitoShield") if @sprites
       if @kaito_shield_overlay && !@kaito_shield_overlay.disposed?
         bitmap = @kaito_shield_overlay.bitmap
         @kaito_shield_overlay.dispose

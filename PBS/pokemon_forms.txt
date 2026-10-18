@@ -1179,10 +1179,10 @@ Generation = 6
 [GALLADE,1]
 FormName = Mega Gallade
 MegaStone = GALLADITE
-BaseStats = 68,165,105,120,65,115
+BaseStats = 68,155,105,120,65,115
 BaseExp = 309
-Abilities = INNERFOCUS
-HiddenAbilities = INNERFOCUS
+Abilities = BLADEMASTER
+HiddenAbilities = BLADEMASTER
 Weight = 56.4
 Generation = 6
 #-------------------------------
