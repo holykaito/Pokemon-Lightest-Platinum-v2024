@@ -210,9 +210,9 @@ Description = Prevents other Pokémon from lowering accuracy.
 Name = Hyper Cutter
 Description = Prevents other Pokémon from lowering Attack stat.
 #-------------------------------
-[PICKUP]
+[PICKUP] ###
 Name = Pickup
-Description = The Pokémon may pick up items.
+Description = Collects items and clears its side’s entry hazards on entry.
 #-------------------------------
 [TRUANT]
 Name = Truant
@@ -426,9 +426,9 @@ Description = Heightens the critical-hit ratios of moves.
 Name = Aftermath
 Description = Damages the attacker landing the finishing hit.
 #-------------------------------
-[ANTICIPATION]
+[ANTICIPATION] ###
 Name = Anticipation
-Description = Senses a foe's dangerous moves.
+Description = Senses dangerous moves and braces against the first hit.
 #-------------------------------
 [FOREWARN] ###
 Name = Forewarn
@@ -470,9 +470,9 @@ Description = Reduces damage from super-effective attacks.
 Name = Snow Warning
 Description = The Pokémon summons a snowstorm in battle.
 #-------------------------------
-[HONEYGATHER]
+[HONEYGATHER] ###
 Name = Honey Gather
-Description = The Pokémon may gather Honey from somewhere.
+Description = May gather Honey and eats Honey held by targets it hits.
 #-------------------------------
 [FRISK]
 Name = Frisk
@@ -1001,7 +1001,7 @@ Description = Just being next to the Pokémon powers up moves.
 #-------------------------------
 [MIMICRY]
 Name = Mimicry
-Description = Changes type depending on the terrain.
+Description = Changes type with terrain but retains its original STAB.
 #-------------------------------
 [SCREENCLEANER]
 Name = Screen Cleaner

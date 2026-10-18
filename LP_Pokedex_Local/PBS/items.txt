@@ -52,11 +52,12 @@ Name = Honey
 NamePlural = Honey
 PortionName = jar of Honey
 PortionNamePlural = jars of Honey
-Pocket = 1
+Pocket = 2
 Price = 450
-FieldUse = Direct
+FieldUse = OnPokemon
+BattleUse = OnPokemon
 Flags = Fling_30
-Description = A sweet honey with a lush aroma that attracts wild Pokémon when used in tall grass, in caves, or elsewhere.
+Description = Restores 1/8 of a Pokémon's maximum HP. If held, it is consumed when HP falls below 75%.
 #-------------------------------
 [REDSHARD]
 Name = Red Shard

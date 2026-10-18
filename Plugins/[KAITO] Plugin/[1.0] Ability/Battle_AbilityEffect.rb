@@ -11834,3 +11834,1325 @@ if Battle::AI.method_defined?(:score_move_advanced) &&
 
   Battle::AI.prepend(BlademasterAdvancedAI)
 end
+
+#===============================================================================
+# ANTICIPATION - FIRST DANGER GUARD
+#===============================================================================
+
+module AnticipationGuard
+  DAMAGE_MULTIPLIER = 0.5
+
+  # true  = refresh protection whenever the Pokemon enters battle.
+  # false = only one activation per Pokemon per battle.
+  RESET_ON_SWITCH = true
+
+  unless const_defined?(:ORIGINAL_SWITCH_IN, false)
+    ORIGINAL_SWITCH_IN =
+      Battle::AbilityEffects::OnSwitchIn[:ANTICIPATION]
+  end
+
+  #-----------------------------------------------------------------------------
+  # Helpers
+  #-----------------------------------------------------------------------------
+  def self.real_battler(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.real_move(object)
+    return object.move if object.respond_to?(:move)
+    return object
+  end
+
+  def self.storage(battle)
+    data = battle.instance_variable_get(:@anticipation_guard_data)
+
+    if !data
+      data = {}
+      battle.instance_variable_set(:@anticipation_guard_data, data)
+    end
+
+    return data
+  end
+
+  def self.state(target)
+    target = real_battler(target)
+
+    return nil if !target
+    return nil if !target.respond_to?(:battle)
+    return nil if !target.respond_to?(:pokemon)
+    return nil if !target.pokemon
+
+    data = target.battle.instance_variable_get(
+      :@anticipation_guard_data
+    )
+
+    return nil if !data
+    return data[target.pokemon.object_id]
+  end
+
+  #-----------------------------------------------------------------------------
+  # Match the original Anticipation warning criteria.
+  # Record the exact move and its Pokemon owner.
+  #-----------------------------------------------------------------------------
+  def self.scan_threats(battler, battle)
+    threats = {}
+    types = battler.pbTypes(true)
+
+    battle.allOtherSideBattlers(battler.index).each do |foe|
+      next if foe.fainted?
+
+      foe.eachMove do |move|
+        next if move.statusMove?
+
+        ohko = [
+          "OHKO",
+          "OHKOIce",
+          "OHKOHitsUndergroundTarget"
+        ].include?(move.function_code)
+
+        if types.length > 0
+          type = move.type
+
+          if Settings::MECHANICS_GENERATION >= 6 &&
+             move.function_code == "TypeDependsOnUserIVs"
+
+            type = pbHiddenPower(foe.pokemon)[0]
+          end
+
+          effectiveness = Effectiveness.calculate(type, *types)
+
+          next if Effectiveness.ineffective?(effectiveness)
+          next if !ohko &&
+                  !Effectiveness.super_effective?(effectiveness)
+        else
+          next if !ohko
+        end
+
+        threats[[foe.pokemon.object_id, move.id]] = true
+      end
+    end
+
+    return threats
+  end
+
+  def self.prepare(battler, battle)
+    previous = state(battler)
+
+    spent = false
+
+    if !RESET_ON_SWITCH && previous
+      spent = previous[:spent]
+    end
+
+    storage(battle)[battler.pokemon.object_id] = {
+      :threats => scan_threats(battler, battle),
+      :spent   => spent,
+      :action  => nil
+    }
+  end
+
+  #-----------------------------------------------------------------------------
+  # Ability bypass checks.
+  #-----------------------------------------------------------------------------
+  def self.ignored?(move, user, target, predicting)
+    return false if target.hasActiveItem?(:ABILITYSHIELD)
+
+    if predicting
+      if defined?(AdvancedAI::Utilities) &&
+         AdvancedAI::Utilities.respond_to?(:ignores_ability?)
+
+        return AdvancedAI::Utilities.ignores_ability?(
+          user, move, target
+        )
+      end
+
+      return true if user.respond_to?(:hasMoldBreaker?) &&
+                     user.hasMoldBreaker?
+
+      return true if move.is_a?(Battle::Move::IgnoreTargetAbility)
+
+      return false
+    end
+
+    return target.battle.moldBreaker
+  end
+
+  #-----------------------------------------------------------------------------
+  # True only for a recorded threatening move.
+  # No RNG or stat changes.
+  #-----------------------------------------------------------------------------
+  def self.eligible?(move, user, target, predicting = false)
+    move   = real_move(move)
+    user   = real_battler(user)
+    target = real_battler(target)
+
+    return false if !move || !user || !target
+    return false if !user.respond_to?(:pokemon)
+    return false if !target.respond_to?(:hasActiveAbility?)
+    return false if !user.pokemon || !target.pokemon
+    return false if user.fainted? || target.fainted?
+    return false if !user.opposes?(target)
+    return false if !move.damagingMove?
+    return false if !target.hasActiveAbility?(:ANTICIPATION)
+
+    data = state(target)
+    return false if !data
+
+    move_key = [user.pokemon.object_id, move.id]
+    return false if !data[:threats][move_key]
+    return false if ignored?(move, user, target, predicting)
+
+    if predicting
+      return !data[:spent]
+    end
+
+    token = target.battle.instance_variable_get(
+      :@anticipation_guard_action
+    )
+
+    return false if !token
+
+    action = [token, user.pokemon.object_id, move.id]
+
+    return true if !data[:spent]
+    return data[:action] == action
+  end
+
+  #-----------------------------------------------------------------------------
+  # Correct splash when Anticipation is an Innate.
+  #-----------------------------------------------------------------------------
+  def self.show_activation(target)
+    battle = target.battle
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:ANTICIPATION).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(target)
+      battle.pbDisplay(
+        _INTL("{1} anticipated the attack and braced itself!",
+              target.pbThis)
+      )
+    ensure
+      battle.pbHideAbilitySplash(target)
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Called after accuracy checks and damage absorption checks.
+  #-----------------------------------------------------------------------------
+  def self.reduce_damage(move, user, target)
+    return if !eligible?(move, user, target)
+
+    damage_state = target.damageState
+
+    return if damage_state.unaffected
+    return if damage_state.substitute
+    return if damage_state.disguise || damage_state.iceFace
+    return if damage_state.calcDamage <= 0
+
+    data = state(target)
+
+    if !data[:spent]
+      token = target.battle.instance_variable_get(
+        :@anticipation_guard_action
+      )
+
+      data[:spent] = true
+      data[:action] = [
+        token,
+        user.pokemon.object_id,
+        move.id
+      ]
+
+      show_activation(target)
+    end
+
+    damage_state.calcDamage = [
+      (damage_state.calcDamage * DAMAGE_MULTIPLIER).round,
+      1
+    ].max
+  end
+end
+
+#===============================================================================
+# Preserve the existing warning, then prepare the additional protection.
+#===============================================================================
+
+Battle::AbilityEffects::OnSwitchIn.add(:ANTICIPATION,
+  proc { |ability, battler, battle, switch_in|
+    next if battler.fainted?
+
+    original = AnticipationGuard::ORIGINAL_SWITCH_IN
+
+    if original
+      original.call(ability, battler, battle, switch_in)
+    end
+
+    AnticipationGuard.prepare(battler, battle)
+  }
+)
+
+#===============================================================================
+# One action token per move usage.
+# Nested/called moves receive separate tokens.
+#===============================================================================
+
+module AnticipationGuardAction
+  def pbUseMove(*args)
+    previous = @battle.instance_variable_get(
+      :@anticipation_guard_action
+    )
+
+    begin
+      @battle.instance_variable_set(
+        :@anticipation_guard_action, Object.new
+      )
+
+      return super
+    ensure
+      @battle.instance_variable_set(
+        :@anticipation_guard_action, previous
+      )
+    end
+  end
+end
+
+unless Battle::Battler.ancestors.include?(AnticipationGuardAction)
+  Battle::Battler.prepend(AnticipationGuardAction)
+end
+
+#===============================================================================
+# Apply reduction before Endure, Focus Sash, Sturdy and final HP loss.
+# Includes fixed-damage moves, because they also pass through pbReduceDamage.
+#===============================================================================
+
+module AnticipationGuardDamage
+  def pbReduceDamage(user, target)
+    AnticipationGuard.reduce_damage(self, user, target)
+    return super
+  end
+end
+
+unless Battle::Move.ancestors.include?(AnticipationGuardDamage)
+  Battle::Move.prepend(AnticipationGuardDamage)
+end
+
+#===============================================================================
+# Native AI: estimate the reduced damage without consuming protection.
+#===============================================================================
+
+module AnticipationGuardNativeAI
+  def rough_damage
+    damage = super
+
+    if AnticipationGuard.eligible?(
+      @move, @ai.user, @ai.target, true
+    )
+      return [
+        (damage * AnticipationGuard::DAMAGE_MULTIPLIER).round,
+        1
+      ].max
+    end
+
+    return damage
+  end
+end
+
+unless Battle::AI::AIMove.ancestors.include?(AnticipationGuardNativeAI)
+  Battle::AI::AIMove.prepend(AnticipationGuardNativeAI)
+end
+
+#===============================================================================
+# AI ability value.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:ANTICIPATION)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :ANTICIPATION
+
+Battle::AI::Handlers::AbilityRanking.add(:ANTICIPATION,
+  proc { |ability, score, battler, ai|
+    data = AnticipationGuard.state(battler)
+
+    next 2 if data && data[:spent]
+    next score
+  }
+)
+
+#===============================================================================
+# Advanced AI's separate shared damage estimator.
+#===============================================================================
+
+module AnticipationGuardAdvancedAI
+  def estimate_damage(attacker, move, defender, options = {})
+    damage = super
+
+    return damage if !damage.is_a?(Numeric) || damage <= 0
+
+    if AnticipationGuard.eligible?(
+      move, attacker, defender, true
+    )
+      damage *= AnticipationGuard::DAMAGE_MULTIPLIER
+
+      return damage if options[:as_percent]
+      return [damage.round, 1].max
+    end
+
+    return damage
+  end
+end
+
+if defined?(AdvancedAI::CombatUtilities) &&
+   AdvancedAI::CombatUtilities.respond_to?(:estimate_damage)
+
+  singleton = AdvancedAI::CombatUtilities.singleton_class
+
+  unless singleton.ancestors.include?(AnticipationGuardAdvancedAI)
+    singleton.prepend(AnticipationGuardAdvancedAI)
+  end
+end
+
+#===============================================================================
+# PICKUP - Additional entry hazard cleanup
+#===============================================================================
+
+module PickupHazardCleaner
+  HAZARDS = {
+    :StealthRock => false,
+    :Spikes      => 0,
+    :ToxicSpikes => 0,
+    :StickyWeb   => false,
+    :Steelsurge  => false
+  }.freeze
+
+  def self.active_hazards(side)
+    found = []
+
+    HAZARDS.each do |name, empty_value|
+      next if !PBEffects.const_defined?(name)
+
+      effect = PBEffects.const_get(name)
+      value  = side.effects[effect]
+
+      active = if empty_value == false
+                 value == true
+               else
+                 value && value > 0
+               end
+
+      found << [effect, empty_value] if active
+    end
+
+    return found
+  end
+
+  def self.clear(battler, battle)
+    return false if battler.fainted?
+    return false if !battler.hasActiveAbility?(:PICKUP)
+
+    side = battler.pbOwnSide
+    hazards = active_hazards(side)
+
+    return false if hazards.empty?
+
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      # Show Pickup's name correctly when it is an Innate.
+      name = GameData::Ability.get(:PICKUP).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+
+      hazards.each do |effect, empty_value|
+        side.effects[effect] = empty_value
+      end
+
+      battle.pbDisplay(
+        _INTL("{1} picked up all entry hazards on its side!",
+              battler.pbThis)
+      )
+    ensure
+      battle.pbHideAbilitySplash(battler)
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+
+    return true
+  end
+end
+
+#===============================================================================
+# Additional switch-in effect.
+# Does not replace Pickup's EndOfRoundGainItem handler.
+#===============================================================================
+
+Battle::AbilityEffects::OnSwitchIn.add(:PICKUP,
+  proc { |ability, battler, battle, switch_in|
+    next if !switch_in
+    next if battler.fainted?
+
+    PickupHazardCleaner.clear(battler, battle)
+  }
+)
+
+#===============================================================================
+# Native AI ability ranking.
+# Entry hazard damage calculations remain unchanged.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:PICKUP)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :PICKUP
+
+Battle::AI::Handlers::AbilityRanking.add(:PICKUP,
+  proc { |ability, score, battler, ai|
+    side = battler.battler.pbOwnSide
+
+    next 8 if !PickupHazardCleaner.active_hazards(side).empty?
+    next 1
+  }
+)
+
+#===============================================================================
+# MIMICRY - Retain original-type STAB
+#===============================================================================
+
+module MimicryOriginalSTAB
+  def self.real_battler(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  #-----------------------------------------------------------------------------
+  # Active ability for battle objects.
+  # Also accepts Pokemon objects used by party/switch AI.
+  #-----------------------------------------------------------------------------
+  def self.has_ability?(object, ability)
+    object = real_battler(object)
+    return false if !object
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(ability)
+    end
+
+    if object.respond_to?(:hasAbility?)
+      return object.hasAbility?(ability)
+    end
+
+    return object.ability_id == ability if object.respond_to?(:ability_id)
+    return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Original species/form types, not the battler's altered @types.
+  # Terrain changes only alter the battle object's current typing.
+  #-----------------------------------------------------------------------------
+  def self.original_types(object)
+    object = real_battler(object)
+    return [] if !object
+
+    pokemon = if object.respond_to?(:pokemon) && object.pokemon
+                object.pokemon
+              else
+                object
+              end
+
+    return [] if !pokemon.respond_to?(:types)
+    return pokemon.types.compact.uniq
+  end
+
+  def self.retains_stab?(object, type)
+    return false if !type
+    return false if !has_ability?(object, :MIMICRY)
+
+    return original_types(object).include?(type)
+  end
+
+  def self.stellar?(object)
+    object = real_battler(object)
+
+    return false if !object.respond_to?(:tera?)
+    return false if !object.tera?
+
+    return object.tera_type == :STELLAR
+  end
+
+  #-----------------------------------------------------------------------------
+  # STAB already granted by the engine/DBK Terastallization.
+  #-----------------------------------------------------------------------------
+  def self.existing_stab(object, type)
+    object = real_battler(object)
+    return 1.0 if !object || !type
+
+    adaptability = has_ability?(object, :ADAPTABILITY)
+
+    if object.respond_to?(:tera?) && object.tera?
+      adaptability = false if stellar?(object)
+
+      if object.pbPreTeraTypes.include?(type)
+        if object.typeTeraBoosted?(type)
+          return adaptability ? 2.25 : 2.0
+        end
+
+        return adaptability ? 2.0 : 1.5
+      end
+
+      if object.typeTeraBoosted?(type)
+        return 2.0 if adaptability
+        return stellar?(object) ? 1.2 : 1.5
+      end
+
+      return 1.0
+    end
+
+    matches = if object.respond_to?(:pbHasType?)
+                object.pbHasType?(type)
+              elsif object.respond_to?(:types)
+                object.types.include?(type)
+              else
+                false
+              end
+
+    return 1.0 if !matches
+    return adaptability ? 2.0 : 1.5
+  end
+
+  def self.retained_stab(object)
+    if has_ability?(object, :ADAPTABILITY) && !stellar?(object)
+      return 2.0
+    end
+
+    return 1.5
+  end
+
+  #-----------------------------------------------------------------------------
+  # Add only the missing amount, preserving stronger existing Tera STAB.
+  #-----------------------------------------------------------------------------
+  def self.extra_multiplier(object, type)
+    return 1.0 if !retains_stab?(object, type)
+
+    existing = existing_stab(object, type)
+    desired  = [existing, retained_stab(object)].max
+
+    return desired / existing
+  end
+end
+
+#===============================================================================
+# Actual battle damage.
+# Does not modify pbHasType?, resistances, immunities or terrain eligibility.
+#===============================================================================
+
+module MimicryOriginalSTABBattle
+  def pbCalcDamageMults_Type(
+    user, target, numTargets, type, baseDmg, multipliers
+  )
+    result = super
+
+    multipliers[:final_damage_multiplier] *=
+      MimicryOriginalSTAB.extra_multiplier(user, type)
+
+    return result
+  end
+end
+
+unless Battle::Move.ancestors.include?(MimicryOriginalSTABBattle)
+  Battle::Move.prepend(MimicryOriginalSTABBattle)
+end
+
+#===============================================================================
+# Native AI damage estimation.
+#===============================================================================
+
+module MimicryOriginalSTABNativeAI
+  def calc_type_mults(
+    user, target, base_dmg, calc_type, is_critical, multipliers
+  )
+    result = super
+
+    multipliers[:final_damage_multiplier] *=
+      MimicryOriginalSTAB.extra_multiplier(user, calc_type)
+
+    return result
+  end
+end
+
+unless Battle::AI::AIMove.ancestors.include?(MimicryOriginalSTABNativeAI)
+  Battle::AI::AIMove.prepend(MimicryOriginalSTABNativeAI)
+end
+
+#===============================================================================
+# Advanced AI's shared estimator calculates ordinary STAB separately.
+# Add the missing original-type STAB through its ability multiplier.
+#===============================================================================
+
+module MimicryOriginalSTABAdvancedAI
+  def ability_damage_modifier(
+    attacker, target, effective_type, is_physical, effectiveness,
+    move = nil, uses_physical_defense = is_physical
+  )
+    result = super
+
+    return result if !MimicryOriginalSTAB.retains_stab?(
+      attacker, effective_type
+    )
+
+    existing = 1.0
+
+    if AdvancedAI::Utilities.has_type?(attacker, effective_type)
+      existing = 1.5
+
+      if AdvancedAI::Utilities.ability_active?(attacker, :ADAPTABILITY)
+        existing = 2.0
+      end
+    end
+
+    desired = [
+      existing,
+      MimicryOriginalSTAB.retained_stab(attacker)
+    ].max
+
+    return result * desired / existing
+  end
+end
+
+if defined?(AdvancedAI::CombatUtilities) &&
+   AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+
+  singleton = AdvancedAI::CombatUtilities.singleton_class
+
+  unless singleton.ancestors.include?(MimicryOriginalSTABAdvancedAI)
+    singleton.prepend(MimicryOriginalSTABAdvancedAI)
+  end
+end
+
+#===============================================================================
+# Native AI ability value.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:MIMICRY)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :MIMICRY
+
+Battle::AI::Handlers::AbilityRanking.add(:MIMICRY,
+  proc { |ability, score, battler, ai|
+    next score
+  }
+)
+
+#===============================================================================
+# HONEY GATHER + HONEY
+#===============================================================================
+
+module HoneyGatherPlus
+  GATHER_CHANCE = 30
+
+  def self.heal_amount(totalhp)
+    return [totalhp / 8, 1].max
+  end
+
+  #-----------------------------------------------------------------------------
+  # Correct ability splash when Honey Gather is an Innate.
+  #-----------------------------------------------------------------------------
+  def self.show_splash(battler, battle)
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:HONEYGATHER).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+      yield
+    ensure
+      battle.pbHideAbilitySplash(battler)
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Generate Honey once per round at most.
+  # No initialization aliases are needed.
+  #-----------------------------------------------------------------------------
+  def self.gather(battler, battle)
+    return if battler.fainted?
+    return if !battler.hasActiveAbility?(:HONEYGATHER)
+    return if battler.item
+    return if !GameData::Item.exists?(:HONEY)
+
+    roll_key = [battler.pokemon.object_id, battle.turnCount]
+
+    previous_roll = battler.instance_variable_get(
+      :@honey_gather_last_roll
+    )
+
+    return if previous_roll == roll_key
+
+    battler.instance_variable_set(
+      :@honey_gather_last_roll, roll_key
+    )
+
+    return if battle.pbRandom(100) >= GATHER_CHANCE
+
+    show_splash(battler, battle) do
+      battler.item = :HONEY
+
+      # Keep generated Honey after battle if it remains unconsumed.
+      battler.setInitialItem(:HONEY) if !battler.initialItem
+
+      battle.pbDisplay(
+        _INTL("{1} gathered some Honey!", battler.pbThis)
+      )
+    end
+
+    # Newly obtained Honey can activate immediately.
+    battler.pbHeldItemTriggerCheck
+  end
+
+  #-----------------------------------------------------------------------------
+  # Eat the target's Honey, like Bug Bite/Pluck.
+  # The attacker's own held item is not consumed or replaced.
+  #-----------------------------------------------------------------------------
+  def self.eat_target_honey(user, target, move, battle)
+    return if !user || !target
+    return if user.fainted?
+    return if !user.opposes?(target)
+    return if !user.hasActiveAbility?(:HONEYGATHER)
+    return if !move.damagingMove?
+    return if target.damageState.unaffected
+    return if target.damageState.substitute
+    return if target.damageState.calcDamage <= 0
+    return if !target.item || target.item.id != :HONEY
+    return if target.unlosableItem?(target.item)
+
+    if target.hasActiveAbility?(:STICKYHOLD) &&
+       !battle.moldBreaker
+      return
+    end
+
+    show_splash(user, battle) do
+      # Remove from the target; the attacker receives its effect directly.
+      # Do not mark it as an item consumed by the target for Pickup/Recycle.
+      target.pbRemoveItem
+
+      battle.pbCommonAnimation("EatBerry", user)
+
+      battle.pbDisplay(
+        _INTL("{1} stole and ate {2}'s Honey!",
+              user.pbThis, target.pbThis(true))
+      )
+
+      # Explicit item argument forces consumption effects regardless of the
+      # user's HP threshold or its own currently held item.
+      user.pbHeldItemTriggerCheck(:HONEY, false)
+
+      # Also allow Symbiosis to respond if Honey couldn't restore HP.
+      user.pbSymbiosis
+    end
+  end
+end
+
+#===============================================================================
+# HONEY: held-item healing.
+#
+# forced = true when consumed through an explicit item effect.
+# Normal held activation requires HP strictly below 75%.
+#===============================================================================
+
+Battle::ItemEffects::HPHeal.add(:HONEY,
+  proc { |item, battler, battle, forced|
+    next false if battler.fainted?
+    next false if !battler.canHeal?
+
+    if !forced
+      next false if battler.hp * 4 >= battler.totalhp * 3
+      battle.pbCommonAnimation("EatBerry", battler)
+    end
+
+    recovered = battler.pbRecoverHP(
+      HoneyGatherPlus.heal_amount(battler.totalhp)
+    )
+
+    next false if recovered <= 0
+
+    battle.pbDisplay(
+      _INTL("{1} restored its HP with Honey!", battler.pbThis)
+    )
+
+    next true
+  }
+)
+
+#===============================================================================
+# HONEY: use from the Bag.
+# Replace the original direct-use/Sweet Scent action.
+#===============================================================================
+
+ItemHandlers::UseFromBag.remove(:HONEY)
+ItemHandlers::UseInField.remove(:HONEY)
+
+ItemHandlers::UseOnPokemon.add(:HONEY,
+  proc { |item, qty, pokemon, scene|
+    next pbHPItem(
+      pokemon,
+      HoneyGatherPlus.heal_amount(pokemon.totalhp),
+      scene
+    )
+  }
+)
+
+ItemHandlers::CanUseInBattle.copy(:POTION, :HONEY)
+
+ItemHandlers::BattleUseOnPokemon.add(:HONEY,
+  proc { |item, pokemon, battler, choices, scene|
+    next pbBattleHPItem(
+      pokemon,
+      battler,
+      HoneyGatherPlus.heal_amount(pokemon.totalhp),
+      scene
+    )
+  }
+)
+
+#===============================================================================
+# HONEY GATHER: additional in-battle effects.
+# Does not alter def pbHoneyGather or its post-battle collection chance.
+#===============================================================================
+
+Battle::AbilityEffects::EndOfRoundGainItem.add(:HONEYGATHER,
+  proc { |ability, battler, battle|
+    HoneyGatherPlus.gather(battler, battle)
+  }
+)
+
+Battle::AbilityEffects::OnDealingHit.add(:HONEYGATHER,
+  proc { |ability, user, target, move, battle|
+    HoneyGatherPlus.eat_target_honey(
+      user, target, move, battle
+    )
+  }
+)
+
+#===============================================================================
+# AI ability/item values.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:HONEYGATHER)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :HONEYGATHER
+
+Battle::AI::Handlers::AbilityRanking.add(:HONEYGATHER,
+  proc { |ability, score, battler, ai|
+    next score
+  }
+)
+
+Battle::AI::Handlers::ItemRanking.add(:HONEY,
+  proc { |item, score, battler, ai|
+    next 5
+  }
+)
+
+#===============================================================================
+# NOCTURNAL - Rework
+#===============================================================================
+
+module NocturnalRework
+  WEATHER = :GloomMoonlight
+
+  def self.real_battler(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.has_ability?(object, ability)
+    object = real_battler(object)
+    return false if !object
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(ability)
+    end
+
+    if object.respond_to?(:hasAbility?)
+      return object.hasAbility?(ability)
+    end
+
+    return object.ability_id == ability if object.respond_to?(:ability_id)
+    return false
+  end
+
+  def self.stellar?(object)
+    object = real_battler(object)
+
+    return false if !object.respond_to?(:tera?)
+    return false if !object.tera?
+
+    return object.tera_type == :STELLAR
+  end
+
+  def self.granted_stab(object)
+    if has_ability?(object, :ADAPTABILITY) && !stellar?(object)
+      return 2.0
+    end
+
+    return 1.5
+  end
+
+  #-----------------------------------------------------------------------------
+  # Existing STAB from current typing and Terastallization.
+  #-----------------------------------------------------------------------------
+  def self.existing_stab(object, type)
+    object = real_battler(object)
+    return 1.0 if !object || !type
+
+    adaptability = has_ability?(object, :ADAPTABILITY)
+
+    if object.respond_to?(:tera?) && object.tera?
+      adaptability = false if stellar?(object)
+
+      if object.pbPreTeraTypes.include?(type)
+        if object.typeTeraBoosted?(type)
+          return adaptability ? 2.25 : 2.0
+        end
+
+        return adaptability ? 2.0 : 1.5
+      end
+
+      if object.typeTeraBoosted?(type)
+        return 2.0 if adaptability
+        return stellar?(object) ? 1.2 : 1.5
+      end
+
+      return 1.0
+    end
+
+    matches = if object.respond_to?(:pbHasType?)
+                object.pbHasType?(type)
+              elsif object.respond_to?(:types)
+                object.types.include?(type)
+              else
+                false
+              end
+
+    return 1.0 if !matches
+    return adaptability ? 2.0 : 1.5
+  end
+
+  #-----------------------------------------------------------------------------
+  # Add only the missing STAB.
+  # Account for the previously supplied Mimicry extension.
+  #-----------------------------------------------------------------------------
+  def self.extra_multiplier(object, type)
+    return 1.0 if type != :DARK
+    return 1.0 if !has_ability?(object, :NOCTURNAL)
+
+    existing = existing_stab(object, type)
+
+    if defined?(MimicryOriginalSTAB) &&
+       MimicryOriginalSTAB.retains_stab?(object, type)
+
+      existing = [
+        existing,
+        MimicryOriginalSTAB.retained_stab(object)
+      ].max
+    end
+
+    desired = [existing, granted_stab(object)].max
+
+    return desired / existing
+  end
+end
+
+#===============================================================================
+# Remove Nocturnal's previous defensive effect.
+#===============================================================================
+
+Battle::AbilityEffects::DamageCalcFromTarget.remove(:NOCTURNAL)
+
+#===============================================================================
+# Double Speed during effective Gloom Moonlight.
+# Air Lock/Cloud Nine suppress this through effectiveWeather.
+#===============================================================================
+
+Battle::AbilityEffects::SpeedCalc.add(:NOCTURNAL,
+  proc { |ability, battler, mult|
+    if battler.effectiveWeather == NocturnalRework::WEATHER
+      next mult * 2
+    end
+
+    next mult
+  }
+)
+
+#===============================================================================
+# Actual battle STAB.
+#===============================================================================
+
+module NocturnalReworkBattle
+  def pbCalcDamageMults_Type(
+    user, target, numTargets, type, baseDmg, multipliers
+  )
+    result = super
+
+    multipliers[:final_damage_multiplier] *=
+      NocturnalRework.extra_multiplier(user, type)
+
+    return result
+  end
+end
+
+unless Battle::Move.ancestors.include?(NocturnalReworkBattle)
+  Battle::Move.prepend(NocturnalReworkBattle)
+end
+
+#===============================================================================
+# Native AI STAB estimation.
+#===============================================================================
+
+module NocturnalReworkNativeAI
+  def calc_type_mults(
+    user, target, base_dmg, calc_type, is_critical, multipliers
+  )
+    result = super
+
+    multipliers[:final_damage_multiplier] *=
+      NocturnalRework.extra_multiplier(user, calc_type)
+
+    return result
+  end
+end
+
+unless Battle::AI::AIMove.ancestors.include?(NocturnalReworkNativeAI)
+  Battle::AI::AIMove.prepend(NocturnalReworkNativeAI)
+end
+
+#===============================================================================
+# Advanced AI's separate STAB estimation.
+#===============================================================================
+
+module NocturnalReworkAdvancedAI
+  def ability_damage_modifier(
+    attacker, target, effective_type, is_physical, effectiveness,
+    move = nil, uses_physical_defense = is_physical
+  )
+    result = super
+
+    return result if effective_type != :DARK
+    return result if !NocturnalRework.has_ability?(
+      attacker, :NOCTURNAL
+    )
+
+    existing = 1.0
+
+    if AdvancedAI::Utilities.has_type?(attacker, effective_type)
+      existing = 1.5
+
+      if AdvancedAI::Utilities.ability_active?(attacker, :ADAPTABILITY)
+        existing = 2.0
+      end
+    end
+
+    if defined?(MimicryOriginalSTAB) &&
+       MimicryOriginalSTAB.retains_stab?(attacker, effective_type)
+
+      existing = [
+        existing,
+        MimicryOriginalSTAB.retained_stab(attacker)
+      ].max
+    end
+
+    desired = [
+      existing,
+      NocturnalRework.granted_stab(attacker)
+    ].max
+
+    return result * desired / existing
+  end
+end
+
+if defined?(AdvancedAI::CombatUtilities) &&
+   AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+
+  singleton = AdvancedAI::CombatUtilities.singleton_class
+
+  unless singleton.ancestors.include?(NocturnalReworkAdvancedAI)
+    singleton.prepend(NocturnalReworkAdvancedAI)
+  end
+end
+
+#===============================================================================
+# AI ability value.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:NOCTURNAL)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :NOCTURNAL
+
+Battle::AI::Handlers::AbilityRanking.add(:NOCTURNAL,
+  proc { |ability, score, battler, ai|
+    if battler.battler.effectiveWeather == NocturnalRework::WEATHER
+      next 8
+    end
+
+    next score
+  }
+)
+
+#===============================================================================
+# SPARE SCALES
+#===============================================================================
+
+module SpareScales
+  STATS = [:DEFENSE, :SPECIAL_DEFENSE].freeze
+
+  def self.activate(user, move, battle)
+    return if user.fainted?
+    return if !user.hasActiveAbility?(:SPARESCALES)
+    return if move.calcType != :BUG
+    return if user.effects[PBEffects::TwoTurnAttack]
+
+    return if !STATS.any? do |stat|
+      user.pbCanRaiseStatStage?(stat, user)
+    end
+
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:SPARESCALES).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(user)
+
+      STATS.each do |stat|
+        user.pbRaiseStatStageByAbility(stat, 1, user, false)
+      end
+    ensure
+      battle.pbHideAbilitySplash(user)
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Deterministic AI preference. Does not activate the ability or change stages.
+  #-----------------------------------------------------------------------------
+  def self.adjust_ai_score(score, move, user)
+    return score if !score.is_a?(Numeric) || score <= 0
+    return score if !move || !user
+
+    holder = user.respond_to?(:battler) ? user.battler : user
+    attack = move.respond_to?(:move) ? move.move : move
+
+    return score if !holder.respond_to?(:hasActiveAbility?)
+    return score if holder.fainted?
+    return score if !holder.hasActiveAbility?(:SPARESCALES)
+
+    type = if move.respond_to?(:rough_type)
+             move.rough_type
+           elsif defined?(AdvancedAI::CombatUtilities)
+             AdvancedAI::CombatUtilities.resolve_move_type(holder, attack)
+           else
+             attack.pbCalcType(holder)
+           end
+
+    return score if type != :BUG
+
+    if holder.hasActiveAbility?(:CONTRARY)
+      STATS.each do |stat|
+        score -= 8 if holder.pbCanLowerStatStage?(stat, holder)
+      end
+    else
+      STATS.each do |stat|
+        score += 8 if holder.pbCanRaiseStatStage?(stat, holder)
+      end
+    end
+
+    return score
+  end
+end
+
+#===============================================================================
+# Actual effect: after the entire move finishes.
+#===============================================================================
+
+Battle::AbilityEffects::OnEndOfUsingMove.add(:SPARESCALES,
+  proc { |ability, user, targets, move, battle|
+    SpareScales.activate(user, move, battle)
+  }
+)
+
+#===============================================================================
+# Native AI ability value.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:SPARESCALES)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :SPARESCALES
+
+Battle::AI::Handlers::AbilityRanking.add(:SPARESCALES,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.check_for_move { |move| move.type == :BUG }
+    next score
+  }
+)
+
+#===============================================================================
+# Native AI move preference.
+#===============================================================================
+
+Battle::AI::Handlers::GeneralMoveScore.add(
+  :spare_scales_defensive_boost,
+  proc { |score, move, user, ai, battle|
+    next SpareScales.adjust_ai_score(score, move, user)
+  }
+)
+
+#===============================================================================
+# Advanced AI's separate scoring pipeline.
+#===============================================================================
+
+module SpareScalesAdvancedAI
+  def score_move_advanced(move, user, target, skill)
+    score = super
+
+    return SpareScales.adjust_ai_score(score, move, user)
+  end
+end
+
+if Battle::AI.method_defined?(:score_move_advanced) &&
+   !Battle::AI.ancestors.include?(SpareScalesAdvancedAI)
+
+  Battle::AI.prepend(SpareScalesAdvancedAI)
+end

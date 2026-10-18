@@ -710,3 +710,46 @@ EffectChance = 50
 Description = A psychic dance that may raise the user's Sp. Atk.
 Animation = QUIVERDANCE,PSYCHIC@User
 #-------------------------------
+[NECTARSIPHON]
+Name = Nectar Siphon
+Type = BUG
+Category = Special
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = HealUserByHalfOfDamageDone
+Flags = CanProtect,CanMirrorMove
+Description = Drains half the damage dealt as HP.
+Animation = GIGADRAIN,POLLENPUFF
+#-------------------------------
+[CLAYDART]
+Name = Clay Dart
+Type = GROUND
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = SuperEffectiveAgainstFlying
+Flags = CanProtect,CanMirrorMove,Arrow
+Description = Fires a clay dart. Super effective against Flying types.
+Animation = THOUSANDARROWS,ROCKBLAST
+#-------------------------------
+[MOUNTAINCHUNK]
+Name = Mountain Chunk
+Type = GROUND
+Category = Physical
+Power = 110
+Accuracy = 85
+TotalPP = 5
+Target = NearOther
+Priority = 0
+FunctionCode = FlinchTarget
+Flags = CanProtect,CanMirrorMove
+EffectChance = 30
+Description = Hurls a mountain chunk. May cause flinching.
+Animation = ROCKWRECKER
+#-------------------------------

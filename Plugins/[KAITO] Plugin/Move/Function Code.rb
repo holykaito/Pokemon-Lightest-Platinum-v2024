@@ -883,3 +883,17 @@ class Battle::Move::SetTargetTypeDragonLowerTargetAttack2 <
     super
   end
 end
+
+#===============================================================================
+# Clay Dart
+# Super effective against Flying types.
+# Other type matchups are calculated normally.
+#===============================================================================
+class Battle::Move::SuperEffectiveAgainstFlying < Battle::Move
+  def pbCalcTypeModSingle(moveType, defType, user, target)
+    if defType == :FLYING
+      return Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+    end
+    return super
+  end
+end

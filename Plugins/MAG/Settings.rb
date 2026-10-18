@@ -41,12 +41,12 @@ MAG_HEAVYMETAL   = true   # Decreases speed by 20% and reduces fighting damage b
 MAG_KLUTZ        = true   # Items don't work but evasion increases by 25%.
 MAG_FORECAST     = true   # Weather rocks trigger the respective weather to spawn when sent in (Holding Damp Rock acts like Drizzle)
 MAG_STICKYHOLD   = true   # Traps Pokemon if they are not a Water-Type.
-MAG_ANTICIPATION = 1      # Same as older Anticipation. 1 = has a chance to trigger a quick claw || 2 = 1 time speed boost
+MAG_ANTICIPATION = false  # Same as older Anticipation. 1 = has a chance to trigger a quick claw || 2 = 1 time speed boost
 MAG_GOODASGOLD   = false  # Good as Gold only triggers once per battle
 MAG_TERAVOLT     = true   # Adds the Electric type if it doesn't have it
 MAG_TURBOBLAZE   = true   # Adds the Fire type if it doesn't have it
-MAG_SHELLARMOR   = true   # Take half damage from ball & bomb moves
-MAG_BATTLEARMOR  = true   # Take half damage from slicing moves
+MAG_SHELLARMOR   = false  # Take half damage from ball & bomb moves
+MAG_BATTLEARMOR  = false  # Take half damage from slicing moves
 MAG_BALLFETCH    = true   # Copies Ball and Bomb moves and uses them immediatly. (Dancer but for bomb moves)
 MAG_STENCH       = true   # Has a chance to poison the target when attacking. (Toxic Chain without the badly poison)
 MAG_TRUANT       = false  # Normal Truant but also acts like Comatose.

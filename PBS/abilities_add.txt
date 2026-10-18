@@ -135,6 +135,10 @@ Description = Halves the chance of additional effects when hit by a move.
 Name = Echo Lock
 Description = The user's sound-based moves never miss.
 #-------------------------------
+[ECOCLOAK] ###
+Name = Eco-Cloak
+Description = Blocks its second type to boost Defense and neutralizes weaknesses.
+#-------------------------------
 [ETERNALDREAM] ###
 Name = Eternal Dream
 Description = It recovers HP when attacking a sleeping enemy.
@@ -374,6 +378,10 @@ Description = Cures status and lowered stats when HP falls below half.
 [ROLLER] ###
 Name = Roller
 Description = Boosts the Defense stat when the Pokémon enters a battle.
+#-------------------------------
+[SPARESCALES] ###
+Name = Spare Scales
+Description = Bug-type moves boost Defense and Sp. Def.
 #-------------------------------
 [SEARINGPOISON]
 Name = Searing Poison
