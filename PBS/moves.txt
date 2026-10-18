@@ -5822,14 +5822,17 @@ Flags = ZPower_EVASION_1
 #-------------------------------
 [CAPTIVATE]
 Name = Captivate
-Type = NORMAL
-Category = Status
+Type = FAIRY
+Category = Special
+Power = 65
 Accuracy = 100
 TotalPP = 20
-Target = AllNearFoes
-FunctionCode = LowerTargetSpAtk2IfCanAttract
-Flags = CanProtect,CanMirrorMove,ZPower_SPECIAL_DEFENSE_2
-Description = If it is the opposite gender of the user, the target is charmed into harshly lowering its Sp. Atk stat.
+Target = NearOther
+Priority = 0
+FunctionCode = LowerTargetSpAtk1Or2DoubleDamageIfInfatuated
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = Lowers Sp. Atk, more if opposite gender. Stronger on infatuated foes.
 #-------------------------------
 [CELEBRATE]
 Name = Celebrate

@@ -137,7 +137,7 @@ Description = It recovers HP when attacking a sleeping enemy.
 #-------------------------------
 [FATALPRECISION] ###
 Name = Fatal Precision
-Description = Super-effective moves cannot miss.
+Description = Super-effective moves hit true and crit more often.
 #-------------------------------
 [FLORESCENCE] ###
 Name = Florescence
@@ -409,7 +409,7 @@ Description = Use an additional Speed ​​to calculate damage.
 #-------------------------------
 [SPELLCASTER] ###
 Name = Spellcaster
-Description = Boosts elements and Psychic moves, except against Dark types.
+Description = Boosts Fire,Electric,Ice-moves, except against Dark types.
 #-------------------------------
 [SPIKEBURST]
 Name = Spike Burst

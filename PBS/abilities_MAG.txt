@@ -69,7 +69,7 @@ Description = Immune to Infatuation, Taunt & Flinching.
 #-------------------------------
 [DUALWIELD]
 Name = Dual Wield
-Description = Slicing and Pulse moves hit twice
+Description = Slicing, pulse, and bomb moves hit twice, the second hit dealing less damage.
 #-------------------------------
 [VENGENCE]
 Name = Vengence

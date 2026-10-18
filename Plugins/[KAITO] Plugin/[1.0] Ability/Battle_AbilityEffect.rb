@@ -490,22 +490,6 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:AURAMANIPULATION,
 )
 
 #===============================================================================
-# Fatal Precision
-#===============================================================================
-
-Battle::AbilityEffects::AccuracyCalcFromUser.add(:FATALPRECISION,
-  proc { |ability, mods, user, target, move, type|
-    next if move.statusMove?
-    next if !type
-    target_types = target.pbTypes(true)
-    effectiveness = Effectiveness.calculate(type, *target_types)
-    next if !Effectiveness.super_effective?(effectiveness)
-
-    mods[:base_accuracy] = 0
-  }
-)
-
-#===============================================================================
 # Dwarfhide
 # Reduces the chance of getting additional effects from damaging attacks by half.
 #===============================================================================
@@ -2493,106 +2477,31 @@ end
 
 #===============================================================================
 # Spellcaster
-# Pokemon Essentials v21.1
-#
-# Effect:
-#   Increases damage of Fire-, Ice-, Electric-, and Psychic-type moves by 25%.
-#   This boost does not activate if the target is Dark-type.
-#
-# Notes:
-#   - Uses calculated move type via the `type` parameter.
-#   - Dark-type targets are NOT immune; they simply ignore the Spellcaster boost.
+# Boosts Electric-, Fire-, and Ice-type moves by 25%.
+# The boost does not apply against Dark-type targets.
 #===============================================================================
-
 module SpellcasterAbility
   BOOST_MULTIPLIER = 1.25
-  BOOST_TYPES = [:FIRE, :ICE, :ELECTRIC, :PSYCHIC]
+  BOOST_TYPES = [:ELECTRIC, :FIRE, :ICE].freeze
 
   def self.boosted_type?(type)
     return BOOST_TYPES.include?(type)
   end
 
   def self.target_is_dark?(target)
-    return false if !target
-    return target.pbHasType?(:DARK)
+    target = target.battler if target.respond_to?(:battler)
+    return target && target.pbHasType?(:DARK)
   end
 end
-
-#===============================================================================
-# Ability effect
-#===============================================================================
 
 Battle::AbilityEffects::DamageCalcFromUser.add(:SPELLCASTER,
   proc { |ability, user, target, move, mults, power, type|
     next if !SpellcasterAbility.boosted_type?(type)
-
-    # No boost against Dark-type targets.
     next if SpellcasterAbility.target_is_dark?(target)
 
     mults[:power_multiplier] *= SpellcasterAbility::BOOST_MULTIPLIER
   }
 )
-
-#===============================================================================
-# Optional AI support
-#===============================================================================
-
-if defined?(Battle::AI) && Battle::AI.method_defined?(:pbGetMoveScore)
-  class Battle::AI
-    if !method_defined?(:spellcaster_pbGetMoveScore)
-      alias spellcaster_pbGetMoveScore pbGetMoveScore
-    end
-
-    def pbGetMoveScore(*args)
-      score = spellcaster_pbGetMoveScore(*args)
-
-      move = nil
-      user = nil
-      target = nil
-
-      args.each do |arg|
-        if arg.respond_to?(:calcType) || arg.respond_to?(:type)
-          move = arg
-        elsif arg.respond_to?(:hasActiveAbility?) && arg.respond_to?(:opposes?)
-          if user.nil?
-            user = arg
-          elsif target.nil? && arg != user
-            target = arg
-          end
-        end
-      end
-
-      if score.is_a?(Numeric) &&
-         user &&
-         move &&
-         user.hasActiveAbility?(:SPELLCASTER)
-        move_type = nil
-
-        begin
-          move_type = move.calcType
-        rescue
-          begin
-            move_type = move.type
-          rescue
-            move_type = nil
-          end
-        end
-
-        if SpellcasterAbility.boosted_type?(move_type)
-          if target && SpellcasterAbility.target_is_dark?(target)
-            score -= 5
-            PBDebug.log_ai("     - Spellcaster boost blocked by Dark-type target: 5") if defined?(PBDebug)
-          else
-            score += 20
-            PBDebug.log_ai("     + Spellcaster boosts this move: 20") if defined?(PBDebug)
-          end
-        end
-      end
-
-      return score
-    end
-  end
-end
 
 #===============================================================================
 # Carrion Feast
@@ -10594,6 +10503,813 @@ if defined?(AdvancedAI::HazardControl)
         return 0
       end
       return stealth_v2_hazard_estimate(battle, battler, side_effects)
+    end
+  end
+end
+
+#===============================================================================
+# TELEPATHY
+#===============================================================================
+
+module TelepathyDodge
+  CHANCE = 10
+
+  #-----------------------------------------------------------------------------
+  # Convert AI wrappers to actual battle objects.
+  #-----------------------------------------------------------------------------
+  def self.real_battler(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.real_move(object)
+    return object.move if object.respond_to?(:move)
+    return object
+  end
+
+  #-----------------------------------------------------------------------------
+  # Show Telepathy rather than the holder's primary ability when it is an Innate.
+  #-----------------------------------------------------------------------------
+  def self.show_splash(battler, battle)
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:TELEPATHY).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+      yield
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Whether a move can be subject to Telepathy's independent dodge.
+  #
+  # This method never rolls RNG.
+  #-----------------------------------------------------------------------------
+  def self.eligible?(user, target, move, battle, predicting = false)
+    user   = real_battler(user)
+    target = real_battler(target)
+    move   = real_move(move)
+
+    return false if !user || !target || !move || !battle
+    return false if user.fainted? || target.fainted?
+    return false if !user.opposes?(target)
+    return false if !target.hasActiveAbility?(:TELEPATHY)
+
+    # No Guard prevents Telepathy's independent dodge.
+    return false if user.hasActiveAbility?(:NOGUARD)
+    return false if target.hasActiveAbility?(:NOGUARD)
+
+    # Lock-On / Mind Reader prevents dodging this user's move.
+    if user.effects[PBEffects::LockOn] > 0 &&
+       user.effects[PBEffects::LockOnPos] == target.index
+      return false
+    end
+
+    # Exclude self, side and field moves.
+    target_data = move.pbTarget(user)
+    return false if !target_data.targets_foe && target_data.id != :None
+
+    if predicting &&
+       defined?(AdvancedAI::Utilities) &&
+       AdvancedAI::Utilities.respond_to?(:ignores_ability?)
+
+      return false if AdvancedAI::Utilities.ignores_ability?(
+        user, move, target
+      )
+    else
+      if battle.moldBreaker && !target.hasActiveItem?(:ABILITYSHIELD)
+        return false
+      end
+    end
+
+    return true
+  end
+
+  #-----------------------------------------------------------------------------
+  # Actual battle roll.
+  # Called only from the real move-success flow, never from AI scoring.
+  #-----------------------------------------------------------------------------
+  def self.try_dodge(user, target, move, battle, show_message = true)
+    return false if !eligible?(user, target, move, battle)
+    return false if battle.pbRandom(100) >= CHANCE
+
+    if show_message
+      show_splash(target, battle) do
+        battle.pbDisplay(
+          _INTL("{1} foresaw the move and avoided it!", target.pbThis)
+        )
+      end
+    end
+
+    return true
+  end
+
+  #-----------------------------------------------------------------------------
+  # AI preference adjustment.
+  # An estimate of the extra risk; it does not change accuracy or roll RNG.
+  #-----------------------------------------------------------------------------
+  def self.adjust_ai_score(score, move, user, target, battle)
+    return score if !score.is_a?(Numeric)
+    return score if score <= Battle::AI::MOVE_USELESS_SCORE
+
+    if eligible?(user, target, move, battle, true)
+      score -= 5
+    end
+
+    return score
+  end
+end
+
+#===============================================================================
+# Remove the previously suggested accuracy modifier.
+# Telepathy's dodge is handled independently below.
+#===============================================================================
+
+Battle::AbilityEffects::AccuracyCalcFromTarget.remove(:TELEPATHY)
+
+#===============================================================================
+# Original Telepathy effect:
+# Avoid damaging moves used by allies.
+#
+# Opposing moves are NOT randomly processed by this handler.
+# This keeps AI immunity queries deterministic.
+#===============================================================================
+
+Battle::AbilityEffects::MoveImmunity.add(:TELEPATHY,
+  proc { |ability, user, target, move, type, battle, show_message|
+    next false if !user || !target
+    next false if move.statusMove?
+    next false if user.index == target.index
+    next false if user.opposes?(target)
+
+    if show_message
+      TelepathyDodge.show_splash(target, battle) do
+        battle.pbDisplay(
+          _INTL("{1} avoids attacks by its ally Pokémon!", target.pbThis)
+        )
+      end
+    end
+
+    next true
+  }
+)
+
+#===============================================================================
+# Independent dodge:
+# Run after the normal initial success checks, before per-hit accuracy checks.
+#
+# A failed roll simply allows the move to continue normally.
+# A successful roll rejects the move against this target for all its hits.
+#
+# Uses an ordinary alias, not prepend.
+#===============================================================================
+
+class Battle::Battler
+  unless method_defined?(:telepathy_complete_original_success_check)
+    alias_method :telepathy_complete_original_success_check,
+                 :pbSuccessCheckAgainstTarget
+  end
+
+  def pbSuccessCheckAgainstTarget(move, user, target, targets)
+    success = telepathy_complete_original_success_check(
+      move, user, target, targets
+    )
+
+    # Do not roll if Protect, immunity, Substitute, etc. already blocked it.
+    return success if !success
+
+    # The charging turn itself should not trigger a dodge.
+    return success if user.effects[PBEffects::TwoTurnAttack]
+
+    show_message = move.pbShowFailMessages?(targets)
+
+    if TelepathyDodge.try_dodge(
+      user, target, move, @battle, show_message
+    )
+      return false
+    end
+
+    return success
+  end
+end
+
+#===============================================================================
+# Native AI: ability value.
+# Telepathy now has a benefit in singles as well as doubles.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:TELEPATHY)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[4] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[4] << :TELEPATHY
+
+Battle::AI::Handlers::AbilityRanking.add(:TELEPATHY,
+  proc { |ability, score, battler, ai|
+    holder = battler.battler
+    next 0 if holder.fainted?
+
+    has_ally = ai.battle.battlers.any? do |other|
+      other &&
+        !other.fainted? &&
+        other.index != holder.index &&
+        !holder.opposes?(other)
+    end
+
+    next has_ally ? 6 : 4
+  }
+)
+
+#===============================================================================
+# Native AI: extra risk when targeting Telepathy.
+# Never mark the move as guaranteed to fail because of the 10% dodge.
+#===============================================================================
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :telepathy_independent_dodge,
+  proc { |score, move, user, target, ai, battle|
+    next TelepathyDodge.adjust_ai_score(
+      score, move, user, target, battle
+    )
+  }
+)
+
+#===============================================================================
+# Advanced AI: its scoring pipeline is separate from native AI's pipeline.
+# There are deliberately no No Guard/Lock-On/always-hit exceptions.
+#===============================================================================
+
+class Battle::AI
+  if method_defined?(:score_move_advanced)
+    unless method_defined?(:telepathy_complete_original_advanced_score)
+      alias_method :telepathy_complete_original_advanced_score,
+                   :score_move_advanced
+    end
+
+    def score_move_advanced(move, user, target, skill)
+      score = telepathy_complete_original_advanced_score(
+        move, user, target, skill
+      )
+
+      return TelepathyDodge.adjust_ai_score(
+        score, move, user, target, @battle
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Forewarn
+# Announces an opposing Pokemon's strongest move and disables it for 3 rounds.
+#===============================================================================
+
+module ForewarnDisable
+  DURATION = 3
+
+  #-----------------------------------------------------------------------------
+  # Forewarn's estimated power for moves with unusual damage calculations.
+  #-----------------------------------------------------------------------------
+  def self.move_power(move)
+    code = move.function_code
+
+    return 160 if code.start_with?("OHKO")
+    return 150 if code == "PowerHigherWithUserHP"
+
+    return 120 if [
+      "CounterPhysicalDamage",
+      "CounterSpecialDamage",
+      "CounterDamagePlusHalf"
+    ].include?(code)
+
+    return 80 if [
+      "FixedDamage20",
+      "FixedDamage40",
+      "FixedDamageUserLevel",
+      "LowerTargetHPToUserHP",
+      "FixedDamageUserLevelRandom",
+      "PowerHigherWithUserHappiness",
+      "PowerLowerWithUserHappiness",
+      "PowerHigherWithTargetFasterThanUser",
+      "TypeAndPowerDependOnUserBerry",
+      "PowerHigherWithLessPP",
+      "PowerLowerWithUserHP",
+      "PowerHigherWithTargetWeight"
+    ].include?(code)
+
+    if Settings::MECHANICS_GENERATION <= 5 &&
+       code == "TypeDependsOnUserIVs"
+      return 80
+    end
+
+    return move.power
+  end
+
+  #-----------------------------------------------------------------------------
+  # Keep both the move and its owner instead of storing only the move name.
+  #-----------------------------------------------------------------------------
+  def self.candidates(battler, battle)
+    strongest = -1
+    choices = []
+
+    battle.allOtherSideBattlers(battler.index).each do |foe|
+      next if foe.fainted?
+
+      foe.eachMoveWithIndex do |move, index|
+        if foe.respond_to?(:baseMoves) &&
+           foe.baseMoves &&
+           foe.baseMoves[index]
+          move = foe.baseMoves[index]
+        end
+
+        next if !move
+
+        power = move_power(move)
+        next if power < strongest
+
+        if power > strongest
+          strongest = power
+          choices.clear
+        end
+
+        choices << [foe, move.id]
+      end
+    end
+
+    return choices
+  end
+
+  #-----------------------------------------------------------------------------
+  # Use the engine's existing Disable-protection check.
+  # Forewarn is an ability effect, not a Mold Breaker attack.
+  #-----------------------------------------------------------------------------
+  def self.blocked?(user, target, battle)
+    checker = Battle::Move.from_pokemon_move(
+      battle, Pokemon::Move.new(:DISABLE)
+    )
+
+    previous_mold_breaker = battle.moldBreaker
+
+    begin
+      battle.moldBreaker = false
+      return checker.pbMoveFailedAromaVeil?(user, target, true)
+    ensure
+      battle.moldBreaker = previous_mold_breaker
+    end
+  end
+end
+
+#===============================================================================
+# Effect
+#===============================================================================
+
+Battle::AbilityEffects::OnSwitchIn.add(:FOREWARN,
+  proc { |ability, battler, battle, switch_in|
+    next if battler.fainted?
+
+    choices = ForewarnDisable.candidates(battler, battle)
+    next if choices.empty?
+
+    target, move_id = choices[battle.pbRandom(choices.length)]
+    move_name = GameData::Move.get(move_id).name
+
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      ability_name = GameData::Ability.get(:FOREWARN).name
+      $aamName  = ability_name
+      $aamName2 = ability_name
+
+      battle.pbShowAbilitySplash(battler)
+      battle.pbDisplay(
+        _INTL("{1} was alerted to {2}'s {3}!",
+              battler.pbThis, target.pbThis(true), move_name)
+      )
+      battle.pbHideAbilitySplash(battler)
+
+      next if target.fainted?
+
+      # Standard Disable only stores one disabled move per Pokemon.
+      if target.effects[PBEffects::Disable] > 0
+        battle.pbDisplay(
+          _INTL("{1} already has a disabled move!", target.pbThis)
+        )
+        next
+      end
+
+      next if ForewarnDisable.blocked?(battler, target, battle)
+
+      target.effects[PBEffects::Disable] =
+        ForewarnDisable::DURATION
+      target.effects[PBEffects::DisableMove] = move_id
+
+      battle.pbDisplay(
+        _INTL("{1}'s {2} was disabled for 3 turns!",
+              target.pbThis, move_name)
+      )
+
+      # Allows Mental Herb and the engine's other cures to respond normally.
+      target.pbItemStatusCureCheck
+    ensure
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+  }
+)
+
+#===============================================================================
+# AI ability value
+# Native AI and Advanced AI already recognize the standard Disable effects.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:FOREWARN)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :FOREWARN
+
+Battle::AI::Handlers::AbilityRanking.add(:FOREWARN,
+  proc { |ability, score, battler, ai|
+    next score
+  }
+)
+
+#===============================================================================
+# Steadfast - additional low-HP effect
+#===============================================================================
+
+module SteadfastResolve
+  STATS = [:DEFENSE, :SPECIAL_DEFENSE].freeze
+
+  #-----------------------------------------------------------------------------
+  # Store usage on the battle, keyed by the actual Pokemon.
+  # Do not store it on the reusable battler slot.
+  #-----------------------------------------------------------------------------
+  def self.used?(battler)
+    return true if !battler || !battler.pokemon
+
+    used = battler.battle.instance_variable_get(:@steadfast_resolve_used)
+    return used && used[battler.pokemon.object_id] == true
+  end
+
+  def self.mark_used(battler)
+    battle = battler.battle
+    used = (
+      battle.instance_variable_get(:@steadfast_resolve_used) || {}
+    ).dup
+
+    used[battler.pokemon.object_id] = true
+    battle.instance_variable_set(:@steadfast_resolve_used, used)
+  end
+
+  #-----------------------------------------------------------------------------
+  # Eligibility
+  #-----------------------------------------------------------------------------
+  def self.can_activate?(battler)
+    return false if !battler || !battler.pokemon
+    return false if battler.fainted?
+    return false if battler.dummy
+    return false if used?(battler)
+    return false if battler.hp * 2 >= battler.totalhp
+    return false if !battler.hasActiveAbility?(:STEADFAST)
+
+    return true
+  end
+
+  #-----------------------------------------------------------------------------
+  # Activate immediately once the condition is met.
+  # Standard stat-change rules, including Contrary/Simple, still apply.
+  #-----------------------------------------------------------------------------
+  def self.activate(battler)
+    return false if !can_activate?(battler)
+
+    # Consume the activation before changing stats to prevent recursion.
+    mark_used(battler)
+
+    battle = battler.battle
+    previous_name  = $aamName
+    previous_name2 = $aamName2
+
+    begin
+      name = GameData::Ability.get(:STEADFAST).name
+      $aamName  = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(battler)
+
+      STATS.each do |stat|
+        battler.pbRaiseStatStageByAbility(stat, 1, battler, false)
+      end
+
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      $aamName  = previous_name
+      $aamName2 = previous_name2
+    end
+
+    return true
+  end
+end
+
+#===============================================================================
+# Check after HP loss.
+# Ordinary aliases avoid the prepend/alias loops seen with other plugins.
+#===============================================================================
+
+class Battle::Battler
+  unless method_defined?(:steadfast_resolve_original_reduce_hp)
+    alias_method :steadfast_resolve_original_reduce_hp, :pbReduceHP
+  end
+
+  def pbReduceHP(*args)
+    original_pokemon = pokemon
+    previous_hp = hp
+
+    result = steadfast_resolve_original_reduce_hp(*args)
+
+    if pokemon.equal?(original_pokemon) && hp < previous_hp
+      SteadfastResolve.activate(self)
+    end
+
+    return result
+  end
+end
+
+#===============================================================================
+# Entering battle already below half HP.
+# Does not interfere with the original OnFlinch handler.
+#===============================================================================
+
+Battle::AbilityEffects::OnSwitchIn.add(:STEADFAST,
+  proc { |ability, battler, battle, switch_in|
+    SteadfastResolve.activate(battler)
+  }
+)
+
+#===============================================================================
+# AI: ability value before and after the defensive activation is spent.
+# Actual stat stages are handled by the existing damage estimators.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:STEADFAST)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :STEADFAST
+
+Battle::AI::Handlers::AbilityRanking.add(:STEADFAST,
+  proc { |ability, score, battler, ai|
+    holder = battler.battler
+
+    # The original flinch-triggered Speed boost still has value.
+    next 2 if SteadfastResolve.used?(holder)
+    next 6
+  }
+)
+
+#===============================================================================
+# Fatal Precision
+#===============================================================================
+
+module FatalPrecision
+  #-----------------------------------------------------------------------------
+  # Convert AI wrappers into actual battle objects.
+  #-----------------------------------------------------------------------------
+  def self.real_battler(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.real_move(object)
+    return object.move if object.respond_to?(:move)
+    return object
+  end
+
+  #-----------------------------------------------------------------------------
+  # Determine whether this damaging move is super effective against this target.
+  #-----------------------------------------------------------------------------
+  def self.super_effective?(move, user, target, type = nil)
+    move   = real_move(move)
+    user   = real_battler(user)
+    target = real_battler(target)
+
+    return false if !move || !user || !target
+    return false if !move.damagingMove?
+    return false if move.is_a?(Battle::Move::OHKO)
+
+    type = move.pbCalcType(user) if !type
+    return false if !type
+
+    effectiveness = move.pbCalcTypeMod(type, user, target)
+    return Effectiveness.super_effective?(effectiveness)
+  end
+
+  #-----------------------------------------------------------------------------
+  # CriticalCalcFromUser does not receive the move.
+  # Supply temporary move context without altering Focus Energy or stat stages.
+  #-----------------------------------------------------------------------------
+  def self.with_move(user, move)
+    previous_move = user.instance_variable_get(:@fatal_precision_move)
+
+    begin
+      user.instance_variable_set(:@fatal_precision_move, move)
+      return yield
+    ensure
+      user.instance_variable_set(:@fatal_precision_move, previous_move)
+    end
+  end
+end
+
+#===============================================================================
+# Accuracy: super-effective moves cannot miss through accuracy/evasion.
+# Native AI also reads this handler.
+#===============================================================================
+
+Battle::AbilityEffects::AccuracyCalcFromUser.add(:FATALPRECISION,
+  proc { |ability, mods, user, target, move, type|
+    next if !FatalPrecision.super_effective?(move, user, target, type)
+
+    mods[:base_accuracy] = 0
+  }
+)
+
+#===============================================================================
+# Critical-hit stage: +1 for super-effective damaging moves.
+# Target critical immunity and other restrictions are processed normally.
+#===============================================================================
+
+Battle::AbilityEffects::CriticalCalcFromUser.add(:FATALPRECISION,
+  proc { |ability, user, target, stage|
+    next stage if stage < 0 || stage > 50
+
+    move = user.instance_variable_get(:@fatal_precision_move)
+    next stage if !move
+    next stage if !FatalPrecision.super_effective?(move, user, target)
+
+    # AI prediction must not consume battle RNG.
+    next stage if user.instance_variable_get(:@fatal_precision_ai_check)
+
+    # Half-stage equivalent: 50% chance to gain one full crit stage.
+    next stage + ((user.battle.pbRandom(100) < 50) ? 1 : 0)
+  }
+)
+
+#===============================================================================
+# Actual critical calculation: provide the move to the ability handler.
+#===============================================================================
+
+class Battle::Move
+  unless method_defined?(:fatal_precision_original_critical)
+    alias_method :fatal_precision_original_critical, :pbIsCritical
+  end
+
+  def pbIsCritical?(user, target)
+    return FatalPrecision.with_move(user, self) do
+      fatal_precision_original_critical(user, target)
+    end
+  end
+end
+
+#===============================================================================
+# Native AI: provide the same move context during critical-stage prediction.
+#===============================================================================
+
+class Battle::AI::AIMove
+  unless method_defined?(:fatal_precision_original_rough_critical)
+    alias_method :fatal_precision_original_rough_critical,
+                 :rough_critical_hit_stage
+  end
+
+  def rough_critical_hit_stage
+    user = @ai.user.battler
+    previous_check =
+      user.instance_variable_get(:@fatal_precision_ai_check)
+
+    begin
+      user.instance_variable_set(:@fatal_precision_ai_check, true)
+
+      return FatalPrecision.with_move(user, @move) do
+        fatal_precision_original_rough_critical
+      end
+    ensure
+      user.instance_variable_set(
+        :@fatal_precision_ai_check, previous_check
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Native AI: ability value based on available super-effective coverage.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:FATALPRECISION)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :FATALPRECISION
+
+Battle::AI::Handlers::AbilityRanking.add(:FATALPRECISION,
+  proc { |ability, score, battler, ai|
+    holder = battler.battler
+    next 0 if holder.fainted?
+
+    foes = ai.battle.battlers.select do |other|
+      other && !other.fainted? && holder.opposes?(other)
+    end
+
+    next score if foes.empty?
+
+    useful = holder.moves.any? do |move|
+      next false if !move || !move.damagingMove?
+
+      foes.any? do |foe|
+        FatalPrecision.super_effective?(move, holder, foe)
+      end
+    end
+
+    next useful ? 8 : 3
+  }
+)
+
+#===============================================================================
+# Advanced AI:
+#   - Remove its ordinary low-accuracy penalty for eligible moves.
+#   - Add a modest preference for the increased critical-hit chance.
+#
+# Native AI already uses the accuracy and critical handlers above.
+#===============================================================================
+
+class Battle::AI
+  if method_defined?(:score_move_advanced)
+    unless method_defined?(:fatal_precision_original_advanced_score)
+      alias_method :fatal_precision_original_advanced_score,
+                   :score_move_advanced
+    end
+
+    def score_move_advanced(move, user, target, skill)
+      score = fatal_precision_original_advanced_score(
+        move, user, target, skill
+      )
+
+      return score if !score.is_a?(Numeric) || score <= 0
+      return score if !move || !user || !target
+
+      attacker = FatalPrecision.real_battler(user)
+      defender = FatalPrecision.real_battler(target)
+      attack   = FatalPrecision.real_move(move)
+
+      return score if !attacker.hasActiveAbility?(:FATALPRECISION)
+      return score if !FatalPrecision.super_effective?(
+        attack, attacker, defender
+      )
+
+      # Undo the Advanced AI scorer's ordinary accuracy penalty.
+      accuracy_score = score_accuracy(move, skill, user)
+      score -= accuracy_score if accuracy_score < 0
+
+      # Critical immunity still prevents the crit benefit.
+      crit_blocked =
+        defender.pbOwnSide.effects[PBEffects::LuckyChant] > 0
+
+      if !AdvancedAI::Utilities.ignores_ability?(
+        attacker, attack, defender
+      )
+        crit_blocked ||= defender.hasActiveAbility?(:BATTLEARMOR)
+        crit_blocked ||= defender.hasActiveAbility?(:SHELLARMOR)
+      end
+
+      # Do not reward an extra crit stage when crits are impossible or
+      # already guaranteed by these existing effects.
+      crit_override = attack.pbCritialOverride(attacker, defender)
+      already_guaranteed =
+        crit_override == 1 ||
+        attacker.effects[PBEffects::LaserFocus] > 0 ||
+        (
+          attacker.hasActiveAbility?(:MERCILESS) &&
+          defender.poisoned?
+        )
+
+      if !crit_blocked &&
+         !already_guaranteed &&
+         crit_override != -1 &&
+         !attack.is_a?(Battle::Move::FixedDamageMove)
+        score += 3
+      end
+
+      return score
     end
   end
 end

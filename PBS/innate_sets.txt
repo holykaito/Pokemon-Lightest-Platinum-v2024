@@ -146,6 +146,24 @@ Innates = RUNAWAY
 [MIGHTYENA]
 Innates = INTIMIDATE,STRONGJAW,SUBJUGATE
 #----------------------------------------
+[RALTS]
+Innates = TELEPATHY
+#----------------------------------------
+[KIRLIA]
+Innates = TELEPATHY,SPELLCASTER
+#----------------------------------------
+[GARDEVOIR]
+Innates = TELEPATHY,SPELLCASTER,FOREWARN
+#----------------------------------------
+[GARDEVOIR_1]
+Innates = TELEPATHY,SPELLCASTER,FOREWARN
+#----------------------------------------
+[GALLADE]
+Innates = TELEPATHY,JUSTIFIED,DUALWIELD
+#----------------------------------------
+[GALLADE_1]
+Innates = TELEPATHY,JUSTIFIED,DUALWIELD
+#----------------------------------------
 [LOTAD]
 Innates = SEAWEED,HYDROPONIC
 #----------------------------------------
@@ -270,12 +288,6 @@ Innates = JUSTIFIED,AURAMANIPULATION
 #----------------------------------------
 [LUCARIO_2]
 Innates = JUSTIFIED,AURAMANIPULATION
-#----------------------------------------
-[GALLADE]
-Innates = JUSTIFIED,SHARPNESS
-#----------------------------------------
-[GALLADE_1]
-Innates = JUSTIFIED,SHARPNESS
 #----------------------------------------
 [DARKRAI]
 Innates = BADDREAMS,PHANTOMIMAGE

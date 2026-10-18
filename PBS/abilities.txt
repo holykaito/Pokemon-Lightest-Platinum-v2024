@@ -320,7 +320,7 @@ Description = Deals more damage to a foe of the same gender.
 #-------------------------------
 [STEADFAST]
 Name = Steadfast
-Description = Raises Speed each time the Pokémon flinches.
+Description = Flinching boosts Speed; low HP boosts defenses once.
 #-------------------------------
 [SNOWCLOAK]
 Name = Snow Cloak
@@ -430,9 +430,9 @@ Description = Damages the attacker landing the finishing hit.
 Name = Anticipation
 Description = Senses a foe's dangerous moves.
 #-------------------------------
-[FOREWARN]
+[FOREWARN] ###
 Name = Forewarn
-Description = Determines what moves a foe has.
+Description = Foresees and disables a foe's strongest move.
 #-------------------------------
 [UNAWARE]
 Name = Unaware
@@ -560,7 +560,7 @@ Description = May create another Berry after one is used.
 #-------------------------------
 [TELEPATHY]
 Name = Telepathy
-Description = Anticipates an ally's attack and dodges it.
+Description = Avoids allies' attacks and may dodge foes' moves.
 #-------------------------------
 [MOODY]
 Name = Moody

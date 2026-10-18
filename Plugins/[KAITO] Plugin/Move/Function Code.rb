@@ -417,3 +417,428 @@ class Battle::Move::RaiseUserSpeed1CriticalHitRate1 < Battle::Move
     end
   end
 end
+
+#===============================================================================
+# Back Stab
+# Flinches the target.
+# Usable on the user's first turn or while vanished.
+# Does not require the user to have the Stealth ability.
+#===============================================================================
+class Battle::Move::FlinchTargetFailsUnlessFirstTurnOrVanished <
+      Battle::Move::FlinchTarget
+  def pbMoveFailed?(user, targets)
+    return false if user.turnCount <= 1
+    if defined?(StealthAbility) && StealthAbility.vanished?(user)
+      return false
+    end
+
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true
+  end
+end
+
+#===============================================================================
+# Captivate
+# Lowers the target's Sp. Atk by 1 stage, or 2 if opposite gender.
+# Deals double damage if the target is infatuated with any Pokemon.
+#===============================================================================
+class Battle::Move::LowerTargetSpAtk1Or2DoubleDamageIfInfatuated <
+      Battle::Move::LowerTargetSpAtk1
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 2 if target.effects[PBEffects::Attract] >= 0
+    return super(baseDmg, user, target)
+  end
+
+  def pbAdditionalEffect(user, target)
+    return if target.fainted?
+
+    opposite_gender = user.gender != 2 &&
+                      target.gender != 2 &&
+                      user.gender != target.gender
+    original_stat_down = @statDown
+    begin
+      @statDown = [:SPECIAL_ATTACK, opposite_gender ? 2 : 1]
+      super
+    ensure
+      @statDown = original_stat_down
+    end
+  end
+end
+
+#===============================================================================
+# DUAL WIELD - MAG replacement
+#===============================================================================
+
+module MAGDualWieldFix
+  SECOND_HIT_DAMAGE = 0.25
+
+  #-----------------------------------------------------------------------------
+  # Unwrap AI objects.
+  #-----------------------------------------------------------------------------
+  def self.move(object)
+    return object.move if object.respond_to?(:move)
+    return object
+  end
+
+  def self.battler(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  #-----------------------------------------------------------------------------
+  # Supported move flags.
+  #-----------------------------------------------------------------------------
+  def self.flagged?(attack)
+    attack = move(attack)
+    return false if !attack
+
+    return true if attack.respond_to?(:slicingMove?) &&
+                   attack.slicingMove?
+
+    return true if attack.respond_to?(:pulseMove?) &&
+                   attack.pulseMove?
+
+    return true if attack.respond_to?(:bombMove?) &&
+                   attack.bombMove?
+
+    return false
+  end
+
+  def self.special_move?(attack)
+    return true if attack.respond_to?(:zMove?) && attack.zMove?
+
+    return true if attack.respond_to?(:dynamaxMove?) &&
+                   attack.dynamaxMove?
+
+    return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Eligibility. Does not roll RNG or change battle state.
+  #-----------------------------------------------------------------------------
+  def self.eligible?(attack, user)
+    attack = move(attack)
+    user   = battler(user)
+
+    return false if !attack || !user
+    return false if !user.respond_to?(:hasActiveAbility?)
+    return false if !user.hasActiveAbility?(:DUALWIELD)
+    return false if !attack.damagingMove?
+    return false if !flagged?(attack)
+    return false if attack.multiHitMove?
+    return false if attack.pbRepeatHit?
+    return false if special_move?(attack)
+    return false if attack.is_a?(Battle::Move::OHKO)
+
+    return true
+  end
+
+  #-----------------------------------------------------------------------------
+  # Identify the second hit of THIS move's Dual Wield activation.
+  #-----------------------------------------------------------------------------
+  def self.second_hit?(attack, user)
+    return attack.instance_variable_get(:@mag_dual_wield_user) == user &&
+           user.effects[PBEffects::ParentalBond] == 1
+  end
+
+  #-----------------------------------------------------------------------------
+  # Some move subclasses suppress later-hit animations without calling super.
+  # Wrap the actual move instance so they also replay the original animation.
+  #-----------------------------------------------------------------------------
+  def self.install_animation_hook(attack)
+    return if attack.instance_variable_get(
+      :@mag_dual_wield_animation_hook
+    )
+
+    original = attack.method(:pbShowAnimation)
+
+    attack.define_singleton_method(:pbShowAnimation) do |
+      id, user, targets, hitNum = 0, showAnimation = true
+    |
+      if MAGDualWieldFix.second_hit?(self, user)
+        if showAnimation
+          @battle.pbAnimation(id, user, targets, 0)
+        end
+      else
+        original.call(
+          id, user, targets, hitNum, showAnimation
+        )
+      end
+    end
+
+    attack.instance_variable_set(
+      :@mag_dual_wield_animation_hook, true
+    )
+  end
+
+  #-----------------------------------------------------------------------------
+  # Estimated total damage multiplier for AI.
+  #-----------------------------------------------------------------------------
+  def self.ai_factor(attack, user)
+    attack = move(attack)
+    user   = battler(user)
+
+    return 1.0 if !eligible?(attack, user)
+
+    factor = 1.0 + SECOND_HIT_DAMAGE
+
+    # Existing estimators already include Parental Bond for its holder.
+    # Dual Wield replaces that extra hit rather than stacking with it.
+    if user.hasActiveAbility?(:PARENTALBOND)
+      factor /= (Settings::MECHANICS_GENERATION >= 7) ? 1.25 : 1.5
+    end
+
+    return factor
+  end
+end
+
+#===============================================================================
+# Remove MAG's old x1.75 Slicing/Pulse power boost.
+#===============================================================================
+
+Battle::AbilityEffects::DamageCalcFromUser.remove(:DUALWIELD)
+
+#===============================================================================
+# Hit count
+# Replaces MAG's broken pbNumHits implementation.
+#===============================================================================
+
+class Battle::Move
+  def pbNumHits(user, targets)
+    @mag_dual_wield_user = nil
+
+    return 1 if MAGDualWieldFix.special_move?(self)
+
+    if MAGDualWieldFix.eligible?(self, user) &&
+       pbDamagingMove? &&
+       !targets.empty? &&
+       !user.effects[PBEffects::TwoTurnAttack]
+
+      @mag_dual_wield_user = user
+      MAGDualWieldFix.install_animation_hook(self)
+
+      # Engine decrements this before each hit:
+      # first hit = 2, second hit = 1.
+      user.effects[PBEffects::ParentalBond] = 3
+
+      return 2
+    end
+
+    # This alias was created by MAG before its own overwrite.
+    # Preserve the original result, including ordinary Parental Bond.
+    original_hits = mag_pbNumHits(user, targets)
+
+    return original_hits if original_hits != 1
+    return original_hits if multiHitMove? || pbRepeatHit?
+
+    # Preserve Double Cross.
+    # Check the ability before rolling RNG.
+    if user.hasActiveAbility?(:DOUBLECROSS) &&
+       pbDamagingMove? &&
+       !chargingTurnMove? &&
+       targets.length == 1 &&
+       @battle.pbRandom(100) < 30
+
+      @battle.pbShowAbilitySplash(user)
+      @battle.pbHideAbilitySplash(user)
+
+      user.effects[PBEffects::ParentalBond] = 3
+
+      return 2
+    end
+
+    return original_hits
+  end
+
+  #-----------------------------------------------------------------------------
+  # Clear activation state at the start of each move usage.
+  #-----------------------------------------------------------------------------
+  unless method_defined?(:mag_dual_wield_original_usage_counters)
+    alias_method :mag_dual_wield_original_usage_counters,
+                 :pbChangeUsageCounters
+  end
+
+  def pbChangeUsageCounters(user, specialUsage)
+    @mag_dual_wield_user = nil
+
+    return mag_dual_wield_original_usage_counters(
+      user, specialUsage
+    )
+  end
+
+  #-----------------------------------------------------------------------------
+  # Second hit: calculate normal damage, then apply x0.5 final damage.
+  # Temporarily suppress the engine's ordinary Parental Bond reduction.
+  #-----------------------------------------------------------------------------
+  unless method_defined?(:mag_dual_wield_original_damage_multipliers)
+    alias_method :mag_dual_wield_original_damage_multipliers,
+                 :pbCalcDamageMultipliers
+  end
+
+  def pbCalcDamageMultipliers(
+    user, target, numTargets, type, baseDmg, multipliers
+  )
+    if !MAGDualWieldFix.second_hit?(self, user)
+      return mag_dual_wield_original_damage_multipliers(
+        user, target, numTargets, type, baseDmg, multipliers
+      )
+    end
+
+    saved_bond = user.effects[PBEffects::ParentalBond]
+
+    begin
+      user.effects[PBEffects::ParentalBond] = 0
+
+      result = mag_dual_wield_original_damage_multipliers(
+        user, target, numTargets, type, baseDmg, multipliers
+      )
+
+      multipliers[:final_damage_multiplier] *=
+        MAGDualWieldFix::SECOND_HIT_DAMAGE
+
+      return result
+    ensure
+      user.effects[PBEffects::ParentalBond] = saved_bond
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Use the original move animation instead of Parental Bond's animation.
+  #-----------------------------------------------------------------------------
+  unless method_defined?(:mag_dual_wield_original_animation)
+    alias_method :mag_dual_wield_original_animation,
+                 :pbShowAnimation
+  end
+
+  def pbShowAnimation(
+    id, user, targets, hitNum = 0, showAnimation = true
+  )
+    if MAGDualWieldFix.second_hit?(self, user)
+      return if !showAnimation
+
+      return @battle.pbAnimation(id, user, targets, 0)
+    end
+
+    return mag_dual_wield_original_animation(
+      id, user, targets, hitNum, showAnimation
+    )
+  end
+end
+
+#===============================================================================
+# Fixed-damage moves skip pbCalcDamageMultipliers.
+# Apply the second-hit reduction separately.
+#===============================================================================
+
+class Battle::Move::FixedDamageMove
+  unless method_defined?(:mag_dual_wield_original_fixed_damage)
+    alias_method :mag_dual_wield_original_fixed_damage,
+                 :pbCalcDamage
+  end
+
+  def pbCalcDamage(user, target, numTargets = 1)
+    result = mag_dual_wield_original_fixed_damage(
+      user, target, numTargets
+    )
+
+    if MAGDualWieldFix.second_hit?(self, user)
+      damage = target.damageState.calcDamage
+
+      if damage > 0
+        target.damageState.calcDamage = [
+          (damage * MAGDualWieldFix::SECOND_HIT_DAMAGE).round,
+          1
+        ].max
+      end
+    end
+
+    return result
+  end
+end
+
+#===============================================================================
+# Native AI damage estimation.
+# Does not call pbNumHits or roll battle RNG.
+#===============================================================================
+
+class Battle::AI::AIMove
+  unless method_defined?(:mag_dual_wield_original_rough_damage)
+    alias_method :mag_dual_wield_original_rough_damage,
+                 :rough_damage
+  end
+
+  def rough_damage
+    damage = mag_dual_wield_original_rough_damage
+
+    factor = MAGDualWieldFix.ai_factor(
+      @move, @ai.user.battler
+    )
+
+    # Fixed-damage estimates don't include Parental Bond's multiplier.
+    if @move.is_a?(Battle::Move::FixedDamageMove) &&
+       MAGDualWieldFix.eligible?(@move, @ai.user.battler)
+
+      factor = 1.0 + MAGDualWieldFix::SECOND_HIT_DAMAGE
+    end
+
+    return damage if factor == 1.0
+    return (damage * factor).round
+  end
+end
+
+#===============================================================================
+# Native AI ability ranking.
+#===============================================================================
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:DUALWIELD)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[8] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[8] << :DUALWIELD
+
+Battle::AI::Handlers::AbilityRanking.add(:DUALWIELD,
+  proc { |ability, score, battler, ai|
+    useful = battler.check_for_move do |attack|
+      real_move = MAGDualWieldFix.move(attack)
+
+      real_move.damagingMove? &&
+        MAGDualWieldFix.flagged?(real_move) &&
+        !real_move.multiHitMove? &&
+        !real_move.pbRepeatHit? &&
+        !MAGDualWieldFix.special_move?(real_move) &&
+        !real_move.is_a?(Battle::Move::OHKO)
+    end
+
+    next useful ? score : 0
+  }
+)
+
+#===============================================================================
+# Advanced AI: separate shared damage estimator.
+#===============================================================================
+
+if defined?(AdvancedAI::CombatUtilities)
+  module AdvancedAI::CombatUtilities
+    class << self
+      if method_defined?(:ability_damage_modifier)
+        unless method_defined?(:mag_dual_wield_original_ability_modifier)
+          alias_method :mag_dual_wield_original_ability_modifier,
+                       :ability_damage_modifier
+        end
+
+        def ability_damage_modifier(
+          attacker, target, type, physical, effectiveness,
+          move = nil, physical_defense = physical
+        )
+          result = mag_dual_wield_original_ability_modifier(
+            attacker, target, type, physical, effectiveness,
+            move, physical_defense
+          )
+
+          return result * MAGDualWieldFix.ai_factor(move, attacker)
+        end
+      end
+    end
+  end
+end

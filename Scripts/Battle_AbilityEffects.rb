@@ -1514,12 +1514,6 @@ Battle::AbilityEffects::DamageCalcFromUser.add(:SOLARPOWER,
   }
 )
 
-Battle::AbilityEffects::DamageCalcFromUser.add(:SPELLCASTER,
-  proc { |ability, user, target, move, mults, power, type|
-    mults[:attack_multiplier] *= 1.2 if type == :ICE || type == :FIRE || type == :ELECTRIC
-  }
-)
-
 Battle::AbilityEffects::DamageCalcFromUser.add(:STAKEOUT,
   proc { |ability, user, target, move, mults, power, type|
     mults[:attack_multiplier] *= 2 if target.battle.choices[target.index][0] == :SwitchOut

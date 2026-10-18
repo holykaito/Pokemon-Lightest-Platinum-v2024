@@ -695,18 +695,6 @@ Battle::AbilityEffects::ModifyMoveBaseType.add(:FLAMEWING,
 Battle::AbilityEffects::DamageCalcFromUser.copy(:AERILATE, :FLAMEWING)
 
 #===============================================================================
-	# Arcane Mage
-	# Boosts the damage of Fire-type, Ice-type, and Electric-type moves.Dark-types are immune to them.
-#===============================================================================
-Battle::AbilityEffects::DamageCalcFromUser.add(:ARCANEMAGE,
-	proc { |ability, user, target, move, mults, power, type|
-		if type == :FIRE || type == :ICE || type == :ELECTRIC || type == :PSYCHIC 
-			mults[:attack_multiplier] *= 1.2
-		end
-	}
-)
-
-#===============================================================================
 	# Fiery Spirit
 	# Gain the Fire-Type on switch in
 #===============================================================================

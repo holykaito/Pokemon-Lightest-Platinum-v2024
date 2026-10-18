@@ -467,6 +467,15 @@ module AdvancedAI
       
       # --- Attacker offensive abilities ---
       if attacker.respond_to?(:hasActiveAbility?)
+        # Spellcaster: +25% for Electric/Fire/Ice, except against Dark.
+        spellcaster_target = target.respond_to?(:battler) ? target.battler : target
+
+        if attacker.hasActiveAbility?(:SPELLCASTER) &&
+           [:ELECTRIC, :FIRE, :ICE].include?(effective_type) &&
+           spellcaster_target &&
+           !spellcaster_target.pbHasType?(:DARK)
+          mod *= 1.25
+        end
         # Tinted Lens: NVE damage doubled
         if attacker.hasActiveAbility?(:TINTEDLENS) && Effectiveness.not_very_effective?(effectiveness)
           mod *= 2.0

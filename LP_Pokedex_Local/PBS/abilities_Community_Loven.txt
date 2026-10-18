@@ -136,10 +136,6 @@ Description = When protected succesfully, powers up rock-type moves.
 Name = He’s Safe
 Description = On fainting to recoil damage, restore 50% hp.
 #-------------------------------
-[ARCANEMAGE]
-Name = Arcane Mage
-Description = Fire, Ice, Electric moves are stronger, dark types are immune to them.
-#-------------------------------
 [QUICKSTRIKE]
 Name = Quick Strike
 Description = On first turn goes first, with 100% accuracy. 

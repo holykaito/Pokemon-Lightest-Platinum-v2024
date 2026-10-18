@@ -613,3 +613,19 @@ Target = NearOther
 FunctionCode = TwoTurnAttackInvulnerableRemoveProtections
 Flags = Contact,CanMirrorMove
 Description = The user hides stealthily, then strikes on the next turn. Hits through protections.
+Animation = SHADOWFORCE
+#-------------------------------
+[PIXIESLASH]
+Name = Pixie Slash
+Type = FAIRY
+Category = Physical
+Power = 90
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+Priority = 0
+FunctionCode = None
+Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing
+Description = Slashes with a whimsical blade. High critical-hit ratio.
+Animation = PSYCHOCUT,FAIRYWIND
+#-------------------------------
