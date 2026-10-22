@@ -2,7 +2,19 @@
 # translate every second line of this file.
 #-------------------------------
 [Map103]
-\rThe first gym of the ZHERY league is located in INHORE CITY. The leader uses the BUG type, so to win easily, just use FIRE POKéMON.
-\rThe first gym of the ZHERY league is located in INHORE CITY. The leader uses the BUG type, so to win easily, just use FIRE POKéMON.
-\bWhen I grow older, I will attend the University of Inhore. It's very big and beautiful, and offers many different fields of study.
-\bWhen I grow older, I will attend the University of Inhore. It's very big and beautiful, and offers many different fields of study.
+Van Hoi is huge, but strangely enough, we don’t have a Gym here.
+Van Hoi is huge, but strangely enough, we don’t have a Gym here.
+If you’re looking for a Gym challenge, the closest one is over in Van Uyen City.
+If you’re looking for a Gym challenge, the closest one is over in Van Uyen City.
+A lot of Trainers stop here first before heading there.
+A lot of Trainers stop here first before heading there.
+So if Badges are what you’re after, Van Uyen should probably be your next stop.
+So if Badges are what you’re after, Van Uyen should probably be your next stop.
+Are you a Pokémon Trainer? That’s so cool!
+Are you a Pokémon Trainer? That’s so cool!
+I want to travel around the world with my Pokémon someday.
+I want to travel around the world with my Pokémon someday.
+My parents say I’m still too young, but I’m already practicing every day!
+My parents say I’m still too young, but I’m already practicing every day!
+I’ve been learning about Pokémon types and watching battles on TV.
+I’ve been learning about Pokémon types and watching battles on TV.

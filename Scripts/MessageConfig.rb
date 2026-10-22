@@ -361,7 +361,7 @@ def getSkinColor(windowskin, color, isDarkSkin)
     # Values in arrays are RGB numbers
     textcolors = [
       [  0, 112, 248], [120, 184, 232],   # 1  Blue
-      [232,  32,  16], [248, 168, 184],   # 2  Red
+      [190, 55, 55], [210, 200, 200],   # 2  Red
       [ 96, 176,  72], [174, 208, 144],   # 3  Green
       [ 72, 216, 216], [168, 224, 224],   # 4  Cyan
       [208,  56, 184], [232, 160, 224],   # 5  Magenta

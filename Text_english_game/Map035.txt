@@ -1,0 +1,30 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map035]
+\bI stopped you as you walked past.
+\bI stopped you as you walked past.
+\bHaving "Sight(3)" as my event's name, and the "Event Touch" trigger, tells me to activate whenever you enter any of the three tiles in front of me.
+\bHaving "Sight(3)" as my event's name, and the "Event Touch" trigger, tells me to activate whenever you enter any of the three tiles in front of me.
+\bpbExclaim makes me exclaim. pbNoticePlayer does the same thing, as well as make me approach you.
+\bpbExclaim makes me exclaim. pbNoticePlayer does the same thing, as well as make me approach you.
+\bTrainers use these features by default, but other NPCs like me can use them too. Roadblock events in particular love to use them.
+\bTrainers use these features by default, but other NPCs like me can use them too. Roadblock events in particular love to use them.
+\bShall I turn you back like a real roadblock, or should I deactivate myself?
+\bShall I turn you back like a real roadblock, or should I deactivate myself?
+\bCome back when Game Switch 5 is ON.
+\bCome back when Game Switch 5 is ON.
+\bOkay. I'll fulfil my roadblock condition myself, by turning the Game Switch I depend on (5) to ON.
+\bOkay. I'll fulfil my roadblock condition myself, by turning the Game Switch I depend on (5) to ON.
+\bBecause I was moved by pbNoticePlayer and then moved again by a Move Route, I need to update my current location in memory.
+\bBecause I was moved by pbNoticePlayer and then moved again by a Move Route, I need to update my current location in memory.
+\bThis matters if you save and reload the game on this map after I've moved. See my event for the command you need to use.
+\bThis matters if you save and reload the game on this map after I've moved. See my event for the command you need to use.
+\bI'm keeping guard here as a trusted roadblock event.
+\bI'm keeping guard here as a trusted roadblock event.
+\bRoadblock events don't normally set the conditions they wait for (Game Switch 5 in my case), but I did.
+\bRoadblock events don't normally set the conditions they wait for (Game Switch 5 in my case), but I did.
+Roadblock
+Roadblock
+Deactivate
+Deactivate

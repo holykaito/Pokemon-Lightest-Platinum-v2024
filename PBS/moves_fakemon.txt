@@ -547,7 +547,6 @@ FunctionCode = LowerUserSpeed1BleedTarget
 Flags = Contact,CanProtect,CanMirrorMove
 EffectChance = 100
 Description = Slows the user and may cause bleeding.
-Animation = CRUNCH
 #-------------------------------
 [NIGHTFELLING]
 Name = Nightfelling
@@ -621,7 +620,7 @@ Type = FAIRY
 Category = Physical
 Power = 90
 Accuracy = 100
-TotalPP = 20
+TotalPP = 15
 Target = NearOther
 Priority = 0
 FunctionCode = None
@@ -753,3 +752,40 @@ EffectChance = 30
 Description = Hurls a mountain chunk. May cause flinching.
 Animation = ROCKWRECKER
 #-------------------------------
+[VENOMENVY]
+Name = Venom Envy
+Type = POISON
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 15
+Target = AllNearFoes
+FunctionCode = PoisonTargetIfTargetHasRaisedStats
+Flags = CanProtect
+EffectChance = 100
+Description = Attacks with energy from jealousy. All opposing Pokémon with stat boosts get poisoned.
+#-------------------------------
+[SEVEREPOISON]
+Name = Severe Poison
+Type = POISON
+Category = Status
+Power = 0
+Accuracy = 85
+TotalPP = 10
+Target = NearOther
+FunctionCode = BadPoisonTargetFasterIgnoreTargetAbility
+Flags = CanProtect,CanMirrorMove
+Description = Badly poisons the target, ignoring its Ability. Poison damage rises twice as fast.
+#-------------------------------
+[NEUROTOXIN]
+Name = Neurotoxin
+Type = POISON
+Category = Physical
+Power = 50
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = DisableTargetPsychicMoves
+Flags = CanProtect,CanMirrorMove
+EffectChance = 100
+Description = Stings the target, preventing Psychic-type moves for two more turns.

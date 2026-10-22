@@ -1,0 +1,280 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map105]
+Oh, hello there. Are you interested in mysterious stories about Pokémon?
+Oh, hello there. Are you interested in mysterious stories about Pokémon?
+I’m currently recording a special episode about an abandoned shrine deep in the northern forest.
+I’m currently recording a special episode about an abandoned shrine deep in the northern forest.
+According to old stories, Trainers who visited that place years ago heard strange cries coming from inside the shrine.
+According to old stories, Trainers who visited that place years ago heard strange cries coming from inside the shrine.
+Some people believe a mysterious Pokémon still protects that place.
+Some people believe a mysterious Pokémon still protects that place.
+Of course, we don’t know if the story is true... but that’s what makes mysteries so fascinating, isn’t it?
+Of course, we don’t know if the story is true... but that’s what makes mysteries so fascinating, isn’t it?
+I’m currently preparing the script for tomorrow’s broadcast.
+I’m currently preparing the script for tomorrow’s broadcast.
+A good program needs more than just interesting information.
+A good program needs more than just interesting information.
+The way a story is presented can change how people feel about it.
+The way a story is presented can change how people feel about it.
+It’s hard work, but seeing viewers enjoy the program makes it worthwhile.
+It’s hard work, but seeing viewers enjoy the program makes it worthwhile.
+Oh, hello! Are you watching the interview today? I’m Ly Huynh My, the special guest.
+Oh, hello! Are you watching the interview today? I’m Ly Huynh My, the special guest.
+People always ask me about my future plans, and honestly... I think I already know the answer.
+People always ask me about my future plans, and honestly... I think I already know the answer.
+I just want to get married and enjoy a peaceful life. Working every day sounds really exhausting.
+I just want to get married and enjoy a peaceful life. Working every day sounds really exhausting.
+Housework is also very difficult! I once helped my aunt buy some bread, and I was already tired halfway there.
+Housework is also very difficult! I once helped my aunt buy some bread, and I was already tired halfway there.
+Maybe I’m not made for hard work... I think I’m better suited for relaxing and enjoying life.
+Maybe I’m not made for hard work... I think I’m better suited for relaxing and enjoying life.
+My favorite things are shopping, beautiful places, and enjoying a nice drink at Takashimaya.
+My favorite things are shopping, beautiful places, and enjoying a nice drink at Takashimaya.
+Welcome to Van Hoi TV Station.
+Welcome to Van Hoi TV Station.
+This building is where many popular programs, interviews, and performances are recorded.
+This building is where many popular programs, interviews, and performances are recorded.
+Visitors are welcome in public areas, but some studios require special permission to enter.
+Visitors are welcome in public areas, but some studios require special permission to enter.
+If you’re looking for a specific program, I can help you find the right floor.
+If you’re looking for a specific program, I can help you find the right floor.
+I’m filming a mystery program with her. It’s not as easy as it looks.
+I’m filming a mystery program with her. It’s not as easy as it looks.
+A good horror story isn’t just about the words. The camera has to capture the right atmosphere too.
+A good horror story isn’t just about the words. The camera has to capture the right atmosphere too.
+A dark room, a quiet moment, a strange sound... small details can make a big difference.
+A dark room, a quiet moment, a strange sound... small details can make a big difference.
+I hope our episode can make people curious about the mysteries hidden in the Pokémon world.
+I hope our episode can make people curious about the mysteries hidden in the Pokémon world.
+Oh, hello! I’m about to record my new song here at Van Hoi TV.
+Oh, hello! I’m about to record my new song here at Van Hoi TV.
+Performing on stage and recording in a studio are completely different experiences.
+Performing on stage and recording in a studio are completely different experiences.
+On stage, you feel the energy of the audience. In the studio, every little detail matters.
+On stage, you feel the energy of the audience. In the studio, every little detail matters.
+I always get nervous before recording, but that feeling disappears once the music starts.
+I always get nervous before recording, but that feeling disappears once the music starts.
+I hope everyone who hears this song can feel the emotions behind it.
+I hope everyone who hears this song can feel the emotions behind it.
+\r\ff[prooak]Welcome \pn. This place is only my temporary workspace while I’m staying in Van Hoi City.
+\r\ff[prooak]Welcome \pn. This place is only my temporary workspace while I’m staying in Van Hoi City.
+\r\ff[blue]Took you long enough. I was wondering you had gotten lost.
+\r\ff[blue]Took you long enough. I was wondering you had gotten lost.
+\r\ff[prooak]I’m preparing to record a special science program about Pokémon and their relationship with humans.
+\r\ff[prooak]I’m preparing to record a special science program about Pokémon and their relationship with humans.
+\r\ff[prooak]By the way, Blue has already sent a report about Team Chaos and the Black Crystal to the Pokémon Association.
+\r\ff[prooak]By the way, Blue has already sent a report about Team Chaos and the Black Crystal to the Pokémon Association.
+\r\ff[prooak]The Association is currently reviewing the information and keeping a close watch on the situation.
+\r\ff[prooak]The Association is currently reviewing the information and keeping a close watch on the situation.
+\r\ff[blue]The Gym Leaders and Elite Four members will also continue gathering information from different areas.
+\r\ff[blue]The Gym Leaders and Elite Four members will also continue gathering information from different areas.
+\r\ff[blue]If you happen to meet them during your journey, don’t hesitate to work together.
+\r\ff[blue]If you happen to meet them during your journey, don’t hesitate to work together.
+\r\ff[prooak]Everyone’s help will be important if we want to understand what Team Chaos is planning.
+\r\ff[prooak]Everyone’s help will be important if we want to understand what Team Chaos is planning.
+\r\ff[prooak]This is your own Pokédex.
+\r\ff[prooak]This is your own Pokédex.
+\r\ff[prooak]A Pokédex is more than just a device for recording Pokémon information. It represents curiosity and the desire to learn about the world around you.
+\r\ff[prooak]A Pokédex is more than just a device for recording Pokémon information. It represents curiosity and the desire to learn about the world around you.
+\r\ff[prooak]I also need your help delivering these other Pokédex devices to Professor Minh Anh.
+\r\ff[prooak]I also need your help delivering these other Pokédex devices to Professor Minh Anh.
+\r\ff[prooak]Please give her my regards and tell her I hope she’s been taking good care of herself.
+\r\ff[prooak]Please give her my regards and tell her I hope she’s been taking good care of herself.
+\r\ff[prooak]Before you leave, there’s one more thing I want to give you.
+\r\ff[prooak]Before you leave, there’s one more thing I want to give you.
+\r\ff[prooak]You helped me greatly back on Route A10, and I haven’t forgotten that.
+\r\ff[prooak]You helped me greatly back on Route A10, and I haven’t forgotten that.
+\r\ff[prooak]A Trainer like you deserves a Pokémon that can grow alongside you.
+\r\ff[prooak]A Trainer like you deserves a Pokémon that can grow alongside you.
+\r\ff[prooak]So, choose one of these three Pokémon. They were my first partners when I began my research in the Kanto region.
+\r\ff[prooak]So, choose one of these three Pokémon. They were my first partners when I began my research in the Kanto region.
+\r\ff[prooak]Take good care of your choice, and I’m sure the two of you will create many wonderful memories together.
+\r\ff[prooak]Take good care of your choice, and I’m sure the two of you will create many wonderful memories together.
+\r\ff[prooak]Good luck on your journey, my young friend. I look forward to seeing how far you will go.
+\r\ff[prooak]Good luck on your journey, my young friend. I look forward to seeing how far you will go.
+I’m part of the broadcasting team here at Van Hoi TV.
+I’m part of the broadcasting team here at Van Hoi TV.
+Our team is responsible for making sure every program reaches viewers clearly and on time.
+Our team is responsible for making sure every program reaches viewers clearly and on time.
+We check the broadcast schedule, monitor the signal, and coordinate with the studio staff.
+We check the broadcast schedule, monitor the signal, and coordinate with the studio staff.
+A lot of work happens behind the scenes before people can watch a program on TV.
+A lot of work happens behind the scenes before people can watch a program on TV.
+Even a small mistake can affect thousands of viewers, so everyone here has to stay focused.
+Even a small mistake can affect thousands of viewers, so everyone here has to stay focused.
+Be careful not to slip, I just finished cleaning this floor.
+Be careful not to slip, I just finished cleaning this floor.
+I’ve worked at this TV Station for many years. I’ve seen countless programs being created here.
+I’ve worked at this TV Station for many years. I’ve seen countless programs being created here.
+People usually notice the ones in front of the camera, but there are many others working behind the scenes.
+People usually notice the ones in front of the camera, but there are many others working behind the scenes.
+\r\ff[blue]Well... I’m curious to see what kind of Trainer you’ll become. Don’t disappoint me, kid.
+\r\ff[blue]Well... I’m curious to see what kind of Trainer you’ll become. Don’t disappoint me, kid.
+I’m helping Professor Oak prepare for his appearance on Van Hoi TV today.
+I’m helping Professor Oak prepare for his appearance on Van Hoi TV today.
+My job is to make sure everything is ready before the recording begins.
+My job is to make sure everything is ready before the recording begins.
+Professor Oak is very kind and easy to work with, so everything has gone smoothly so far.
+Professor Oak is very kind and easy to work with, so everything has gone smoothly so far.
+I hope the interview goes well and that everyone enjoys watching it.
+I hope the interview goes well and that everyone enjoys watching it.
+Are you watching our filming? This is the most important scene of the movie.
+Are you watching our filming? This is the most important scene of the movie.
+The hero and villain aren’t just fighting with their Pokémon. They’re fighting for their beliefs.
+The hero and villain aren’t just fighting with their Pokémon. They’re fighting for their beliefs.
+A good actor needs to understand the feelings behind the character.
+A good actor needs to understand the feelings behind the character.
+That’s why I keep asking them to do the scene again until it feels right.
+That’s why I keep asking them to do the scene again until it feels right.
+Are you exploring the station?
+Are you exploring the station?
+This place may look like just a building, but there are countless stories happening inside.
+This place may look like just a building, but there are countless stories happening inside.
+We have hosts, performers, researchers, musicians, technicians, and many other people working here.
+We have hosts, performers, researchers, musicians, technicians, and many other people working here.
+Every person who walks through these doors has their own reason for being here.
+Every person who walks through these doors has their own reason for being here.
+If you have some free time, why don’t you talk to the people around the station?
+If you have some free time, why don’t you talk to the people around the station?
+I’m sure you’ll discover many interesting stories you never expected.
+I’m sure you’ll discover many interesting stories you never expected.
+And if you manage to learn all the stories hidden in this building, come back and tell me.
+And if you manage to learn all the stories hidden in this building, come back and tell me.
+I’ll prepare something interesting for someone who appreciates the stories of Van Hoi TV.
+I’ll prepare something interesting for someone who appreciates the stories of Van Hoi TV.
+Ah, you’re back!
+Ah, you’re back!
+I heard you’ve taken the time to talk with everyone working here.
+I heard you’ve taken the time to talk with everyone working here.
+Not many people are willing to stop and listen. I’m glad you did.
+Not many people are willing to stop and listen. I’m glad you did.
+As promised, I have something special for you.
+As promised, I have something special for you.
+This is a Quick Claw.
+This is a Quick Claw.
+It’s an item that can sometimes help Pokémon move first in battle.
+It’s an item that can sometimes help Pokémon move first in battle.
+I hope it helps you and your Pokémon on your journey.
+I hope it helps you and your Pokémon on your journey.
+Every person has a story.
+Every person has a story.
+Sometimes you just need to take the time to hear it.
+Sometimes you just need to take the time to hear it.
+Whew... Finally, a little break. Working at a TV Station is more tiring than people think.
+Whew... Finally, a little break. Working at a TV Station is more tiring than people think.
+There are schedules to manage, guests to prepare, and recordings that sometimes take all day.
+There are schedules to manage, guests to prepare, and recordings that sometimes take all day.
+But I still like this job. Every day brings something different.
+But I still like this job. Every day brings something different.
+Yesterday I helped with a Pokémon battle program, and today I’m preparing for a history show.
+Yesterday I helped with a Pokémon battle program, and today I’m preparing for a history show.
+You never know what kind of story you’ll get to be part of here.
+You never know what kind of story you’ll get to be part of here.
+Did you enjoy the music?
+Did you enjoy the music?
+Music has a special way of connecting hearts, even between humans and Pokémon.
+Music has a special way of connecting hearts, even between humans and Pokémon.
+I’m practicing this song for a performance at Van Hoi TV. I hope everyone watching can feel the emotion behind it.
+I’m practicing this song for a performance at Van Hoi TV. I hope everyone watching can feel the emotion behind it.
+Maybe someday, my music will become a memory that someone carries on their journey.
+Maybe someday, my music will become a memory that someone carries on their journey.
+I’m helping record his research report for Van Hoi TV.
+I’m helping record his research report for Van Hoi TV.
+Filming archaeology is challenging because every small detail can be important.
+Filming archaeology is challenging because every small detail can be important.
+Sometimes we spend hours just filming a single artifact from the right angle.
+Sometimes we spend hours just filming a single artifact from the right angle.
+But when people see these discoveries on TV, I think all that effort is worth it.
+But when people see these discoveries on TV, I think all that effort is worth it.
+Hey, keep your voice down. We’re filming a scene over there.
+Hey, keep your voice down. We’re filming a scene over there.
+That’s the main battle scene between the hero and the villain.
+That’s the main battle scene between the hero and the villain.
+The director is... quite a character. He’s very demanding and has some unusual habits.
+The director is... quite a character. He’s very demanding and has some unusual habits.
+He’s always trying to get close to the actresses, but that actress over there won’t let anyone treat her badly.
+He’s always trying to get close to the actresses, but that actress over there won’t let anyone treat her badly.
+She’s strong, confident, and she knows how to stand up for herself.
+She’s strong, confident, and she knows how to stand up for herself.
+Honestly, everyone on the crew respects her because of that.
+Honestly, everyone on the crew respects her because of that.
+Welcome back to Van Hoi TV! Today, we’re bringing you another exciting story from the world of Pokémon!
+Welcome back to Van Hoi TV! Today, we’re bringing you another exciting story from the world of Pokémon!
+There are so many amazing Trainers, Pokémon, and places waiting to be discovered.
+There are so many amazing Trainers, Pokémon, and places waiting to be discovered.
+Every journey has its own story, and we’re here to share those stories with everyone.
+Every journey has its own story, and we’re here to share those stories with everyone.
+Hmm... Was that good? Let’s try that part one more time!
+Hmm... Was that good? Let’s try that part one more time!
+Ditto may not look like the strongest Pokémon, but it has an incredible talent for becoming anything.
+Ditto may not look like the strongest Pokémon, but it has an incredible talent for becoming anything.
+That’s what makes performing with Ditto so much fun. Every show feels different.
+That’s what makes performing with Ditto so much fun. Every show feels different.
+Sometimes Ditto copies my movements perfectly, and sometimes it surprises even me.
+Sometimes Ditto copies my movements perfectly, and sometimes it surprises even me.
+I think the best performances aren’t about being perfect. They’re about having fun together.
+I think the best performances aren’t about being perfect. They’re about having fun together.
+I’m organizing old reports from the early days of Van Hoi TV.
+I’m organizing old reports from the early days of Van Hoi TV.
+Some of these documents contain interviews with famous Trainers and important events from the past.
+Some of these documents contain interviews with famous Trainers and important events from the past.
+The heroin always needs to believe in their Pokémon and their friends.
+The heroin always needs to believe in their Pokémon and their friends.
+Even when things look impossible, giving up is never the answer.
+Even when things look impossible, giving up is never the answer.
+Playing this role reminds me how important trust can be.
+Playing this role reminds me how important trust can be.
+I hope everyone watching the movie can feel that message too.
+I hope everyone watching the movie can feel that message too.
+I’m preparing a report about an ancient stone tablet discovered near Alola region.
+I’m preparing a report about an ancient stone tablet discovered near Alola region.
+The tablet contains drawings of humans and Pokémon working together thousands of years ago.
+The tablet contains drawings of humans and Pokémon working together thousands of years ago.
+What interests researchers the most is the mysterious Pokémon carved at the center of the tablet.
+What interests researchers the most is the mysterious Pokémon carved at the center of the tablet.
+We still don’t know what Pokémon it represents, but this discovery may reveal something important about the past.
+We still don’t know what Pokémon it represents, but this discovery may reveal something important about the past.
+History is like a puzzle. Every discovery helps us find another missing piece.
+History is like a puzzle. Every discovery helps us find another missing piece.
+I’ve introduced many performers before, but there’s something special about her music.
+I’ve introduced many performers before, but there’s something special about her music.
+It doesn’t rely on flashy effects or a huge stage. It simply creates a feeling.
+It doesn’t rely on flashy effects or a huge stage. It simply creates a feeling.
+That’s what makes a memorable performance, isn’t it?
+That’s what makes a memorable performance, isn’t it?
+Welcome back to Van Hoi TV! Today, we have a very unique guest joining us.
+Welcome back to Van Hoi TV! Today, we have a very unique guest joining us.
+Ly Huynh My has a very charming way of speaking. I think everyone watching can’t help but smile.
+Ly Huynh My has a very charming way of speaking. I think everyone watching can’t help but smile.
+Her honest answers and unique personality have become something people remember.
+Her honest answers and unique personality have become something people remember.
+People often talk about the An Lam region and say it has two things that nowhere else has.
+People often talk about the An Lam region and say it has two things that nowhere else has.
+One is Takashimaya, and the other is Ly Huynh My herself.
+One is Takashimaya, and the other is Ly Huynh My herself.
+I’ve invested in several programs here at Van Hoi TV over the years.
+I’ve invested in several programs here at Van Hoi TV over the years.
+A successful show isn’t only about having famous guests or expensive equipment.
+A successful show isn’t only about having famous guests or expensive equipment.
+The most important thing is whether it can connect with the audience.
+The most important thing is whether it can connect with the audience.
+If people remember the story and the emotions after watching, then I consider it a worthwhile investment.
+If people remember the story and the emotions after watching, then I consider it a worthwhile investment.
+Every great story needs someone standing against the hero.
+Every great story needs someone standing against the hero.
+A villain isn’t always just evil. Sometimes they have their own reasons and beliefs.
+A villain isn’t always just evil. Sometimes they have their own reasons and beliefs.
+That’s what makes playing this role so interesting.
+That’s what makes playing this role so interesting.
+Now... it’s time for the hero and villain to meet.
+Now... it’s time for the hero and villain to meet.
+The lighting looks perfect. Keep your eyes on the camera and we’ll get a great shot.
+The lighting looks perfect. Keep your eyes on the camera and we’ll get a great shot.
+Recording a TV program isn’t as easy as people think.
+Recording a TV program isn’t as easy as people think.
+A small mistake can mean doing the whole scene again from the beginning.
+A small mistake can mean doing the whole scene again from the beginning.
+But when everything comes together, that’s the moment that makes it worthwhile.
+But when everything comes together, that’s the moment that makes it worthwhile.

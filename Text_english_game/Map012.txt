@@ -1,0 +1,118 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map012]
+\rHello! I'm a Move Tutor!
+\rHello! I'm a Move Tutor!
+\rI can teach a special and powerful move to your Pokémon.
+\rI can teach a special and powerful move to your Pokémon.
+\rWhich special move would you like me to teach?
+\rWhich special move would you like me to teach?
+\rWould you like me to teach another Pokémon a special move?
+\rWould you like me to teach another Pokémon a special move?
+\rCome back any time!
+\rCome back any time!
+\bUh...\nOh, yes, I'm the Move Deleter.
+\bUh...\nOh, yes, I'm the Move Deleter.
+\bI can make Pokémon forget their moves.
+\bI can make Pokémon forget their moves.
+\bWould you like me to do that?
+\bWould you like me to do that?
+\bWhich Pokémon should forget a move?
+\bWhich Pokémon should forget a move?
+\bCome again if there are moves that need to be forgotten.
+\bCome again if there are moves that need to be forgotten.
+\bWhat? No Egg should know any moves.
+\bWhat? No Egg should know any moves.
+\bWhat? I can't make a Shadow Pokémon forget a move.
+\bWhat? I can't make a Shadow Pokémon forget a move.
+\b\v[3] seems to know only one move...
+\b\v[3] seems to know only one move...
+\bWhich move should be forgotten?
+\bWhich move should be forgotten?
+\bHm! \v[3]'s \v[4]? That move should be forgotten?
+\bHm! \v[3]'s \v[4]? That move should be forgotten?
+\bIt worked to perfection!
+\bIt worked to perfection!
+\b\v[3] has forgotten \v[4] completely.
+\b\v[3] has forgotten \v[4] completely.
+\bI'm the Pokémon Move Maniac.
+\bI'm the Pokémon Move Maniac.
+\bI know every single move that Pokémon learn growing up.
+\bI know every single move that Pokémon learn growing up.
+\bI'm also a collector of Heart Scales.
+\bI'm also a collector of Heart Scales.
+\bIf you bring me one, I'll teach a move to one of your Pokémon.
+\bIf you bring me one, I'll teach a move to one of your Pokémon.
+\bOh! That's it! That's an honest to goodness Heart Scale!
+\bOh! That's it! That's an honest to goodness Heart Scale!
+\bLet me guess, you want me to teach one of your Pokémon a move?
+\bLet me guess, you want me to teach one of your Pokémon a move?
+\bWhich Pokémon needs tutoring?
+\bWhich Pokémon needs tutoring?
+\bIf your Pokémon need to learn a move, come back with a Heart Scale.
+\bIf your Pokémon need to learn a move, come back with a Heart Scale.
+\bHunh? There isn't a single move that I can teach an Egg.
+\bHunh? There isn't a single move that I can teach an Egg.
+\bNo way, I don't want to go near a Shadow Pokémon.
+\bNo way, I don't want to go near a Shadow Pokémon.
+\bSorry...
+\bSorry...
+\bIt doesn't appear as if I have any move I can teach to your \v[3].
+\bIt doesn't appear as if I have any move I can teach to your \v[3].
+\bWhich move should I teach to your \v[3]?
+\bWhich move should I teach to your \v[3]?
+\PN handed over one Heart Scale in exchange.
+\PN handed over one Heart Scale in exchange.
+\bHello, hello!\nI am the official Name Rater!
+\bHello, hello!\nI am the official Name Rater!
+\bWant me to rate the nicknames of your Pokémon?
+\bWant me to rate the nicknames of your Pokémon?
+\bWhich Pokémon's nickname should I critique?
+\bWhich Pokémon's nickname should I critique?
+\bI see.\nDo come visit again.
+\bI see.\nDo come visit again.
+\bNow, now... That is merely an Egg!
+\bNow, now... That is merely an Egg!
+\bI wouldn't dare critique a Shadow Pokémon's name!
+\bI wouldn't dare critique a Shadow Pokémon's name!
+\bHmmm... \v[3] it is!
+\bHmmm... \v[3] it is!
+\bThis is a magnificent nickname! It is impeccably beyond reproach!
+\bThis is a magnificent nickname! It is impeccably beyond reproach!
+\bYou'll do well to cherish your \v[3] now and beyond.
+\bYou'll do well to cherish your \v[3] now and beyond.
+\b\v[3], is it?\nThat is a decent nickname!
+\b\v[3], is it?\nThat is a decent nickname!
+\bBut, would you like me to give it a nicer name?
+\bBut, would you like me to give it a nicer name?
+\bHow about it?
+\bHow about it?
+\bAh, good. Then, what shall the new nickname be?
+\bAh, good. Then, what shall the new nickname be?
+\bI see. You're right, there's no need to change this Pokémon's nickname.
+\bI see. You're right, there's no need to change this Pokémon's nickname.
+\bIt already had a superb name!
+\bIt already had a superb name!
+\bDone! From now on, this Pokémon shall be known as \v[3]!
+\bDone! From now on, this Pokémon shall be known as \v[3]!
+\bIt looks no different from before, and yet, this is vastly superior!
+\bIt looks no different from before, and yet, this is vastly superior!
+\bHow fortunate for you!
+\bHow fortunate for you!
+\bDone! From now on, this Pokémon shall be known as \v[5]!
+\bDone! From now on, this Pokémon shall be known as \v[5]!
+\bIt is a better name than before!\nHow fortunate for you!
+\bIt is a better name than before!\nHow fortunate for you!
+Frenzy Plant
+Frenzy Plant
+Blast Burn
+Blast Burn
+Hydro Cannon
+Hydro Cannon
+Exit
+Exit
+Yes
+Yes
+No
+No

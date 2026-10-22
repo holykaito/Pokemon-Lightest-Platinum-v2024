@@ -1,0 +1,76 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[TRAINER_SPEECHES_LOSE]
+I will take revenge next time!
+I will take revenge next time!
+Very good.
+Very good.
+A very good battle, indeed!
+A very good battle, indeed!
+Ôi không... bọ của em bị đè bẹp rồi...
+Ôi không... bọ của em bị đè bẹp rồi...
+Ơ... Không thể nào! Tớ đã luyện chăm lắm mà!
+Ơ... Không thể nào! Tớ đã luyện chăm lắm mà!
+A... Tôi thật sự đã nghĩ mình có cơ hội thắng chứ.
+A... Tôi thật sự đã nghĩ mình có cơ hội thắng chứ.
+How is this possible?
+How is this possible?
+Bất ngờ thật! Tôi không nghĩ cuộc gặp tình cờ này lại thành ra thế này.
+Bất ngờ thật! Tôi không nghĩ cuộc gặp tình cờ này lại thành ra thế này.
+Ôi trời! Trận đấu này căng thẳng hơn tôi tưởng nhiều đấy!
+Ôi trời! Trận đấu này căng thẳng hơn tôi tưởng nhiều đấy!
+Chà, trận đấu không diễn ra như tôi nghĩ rồi. Xem ra lúc nào cũng còn điều để học hỏi.
+Chà, trận đấu không diễn ra như tôi nghĩ rồi. Xem ra lúc nào cũng còn điều để học hỏi.
+Các em bé chơi rất vui!
+Các em bé chơi rất vui!
+Ha ha ha! Xem ra tôi mệt hơn mình tưởng rồi.
+Ha ha ha! Xem ra tôi mệt hơn mình tưởng rồi.
+Oa... Tôi cứ tưởng mình đã hiểu cách chiến đấu của chúng, vậy mà Pokémon của cậu khiến tôi bất ngờ hoàn toàn!
+Oa... Tôi cứ tưởng mình đã hiểu cách chiến đấu của chúng, vậy mà Pokémon của cậu khiến tôi bất ngờ hoàn toàn!
+Ôi không! Có lẽ tôi vui quá nên quên mất phải tập trung!
+Ôi không! Có lẽ tôi vui quá nên quên mất phải tập trung!
+Tuyệt vời... Một trận đấu thật đẹp. Ta suýt quên mất mình phải vẽ!
+Tuyệt vời... Một trận đấu thật đẹp. Ta suýt quên mất mình phải vẽ!
+Pokémon của cậu biết cách chiến đấu với Pokémon hệ Bọ thật đấy!
+Pokémon của cậu biết cách chiến đấu với Pokémon hệ Bọ thật đấy!
+Tuyệt thật! Tôi không ngờ Pokémon của cậu lại chiến đấu như vậy!
+Tuyệt thật! Tôi không ngờ Pokémon của cậu lại chiến đấu như vậy!
+Chà, đây đúng là một “mẻ cá” lớn hơn bất cứ thứ gì tôi có thể câu được!
+Chà, đây đúng là một “mẻ cá” lớn hơn bất cứ thứ gì tôi có thể câu được!
+Agh! Biết thế tôi đã ở yên trên đường chính rồi!
+Agh! Biết thế tôi đã ở yên trên đường chính rồi!
+Ôi trời! Trận đấu này căng hơn tôi tưởng nhiều đấy!
+Ôi trời! Trận đấu này căng hơn tôi tưởng nhiều đấy!
+Ôi không! Tôi mải vui quá nên quên mất phải tập trung!
+Ôi không! Tôi mải vui quá nên quên mất phải tập trung!
+Hừ... Đúng là xui xẻo.
+Hừ... Đúng là xui xẻo.
+Tch! Chuyện này đáng lẽ không được xảy ra...
+Tch! Chuyện này đáng lẽ không được xảy ra...
+Cậu mạnh hơn vẻ ngoài đấy.
+Cậu mạnh hơn vẻ ngoài đấy.
+Tch... Vậy là kết thúc như thế này sao.
+Tch... Vậy là kết thúc như thế này sao.
+What a beautiful victory! You're a great trainer.
+What a beautiful victory! You're a great trainer.
+Tch! I took you too lightly!
+Tch! I took you too lightly!
+Uww... I blew it.
+Uww... I blew it.
+Pretty impressive! I'm sure you can go anywhere with that skill!
+Pretty impressive! I'm sure you can go anywhere with that skill!
+Oh... I lost...
+Oh... I lost...
+Argh, I can't do anymore...
+Argh, I can't do anymore...
+Wow, you're too good!
+Wow, you're too good!
+Heh, I guess I didn't try hard enough.
+Heh, I guess I didn't try hard enough.
+Gwa ha ha! I lost.
+Gwa ha ha! I lost.
+I should've guessed you would cheat.
+I should've guessed you would cheat.
+Mercy!
+Mercy!

@@ -1,0 +1,12 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map106]
+Which floor do you want?
+Which floor do you want?
+10F
+10F
+1F
+1F
+Exit
+Exit

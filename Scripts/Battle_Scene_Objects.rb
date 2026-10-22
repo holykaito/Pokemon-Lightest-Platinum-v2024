@@ -498,7 +498,7 @@ class Battle::Scene::AbilitySplashBar < Sprite
     textX = (@side == 0) ? 10 : self.bitmap.width - 8
     align = (@side == 0) ? :left : :right
     # Draw Pokémon's name
-    textPos.push([_INTL("{1}'s", @battler.name), textX, 8, align,
+    textPos.push([@battler.name, textX, 8, align,
                   TEXT_BASE_COLOR, TEXT_SHADOW_COLOR, :outline])
     # Draw Pokémon's ability
     textPos.push([@battler.abilityName, textX, 38, align,

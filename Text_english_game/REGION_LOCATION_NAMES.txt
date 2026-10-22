@@ -1,0 +1,40 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[REGION_LOCATION_NAMES]
+Thị trấn Khải Nguyên
+Thị trấn Khải Nguyên
+Đường A1
+Đường A1
+Thành Phố Vạn Hội
+Thành Phố Vạn Hội
+Đường A10
+Đường A10
+Đường A2
+Đường A2
+Đường A3
+Đường A3
+Rừng Bách Trùng
+Rừng Bách Trùng
+Thành phố Văn Uyển
+Thành phố Văn Uyển
+Đường A4
+Đường A4
+Đường A5
+Đường A5
+Thị trấn Thanh Vũ
+Thị trấn Thanh Vũ
+Đầm lầy U Trạch
+Đầm lầy U Trạch
+Thành phố Lạc Hoa
+Thành phố Lạc Hoa
+Đường A6
+Đường A6
+Thị trấn Thiên Du
+Thị trấn Thiên Du
+Đường A7
+Đường A7
+Thành phố Bắc Hải
+Thành phố Bắc Hải
+Here
+Here

@@ -256,6 +256,27 @@ Innates = INTIMIDATE,HYPERCHARGE
 [LUXRAY]
 Innates = INTIMIDATE,HYPERCHARGE,STRONGJAW
 #----------------------------------------
+[BURMY]
+Innates = SHEDSKIN
+#----------------------------------------
+[BURMY_1]
+Innates = SHEDSKIN
+#----------------------------------------
+[BURMY_2]
+Innates = SHEDSKIN
+#----------------------------------------
+[WORMADAM]
+Innates = LEAFGUARD,OVERCOAT,ECOCLOAK
+#----------------------------------------
+[WORMADAM_1]
+Innates = SANDVEIL,OVERCOAT,ECOCLOAK
+#----------------------------------------
+[WORMADAM_2]
+Innates = SUCTIONCUPS,OVERCOAT,ECOCLOAK
+#----------------------------------------
+[MOTHIM]
+Innates = HONEYGATHER,TINTEDLENS,SPARESCALES
+#----------------------------------------
 [GLAMEOW]
 Innates = THICKFAT,CATSLUCK
 #----------------------------------------

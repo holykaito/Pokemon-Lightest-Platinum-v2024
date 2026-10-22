@@ -1,0 +1,496 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[ABILITY_NAMES]
+Corrupted Code
+Corrupted Code
+Aquatic Blood
+Aquatic Blood
+Expeditious
+Expeditious
+Good Luck
+Good Luck
+Toxic Waters
+Toxic Waters
+Burning Steam
+Burning Steam
+Rusted Feathers
+Rusted Feathers
+Grey Goo
+Grey Goo
+Mad Scientist
+Mad Scientist
+Queen's Potential
+Queen's Potential
+Mutation
+Mutation
+Scarecrow
+Scarecrow
+Phantom Thief
+Phantom Thief
+Backswing
+Backswing
+Unconcerned
+Unconcerned
+Magic Jaw
+Magic Jaw
+Sweet Dreams
+Sweet Dreams
+Practical
+Practical
+Paralytic Poison
+Paralytic Poison
+Acidic Poison
+Acidic Poison
+Solar Field
+Solar Field
+Compacted Ice
+Compacted Ice
+Neutralize
+Neutralize
+Wind Swept
+Wind Swept
+Quick Charge
+Quick Charge
+Mighty Horn
+Mighty Horn
+Chemical Reaction
+Chemical Reaction
+Echolocation
+Echolocation
+Power Shield
+Power Shield
+Ragebaiting
+Ragebaiting
+Beast Mode
+Beast Mode
+Concussion
+Concussion
+Boulder Barrier
+Boulder Barrier
+He’s Safe
+He’s Safe
+Quick Strike
+Quick Strike
+Ignition
+Ignition
+Extinguish
+Extinguish
+Soup Filler
+Soup Filler
+Anger Shell
+Anger Shell
+Armor Tail
+Armor Tail
+Beads of Ruin
+Beads of Ruin
+Commander
+Commander
+Costar
+Costar
+Cud Chew
+Cud Chew
+Earth Eater
+Earth Eater
+Electromorphosis
+Electromorphosis
+Good as Gold
+Good as Gold
+Guard Dog
+Guard Dog
+Hadron Engine
+Hadron Engine
+Lingering Aroma
+Lingering Aroma
+Mycelium Might
+Mycelium Might
+Opportunist
+Opportunist
+Orichalcum Pulse
+Orichalcum Pulse
+Protosynthesis
+Protosynthesis
+Purifying Salt
+Purifying Salt
+Quark Drive
+Quark Drive
+Rocky Payload
+Rocky Payload
+Seed Sower
+Seed Sower
+Sharpness
+Sharpness
+Supreme Overlord
+Supreme Overlord
+Sword of Ruin
+Sword of Ruin
+Tablets of Ruin
+Tablets of Ruin
+Thermal Exchange
+Thermal Exchange
+Toxic Debris
+Toxic Debris
+Vessel of Ruin
+Vessel of Ruin
+Well-Baked Body
+Well-Baked Body
+Wind Power
+Wind Power
+Wind Rider
+Wind Rider
+Zero to Hero
+Zero to Hero
+Supersweet Syrup
+Supersweet Syrup
+Hospitality
+Hospitality
+Toxic Chain
+Toxic Chain
+Mind's Eye
+Mind's Eye
+Embody Aspect
+Embody Aspect
+Poison Puppeteer
+Poison Puppeteer
+Tera Shift
+Tera Shift
+Tera Shell
+Tera Shell
+Teraform Zero
+Teraform Zero
+Mega Sol
+Mega Sol
+Dragonize
+Dragonize
+Piercing Drill
+Piercing Drill
+Spicy Spray
+Spicy Spray
+Fire Mane
+Fire Mane
+Eelevate
+Eelevate
+Aura Guard
+Aura Guard
+No Ability
+No Ability
+Vampiric Fang
+Vampiric Fang
+Warrior Dancer
+Warrior Dancer
+Joat
+Joat
+Cryo Healing
+Cryo Healing
+Extreme Focus
+Extreme Focus
+Storm Front
+Storm Front
+Chloroplast
+Chloroplast
+Bonechill
+Bonechill
+Overwhelming Frost
+Overwhelming Frost
+Overwhelming Voltage
+Overwhelming Voltage
+Overwhelming Blaze
+Overwhelming Blaze
+Sea Diver
+Sea Diver
+Tangling Roots
+Tangling Roots
+Fuelled Blaze
+Fuelled Blaze
+Power Surge
+Power Surge
+Cat-astrophe
+Cat-astrophe
+Shallowness
+Shallowness
+Dual Wield
+Dual Wield
+Vengence
+Vengence
+Unpredictable
+Unpredictable
+Spectralize
+Spectralize
+Frozen Yin
+Frozen Yin
+Frozen Yang
+Frozen Yang
+Poison Absorb
+Poison Absorb
+Crystallize
+Crystallize
+Flame Wing
+Flame Wing
+Venomancer
+Venomancer
+Fiery Spirit
+Fiery Spirit
+Sky Force
+Sky Force
+Double Cross
+Double Cross
+Under Weather
+Under Weather
+Potent Poison
+Potent Poison
+Vengeful Spirit
+Vengeful Spirit
+Faulty Receiver
+Faulty Receiver
+Monkey Business
+Monkey Business
+Agile
+Agile
+Amplifier
+Amplifier
+Ancient Slumber
+Ancient Slumber
+Anti-UB
+Anti-UB
+Aquatic
+Aquatic
+Artic Fur
+Artic Fur
+Astral Plane
+Astral Plane
+Aura Manipulation
+Aura Manipulation
+Battle Genes
+Battle Genes
+Berry Bulk
+Berry Bulk
+Berserker Rage
+Berserker Rage
+Blademaster
+Blademaster
+Black Stain
+Black Stain
+Branch Swing
+Branch Swing
+Brave Heart
+Brave Heart
+Bloodlust
+Bloodlust
+Bugbound
+Bugbound
+Battle Intellect
+Battle Intellect
+Carrion Feast
+Carrion Feast
+Cat's Luck
+Cat's Luck
+Chaos Space
+Chaos Space
+Charge Rush
+Charge Rush
+Cheap Tactics
+Cheap Tactics
+Chimeric
+Chimeric
+Color Aura
+Color Aura
+Cotton Cloak
+Cotton Cloak
+Cursed Surge
+Cursed Surge
+Dancing Panic
+Dancing Panic
+Debilitate
+Debilitate
+Distortion
+Distortion
+Dodge
+Dodge
+Dream Catcher
+Dream Catcher
+Dwarfhide
+Dwarfhide
+Echo Lock
+Echo Lock
+Eco-Cloak
+Eco-Cloak
+Eternal Dream
+Eternal Dream
+Fatal Precision
+Fatal Precision
+Florescence
+Florescence
+Fortitude
+Fortitude
+Field Explorer
+Field Explorer
+Fight's Spirit
+Fight's Spirit
+Flock
+Flock
+Fluff Up
+Fluff Up
+Flying Nimbus
+Flying Nimbus
+False Front
+False Front
+Gnawing
+Gnawing
+Great Wisdom
+Great Wisdom
+Grip Pincer
+Grip Pincer
+Ground Shock
+Ground Shock
+Growing Tooth
+Growing Tooth
+Half Drake
+Half Drake
+Headache
+Headache
+Heartbreaker
+Heartbreaker
+Hunted One
+Hunted One
+Hubris
+Hubris
+Hydroponic
+Hydroponic
+Ice Dew
+Ice Dew
+Icy Veins
+Icy Veins
+Inflatable
+Inflatable
+Intoxicate
+Intoxicate
+Kamen Rider
+Kamen Rider
+Kintsugi
+Kintsugi
+Juggernaut
+Juggernaut
+Jungle Combat
+Jungle Combat
+Liquify
+Liquify
+Loud Bang
+Loud Bang
+Malignate
+Malignate
+Multi Headed
+Multi Headed
+Overwhelm
+Overwhelm
+Pack Leader
+Pack Leader
+Perfectionist
+Perfectionist
+Permafrost
+Permafrost
+Petrifying Gaze
+Petrifying Gaze
+Phantom Image
+Phantom Image
+Pierce Armor
+Pierce Armor
+Phenomonelure
+Phenomonelure
+Poseidon Guard
+Poseidon Guard
+Powder Burst
+Powder Burst
+Pyromancy
+Pyromancy
+Nine Lives
+Nine Lives
+Ninja Style
+Ninja Style
+Nimble Fist
+Nimble Fist
+Nocturnal
+Nocturnal
+Numbing Poison
+Numbing Poison
+Outbreak
+Outbreak
+Precise Fist
+Precise Fist
+Prideful Guard
+Prideful Guard
+HYPERCHARGE
+HYPERCHARGE
+Rain Mirage
+Rain Mirage
+Rampage
+Rampage
+Parasite Host
+Parasite Host
+Refuge
+Refuge
+Resilience
+Resilience
+Ragnarok
+Ragnarok
+Roller
+Roller
+Spare Scales
+Spare Scales
+Searing Poison
+Searing Poison
+Seaweed
+Seaweed
+Seed Parasite
+Seed Parasite
+Seed Stimulus
+Seed Stimulus
+Self-Sufficient
+Self-Sufficient
+Showdown Mode
+Showdown Mode
+Sleet
+Sleet
+Soul Devouring
+Soul Devouring
+Speed Force
+Speed Force
+Spellcaster
+Spellcaster
+Spike Burst
+Spike Burst
+Spell Fist
+Spell Fist
+Spore Veil
+Spore Veil
+Stalk
+Stalk
+Stone Scatter
+Stone Scatter
+Striker
+Striker
+Subjugate
+Subjugate
+Sudden Slash
+Sudden Slash
+Tenacity
+Tenacity
+Terror Sower
+Terror Sower
+Tidiness
+Tidiness
+Traumatic Fist
+Traumatic Fist
+Vampiric
+Vampiric
+Vengeance
+Vengeance
+Wandering Orbs
+Wandering Orbs
+Wild Tantrum
+Wild Tantrum
+Worldroot
+Worldroot
+X-Ray Vision
+X-Ray Vision
+Zen Aura
+Zen Aura

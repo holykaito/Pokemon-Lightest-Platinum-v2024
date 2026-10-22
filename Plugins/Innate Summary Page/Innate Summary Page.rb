@@ -190,12 +190,13 @@ class PokemonSummary_Scene
 
   def drawPageINNATES
     overlay = @sprites["overlay"].bitmap
-    base_color = Color.new(248, 248, 248)
-    shadow_color = Color.new(104, 104, 104)
-    text_base_color = Color.new(64, 64, 64)
-    text_shadow_color = Color.new(176, 176, 176)
-    text_red_color = Color.new(175, 34, 34)
-    text_red_shadow = Color.new(247, 106, 106)
+    base_color        = Color.new(248, 248, 248)
+    shadow_color      = Color.new(145, 150, 150)
+    text_base_color   = Color.new(52, 58, 63)
+    text_shadow_color = Color.new(178, 186, 190)
+    text_red_color    = Color.new(155, 55, 60)
+    text_red_shadow   = Color.new(218, 188, 190)
+    ability_name_shadow = Color.new(190, 198, 202)
     small_font = Settings::SMALL_FONT_IN_SUMMARY
     max_width = 140 # Maximum width for wrapping innate names
     use_variable_unlock = Settings::INNATE_PROGRESS_WITH_VARIABLE
@@ -232,49 +233,92 @@ class PokemonSummary_Scene
       if innate_data
         # Locked Innates
         if use_level_unlock && pokemon_level < levels_to_unlock[i]
-          drawLockedInnate(overlay, text_y, i, "This innate is currently locked until level #{levels_to_unlock[i]}.", small_font, text_red_color, text_red_shadow)
+          drawLockedInnate(overlay, text_y, i, _INTL("This innate is currently locked until level {1}.", levels_to_unlock[i]), small_font, text_red_color, text_red_shadow)
         elsif use_variable_unlock && i >= display_count
-          drawLockedInnate(overlay, text_y, i, "This innate is currently locked.", small_font, text_red_color, text_red_shadow)
-        else
+          drawLockedInnate(overlay, text_y, i, _INTL("This innate is currently locked."), small_font, text_red_color, text_red_shadow)        else
           # Dynamically adjust name font/lines
-          drawInnateName(overlay, innate_name_display, text_x, text_y, max_width, text_base_color, text_shadow_color, small_font)
-
+        drawInnateName(overlay, innate_name_display, text_x, text_y, max_width, text_base_color, ability_name_shadow, small_font)
           # Description handling
-          if small_font
-            pbSetSmallFont(overlay)
-            drawFormattedTextEx(overlay, 224, text_y + 32, 282, innate_desc_display, text_base_color, text_shadow_color, 20)
-            pbSetSystemFont(overlay)
-          else
-            drawTextEx(overlay, 224, text_y + 32, 282, 2, innate_desc_display, text_base_color, text_shadow_color)
-          end
+        drawInnateDescription(
+          overlay,
+          text_y,
+          innate_desc_display,
+          text_base_color,
+          text_shadow_color,
+          small_font
+        )
         end
       else
         # If no innate data exists
         drawInnateName(overlay, innate_name_display, text_x, text_y, max_width, text_base_color, text_shadow_color, small_font)
-
-        if small_font
-          pbSetSmallFont(overlay)
-          drawFormattedTextEx(overlay, 224, text_y + 32, 282, innate_desc_display, text_base_color, text_shadow_color, 20)
-          pbSetSystemFont(overlay)
-        else
-          drawTextEx(overlay, 224, text_y + 32, 282, 2, innate_desc_display, text_base_color, text_shadow_color)
-        end
+        drawInnateDescription(
+          overlay,
+          text_y,
+          innate_desc_display,
+          text_base_color,
+          text_shadow_color,
+          small_font
+        )
       end
     end
 	pbDrawTextPositions(overlay, textpos)
   end
   
+  
+#===============================================================================
+# Unified Innate Description Renderer
+#===============================================================================
+def drawInnateDescription(overlay, text_y, description, color, shadow_color, small_font)
+  desc_x = 224
+  desc_y = text_y + 36
+  desc_width = 282
+  line_spacing = 34
+
+  if small_font
+    pbSetSmallFont(overlay)
+    overlay.font.size += 2
+
+    drawFormattedTextEx(
+      overlay,
+      desc_x,
+      desc_y,
+      desc_width,
+      description,
+      color,
+      shadow_color,
+      line_spacing
+    )
+
+    pbSetSystemFont(overlay)
+  else
+    drawTextEx(
+      overlay,
+      desc_x,
+      desc_y,
+      desc_width,
+      2,
+      description,
+      color,
+      shadow_color
+    )
+  end
+end
 
   def drawLockedInnate(overlay, text_y, index, lock_message, small_font, color, shadow_color)
-    textpos = [["Locked", 362, text_y, :left, color, shadow_color]]
+    textpos = [
+      [_INTL("Locked"), 362, text_y, :left, color, shadow_color]
+    ]
+
     pbDrawTextPositions(overlay, textpos)
-    if small_font
-      pbSetSmallFont(overlay)
-      drawFormattedTextEx(overlay, 224, text_y + 32, 282, lock_message, color, shadow_color, 20)
-      pbSetSystemFont(overlay)
-    else
-      drawTextEx(overlay, 224, text_y + 32, 282, 2, lock_message, color, shadow_color)
-    end
+
+    drawInnateDescription(
+      overlay,
+      text_y,
+      lock_message,
+      color,
+      shadow_color,
+      small_font
+    )
   end
 
   def drawInnateName(overlay, innate_name_display, text_x, text_y, max_width, base_color, shadow_color, small_font)

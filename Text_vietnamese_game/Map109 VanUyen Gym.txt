@@ -2,12 +2,12 @@
 # translate every second line of this file.
 #-------------------------------
 [Map109]
+!!!
+!!!
 \bYou think you're ready for this challenge? I'll make sure this won't be an easy victory!
 \bYou think you're ready for this challenge? I'll make sure this won't be an easy victory!
 \bI can't believe it... You're really strong! But next time, I won't go down so easily!
 \bI can't believe it... You're really strong! But next time, I won't go down so easily!
-!!!
-!!!
 \bStep forward, if you dare! My Pokémon and I will give you a battle to remember!
 \bStep forward, if you dare! My Pokémon and I will give you a battle to remember!
 \bYou’ve proven your strength today. But next time, you’ll find me even more formidable!
@@ -18,12 +18,6 @@
 \rEven the best fall sometimes. You’ve earned this win, but I won’t stay down for long!
 \rYou’ve conquered this challenge, but remember, true strength lies in how you grow from here.
 \rYou’ve conquered this challenge, but remember, true strength lies in how you grow from here.
-\rI'm Assistant Gym. My Pokémon and I have trained in harmony for years. Let’s see how well you’ve bonded with yours!
-\rI'm Assistant Gym. My Pokémon and I have trained in harmony for years. Let’s see how well you’ve bonded with yours!
-\rYour connection with your Pokémon is strong… You’ve bested us this time.
-\rYour connection with your Pokémon is strong… You’ve bested us this time.
-\rYour bond with your Pokémon shines brightly. Take this badge as a symbol of your strength.
-\rYour bond with your Pokémon shines brightly. Take this badge as a symbol of your strength.
 \r\ff[leaderjessica]You must defeat the Assistants first!
 \r\ff[leaderjessica]You must defeat the Assistants first!
 \r\ff[leaderjessica]You're really skilled, but there are other gyms to visit in Zhery, and they're even stronger.
@@ -42,14 +36,20 @@
 \r\ff[leaderjessica]That TM contains Struggle Bug, a very efficient bug move.
 \r\ff[leaderjessica]I still have much to learn when it comes to battling Pokémon. That awareness makes me love battling all that much more!
 \r\ff[leaderjessica]I still have much to learn when it comes to battling Pokémon. That awareness makes me love battling all that much more!
+\rI'm Assistant Gym. My Pokémon and I have trained in harmony for years. Let’s see how well you’ve bonded with yours!
+\rI'm Assistant Gym. My Pokémon and I have trained in harmony for years. Let’s see how well you’ve bonded with yours!
+\rYour connection with your Pokémon is strong… You’ve bested us this time.
+\rYour connection with your Pokémon is strong… You’ve bested us this time.
+\rYour bond with your Pokémon shines brightly. Take this badge as a symbol of your strength.
+\rYour bond with your Pokémon shines brightly. Take this badge as a symbol of your strength.
+Herahera...
+Herahera...
 \bHi, I'm Assistant Gym. Every battle is a new chapter in the story of a trainer. Let’s see what you’ll write today!
 \bHi, I'm Assistant Gym. Every battle is a new chapter in the story of a trainer. Let’s see what you’ll write today!
 \bYou’ve written a powerful chapter today. I’ll remember this battle.
 \bYou’ve written a powerful chapter today. I’ll remember this battle.
 \bThis badge marks the end of our battle, but the beginning of your next challenge. Wear it with pride!
 \bThis badge marks the end of our battle, but the beginning of your next challenge. Wear it with pride!
-Bzbzbzbzbzbzbzbzbz...
-Bzbzbzbzbzbzbzbzbz...
 \bOnly the toughest trainers can make it this far. Let’s see if you’ve got what it takes.
 \bOnly the toughest trainers can make it this far. Let’s see if you’ve got what it takes.
 \bImpressive… You’ve earned this win. But remember, I'll be training hard for our next encounter!

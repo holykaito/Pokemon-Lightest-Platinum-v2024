@@ -221,7 +221,7 @@ module ExtendedTerrains
     def pbSpeed
       value = ExtendedTerrains.with_effective_stages([self]) { super }
       if @battle.field.terrain == :Swamp && ExtendedTerrains.grounded?(self) &&
-         !pbHasType?(:WATER)
+         !pbHasType?(:WATER) && !hasActiveAbility?(:AMPHIBIOUS)
         value = [(value * 0.75).round, 1].max
       end
       return value

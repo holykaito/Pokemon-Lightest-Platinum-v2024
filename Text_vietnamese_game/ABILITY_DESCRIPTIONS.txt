@@ -2,447 +2,527 @@
 # translate every second line of this file.
 #-------------------------------
 [ABILITY_DESCRIPTIONS]
+Blocks burns, weakens Fire attacks, and creates Aqua Ring.
+Ngăn bỏng, giảm sức mạnh chiêu hệ Lửa và tạo Aqua Ring.
+Resists heat and cold and powers up Slam and Body Slam.
+Chịu được nóng lạnh, tăng sức mạnh Slam và Body Slam.
+Wakes quickly and acts with greater priority.
+Tỉnh ngủ nhanh hơn và được tăng độ ưu tiên hành động.
+Escapes traps and sharply boosts Speed when intimidated.
+Thoát khỏi bẫy và tăng mạnh Tốc khi bị Intimidate.
+Collects items and clears its side’s entry hazards on entry.
+Thu thập vật phẩm và xóa bẫy bên mình khi vào trận.
+Flinching boosts Speed; low HP boosts defenses once.
+Bị chùn bước sẽ tăng Tốc; HP thấp tăng Thủ và Thủ ĐB một lần.
+Guards against status and damage in sun or grassy terrain.
+Chống trạng thái bất lợi và giảm sát thương dưới nắng hoặc Grassy Terrain.
+Senses dangerous moves and braces against the first hit.
+Phát hiện chiêu thức nguy hiểm và giảm sát thương đòn đầu tiên.
+Foresees and disables a foe's strongest move.
+Dự đoán và vô hiệu hóa chiêu thức mạnh nhất của đối thủ.
 The Pokémon summons a snowstorm in battle.
-The Pokémon summons a snowstorm in battle.
+Pokémon triệu hồi bão tuyết khi vào trận.
+May gather Honey and eats Honey held by targets it hits.
+Có thể nhặt Honey và ăn Honey của mục tiêu khi đánh trúng.
+Avoids allies' attacks and may dodge foes' moves.
+Không trúng đòn từ đồng đội và có thể né chiêu thức đối thủ.
+Bypasses barriers, protection, and substitutes.
+Xuyên qua rào chắn, chiêu bảo vệ và Substitute.
+Finds Berries when empty-handed and restores HP after eating them.
+Tìm Berry khi không giữ vật phẩm và hồi HP sau khi ăn.
 Changes type to the first selected move.
-Changes type to the first selected move.
+Đổi hệ theo chiêu thức đầu tiên được chọn.
 Defeating a foe powers up the user one time.
-Defeating a foe powers up the user one time.
+Hạ gục đối thủ sẽ tăng sức mạnh một lần.
 Boosts Attack when entering battle one time.
-Boosts Attack when entering battle one time.
+Tăng Công một lần khi vào trận.
 Boosts Defense when entering battle one time.
-Boosts Defense when entering battle one time.
+Tăng Thủ một lần khi vào trận.
+Returns ball and bomb moves and retrieves Poké Balls.
+Phản lại chiêu dạng bóng, bom và thu hồi Poké Ball.
+Changes type with terrain but retains its original STAB.
+Đổi hệ theo địa hình nhưng vẫn giữ STAB của hệ gốc.
 Powers up Poison-type moves, May disable a move used on the Pokémon.
-Powers up Poison-type moves, May disable a move used on the Pokémon.
+Tăng sức mạnh chiêu hệ Độc, có thể khóa chiêu thức đánh trúng.
 Is Water-type in addition to its other types.
-Is Water-type in addition to its other types.
+Có thêm hệ Nước bên cạnh các hệ vốn có.
 Your attacking moves have +1 priority.
-Your attacking moves have +1 priority.
+Các chiêu tấn công được tăng +1 độ ưu tiên.
 Increased crit-chance and winnings.
-Increased crit-chance and winnings.
+Tăng tỷ lệ chí mạng và tiền thưởng sau trận.
 Water-type moves have a 20% chance of poisoning.
-Water-type moves have a 20% chance of poisoning.
+Chiêu hệ Nước có 20% xác suất gây trúng độc.
 Water-type moves have a 20% chance of burning.
-Water-type moves have a 20% chance of burning.
+Chiêu hệ Nước có 20% xác suất gây bỏng.
 Halves speed and damage. Weakness to Water.
-Halves speed and damage. Weakness to Water.
+Giảm một nửa Tốc và sát thương gây ra. Yếu trước hệ Nước.
 Posion-type moves and being poisoned heal.
-Posion-type moves and being poisoned heal.
+Hồi HP khi trúng chiêu hệ Độc hoặc bị trúng độc.
 Powers up Fire, Poison, and Fairy moves.
-Powers up Fire, Poison, and Fairy moves.
+Tăng sức mạnh chiêu hệ Lửa, Độc và Tiên.
 Boosts crit-chance after knocking out any Pokémon.
-Boosts crit-chance after knocking out any Pokémon.
+Tăng tỷ lệ chí mạng sau khi hạ gục một Pokémon.
 Raises Attack and Lowers speed when attacked.
-Raises Attack and Lowers speed when attacked.
+Tăng Công nhưng giảm Tốc khi bị tấn công.
 Creates a substitute when below half health.
-Creates a substitute when below half health.
+Tạo Substitute khi HP dưới một nửa.
 When you lower an opponents stat increase yours.
-When you lower an opponents stat increase yours.
+Khi giảm chỉ số đối thủ, chỉ số của bản thân sẽ tăng.
 When the last move fails increase offensive stats.
-When the last move fails increase offensive stats.
+Nếu chiêu vừa dùng thất bại, tăng Công và Công ĐB.
 Normal moves bypass Rock and Steel resistances.
-Normal moves bypass Rock and Steel resistances.
+Chiêu hệ Thường bỏ qua kháng hệ Đá và Thép.
 Biting moves are special and inflict status's.
-Biting moves are special and inflict status's.
+Chiêu cắn trở thành chiêu đặc biệt và gây trạng thái bất lợi.
 Heals any sleeping pokemon.
-Heals any sleeping pokemon.
+Hồi HP cho mọi Pokémon đang ngủ.
 If a stat is lowered, increase the opposite.
-If a stat is lowered, increase the opposite.
+Khi một chỉ số bị giảm, tăng chỉ số đối ứng.
 Moves that would poison paralyze instead.
-Moves that would poison paralyze instead.
+Chiêu gây trúng độc sẽ gây tê liệt thay thế.
 Moves that would poison burn instead.
-Moves that would poison burn instead.
+Chiêu gây trúng độc sẽ gây bỏng thay thế.
 Increased special D in the sun, Heals grass allies.
-Increased special D in the sun, Heals grass allies.
+Tăng Thủ ĐB dưới nắng và hồi HP cho đồng đội hệ Cỏ.
 Resist Fighting and Steel gain defence when hit.
-Resist Fighting and Steel gain defence when hit.
+Kháng hệ Giác đấu và Thép, tăng Thủ khi trúng đòn.
 Moves are typeless and stronger.
-Moves are typeless and stronger.
+Chiêu thức không còn hệ và được tăng sức mạnh.
 When using a flying type move set a tailwind.
-When using a flying type move set a tailwind.
+Dùng chiêu hệ Bay sẽ tạo Tailwind.
 Two turn moves only take one turn instead.
-Two turn moves only take one turn instead.
+Chiêu cần hai lượt chỉ mất một lượt để sử dụng.
 Horn or Drill moves are stronger and can flinch.
-Horn or Drill moves are stronger and can flinch.
+Chiêu dùng sừng hoặc khoan mạnh hơn và có thể gây chùn bước.
 Heal 25% from an berry and gain its type.
-Heal 25% from an berry and gain its type.
+Ăn Berry hồi 25% HP và nhận hệ của Berry đó.
 Accuracy cannot lower, takes more damage from sound-based moves.
-Accuracy cannot lower, takes more damage from sound-based moves.
+Không bị giảm độ chính xác, nhưng chịu thêm sát thương từ chiêu âm thanh.
 Ingores type chart, immune to non-sleep statuses.
-Ingores type chart, immune to non-sleep statuses.
+Bỏ qua tương khắc hệ, miễn nhiễm trạng thái bất lợi trừ ngủ.
 When first lowering a stat, trap and damage an opponent
-When first lowering a stat, trap and damage an opponent
+Lần đầu giảm chỉ số sẽ bẫy và gây sát thương cho đối thủ.
 After 5 turns revert forms
-After 5 turns revert forms
+Trở về hình dạng ban đầu sau 5 lượt.
 Explosion & Self Destruct deal 75% to use when at full hp.
-Explosion & Self Destruct deal 75% to use when at full hp.
+Explosion và Self-Destruct gây mất 75% HP khi dùng lúc đầy HP.
 When protected succesfully, powers up rock-type moves.
-When protected succesfully, powers up rock-type moves.
+Khi bảo vệ thành công, tăng sức mạnh chiêu hệ Đá.
 On fainting to recoil damage, restore 50% hp.
-On fainting to recoil damage, restore 50% hp.
-Fire, Ice, Electric moves are stronger, dark types are immune to them.
-Fire, Ice, Electric moves are stronger, dark types are immune to them.
+Khi mất khả năng chiến đấu vì phản lực, hồi lại 50% HP.
 On first turn goes first, with 100% accuracy.
-On first turn goes first, with 100% accuracy.
+Ở lượt đầu, luôn ra đòn trước với độ chính xác 100%.
 Ignites when hit by a Fire move. Reduce damage from Fire moves.
-Ignites when hit by a Fire move. Reduce damage from Fire moves.
+Bốc cháy khi trúng chiêu hệ Lửa, giảm sát thương từ hệ Lửa.
 Extinguishs when hit by a Water move. Reduce damage from Water moves.
-Extinguishs when hit by a Water move. Reduce damage from Water moves.
+Dập lửa khi trúng chiêu hệ Nước, giảm sát thương từ hệ Nước.
 When an opponent heals, you heal some as well.
-When an opponent heals, you heal some as well.
+Khi đối thủ hồi HP, bản thân cũng được hồi một phần HP.
 Gets a powerful boost if a hit makes its HP half or less.
-Gets a powerful boost if a hit makes its HP half or less.
+Tăng mạnh sức mạnh nếu trúng đòn khiến HP còn một nửa hoặc ít hơn.
 Prevents opposing Pokémon from using priority moves.
-Prevents opposing Pokémon from using priority moves.
+Ngăn Pokémon đối thủ sử dụng chiêu thức ưu tiên.
 Lowers the Sp. Def of all Pokémon except the user.
-Lowers the Sp. Def of all Pokémon except the user.
+Giảm Thủ ĐB của mọi Pokémon trừ bản thân.
 Pairs up and commands with an active Dondozo.
-Pairs up and commands with an active Dondozo.
+Phối hợp và điều khiển Dondozo đang chiến đấu.
 Copies an ally's stat changes upon entry to battle.
-Copies an ally's stat changes upon entry to battle.
+Sao chép thay đổi chỉ số của đồng đội khi vào trận.
 Reuses an eaten Berry at the end of the next turn.
-Reuses an eaten Berry at the end of the next turn.
+Tái sử dụng Berry đã ăn vào cuối lượt tiếp theo.
 Restores HP if hit by a Ground-type move.
-Restores HP if hit by a Ground-type move.
+Hồi HP khi trúng chiêu hệ Đất.
 The Pokémon becomes charged upon taking damage.
-The Pokémon becomes charged upon taking damage.
+Pokémon tích điện khi chịu sát thương.
 The Pokémon becomes immune to status moves.
-The Pokémon becomes immune to status moves.
+Pokémon miễn nhiễm với các chiêu thức trạng thái.
 Boosts Atk if intimidated and immune to being forced out.
-Boosts Atk if intimidated and immune to being forced out.
+Tăng Công khi bị Intimidate và không thể bị ép rời trận.
 Turns the ground into Electric Terrain and boosts Sp. Atk.
-Turns the ground into Electric Terrain and boosts Sp. Atk.
+Tạo Electric Terrain và tăng Công ĐB.
 Status moves are unimpeded by this Ability but slower to use.
-Status moves are unimpeded by this Ability but slower to use.
+Chiêu trạng thái không bị Đặc tính cản trở nhưng ra đòn chậm hơn.
 Copies an opponent's stat boost during a turn.
-Copies an opponent's stat boost during a turn.
+Sao chép chỉ số được tăng của đối thủ trong lượt.
 Turns the sunlight harsh while boosing Attack.
-Turns the sunlight harsh while boosing Attack.
+Tạo nắng gắt và tăng Công.
 Boosts its best stat in harsh sunlight.
-Boosts its best stat in harsh sunlight.
+Tăng chỉ số cao nhất dưới nắng gắt.
 Gains protection from status effects and Ghost-type moves.
-Gains protection from status effects and Ghost-type moves.
+Được bảo vệ khỏi trạng thái bất lợi và chiêu hệ Ma.
 Boosts its best stat in Electric Terrain.
-Boosts its best stat in Electric Terrain.
+Tăng chỉ số cao nhất trong Electric Terrain.
 Powers up Rock-type moves.
-Powers up Rock-type moves.
+Tăng sức mạnh chiêu hệ Đá.
 Turns the ground into Grassy Terrain upon taking damage.
-Turns the ground into Grassy Terrain upon taking damage.
+Tạo Grassy Terrain khi chịu sát thương.
 Powers up slicing moves.
-Powers up slicing moves.
+Tăng sức mạnh các chiêu chém.
 Boosts the power of its moves with every fainted ally.
-Boosts the power of its moves with every fainted ally.
+Mỗi đồng đội mất khả năng chiến đấu sẽ tăng sức mạnh chiêu thức.
 Lowers the Defense of all Pokémon except the user.
-Lowers the Defense of all Pokémon except the user.
+Giảm Thủ của mọi Pokémon trừ bản thân.
 Lowers the Attack of all Pokémon except the user.
-Lowers the Attack of all Pokémon except the user.
+Giảm Công của mọi Pokémon trừ bản thân.
 Boosts Atk when hit by a Fire-type move and prevents burns.
-Boosts Atk when hit by a Fire-type move and prevents burns.
+Tăng Công khi trúng chiêu hệ Lửa và miễn nhiễm bỏng.
 Scatters poison spikes when hit by physical moves.
-Scatters poison spikes when hit by physical moves.
+Rải Toxic Spikes khi trúng chiêu vật lý.
 Lowers the Sp. Atk of all Pokémon except the user.
-Lowers the Sp. Atk of all Pokémon except the user.
+Giảm Công ĐB của mọi Pokémon trừ bản thân.
 Fire-type moves deal no damage and sharply boost Defense.
-Fire-type moves deal no damage and sharply boost Defense.
+Miễn nhiễm sát thương hệ Lửa và tăng mạnh Thủ.
 The Pokémon becomes charged from taking wind damage.
-The Pokémon becomes charged from taking wind damage.
-Boosts Attack in Tailwind or when attacked by wind moves.
-Boosts Attack in Tailwind or when attacked by wind moves.
+Pokémon tích điện khi chịu sát thương từ chiêu gió.
+Absorbs Flying and wind moves to boost its stats.
+Hấp thụ chiêu hệ Bay và chiêu gió để tăng chỉ số.
 Transforms into its Hero Form when it switches out.
-Transforms into its Hero Form when it switches out.
+Chuyển sang Hero Form khi rời trận.
 Lowers the foe's evasion once per battle.
-Lowers the foe's evasion once per battle.
+Giảm né tránh của đối thủ một lần mỗi trận.
 Restores ally's HP a little when entering battle.
-Restores ally's HP a little when entering battle.
+Hồi một ít HP cho đồng đội khi vào trận.
 May badly poison targets when the user attacks.
-May badly poison targets when the user attacks.
+Có thể khiến mục tiêu nhiễm độc nặng khi tấn công.
 Prevents accuracy loss. Ignores Ghost immunities.
-Prevents accuracy loss. Ignores Ghost immunities.
+Không bị giảm độ chính xác. Bỏ qua miễn nhiễm của hệ Ma.
 The user's shining mask raises its Speed stat.
-The user's shining mask raises its Speed stat.
+Mặt nạ phát sáng giúp tăng Tốc.
 The user's shining mask raises its Sp. Def stat.
-The user's shining mask raises its Sp. Def stat.
+Mặt nạ phát sáng giúp tăng Thủ ĐB.
 The user's shining mask raises its Attack stat.
-The user's shining mask raises its Attack stat.
+Mặt nạ phát sáng giúp tăng Công.
 The user's shining mask raises its Defense stat.
-The user's shining mask raises its Defense stat.
+Mặt nạ phát sáng giúp tăng Thủ.
 Moves that inflict poison also cause confusion.
-Moves that inflict poison also cause confusion.
+Chiêu gây trúng độc đồng thời gây bối rối.
 Enters Terastal Form when sent out.
-Enters Terastal Form when sent out.
+Chuyển sang Terastal Form khi vào trận.
 Resists all types when HP is full.
-Resists all types when HP is full.
+Kháng mọi hệ khi HP đầy.
 Eliminates all weather and terrain.
-Eliminates all weather and terrain.
+Xóa bỏ mọi hiệu ứng thời tiết và địa hình.
 Uses its moves as if in sunny weather.
-Uses its moves as if in sunny weather.
+Sử dụng chiêu thức như thể đang có nắng.
 Normal-type moves become Dragon-type and powered.
-Normal-type moves become Dragon-type and powered.
+Chiêu hệ Thường chuyển thành hệ Rồng và được tăng sức mạnh.
 Contact moves deals a quarter of damage against protections.
-Contact moves deals a quarter of damage against protections.
+Chiêu tiếp xúc gây 25% sát thương khi gặp chiêu bảo vệ.
 Burns the attacker when hit by a damaging move.
-Burns the attacker when hit by a damaging move.
+Gây bỏng cho kẻ tấn công khi trúng chiêu gây sát thương.
+Powers up Fire-type moves.
+Tăng sức mạnh chiêu hệ Lửa.
+Immune to Ground-type moves. Boosts best stat when it deals a KO.
+Miễn nhiễm hệ Đất. Tăng chỉ số cao nhất khi hạ gục đối thủ.
+Halves the damage from contact moves.
+Giảm một nửa sát thương từ chiêu tiếp xúc.
 The user doesn't have any ability
-The user doesn't have any ability
+Pokémon này không có Đặc tính.
 Bite moves heals the user. Stackable.
-Bite moves heals the user. Stackable.
+Chiêu cắn hồi HP cho bản thân. Có thể cộng dồn.
 Dance moves lowers the Attack of all Pokémon.
-Dance moves lowers the Attack of all Pokémon.
+Chiêu nhảy múa làm giảm Công của mọi Pokémon.
 Removes STAB. Boosts all moves by 30%.
-Removes STAB. Boosts all moves by 30%.
+Mất STAB nhưng tăng 30% sức mạnh mọi chiêu thức.
 Restores HP if the Pokémon is frostbiten.
-Restores HP if the Pokémon is frostbiten.
+Hồi HP khi Pokémon bị tê cóng.
 Boosts Special Attack if there is a status problem.
-Boosts Special Attack if there is a status problem.
+Tăng Công ĐB khi mắc trạng thái bất lợi.
 Summons rain & electric terrain.
-Summons rain & electric terrain.
+Tạo mưa và Electric Terrain.
 Acts as if the sun is up.
-Acts as if the sun is up.
+Hoạt động như thể trời đang nắng.
 May frostbite targets when a Pokémon makes contact.
-May frostbite targets when a Pokémon makes contact.
+Có thể gây tê cóng cho Pokémon tiếp xúc.
 Once per battle, the user Frostbites everything on switch in.
-Once per battle, the user Frostbites everything on switch in.
+Một lần mỗi trận, gây tê cóng cho mọi Pokémon khi vào trận.
 Once per battle, the user Paralyzes everything on switch in.
-Once per battle, the user Paralyzes everything on switch in.
+Một lần mỗi trận, gây tê liệt cho mọi Pokémon khi vào trận.
 Once per battle, the user Burns everything on switch in.
-Once per battle, the user Burns everything on switch in.
+Một lần mỗi trận, gây bỏng cho mọi Pokémon khi vào trận.
 Raises Speed and give Water-Type moves a damage increase in rain.
-Raises Speed and give Water-Type moves a damage increase in rain.
+Tăng Tốc và sức mạnh chiêu hệ Nước khi trời mưa.
 Leech Seeds the target and ingrain.
-Leech Seeds the target and ingrain.
+Gieo Leech Seed lên mục tiêu và sử dụng Ingrain.
 Always crit if the target burnt.
-Always crit if the target burnt.
+Luôn chí mạng nếu mục tiêu đang bị bỏng.
 Electric moves hit the targets allies.
-Electric moves hit the targets allies.
+Chiêu hệ Điện đánh trúng cả đồng đội của mục tiêu.
 Powers up dark-type moves by 75% but lowers priority. Priorty moves ignore this ability.
-Powers up dark-type moves by 75% but lowers priority. Priorty moves ignore this ability.
+Tăng 75% sức mạnh chiêu hệ Bóng tối nhưng giảm ưu tiên. Chiêu ưu tiên bỏ qua hiệu ứng này.
 Immune to Infatuation, Taunt & Flinching.
-Immune to Infatuation, Taunt & Flinching.
-Slicing and Pulse moves hit twice
-Slicing and Pulse moves hit twice
+Miễn nhiễm mê hoặc, Taunt và chùn bước.
+Slicing, pulse, and bomb moves hit twice, the second hit dealing less damage.
+Chiêu chém, xung và bom đánh hai lần, đòn thứ hai yếu hơn.
 The user becomes Vengful if it's ally was knocked out the previous turn.
-The user becomes Vengful if it's ally was knocked out the previous turn.
+Nhận trạng thái Vengful nếu đồng đội bị hạ ở lượt trước.
 Resistance to Psychic-Types and STAB deals Super Effective against Psychic-Types.
-Resistance to Psychic-Types and STAB deals Super Effective against Psychic-Types.
+Kháng hệ Siêu linh và chiêu STAB gây sát thương siêu hiệu quả lên hệ Siêu linh.
 Gives the Ghost-type on switch in.
-Gives the Ghost-type on switch in.
+Nhận thêm hệ Ma khi vào trận.
 Combo of Teravolt and Overwhelming Frost.
-Combo of Teravolt and Overwhelming Frost.
+Kết hợp hiệu ứng Teravolt và Overwhelming Frost.
 Combo of Turboblaze and Overwhelming Frost.
-Combo of Turboblaze and Overwhelming Frost.
+Kết hợp hiệu ứng Turboblaze và Overwhelming Frost.
 Restores HP if hit by a Poison-type move.
-Restores HP if hit by a Poison-type move.
+Hồi HP khi trúng chiêu hệ Độc.
 Rock-type moves become Ice-type and powered up.
-Rock-type moves become Ice-type and powered up.
+Chiêu hệ Đá chuyển thành hệ Băng và được tăng sức mạnh.
 Flying-type moves become Fire-type and powered up.
-Flying-type moves become Fire-type and powered up.
+Chiêu hệ Bay chuyển thành hệ Lửa và được tăng sức mạnh.
 Gains the Fire-type on Switch in.
-Gains the Fire-type on Switch in.
+Nhận thêm hệ Lửa khi vào trận.
 Doubles the power of Flying-type moves.
-Doubles the power of Flying-type moves.
+Tăng gấp đôi sức mạnh chiêu hệ Bay.
 30% chance to attack twice.
-30% chance to attack twice.
+Có 30% xác suất tấn công hai lần.
 Protects the Pokémon from some aura and pulse moves.
-Protects the Pokémon from some aura and pulse moves.
+Bảo vệ Pokémon khỏi một số chiêu hào quang và xung.
 Boosts Special Attack, but allows only one move to be used.
-Boosts Special Attack, but allows only one move to be used.
+Tăng Công ĐB nhưng chỉ được sử dụng một chiêu thức.
 The user gains priority on its first turn.
-The user gains priority on its first turn.
+Được tăng độ ưu tiên ở lượt đầu vào trận.
 Powers up sound moves and weakens sound damage.
-Powers up sound moves and weakens sound damage.
+Tăng sức mạnh chiêu âm thanh và giảm sát thương âm thanh nhận vào.
 May raise all stats every 2 turns while asleep.
-May raise all stats every 2 turns while asleep.
+Có thể tăng mọi chỉ số sau mỗi 2 lượt khi đang ngủ.
 Deals more damage and takes less damage from Ultra Beasts.
-Deals more damage and takes less damage from Ultra Beasts.
+Gây thêm và chịu ít sát thương hơn từ Ultra Beast.
 Adds the Water type to this Pokémon and removes the weaknesses.
-Adds the Water type to this Pokémon and removes the weaknesses.
+Thêm hệ Nước và loại bỏ các điểm yếu.
 Reduces damage from physical and special moves.
-Reduces damage from physical and special moves.
+Giảm sát thương từ cả chiêu vật lý lẫn đặc biệt.
 Adds the Ghost-type to all Pokémon on the field.
-Adds the Ghost-type to all Pokémon on the field.
+Thêm hệ Ma cho mọi Pokémon trên sân.
 Buff damage of Aura Sphere.
-Buff damage of Aura Sphere.
+Tăng sát thương của Aura Sphere.
+Powers up moves that match the target's type.
+Tăng sức mạnh chiêu thức trùng hệ với mục tiêu.
+Eating a Berry boosts both defenses.
+Ăn Berry sẽ tăng Thủ và Thủ ĐB.
+Lower HP boosts Speed and recovery from attacks.
+HP càng thấp càng tăng Tốc và khả năng hồi HP từ đòn đánh.
+May parry attacks, especially slicing moves, and counterattack.
+Có thể đỡ đòn, đặc biệt là chiêu chém, rồi phản công.
 Can curse the enemy, removing 10% of their HP each turn.
-Can curse the enemy, removing 10% of their HP each turn.
-When Grassy Terrain, gives immunity to all Ground-type moves.
-When Grassy Terrain, gives immunity to all Ground-type moves.
+Có thể nguyền rủa đối thủ, khiến mất 10% HP mỗi lượt.
+Levitates and boosts evasion on Grassy Terrain.
+Bay lơ lửng và tăng né tránh trên Grassy Terrain.
 Raises Attack when an opposing Pokémon gains stats.
-Raises Attack when an opposing Pokémon gains stats.
+Tăng Công khi Pokémon đối thủ được tăng chỉ số.
+Restores HP upon knocking out a foe.
+Hồi HP khi hạ gục đối thủ.
 Add Bug-type to user.
-Add Bug-type to user.
+Nhận thêm hệ Bọ.
 Opposing Pokemon can be marked as hunted at the end of the turn.
-Opposing Pokemon can be marked as hunted at the end of the turn.
+Có thể đánh dấu Pokémon đối thủ là con mồi vào cuối lượt.
 Weakens super-effective hits and heals after KOing foes.
-Weakens super-effective hits and heals after KOing foes.
-Increases random stat when dealing a critical hit.
-Increases random stat when dealing a critical hit.
+Giảm sát thương siêu hiệu quả và hồi HP khi hạ gục đối thủ.
+Critical hits raise a random stat.
+Đòn chí mạng sẽ tăng ngẫu nhiên một chỉ số.
 Creates Trick Room when entering battle.
-Creates Trick Room when entering battle.
+Tạo Trick Room khi vào trận.
 Boosts Attack and Speed by 20% on its first turn.
-Boosts Attack and Speed by 20% on its first turn.
+Tăng 20% Công và Tốc ở lượt đầu.
 Uses Scratch when this Pokémon enters battle.
-Uses Scratch when this Pokémon enters battle.
+Tự động dùng Scratch khi vào trận.
 Gain STAB when use Normal,Flying,Bug,Water,Flying-type moves.
-Gain STAB when use Normal,Flying,Bug,Water,Flying-type moves.
+Nhận STAB khi dùng chiêu hệ Thường, Bay, Bọ, Nước và Bay.
 The opposing foe's color affects the user's mood.
-The opposing foe's color affects the user's mood.
+Màu sắc của đối thủ ảnh hưởng đến tâm trạng Pokémon.
 Creates Cursed Terrain when entering battle.
-Creates Cursed Terrain when entering battle.
+Tạo Cursed Terrain khi vào trận.
 Reverses stat changes of other's dance moves.
-Reverses stat changes of other's dance moves.
+Đảo ngược thay đổi chỉ số từ chiêu nhảy múa của Pokémon khác.
+Contact moves weaken targets with status conditions.
+Chiêu tiếp xúc làm suy yếu mục tiêu đang mắc trạng thái bất lợi.
 When this Pokémon hits an enemy, it reduces any stat.
-When this Pokémon hits an enemy, it reduces any stat.
+Khi đánh trúng đối thủ, giảm ngẫu nhiên một chỉ số của chúng.
 User has chance to avoid any moves.
-User has chance to avoid any moves.
+Có cơ hội né tránh mọi chiêu thức.
 Boosts damage if any active Pokémon is asleep.
-Boosts damage if any active Pokémon is asleep.
+Tăng sát thương nếu có Pokémon trên sân đang ngủ.
 Halves the chance of additional effects when hit by a move.
-Halves the chance of additional effects when hit by a move.
+Giảm một nửa xác suất chịu hiệu ứng phụ từ chiêu đánh trúng.
 The user's sound-based moves never miss.
-The user's sound-based moves never miss.
+Chiêu âm thanh của bản thân luôn đánh trúng.
+Blocks its second type to boost Defense and neutralizes weaknesses.
+Khóa hệ thứ hai để tăng Thủ và vô hiệu hóa điểm yếu.
 It recovers HP when attacking a sleeping enemy.
-It recovers HP when attacking a sleeping enemy.
-Super-effective moves cannot miss.
-Super-effective moves cannot miss.
+Hồi HP khi tấn công đối thủ đang ngủ.
+Super-effective moves hit true and crit more often.
+Chiêu siêu hiệu quả luôn trúng và dễ gây chí mạng hơn.
+Gives Grass-type moves priority at high HP.
+Chiêu hệ Cỏ được tăng độ ưu tiên khi HP cao.
 When a stat is lowered by an opponent, its Defense is increased.
-When a stat is lowered by an opponent, its Defense is increased.
+Khi bị đối thủ giảm chỉ số, bản thân được tăng Thủ.
 Powers up field moves.
-Powers up field moves.
+Tăng sức mạnh các chiêu thức phụ thuộc địa hình.
 Add Fighting-type to user.
-Add Fighting-type to user.
+Nhận thêm hệ Giác đấu.
 Powers up Flying-type moves when suffering.
-Powers up Flying-type moves when suffering.
-Can increase the attack or special attack after each attack.
-Can increase the attack or special attack after each attack.
+Tăng sức mạnh chiêu hệ Bay khi chịu bất lợi.
+Levitates and powers up moves when striking first.
+Bay lơ lửng và tăng sức mạnh chiêu khi ra đòn trước.
+Immune to Ground-type moves and powers up moves first.
+Miễn nhiễm chiêu hệ Đất và tăng sức mạnh khi ra đòn trước.
+Adds Fighting or Fairy or Dark-type when entering battle.
+Nhận thêm hệ Giác đấu, Tiên hoặc Bóng tối khi vào trận.
+Doubles the additional effect chance of biting moves.
+Tăng gấp đôi xác suất hiệu ứng phụ của chiêu cắn.
+Doubles the Pokémon's Sp. Atk stat.
+Tăng gấp đôi Công ĐB của Pokémon.
 Contact moves may trap. Trapped targets can't evade and lose defensive boosts.
-Contact moves may trap. Trapped targets can't evade and lose defensive boosts.
+Chiêu tiếp xúc có thể giam giữ. Mục tiêu không thể né và mất các mức tăng Thủ.
 Can hit Ground-type Pokemon.
-Can hit Ground-type Pokemon.
+Có thể đánh trúng Pokémon hệ Đất.
 Raise Attack when using fang moves.
-Raise Attack when using fang moves.
+Tăng Công khi dùng chiêu răng nanh.
 Add Dragon-type to user.
-Add Dragon-type to user.
+Nhận thêm hệ Rồng.
 Boosts the user's Sp. Atk each turn spent confused.
-Boosts the user's Sp. Atk each turn spent confused.
+Tăng Công ĐB mỗi lượt khi đang bối rối.
 Increases the power of moves against targets infatuated.
-Increases the power of moves against targets infatuated.
+Tăng sức mạnh chiêu thức lên mục tiêu đang bị mê hoặc.
 Resistance and evasion ability is drastically reduced.
-Resistance and evasion ability is drastically reduced.
+Khả năng kháng đòn và né tránh bị giảm mạnh.
 Boosts Sp.Attack after knocking out any Pokémon.
-Boosts Sp.Attack after knocking out any Pokémon.
+Tăng Công ĐB sau khi hạ gục một Pokémon.
 Increases Grass-type moves damage in rain.
-Increases Grass-type moves damage in rain.
+Tăng sát thương chiêu hệ Cỏ khi trời mưa.
 Powers up Ice moves if hit by an Ice move.
-Powers up Ice moves if hit by an Ice move.
+Tăng sức mạnh chiêu hệ Băng khi trúng chiêu hệ Băng.
 Boosts the user's Ice and Water-type moves in hail.
-Boosts the user's Ice and Water-type moves in hail.
+Tăng sức mạnh chiêu hệ Băng và Nước khi có mưa đá.
 Inhales wind-based moves to expand the body & boost defense.
-Inhales wind-based moves to expand the body & boost defense.
+Hấp thụ chiêu gió để phình to cơ thể và tăng Thủ.
 Normal-moves becomes Poison-moves and be boosted.
-Normal-moves becomes Poison-moves and be boosted.
+Chiêu hệ Thường chuyển thành hệ Độc và được tăng sức mạnh.
+Powers up attacks after an ally falls.
+Tăng sức mạnh tấn công khi đồng đội bị hạ gục.
 If this Pokémon was damaged this turn, it restores of its max HP.
-If this Pokémon was damaged this turn, it restores of its max HP.
+Nếu chịu sát thương trong lượt, Pokémon sẽ hồi một phần HP tối đa.
 Contact moves use part of the user's Defense for damage.
-Contact moves use part of the user's Defense for damage.
+Chiêu tiếp xúc sử dụng một phần chỉ số Thủ để tính sát thương.
 Can use "not very effective" Grass-type moves to deal regular damage.
-Can use "not very effective" Grass-type moves to deal regular damage.
+Chiêu hệ Cỏ vốn không hiệu quả vẫn gây sát thương bình thường.
 Takes less contact damage but more Water damage.
-Takes less contact damage but more Water damage.
+Giảm sát thương tiếp xúc nhưng chịu thêm sát thương hệ Nước.
 Sound attacks may confuse the target.
-Sound attacks may confuse the target.
-Boosts the power of its horn and drill moves.
-Boosts the power of its horn and drill moves.
+Chiêu âm thanh có thể khiến mục tiêu bối rối.
+Normal-type moves become Dark-type moves and boosted.
+Chiêu hệ Thường chuyển thành hệ Bóng tối và được tăng sức mạnh.
 Hits extra times based on the Pokémon's heads.
-Hits extra times based on the Pokémon's heads.
+Tấn công thêm số lần tùy theo số đầu của Pokémon.
 Dragon moves hit Fairy-types.
-Dragon moves hit Fairy-types.
+Chiêu hệ Rồng có thể đánh trúng Pokémon hệ Tiên.
 Boosts damage when in the lead position of the party.
-Boosts damage when in the lead position of the party.
+Tăng sát thương khi đứng đầu đội hình.
+Weaker moves have a higher critical-hit ratio.
+Chiêu yếu có tỷ lệ chí mạng cao hơn.
 Adds the Rock-type to foes upon entry.
-Adds the Rock-type to foes upon entry.
+Thêm hệ Đá cho đối thủ khi vào trận.
 Evasion scales higher against slower foes.
-Evasion scales higher against slower foes.
+Tăng khả năng né tránh trước đối thủ chậm hơn.
 Reduces foe's Defense when hit with a contact move.
-Reduces foe's Defense when hit with a contact move.
+Giảm Thủ của đối thủ khi bị chiêu tiếp xúc đánh trúng.
 Opposite-gendered Pokémon may not escape.
-Opposite-gendered Pokémon may not escape.
+Pokémon khác giới có thể không thể bỏ chạy.
+Guards against status and damage when HP is high.
+Chống trạng thái bất lợi và giảm sát thương khi HP cao.
 Gives powder moves +1 priority.
-Gives powder moves +1 priority.
+Chiêu dạng bột được tăng +1 độ ưu tiên.
 Move inflicts burn x5 as often.
-Move inflicts burn x5 as often.
+Tăng gấp 5 lần xác suất gây bỏng của chiêu thức.
+May survive with 1 HP and attacks faster in a pinch.
+Có thể sống sót với 1 HP và ra đòn nhanh hơn khi nguy cấp.
 Sets extra Spikes or Toxic Spikes layers.
-Sets extra Spikes or Toxic Spikes layers.
+Rải thêm lớp Spikes hoặc Toxic Spikes.
 Punching moves may gain priority.
-Punching moves may gain priority.
+Chiêu đấm có thể được tăng độ ưu tiên.
 Reduces damage from Fairy-type and Dark-type moves.
-Reduces damage from Fairy-type and Dark-type moves.
+Giảm sát thương từ chiêu hệ Tiên và Bóng tối.
 Moves that inflict poison may paralyze instead.
-Moves that inflict poison may paralyze instead.
+Chiêu gây trúng độc có thể gây tê liệt thay thế.
 Spreads status and lowers Attack when inflicting status.
-Spreads status and lowers Attack when inflicting status.
+Lan truyền trạng thái bất lợi và giảm Công khi gây trạng thái.
 Punching moves gain crit chance and doubled secondary effect.
-Punching moves gain crit chance and doubled secondary effect.
+Chiêu đấm dễ chí mạng hơn và gấp đôi xác suất hiệu ứng phụ.
 Increases Defense and Special Defense when HP is below half.
-Increases Defense and Special Defense when HP is below half.
-Electric-type moves gain priority when its HP is full.
-Electric-type moves gain priority when its HP is full.
+Tăng Thủ và Thủ ĐB khi HP dưới một nửa.
+Gives Electric-type moves priority at high HP.
+Chiêu hệ Điện được tăng độ ưu tiên khi HP cao.
 Boosts the Pokémon's evasiveness in a rain.
-Boosts the Pokémon's evasiveness in a rain.
+Tăng né tránh của Pokémon khi trời mưa.
 No recharge move needed when K.O. target.
-No recharge move needed when K.O. target.
+Không cần nghỉ hồi sức nếu chiêu thức hạ gục mục tiêu.
 Lets the Pokémon act once even after being knocked out.
-Lets the Pokémon act once even after being knocked out.
+Cho phép Pokémon hành động thêm một lần dù đã bị hạ gục.
+Heals and cures allies switching in.
+Hồi HP và chữa trạng thái bất lợi cho đồng đội vào trận.
 Recovers health gradually when seriously injured.
-Recovers health gradually when seriously injured.
+Dần hồi HP khi bị thương nặng.
+Cures status and lowered stats when HP falls below half.
+Chữa trạng thái bất lợi và xóa giảm chỉ số khi HP dưới một nửa.
 Boosts the Defense stat when the Pokémon enters a battle.
-Boosts the Defense stat when the Pokémon enters a battle.
+Tăng Thủ khi Pokémon vào trận.
+Bug-type moves boost Defense and Sp. Def.
+Chiêu hệ Bọ giúp tăng Thủ và Thủ ĐB.
 Moves that inflict poison may burn instead.
-Moves that inflict poison may burn instead.
+Chiêu gây trúng độc có thể gây bỏng thay thế.
 Grass-type takes half damage and deal double damage to Fire-type Pokémon.
-Grass-type takes half damage and deal double damage to Fire-type Pokémon.
+Chịu nửa sát thương hệ Cỏ và gây gấp đôi sát thương lên Pokémon hệ Lửa.
 Seeds attackers if knocked out by contact moves.
-Seeds attackers if knocked out by contact moves.
-Raise user's Attack and Sp. Attack after using a Grass-type move.
-Raise user's Attack and Sp. Attack after using a Grass-type move.
-Heal user every turn.
-Heal user every turn.
+Gieo Leech Seed lên kẻ tấn công nếu bị hạ bởi chiêu tiếp xúc.
+Grass-type moves boost offenses while free of status.
+Chiêu hệ Cỏ tăng Công và Công ĐB khi không mắc trạng thái bất lợi.
+Restores HP each turn, healing more below half HP.
+Hồi HP mỗi lượt, hồi nhiều hơn khi HP dưới một nửa.
 Enhance stats when in danger, but gradually weaken
-Enhance stats when in danger, but gradually weaken
+Tăng chỉ số khi nguy cấp nhưng dần suy yếu theo thời gian.
 During hail, opposing Pokémon at the end of each turn.
-During hail, opposing Pokémon at the end of each turn.
+Khi có mưa đá, Pokémon đối thủ chịu ảnh hưởng vào cuối mỗi lượt.
 +1 all stats on KO
-+1 all stats on KO
+Tăng +1 mọi chỉ số khi hạ gục đối thủ.
 Use an additional Speed ​​to calculate damage.
-Use an additional Speed ​​to calculate damage.
-Boosts elements and Psychic moves, except against Dark types.
-Boosts elements and Psychic moves, except against Dark types.
+Dùng thêm chỉ số Tốc để tính sát thương.
+Boosts Fire,Electric,Ice-moves, except against Dark types.
+Tăng sức mạnh chiêu hệ Lửa, Điện, Băng, trừ khi đánh hệ Bóng tối.
 Scatters spikes when a Pokémon makes contact.
-Scatters spikes when a Pokémon makes contact.
-Punching moves will use Sp.Attack as damage calculation.
-Punching moves will use Sp.Attack as damage calculation.
+Rải Spikes khi có Pokémon tiếp xúc.
+Powers up punches and makes them special.
+Tăng sức mạnh chiêu đấm và chuyển chúng thành chiêu đặc biệt.
 Boosts the Evasion stat when hit by an attack.
-Boosts the Evasion stat when hit by an attack.
-Vanishes when entry, avoiding attacks until it moves.
-Vanishes when entry, avoiding attacks until it moves.
+Tăng né tránh khi trúng đòn tấn công.
+Vanishes on entry and after scoring a knockout.
+Biến mất khi vào trận và sau khi hạ gục đối thủ.
 Sets Stealth Rock on the opposing side on first entry.
-Sets Stealth Rock on the opposing side on first entry.
+Rải Stealth Rock bên sân đối thủ trong lần đầu vào trận.
 Powers up kicking moves.
-Powers up kicking moves.
+Tăng sức mạnh các chiêu đá.
+Lowering a foe's stats with moves raises its own.
+Dùng chiêu giảm chỉ số đối thủ sẽ tăng chỉ số bản thân.
 On first turn out, slicing moves gain priority.
-On first turn out, slicing moves gain priority.
-Lower opposing Pokémon's Attack stat when entering battle.
-Lower opposing Pokémon's Attack stat when entering battle.
+Chiêu chém được tăng độ ưu tiên ở lượt đầu vào trận.
+May endure a knockout blow with 1 HP.
+Có thể chịu được đòn chí tử và sống sót với 1 HP.
+Lowers opposing Pokémon’s Sp. Atk on entry.
+Giảm Công ĐB của Pokémon đối thủ khi vào trận.
 Clears entry hazards from its side when switches in.
-Clears entry hazards from its side when switches in.
+Xóa bẫy bên sân mình khi vào trận.
 When hits with a punching move, lowers one of the target's stats.
-When hits with a punching move, lowers one of the target's stats.
+Chiêu đấm đánh trúng sẽ giảm một chỉ số của mục tiêu.
 Restores a little HP when using contact moves.
-Restores a little HP when using contact moves.
+Hồi một ít HP khi dùng chiêu tiếp xúc.
 Powers up Ghost-type moves when the Pokémon's HP is low.
-Powers up Ghost-type moves when the Pokémon's HP is low.
+Tăng sức mạnh chiêu hệ Ma khi HP thấp.
 Sets Haunted Orbs on the opposing side when this Pokémon enters battle.
-Sets Haunted Orbs on the opposing side when this Pokémon enters battle.
-Rage builds when struck, boosting Attack.
-Rage builds when struck, boosting Attack.
+Rải Haunted Orbs bên sân đối thủ khi vào trận.
+May boost the Pokémon's Attack when hit by an attack.
+Có thể tăng Công của Pokémon khi trúng đòn tấn công.
+Removes foes' Ground immunity, except Earth Eater.
+Vô hiệu hóa miễn nhiễm hệ Đất của đối thủ, trừ Earth Eater.
+Reveals opposing held items and disables them for 2 turns.
+Phát hiện vật phẩm đối thủ đang giữ và vô hiệu hóa trong 2 lượt.
 Damages opposing Pokémon that hit it with special moves.
-Damages opposing Pokémon that hit it with special moves.
+Gây sát thương cho Pokémon đối thủ khi chúng đánh trúng bằng chiêu đặc biệt.

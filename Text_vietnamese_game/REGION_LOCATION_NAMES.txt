@@ -2,39 +2,39 @@
 # translate every second line of this file.
 #-------------------------------
 [REGION_LOCATION_NAMES]
-Lappet Town
-Lappet Town
-Route 1
-Route 1
-Cedolan City
-Cedolan City
-Route 2
-Route 2
-Lerucean Town
-Lerucean Town
-Natural Park
-Natural Park
-Route 3
-Route 3
-Ingido Plateau
-Ingido Plateau
-Route 4
-Route 4
-Route 5
-Route 5
-Route 6
-Route 6
-Route 7
-Route 7
-Battle Frontier
-Battle Frontier
-Safari Zone
-Safari Zone
-Route 8
-Route 8
-Berth Island
-Berth Island
-Faraday Island
-Faraday Island
+Thị trấn Khải Nguyên
+Thị trấn Khải Nguyên
+Đường A1
+Đường A1
+Thành Phố Vạn Hội
+Thành Phố Vạn Hội
+Đường A10
+Đường A10
+Đường A2
+Đường A2
+Đường A3
+Đường A3
+Rừng Bách Trùng
+Rừng Bách Trùng
+Thành phố Văn Uyển
+Thành phố Văn Uyển
+Đường A4
+Đường A4
+Đường A5
+Đường A5
+Thị trấn Thanh Vũ
+Thị trấn Thanh Vũ
+Đầm lầy U Trạch
+Đầm lầy U Trạch
+Thành phố Lạc Hoa
+Thành phố Lạc Hoa
+Đường A6
+Đường A6
+Thị trấn Thiên Du
+Thị trấn Thiên Du
+Đường A7
+Đường A7
+Thành phố Bắc Hải
+Thành phố Bắc Hải
 Here
 Here

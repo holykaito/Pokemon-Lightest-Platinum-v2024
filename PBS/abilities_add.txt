@@ -3,6 +3,10 @@
 Name = Agile
 Description = The user gains priority on its first turn.
 #-------------------------------
+[AMPHIBIOUS] ###
+Name = Amphibious
+Description = Water, Poison and Ground moves gain STAB. Ignores Swamp penalties.
+#-------------------------------
 [AMPLIFIER] ###
 Name = Amplifier
 Description = Powers up sound moves and weakens sound damage.
@@ -461,7 +465,7 @@ Description = May endure a knockout blow with 1 HP.
 #-------------------------------
 [TERRORSOWER] ###
 Name = Terror Sower
-Description = Lower opposing Pokémon's Attack stat when entering battle.
+Description = Lowers opposing Pokémon’s Sp. Atk on entry.
 #-------------------------------
 [TIDINESS]
 Name = Tidiness

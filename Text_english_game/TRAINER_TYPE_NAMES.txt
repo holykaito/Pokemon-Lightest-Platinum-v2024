@@ -1,0 +1,224 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[TRAINER_TYPE_NAMES]
+Abbot
+Abbot
+Backpacker
+Backpacker
+Baker
+Baker
+Baron
+Baron
+Baroness
+Baroness
+Battle Girl
+Battle Girl
+Bellhop
+Bellhop
+Blaze Biker
+Blaze Biker
+Boarder
+Boarder
+Book Girl
+Book Girl
+Boxer
+Boxer
+Butler
+Butler
+Cameraman
+Cameraman
+Cafe Master
+Cafe Master
+Cheerleader
+Cheerleader
+Cheerleaders
+Cheerleaders
+Chef
+Chef
+Clerk
+Clerk
+Climber
+Climber
+Clown
+Clown
+Clown Girl
+Clown Girl
+Collector
+Collector
+Cow Girl
+Cow Girl
+Cyclist
+Cyclist
+Dancer
+Dancer
+Deliquent
+Deliquent
+Debot Agent
+Debot Agent
+Diver
+Diver
+Doctor
+Doctor
+Dragon Tamer
+Dragon Tamer
+Expert
+Expert
+Fairy Tale Girl
+Fairy Tale Girl
+Farmer
+Farmer
+Fire Breather
+Fire Breather
+Firefighter
+Firefighter
+Fisherwoman
+Fisherwoman
+Gardener
+Gardener
+Gate Guard
+Gate Guard
+Golfer
+Golfer
+Guitarist
+Guitarist
+Harlequin
+Harlequin
+Hex Maniac
+Hex Maniac
+Hoopster
+Hoopster
+Idol
+Idol
+Infielder
+Infielder
+Interviewers
+Interviewers
+Interviewer
+Interviewer
+Janitor
+Janitor
+Kimono Girl
+Kimono Girl
+Kindler
+Kindler
+Linebacker
+Linebacker
+Little Girl
+Little Girl
+Lumberjack
+Lumberjack
+Madame
+Madame
+Maid
+Maid
+Model
+Model
+Miner
+Miner
+Musician
+Musician
+Motor Cyclist
+Motor Cyclist
+Ninja Boy
+Ninja Boy
+Ninja Girl
+Ninja Girl
+Nonla
+Nonla
+Nonla Expert
+Nonla Expert
+Nurse
+Nurse
+Nursery Aide
+Nursery Aide
+Old Man
+Old Man
+Old Woman
+Old Woman
+Owner
+Owner
+Parasol Lady
+Parasol Lady
+Photographer
+Photographer
+Pilot
+Pilot
+Pirate
+Pirate
+Poet
+Poet
+Poke Kid
+Poke Kid
+Pokefan
+Pokefan
+Policeman
+Policeman
+Postman
+Postman
+Preschool
+Preschool
+Punk Girl
+Punk Girl
+Punk Guy
+Punk Guy
+Rancher
+Rancher
+Reporter
+Reporter
+Rich Boy
+Rich Boy
+Rising Star
+Rising Star
+Rough Rider
+Rough Rider
+Rough Rider Leader
+Rough Rider Leader
+Sage
+Sage
+School Kid
+School Kid
+Secret Expert
+Secret Expert
+Skier
+Skier
+Sky Trainer
+Sky Trainer
+Smasher
+Smasher
+Street Thug
+Street Thug
+Striker
+Striker
+Surfer
+Surfer
+Teacher
+Teacher
+Tourist
+Tourist
+Trial Guide
+Trial Guide
+Veteran
+Veteran
+Virtuous
+Virtuous
+Waiter
+Waiter
+Waitress
+Waitress
+Worker
+Worker
+Trainer
+Trainer
+Team Chaos
+Team Chaos
+Team Chaos Masked
+Team Chaos Masked
+Elite
+Elite
+Team Steam Admin
+Team Steam Admin
+Team Steam Grunt
+Team Steam Grunt
+Mage
+Mage

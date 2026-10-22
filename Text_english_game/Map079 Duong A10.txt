@@ -1,0 +1,360 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map079]
+\ff[prooak]Look carefully and report anything unusual you find.
+\ff[prooak]Look carefully and report anything unusual you find.
+\ff[prooak]Every small detail could be an important clue.
+\ff[prooak]Every small detail could be an important clue.
+Oh, you’re a Pokémon Trainer too? That’s great!
+Oh, you’re a Pokémon Trainer too? That’s great!
+I’ve been looking for someone to have a friendly battle with. Let’s see what your Pokémon can do!
+I’ve been looking for someone to have a friendly battle with. Let’s see what your Pokémon can do!
+That was a great battle! I learned a lot from watching how you and your Pokémon worked together.
+That was a great battle! I learned a lot from watching how you and your Pokémon worked together.
+I’ll keep training and try to become a Trainer like you someday!
+I’ll keep training and try to become a Trainer like you someday!
+Warning! Deep water ahead. Please keep a safe distance.
+Warning! Deep water ahead. Please keep a safe distance.
+\ff[blue]A mysterious Pokémon phenomenon on Route A10...
+\ff[blue]A mysterious Pokémon phenomenon on Route A10...
+\ff[blue]This is getting more interesting than I expected.
+\ff[blue]This is getting more interesting than I expected.
+It’s nice to get away from the city for a while.
+It’s nice to get away from the city for a while.
+The road is quiet, the air is fresh, and there are Pokémon everywhere.
+The road is quiet, the air is fresh, and there are Pokémon everywhere.
+Trips like this make me want to keep walking just to see what’s ahead.
+Trips like this make me want to keep walking just to see what’s ahead.
+\ff[prooak]If you decide to do this, be careful.
+\ff[prooak]If you decide to do this, be careful.
+\ff[prooak]Trust your Pokémon and watch for any changes.
+\ff[prooak]Trust your Pokémon and watch for any changes.
+\ff[prooak]\PN, could you collect those Black Crystal fragments for me?
+\ff[prooak]\PN, could you collect those Black Crystal fragments for me?
+\ff[prooak]I want to analyze them properly at my research laboratory.
+\ff[prooak]I want to analyze them properly at my research laboratory.
+\ff[prooak]Thank you, \PN.
+\ff[prooak]Thank you, \PN.
+\ff[prooak]I'll return to my laboratory at Van Hoi City's Television Station with Blue.
+\ff[prooak]I'll return to my laboratory at Van Hoi City's Television Station with Blue.
+\ff[blue]I'll help you write the report about what happened here.
+\ff[blue]I'll help you write the report about what happened here.
+\ff[prooak]The Pokémon Association needs to know about Team Chaos and the Black Crystal as soon as possible.
+\ff[prooak]The Pokémon Association needs to know about Team Chaos and the Black Crystal as soon as possible.
+\ff[prooak]Oh, and one more thing, \PN.
+\ff[prooak]Oh, and one more thing, \PN.
+\ff[prooak]Professor Minh Anh is waiting for the Pokédex units I prepared.
+\ff[prooak]Professor Minh Anh is waiting for the Pokédex units I prepared.
+\ff[prooak]Please stop by my laboratory in Van Hoi City when you have time.
+\ff[prooak]Please stop by my laboratory in Van Hoi City when you have time.
+\ff[prooak]I'll give you the Pokédexes so you can deliver them to Professor Fennel.
+\ff[prooak]I'll give you the Pokédexes so you can deliver them to Professor Fennel.
+\ff[blue]Looks like your research journey is just getting started.
+\ff[blue]Looks like your research journey is just getting started.
+\ff[prooak]Take care, \PN.
+\ff[prooak]Take care, \PN.
+\ff[prooak]Continue observing Pokémon and record everything you discover.
+\ff[prooak]Continue observing Pokémon and record everything you discover.
+West: Van Hoi City
+West: Van Hoi City
+East: Route A10
+East: Route A10
+\ff[blue]Be careful.
+\ff[blue]Be careful.
+\ff[blue]Trust your Pokémon and watch for any changes.
+\ff[blue]Trust your Pokémon and watch for any changes.
+\ff[blue]\Could you collect those Black Crystal fragments for him?
+\ff[blue]\Could you collect those Black Crystal fragments for him?
+\ff[blue]He want to analyze them properly at his research laboratory.
+\ff[blue]He want to analyze them properly at his research laboratory.
+This lake is beautiful, isn’t it? I could stand here and watch it for hours.
+This lake is beautiful, isn’t it? I could stand here and watch it for hours.
+Sometimes you can see wild Pokémon moving beneath the surface.
+Sometimes you can see wild Pokémon moving beneath the surface.
+I wonder how many of them are hiding down there right now.
+I wonder how many of them are hiding down there right now.
+\ff[chaosgruntm]Perfect...
+\ff[chaosgruntm]Perfect...
+\ff[chaosgruntm]The Black Crystal's energy is spreading exactly as expected.
+\ff[chaosgruntm]The Black Crystal's energy is spreading exactly as expected.
+\ff[chaosgruntm]The Pokémon in this area are becoming more aggressive.
+\ff[chaosgruntm]The Pokémon in this area are becoming more aggressive.
+\ff[chaosgruntm]Well..well..
+\ff[chaosgruntm]Well..well..
+\ff[chaosgruntm]Looks like I have an unexpected visitor.
+\ff[chaosgruntm]Looks like I have an unexpected visitor.
+\ff[chaosgruntm]You should leave.
+\ff[chaosgruntm]You should leave.
+\ff[chaosgruntm]This area is currently part of Team Chaos' experiment.
+\ff[chaosgruntm]This area is currently part of Team Chaos' experiment.
+\ff[chaosgruntm]Hey! Don't get any closer.
+\ff[chaosgruntm]Hey! Don't get any closer.
+\ff[chaosgruntm]Don't even think about touching it.
+\ff[chaosgruntm]Don't even think about touching it.
+\ff[chaosgruntm]This is a Black Crystal.
+\ff[chaosgruntm]This is a Black Crystal.
+\ff[chaosgruntm]A special crystal containing a powerful energy source.
+\ff[chaosgruntm]A special crystal containing a powerful energy source.
+\ff[chaosgruntm]Its energy affects the minds of Pokémon nearby.
+\ff[chaosgruntm]Its energy affects the minds of Pokémon nearby.
+\ff[prooak]So this is the cause of the strange behavior.
+\ff[prooak]So this is the cause of the strange behavior.
+\ff[blue]Grandpa, you mean this guy placed it here?
+\ff[blue]Grandpa, you mean this guy placed it here?
+\ff[prooak]It seems so.
+\ff[prooak]It seems so.
+\ff[prooak]The energy readings match the changes we observed in the Pokémon.
+\ff[prooak]The energy readings match the changes we observed in the Pokémon.
+\ff[prooak]This must be the cause of the abnormal behavior in Pokémon around Route A10.
+\ff[prooak]This must be the cause of the abnormal behavior in Pokémon around Route A10.
+\ff[chaosgruntm]You're quite observant, Professor.
+\ff[chaosgruntm]You're quite observant, Professor.
+\ff[blue]You've been using wild Pokémon as test subjects?
+\ff[blue]You've been using wild Pokémon as test subjects?
+\ff[chaosgruntm]Don't make it sound so dramatic.
+\ff[chaosgruntm]Don't make it sound so dramatic.
+\ff[chaosgruntm]We are simply studying the effects of a new power source.
+\ff[chaosgruntm]We are simply studying the effects of a new power source.
+\ff[prooak]By forcing Pokémon to suffer from its effects?
+\ff[prooak]By forcing Pokémon to suffer from its effects?
+\ff[chaosgruntm]Pokémon are much stronger than humans realize.
+\ff[chaosgruntm]Pokémon are much stronger than humans realize.
+\ff[chaosgruntm]If they can overcome this energy, they will become even more powerful.
+\ff[chaosgruntm]If they can overcome this energy, they will become even more powerful.
+\ff[blue]That's ridiculous!
+\ff[blue]That's ridiculous!
+\ff[blue]You're not helping Pokémon. You're just using them!
+\ff[blue]You're not helping Pokémon. You're just using them!
+\ff[chaosgruntm]You don't understand.
+\ff[chaosgruntm]You don't understand.
+\ff[chaosgruntm]Team Chaos sees possibilities that ordinary researchers cannot.
+\ff[chaosgruntm]Team Chaos sees possibilities that ordinary researchers cannot.
+\ff[prooak]Team Chaos...
+\ff[prooak]Team Chaos...
+\ff[prooak]So this is your organization's doing.
+\ff[prooak]So this is your organization's doing.
+\ff[chaosgruntm]Now you know.
+\ff[chaosgruntm]Now you know.
+\ff[chaosgruntm]But I can't allow you to interfere with our experiment.
+\ff[chaosgruntm]But I can't allow you to interfere with our experiment.
+\ff[chaosgruntm]How is this possible?
+\ff[chaosgruntm]How is this possible?
+\ff[prooak]Your Pokémon was standing within the crystal's influence the entire time.
+\ff[prooak]Your Pokémon was standing within the crystal's influence the entire time.
+\ff[prooak]Yet it showed no signs of losing control.
+\ff[prooak]Yet it showed no signs of losing control.
+\ff[chaosgruntm]Impossible...
+\ff[chaosgruntm]Impossible...
+\ff[chaosgruntm]The Black Crystal's effects should affect every Pokémon nearby.
+\ff[chaosgruntm]The Black Crystal's effects should affect every Pokémon nearby.
+\ff[chaosgruntm]That Pokémon wasn't affected either?
+\ff[chaosgruntm]That Pokémon wasn't affected either?
+\ff[prooak]So both your Pokémon and theirs can resist the crystal's influence...
+\ff[prooak]So both your Pokémon and theirs can resist the crystal's influence...
+\ff[chaosgruntm]I'll have to report this discovery.
+\ff[chaosgruntm]I'll have to report this discovery.
+\ff[chaosgruntm]This experiment was only the beginning.
+\ff[chaosgruntm]This experiment was only the beginning.
+\ff[chaosgruntm]Team Chaos will uncover the true potential of the Black Crystal.
+\ff[chaosgruntm]Team Chaos will uncover the true potential of the Black Crystal.
+\ff[prooak]A crystal capable of affecting Pokémon's minds...
+\ff[prooak]A crystal capable of affecting Pokémon's minds...
+\ff[prooak]And an organization attempting to control its power...
+\ff[prooak]And an organization attempting to control its power...
+\ff[prooak]This is far more serious than I expected.
+\ff[prooak]This is far more serious than I expected.
+\ff[blue]Grandpa, what should we do now?
+\ff[blue]Grandpa, what should we do now?
+\ff[prooak]First, we need to report this incident immediately.
+\ff[prooak]First, we need to report this incident immediately.
+\ff[prooak]The Pokémon Association needs to know about Team Chaos and the Black Crystal.
+\ff[prooak]The Pokémon Association needs to know about Team Chaos and the Black Crystal.
+\ff[prooak]If this crystal can affect Pokémon over a wide area, we cannot ignore the danger.
+\ff[prooak]If this crystal can affect Pokémon over a wide area, we cannot ignore the danger.
+\ff[prooak]I'll return to my research facility at Van Hoi City's Television Station and send them a full report.
+\ff[prooak]I'll return to my research facility at Van Hoi City's Television Station and send them a full report.
+\ff[prooak]Wait...
+\ff[prooak]Wait...
+\ff[prooak]Before we leave, there is still one thing we need to take care of.
+\ff[prooak]Before we leave, there is still one thing we need to take care of.
+\ff[blue]The Black Crystal?
+\ff[blue]The Black Crystal?
+\ff[prooak]As long as it remains here, Pokémon in this area may continue to be affected.
+\ff[prooak]As long as it remains here, Pokémon in this area may continue to be affected.
+\ff[blue]Then let's just destroy it.
+\ff[blue]Then let's just destroy it.
+\ff[prooak]Normally, I would agree.
+\ff[prooak]Normally, I would agree.
+\ff[prooak]But we still don't fully understand this crystal's properties.
+\ff[prooak]But we still don't fully understand this crystal's properties.
+\ff[prooak]There is one thing we have learned today.
+\ff[prooak]There is one thing we have learned today.
+\ff[prooak]\PN's Pokémon can resist the Black Crystal's influence.
+\ff[prooak]\PN's Pokémon can resist the Black Crystal's influence.
+\ff[prooak]And it was able to fight normally even near the crystal.
+\ff[prooak]And it was able to fight normally even near the crystal.
+\ff[prooak]This means your Pokémon may be able to interact with the crystal without being affected by its energy.
+\ff[prooak]This means your Pokémon may be able to interact with the crystal without being affected by its energy.
+\ff[blue]So you're asking them to destroy it?
+\ff[blue]So you're asking them to destroy it?
+\ff[prooak]The energy is disappearing...
+\ff[prooak]The energy is disappearing...
+\ff[prooak]It seems the influence on the Pokémon is fading.
+\ff[prooak]It seems the influence on the Pokémon is fading.
+\ff[blue]So destroying the crystal really worked.
+\ff[blue]So destroying the crystal really worked.
+\ff[prooak]Yes, but...
+\ff[prooak]Yes, but...
+\ff[prooak]We still don't understand what this crystal is capable of.
+\ff[prooak]We still don't understand what this crystal is capable of.
+\ff[prooak]These fragments...
+\ff[prooak]These fragments...
+\ff[prooak]Even after being broken, they still contain traces of that strange energy.
+\ff[prooak]Even after being broken, they still contain traces of that strange energy.
+\ff[blue]You're saying they're still dangerous?
+\ff[blue]You're saying they're still dangerous?
+\ff[prooak]I'm not sure yet.
+\ff[prooak]I'm not sure yet.
+\ff[prooak]But as a researcher, I cannot ignore a discovery like this.
+\ff[prooak]But as a researcher, I cannot ignore a discovery like this.
+\ff[blue]So even something dangerous like this becomes a research project for you, huh?
+\ff[blue]So even something dangerous like this becomes a research project for you, huh?
+\ff[prooak]That is how we learn, Blue.
+\ff[prooak]That is how we learn, Blue.
+\ff[prooak]Understanding something is the first step toward dealing with it.
+\ff[prooak]Understanding something is the first step toward dealing with it.
+\ff[prooak]Hmm... this is quite unusual.
+\ff[prooak]Hmm... this is quite unusual.
+\ff[prooak]The behavior of Pokémon in this area has changed dramatically.
+\ff[prooak]The behavior of Pokémon in this area has changed dramatically.
+\ff[blue]I've never seen wild Pokémon act like this before.
+\ff[blue]I've never seen wild Pokémon act like this before.
+\ff[prooak]Neither have I.
+\ff[prooak]Neither have I.
+\ff[prooak]That is why we must observe carefully before making any conclusions.
+\ff[prooak]That is why we must observe carefully before making any conclusions.
+\ff[blue]You mean we still don't know what's causing it?
+\ff[blue]You mean we still don't know what's causing it?
+\ff[prooak]Not yet.
+\ff[prooak]Not yet.
+\ff[prooak]Something is affecting the Pokémon around Route A10, but we don't have enough information.
+\ff[prooak]Something is affecting the Pokémon around Route A10, but we don't have enough information.
+\ff[prooak]Oh? Who do we have here?
+\ff[prooak]Oh? Who do we have here?
+\ff[prooak]You must be the assistant Professor Minh Anh mentioned.
+\ff[prooak]You must be the assistant Professor Minh Anh mentioned.
+\ff[prooak]It's good to meet you. I'm Professor Oak.
+\ff[prooak]It's good to meet you. I'm Professor Oak.
+\ff[blue]So you're the new researcher Professor Minh Anh mentioned?
+\ff[blue]So you're the new researcher Professor Minh Anh mentioned?
+\ff[blue]Looks like Professor Minh Anh is trusting someone pretty young with a big project.
+\ff[blue]Looks like Professor Minh Anh is trusting someone pretty young with a big project.
+\ff[prooak]Blue.
+\ff[prooak]Blue.
+\ff[blue]What? I'm just saying.
+\ff[blue]What? I'm just saying.
+\ff[prooak]Age is not what determines the ability to become a good researcher or Trainer.
+\ff[prooak]Age is not what determines the ability to become a good researcher or Trainer.
+\ff[prooak]Besides, it's not like you're actually older than him.
+\ff[prooak]Besides, it's not like you're actually older than him.
+\ff[blue]Yeah, yeah. I know.
+\ff[blue]Yeah, yeah. I know.
+\ff[prooak]Ah, these must be the documents from Professor Fennel.
+\ff[prooak]Ah, these must be the documents from Professor Fennel.
+\ff[prooak]Thank you for bringing them here.
+\ff[prooak]Thank you for bringing them here.
+\ff[prooak]However, I'll need to examine them properly at my laboratory.
+\ff[prooak]However, I'll need to examine them properly at my laboratory.
+\ff[prooak]My temporary research facility is located at Van Hoi City's Television Station.
+\ff[prooak]My temporary research facility is located at Van Hoi City's Television Station.
+\ff[prooak]I'll review them once we return there.
+\ff[prooak]I'll review them once we return there.
+\ff[blue]So we came all the way here, and you still have more work waiting?
+\ff[blue]So we came all the way here, and you still have more work waiting?
+\ff[prooak]Research rarely goes exactly as planned, Blue.
+\ff[prooak]Research rarely goes exactly as planned, Blue.
+\ff[blue]Professor! Look!
+\ff[blue]Professor! Look!
+\ff[prooak]Those Shinx...
+\ff[prooak]Those Shinx...
+\ff[prooak]Their behavior has changed again.
+\ff[prooak]Their behavior has changed again.
+\ff[blue]I'll handle this!
+\ff[blue]I'll handle this!
+\ff[blue]Blastoise, let's calm them down!
+\ff[blue]Blastoise, let's calm them down!
+\ff[pkm_blastoise] Gawwwwwwwww
+\ff[pkm_blastoise] Gawwwwwwwww
+(Blue's Pokémon suddenly loses control.)
+(Blue's Pokémon suddenly loses control.)
+\ff[blue]What...?
+\ff[blue]What...?
+\ff[blue]My Blastoise... it's not listening!
+\ff[blue]My Blastoise... it's not listening!
+\ff[prooak]Blue! Recall your Blastoise!
+\ff[prooak]Blue! Recall your Blastoise!
+\ff[blue]Blastoise! Come back!
+\ff[blue]Blastoise! Come back!
+\ff[blue]I've never experienced anything like this...
+\ff[blue]I've never experienced anything like this...
+\ff[prooak]This phenomenon is affecting even trained Pokémon.
+\ff[prooak]This phenomenon is affecting even trained Pokémon.
+\ff[blue]Grandfa!!!
+\ff[blue]Grandfa!!!
+\ff[prooak]They've gone...
+\ff[prooak]They've gone...
+\ff[prooak]Interesting...
+\ff[prooak]Interesting...
+\ff[blue]Grandpa? What's interesting?
+\ff[blue]Grandpa? What's interesting?
+\ff[prooak]The behavior of that Shinx was clearly abnormal.
+\ff[prooak]The behavior of that Shinx was clearly abnormal.
+\ff[prooak]But something else caught my attention.
+\ff[prooak]But something else caught my attention.
+\ff[prooak]Your Pokémon.
+\ff[prooak]Your Pokémon.
+\ff[prooak]It was nearby the same phenomenon, yet it didn't show any signs of losing control.
+\ff[prooak]It was nearby the same phenomenon, yet it didn't show any signs of losing control.
+\ff[blue]Wait... you're right.
+\ff[blue]Wait... you're right.
+\ff[blue]My Pokémon couldn't even follow my commands, but yours was completely fine.
+\ff[blue]My Pokémon couldn't even follow my commands, but yours was completely fine.
+\ff[prooak]This is very unusual.
+\ff[prooak]This is very unusual.
+\ff[prooak]There must be some difference between your Pokémon and the others affected by this phenomenon.
+\ff[prooak]There must be some difference between your Pokémon and the others affected by this phenomenon.
+\ff[blue]Are you saying this kid is special?
+\ff[blue]Are you saying this kid is special?
+\ff[prooak]Not necessarily.
+\ff[prooak]Not necessarily.
+\ff[prooak]In research, we don't jump to conclusions without evidence.
+\ff[prooak]In research, we don't jump to conclusions without evidence.
+\ff[prooak]But this is certainly something worth investigating.
+\ff[prooak]But this is certainly something worth investigating.
+\ff[blue]So what now?
+\ff[blue]So what now?
+\ff[prooak]First, we need more observations.
+\ff[prooak]First, we need more observations.
+\ff[prooak]If something is affecting Pokémon in this area, there should be some clue nearby.
+\ff[prooak]If something is affecting Pokémon in this area, there should be some clue nearby.
+\ff[prooak]Would you help me investigate this area, \PN?
+\ff[prooak]Would you help me investigate this area, \PN?
+Do you want to shatter this Black Crystal?
+Do you want to shatter this Black Crystal?
+The black crystal has shattered.
+The black crystal has shattered.
+You have collected the fragments of Black Crystal.
+You have collected the fragments of Black Crystal.
+Hey! A battle sounds like the perfect way to spend the day!
+Hey! A battle sounds like the perfect way to spend the day!
+I’ve been training my Pokémon every chance I get, so I’m ready for anything!
+I’ve been training my Pokémon every chance I get, so I’m ready for anything!
+You’re stronger than I expected!
+You’re stronger than I expected!
+I guess getting stronger isn’t just about winning battles. I’ll keep learning and training!
+I guess getting stronger isn’t just about winning battles. I’ll keep learning and training!
+Yes
+Yes
+No
+No

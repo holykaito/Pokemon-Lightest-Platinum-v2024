@@ -1071,15 +1071,15 @@ Sau khi hấp thụ gen, {1} đã đánh thức tiềm năng chưa được khai
 Abilities the pokemon always had
 Các Đặc tính Pokémon vốn luôn có
 Set innate
-Đặt Đặc tính bẩm sinh
+Đặt Bẩm sinh
 Set possible innate
-Đặt Đặc tính bẩm sinh khả dụng
+Đặt Bẩm sinh khả dụng
 Set any innate
-Đặt Đặc tính bẩm sinh bất kỳ
+Đặt Bẩm sinh bất kỳ
 Innate is {1} (index {2}).
-Đặc tính bẩm sinh là {1} (chỉ số {2}).
+Bẩm sinh là {1} (chỉ số {2}).
 Choose an innate.
-Chọn một Đặc tính bẩm sinh.
+Bẩm sinh.
 Battle
 Chiến đấu
 {1} is holding a round object...
@@ -2811,33 +2811,33 @@ Bạn có muốn xáo trộn các Đặc tính bẩm sinh của {1} không?
 One or more specified innate abilities are not defined.<<n>>{1}
 Một hoặc nhiều Đặc tính bẩm sinh được chỉ định chưa được định nghĩa.<<n>>{1}
 Set Innates
-Đặt Đặc tính bẩm sinh
+Đặt Bẩm sinh
 Set Innate Abilities.
-Đặt các Đặc tính bẩm sinh.
+Đặt các Bẩm sinh.
 Randomize Defined Innates
-Ngẫu nhiên hóa Đặc tính bẩm sinh đã định nghĩa
+Ngẫu nhiên hóa Bẩm sinh đã định nghĩa
 Reset Innates
-Đặt lại Đặc tính bẩm sinh
+Đặt lại Bẩm sinh
 Innates are: {1}
-Các Đặc tính bẩm sinh là: {1}
+Các Bẩm sinh là: {1}
 How many Innates Max?
-Tối đa bao nhiêu Đặc tính bẩm sinh?
+Tối đa bao nhiêu Bẩm sinh?
 {1} ability has been set as the {2} Innate!
-Đặc tính {1} đã được đặt làm Đặc tính bẩm sinh {2}!
+Đặc tính {1} đã được đặt làm Bẩm sinh {2}!
 How many innates should this Pokémon have?
-Pokémon này nên có bao nhiêu Đặc tính bẩm sinh?
+Pokémon này nên có bao nhiêu Bẩm sinh?
 Set Innate Abilities
-Đặt các Đặc tính bẩm sinh
+Đặt các Bẩm sinh
 Randomize Innates MAX
-Ngẫu nhiên hóa tối đa Đặc tính bẩm sinh
+Ngẫu nhiên hóa tối đa Bẩm sinh
 Current innates for form {1}: {2}
-Các Đặc tính bẩm sinh hiện tại của dạng {1}: {2}
+Các Bẩm sinh hiện tại của dạng {1}: {2}
 Set the max number of innates for form {1}:
-Đặt số Đặc tính bẩm sinh tối đa cho dạng {1}:
+Đặt số Bẩm sinh tối đa cho dạng {1}:
 {1} set as innate {2} for form {3}.
-{1} được đặt làm Đặc tính bẩm sinh {2} cho dạng {3}.
+{1} được đặt làm Bẩm sinh {2} cho dạng {3}.
 Reset innates for form {1} to how many?
-Đặt lại số Đặc tính bẩm sinh của dạng {1} thành bao nhiêu?
+Đặt lại số Bẩm sinh của dạng {1} thành bao nhiêu?
 Quests
 Nhiệm vụ
 The 'quest' argument should be a symbol, e.g. ':Quest1'.
@@ -6204,3 +6204,473 @@ The Pokémon can't use moves known by {1}.
 Pokémon không thể dùng các chiêu thức mà {1} biết.
 {1}'s uproar prevents sleeping.
 Tiếng náo động của {1} ngăn Pokémon ngủ.
+Graphics/UI/DexNav/types
+Graphics/UI/DexNav/types
+>
+>
+<
+<
+< >
+< >
+No species in this area
+Không có loài Pokémon nào trong khu vực này
+Chain: {1}
+Chuỗi: {1}
+What you want to do?
+Bạn muốn làm gì?
+Search
+Tìm kiếm
+{1} registered, press Ctrl to search.
+Đã ghi nhận {1}, nhấn Ctrl để tìm kiếm.
+There is no option for this species yet.
+Chưa có tùy chọn nào cho loài Pokémon này.
+DexNav
+DexNav
+Land
+Trên cạn
+Water
+Dưới nước
+Land - Action to change
+Trên cạn - Nhấn Action để đổi
+Water - Action to change
+Dưới nước - Nhấn Action để đổi
+Search Level
+Cấp độ tìm kiếm
+Method
+Phương thức
+Hidden Ability
+Đặc tính ẩn
+The Pokémon ran away!
+Pokémon đã bỏ chạy!
+Max Steps: {1}; Coords {2},{3}; Active species: {4}
+Số bước tối đa: {1}; Tọa độ {2},{3}; Loài hiện tại: {4}
+Battler {1}
+Pokémon chiến đấu {1}
+Searching... \wtnp[5]... \wtnp[5]... \wtnp[5]
+Đang tìm kiếm... \wtnp[5]... \wtnp[5]... \wtnp[5]
+</c2>{1}<<n>>{2}<<n>>{3}
+</c2>{1}<<n>>{2}<<n>>{3}
+Tiền: ${1}
+Tiền: ${1}
+The current map has no MapPosition defined in the map_metadata.txt PBS file.
+Bản đồ hiện tại chưa được khai báo MapPosition trong tệp PBS map_metadata.txt.
+#{currency} is an invalid currency!
+#{currency} is an invalid currency!
+Normal Map
+Bản đồ thường
+Fly Map
+Bản đồ Fly
+Quest Map
+Bản đồ nhiệm vụ
+Berry Map
+Bản đồ Berry
+Roaming Map
+Bản đồ Pokémon lang thang
+Trainer Map
+Bản đồ Huấn luyện viên
+No information Available
+Không có thông tin
+A fairly old and loud town. It's a big and not so pretty place.
+Một thị trấn khá cổ kính và ồn ào. Nơi này rộng lớn nhưng không mấy đẹp đẽ.
+<ac>The first Route in the Region and a home to Kurt.</ac>
+<ac>Tuyến đường đầu tiên của vùng đất, cũng là nơi Kurt sinh sống.</ac>
+The biggest City in Essen. It has a department store!
+Thành phố lớn nhất Essen. Nơi đây có cả một trung tâm thương mại!
+The biggest City in Essen. It has a department store and what does it not have?
+Thành phố lớn nhất Essen. Có cả trung tâm thương mại, chẳng biết còn thiếu thứ gì nữa!
+The place to be when you're feeling tired and your Pokémon too of course.
+Nơi lý tưởng để nghỉ ngơi khi bạn và cả Pokémon đều đã thấm mệt.
+A 6 floor tall building where you can almost buy anything you can imagine.
+Tòa nhà sáu tầng, nơi bạn có thể mua gần như mọi thứ mình muốn.
+A great place to spend the day but don't be mad if you're broke at the end!
+Một nơi tuyệt vời để vui chơi cả ngày, nhưng đừng trách nếu cuối ngày hết sạch tiền nhé!
+Earn the Rainbow Badge by defeating Eric the Bug Type Gym Leader.
+Đánh bại Eric, Thủ lĩnh Nhà thi đấu hệ Bọ, để giành Huy hiệu Cầu Vồng.
+A place for people that like to go to an institute...
+Nơi dành cho những ai thích đến học viện...
+A route with a lot of bridges.
+Một tuyến đường có rất nhiều cây cầu.
+Another Small Town. And a lot of text to fill the space here up to 3 lines yes yes baguette!
+Lại một thị trấn nhỏ. Và thêm thật nhiều chữ để lấp đầy ba dòng ở đây, ừ đúng rồi, bánh mì baguette!
+A big Park and it's natural.
+Một công viên thiên nhiên rộng lớn.
+Ice Cave
+Hang Băng
+A Route full with Trainers.
+Một tuyến đường đầy những Huấn luyện viên.
+An Icy Cold Cave located here... And still a lot of Trainers!
+Ở đây có một hang động lạnh buốt... Và vẫn có rất nhiều Huấn luyện viên!
+Once a trainer has collected all 8 Badges, they are allowed to enter the League and challenge the E4 and Champion!
+Sau khi thu thập đủ 8 Huy hiệu, Huấn luyện viên có thể tham gia Liên minh và thách đấu Tứ Đại Thiên Vương cùng Nhà Vô địch!
+The start of the Cycling Bridge.
+Điểm bắt đầu của Cầu Xe Đạp.
+The Cycling Bridge itself!
+Chính là Cầu Xe Đạp!
+The end of the Cycling Bridge
+Điểm cuối của Cầu Xe Đạp
+A rocky route with mountains and caves and stuff.
+Một tuyến đường gồ ghề với núi non, hang động và đủ thứ khác.
+Rock Cave
+Hang Đá
+Challenge the Brains of the Frontier! Which are just Humans.
+Thách đấu các Thủ lĩnh Battle Frontier! Dù sao thì họ cũng chỉ là con người thôi.
+A zone to go on Safari. What else would you do here?
+Khu vực dành cho Safari. Chứ bạn còn định làm gì ở đây nữa?
+Is this even a Route? It's just water and a waterfall.
+Đây thực sự là một tuyến đường sao? Chỉ toàn nước và thác nước thôi mà.
+The island which is home to the Pokémon named Deoxys.
+Hòn đảo nơi Pokémon Deoxys sinh sống.
+The island which is home to the Pokémon named Mew and it's shiny!
+Hòn đảo nơi Mew sinh sống, mà còn là Mew Shiny nữa!
+There's something here but I don't know what!
+Ở đây có thứ gì đó, nhưng tôi chẳng biết là gì!
+All there's known about this place is that they sell Baguette!
+Điều duy nhất người ta biết về nơi này là họ bán bánh mì baguette!
+There was no file named '#{file}' found.
+Không tìm thấy tệp có tên '#{file}'.
+DOWN
+XUỐNG
+LEFT
+TRÁI
+RIGHT
+PHẢI
+UP
+LÊN
+Menu
+Menu
+ACTION
+THAO TÁC
+BACK
+QUAY LẠI
+Action
+Thao tác
+USE
+SỬ DỤNG
+Scroll Up
+Cuộn lên
+JUMPUP
+NHẢY LÊN
+Scroll Down
+Cuộn xuống
+JUMPDOWN
+NHẢY XUỐNG
+Ready Menu
+Menu nhanh
+SPECIAL
+ĐẶC BIỆT
+Caps
+Caps
+pg Up
+Pg Up
+pg Dn
+Pg Dn
+prt Scr
+Prt Scr
+Num 0
+Num 0
+Num 1
+Num 1
+Num 2
+Num 2
+Num 3
+Num 3
+Num 4
+Num 4
+Num 5
+Num 5
+Num 6
+Num 6
+Num 7
+Num 7
+Num 8
+Num 8
+Num 9
+Num 9
+Multi
+Nhân
+Sep
+Phân cách
+Dec
+Thập phân
+Div
+Chia
+Num
+Num
+Scroll
+Cuộn
+Change Mode
+Đổi chế độ
+Change Region
+Đổi vùng đất
+Enable Zoom
+Bật thu phóng
+Disable Zoom
+Tắt thu phóng
+Zoom In/Out
+Phóng to/Thu nhỏ
+Zoom In
+Phóng to
+Zoom Out
+Thu nhỏ
+View Info
+Xem thông tin
+Hide Info
+Ẩn thông tin
+Extend Info
+Mở rộng thông tin
+View Encounter Info
+Xem thông tin gặp Pokémon
+Select Species
+Chọn loài Pokémon
+Reveal Seen Species
+Hiện các loài đã gặp
+Hide Seen Species
+Ẩn các loài đã gặp
+Change Page
+Đổi trang
+Change Species
+Đổi loài Pokémon
+Change Info
+Đổi thông tin
+Go Back
+Quay lại
+Search Location
+Tìm địa điểm
+Quick Search
+Tìm nhanh
+Sort Search
+Sắp xếp tìm kiếm
+Quick Fly
+Bay nhanh
+View Quest
+Xem nhiệm vụ
+Hide Quest
+Ẩn nhiệm vụ
+View Quests
+Xem các nhiệm vụ
+Change Quest
+Đổi nhiệm vụ
+Show Berry
+Hiện Berry
+Show Berries
+Hiện các Berry
+Change Berry
+Đổi Berry
+Hide Berry
+Ẩn Berry
+Close Map
+Đóng bản đồ
+No information given.
+Không có thông tin.
+Invalid Location
+Địa điểm không hợp lệ
+#{questName.length} Active Quests
+#{questName.length} Active Quests
+Quest: #{questName[0]}
+Nhiệm vụ: #{questName[0]}
+Invalid Quest Position
+Vị trí nhiệm vụ không hợp lệ
+Not Given
+Chưa có
+Which quest would you like to view info about?
+Bạn muốn xem thông tin nhiệm vụ nào?
+Which berry would you like to view info about?
+Bạn muốn xem thông tin Berry nào?
+Encounter Type '#{type}' has not been added to EncounterTypes in 000_RegionMap_Settings.rb
+Loại gặp Pokémon '#{type}' chưa được thêm vào EncounterTypes trong 000_RegionMap_Settings.rb
+There was no file named 'map#{type}Box#{encKey}' found.
+Không tìm thấy tệp có tên 'map#{type}Box#{encKey}'.
+The Self Switch may only be assigned to 1 trainer
+Self Switch chỉ được gán cho một Huấn luyện viên.
+Game map with ID #{mapId} has either no or an invalid Map Position.
+Bản đồ có ID #{mapId} chưa có Map Position hoặc có vị trí không hợp lệ.
+No rxdata file found for map #{mapId}
+Không tìm thấy tệp rxdata cho bản đồ #{mapId}
+event #{eventId} does not exist on map #{mapId}
+Sự kiện #{eventId} không tồn tại trên bản đồ #{mapId}
+No Highlight Image defined for point '#{mapData[0]}, #{mapData[1]} - #{mapData[2]}' in PBS file: town_map.txt
+Chưa khai báo Highlight Image cho điểm '#{mapData[0]}, #{mapData[1]} - #{mapData[2]}' trong tệp PBS: town_map.txt
+The Game Map '#{spot[0][0][:map]}' does not exist!
+Bản đồ '#{spot[0][0][:map]}' không tồn tại!
+Quick Fly: Choose one of the available locations to fly to.
+Bay nhanh: Chọn một địa điểm có thể bay đến.
+Quick traveling to {1}!
+Đang di chuyển nhanh đến {1}!
+No Higlight Image found for point '#{@mapInfo[curPos][:realname].to_s}' in PBS file: town_map.txt
+Không tìm thấy Highlight Image cho điểm '#{@mapInfo[curPos][:realname].to_s}' trong tệp PBS: town_map.txt
+No Unvisited Image found for point '#{value[:realname]}' in PBS file: town_map.txt
+Không tìm thấy Unvisited Image cho điểm '#{value[:realname]}' trong tệp PBS: town_map.txt
+Which mode would you like to switch to?
+Bạn muốn chuyển sang chế độ nào?
+Which Region would you like to change to?
+Bạn muốn chuyển sang vùng đất nào?
+Game map: #{id}, #{name}: MapPosition = #{region[0]},#{region[1]},#{region[2]} => #{region[0]} is not a valid Region ID.
+Bản đồ: #{id}, #{name}: MapPosition = #{region[0]},#{region[1]},#{region[2]} => #{region[0]} không phải Region ID hợp lệ.
+Map%03d.rxdata not found, please check your mapMetadata.txt PBS file
+Không tìm thấy Map%03d.rxdata, vui lòng kiểm tra tệp PBS mapMetadata.txt.
+Choose a Location (press #{convertButtonToString(ARMSettings::OrderSearchButton)} to order the list.)
+Chọn địa điểm (nhấn #{convertButtonToString(ARMSettings::OrderSearchButton)} để sắp xếp danh sách.)
+There's no mapMetadata for map '#{$game_map.name}' with ID #{$game_map.map_id}.<<n>>Add it to the map_metadata.txt to fix this error!
+Không có mapMetadata cho bản đồ '#{$game_map.name}' với ID #{$game_map.map_id}.<<n>>Hãy thêm vào map_metadata.txt để sửa lỗi này!
+#{map_metadata.name} has no mapPosition defined in map_metadata.txt PBS file.
+#{map_metadata.name} has no mapPosition defined in map_metadata.txt PBS file.
+Which filter would you like to use?
+Bạn muốn sử dụng bộ lọc nào?
+Choose a Location to Filter the Encounter Area.
+Chọn địa điểm để lọc khu vực gặp Pokémon.
+Choose an Encounter Type to Filter the Encounter Area.
+Chọn loại gặp Pokémon để lọc khu vực.
+Choose a Location (press #{convertButtonToString(ARMSettings::OrderSearchButton)} #{times} to undo the Quick Search.)
+Chọn địa điểm (nhấn #{convertButtonToString(ARMSettings::OrderSearchButton)} #{times} lần để hủy tìm kiếm nhanh.)
+Choose a Location (press #{convertButtonToString(ARMSettings::OrderSearchButton)} to unorder the list.)
+Chọn địa điểm (nhấn #{convertButtonToString(ARMSettings::OrderSearchButton)} để bỏ sắp xếp danh sách.)
+You {1} \c[1]{2}\c[0]!
+Bạn {1} \c[1]{2}\c[0]!
+You {1} {2} \c[1]{3} {4}\c[0]!
+Bạn {1} {2} \c[1]{3} {4}\c[0]!
+You {1} \c[1]{2} {3}\c[0]!
+Bạn {1} \c[1]{2} {3}\c[0]!
+You {1} {2} \c[1]{3}\c[0]!
+Bạn {1} {2} \c[1]{3}\c[0]!
+You {1} an \c[1]{2}\c[0]!
+Bạn {1} một \c[1]{2}\c[0]!
+You {1} a \c[1]{2}\c[0]!
+Bạn {1} một \c[1]{2}\c[0]!
+{1} has to use Struggle!
+{1} buộc phải dùng Struggle!
+It's extremely effective on {1}!
+Đòn đánh cực kỳ hiệu quả với {1}!
+It's extremely effective!
+Đòn đánh cực kỳ hiệu quả!
+It's mostly ineffective on {1}...
+Đòn đánh gần như không hiệu quả với {1}...
+It's mostly ineffective...
+Đòn đánh gần như không hiệu quả...
+{1} can't use {2} in the later turn!
+{1} không thể dùng {2} ở lượt tiếp theo!
+This move can't be used!
+Không thể sử dụng chiêu thức này!
+{1}'s {2} restored {3}'s HP!
+{2} của {1} đã hồi HP cho {3}!
+{1}'s {2} cured {3}'s status!
+{2} của {1} đã chữa trạng thái bất lợi cho {3}!
+{1}'s {2} activated on the grassy terrain!
+{2} của {1} đã kích hoạt trên Grassy Terrain!
+{1}'s {2} restored its HP!
+{2} của {1} đã hồi phục HP!
+{1}'s roots stripped opposing Pokémon of their Ground immunity!
+Rễ cây của {1} đã vô hiệu hóa khả năng miễn nhiễm hệ Đất của Pokémon đối thủ!
+{1} obtained a {2}!
+{1} đã nhận được {2}!
+{1} obtained another {2}!
+{1} đã nhận thêm một {2}!
+Choose an additional type for {1}.
+Chọn một hệ bổ sung cho {1}.
+{1} gathered storm energy!
+{1} đã tích tụ năng lượng bão tố!
+{1} fetched and returned {2}!
+{1} đã nhặt và mang {2} trở về!
+Gloom Moonlight
+Gloom Moonlight
+Gloomy moonlight shrouded the battlefield!
+Ánh trăng u ám đã bao phủ chiến trường!
+Gloomy moonlight shrouds the battlefield!
+Ánh trăng u ám bao phủ chiến trường!
+The gloomy moonlight faded.
+Ánh trăng u ám đã tan biến.
+Gloomy moonlight bathes the battlefield.
+Ánh trăng u ám đang bao trùm chiến trường.
+{1} held on with {2}!
+{1} đã trụ vững nhờ {2}!
+{1} is losing health from Showdown Mode!
+{1} đang mất HP do Showdown Mode!
+{1} was afflicted by a curse!
+{1} đã bị nguyền rủa!
+{1}'s lowered stats were restored!
+Các chỉ số bị giảm của {1} đã được khôi phục!
+Colosseum Terrain prevents status moves!
+Colosseum Terrain ngăn sử dụng chiêu thức trạng thái!
+Windy Terrain blows away spores and powder!
+Windy Terrain thổi bay các loại bào tử và bột phấn!
+{1} spread across the battlefield!
+{1} đã lan khắp chiến trường!
+{1} covers the battlefield!
+{1} bao phủ chiến trường!
+{1} was poisoned by Toxic Terrain!
+{1} đã trúng độc do Toxic Terrain!
+{1} faded.
+{1} đã tan biến.
+{1} covers the battlefield.
+{1} đang bao phủ chiến trường.
+Ravine Terrain blows away spores and powder!
+Ravine Terrain thổi bay các loại bào tử và bột phấn!
+{1} gained a shield of {2}!
+{1} đã nhận được lá chắn {2}!
+{1}'s shield disappeared!
+Lá chắn của {1} đã biến mất!
+{1}'s shield broke!
+Lá chắn của {1} đã vỡ!
+{1} is immune to Bleed!
+{1} miễn nhiễm với trạng thái Chảy máu!
+{1} is already bleeding!
+{1} đã bị Chảy máu rồi!
+{1} started bleeding!
+{1} bắt đầu bị Chảy máu!
+{1} stopped bleeding!
+{1} đã hết Chảy máu!
+{1} cannot recover HP because of Bleed!
+{1} không thể hồi HP do trạng thái Chảy máu!
+{1} is hurt by Bleed!
+{1} chịu sát thương do Chảy máu!
+X-Ray Vision's effect on {1} wore off!
+Hiệu ứng X-Ray Vision trên {1} đã hết!
+{1}'s held item was disabled for {2} turns!
+Vật phẩm mang theo của {1} đã bị vô hiệu hóa trong {2} lượt!
+{1} avoided the move while vanished!
+{1} đã né được chiêu thức khi đang biến mất!
+{1} foresaw the move and avoided it!
+{1} đã đoán trước chiêu thức và né tránh!
+{1} was alerted to {2}'s {3}!
+{1} đã được cảnh báo về {3} của {2}!
+{1} already has a disabled move!
+{1} đã có một chiêu thức bị vô hiệu hóa!
+{1}'s {2} was disabled for 3 turns!
+Chiêu thức {2} của {1} đã bị vô hiệu hóa trong 3 lượt!
+{1} parried the attack!
+{1} đã đỡ gạt đòn tấn công!
+{1} counterattacked with a swift slash!
+{1} phản công bằng một nhát chém chớp nhoáng!
+{1} anticipated the attack and braced itself!
+{1} đã đoán trước đòn đánh và chuẩn bị phòng thủ!
+{1} picked up all entry hazards on its side!
+{1} đã thu dọn toàn bộ bẫy trên sân của mình!
+{1} gathered some Honey!
+{1} đã thu thập được một ít Honey!
+{1} stole and ate {2}'s Honey!
+{1} đã lấy trộm và ăn Honey của {2}!
+{1} restored its HP with Honey!
+{1} đã hồi HP nhờ Honey!
+{1} is forming a core of fairy energy!
+{1} đang hình thành lõi năng lượng Tiên!
+{1} was trapped inside the fairy core!
+{1} đã bị nhốt bên trong lõi năng lượng Tiên!
+The fairy core exploded!
+Lõi năng lượng Tiên đã phát nổ!
+Chưa có mô tả Pokédex.
+Chưa có mô tả Pokédex.
+Không có
+Không có
+CHỈ SỐ CƠ BẢN
+CHỈ SỐ CƠ BẢN
+Có thể đóng sau
+Có thể đóng sau
+Nhấn A để tiếp tục
+Nhấn A để tiếp tục
+Lên/Xuống: xem
+Lên/Xuống: xem
+This innate is currently locked until level {1}.
+Bẩm sinh này hiện bị khóa cho đến cấp {1}.
+This innate is currently locked.
+Bẩm sinh này hiện đang bị khóa.
+Locked
+Bị khóa

@@ -111,6 +111,11 @@ class DeluxeBitmapWrapper
   def compile_strip(pkmn = nil, back = false)
     strip = []
     bmp = Bitmap.new(@bmp_file)
+    # GIF frames were already extracted by refresh.
+    if bmp.animated?
+      bmp.dispose
+      return
+    end
     $game_temp.spinda_spots = nil
     alter_function = MultipleForms.getFunction(pkmn.species, "alterBitmap") if pkmn
     @total_frames.times do |i|

@@ -11098,8 +11098,29 @@ class Battle::Battler
 
     result = steadfast_resolve_original_reduce_hp(*args)
 
-    if pokemon.equal?(original_pokemon) && hp < previous_hp
-      SteadfastResolve.activate(self)
+	show_hp_change = (args.length < 4) ? true : args[3]
+	if show_hp_change &&
+	   pokemon.equal?(original_pokemon) && hp < previous_hp
+	  SteadfastResolve.activate(self)
+	end
+
+    return result
+  end
+end
+
+class Battle::Move
+  unless method_defined?(:steadfast_original_animate_hit_and_hp_lost)
+    alias_method :steadfast_original_animate_hit_and_hp_lost,
+                 :pbAnimateHitAndHPLost
+  end
+
+  def pbAnimateHitAndHPLost(user, targets)
+    result = steadfast_original_animate_hit_and_hp_lost(user, targets)
+
+    targets.each do |target|
+      next if target.damageState.substitute
+      next if target.damageState.hpLost <= 0
+      SteadfastResolve.activate(target)
     end
 
     return result
@@ -11751,22 +11772,6 @@ module BlademasterBattleHooks
     end
   end
 
-  # Parry after Protect/immunity checks, before individual hit checks.
-  def pbSuccessCheckAgainstTarget(move, user, target, targets)
-    success = super
-    return success if !success
-    return success if !move.pbDamagingMove?
-
-    if Blademaster.try_parry(
-      move, user, target, @battle,
-      move.pbShowFailMessages?(targets)
-    )
-      return false
-    end
-
-    return success
-  end
-
   # A connected hit can trigger a counter even if no parry occurred.
   def pbProcessMoveHit(move, user, targets, hitNum, skipAccuracyCheck)
     result = super
@@ -11788,6 +11793,35 @@ end
 
 unless Battle::Battler.ancestors.include?(BlademasterBattleHooks)
   Battle::Battler.prepend(BlademasterBattleHooks)
+end
+
+#===============================================================================
+# Blademaster: hook compatible with MAG/Community alias chains.
+# pbSuccessCheckAgainstTarget must NOT remain in BlademasterBattleHooks.
+#===============================================================================
+class Battle::Battler
+  unless method_defined?(:blademaster_success_check_without_parry)
+    alias_method :blademaster_success_check_without_parry,
+                 :pbSuccessCheckAgainstTarget
+
+    def pbSuccessCheckAgainstTarget(move, user, target, targets)
+      success = blademaster_success_check_without_parry(
+        move, user, target, targets
+      )
+
+      return success if !success
+      return success if !move.pbDamagingMove?
+
+      if Blademaster.try_parry(
+        move, user, target, @battle,
+        move.pbShowFailMessages?(targets)
+      )
+        return false
+      end
+
+      return success
+    end
+  end
 end
 
 #===============================================================================
@@ -13155,4 +13189,601 @@ if Battle::AI.method_defined?(:score_move_advanced) &&
    !Battle::AI.ancestors.include?(SpareScalesAdvancedAI)
 
   Battle::AI.prepend(SpareScalesAdvancedAI)
+end
+
+#===============================================================================
+# INTIMIDATE / TERROR SOWER - Synchronization patch
+# Pokemon Essentials v21.1
+#
+# - Intimidate lowers Attack.
+# - Terror Sower lowers Special Attack.
+# - Each ability activates once per switch-in.
+# - Supports both abilities being active together as Innates.
+# - Substitute blocks before Contrary is checked.
+# - Overwhelm blocks both abilities before any stat change.
+# - Preserves Rattled, Run Away, Adrenaline Orb and stat-loss reactions.
+# - Guard Dog raises ATTACK against either ability.
+#
+# LOAD LAST, after other ability and Advanced AI patches.
+#===============================================================================
+
+module IntimidationSync
+  STATS = {
+    :INTIMIDATE => :ATTACK,
+    :TERRORSOWER => :SPECIAL_ATTACK
+  }.freeze
+
+  OVERWHELM = defined?(OVERWHELM_ABILITY) ?
+    OVERWHELM_ABILITY : :OVERWHELM
+
+  IMMUNITIES = [
+    :OBLIVIOUS, :OWNTEMPO, :INNERFOCUS, :SCRAPPY
+  ].freeze
+
+  #-----------------------------------------------------------------------------
+  # Correct splash name for primary abilities and Innates.
+  #-----------------------------------------------------------------------------
+  def self.with_splash(holder, ability)
+    battle = holder.battle
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      $aamName = $aamName2 = GameData::Ability.get(ability).name
+      battle.pbShowAbilitySplash(holder)
+      yield
+    ensure
+      battle.pbHideAbilitySplash(holder)
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+
+  def self.blocked_message(target)
+    target.battle.pbDisplay(
+      _INTL("{1} is unaffected!", target.pbThis)
+    )
+  end
+
+  #-----------------------------------------------------------------------------
+  # Shared intimidation checks.
+  #
+  # Uses the ordinary stat-change flow after dedicated immunity checks.
+  # Avoids older Guard Dog aliases on pbLowerStatStageByAbility that only
+  # inspect the source's primary ability.
+  #-----------------------------------------------------------------------------
+  def self.apply(source, target, stat)
+    return false if target.fainted?
+
+    battle = source.battle
+    old_mold = battle.moldBreaker
+
+    begin
+      # These are ability effects, not Mold Breaker attacks.
+      battle.moldBreaker = false
+
+      # Substitute must block even if the target has Contrary.
+      if target.effects[PBEffects::Substitute] > 0
+        battle.pbDisplay(
+          _INTL("{1} is protected by its substitute!",
+                target.pbThis)
+        )
+        return false
+      end
+
+      immune = [OVERWHELM]
+      immune += IMMUNITIES if Settings::MECHANICS_GENERATION >= 8
+
+      blocker = immune.find do |id|
+        target.hasActiveAbility?(id)
+      end
+
+      if blocker
+        with_splash(target, blocker) do
+          blocked_message(target)
+        end
+        return false
+      end
+
+      # Match Gen 9's dedicated Intimidate item-immunity check.
+      if !target.hasActiveAbility?(:CONTRARY) && target.itemActive?
+        if Battle::ItemEffects.triggerStatLossImmunity(
+          target.item, target, stat, battle, true
+        )
+          return false
+        end
+      end
+
+      # Guard Dog keeps its original Attack boost for BOTH effects.
+      if target.hasActiveAbility?(:GUARDDOG)
+        changed = false
+
+        with_splash(target, :GUARDDOG) do
+          changed = target.pbRaiseStatStageByAbility(
+            :ATTACK, 1, target, false
+          )
+        end
+
+        return changed
+      end
+
+      # Handles Mist, general ability immunity, Clear Amulet, Contrary,
+      # Simple, Mirror Armor and normal stat-stage limits.
+      return false if !target.pbCanLowerStatStage?(
+        stat, source, nil, true
+      )
+
+      # Keeps Defiant, Competitive and other normal stat-loss reactions.
+      return target.pbLowerStatStage(stat, 1, source)
+    ensure
+      battle.moldBreaker = old_mold
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Adrenaline Orb eligibility follows Intimidate's stage-limit rules.
+  #-----------------------------------------------------------------------------
+  def self.item_can_trigger?(target, stat)
+    if target.hasActiveAbility?(:GUARDDOG)
+      return !target.statStageAtMax?(:ATTACK)
+    elsif target.hasActiveAbility?(:CONTRARY)
+      return !target.statStageAtMax?(stat)
+    end
+
+    return !target.statStageAtMin?(stat)
+  end
+
+  #-----------------------------------------------------------------------------
+  # Entry activation.
+  # Tracks Intimidate and Terror Sower separately.
+  #-----------------------------------------------------------------------------
+  def self.activate(ability, source, battle)
+    return if source.fainted?
+    return if !source.hasActiveAbility?(ability)
+
+    used = source.instance_variable_get(:@intimidation_sync_used)
+
+    if !used || used[:pokemon] != source.pokemon.object_id
+      used = { :pokemon => source.pokemon.object_id }
+
+      source.instance_variable_set(
+        :@intimidation_sync_used, used
+      )
+    end
+
+    return if used[ability]
+    used[ability] = true
+
+    old_mold = battle.moldBreaker
+
+    begin
+      battle.moldBreaker = false
+
+      with_splash(source, ability) do
+        battle.allOtherSideBattlers(source.index).each do |target|
+          break if source.fainted?
+          next if target.fainted?
+          next if !target.near?(source)
+
+          check_item = item_can_trigger?(
+            target, STATS[ability]
+          )
+
+          changed = apply(source, target, STATS[ability])
+
+          # Includes Rattled and the existing Run Away +2 Speed handler.
+          if changed && !target.fainted?
+            target.pbAbilitiesOnIntimidated
+          end
+
+          # As with ordinary Intimidate, Adrenaline Orb can activate
+          # even if the attempted stat drop is blocked.
+          if check_item && !target.fainted?
+            target.pbItemOnIntimidatedCheck
+          end
+        end
+      end
+    ensure
+      battle.moldBreaker = old_mold
+    end
+  end
+
+  #-----------------------------------------------------------------------------
+  # Read the unlocked abilities used by the Innate plugin.
+  #-----------------------------------------------------------------------------
+  def self.party_has?(pokemon, ability)
+    return true if pokemon.hasAbility?(ability)
+
+    if pokemon.respond_to?(:set_innate_limits) &&
+       pokemon.respond_to?(:active_innates) &&
+       pokemon.active_innates
+
+      return pokemon.set_innate_limits.include?(ability)
+    end
+
+    return false
+  end
+
+  #-----------------------------------------------------------------------------
+  # Deterministic AI switching heuristic.
+  # Does not change stages, activate abilities or use battle RNG.
+  #-----------------------------------------------------------------------------
+  def self.foe_score(foe, stat)
+    return 0 if foe.fainted?
+    return 0 if foe.effects[PBEffects::Substitute] > 0
+    return 0 if foe.hasActiveAbility?(OVERWHELM)
+
+    if Settings::MECHANICS_GENERATION >= 8
+      return 0 if IMMUNITIES.any? do |id|
+        foe.hasActiveAbility?(id)
+      end
+    end
+
+    return 0 if foe.hasActiveItem?(:CLEARAMULET)
+
+    if foe.hasActiveAbility?(:GUARDDOG)
+      return foe.statStageAtMax?(:ATTACK) ? 0 : -12
+    end
+
+    if foe.hasActiveAbility?(:CONTRARY)
+      return foe.statStageAtMax?(stat) ? 0 : -10
+    end
+
+    return 0 if foe.statStageAtMin?(stat)
+    return 0 if foe.pbOwnSide.effects[PBEffects::Mist] > 0
+
+    if [:CLEARBODY, :WHITESMOKE, :FULLMETALBODY].any? do |id|
+      foe.hasActiveAbility?(id)
+    end
+      return 0
+    end
+
+    if stat == :ATTACK && foe.hasActiveAbility?(:HYPERCUTTER)
+      return 0
+    end
+
+    if foe.pbHasType?(:GRASS)
+      protectors = [foe] + foe.allAllies.to_a
+
+      return 0 if protectors.any? do |b|
+        b.hasActiveAbility?(:FLOWERVEIL)
+      end
+    end
+
+    category = (stat == :ATTACK) ? 0 : 1
+
+    relevant = foe.moves.any? do |move|
+      move && move.damagingMove? && move.category == category
+    end
+
+    score = relevant ? 12 : 3
+
+    score -= 14 if foe.hasActiveAbility?(:DEFIANT)
+    score -= 14 if foe.hasActiveAbility?(:COMPETITIVE)
+    score -= 12 if foe.hasActiveAbility?(:MIRRORARMOR)
+    score -= 10 if foe.hasActiveAbility?(:RUNAWAY)
+
+    if Settings::MECHANICS_GENERATION >= 8 &&
+       foe.hasActiveAbility?(:RATTLED)
+      score -= 5
+    end
+
+    score -= 4 if foe.hasActiveItem?(:ADRENALINEORB)
+
+    return score
+  end
+
+  def self.switch_bonus(
+    battle, index, pokemon, abilities = STATS.keys
+  )
+    return 0 if battle.pbCheckGlobalAbility(:NEUTRALIZINGGAS)
+
+    score = 0
+
+    abilities.each do |ability|
+      next if !party_has?(pokemon, ability)
+
+      battle.allOtherSideBattlers(index).each do |foe|
+        holder = battle.battlers[index]
+        next if holder && !foe.near?(holder)
+
+        score += foe_score(foe, STATS[ability])
+      end
+    end
+
+    return score
+  end
+end
+
+#===============================================================================
+# Reset activation only when initializing a new field appearance.
+# No aliases are created on previously prepended methods.
+#===============================================================================
+
+module IntimidationSyncBattler
+  def pbInitialize(*args)
+    @intimidation_sync_used = nil
+    return super
+  end
+
+  # Also supports existing callers such as Warrior Dancer.
+  def pbLowerAttackStatStageIntimidate(source)
+    return IntimidationSync.apply(source, self, :ATTACK)
+  end
+
+  def pbLowerSpecialAttackStatStageIntimidate(source)
+    return IntimidationSync.apply(source, self, :SPECIAL_ATTACK)
+  end
+end
+
+unless Battle::Battler.ancestors.include?(IntimidationSyncBattler)
+  Battle::Battler.prepend(IntimidationSyncBattler)
+end
+
+#===============================================================================
+# Replace the old entry handlers, including the old Run Away wrapper.
+# Run Away now triggers through pbAbilitiesOnIntimidated instead.
+#===============================================================================
+
+IntimidationSync::STATS.each_key do |id|
+  Battle::AbilityEffects::OnSwitchIn.add(id,
+    proc { |ability, battler, battle, switch_in|
+      IntimidationSync.activate(ability, battler, battle)
+    }
+  )
+end
+
+# Overwhelm now blocks BEFORE the drop.
+# Remove its old after-drop notification handler.
+Battle::AbilityEffects::OnIntimidated.remove(
+  IntimidationSync::OVERWHELM
+)
+
+#===============================================================================
+# Native AI ability value.
+#===============================================================================
+
+IntimidationSync::STATS.each_key do |id|
+  Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+    ids.delete(id)
+  end
+
+  Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+  Battle::AI::BASE_ABILITY_RATINGS[7] << id
+
+  Battle::AI::Handlers::AbilityRanking.add(id,
+    proc { |ability, score, battler, ai|
+      value = 0
+
+      ai.battle.allOtherSideBattlers(battler.index).each do |foe|
+        value += IntimidationSync.foe_score(
+          foe, IntimidationSync::STATS[ability]
+        )
+      end
+
+      next value < 0 ? 1 : score
+    }
+  )
+end
+
+#===============================================================================
+# Native AI replacement scoring.
+# Existing hazard damage estimates remain unchanged.
+#===============================================================================
+
+module IntimidationSyncAI
+  def rate_replacement_pokemon(index, pokemon, score)
+    result = super
+    return result if !result.is_a?(Numeric)
+
+    return result + IntimidationSync.switch_bonus(
+      @battle, index, pokemon
+    )
+  end
+end
+
+unless Battle::AI.ancestors.include?(IntimidationSyncAI)
+  Battle::AI.prepend(IntimidationSyncAI)
+end
+
+#===============================================================================
+# Advanced AI's separate detailed switching pipeline.
+# Its existing Intimidate bonus is kept; add Terror Sower evaluation.
+#===============================================================================
+
+module IntimidationSyncAdvancedAI
+  def evaluate_switch_candidate_detailed(pokemon, current_user, skill)
+    result = super
+    return result if !result.is_a?(Numeric)
+
+    index = get_battler_index(current_user)
+
+    return result + IntimidationSync.switch_bonus(
+      @battle, index, pokemon, [:TERRORSOWER]
+    )
+  end
+end
+
+if Battle::AI.method_defined?(:evaluate_switch_candidate_detailed) &&
+   !Battle::AI.ancestors.include?(IntimidationSyncAdvancedAI)
+
+  Battle::AI.prepend(IntimidationSyncAdvancedAI)
+end
+
+#===============================================================================
+# AMPHIBIOUS
+# Water/Poison/Ground moves gain STAB regardless of the user's typing.
+# Swamp Terrain immunity is handled in ExtendedTerrains below.
+#===============================================================================
+module AmphibiousAbility
+  TYPES = [:WATER, :POISON, :GROUND].freeze
+
+  def self.real(object)
+    return object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.active?(object)
+    return MimicryOriginalSTAB.has_ability?(real(object), :AMPHIBIOUS)
+  end
+
+  def self.granted_stab(object)
+    return MimicryOriginalSTAB.retained_stab(real(object))
+  end
+
+  # Only grant the missing STAB.
+  # Preserve stronger Tera STAB and avoid stacking with Mimicry.
+  def self.native_factor(object, type)
+    return 1.0 if !TYPES.include?(type) || !active?(object)
+
+    existing = MimicryOriginalSTAB.existing_stab(object, type)
+
+    if MimicryOriginalSTAB.retains_stab?(object, type)
+      existing = [
+        existing,
+        MimicryOriginalSTAB.retained_stab(object)
+      ].max
+    end
+
+    return [existing, granted_stab(object)].max / existing
+  end
+
+  # Advanced AI has separate STAB calculations.
+  def self.advanced_factor(object, type, separate = false)
+    return 1.0 if !TYPES.include?(type) || !active?(object)
+
+    battler = real(object)
+    utilities = AdvancedAI::Utilities
+    existing = utilities.has_type?(battler, type) ? 1.5 : 1.0
+
+    if existing > 1.0 &&
+       utilities.ability_active?(battler, :ADAPTABILITY)
+      existing = 2.0
+    end
+
+    if separate
+      if utilities.ability_active?(battler, :PROTEAN) ||
+         utilities.ability_active?(battler, :LIBERO)
+        existing = [existing, 1.5].max
+      end
+    elsif MimicryOriginalSTAB.retains_stab?(battler, type)
+      existing = [
+        existing,
+        MimicryOriginalSTAB.retained_stab(battler)
+      ].max
+    end
+
+    return [existing, granted_stab(battler)].max / existing
+  end
+
+  module BattleMoveHooks
+    def pbCalcDamageMults_Type(user, target, numTargets, type, baseDmg, mults)
+      result = super
+      mults[:final_damage_multiplier] *=
+        AmphibiousAbility.native_factor(user, type)
+      return result
+    end
+  end
+
+  module NativeAIHooks
+    def calc_type_mults(user, target, base_dmg, type, critical, mults)
+      result = super
+      mults[:final_damage_multiplier] *=
+        AmphibiousAbility.native_factor(user, type)
+      return result
+    end
+  end
+
+  module AdvancedCombatHooks
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = super
+      return result * AmphibiousAbility.advanced_factor(attacker, type)
+    end
+  end
+
+  module AdvancedScorerHooks
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = super
+      return result if !move || !user || !target || result <= 0
+
+      native = move.respond_to?(:move) ? move.move : move
+      return result if native.is_a?(Battle::Move::FixedDamageMove)
+      return result if native.function_code.start_with?("OHKO")
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      factor = AmphibiousAbility.advanced_factor(user, type, true)
+      return result if factor == 1.0
+      return [(result * factor).round, 1].max
+    end
+
+    def score_stab_bonus(move, user)
+      score = super
+      return score if !move.damagingMove?
+      return score if !AmphibiousAbility.active?(user)
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      return AmphibiousAbility::TYPES.include?(type) ?
+        [score, 20].max : score
+    end
+  end
+
+  # Install after all plugins have finished loading to avoid alias recursion.
+  def self.install!
+    return if @installed
+
+    unless Battle::Move.ancestors.include?(BattleMoveHooks)
+      Battle::Move.prepend(BattleMoveHooks)
+    end
+
+    unless Battle::AI::AIMove.ancestors.include?(NativeAIHooks)
+      Battle::AI::AIMove.prepend(NativeAIHooks)
+    end
+
+    if defined?(AdvancedAI::CombatUtilities)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      unless singleton.ancestors.include?(AdvancedCombatHooks)
+        singleton.prepend(AdvancedCombatHooks)
+      end
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage)
+      unless Battle::AI.ancestors.include?(AdvancedScorerHooks)
+        Battle::AI.prepend(AdvancedScorerHooks)
+      end
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      AmphibiousAbility.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:AMPHIBIOUS)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :AMPHIBIOUS
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  AmphibiousAbility::BattleConstruction
+)
+  Battle.singleton_class.prepend(AmphibiousAbility::BattleConstruction)
 end

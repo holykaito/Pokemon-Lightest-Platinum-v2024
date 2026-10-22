@@ -2,57 +2,175 @@
 # translate every second line of this file.
 #-------------------------------
 [Map048]
-\b\ff[oldman]You're a trainer. I think this will be of use to you.
-\b\ff[oldman]You're a trainer. I think this will be of use to you.
-\b\ff[oldman]High level Pokemon will be difficult to capture. You must first weaken them, and then use the Ultra Ball.
-\b\ff[oldman]High level Pokemon will be difficult to capture. You must first weaken them, and then use the Ultra Ball.
+If you want to hear rumors, Van Hoi is the perfect place for it.
+If you want to hear rumors, Van Hoi is the perfect place for it.
+People come here from all over, and everyone seems to bring a story with them.
+People come here from all over, and everyone seems to bring a story with them.
+Spend enough time near the station or the TV Station and you’ll hear all kinds of strange things.
+Spend enough time near the station or the TV Station and you’ll hear all kinds of strange things.
+Of course, whether any of them are true... well, that’s another matter.
+Of course, whether any of them are true... well, that’s another matter.
 Contest Hall
 Contest Hall
-\bThis is the Safari Zone of Central City. Inside, there are many ways to catch Pokemon! This place is currently under repair, please come back later.
-\bThis is the Safari Zone of Central City. Inside, there are many ways to catch Pokemon! This place is currently under repair, please come back later.
+Welcome to the Van Hoi Conservation Area.
+Welcome to the Van Hoi Conservation Area.
+This area was established to protect rare Pokémon and preserve their natural habitats.
+This area was established to protect rare Pokémon and preserve their natural habitats.
+Because of that, access is strictly controlled.
+Because of that, access is strictly controlled.
+Only authorized personnel and individuals with special permission are allowed beyond this gate.
+Only authorized personnel and individuals with special permission are allowed beyond this gate.
+I’m afraid ordinary visitors aren’t permitted to enter on their own.
+I’m afraid ordinary visitors aren’t permitted to enter on their own.
+If you have official authorization, show it to me and I’ll let you through.
+If you have official authorization, show it to me and I’ll let you through.
+Until then, I’ll have to ask you to turn back.
+Until then, I’ll have to ask you to turn back.
+Hey, you! Don't go on this route, it has many strong and dangerous Pokémon on it!
+Hey, you! Don't go on this route, it has many strong and dangerous Pokémon on it!
+When I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
+When I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
 \bHey, you! Don't go on this route, it has many strong and dangerous Pokemon on it!
 \bHey, you! Don't go on this route, it has many strong and dangerous Pokemon on it!
-\bWhen I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
-\bWhen I grow older, I will attend the University of Inhore. It;s very big and beautiful, and offers many different fields of study.
-You can tell hust by looking at some trainers that they have the capacity to train certain Pokemon really well. I'm willing to give you a great Pokemon.
-You can tell hust by looking at some trainers that they have the capacity to train certain Pokemon really well. I'm willing to give you a great Pokemon.
-Do you want to get a EGG?
-Do you want to get a EGG?
-\b\PN received the Egg.\wt[80]
-\b\PN received the Egg.\wt[80]
-Take good care of it!
-Take good care of it!
-You can go back to get it if you want.
-You can go back to get it if you want.
-\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle.
-\rMy favorite Pokemon is Lilligant. It's very fragrant and beautiful, but it's also strong in battle.
-\bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
-\bCycling not only allows me to explore the Pokémon world quickly but also makes me feel exhilarated. Go ahead, hop on a bike, and experience the feeling of freedom on your adventurous journey with Pokémon!
-\bI enjoy strolling through the city, admiring the scenery, and meeting new people. Let's share stories, expand knowledge, and discover new interests together. Life is not just about work, but also about memorable moments. Embrace each day and create cherished memories!
-\bI enjoy strolling through the city, admiring the scenery, and meeting new people. Let's share stories, expand knowledge, and discover new interests together. Life is not just about work, but also about memorable moments. Embrace each day and create cherished memories!
+Oh... Are you a Pokémon Trainer?
+Oh... Are you a Pokémon Trainer?
+Sorry for staring. I was just wondering whether I should ask you something.
+Sorry for staring. I was just wondering whether I should ask you something.
+You see, I’ve been taking care of a Pokémon Egg for some time now.
+You see, I’ve been taking care of a Pokémon Egg for some time now.
+I found it in rather unusual circumstances, and I couldn’t just leave it there on its own.
+I found it in rather unusual circumstances, and I couldn’t just leave it there on its own.
+Since then, I’ve kept it warm, watched over it, and made sure nothing happened to it.
+Since then, I’ve kept it warm, watched over it, and made sure nothing happened to it.
+But lately I’ve started to wonder if keeping it here is really the best thing for the Pokémon inside.
+But lately I’ve started to wonder if keeping it here is really the best thing for the Pokémon inside.
+Pokémon Eggs often hatch while being carried around and experiencing the world with someone.
+Pokémon Eggs often hatch while being carried around and experiencing the world with someone.
+And I’m afraid I simply don’t travel enough anymore.
+And I’m afraid I simply don’t travel enough anymore.
+You, on the other hand, look like someone who still has plenty of places left to visit.
+You, on the other hand, look like someone who still has plenty of places left to visit.
+So... would you be willing to take this Egg with you?
+So... would you be willing to take this Egg with you?
+I don’t know what kind of Pokémon is inside, and honestly, I think that makes it even more exciting.
+I don’t know what kind of Pokémon is inside, and honestly, I think that makes it even more exciting.
+Please take good care of it until the day it hatches.
+Please take good care of it until the day it hatches.
+And when that day comes, I hope the two of you become good partners.
+And when that day comes, I hope the two of you become good partners.
+How’s the Egg doing?
+How’s the Egg doing?
+I wonder what kind of Pokémon will hatch from it.
+I wonder what kind of Pokémon will hatch from it.
+Whatever it turns out to be, I’m sure traveling with you will be good for it.
+Whatever it turns out to be, I’m sure traveling with you will be good for it.
+Make sure you come back someday and tell me how it turned out.
+Make sure you come back someday and tell me how it turned out.
+Van Hoi is one of those places where you can visit a hundred times and still notice something new.
+Van Hoi is one of those places where you can visit a hundred times and still notice something new.
+One day there’s a new performance at the Stage, the next there’s some big story being reported at the TV Station.
+One day there’s a new performance at the Stage, the next there’s some big story being reported at the TV Station.
+And if you get tired of all the excitement, you can always head over to the Conservation Area for some peace and quiet.
+And if you get tired of all the excitement, you can always head over to the Conservation Area for some peace and quiet.
+I suppose that balance is what makes this city special.
+I suppose that balance is what makes this city special.
+Whew! Riding a bike through Van Hoi is great exercise, but you really have to watch where you’re going.
+Whew! Riding a bike through Van Hoi is great exercise, but you really have to watch where you’re going.
+There are people everywhere, especially around the station and the TV Station.
+There are people everywhere, especially around the station and the TV Station.
+I usually take the quieter streets when I want to pick up some speed.
+I usually take the quieter streets when I want to pick up some speed.
+Still, nothing beats feeling the wind in your face while racing across the city!
+Still, nothing beats feeling the wind in your face while racing across the city!
+Are you here to see the Stage?
+Are you here to see the Stage?
+There are always performers practicing here, and some of them travel with Pokémon as part of their acts.
+There are always performers practicing here, and some of them travel with Pokémon as part of their acts.
+I love watching how different Trainers bring out the personality of their Pokémon without even battling.
+I love watching how different Trainers bring out the personality of their Pokémon without even battling.
+Battles aren’t the only way for Pokémon to shine, you know.
+Battles aren’t the only way for Pokémon to shine, you know.
 Safari Zone
 Safari Zone
-\bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
-\bHello, young trainer! What makes the adventure with Pokémon so exciting? There are colorful towns, thrilling battles, and adorable companions. Get ready for exciting battles and uncover the mysteries of the Pokémon world. You'll become a skilled trainer, trust me!
-\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion.
-\bWorking in the Mines is very dangerous. Miners always use their safety equipment and have a good Onix as their companion.
-Radio & TV Tower
-Radio & TV Tower
-\bThis is Central City's Train Station. This place is currently under repair, please come back later.
-\bThis is Central City's Train Station. This place is currently under repair, please come back later.
-\bThis is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
-\bThis is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
-\rIn this city, there are many buildings that are important throughout the Zhery region and the world.
-\rIn this city, there are many buildings that are important throughout the Zhery region and the world.
-Train Station
-Train Station
-\bYesterday I saw a Combee in Inhore Woods. It looked very pretty, but I was still scared.
-\bYesterday I saw a Combee in Inhore Woods. It looked very pretty, but I was still scared.
-\bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
-\bNever cease training and enhancing the battling abilities of your Pokémon. Patience and determination will make you a formidable trainer
-\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it.
-\bFocus Punch, a very strong punch capable of defeating any opponent if you know how to use it.
-Yes
-Yes
-No
-No
+The Van Hoi Station is one of the reasons this city is always so crowded.
+The Van Hoi Station is one of the reasons this city is always so crowded.
+Trains arrive from all sorts of places, bringing Trainers, merchants, tourists, and Pokémon researchers.
+Trains arrive from all sorts of places, bringing Trainers, merchants, tourists, and Pokémon researchers.
+If you plan on traveling far, it’s a good idea to check the routes before you leave.
+If you plan on traveling far, it’s a good idea to check the routes before you leave.
+And don’t miss your train. Chasing one down the platform is a lot less fun than it looks.
+And don’t miss your train. Chasing one down the platform is a lot less fun than it looks.
+I grew up in a small town, so Van Hoi completely blew me away when I first came here.
+I grew up in a small town, so Van Hoi completely blew me away when I first came here.
+There are trains coming and going, huge buildings everywhere, people rushing around, and something happening on almost every street.
+There are trains coming and going, huge buildings everywhere, people rushing around, and something happening on almost every street.
+At first I thought I’d never get used to all the noise.
+At first I thought I’d never get used to all the noise.
+Now whenever I go somewhere quiet, I actually start missing it. Funny how that works, huh?
+Now whenever I go somewhere quiet, I actually start missing it. Funny how that works, huh?
+I love walking around Van Hoi after sunset, when all the buildings start to light up.
+I love walking around Van Hoi after sunset, when all the buildings start to light up.
+The streets are still crowded, but somehow the whole city feels completely different at night.
+The streets are still crowded, but somehow the whole city feels completely different at night.
+Sometimes I buy a drink and just sit somewhere watching people pass by.
+Sometimes I buy a drink and just sit somewhere watching people pass by.
+You don’t always need a destination to enjoy a big city, you know.
+You don’t always need a destination to enjoy a big city, you know.
+Van Hoi Television Station
+Van Hoi Television Station
+This is Van Hoi Train Station. This place is currently under repair, please come back later.
+This is Van Hoi Train Station. This place is currently under repair, please come back later.
+This is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
+This is the Contest Hall. Enter to compete in varied events. This place is currently under repair, please come back later.
+Van Hoi is probably the busiest city you’ll find around here.
+Van Hoi is probably the busiest city you’ll find around here.
+People arrive by train every day, while others come for the TV Station, the Stage, or just to look around.
+People arrive by train every day, while others come for the TV Station, the Stage, or just to look around.
+It can feel overwhelming at first, especially if you’re used to quieter towns.
+It can feel overwhelming at first, especially if you’re used to quieter towns.
+But stay here for a while and you’ll understand why so many people end up loving this place.
+But stay here for a while and you’ll understand why so many people end up loving this place.
+Van Hoi Train Station
+Van Hoi Train Station
+That huge building over there is the Van Hoi TV Station.
+That huge building over there is the Van Hoi TV Station.
+They broadcast Pokémon news, interviews, performances, and even reports from Trainers out on their journeys.
+They broadcast Pokémon news, interviews, performances, and even reports from Trainers out on their journeys.
+Sometimes famous people come here to appear on a show, so you never know who you might run into.
+Sometimes famous people come here to appear on a show, so you never know who you might run into.
+I’ve been hanging around here all morning hoping to spot someone famous, but no luck yet.
+I’ve been hanging around here all morning hoping to spot someone famous, but no luck yet.
+Welcome to Van Hoi City - a lively city of media, travel, entertainment, and nature.
+Welcome to Van Hoi City - a lively city of media, travel, entertainment, and nature.
+Visit the TV Station, the Train Station, the Performance Hall, and the Safari Zone.
+Visit the TV Station, the Train Station, the Performance Hall, and the Safari Zone.
+Hah! One more set... and I’m done for today!
+Hah! One more set... and I’m done for today!
+Oh? Sorry, I didn’t notice you standing there.
+Oh? Sorry, I didn’t notice you standing there.
+I come here almost every day to train my body together with my Pokémon.
+I come here almost every day to train my body together with my Pokémon.
+People often think getting stronger is all about hitting harder, but that’s only half of it.
+People often think getting stronger is all about hitting harder, but that’s only half of it.
+You need the strength to attack, but also the toughness to stand your ground when things get rough.
+You need the strength to attack, but also the toughness to stand your ground when things get rough.
+Hmm... Judging by the way you carry yourself, you’ve probably been through a few battles already.
+Hmm... Judging by the way you carry yourself, you’ve probably been through a few battles already.
+In that case, I think you’ll appreciate this more than most people would.
+In that case, I think you’ll appreciate this more than most people would.
+Here, take this TM. It contains Bulk Up.
+Here, take this TM. It contains Bulk Up.
+Bulk Up strengthens both Attack and Defense, just like proper training should.
+Bulk Up strengthens both Attack and Defense, just like proper training should.
+Don’t just teach it to any Pokémon, though. Find one that can really make use of it.
+Don’t just teach it to any Pokémon, though. Find one that can really make use of it.
+And remember, there are no shortcuts to real strength!
+And remember, there are no shortcuts to real strength!
+Strange, isn’t it? Van Hoi is full of noise, crowds, and tall buildings.
+Strange, isn’t it? Van Hoi is full of noise, crowds, and tall buildings.
+Yet just beyond all of that, the Conservation Area is calm enough that wild Pokémon can still live peacefully.
+Yet just beyond all of that, the Conservation Area is calm enough that wild Pokémon can still live peacefully.
+The city has grown a lot over the years, but thankfully that place has been protected.
+The city has grown a lot over the years, but thankfully that place has been protected.
+I hope it stays that way for a long, long time.
+I hope it stays that way for a long, long time.

@@ -1,0 +1,90 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map011]
+\bOh, hello. I'm a scientist.
+\bOh, hello. I'm a scientist.
+\bI can turn fossils into living, breathing Pokémon!
+\bI can turn fossils into living, breathing Pokémon!
+\bAiyah! You come again!
+\bAiyah! You come again!
+\bDo you have a fossil for me?
+\bDo you have a fossil for me?
+\bWhich fossil do you want me to revive?
+\bWhich fossil do you want me to revive?
+\bLet me know when you want me to revive a fossil for you.
+\bLet me know when you want me to revive a fossil for you.
+\bOkay. I'll see if I can revive your \v[3].
+\bOkay. I'll see if I can revive your \v[3].
+\bCome back later.
+\bCome back later.
+\bI'll be here if you want my help.
+\bI'll be here if you want my help.
+\bWhere have you been? I've finished reviving your fossil.
+\bWhere have you been? I've finished reviving your fossil.
+\bIt was \v[3] like I thought.
+\bIt was \v[3] like I thought.
+\bYou have no room left. Make room, then come see me.
+\bYou have no room left. Make room, then come see me.
+\bI managed to revive your fossil.
+\bI managed to revive your fossil.
+\bHowever, what I brought back didn't live long...\1 fortunately.
+\bHowever, what I brought back didn't live long...\1 fortunately.
+\bSorry.
+\bSorry.
+\bI told you, come back later.
+\bI told you, come back later.
+\bHello, huh! My name is Carl Ess. I can turn combinations of partial Fossils into living, breathing Pokémon!
+\bHello, huh! My name is Carl Ess. I can turn combinations of partial Fossils into living, breathing Pokémon!
+\bHm? You've got some Fossils there, huh. Will you show them to me, Carl Ess?
+\bHm? You've got some Fossils there, huh. Will you show them to me, Carl Ess?
+\bWhich of your Fossils do you think stands up to the high standards of Carl Ess?
+\bWhich of your Fossils do you think stands up to the high standards of Carl Ess?
+\bWhich of your Fossils do you think will pique the curiosity of Carl Ess?
+\bWhich of your Fossils do you think will pique the curiosity of Carl Ess?
+\bCome see me when you have some interesting Fossils.
+\bCome see me when you have some interesting Fossils.
+\bSo I should restore the Fossilized Bird and the Fossilized Drake together, huh?
+\bSo I should restore the Fossilized Bird and the Fossilized Drake together, huh?
+\bSo I should restore the Fossilized Bird and the Fossilized Dino together, huh?
+\bSo I should restore the Fossilized Bird and the Fossilized Dino together, huh?
+\bSo I should restore the Fossilized Fish and the Fossilized Drake together, huh?
+\bSo I should restore the Fossilized Fish and the Fossilized Drake together, huh?
+\bSo I should restore the Fossilized Fish and the Fossilized Dino together, huh?
+\bSo I should restore the Fossilized Fish and the Fossilized Dino together, huh?
+\bOK. Restoration time. Let's unravel the mystery of these Fossils!
+\bOK. Restoration time. Let's unravel the mystery of these Fossils!
+\bAll right, I'll stick 'em together! Here... we... GO!
+\bAll right, I'll stick 'em together! Here... we... GO!
+\bObjective complete. It seems the restoration was a great success.
+\bObjective complete. It seems the restoration was a great success.
+\bYes, I can see it in its eyes. This is a Pokémon that walked the face of Essen in ancient times! Please take and care for this Pokémon, huh.
+\bYes, I can see it in its eyes. This is a Pokémon that walked the face of Essen in ancient times! Please take and care for this Pokémon, huh.
+\bOh, you don't have space in your party, huh. Make some room and then come back here for your Pokémon.
+\bOh, you don't have space in your party, huh. Make some room and then come back here for your Pokémon.
+\bOh. They don't seem to work together.
+\bOh. They don't seem to work together.
+\bMaybe some other time, then.
+\bMaybe some other time, then.
+\bHuh, have you made some room for your Pokémon yet?
+\bHuh, have you made some room for your Pokémon yet?
+\bYou haven't. Make some room and then come back here.
+\bYou haven't. Make some room and then come back here.
+Yes
+Yes
+No
+No
+Fossilized Bird
+Fossilized Bird
+Fossilized Fish
+Fossilized Fish
+Quit
+Quit
+Fossilized Drake
+Fossilized Drake
+Fossilized Dino
+Fossilized Dino
+Yes, please
+Yes, please
+I want to try something else
+I want to try something else

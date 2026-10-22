@@ -1,0 +1,26 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map056]
+\v[1]
+\v[1]
+\rThanks for playing. Let me heal your party.
+\rThanks for playing. Let me heal your party.
+\rBattle number \v[1] is next. Are you ready?\ch[2,0,Go on,Rest,Retire,Record]
+\rBattle number \v[1] is next. Are you ready?\ch[2,0,Go on,Rest,Retire,Record]
+\rBattle number \v[1] is next. Are you ready?\ch[2,0,Go on,Rest,Retire]
+\rBattle number \v[1] is next. Are you ready?\ch[2,0,Go on,Rest,Retire]
+\rWould you like to record your last battle?
+\rWould you like to record your last battle?
+\se[Pkmn exp full]The battle was recorded.
+\se[Pkmn exp full]The battle was recorded.
+\rAre you sure you want to quit your challenge?
+\rAre you sure you want to quit your challenge?
+\rWould you like to save the game and continue later?
+\rWould you like to save the game and continue later?
+Your game has been saved.
+Your game has been saved.
+Yes
+Yes
+No
+No

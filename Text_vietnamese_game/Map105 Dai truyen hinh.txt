@@ -2,43 +2,279 @@
 # translate every second line of this file.
 #-------------------------------
 [Map105]
-\rSome people claim that Pokémon came from space. Could it be true?
-\rSome people claim that Pokémon came from space. Could it be true?
-\rWelcome to Central City's RADIO & TV TOWER. All the technology inside helps people more and more each day.
-\rWelcome to Central City's RADIO & TV TOWER. All the technology inside helps people more and more each day.
-\r\ff[prooak]\bHey \pn. I'm glad you came to my research center. I have a gift for you.
-\r\ff[prooak]\bHey \pn. I'm glad you came to my research center. I have a gift for you.
-\r\ff[prooak]\bIt's a POKEDEX, which you can use to find and record data on POKéMON during your journey.
-\r\ff[prooak]\bIt's a POKEDEX, which you can use to find and record data on POKéMON during your journey.
-\r\ff[prooak]\bWell, \pn, now, with this tool, you can go on a magnificent journey through the Zhery league.
-\r\ff[prooak]\bWell, \pn, now, with this tool, you can go on a magnificent journey through the Zhery league.
-\r\ff[blue]\bHey, \pn!
-\r\ff[blue]\bHey, \pn!
-\r\ff[blue]\bI am looking forward to meeting you.
-\r\ff[blue]\bI am looking forward to meeting you.
-\r\ff[blue]\bCome on, battle with me, so I can check out your Pokémon!
-\r\ff[blue]\bCome on, battle with me, so I can check out your Pokémon!
-\r\ff[blue]\bYou really are a formidable opponent! Next time I'll show you the strongest Pokemon I have. Goodbye!
-\r\ff[blue]\bYou really are a formidable opponent! Next time I'll show you the strongest Pokemon I have. Goodbye!
-\r\ff[blue]\bGoodbye Grandpa!
-\r\ff[blue]\bGoodbye Grandpa!
-\r\ff[prooak]\b\pn, just by looking at you, I can see that you have great potential as a Pokémon trainer. I'm going to let you choose one of these three rare Pokémon to help you on your quest.
-\r\ff[prooak]\b\pn, just by looking at you, I can see that you have great potential as a Pokémon trainer. I'm going to let you choose one of these three rare Pokémon to help you on your quest.
-\r\ff[prooak]\bI'm studying FIRE, WATER and GRASS Pokémon, and how they're always widely used by trainers. My studies indicate that people use them because it's very easy to evolve them and make them grow stronger, so they're very decisive in battles.
-\r\ff[prooak]\bI'm studying FIRE, WATER and GRASS Pokémon, and how they're always widely used by trainers. My studies indicate that people use them because it's very easy to evolve them and make them grow stronger, so they're very decisive in battles.
-\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
-\rWouldn't it be nice? If the whole world was covered in plants and flowers like this island?
-\bYou should always have many POKéBALLS with you when trying to capture wild POKéMON.
-\bYou should always have many POKéBALLS with you when trying to capture wild POKéMON.
-\rIn POKéMON contests, you need to be very intelligent.
-\rIn POKéMON contests, you need to be very intelligent.
-\bAll life needs the sea to live, even though it makes its home on the land. Life, having run its course, becomes soil and returns to the land.
-\bAll life needs the sea to live, even though it makes its home on the land. Life, having run its course, becomes soil and returns to the land.
-\rI really like my DITTO. It's very cute and well-behaved.
-\rI really like my DITTO. It's very cute and well-behaved.
-\bIt's easy to find many types of POKéMON in caves.
-\bIt's easy to find many types of POKéMON in caves.
-\bPOKéMON need to be treated well if you want to use them to their full potential.
-\bPOKéMON need to be treated well if you want to use them to their full potential.
-\bIn this city, there are many buildings that are important throughout the ZHERY region and the world.
-\bIn this city, there are many buildings that are important throughout the ZHERY region and the world.
+Oh, hello there. Are you interested in mysterious stories about Pokémon?
+Ồ, xin chào! Cậu có thích những câu chuyện bí ẩn về Pokémon không?
+I’m currently recording a special episode about an abandoned shrine deep in the northern forest.
+Tôi đang ghi hình một tập đặc biệt về ngôi đền bỏ hoang nằm sâu trong khu rừng phía Bắc.
+According to old stories, Trainers who visited that place years ago heard strange cries coming from inside the shrine.
+Theo lời kể xưa, những Huấn luyện viên từng đến đó nhiều năm trước đã nghe thấy tiếng kêu kỳ lạ vọng ra từ bên trong ngôi đền.
+Some people believe a mysterious Pokémon still protects that place.
+Một số người tin rằng vẫn có một Pokémon bí ẩn đang bảo vệ nơi ấy.
+Of course, we don’t know if the story is true... but that’s what makes mysteries so fascinating, isn’t it?
+Tất nhiên, chẳng ai biết câu chuyện có thật không... Nhưng chính điều đó mới khiến những bí ẩn trở nên hấp dẫn, đúng chứ?
+I’m currently preparing the script for tomorrow’s broadcast.
+Tôi đang chuẩn bị kịch bản cho chương trình phát sóng ngày mai.
+A good program needs more than just interesting information.
+Một chương trình hay không chỉ cần thông tin thú vị.
+The way a story is presented can change how people feel about it.
+Cách kể chuyện cũng có thể thay đổi cảm nhận của khán giả.
+It’s hard work, but seeing viewers enjoy the program makes it worthwhile.
+Công việc khá vất vả, nhưng thấy khán giả yêu thích chương trình thì mọi nỗ lực đều xứng đáng.
+Oh, hello! Are you watching the interview today? I’m Ly Huynh My, the special guest.
+Ồ, xin chào! Bạn đang xem buổi phỏng vấn hôm nay à? Mình là Lý Huỳnh My, khách mời đặc biệt đây!
+People always ask me about my future plans, and honestly... I think I already know the answer.
+Mọi người cứ hỏi mình có dự định gì cho tương lai. Thật ra... mình nghĩ mình đã có câu trả lời rồi.
+I just want to get married and enjoy a peaceful life. Working every day sounds really exhausting.
+Mình chỉ muốn lấy chồng rồi tận hưởng cuộc sống bình yên thôi. Ngày nào cũng phải đi làm nghe mệt mỏi quá!
+Housework is also very difficult! I once helped my aunt buy some bread, and I was already tired halfway there.
+Việc nhà cũng khó lắm nhé! Có lần mình giúp dì đi mua bánh mì mà mới đi được nửa đường đã mệt rồi.
+Maybe I’m not made for hard work... I think I’m better suited for relaxing and enjoying life.
+Chắc mình không hợp làm việc nặng nhọc đâu... Mình thấy bản thân hợp với việc nghỉ ngơi và tận hưởng cuộc sống hơn!
+My favorite things are shopping, beautiful places, and enjoying a nice drink at Takashimaya.
+Mình thích nhất là mua sắm, đi những nơi đẹp và thưởng thức đồ uống ngon ở Takashimaya.
+Welcome to Van Hoi TV Station.
+Chào mừng đến với Đài Truyền hình Vạn Hội!
+This building is where many popular programs, interviews, and performances are recorded.
+Đây là nơi ghi hình nhiều chương trình nổi tiếng, các buổi phỏng vấn và biểu diễn.
+Visitors are welcome in public areas, but some studios require special permission to enter.
+Khách tham quan có thể vào khu vực công cộng, nhưng một số trường quay cần có giấy phép đặc biệt.
+If you’re looking for a specific program, I can help you find the right floor.
+Nếu muốn tìm chương trình nào đó, tôi có thể chỉ cho bạn đúng tầng.
+I’m filming a mystery program with her. It’s not as easy as it looks.
+Tôi đang cùng cô ấy ghi hình một chương trình bí ẩn. Công việc không dễ như vẻ ngoài đâu.
+A good horror story isn’t just about the words. The camera has to capture the right atmosphere too.
+Một câu chuyện kinh dị hay không chỉ nằm ở lời kể. Máy quay cũng phải ghi lại đúng bầu không khí nữa.
+A dark room, a quiet moment, a strange sound... small details can make a big difference.
+Một căn phòng tối, khoảnh khắc im lặng, âm thanh kỳ lạ... Những chi tiết nhỏ có thể tạo nên khác biệt lớn.
+I hope our episode can make people curious about the mysteries hidden in the Pokémon world.
+Tôi hy vọng tập phim sẽ khơi dậy sự tò mò của mọi người về những bí ẩn trong thế giới Pokémon.
+Oh, hello! I’m about to record my new song here at Van Hoi TV.
+Ồ, xin chào! Tôi sắp thu âm ca khúc mới tại Đài Truyền hình Vạn Hội.
+Performing on stage and recording in a studio are completely different experiences.
+Biểu diễn trên sân khấu và thu âm trong phòng thu là hai trải nghiệm hoàn toàn khác nhau.
+On stage, you feel the energy of the audience. In the studio, every little detail matters.
+Trên sân khấu, bạn cảm nhận được năng lượng từ khán giả. Còn trong phòng thu, từng chi tiết nhỏ đều quan trọng.
+I always get nervous before recording, but that feeling disappears once the music starts.
+Tôi luôn hồi hộp trước khi thu âm, nhưng cảm giác ấy tan biến ngay khi âm nhạc vang lên.
+I hope everyone who hears this song can feel the emotions behind it.
+Tôi mong mọi người khi nghe ca khúc này đều cảm nhận được những cảm xúc gửi gắm trong đó.
+\r\ff[prooak]Welcome \pn. This place is only my temporary workspace while I’m staying in Van Hoi City.
+\r\ff[prooak]Chào mừng cháu, \pn. Đây chỉ là nơi làm việc tạm thời của ông trong thời gian ở thành phố Vạn Hội.
+\r\ff[blue]Took you long enough. I was wondering you had gotten lost.
+\r\ff[blue]Nhóc đến lâu thật đấy. Anh còn tưởng nhóc bị lạc đường rồi chứ.
+\r\ff[prooak]I’m preparing to record a special science program about Pokémon and their relationship with humans.
+\r\ff[prooak]Ông đang chuẩn bị ghi hình một chương trình khoa học đặc biệt về Pokémon và mối quan hệ giữa chúng với con người.
+\r\ff[prooak]By the way, Blue has already sent a report about Team Chaos and the Black Crystal to the Pokémon Association.
+\r\ff[prooak]À, Blue đã gửi báo cáo về Team Chaos và Black Crystal cho Hiệp hội Pokémon rồi.
+\r\ff[prooak]The Association is currently reviewing the information and keeping a close watch on the situation.
+\r\ff[prooak]Hiệp hội đang xem xét thông tin và theo dõi sát tình hình.
+\r\ff[blue]The Gym Leaders and Elite Four members will also continue gathering information from different areas.
+\r\ff[blue]Các Thủ lĩnh Nhà thi đấu và thành viên Tứ Đại Thiên Vương cũng sẽ tiếp tục thu thập thông tin ở nhiều khu vực.
+\r\ff[blue]If you happen to meet them during your journey, don’t hesitate to work together.
+\r\ff[blue]Nếu gặp họ trên đường, nhóc cứ chủ động hợp tác nhé.
+\r\ff[prooak]Everyone’s help will be important if we want to understand what Team Chaos is planning.
+\r\ff[prooak]Muốn tìm hiểu âm mưu của Team Chaos, chúng ta sẽ cần sự giúp đỡ của tất cả mọi người.
+\r\ff[prooak]This is your own Pokédex.
+\r\ff[prooak]Đây là Pokédex dành riêng cho cháu.
+\r\ff[prooak]A Pokédex is more than just a device for recording Pokémon information. It represents curiosity and the desire to learn about the world around you.
+\r\ff[prooak]Pokédex không chỉ là thiết bị ghi chép thông tin Pokémon. Nó còn tượng trưng cho lòng hiếu kỳ và khát khao khám phá thế giới xung quanh.
+\r\ff[prooak]I also need your help delivering these other Pokédex devices to Professor Minh Anh.
+\r\ff[prooak]Ông cũng muốn nhờ cháu chuyển những chiếc Pokédex còn lại đến Giáo sư Minh Anh.
+\r\ff[prooak]Please give her my regards and tell her I hope she’s been taking good care of herself.
+\r\ff[prooak]Nhớ gửi lời hỏi thăm của ông đến cô ấy, và nhắn rằng ông mong cô ấy luôn chăm sóc tốt cho bản thân nhé.
+\r\ff[prooak]Before you leave, there’s one more thing I want to give you.
+\r\ff[prooak]Trước khi cháu đi, ông còn một thứ muốn tặng cháu.
+\r\ff[prooak]You helped me greatly back on Route A10, and I haven’t forgotten that.
+\r\ff[prooak]Cháu đã giúp ông rất nhiều ở Đường A10, và ông vẫn luôn ghi nhớ điều đó.
+\r\ff[prooak]A Trainer like you deserves a Pokémon that can grow alongside you.
+\r\ff[prooak]Một Huấn luyện viên như cháu xứng đáng có một Pokémon cùng đồng hành và trưởng thành.
+\r\ff[prooak]So, choose one of these three Pokémon. They were my first partners when I began my research in the Kanto region.
+\r\ff[prooak]Vậy hãy chọn một trong ba Pokémon này. Chúng từng là những người bạn đồng hành đầu tiên của ông khi ông bắt đầu nghiên cứu ở vùng Kanto.
+\r\ff[prooak]Take good care of your choice, and I’m sure the two of you will create many wonderful memories together.
+\r\ff[prooak]Hãy chăm sóc thật tốt Pokémon cháu chọn. Ông tin hai đứa sẽ cùng tạo nên nhiều kỷ niệm tuyệt vời.
+\r\ff[prooak]Good luck on your journey, my young friend. I look forward to seeing how far you will go.
+\r\ff[prooak]Chúc cháu may mắn trên hành trình, người bạn trẻ của ông. Ông rất mong được chứng kiến cháu tiến xa đến đâu.
+I’m part of the broadcasting team here at Van Hoi TV.
+Tôi thuộc bộ phận phát sóng của Đài Truyền hình Vạn Hội.
+Our team is responsible for making sure every program reaches viewers clearly and on time.
+Đội chúng tôi có trách nhiệm đảm bảo mọi chương trình đến với khán giả rõ nét và đúng giờ.
+We check the broadcast schedule, monitor the signal, and coordinate with the studio staff.
+Chúng tôi kiểm tra lịch phát sóng, giám sát tín hiệu và phối hợp với nhân viên trường quay.
+A lot of work happens behind the scenes before people can watch a program on TV.
+Có rất nhiều công việc hậu trường phải hoàn thành trước khi một chương trình được lên sóng.
+Even a small mistake can affect thousands of viewers, so everyone here has to stay focused.
+Chỉ một sai sót nhỏ cũng có thể ảnh hưởng đến hàng nghìn khán giả, nên ai cũng phải thật tập trung.
+Be careful not to slip, I just finished cleaning this floor.
+Cẩn thận kẻo trượt chân nhé, tôi vừa lau sàn xong đấy!
+I’ve worked at this TV Station for many years. I’ve seen countless programs being created here.
+Tôi đã làm việc ở đài truyền hình này nhiều năm rồi. Tôi từng chứng kiến vô số chương trình được sản xuất tại đây.
+People usually notice the ones in front of the camera, but there are many others working behind the scenes.
+Mọi người thường chỉ chú ý đến những người trước ống kính, nhưng còn rất nhiều người khác đang âm thầm làm việc phía sau.
+\r\ff[blue]Well... I’m curious to see what kind of Trainer you’ll become. Don’t disappoint me, kid.
+\r\ff[blue]Chà... Anh cũng tò mò xem sau này nhóc sẽ trở thành Huấn luyện viên thế nào. Đừng làm anh thất vọng đấy.
+I’m helping Professor Oak prepare for his appearance on Van Hoi TV today.
+Tôi đang giúp Giáo sư Oak chuẩn bị cho buổi lên hình tại Đài Truyền hình Vạn Hội hôm nay.
+My job is to make sure everything is ready before the recording begins.
+Nhiệm vụ của tôi là đảm bảo mọi thứ sẵn sàng trước khi ghi hình.
+Professor Oak is very kind and easy to work with, so everything has gone smoothly so far.
+Giáo sư Oak rất thân thiện và dễ hợp tác, nên đến giờ mọi việc đều diễn ra suôn sẻ.
+I hope the interview goes well and that everyone enjoys watching it.
+Tôi hy vọng buổi phỏng vấn thành công và được khán giả yêu thích.
+Are you watching our filming? This is the most important scene of the movie.
+Cậu đang xem chúng tôi quay phim à? Đây là cảnh quan trọng nhất của bộ phim đấy.
+The hero and villain aren’t just fighting with their Pokémon. They’re fighting for their beliefs.
+Người hùng và kẻ phản diện không chỉ dùng Pokémon để chiến đấu. Họ còn chiến đấu vì niềm tin của riêng mình.
+A good actor needs to understand the feelings behind the character.
+Một diễn viên giỏi phải thấu hiểu cảm xúc của nhân vật.
+That’s why I keep asking them to do the scene again until it feels right.
+Vì vậy, tôi luôn yêu cầu họ diễn lại đến khi cảnh quay truyền tải đúng cảm xúc.
+Are you exploring the station?
+Cậu đang tham quan đài truyền hình à?
+This place may look like just a building, but there are countless stories happening inside.
+Nhìn bên ngoài, nơi này có vẻ chỉ là một tòa nhà bình thường, nhưng bên trong lại chứa đựng vô số câu chuyện.
+We have hosts, performers, researchers, musicians, technicians, and many other people working here.
+Ở đây có người dẫn chương trình, nghệ sĩ biểu diễn, nhà nghiên cứu, nhạc sĩ, kỹ thuật viên và rất nhiều người khác.
+Every person who walks through these doors has their own reason for being here.
+Mỗi người bước qua cánh cửa này đều có lý do riêng để xuất hiện tại đây.
+If you have some free time, why don’t you talk to the people around the station?
+Nếu có thời gian rảnh, sao cậu không thử trò chuyện với mọi người trong đài?
+I’m sure you’ll discover many interesting stories you never expected.
+Tôi chắc chắn cậu sẽ khám phá được nhiều câu chuyện thú vị ngoài sức tưởng tượng.
+And if you manage to learn all the stories hidden in this building, come back and tell me.
+Nếu tìm hiểu được tất cả những câu chuyện ẩn giấu trong tòa nhà này, hãy quay lại kể cho tôi nhé.
+I’ll prepare something interesting for someone who appreciates the stories of Van Hoi TV.
+Tôi sẽ chuẩn bị một món quà thú vị dành cho người biết trân trọng những câu chuyện của Đài Truyền hình Vạn Hội.
+Ah, you’re back!
+À, cậu quay lại rồi!
+I heard you’ve taken the time to talk with everyone working here.
+Tôi nghe nói cậu đã dành thời gian trò chuyện với mọi người làm việc tại đây.
+Not many people are willing to stop and listen. I’m glad you did.
+Không nhiều người sẵn lòng dừng lại để lắng nghe đâu. Tôi rất vui vì cậu đã làm vậy.
+As promised, I have something special for you.
+Như đã hứa, tôi có một món quà đặc biệt dành cho cậu.
+This is a Quick Claw.
+Đây là Quick Claw.
+It’s an item that can sometimes help Pokémon move first in battle.
+Vật phẩm này đôi khi giúp Pokémon ra chiêu trước trong trận đấu.
+I hope it helps you and your Pokémon on your journey.
+Hy vọng nó sẽ giúp ích cho cậu và Pokémon trên hành trình sắp tới.
+Every person has a story.
+Ai cũng có câu chuyện của riêng mình.
+Sometimes you just need to take the time to hear it.
+Đôi khi, điều cần làm chỉ là dành chút thời gian để lắng nghe.
+Whew... Finally, a little break. Working at a TV Station is more tiring than people think.
+Phù... Cuối cùng cũng được nghỉ một chút. Làm việc ở đài truyền hình mệt hơn mọi người tưởng nhiều đấy.
+There are schedules to manage, guests to prepare, and recordings that sometimes take all day.
+Nào là quản lý lịch trình, chuẩn bị cho khách mời, rồi có những buổi ghi hình kéo dài cả ngày.
+But I still like this job. Every day brings something different.
+Nhưng tôi vẫn thích công việc này. Mỗi ngày đều mang đến điều mới mẻ.
+Yesterday I helped with a Pokémon battle program, and today I’m preparing for a history show.
+Hôm qua tôi hỗ trợ chương trình đấu Pokémon, còn hôm nay lại chuẩn bị cho chương trình lịch sử.
+You never know what kind of story you’ll get to be part of here.
+Ở đây, chẳng ai biết ngày mai mình sẽ góp mặt trong câu chuyện thú vị nào.
+Did you enjoy the music?
+Bạn có thích bản nhạc vừa rồi không?
+Music has a special way of connecting hearts, even between humans and Pokémon.
+Âm nhạc có khả năng kết nối những trái tim theo cách rất đặc biệt, ngay cả giữa con người và Pokémon.
+I’m practicing this song for a performance at Van Hoi TV. I hope everyone watching can feel the emotion behind it.
+Tôi đang luyện tập ca khúc này cho buổi biểu diễn tại Đài Truyền hình Vạn Hội. Mong rằng mọi khán giả đều cảm nhận được cảm xúc tôi gửi gắm.
+Maybe someday, my music will become a memory that someone carries on their journey.
+Biết đâu một ngày nào đó, âm nhạc của tôi sẽ trở thành kỷ niệm theo ai đó suốt hành trình của họ.
+I’m helping record his research report for Van Hoi TV.
+Tôi đang hỗ trợ ghi hình báo cáo nghiên cứu của ông ấy cho Đài Truyền hình Vạn Hội.
+Filming archaeology is challenging because every small detail can be important.
+Ghi hình về khảo cổ học khá khó vì từng chi tiết nhỏ đều có thể rất quan trọng.
+Sometimes we spend hours just filming a single artifact from the right angle.
+Đôi khi chúng tôi mất hàng giờ chỉ để quay một hiện vật ở góc máy phù hợp.
+But when people see these discoveries on TV, I think all that effort is worth it.
+Nhưng khi những khám phá ấy được giới thiệu đến khán giả, tôi thấy mọi công sức đều xứng đáng.
+Hey, keep your voice down. We’re filming a scene over there.
+Này, nói nhỏ thôi nhé! Chúng tôi đang quay phim ở đằng kia.
+That’s the main battle scene between the hero and the villain.
+Đó là cảnh chiến đấu chính giữa người hùng và kẻ phản diện.
+The director is... quite a character. He’s very demanding and has some unusual habits.
+Ông đạo diễn ấy... khá lập dị. Ông ta rất khắt khe và còn có vài thói quen kỳ quặc.
+He’s always trying to get close to the actresses, but that actress over there won’t let anyone treat her badly.
+Ông ta cứ tìm cách tiếp cận các nữ diễn viên, nhưng cô diễn viên đằng kia không để bất kỳ ai đối xử thiếu tôn trọng với mình.
+She’s strong, confident, and she knows how to stand up for herself.
+Cô ấy mạnh mẽ, tự tin và luôn biết cách bảo vệ bản thân.
+Honestly, everyone on the crew respects her because of that.
+Thật lòng mà nói, chính vì thế mà cả đoàn phim đều rất kính trọng cô ấy.
+Welcome back to Van Hoi TV! Today, we’re bringing you another exciting story from the world of Pokémon!
+Chào mừng quý vị trở lại với Đài Truyền hình Vạn Hội! Hôm nay, chúng tôi sẽ mang đến một câu chuyện thú vị khác từ thế giới Pokémon!
+There are so many amazing Trainers, Pokémon, and places waiting to be discovered.
+Vẫn còn vô số Huấn luyện viên tài năng, Pokémon kỳ thú và những địa danh tuyệt vời đang chờ được khám phá.
+Every journey has its own story, and we’re here to share those stories with everyone.
+Mỗi hành trình đều mang một câu chuyện riêng, và chúng tôi ở đây để chia sẻ những câu chuyện ấy đến mọi người.
+Hmm... Was that good? Let’s try that part one more time!
+Ừm... Vừa rồi ổn chưa nhỉ? Thử quay lại đoạn đó lần nữa nào!
+Ditto may not look like the strongest Pokémon, but it has an incredible talent for becoming anything.
+Ditto trông có vẻ không phải Pokémon mạnh nhất, nhưng nó có tài biến hình thành bất cứ thứ gì.
+That’s what makes performing with Ditto so much fun. Every show feels different.
+Chính điều đó khiến việc biểu diễn cùng Ditto thú vị đến vậy. Mỗi buổi diễn đều mang đến cảm giác mới mẻ.
+Sometimes Ditto copies my movements perfectly, and sometimes it surprises even me.
+Có lúc Ditto bắt chước động tác của tôi hoàn hảo, nhưng đôi khi nó còn khiến chính tôi bất ngờ.
+I think the best performances aren’t about being perfect. They’re about having fun together.
+Tôi nghĩ một màn biểu diễn tuyệt vời không nhất thiết phải hoàn hảo. Quan trọng là chúng tôi cùng nhau tận hưởng niềm vui.
+I’m organizing old reports from the early days of Van Hoi TV.
+Tôi đang sắp xếp những bản tin cũ từ thời kỳ đầu của Đài Truyền hình Vạn Hội.
+Some of these documents contain interviews with famous Trainers and important events from the past.
+Một số tài liệu lưu giữ các cuộc phỏng vấn Huấn luyện viên nổi tiếng và những sự kiện quan trọng trong quá khứ.
+\ff[cham_diantha]The heroin always needs to believe in their Pokémon and their friends.
+\ff[cham_diantha]Người nữ anh hùng phải luôn tin tưởng Pokémon và những người bạn của mình.
+\ff[cham_diantha]Even when things look impossible, giving up is never the answer.
+\ff[cham_diantha]Dù tình thế có tưởng chừng vô vọng, bỏ cuộc cũng không bao giờ là lựa chọn đúng đắn.
+\ff[cham_diantha]Playing this role reminds me how important trust can be.
+\ff[cham_diantha]Đảm nhận vai diễn này khiến tôi nhận ra niềm tin quan trọng đến nhường nào.
+\ff[cham_diantha]I hope everyone watching the movie can feel that message too.
+\ff[cham_diantha]Tôi mong mọi khán giả xem phim cũng cảm nhận được thông điệp ấy.
+I’m preparing a report about an ancient stone tablet discovered near Alola region.
+Tôi đang chuẩn bị báo cáo về một phiến đá cổ được phát hiện gần vùng Alola.
+The tablet contains drawings of humans and Pokémon working together thousands of years ago.
+Trên phiến đá có những hình khắc mô tả con người và Pokémon cùng làm việc từ hàng nghìn năm trước.
+What interests researchers the most is the mysterious Pokémon carved at the center of the tablet.
+Điều khiến các nhà nghiên cứu quan tâm nhất là hình một Pokémon bí ẩn được khắc ở chính giữa phiến đá.
+We still don’t know what Pokémon it represents, but this discovery may reveal something important about the past.
+Chúng tôi vẫn chưa xác định được đó là Pokémon nào, nhưng phát hiện này có thể hé lộ điều quan trọng về quá khứ.
+History is like a puzzle. Every discovery helps us find another missing piece.
+Lịch sử giống như một bức tranh ghép. Mỗi khám phá lại giúp chúng ta tìm thêm một mảnh ghép còn thiếu.
+I’ve introduced many performers before, but there’s something special about her music.
+Tôi từng giới thiệu nhiều nghệ sĩ, nhưng âm nhạc của cô ấy có điều gì đó rất đặc biệt.
+It doesn’t rely on flashy effects or a huge stage. It simply creates a feeling.
+Không cần hiệu ứng hào nhoáng hay sân khấu hoành tráng, âm nhạc ấy vẫn có thể chạm đến cảm xúc người nghe.
+That’s what makes a memorable performance, isn’t it?
+Đó mới là điều tạo nên một màn biểu diễn đáng nhớ, đúng không?
+Welcome back to Van Hoi TV! Today, we have a very unique guest joining us.
+Chào mừng quý vị trở lại với Đài Truyền hình Vạn Hội! Hôm nay, chúng ta sẽ gặp gỡ một vị khách mời vô cùng đặc biệt.
+Ly Huynh My has a very charming way of speaking. I think everyone watching can’t help but smile.
+Lý Huỳnh My có cách nói chuyện rất duyên dáng. Tôi nghĩ ai theo dõi cũng khó mà nhịn cười.
+Her honest answers and unique personality have become something people remember.
+Những câu trả lời thật thà cùng cá tính độc đáo đã khiến cô ấy để lại ấn tượng khó quên.
+People often talk about the An Lam region and say it has two things that nowhere else has.
+Người ta thường nói vùng An Lâm có hai điều đặc biệt mà chẳng nơi nào khác có được.
+One is Takashimaya, and the other is Ly Huynh My herself.
+Một là Takashimaya, còn điều thứ hai chính là Lý Huỳnh My!
+I’ve invested in several programs here at Van Hoi TV over the years.
+Suốt nhiều năm qua, tôi đã đầu tư vào không ít chương trình của Đài Truyền hình Vạn Hội.
+A successful show isn’t only about having famous guests or expensive equipment.
+Một chương trình thành công không chỉ cần khách mời nổi tiếng hay thiết bị đắt tiền.
+The most important thing is whether it can connect with the audience.
+Điều quan trọng nhất là chương trình có chạm đến trái tim khán giả hay không.
+If people remember the story and the emotions after watching, then I consider it a worthwhile investment.
+Nếu xem xong mà khán giả vẫn nhớ câu chuyện và những cảm xúc ấy, tôi xem đó là một khoản đầu tư xứng đáng.
+Every great story needs someone standing against the hero.
+Câu chuyện hấp dẫn nào cũng cần một kẻ đối đầu với người hùng.
+A villain isn’t always just evil. Sometimes they have their own reasons and beliefs.
+Kẻ phản diện không phải lúc nào cũng chỉ có cái ác. Đôi khi họ có lý do và niềm tin của riêng mình.
+That’s what makes playing this role so interesting.
+Chính điều đó khiến vai diễn này thú vị đến vậy.
+Now... it’s time for the hero and villain to meet.
+Và giờ... đã đến lúc người hùng và kẻ phản diện đối mặt nhau.
+The lighting looks perfect. Keep your eyes on the camera and we’ll get a great shot.
+Ánh sáng hoàn hảo rồi! Cứ nhìn vào máy quay, chúng ta sẽ có một cảnh quay tuyệt vời.
+Recording a TV program isn’t as easy as people think.
+Ghi hình chương trình truyền hình không dễ như mọi người tưởng đâu.
+A small mistake can mean doing the whole scene again from the beginning.
+Chỉ một sai sót nhỏ cũng có thể khiến cả cảnh phải quay lại từ đầu.
+But when everything comes together, that’s the moment that makes it worthwhile.
+Nhưng khi mọi thứ phối hợp ăn ý, khoảnh khắc ấy khiến mọi công sức đều trở nên xứng đáng.

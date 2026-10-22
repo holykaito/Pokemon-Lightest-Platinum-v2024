@@ -6,39 +6,63 @@
 class Battle
   def pbStartBattleSendOut_WithTitles(sendOuts)
     foes = @opponent || pbParty(1)
-    msg = (wildBattle?) ? "Oh! A wild " : "You are challenged by "
-    foes.each_with_index do |foe, i|
-      if i > 0
-        msg += (i == foes.length - 1) ? " and " : ", "
+    names = foes.map { |foe| wildBattle? ? foe.name : foe.full_name }
+    if wildBattle?
+      case names.length
+      when 1
+        msg = _INTL("Oh! A wild {1} appeared!", names[0])
+      when 2
+        msg = _INTL("Oh! A wild {1} and {2} appeared!", names[0], names[1])
+      when 3
+        msg = _INTL("Oh! A wild {1}, {2} and {3} appeared!", *names)
       end
-      msg += (wildBattle?) ? foe.name : foe.full_name
+    else
+      case names.length
+      when 1
+        msg = _INTL("You are challenged by {1}!", names[0])
+      when 2
+        msg = _INTL("You are challenged by {1} and {2}!", names[0], names[1])
+      when 3
+        msg = _INTL("You are challenged by {1}, {2} and {3}!", *names)
+      end
     end
-    msg += (wildBattle?) ? " appeared!" : "!"
-    pbDisplayPaused(_INTL("{1}", msg))
+    pbDisplayPaused(msg)
     [1, 0].each do |side|
       next if side == 1 && wildBattle?
-      msg = ""
+      messages = []
       toSendOut = []
       trainers = (side == 0) ? @player.reverse : @opponent
       trainers.each_with_index do |t, i|
-        msg += "\r\n" if msg.length > 0
-        if side == 0 && i == trainers.length - 1
-          msg += "Go! "
+        player_send_out = side == 0 && i == trainers.length - 1
+        if player_send_out
           sent = sendOuts[side][0]
         else
-          msg += "#{t.full_name} sent out "
           sent = (side == 0) ? sendOuts[0][1] : sendOuts[1][i]
         end
-        sent.each_with_index do |idxBattler, j|
-          if j > 0
-            msg += (j == sent.length - 1) ? " and " : ", "
+        names = sent.map { |idxBattler| @battlers[idxBattler].name_title }
+        if player_send_out
+          case names.length
+          when 1
+            msg = _INTL("Go! {1}!", names[0])
+          when 2
+            msg = _INTL("Go! {1} and {2}!", names[0], names[1])
+          when 3
+            msg = _INTL("Go! {1}, {2} and {3}!", *names)
           end
-          msg += @battlers[idxBattler].name_title
+        else
+          case names.length
+          when 1
+            msg = _INTL("{1} sent out {2}!", t.full_name, names[0])
+          when 2
+            msg = _INTL("{1} sent out {2} and {3}!", t.full_name, names[0], names[1])
+          when 3
+            msg = _INTL("{1} sent out {2}, {3} and {4}!", t.full_name, *names)
+          end
         end
-        msg += "!"
+        messages.push(msg) if !sent.empty?
         toSendOut.concat(sent)
       end
-      pbDisplayBrief(_INTL("{1}", msg)) if msg.length > 0
+      pbDisplayBrief(messages.join("\r\n")) if !messages.empty?
       animSendOuts = []
       toSendOut.each do |idxBattler|
         animSendOuts.push([idxBattler, @battlers[idxBattler].pokemon])

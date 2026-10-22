@@ -1,0 +1,62 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map085]
+\bI'm not going to lose. Not when the wind's blowing my way!
+\bI'm not going to lose. Not when the wind's blowing my way!
+\bThe wind turned!
+\bThe wind turned!
+\bI'm beat. I guess I'll FLY home.
+\bI'm beat. I guess I'll FLY home.
+\bIf you want to fish, you have to be very quiet and calm while you wait for aquatic Pokémon to take the bait.
+\bIf you want to fish, you have to be very quiet and calm while you wait for aquatic Pokémon to take the bait.
+\rTrainer! Let's battle and test your skill. Right here, right now!
+\rTrainer! Let's battle and test your skill. Right here, right now!
+\rYou're a good trainer, I hope you'll continue to grow stronger.
+\rYou're a good trainer, I hope you'll continue to grow stronger.
+\rSome Pokémon only evolve when you use evolutionary stones on them.
+\rSome Pokémon only evolve when you use evolutionary stones on them.
+\bElectricity is my specialty. I don't know a thing about Pokémon of the sea, though.
+\bElectricity is my specialty. I don't know a thing about Pokémon of the sea, though.
+\bUnplugged!
+\bUnplugged!
+\bWater conducts electricity, so you should zap sea Pokémon.
+\bWater conducts electricity, so you should zap sea Pokémon.
+\b\ff[brendan]Now you'll lose!
+\b\ff[brendan]Now you'll lose!
+\r\ff[may]Oh? Let's see it, then!
+\r\ff[may]Oh? Let's see it, then!
+\b\ff[brendan]Attack now, Grovyle!
+\b\ff[brendan]Attack now, Grovyle!
+\r\ff[may]Counter it, Combusken!
+\r\ff[may]Counter it, Combusken!
+\b\ff[brendan]You fought well. Now return, Grovyle!
+\b\ff[brendan]You fought well. Now return, Grovyle!
+\r\ff[may]You also fought well. Now return, Combusken!
+\r\ff[may]You also fought well. Now return, Combusken!
+\b\ff[brendan]Hey, kid. My name is Brendan. I came from the HOENN region. Although I'm a rookie trainer, I'm always ready for a battle!
+\b\ff[brendan]Hey, kid. My name is Brendan. I came from the HOENN region. Although I'm a rookie trainer, I'm always ready for a battle!
+\r\ff[may]Hello, my name is May. I also came to the HOENN region. I'm Brendan's neighbour. We're both rookie trainers competing in the ZHERY league.
+\r\ff[may]Hello, my name is May. I also came to the HOENN region. I'm Brendan's neighbour. We're both rookie trainers competing in the ZHERY league.
+\b\ff[brendan]May and I were fighting, but the fight ended in a draw. Now I want to fight you!
+\b\ff[brendan]May and I were fighting, but the fight ended in a draw. Now I want to fight you!
+\r\ff[may]I want to join too!
+\r\ff[may]I want to join too!
+\r\ff[may]Very nice victory, friend! Be sure to train more and more!
+\r\ff[may]Very nice victory, friend! Be sure to train more and more!
+\b\ff[brendan]Now I'll go challenge the Gym in Inhore City to win my first badge in this league!
+\b\ff[brendan]Now I'll go challenge the Gym in Inhore City to win my first badge in this league!
+\r\ff[may]I'll go to the South in search of new POKéMON!
+\r\ff[may]I'll go to the South in search of new POKéMON!
+\bTo be a good trainer, you should always train hard every day.
+\bTo be a good trainer, you should always train hard every day.
+\bOuch! A scrape! I have to put on a bandage!
+\bOuch! A scrape! I have to put on a bandage!
+\bBandages are signs of toughness! I've got another one!
+\bBandages are signs of toughness! I've got another one!
+Route A4 - Route A5
+Route A4 - Route A5
+\rFor your Pokémon to attack first, you should have more speed than your opponent. Take this item.
+\rFor your Pokémon to attack first, you should have more speed than your opponent. Take this item.
+\rQUICK CLAW will make your POKéMON attack first all the time, even when it has less speed than its opponent.
+\rQUICK CLAW will make your POKéMON attack first all the time, even when it has less speed than its opponent.

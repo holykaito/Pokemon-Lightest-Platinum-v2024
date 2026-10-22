@@ -1,0 +1,12 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map034]
+This is another boulder-down-hole puzzle.
+This is another boulder-down-hole puzzle.
+It is identical to the regular kind, except the boulder downstairs is just a regular immovable event rather than a boulder itself.
+It is identical to the regular kind, except the boulder downstairs is just a regular immovable event rather than a boulder itself.
+On the right is an example of a cracked ice tile. You can walk over it once, but step on it again and you'll fall through to another map.
+On the right is an example of a cracked ice tile.  You can walk over it once, but step on it again and you'll fall through to another map.
+Ice you slide around on has terrain tag 12.
+Ice you slide around on has terrain tag 12.

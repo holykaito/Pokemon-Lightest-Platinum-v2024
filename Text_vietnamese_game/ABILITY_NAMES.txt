@@ -52,8 +52,8 @@ Wind Swept
 Wind Swept
 Quick Charge
 Quick Charge
-King's Wrath
-King's Wrath
+Mighty Horn
+Mighty Horn
 Chemical Reaction
 Chemical Reaction
 Echolocation
@@ -70,8 +70,6 @@ Boulder Barrier
 Boulder Barrier
 He’s Safe
 He’s Safe
-Arcane Mage
-Arcane Mage
 Quick Strike
 Quick Strike
 Ignition
@@ -168,6 +166,12 @@ Piercing Drill
 Piercing Drill
 Spicy Spray
 Spicy Spray
+Fire Mane
+Fire Mane
+Eelevate
+Eelevate
+Aura Guard
+Aura Guard
 No Ability
 No Ability
 Vampiric Fang
@@ -256,12 +260,22 @@ Astral Plane
 Astral Plane
 Aura Manipulation
 Aura Manipulation
+Battle Genes
+Battle Genes
+Berry Bulk
+Berry Bulk
+Berserker Rage
+Berserker Rage
+Blademaster
+Blademaster
 Black Stain
 Black Stain
 Branch Swing
 Branch Swing
 Brave Heart
 Brave Heart
+Bloodlust
+Bloodlust
 Bugbound
 Bugbound
 Battle Intellect
@@ -286,6 +300,8 @@ Cursed Surge
 Cursed Surge
 Dancing Panic
 Dancing Panic
+Debilitate
+Debilitate
 Distortion
 Distortion
 Dodge
@@ -296,10 +312,14 @@ Dwarfhide
 Dwarfhide
 Echo Lock
 Echo Lock
+Eco-Cloak
+Eco-Cloak
 Eternal Dream
 Eternal Dream
 Fatal Precision
 Fatal Precision
+Florescence
+Florescence
 Fortitude
 Fortitude
 Field Explorer
@@ -310,6 +330,14 @@ Flock
 Flock
 Fluff Up
 Fluff Up
+Flying Nimbus
+Flying Nimbus
+False Front
+False Front
+Gnawing
+Gnawing
+Great Wisdom
+Great Wisdom
 Grip Pincer
 Grip Pincer
 Ground Shock
@@ -336,6 +364,8 @@ Inflatable
 Inflatable
 Intoxicate
 Intoxicate
+Kamen Rider
+Kamen Rider
 Kintsugi
 Kintsugi
 Juggernaut
@@ -346,14 +376,16 @@ Liquify
 Liquify
 Loud Bang
 Loud Bang
-Mighty Horn
-Mighty Horn
+Malignate
+Malignate
 Multi Headed
 Multi Headed
 Overwhelm
 Overwhelm
 Pack Leader
 Pack Leader
+Perfectionist
+Perfectionist
 Permafrost
 Permafrost
 Petrifying Gaze
@@ -364,10 +396,14 @@ Pierce Armor
 Pierce Armor
 Phenomonelure
 Phenomonelure
+Poseidon Guard
+Poseidon Guard
 Powder Burst
 Powder Burst
 Pyromancy
 Pyromancy
+Nine Lives
+Nine Lives
 Ninja Style
 Ninja Style
 Nimble Fist
@@ -390,10 +426,16 @@ Rampage
 Rampage
 Parasite Host
 Parasite Host
+Refuge
+Refuge
 Resilience
 Resilience
+Ragnarok
+Ragnarok
 Roller
 Roller
+Spare Scales
+Spare Scales
 Searing Poison
 Searing Poison
 Seaweed
@@ -420,14 +462,18 @@ Spell Fist
 Spell Fist
 Spore Veil
 Spore Veil
-Stealth
-Stealth
+Stalk
+Stalk
 Stone Scatter
 Stone Scatter
 Striker
 Striker
+Subjugate
+Subjugate
 Sudden Slash
 Sudden Slash
+Tenacity
+Tenacity
 Terror Sower
 Terror Sower
 Tidiness
@@ -442,5 +488,9 @@ Wandering Orbs
 Wandering Orbs
 Wild Tantrum
 Wild Tantrum
+Worldroot
+Worldroot
+X-Ray Vision
+X-Ray Vision
 Zen Aura
 Zen Aura

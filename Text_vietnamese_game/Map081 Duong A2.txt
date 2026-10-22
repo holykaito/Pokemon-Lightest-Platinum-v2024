@@ -2,45 +2,143 @@
 # translate every second line of this file.
 #-------------------------------
 [Map081]
-On different routes, you can find different types of POKéMON.
-On different routes, you can find different types of POKéMON.
-\bIt's a pleasure to meet you. My name is CALEM, I'm a trainer from the KALOS region.
-\bIt's a pleasure to meet you. My name is CALEM, I'm a trainer from the KALOS region.
-\bI'm in the ZHERY league as a rookie, but I'm not one really, see? Let's fight!
-\bI'm in the ZHERY league as a rookie, but I'm not one really, see? Let's fight!
-\bMy congratulations on your victory. You really impressed me with your fighting strength. You have a great future ahead of you
-\bMy congratulations on your victory. You really impressed me with your fighting strength. You have a great future ahead of you
-\bI hope to meet you again in the ZHERY region and ask you for another battle, but for now, goodbye.
-\bI hope to meet you again in the ZHERY region and ask you for another battle, but for now, goodbye.
-\bI am off to challenge the first ZHERY league gym in INHORE CITY!
-\bI am off to challenge the first ZHERY league gym in INHORE CITY!
-Route A2 - Central City
-Route A2 - Central City
-\rI'm going to keep winning and aim to be the best TRAINER. Help me further my career!
-\rI'm going to keep winning and aim to be the best TRAINER. Help me further my career!
-\rI ended up furthering your career.
-\rI ended up furthering your career.
-\rTo keep winning my way up, I see that I have to catch more POKéMON.
-\rTo keep winning my way up, I see that I have to catch more POKéMON.
-\rI'm not very tall, so I sink right into tall grass.
-\rI'm not very tall, so I sink right into tall grass.
-\rThe grass goes up my nose and... Fwafwafwafwafwa. Fwatchoo!
-\rThe grass goes up my nose and... Fwafwafwafwafwa. Fwatchoo!
-\bAll you need to win are POKéMON and the will to fight!
-\bAll you need to win are POKéMON and the will to fight!
-\bThe winner is the one who can take defeat graciously.
-\bThe winner is the one who can take defeat graciously.
-\bWhether you lose or win, battles are always very exciting.
-\bWhether you lose or win, battles are always very exciting.
-\bMy POKéMON are well-trained, and I trust them in battle!
-\bMy POKéMON are well-trained, and I trust them in battle!
-\bA victory is only one accomplishment. A greater goal is training daily, without pause.
-\bA victory is only one accomplishment. A greater goal is training daily, without pause.
-\rWe must have been fated to meet. May I ask you for a battle?
-\rWe must have been fated to meet. May I ask you for a battle?
-\rOh, my!
-\rOh, my!
-\rI hope we meet again.
-\rI hope we meet again.
-Route A2
-Route A2
+I thought this route would be a shortcut, but somehow I’ve been walking in circles.
+Tôi cứ tưởng con đường này là lối tắt, ai ngờ lại đi lòng vòng mãi chẳng thoát ra được.
+Maybe I should stop pretending I know where I’m going and just follow the signs.
+Có lẽ tôi nên thôi giả vờ biết đường và cứ đi theo biển chỉ dẫn thì hơn.
+\ff[trainer_TanLoi]WHOA! Hold it! Don’t take another step!
+\ff[trainer_TanLoi]Ê! Khoan đã! Đứng lại đó!
+\ff[trainer_TanLoi]I’ve been looking all over this area for a Trainer who looks strong enough to give me a real challenge!
+\ff[trainer_TanLoi]Tôi đã lùng sục khắp khu vực này để tìm một Huấn luyện viên đủ mạnh, có thể đấu với tôi một trận ra trò!
+\ff[trainer_TanLoi]And then you show up right in front of me! Talk about perfect timing!
+\ff[trainer_TanLoi]Vậy mà cậu lại xuất hiện ngay trước mặt tôi! Đúng là đến vừa khéo!
+\ff[trainer_TanLoi]My name is Tan Loi! Remember that name, because you’re about to battle one of the members of the legendary Three Trouble Trio!
+\ff[trainer_TanLoi]Tôi là Tấn Lôi! Nhớ kỹ cái tên đó nhé, vì cậu sắp đối đầu với một thành viên của Bộ Ba Rắc Rối huyền thoại đấy!
+\ff[trainer_TanLoi]The Three Trouble Trio is made up of three Trainers who travel all over An Lam looking for strong opponents!
+\ff[trainer_TanLoi]Bộ Ba Rắc Rối gồm ba Huấn luyện viên đi khắp An Lam để tìm kiếm những đối thủ mạnh!
+\ff[trainer_TanLoi]We challenge anyone who looks like they have the potential to become a great Trainer.
+\ff[trainer_TanLoi]Bọn tôi thách đấu bất kỳ ai có tiềm năng trở thành một Huấn luyện viên xuất sắc!
+\ff[trainer_TanLoi]And between you and me, we’re pretty confident that we’re the strongest trio in the entire region!
+\ff[trainer_TanLoi]Nói nhỏ cậu nghe nhé, bọn tôi tự tin mình là bộ ba mạnh nhất cả vùng này đấy!
+\ff[trainer_TanLoi]Looking at you, I’ve got a feeling you’re exactly the kind of Trainer we’ve been searching for.
+\ff[trainer_TanLoi]Nhìn cậu là tôi có linh cảm ngay! Cậu chính là kiểu Huấn luyện viên mà bọn tôi đang tìm kiếm!
+\ff[trainer_TanLoi]So what do you say? Are you ready to find out whether you’re really as strong as you look?
+\ff[trainer_TanLoi]Thế nào? Sẵn sàng chứng minh xem cậu có thực sự mạnh như vẻ bề ngoài không?
+\ff[trainer_TanLoi]Come on! Show me what you’ve got! Let’s see if you can keep up with T?n Lôi of the Three Trouble Trio!
+\ff[trainer_TanLoi]Lên nào! Cho tôi xem thực lực của cậu đi! Để xem cậu có theo kịp Tấn Lôi của Bộ Ba Rắc Rối không!
+\ff[trainer_TanLoi]Hahaha! That was amazing! I haven’t had a battle that exciting in a while!
+\ff[trainer_TanLoi]Hahaha! Tuyệt quá! Lâu lắm rồi tôi mới được đấu một trận hào hứng đến thế!
+\ff[trainer_TanLoi]I’m definitely going to tell the other two about you. They won’t believe how strong you are!
+\ff[trainer_TanLoi]Nhất định tôi phải kể cho hai người kia nghe về cậu! Chắc họ sẽ không tin cậu mạnh đến vậy đâu!
+\ff[trainer_TanLoi]But don’t get too confident just because you beat me! The other two aren’t easy opponents!
+\ff[trainer_TanLoi]Nhưng đừng vội đắc ý vì đã thắng tôi nhé! Hai người còn lại cũng chẳng dễ đối phó đâu!
+\ff[trainer_TanLoi]I’ll train harder, get stronger, and come looking for you again someday!
+\ff[trainer_TanLoi]Tôi sẽ luyện tập chăm chỉ hơn, trở nên mạnh hơn và một ngày nào đó sẽ tìm cậu để tái đấu!
+\ff[trainer_TanLoi]So don’t stop getting stronger, okay? I want our next battle to be even crazier!
+\ff[trainer_TanLoi]Vậy nên cậu cũng phải tiếp tục mạnh lên đấy! Tôi muốn trận tái đấu của chúng ta còn bùng nổ hơn nữa!
+\ff[trainer_TanLoi]Until next time, challenger! Tan Loi of the Three Trouble Trio won’t forget you!
+\ff[trainer_TanLoi]Hẹn gặp lại, đối thủ đáng gờm! Tấn Lôi của Bộ Ba Rắc Rối sẽ không quên cậu đâu!
+I spend most of my days taking care of plants, so I’ve learned that good things rarely grow overnight.
+Tôi dành phần lớn thời gian chăm sóc cây cối, nên hiểu rằng những điều tốt đẹp hiếm khi thành hình chỉ sau một đêm.
+You have to give them time, take care of them, and pay attention to what they need. Pokémon aren’t all that different.
+Phải kiên nhẫn, chăm sóc và hiểu chúng cần gì. Pokémon cũng chẳng khác cây cối là mấy.
+Hmm... Talking about it reminds me that I haven’t had a good battle in a while. How about it?
+Hmm... Nhắc đến chuyện này mới nhớ, lâu rồi tôi chưa có một trận đấu ra trò. Đấu một trận nhé?
+I’ll take that lesson with me. Even an old gardener can still learn something new.
+Tôi sẽ ghi nhớ bài học này. Ngay cả một người làm vườn già cũng luôn có điều mới để học.
+West: Route A2
+Phía Tây: Route A2
+East: Van Hoi City
+Phía Đông: Van Hoi City
+I’ve been traveling alone for a while now. At first, I thought it would feel lonely.
+Tôi đã đi du lịch một mình được một thời gian rồi. Ban đầu cứ nghĩ sẽ cô đơn lắm.
+But when you meet new people along the way, you realize you’re never really alone.
+Nhưng khi gặp những người bạn mới dọc đường, bạn sẽ nhận ra mình chẳng bao giờ thực sự đơn độc.
+And a good battle is certainly one way to get to know someone. Shall we?
+Và một trận đấu hay cũng là cách tuyệt vời để làm quen với ai đó. Thử nhé?
+I’m glad we met. I think I’ll remember you for a long time.
+Rất vui vì đã gặp bạn. Chắc tôi sẽ nhớ đến bạn lâu lắm đấy.
+There’s something about walking down an open road with music in your ears. It just feels right.
+Vừa đi trên con đường rộng mở, vừa nghe nhạc thì còn gì bằng. Cảm giác thật tuyệt!
+I’m heading to the next town to play with a few friends. Hopefully we can find somewhere loud enough that the whole route can hear us!
+Tôi đang đến thị trấn tiếp theo để chơi nhạc cùng vài người bạn. Hy vọng bọn tôi tìm được chỗ nào đủ náo nhiệt để cả tuyến đường đều nghe thấy!
+Until then, I guess I’ll just enjoy the walk.
+Còn bây giờ thì cứ thong thả tận hưởng chuyến đi thôi!
+Ah, what a lovely breeze! You can really appreciate the little things when you spend enough time outdoors.
+A, gió mát quá! Khi dành nhiều thời gian ngoài trời, ta mới biết trân trọng những điều nhỏ bé như thế này.
+I always carry a few fragrant flowers with me. Their scent reminds me of all the places I’ve visited.
+Tôi luôn mang theo vài bông hoa thơm. Hương hoa gợi nhớ đến những nơi tôi từng ghé qua.
+But enough reminiscing. How about a little battle to make another memory?
+Nhưng hoài niệm thế đủ rồi. Hay chúng ta đấu một trận để tạo thêm kỷ niệm mới nhé?
+I’ll remember this battle whenever I smell these flowers again.
+Mỗi khi ngửi thấy hương hoa này, tôi sẽ lại nhớ đến trận đấu hôm nay.
+Whew... I’ve been walking since sunrise. My legs are tired, but I still have a long way to go.
+Phù... Tôi đi bộ từ lúc mặt trời mọc đến giờ. Chân mỏi nhừ rồi mà đường vẫn còn xa quá.
+Still, there’s something satisfying about reaching a new place on your own two feet.
+Nhưng tự mình đặt chân đến một nơi mới vẫn mang lại cảm giác rất đáng tự hào.
+A battle sounds like a good way to take a little break. What do you say?
+Hay là đấu một trận để nghỉ chân một chút nhỉ? Bạn thấy sao?
+Hahaha! I guess I’m more tired than I thought.
+Hahaha! Xem ra tôi mệt hơn mình tưởng rồi!
+That was a good break. Now I think I’ve got enough energy to keep going.
+Nghỉ ngơi thế là đủ rồi. Giờ tôi lại có sức để tiếp tục lên đường!
+Ahh... Nothing beats a good walk through the countryside.
+Aah... Chẳng gì sánh được với cảm giác dạo bước giữa miền quê yên bình.
+When I was younger, I always wanted to reach somewhere new. I thought staying in one place meant I wasn’t moving forward.
+Hồi còn trẻ, tôi luôn muốn đặt chân đến những vùng đất mới. Khi ấy, tôi nghĩ cứ ở mãi một chỗ nghĩa là mình đang giậm chân tại chỗ.
+These days, I see things a little differently. Sometimes you walk the same road twice and notice something you completely missed the first time.
+Giờ tôi lại nghĩ khác. Đôi khi đi lại cùng một con đường, ta mới nhận ra những điều đã bỏ lỡ trong lần đầu tiên.
+Maybe growing up isn’t always about going farther. Sometimes it’s about seeing familiar things with different eyes.
+Có lẽ trưởng thành không phải lúc nào cũng là đi xa hơn. Đôi khi, đó là học cách nhìn những điều quen thuộc bằng một góc nhìn mới.
+Hey there! Do you like fishing?
+Chào bạn! Bạn có thích câu cá không?
+There’s nothing quite like sitting by the water and waiting patiently for a Pokémon to take the bait.
+Chẳng gì thú vị bằng ngồi bên bờ nước, kiên nhẫn chờ một Pokémon cắn câu.
+You don’t need fancy equipment to get started. A simple fishing rod is enough.
+Mới bắt đầu thì chẳng cần dụng cụ cầu kỳ đâu. Một chiếc cần câu đơn giản là đủ rồi.
+Here, take this Old Rod.
+Đây, cầm lấy chiếc Old Rod này nhé.
+It’s not the most advanced rod around, but it’s perfect for beginners.
+Tuy không phải cần câu xịn nhất, nhưng nó rất phù hợp cho người mới bắt đầu.
+Give it a try whenever you find a good fishing spot. You might be surprised by what bites!
+Gặp chỗ câu cá lý tưởng thì cứ thử nhé. Biết đâu bạn sẽ câu được một Pokémon bất ngờ đấy!
+Good luck, and remember to be patient!
+Chúc may mắn! Và nhớ phải thật kiên nhẫn nhé!
+\ff[championkdam0]...Interesting.
+\ff[championkdam0]...Thú vị thật.
+\ff[championkdam0]Tan Loi is always full of energy like that. I honestly don’t know where he gets all that energy after talking so much.
+\ff[championkdam0]Tấn Lôi lúc nào cũng tràn đầy năng lượng như thế. Anh chẳng hiểu cậu ta lấy đâu ra sức để nói nhiều đến vậy nữa.
+\ff[championkdam0]He may seem a little hyperactive, but don’t underestimate him. He’s actually a very capable Trainer.
+\ff[championkdam0]Trông cậu ta có vẻ hơi tăng động, nhưng em đừng xem thường nhé. Thực ra cậu ấy là một Huấn luyện viên rất tài năng đấy.
+\ff[championkdam0]And his confidence in the Three Trouble Trio isn’t completely without reason.
+\ff[championkdam0]Và sự tự tin của cậu ấy về Bộ Ba Rắc Rối cũng không phải không có cơ sở đâu.
+\ff[championkdam0]The three of them may be troublesome, but they’ve earned their reputation through countless battles.
+\ff[championkdam0]Ba người họ tuy hơi nghịch ngợm, nhưng danh tiếng ấy được tạo nên từ vô số trận đấu đấy.
+\ff[championkdam0]By the way... are you \PN?
+\ff[championkdam0]À mà... em là \PN phải không?
+\ff[championkdam0]Blue mentioned you in his report. I was curious about the person behind the name.
+\ff[championkdam0]Blue có nhắc đến em trong báo cáo của cậu ấy. Anh cũng tò mò muốn biết em là người thế nào.
+\ff[championkdam0]I’m also a member of the Pokémon Association. I’m here for a few things of my own.
+\ff[championkdam0]Anh cũng là thành viên của Hiệp hội Pokémon. Anh đến đây để giải quyết vài việc riêng.
+\ff[championkdam0]Let’s just say there’s more going on in these woods than most people realize.
+\ff[championkdam0]Có thể nói rằng khu rừng này đang ẩn chứa nhiều chuyện hơn mọi người vẫn tưởng.
+\ff[championkdam0]There are still countless places you haven’t seen, Pokémon you haven’t met, and mysteries you haven’t uncovered.
+\ff[championkdam0]Vẫn còn vô số vùng đất em chưa đặt chân đến, những Pokémon em chưa gặp và bao bí ẩn đang chờ em khám phá.
+\ff[championkdam0]And if you want to reach a higher level, keep sharpening your battle skills as well.
+\ff[championkdam0]Và nếu muốn vươn lên tầm cao mới, em cũng đừng quên rèn luyện kỹ năng chiến đấu nhé.
+\ff[championkdam0]Take these. You’ll probably find them useful on the road ahead.
+\ff[championkdam0]Cầm lấy những thứ này đi. Chắc chúng sẽ có ích cho em trên chặng đường sắp tới.
+\ff[championkdam0]They’re Great Balls. You never know when you’ll come across a Pokémon worth catching.
+\ff[championkdam0]Đây là những quả Great Ball. Biết đâu em sẽ bất ngờ gặp được một Pokémon đáng để bắt thì sao?
+\ff[championkdam0]Consider them a little encouragement from one Trainer to another.
+\ff[championkdam0]Cứ xem như một món quà động viên nhỏ từ một Huấn luyện viên dành cho đồng nghiệp của mình nhé.
+\ff[championkdam0]Curiosity may lead you forward, but skill will determine how far you can go.
+\ff[championkdam0]Sự tò mò có thể đưa em tiến bước, nhưng chính thực lực mới quyết định em có thể đi xa đến đâu.
+\ff[championkdam0]I hope we meet again someday. Until then... keep moving forward.
+\ff[championkdam0]Hy vọng một ngày nào đó chúng ta sẽ gặp lại. Cho đến lúc ấy... cứ tiếp tục tiến về phía trước nhé.
+West: Route A3
+Phía Tây: Route A3
+East: Route A2
+Phía Đông: Route A2
+Warning! The water ahead is very deep. Please stay away from the edge.
+Cảnh báo! Vùng nước phía trước rất sâu. Vui lòng tránh xa mép bờ.

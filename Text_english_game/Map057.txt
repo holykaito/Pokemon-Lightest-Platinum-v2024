@@ -1,0 +1,154 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map057]
+Check results for which challenge?\ch[1,5, Pika Cup,Fancy Cup,Poké Cup,Little Cup,Cancel]
+Check results for which challenge?\ch[1,5, Pika Cup,Fancy Cup,Poké Cup,Little Cup,Cancel]
+\PN's Battle Tower Pika Cup Single Battle results:
+\PN's Battle Tower Pika Cup Single Battle results:
+Last win streak: \v[1]\nRecord win streak: \v[2]
+Last win streak: \v[1]\nRecord win streak: \v[2]
+\PN's Battle Tower Fancy Cup Single Battle results:
+\PN's Battle Tower Fancy Cup Single Battle results:
+\PN's Battle Tower Poké Cup Single Battle results:
+\PN's Battle Tower Poké Cup Single Battle results:
+\PN's Battle Tower Little Cup Single Battle results:
+\PN's Battle Tower Little Cup Single Battle results:
+\rHello, and welcome to the Pokémon Center.
+\rHello, and welcome to the Pokémon Center.
+\rWe restore your tired Pokémon to full health.
+\rWe restore your tired Pokémon to full health.
+\rWould you like to rest your Pokémon?
+\rWould you like to rest your Pokémon?
+\rOK, I'll take your Pokémon for a few seconds.
+\rOK, I'll take your Pokémon for a few seconds.
+\rYour Pokémon may be infected by PokeRus.
+\rYour Pokémon may be infected by PokeRus.
+\rLittle is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
+\rLittle is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
+\rWhile infected, Pokémon are said to grow exceptionally well.
+\rWhile infected, Pokémon are said to grow exceptionally well.
+\rThank you for waiting.
+\rThank you for waiting.
+\rWe've restored your Pokémon to full health.
+\rWe've restored your Pokémon to full health.
+\rWe hope to see you again!
+\rWe hope to see you again!
+\rFirst, you should restore your Pokémon to full health.
+\rFirst, you should restore your Pokémon to full health.
+\rYour Pokémon have been healed to perfect health.
+\rYour Pokémon have been healed to perfect health.
+\rWe hope you excel!
+\rWe hope you excel!
+\PN's Battle Tower Pika Cup Double Battle results:
+\PN's Battle Tower Pika Cup Double Battle results:
+\PN's Battle Tower Fancy Cup Double Battle results:
+\PN's Battle Tower Fancy Cup Double Battle results:
+\PN's Battle Tower Poké Cup Double Battle results:
+\PN's Battle Tower Poké Cup Double Battle results:
+\PN's Battle Tower Little Cup Double Battle results:
+\PN's Battle Tower Little Cup Double Battle results:
+Which heading would you like to read?\ch[1,-1, Stadium Cups,Pika Cup,Fancy Cup, Poké Cup,Little Cup,Battle Rules,Exit]
+Which heading would you like to read?\ch[1,-1, Stadium Cups,Pika Cup,Fancy Cup, Poké Cup,Little Cup,Battle Rules,Exit]
+This facility lets you conduct battles similar to Stadium championships.
+This facility lets you conduct battles similar to Stadium championships.
+This facility holds battles for Pika Cup, Fancy Cup, Poké Cup, and Little Cup. Each cup has its own rules and restrictions.
+This facility holds battles for Pika Cup, Fancy Cup, Poké Cup, and Little Cup. Each cup has its own rules and restrictions.
+The Pika Cup is open to Pokémon level 15 to 20.
+The Pika Cup is open to Pokémon level 15 to 20.
+Choose three Pokémon to enter.\n However, the total level of all three can't be higher than 50.
+Choose three Pokémon to enter.\n However, the total level of all three can't be higher than 50.
+Also, certain exotic kinds of Pokémon may not enter.
+Also, certain exotic kinds of Pokémon may not enter.
+The Fancy Cup is open to baby Pokémon level 25 to 30.
+The Fancy Cup is open to baby Pokémon level 25 to 30.
+Choose three Pokémon to enter.\n However, the total level of all three can't be higher than 80.
+Choose three Pokémon to enter.\n However, the total level of all three can't be higher than 80.
+Also, very huge or very tall Pokémon may not enter the Fancy Cup.
+Also, very huge or very tall Pokémon may not enter the Fancy Cup.
+The height limit is 2 meters, and the weight limit is 20 kilograms for the Fancy Cup.
+The height limit is 2 meters, and the weight limit is 20 kilograms for the Fancy Cup.
+The Poké Cup is open to Pokémon level 50 to 55.
+The Poké Cup is open to Pokémon level 50 to 55.
+Choose three Pokémon to enter.\n However, the total level of all three can't be higher than 155.
+Choose three Pokémon to enter.\n However, the total level of all three can't be higher than 155.
+The Little Cup is open to baby Pokémon at level 5 that are capable of evolving.
+The Little Cup is open to baby Pokémon at level 5 that are capable of evolving.
+Choose three Pokémon to enter a single battle, or four for a double battle.
+Choose three Pokémon to enter a single battle, or four for a double battle.
+Also, in the Little Cup, moves that deal a set amount of damage, like Dragon Rage and SonicBoom, will always miss.
+Also, in the Little Cup, moves that deal a set amount of damage, like Dragon Rage and SonicBoom, will always miss.
+In Stadium Cups, there are several rules to keep in mind.
+In Stadium Cups, there are several rules to keep in mind.
+First, two Pokémon in the same team can't be both asleep or both frozen at the same time.
+First, two Pokémon in the same team can't be both asleep or both frozen at the same time.
+Also, you can't choose two of the same kind of Pokémon, or two Pokémon holding the same item.
+Also, you can't choose two of the same kind of Pokémon, or two Pokémon holding the same item.
+Finally, if a Pokémon uses Selfdestruct or Explosion to make all remaining Pokémon faint at the same time, that Pokémon's trainer loses.
+Finally, if a Pokémon uses Selfdestruct or Explosion to make all remaining Pokémon faint at the same time, that Pokémon's trainer loses.
+There is no battle recorded.
+There is no battle recorded.
+\rWelcome to the Battle Tower's Stadium Cup Division.
+\rWelcome to the Battle Tower's Stadium Cup Division.
+\rWould you like to participate in a single battle?
+\rWould you like to participate in a single battle?
+\rWhich Stadium Cup would you like to enter?\ch[1,5, Pika Cup,Fancy Cup,Poké Cup,Little Cup,Cancel]
+\rWhich Stadium Cup would you like to enter?\ch[1,5, Pika Cup,Fancy Cup,Poké Cup,Little Cup,Cancel]
+\rSorry, you can't participate. You need three different Pokémon level 15 to 20 to enter.
+\rSorry, you can't participate. You need three different Pokémon level 15 to 20 to enter.
+\rThey must be of a different species and hold different items.
+\rThey must be of a different species and hold different items.
+\rCertain exotic species, as well as eggs, are ineligible.
+\rCertain exotic species, as well as eggs, are ineligible.
+\rSorry, you can't participate. You need three different Pokémon level 25 to 30 to enter.
+\rSorry, you can't participate. You need three different Pokémon level 25 to 30 to enter.
+\rThey also must be baby Pokémon, and can't be too tall or too heavy.
+\rThey also must be baby Pokémon, and can't be too tall or too heavy.
+\rEggs are ineligible.
+\rEggs are ineligible.
+\rSorry, you can't participate. You need three different Pokémon level 50 to 55 to enter.
+\rSorry, you can't participate. You need three different Pokémon level 50 to 55 to enter.
+\rSorry, you can't participate. You need three different baby Pokémon at level 5 to enter.
+\rSorry, you can't participate. You need three different baby Pokémon at level 5 to enter.
+\rThey also must be baby Pokémon that are capable of evolving.
+\rThey also must be baby Pokémon that are capable of evolving.
+\rPlease choose the three Pokémon that will enter.
+\rPlease choose the three Pokémon that will enter.
+\rPlease come this way.
+\rPlease come this way.
+\rCome back another time.
+\rCome back another time.
+\rCongratulations for winning.
+\rCongratulations for winning.
+\rPlease take this prize.
+\rPlease take this prize.
+\rYou have no room for it. At least you won, though.
+\rYou have no room for it. At least you won, though.
+\rWould you like to record your last battle?
+\rWould you like to record your last battle?
+\se[Pkmn exp full]The battle was recorded.
+\se[Pkmn exp full]The battle was recorded.
+Your results will be recorded.\wtnp[15]
+Your results will be recorded.\wtnp[15]
+\rThanks for playing.
+\rThanks for playing.
+\rWe've been waiting for you. Please come this way.
+\rWe've been waiting for you. Please come this way.
+\rExcuse me, but you didn't save before finishing your challenge last time.
+\rExcuse me, but you didn't save before finishing your challenge last time.
+\rSorry, but your challenge has been canceled.
+\rSorry, but your challenge has been canceled.
+\rWould you like to participate in a double battle?
+\rWould you like to participate in a double battle?
+\rPlease choose the Pokémon that will enter.
+\rPlease choose the Pokémon that will enter.
+Yes
+Yes
+No
+No
+Stadium Cup rules
+Stadium Cup rules
+Play recorded battle
+Play recorded battle
+Cancel
+Cancel

@@ -1,0 +1,144 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map081]
+I thought this route would be a shortcut, but somehow I’ve been walking in circles.
+I thought this route would be a shortcut, but somehow I’ve been walking in circles.
+Maybe I should stop pretending I know where I’m going and just follow the signs.
+Maybe I should stop pretending I know where I’m going and just follow the signs.
+\ff[trainer_TanLoi]WHOA! Hold it! Don’t take another step!
+\ff[trainer_TanLoi]WHOA! Hold it! Don’t take another step!
+\ff[trainer_TanLoi]I’ve been looking all over this area for a Trainer who looks strong enough to give me a real challenge!
+\ff[trainer_TanLoi]I’ve been looking all over this area for a Trainer who looks strong enough to give me a real challenge!
+\ff[trainer_TanLoi]And then you show up right in front of me! Talk about perfect timing!
+\ff[trainer_TanLoi]And then you show up right in front of me! Talk about perfect timing!
+\ff[trainer_TanLoi]My name is Tan Loi! Remember that name, because you’re about to battle one of the members of the legendary Three Trouble Trio!
+\ff[trainer_TanLoi]My name is Tan Loi! Remember that name, because you’re about to battle one of the members of the legendary Three Trouble Trio!
+\ff[trainer_TanLoi]The Three Trouble Trio is made up of three Trainers who travel all over An Lam looking for strong opponents!
+\ff[trainer_TanLoi]The Three Trouble Trio is made up of three Trainers who travel all over An Lam looking for strong opponents!
+\ff[trainer_TanLoi]We challenge anyone who looks like they have the potential to become a great Trainer.
+\ff[trainer_TanLoi]We challenge anyone who looks like they have the potential to become a great Trainer.
+\ff[trainer_TanLoi]And between you and me, we’re pretty confident that we’re the strongest trio in the entire region!
+\ff[trainer_TanLoi]And between you and me, we’re pretty confident that we’re the strongest trio in the entire region!
+\ff[trainer_TanLoi]Looking at you, I’ve got a feeling you’re exactly the kind of Trainer we’ve been searching for.
+\ff[trainer_TanLoi]Looking at you, I’ve got a feeling you’re exactly the kind of Trainer we’ve been searching for.
+\ff[trainer_TanLoi]So what do you say? Are you ready to find out whether you’re really as strong as you look?
+\ff[trainer_TanLoi]So what do you say? Are you ready to find out whether you’re really as strong as you look?
+\ff[trainer_TanLoi]Come on! Show me what you’ve got! Let’s see if you can keep up with T?n Lôi of the Three Trouble Trio!
+\ff[trainer_TanLoi]Come on! Show me what you’ve got! Let’s see if you can keep up with T?n Lôi of the Three Trouble Trio!
+\ff[trainer_TanLoi]Hahaha! That was amazing! I haven’t had a battle that exciting in a while!
+\ff[trainer_TanLoi]Hahaha! That was amazing! I haven’t had a battle that exciting in a while!
+\ff[trainer_TanLoi]I’m definitely going to tell the other two about you. They won’t believe how strong you are!
+\ff[trainer_TanLoi]I’m definitely going to tell the other two about you. They won’t believe how strong you are!
+\ff[trainer_TanLoi]But don’t get too confident just because you beat me! The other two aren’t easy opponents!
+\ff[trainer_TanLoi]But don’t get too confident just because you beat me! The other two aren’t easy opponents!
+\ff[trainer_TanLoi]I’ll train harder, get stronger, and come looking for you again someday!
+\ff[trainer_TanLoi]I’ll train harder, get stronger, and come looking for you again someday!
+\ff[trainer_TanLoi]So don’t stop getting stronger, okay? I want our next battle to be even crazier!
+\ff[trainer_TanLoi]So don’t stop getting stronger, okay? I want our next battle to be even crazier!
+\ff[trainer_TanLoi]Until next time, challenger! Tan Loi of the Three Trouble Trio won’t forget you!
+\ff[trainer_TanLoi]Until next time, challenger! Tan Loi of the Three Trouble Trio won’t forget you!
+West: Route A2
+West: Route A2
+East: Van Hoi City
+East: Van Hoi City
+I spend most of my days taking care of plants, so I’ve learned that good things rarely grow overnight.
+I spend most of my days taking care of plants, so I’ve learned that good things rarely grow overnight.
+You have to give them time, take care of them, and pay attention to what they need. Pokémon aren’t all that different.
+You have to give them time, take care of them, and pay attention to what they need. Pokémon aren’t all that different.
+Hmm... Talking about it reminds me that I haven’t had a good battle in a while. How about it?
+Hmm... Talking about it reminds me that I haven’t had a good battle in a while. How about it?
+I’ll take that lesson with me. Even an old gardener can still learn something new.
+I’ll take that lesson with me. Even an old gardener can still learn something new.
+There’s something about walking down an open road with music in your ears. It just feels right.
+There’s something about walking down an open road with music in your ears. It just feels right.
+I’m heading to the next town to play with a few friends. Hopefully we can find somewhere loud enough that the whole route can hear us!
+I’m heading to the next town to play with a few friends. Hopefully we can find somewhere loud enough that the whole route can hear us!
+Until then, I guess I’ll just enjoy the walk.
+Until then, I guess I’ll just enjoy the walk.
+I’ve been traveling alone for a while now. At first, I thought it would feel lonely.
+I’ve been traveling alone for a while now. At first, I thought it would feel lonely.
+But when you meet new people along the way, you realize you’re never really alone.
+But when you meet new people along the way, you realize you’re never really alone.
+And a good battle is certainly one way to get to know someone. Shall we?
+And a good battle is certainly one way to get to know someone. Shall we?
+I’m glad we met. I think I’ll remember you for a long time.
+I’m glad we met. I think I’ll remember you for a long time.
+Whew... I’ve been walking since sunrise. My legs are tired, but I still have a long way to go.
+Whew... I’ve been walking since sunrise. My legs are tired, but I still have a long way to go.
+Still, there’s something satisfying about reaching a new place on your own two feet.
+Still, there’s something satisfying about reaching a new place on your own two feet.
+A battle sounds like a good way to take a little break. What do you say?
+A battle sounds like a good way to take a little break. What do you say?
+Hahaha! I guess I’m more tired than I thought.
+Hahaha! I guess I’m more tired than I thought.
+That was a good break. Now I think I’ve got enough energy to keep going.
+That was a good break. Now I think I’ve got enough energy to keep going.
+Ah, what a lovely breeze! You can really appreciate the little things when you spend enough time outdoors.
+Ah, what a lovely breeze! You can really appreciate the little things when you spend enough time outdoors.
+I always carry a few fragrant flowers with me. Their scent reminds me of all the places I’ve visited.
+I always carry a few fragrant flowers with me. Their scent reminds me of all the places I’ve visited.
+But enough reminiscing. How about a little battle to make another memory?
+But enough reminiscing. How about a little battle to make another memory?
+I’ll remember this battle whenever I smell these flowers again.
+I’ll remember this battle whenever I smell these flowers again.
+Hey there! Do you like fishing?
+Hey there! Do you like fishing?
+There’s nothing quite like sitting by the water and waiting patiently for a Pokémon to take the bait.
+There’s nothing quite like sitting by the water and waiting patiently for a Pokémon to take the bait.
+You don’t need fancy equipment to get started. A simple fishing rod is enough.
+You don’t need fancy equipment to get started. A simple fishing rod is enough.
+Here, take this Old Rod.
+Here, take this Old Rod.
+It’s not the most advanced rod around, but it’s perfect for beginners.
+It’s not the most advanced rod around, but it’s perfect for beginners.
+Give it a try whenever you find a good fishing spot. You might be surprised by what bites!
+Give it a try whenever you find a good fishing spot. You might be surprised by what bites!
+Good luck, and remember to be patient!
+Good luck, and remember to be patient!
+Ahh... Nothing beats a good walk through the countryside.
+Ahh... Nothing beats a good walk through the countryside.
+When I was younger, I always wanted to reach somewhere new. I thought staying in one place meant I wasn’t moving forward.
+When I was younger, I always wanted to reach somewhere new. I thought staying in one place meant I wasn’t moving forward.
+These days, I see things a little differently. Sometimes you walk the same road twice and notice something you completely missed the first time.
+These days, I see things a little differently. Sometimes you walk the same road twice and notice something you completely missed the first time.
+Maybe growing up isn’t always about going farther. Sometimes it’s about seeing familiar things with different eyes.
+Maybe growing up isn’t always about going farther. Sometimes it’s about seeing familiar things with different eyes.
+Warning! The water ahead is very deep. Please stay away from the edge.
+Warning! The water ahead is very deep. Please stay away from the edge.
+West: Route A3
+West: Route A3
+East: Route A2
+East: Route A2
+\ff[championkdam0]...Interesting.
+\ff[championkdam0]...Interesting.
+\ff[championkdam0]Tan Loi is always full of energy like that. I honestly don’t know where he gets all that energy after talking so much.
+\ff[championkdam0]Tan Loi is always full of energy like that. I honestly don’t know where he gets all that energy after talking so much.
+\ff[championkdam0]He may seem a little hyperactive, but don’t underestimate him. He’s actually a very capable Trainer.
+\ff[championkdam0]He may seem a little hyperactive, but don’t underestimate him. He’s actually a very capable Trainer.
+\ff[championkdam0]And his confidence in the Three Trouble Trio isn’t completely without reason.
+\ff[championkdam0]And his confidence in the Three Trouble Trio isn’t completely without reason.
+\ff[championkdam0]The three of them may be troublesome, but they’ve earned their reputation through countless battles.
+\ff[championkdam0]The three of them may be troublesome, but they’ve earned their reputation through countless battles.
+\ff[championkdam0]By the way... are you \PN?
+\ff[championkdam0]By the way... are you \PN?
+\ff[championkdam0]Blue mentioned you in his report. I was curious about the person behind the name.
+\ff[championkdam0]Blue mentioned you in his report. I was curious about the person behind the name.
+\ff[championkdam0]I’m also a member of the Pokémon Association. I’m here for a few things of my own.
+\ff[championkdam0]I’m also a member of the Pokémon Association. I’m here for a few things of my own.
+\ff[championkdam0]Let’s just say there’s more going on in these woods than most people realize.
+\ff[championkdam0]Let’s just say there’s more going on in these woods than most people realize.
+\ff[championkdam0]There are still countless places you haven’t seen, Pokémon you haven’t met, and mysteries you haven’t uncovered.
+\ff[championkdam0]There are still countless places you haven’t seen, Pokémon you haven’t met, and mysteries you haven’t uncovered.
+\ff[championkdam0]And if you want to reach a higher level, keep sharpening your battle skills as well.
+\ff[championkdam0]And if you want to reach a higher level, keep sharpening your battle skills as well.
+\ff[championkdam0]Take these. You’ll probably find them useful on the road ahead.
+\ff[championkdam0]Take these. You’ll probably find them useful on the road ahead.
+\ff[championkdam0]They’re Great Balls. You never know when you’ll come across a Pokémon worth catching.
+\ff[championkdam0]They’re Great Balls. You never know when you’ll come across a Pokémon worth catching.
+\ff[championkdam0]Consider them a little encouragement from one Trainer to another.
+\ff[championkdam0]Consider them a little encouragement from one Trainer to another.
+\ff[championkdam0]Curiosity may lead you forward, but skill will determine how far you can go.
+\ff[championkdam0]Curiosity may lead you forward, but skill will determine how far you can go.
+\ff[championkdam0]I hope we meet again someday. Until then... keep moving forward.
+\ff[championkdam0]I hope we meet again someday. Until then... keep moving forward.

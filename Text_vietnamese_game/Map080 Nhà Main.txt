@@ -18,8 +18,8 @@
 \ff[mom]Nhưng thật lòng mà nói, mẹ rất tự hào về con.
 \ff[mom]You worked hard at the Pokémon School and became one of its top students.
 \ff[mom]Con đã học rất chăm ở Pokémon School và trở thành một trong những học viên xuất sắc nhất.
-\ff[mom]That's why Professor Fennel invited you to join the Pokédex Research Project.
-\ff[mom]Vì thế Giáo sư Fennel mới mời con tham gia Dự án Nghiên cứu Pokédex.
+\ff[mom]That's why Professor Minh Anh invited you to join the Pokédex Research Project.
+\ff[mom]That's why Professor Minh Anh invited you to join the Pokédex Research Project.
 \ff[mom]Today, you're going to her lab to officially begin your work.
 \ff[mom]Hôm nay con sẽ đến phòng thí nghiệm của cô ấy để chính thức bắt đầu công việc.
 \ff[mom]A real Pokémon Research Assistant... sounds pretty impressive, doesn't it?
@@ -28,8 +28,8 @@
 \ff[mom]Nhưng nhớ nhé, nghiên cứu Pokémon không chỉ là đọc sách đâu.
 \ff[mom]You'll need to travel, meet Pokémon in their natural habitats, and learn from your own experiences.
 \ff[mom]Con sẽ phải đi nhiều nơi, gặp Pokémon trong môi trường tự nhiên và tự mình trải nghiệm.
-\ff[mom]Professor Fennel's lab isn't far from here.
-\ff[mom]Phòng thí nghiệm của Giáo sư Fennel cũng không xa đây đâu.
+\ff[mom]Professor Minh Anh's lab isn't far from here.
+\ff[mom]Professor Minh Anh's lab isn't far from here.
 \ff[mom]Go meet her, listen carefully, and do your best.
 \ff[mom]Đến gặp cô ấy, nhớ nghe cho kỹ và cố gắng hết sức nhé.
 \ff[mom]Who knows? Maybe this will be the first step toward your dream of meeting every Pokémon.

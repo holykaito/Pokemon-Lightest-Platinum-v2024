@@ -1,3 +1,10 @@
 Name       = [KAITO] Ability
 Version    = 1.0.0
 Essentials = 21.1
+Optional = Generation 9 Pack
+Optional = Deluxe Battle Kit
+Optional = [DBK] Dynamax
+Optional = [DBK] Raid Battles
+Optional = Innate Abilities
+Optional = M.A.G (Moves & Abilities Galore)
+Optional = v21.1 Community Abilities

@@ -2,71 +2,169 @@
 # translate every second line of this file.
 #-------------------------------
 [Map042]
-\bBattle me now!
-\bBattle me now!
-\bYou're pretty good!
-\bYou're pretty good!
+We hope your journey is filled with wonderful memories and exciting discoveries.
+Chúng tôi hy vọng hành trình của bạn sẽ tràn ngập những kỷ niệm đẹp và những khám phá thú vị.
+Enjoy every step of the way, and have a great adventure!
+Hãy tận hưởng từng bước trên hành trình và có một chuyến phiêu lưu thật tuyệt vời!
+Oh! A Trainer! I was hoping someone would come along.
+Ồ! Một Huấn luyện viên! Tôi đang mong có ai đó đi ngang qua đây.
+I want to see how my Pokémon compare with someone else’s. Would you battle with me?
+Tôi muốn xem Pokémon của mình mạnh đến đâu so với người khác. Bạn đấu với tôi một trận nhé?
+That was a fun battle! Your Pokémon really trust you.
+Trận đấu vui thật đấy! Pokémon của bạn thực sự rất tin tưởng bạn.
+I’ll spend more time with my Pokémon and become a better Trainer.
+Tôi sẽ dành nhiều thời gian hơn cho Pokémon của mình và trở thành một Huấn luyện viên giỏi hơn.
 Chao mung
-Chao mung
-Huong Bac: Thanh pho Central Huong Nam: Thi tran Yellow
-Huong Bac: Thanh pho Central Huong Nam: Thi tran Yellow
-b\Here you are!
-b\Here you are!
+Chào mừng
+Hey! You look like a pretty strong Trainer!
+Này! Trông bạn có vẻ là một Huấn luyện viên khá mạnh đấy!
+I’ve been training every day, so I’m not going to lose easily!
+Tôi đã luyện tập mỗi ngày, nên đừng nghĩ có thể dễ dàng đánh bại tôi!
+You’re really strong! I guess training isn’t just about battling every day.
+Bạn mạnh thật đấy! Xem ra rèn luyện không chỉ đơn giản là chiến đấu mỗi ngày.
+I’ll keep improving until I can challenge you again!
+Tôi sẽ tiếp tục rèn luyện cho đến khi có thể thách đấu bạn lần nữa!
+North: Van Hoi City
+Phía Bắc: Thành phố Vạn Hội
+South: Khai Nguyen Town
+Phía Nam: Thị trấn Khải Nguyên
+\ff[cham_cynthia]...Well, now. That was certainly unexpected.
+\ff[cham_cynthia]...Ồ, thật không ngờ. Chuyện vừa rồi đúng là ngoài dự đoán.
+\ff[cham_cynthia]Did you see that little Pokémon just now?
+\ff[cham_cynthia]Em có nhìn thấy Pokémon nhỏ bé vừa rồi không?
+\ff[cham_cynthia]The way it floated through the air... Almost as though it didn't have a care in the world.
+\ff[cham_cynthia]Cách nó lơ lửng giữa không trung... Cứ như thể chẳng có điều gì trên đời khiến nó phải bận tâm vậy.
+\ff[cham_cynthia]And then, in the blink of an eye, it was gone.
+\ff[cham_cynthia]Thế rồi, chỉ trong chớp mắt, nó đã biến mất.
+\ff[cham_cynthia]Ara... Forgive me. I suppose I'm still trying to believe what I just saw.
+\ff[cham_cynthia]Ara... Xin lỗi em nhé. Có lẽ chị vẫn chưa thể tin nổi những gì mình vừa chứng kiến.
+\ff[cham_cynthia]That Pokémon... It was Mew.
+\ff[cham_cynthia]Pokémon đó... Chính là Mew.
+\ff[cham_cynthia]For generations, Mew has been spoken of as a Pokémon that exists only in legends.
+\ff[cham_cynthia]Suốt bao thế hệ, người ta vẫn nhắc đến Mew như một Pokémon chỉ tồn tại trong truyền thuyết.
+\ff[cham_cynthia]There are countless stories about it, passed down from one generation to the next.
+\ff[cham_cynthia]Có vô số câu chuyện về nó, được truyền từ thế hệ này sang thế hệ khác.
+\ff[cham_cynthia]Some say it possesses the genetic code of every Pokémon.
+\ff[cham_cynthia]Một số người cho rằng Mew mang trong mình mã di truyền của mọi loài Pokémon.
+\ff[cham_cynthia]Others believe it to be the ancestor of all Pokémon, a mysterious being from which countless forms of life descended.
+\ff[cham_cynthia]Những người khác lại tin rằng nó là tổ tiên của tất cả Pokémon, một sinh vật bí ẩn mà vô số dạng sống đã bắt nguồn từ đó.
+\ff[cham_cynthia]And yet, despite all those stories, so little has ever been truly confirmed.
+\ff[cham_cynthia]Thế nhưng, bất chấp ngần ấy câu chuyện, rất ít điều về Mew thực sự được kiểm chứng.
+\ff[cham_cynthia]There have been rumors, ancient writings, and even a handful of supposed eyewitness accounts.
+\ff[cham_cynthia]Đã có những lời đồn, những ghi chép cổ xưa, thậm chí cả một vài lời kể của những người tự nhận đã tận mắt nhìn thấy nó.
+\ff[cham_cynthia]But rumors are not proof. And legends, however beautiful, are not always the truth.
+\ff[cham_cynthia]Nhưng lời đồn không phải bằng chứng. Và truyền thuyết, dù đẹp đẽ đến đâu, cũng không phải lúc nào cũng là sự thật.
+\ff[cham_cynthia]For the longest time, whether Mew truly existed remained an unanswered question.
+\ff[cham_cynthia]Trong suốt một thời gian dài, sự tồn tại của Mew vẫn là một câu hỏi chưa có lời giải đáp.
+\ff[cham_cynthia]And now...
+\ff[cham_cynthia]Vậy mà giờ đây...
+\ff[cham_cynthia]To think that I would actually see it with my own eyes.
+\ff[cham_cynthia]Thật không ngờ chị lại có ngày được tận mắt nhìn thấy nó.
+\ff[cham_cynthia]The world certainly has a wonderful way of surprising us, doesn't it?
+\ff[cham_cynthia]Thế giới này luôn có những cách thật kỳ diệu để khiến chúng ta bất ngờ, em nhỉ?
+\ff[cham_cynthia]I've traveled to many places, you see.
+\ff[cham_cynthia]Em biết đấy, chị đã đặt chân đến rất nhiều nơi.
+\ff[cham_cynthia]Ancient ruins, forgotten temples, quiet little towns... Even places where hardly anyone has set foot.
+\ff[cham_cynthia]Những tàn tích cổ đại, những ngôi đền bị lãng quên, những thị trấn nhỏ yên bình... Thậm chí cả những nơi hiếm ai từng đặt chân tới.
+\ff[cham_cynthia]And no matter how far I travel, I always seem to find something new.
+\ff[cham_cynthia]Và dù đã đi xa đến đâu, chị dường như vẫn luôn tìm thấy điều gì đó mới mẻ.
+\ff[cham_cynthia]Sometimes it's an old inscription that changes the way I understand history.
+\ff[cham_cynthia]Đôi khi đó là một dòng chữ cổ khiến chị phải nhìn nhận lại những hiểu biết của mình về lịch sử.
+\ff[cham_cynthia]Sometimes it's a Pokémon behaving in a way no one has ever documented.
+\ff[cham_cynthia]Đôi khi lại là một Pokémon thể hiện hành vi mà chưa từng có ai ghi chép lại.
+\ff[cham_cynthia]And sometimes...
+\ff[cham_cynthia]Và đôi khi...
+\ff[cham_cynthia]It's simply a beautiful view at the end of a long, tiring road.
+\ff[cham_cynthia]Chỉ đơn giản là một khung cảnh tuyệt đẹp ở cuối con đường dài đầy mệt mỏi.
+\ff[cham_cynthia]It's strange, isn't it?
+\ff[cham_cynthia]Thật kỳ lạ, phải không em?
+\ff[cham_cynthia]We set out hoping to find answers, only to discover even more questions along the way.
+\ff[cham_cynthia]Chúng ta lên đường với hy vọng tìm được câu trả lời, để rồi lại khám phá ra càng nhiều câu hỏi hơn trên hành trình ấy.
+\ff[cham_cynthia]Yet somehow, that never feels disappointing.
+\ff[cham_cynthia]Ấy vậy mà, chẳng hiểu sao điều đó lại không hề khiến chị thất vọng.
+\ff[cham_cynthia]Quite the opposite, actually.
+\ff[cham_cynthia]Thực ra, hoàn toàn ngược lại.
+\ff[cham_cynthia]Every new mystery gives us another reason to keep moving forward.
+\ff[cham_cynthia]Mỗi bí ẩn mới lại cho chúng ta thêm một lý do để tiếp tục tiến bước.
+\ff[cham_cynthia]And every unexpected encounter reminds us just how vast and wonderful this world truly is.
+\ff[cham_cynthia]Và mỗi cuộc gặp gỡ bất ngờ lại nhắc nhở chúng ta rằng thế giới này thực sự rộng lớn và kỳ diệu đến nhường nào.
+\ff[cham_cynthia]I suppose that's the peculiar joy of exploring the Pokémon world.
+\ff[cham_cynthia]Chị nghĩ đó chính là niềm vui kỳ lạ khi khám phá thế giới Pokémon.
+\ff[cham_cynthia]You never really know what you'll find around the next corner.
+\ff[cham_cynthia]Em chẳng bao giờ biết chắc điều gì đang chờ mình ở khúc quanh tiếp theo.
+\ff[cham_cynthia]It might be something ordinary. It might be something extraordinary.
+\ff[cham_cynthia]Có thể đó chỉ là điều gì đó bình thường. Nhưng cũng có thể là một điều phi thường.
+\ff[cham_cynthia]Or, if you're particularly fortunate, it might be a little pink Pokémon that the world has spent centuries wondering about.
+\ff[cham_cynthia]Hoặc nếu đặc biệt may mắn, em có thể bắt gặp một Pokémon nhỏ màu hồng mà cả thế giới đã tò mò suốt hàng thế kỷ.
+\ff[cham_cynthia]I certainly wasn't expecting that when I woke up this morning.
+\ff[cham_cynthia]Sáng nay khi thức dậy, chị chắc chắn chẳng thể ngờ chuyện đó sẽ xảy ra.
+\ff[cham_cynthia]People often speak of the zenith as the highest point one can reach.
+\ff[cham_cynthia]Người ta thường nói Zenith là đỉnh cao nhất mà một người có thể vươn tới.
+\ff[cham_cynthia]But I wonder... Is reaching the top really what makes a journey worthwhile?
+\ff[cham_cynthia]Nhưng chị tự hỏi... Liệu chạm đến đỉnh cao có thực sự là điều khiến một hành trình trở nên đáng giá?
+\ff[cham_cynthia]Perhaps the true beauty lies in everything we discover along the way.
+\ff[cham_cynthia]Có lẽ vẻ đẹp thực sự nằm ở tất cả những điều chúng ta khám phá được trên đường đi.
+\ff[cham_cynthia]After all, \c[2]even at the zenith, there's still an endless sky above us.
+\ff[cham_cynthia]Bởi suy cho cùng, \c[2]ngay cả khi đứng trên đỉnh cao nhất, phía trên chúng ta vẫn là bầu trời vô tận.
+\ff[cham_cynthia]What a wonderful thought, don't you think?
+\ff[cham_cynthia]Một suy nghĩ thật đẹp, em có thấy vậy không?
+\ff[cham_cynthia]Oh, goodness. Listen to me, going on and on like this.
+\ff[cham_cynthia]Ôi trời, nhìn chị xem. Cứ mải mê nói mãi không thôi.
+\ff[cham_cynthia]We haven't even introduced ourselves yet, have we?
+\ff[cham_cynthia]Chúng ta thậm chí còn chưa giới thiệu bản thân với nhau, đúng không?
+\ff[cham_cynthia]My name is Cynthia.
+\ff[cham_cynthia]Chị tên là Cynthia.
+\ff[cham_cynthia]I'm something of a researcher, I suppose. Ancient history and Pokémon mythology are particular interests of mine.
+\ff[cham_cynthia]Có thể xem chị là một nhà nghiên cứu. Chị đặc biệt yêu thích lịch sử cổ đại và những truyền thuyết về Pokémon.
+\ff[cham_cynthia]And you must be a Trainer, judging by the look of you.
+\ff[cham_cynthia]Còn nhìn dáng vẻ của em, chắc em là một Huấn luyện viên nhỉ?
+\ff[cham_cynthia]Ah... What's with that expression?
+\ff[cham_cynthia]À... Sao em lại có vẻ mặt như thế?
+\ff[cham_cynthia]You can relax.
+\ff[cham_cynthia]Cứ thoải mái đi em.
+\ff[cham_cynthia]I'm not one of those Trainers who suddenly challenges a complete stranger to a battle in the middle of the road.
+\ff[cham_cynthia]Chị không phải kiểu Huấn luyện viên đột nhiên thách đấu một người hoàn toàn xa lạ ngay giữa đường đâu.
+\ff[cham_cynthia]I promise I won't make you battle me just because we happened to make eye contact.
+\ff[cham_cynthia]Chị hứa sẽ không bắt em đấu Pokémon chỉ vì hai chúng ta vô tình chạm mắt nhau.
+\ff[cham_cynthia]Not today, anyway.
+\ff[cham_cynthia]Ít nhất là hôm nay.
+\ff[cham_cynthia]...Haha. I'm only teasing.
+\ff[cham_cynthia]...Haha. Chị chỉ đùa thôi mà.
+\ff[cham_cynthia]Besides, after witnessing something as remarkable as Mew, I think a quiet moment to appreciate it would be far more fitting than a Pokémon battle.
+\ff[cham_cynthia]Hơn nữa, sau khi chứng kiến một điều kỳ diệu như Mew, chị nghĩ dành chút thời gian yên tĩnh để cảm nhận khoảnh khắc ấy sẽ phù hợp hơn nhiều so với một trận đấu Pokémon.
+\ff[cham_cynthia]Well, I suppose I should be on my way.
+\ff[cham_cynthia]Thôi, có lẽ chị cũng nên tiếp tục hành trình rồi.
+\ff[cham_cynthia]There are still a few places I'd like to visit before the day is over.
+\ff[cham_cynthia]Vẫn còn vài nơi chị muốn ghé thăm trước khi ngày hôm nay kết thúc.
+\ff[cham_cynthia]But I'm glad our paths happened to cross here.
+\ff[cham_cynthia]Nhưng chị rất vui vì chúng ta đã tình cờ gặp nhau tại đây.
+\ff[cham_cynthia]I have a feeling you'll come across many more wonderful things on your journey.
+\ff[cham_cynthia]Chị có linh cảm rằng em sẽ còn gặp rất nhiều điều tuyệt vời trên hành trình của mình.
+\ff[cham_cynthia]So keep your eyes open, and never lose that sense of curiosity.
+\ff[cham_cynthia]Vì vậy, hãy luôn quan sát thế giới xung quanh và đừng bao giờ đánh mất sự tò mò ấy nhé.
+\ff[cham_cynthia]Perhaps our paths will cross again someday.
+\ff[cham_cynthia]Biết đâu một ngày nào đó, chúng ta sẽ lại gặp nhau.
+\ff[cham_cynthia]Until then, take care of yourself and your Pokémon.
+\ff[cham_cynthia]Cho đến lúc ấy, nhớ chăm sóc thật tốt cho bản thân và Pokémon của em nhé.
+\ff[cham_cynthia]It was a pleasure meeting you.
+\ff[cham_cynthia]Chị rất vui vì được gặp em.
+\ff[cham_cynthia]Farewell, for now!
+\ff[cham_cynthia]Tạm biệt em, hẹn gặp lại!
+This road may look peaceful, but you should never let your guard down.
+Con đường này trông có vẻ yên bình, nhưng bạn đừng bao giờ mất cảnh giác.
+Wild Pokémon around here can be surprisingly tough, especially once the sun starts to set.
+Pokémon hoang dã quanh đây có thể mạnh đến bất ngờ, nhất là khi mặt trời bắt đầu lặn.
+Still, that’s part of the fun of traveling, isn’t it? You never know what you’ll run into next.
+Nhưng đó cũng là một phần thú vị của việc phiêu lưu, phải không? Bạn chẳng bao giờ biết mình sẽ gặp điều gì tiếp theo.
+Take your time, keep your Pokémon in good shape, and enjoy the road ahead.
+Cứ thong thả thôi, nhớ giữ cho Pokémon luôn khỏe mạnh và tận hưởng chặng đường phía trước nhé.
 b/Get out!
-b/Get out!
-\ff[boy]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
-\ff[boy]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
-\ff[girl]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
-\ff[girl]\c[0]Did... Did I just see Mew?! No way, that was... incredible!
-Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
-Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
-Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
-Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
-\ff[boy]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
-\ff[boy]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
-\ff[girl]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
-\ff[girl]\c[0]That’s amazing! I’ve always been fascinated by Legendary Pokémon, but I’ve never thought of them in connection with ancient stories before. Do you know a lot about these myths?
-Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
-Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
-\ff[boy]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
-\ff[boy]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
-\ff[girl]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
-\ff[girl]\c[0]Oh! That’s incredible! It sounds like there’s so much more to learn about them. How did you get so interested in Pokémon legends?
-Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
-Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
-Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…
-Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…
-\ff[boy]\c[0]By the way, I never caught your name. What should I call you?
-\ff[boy]\c[0]By the way, I never caught your name. What should I call you?
-\ff[girl]\c[0]By the way, I never caught your name. What should I call you?
-\ff[girl]\c[0]By the way, I never caught your name. What should I call you?
-\ff[cynthia]\c[1]Cynthia: \c[0]Ah, how rude of me. I’m Cynthia. It’s a pleasure to meet you.
-\ff[cynthia]\c[1]Cynthia: \c[0]Ah, how rude of me. I’m Cynthia. It’s a pleasure to meet you.
-\ff[boy]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
-\ff[boy]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
-\ff[girl]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
-\ff[girl]\c[0]Cynthia, huh? That’s a beautiful name. Are you from around here?
-\ff[cynthia]\c[1]Cynthia: \c[0]Yes, I’ve traveled quite a bit, but Sinnoh is home. I’ve always been drawn to the region’s rich history and its deep connection with Pokémon. There's always something new to discover here.
-\ff[cynthia]\c[1]Cynthia: \c[0]Yes, I’ve traveled quite a bit, but Sinnoh is home. I’ve always been drawn to the region’s rich history and its deep connection with Pokémon. There's always something new to discover here.
-\ff[boy]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
-\ff[boy]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
-\ff[girl]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
-\ff[girl]\c[0]Sinnoh, huh? I’ve heard a lot about it, but I’ve never had the chance to visit. It sounds like there’s so much to explore!
-\ff[cynthia]\c[1]Cynthia: \c[0]Oh, absolutely. Sinnoh is filled with ancient ruins, legends, and of course, Pokémon that you won’t find anywhere else. It’s a place that holds many mysteries… and I’m sure you’ll find some of your own if you ever make it there.
-\ff[cynthia]\c[1]Cynthia: \c[0]Oh, absolutely. Sinnoh is filled with ancient ruins, legends, and of course, Pokémon that you won’t find anywhere else. It’s a place that holds many mysteries… and I’m sure you’ll find some of your own if you ever make it there.
-\ff[boy]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
-\ff[boy]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
-\ff[girl]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
-\ff[girl]\c[0]I’ll definitely have to check it out someday. Thanks for the tip, Cynthia.
-\ff[cynthia]\c[1]Cynthia: \c[0]You’re very welcome. It was a pleasure chatting with you. Now, keep an eye out for those Legendary Pokémon, there are more secrets waiting to be uncovered. See you later!
-\ff[cynthia]\c[1]Cynthia: \c[0]You’re very welcome. It was a pleasure chatting with you. Now, keep an eye out for those Legendary Pokémon, there are more secrets waiting to be uncovered. See you later!
-\ff[cynthia]\c[1]???: \c[0]Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
-\ff[cynthia]\c[1]???: \c[0]Ah, I see you noticed that as well. It’s not every day you get to see a Legendary Pokémon like Mew, is it?
-\ff[cynthia]\c[1]???: \c[0]Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
-\ff[cynthia]\c[1]???: \c[0]Legendary Pokémon like Mew are incredibly rare and elusive. Many believe they’re connected to ancient myths, and some even say they hold the key to understanding the origins of Pokémon and their relationship with humans.
-\ff[cynthia]\c[1]???: \c[0]Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
-\ff[cynthia]\c[1]???: \c[0]Haha! I’ve always found the stories about Legendary Pokémon to be quite captivating. Each region has its own myths and legends, and many of them tell of how these extraordinary Pokémon shaped the world as we know it. Take Sinnoh’s own legends, for example. The myth of Dialga, Palkia, and Giratina is a fascinating one... It’s said that they control time, space, and antimatter, respectively.
-\ff[cynthia]\c[1]???: \c[0]Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
-\ff[cynthia]\c[1]???: \c[0]Pokémon legends often hold deeper meanings, not just about the Pokémon themselves, but about how we, as humans, view the world. Whether it’s a story of creation, destruction, or balance, these myths speak to the very core of our existence.
-\ff[cynthia]\c[1]???: \c[0]Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…
-\ff[cynthia]\c[1]???: \c[0]Who knows? Perhaps one day you’ll uncover a few of these secrets yourself. Pokémon have a way of leading us down paths we never expect…
+b/Cút ra ngoài!
+Hey! Wait a minute! Don’t you want to take a look at my Pokémon?
+Này! Khoan đã! Bạn không muốn xem thử Pokémon của tôi sao?
+I’ve been searching through the grass all day to find some amazing Bug Pokémon!
+Tôi đã lùng sục khắp các bụi cỏ cả ngày để tìm những Pokémon hệ Bọ thật tuyệt vời!
+I guess there are still many things I need to learn about raising Bug Pokémon.
+Xem ra tôi vẫn còn nhiều điều phải học về cách nuôi dưỡng Pokémon hệ Bọ.
+I’ll keep searching and find even stronger Bug Pokémon someday!
+Tôi sẽ tiếp tục tìm kiếm và một ngày nào đó nhất định sẽ tìm được những Pokémon hệ Bọ mạnh hơn nữa!

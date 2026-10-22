@@ -1,0 +1,106 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map080]
+\ff[mom]Good morning, honey. You're finally awake.
+\ff[mom]Good morning, honey. You're finally awake.
+\ff[mom]Today's the big day, isn't it?
+\ff[mom]Today's the big day, isn't it?
+\ff[mom]You’ve been talking about this Pokémon research project for weeks.
+\ff[mom]You’ve been talking about this Pokémon research project for weeks.
+\ff[mom]I still remember when you were little. You could spend hours reading about Pokémon instead of playing outside.
+\ff[mom]I still remember when you were little. You could spend hours reading about Pokémon instead of playing outside.
+\ff[mom]I guess nothing has changed. ^^
+\ff[mom]I guess nothing has changed. ^^
+\ff[mom]Your room is still full of Pokémon books... although I was hoping you'd clean it someday.
+\ff[mom]Your room is still full of Pokémon books... although I was hoping you'd clean it someday.
+\ff[mom]But honestly, I'm proud of you.
+\ff[mom]But honestly, I'm proud of you.
+\ff[mom]You worked hard at the Pokémon School and became one of its top students.
+\ff[mom]You worked hard at the Pokémon School and became one of its top students.
+\ff[mom]That's why Professor Minh Anh invited you to join the Pokédex Research Project.
+\ff[mom]That's why Professor Minh Anh invited you to join the Pokédex Research Project.
+\ff[mom]Today, you're going to her lab to officially begin your work.
+\ff[mom]Today, you're going to her lab to officially begin your work.
+\ff[mom]A real Pokémon Research Assistant... sounds pretty impressive, doesn't it?
+\ff[mom]A real Pokémon Research Assistant... sounds pretty impressive, doesn't it?
+\ff[mom]But remember, studying Pokémon isn't only about reading books.
+\ff[mom]But remember, studying Pokémon isn't only about reading books.
+\ff[mom]You'll need to travel, meet Pokémon in their natural habitats, and learn from your own experiences.
+\ff[mom]You'll need to travel, meet Pokémon in their natural habitats, and learn from your own experiences.
+\ff[mom]Professor Minh Anh's lab isn't far from here.
+\ff[mom]Professor Minh Anh's lab isn't far from here.
+\ff[mom]Go meet her, listen carefully, and do your best.
+\ff[mom]Go meet her, listen carefully, and do your best.
+\ff[mom]Who knows? Maybe this will be the first step toward your dream of meeting every Pokémon.
+\ff[mom]Who knows? Maybe this will be the first step toward your dream of meeting every Pokémon.
+\ff[mom]Oh, and before you go, stop by and see your dad.
+\ff[mom]Oh, and before you go, stop by and see your dad.
+\ff[mom]He's been busy preparing things for you since early this morning.
+\ff[mom]He's been busy preparing things for you since early this morning.
+\ff[mom]He said he has a few things to give you... and a few words to say before you leave.
+\ff[mom]He said he has a few things to give you... and a few words to say before you leave.
+\ff[mom]Knowing him, he's probably been rehearsing those lines all morning.
+\ff[mom]Knowing him, he's probably been rehearsing those lines all morning.
+\ff[mom]Hi, \PN! Remember to say goodbye to Dad before you leave!
+\ff[mom]Hi, \PN! Remember to say goodbye to Dad before you leave!
+Pi...pi...
+Pi...pi...
+\ff[mom]Come on, take a short rest before you head out again.
+\ff[mom]Come on, take a short rest before you head out again.
+\ff[mom]You won't get very far if you keep pushing yourself like that.
+\ff[mom]You won't get very far if you keep pushing yourself like that.
+\ff[mom]And make sure your Pokémon get some rest too.
+\ff[mom]And make sure your Pokémon get some rest too.
+\ff[mom]All right, you should be feeling better now.
+\ff[mom]All right, you should be feeling better now.
+\ff[mom]Take care out there.
+\ff[mom]Take care out there.
+\ff[mom]Oh... Are you all right? Well, you'll have better luck this time.
+\ff[mom]Oh... Are you all right? Well, you'll have better luck this time.
+\ff[dad]Well, look at you. All ready to start your Pokémon journey.
+\ff[dad]Well, look at you. All ready to start your Pokémon journey.
+\ff[dad]Feels like just yesterday you were asking me how to catch a Pokémon.
+\ff[dad]Feels like just yesterday you were asking me how to catch a Pokémon.
+\ff[dad]Now you're the one going out there to explore the world.
+\ff[dad]Now you're the one going out there to explore the world.
+\ff[dad]Before you leave, I got some things that might help you.
+\ff[dad]Before you leave, I got some things that might help you.
+\ff[dad]Don't worry, they're not just random things I found in the closet.
+\ff[dad]Don't worry, they're not just random things I found in the closet.
+\ff[dad]First, these are \c[1]Running Shoes\c[0].
+\ff[dad]First, these are \c[1]Running Shoes\c[0].
+\ff[dad]They'll help you move faster when you're traveling.
+\ff[dad]They'll help you move faster when you're traveling.
+\ff[dad]Your old shoes were starting to look pretty worn out anyway.
+\ff[dad]Your old shoes were starting to look pretty worn out anyway.
+\ff[dad]Just don't run indoors. Your mother will not be happy about that.
+\ff[dad]Just don't run indoors. Your mother will not be happy about that.
+\ff[dad]Next, here's a \c[1]Town Map\c[0].
+\ff[dad]Next, here's a \c[1]Town Map\c[0].
+\ff[dad]The world is a big place. It's easy to get lost.
+\ff[dad]The world is a big place. It's easy to get lost.
+\ff[dad]Especially if you have my sense of direction.
+\ff[dad]Especially if you have my sense of direction.
+\ff[dad]Trust me, you don't want to spend three hours looking for a town that's right behind you.
+\ff[dad]Trust me, you don't want to spend three hours looking for a town that's right behind you.
+\ff[dad]And this is a \c[1]PokéGear\c[0].
+\ff[dad]And this is a \c[1]PokéGear\c[0].
+\ff[dad]It lets you make calls and keep track of important things.
+\ff[dad]It lets you make calls and keep track of important things.
+\ff[dad]Make sure you answer when I call.
+\ff[dad]Make sure you answer when I call.
+\ff[dad]I don't want to find out you're ignoring your own father already.
+\ff[dad]I don't want to find out you're ignoring your own father already.
+\ff[dad]Anyway, that's everything.
+\ff[dad]Anyway, that's everything.
+\ff[dad]Remember to take care of yourself.
+\ff[dad]Remember to take care of yourself.
+\ff[dad]Explore as much as you can, meet new people, and have fun.
+\ff[dad]Explore as much as you can, meet new people, and have fun.
+\ff[dad]And if things get tough... just give me a call.
+\ff[dad]And if things get tough... just give me a call.
+\ff[dad]Have fun, and then come back and tell Dad about the new and unusual Pokémon you see!
+\ff[dad]Have fun, and then come back and tell Dad about the new and unusual Pokémon you see!
+\ff[dad]Good luck, kid. Your adventure starts now!
+\ff[dad]Good luck, kid. Your adventure starts now!

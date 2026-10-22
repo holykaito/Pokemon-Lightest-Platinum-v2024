@@ -2,43 +2,101 @@
 # translate every second line of this file.
 #-------------------------------
 [Map082]
-Route 3 - Route 2
-Route 3 - Route 2
-Route 2 - Inhore Woods
-Route 2 - Inhore Woods
-Route 3
-Route 3
+North: Route A3
+Phía Bắc: Tuyến đường A3
+East: Route A2
+Phía Đông: Tuyến đường A2
+North: Bach Trung Woods
+Phía Bắc: Rừng Bách Trùng
+South: Route A3
+Phía Nam: Tuyến đường A3
 \bI caught a whole bunch of POKéMON! Go, go, go! My Bug Pokémon team!
-\bI caught a whole bunch of POKéMON! Go, go, go! My Bug Pokémon team!
+\bTôi đã bắt được cả đống Pokémon! Tiến lên, tiến lên nào! Đội Pokémon hệ Bọ của tôi!
 \bI have all these Pokémon, but I couldn't win.
-\bI have all these Pokémon, but I couldn't win.
+\bTôi có nhiều Pokémon như thế mà vẫn không thắng nổi.
 \bI caught a bunch of Pokémon. Now I'm out of Pokeballs.
-\bI caught a bunch of Pokémon. Now I'm out of Pokeballs.
-\r\ff[leaderjessica]Hey, have you seen any Combee on this route?
-\r\ff[leaderjessica]Hey, have you seen any Combee on this route?
-\r\ff[leaderjessica]I'm sorry, I forgot to introduce myself! I'm Jessica, the leader of the Inhore City gym, the first gym in the Zhery league!
-\r\ff[leaderjessica]I'm sorry, I forgot to introduce myself! I'm Jessica, the leader of the Inhore City gym, the first gym in the Zhery league!
-\pg\ff[boy]I'm \pn. I was just on my way to challenge you!
-\pg\ff[boy]I'm \pn. I was just on my way to challenge you!
-\pg\ff[girl]I'm \pn. I was just on my way to challenge you!
-\pg\ff[girl]I'm \pn. I was just on my way to challenge you!
-\r\ff[leaderjessica]Well, the gym is closed right now due to a very serious crisis! The Combee that naturally inhabit this route and Inhore Woods are acting strangely and attacking people for no reason! They've always been gentle and well-behaved Pokémon, but something's happened to them! If you spot any Combee, let me know in Inhore City.
-\r\ff[leaderjessica]Well, the gym is closed right now due to a very serious crisis! The Combee that naturally inhabit this route and Inhore Woods are acting strangely and attacking people for no reason! They've always been gentle and well-behaved Pokémon, but something's happened to them! If you spot any Combee, let me know in Inhore City.
-\r\ff[leaderjessica]Go, Vespiquen, use Cut!
-\r\ff[leaderjessica]Go, Vespiquen, use Cut!
-\bOh, sure, I'll accept your challenge. I have a lot of money.
-\bOh, sure, I'll accept your challenge. I have a lot of money.
-\bWhy couldn't I win?
-\bWhy couldn't I win?
-\bThere are some things money can't buy. That's Pokémon.
-\bThere are some things money can't buy. That's Pokémon.
+\bTôi đã bắt được rất nhiều Pokémon. Giờ thì hết sạch Poké Ball rồi.
+ROUTE A3
+TUYẾN ĐƯỜNG A3
+A short road hidden deep within the forest. The thick trees block out much of the sunlight, leaving the path dim and quiet. Wild Pokémon are often seen wandering among the trees, so keep your eyes open as you travel.
+Một con đường ngắn ẩn sâu trong rừng. Những tán cây rậm rạp che khuất phần lớn ánh nắng, khiến lối đi trở nên mờ tối và tĩnh lặng. Pokémon hoang dã thường xuất hiện giữa những hàng cây, vì vậy hãy chú ý quan sát khi đi qua đây.
+Ah, there you are! I was just looking for something interesting to paint.
+À, cháu đây rồi! Ta đang tìm một điều gì đó thú vị để đưa vào tranh.
+I’ve spent many years painting people, Pokémon, and places across An Lam. Every journey gives me another scene worth remembering.
+Ta đã dành nhiều năm vẽ con người, Pokémon và những cảnh đẹp khắp An Lâm. Mỗi chuyến đi lại mang đến cho ta một khung cảnh đáng nhớ.
+A battle might make a fine subject. Would you mind giving an old painter something worth putting on his canvas?
+Một trận đấu có lẽ sẽ là đề tài tuyệt vời. Cháu có phiền giúp ông họa sĩ già này tìm chút cảm hứng để đưa lên tranh không?
+I think I’ve found my inspiration for today. Your Pokémon had a wonderful spirit.
+Có lẽ ta đã tìm được cảm hứng cho hôm nay rồi. Pokémon của cháu có một tinh thần thật đáng khâm phục.
+Perhaps someday, when you see a painting of this road, you’ll remember this little battle.
+Biết đâu một ngày nào đó, khi nhìn thấy bức tranh về con đường này, cháu sẽ nhớ lại trận đấu nhỏ hôm nay.
 \rIn Inhore City, there is a breeding center for Combee that produces lots of honey.
-\rIn Inhore City, there is a breeding center for Combee that produces lots of honey.
+\rỞ Thành phố Inhore có một trung tâm nhân giống Combee, nơi sản xuất rất nhiều mật ong.
 \bI've been a long time since I've had a battle, but now's the time!
-\bI've been a long time since I've had a battle, but now's the time!
+\bLâu lắm rồi tôi chưa đấu Pokémon, nhưng giờ chính là lúc!
 \bIt takes a real winner to know when he's beaten.
-\bIt takes a real winner to know when he's beaten.
+\bChỉ người thực sự bản lĩnh mới biết chấp nhận khi mình bị đánh bại.
 \bI really should have beaten a trainer like you...
-\bI really should have beaten a trainer like you...
-The university in Inhore is one of the biggest in the world. It's my dream to become a teacher there.
-The university in Inhore is one of the biggest in the world. It's my dream to become a teacher there.
+\bĐáng lẽ tôi phải đánh bại được một Huấn luyện viên như bạn chứ...
+I’ve been watching the Bug Pokémon around here for a while. They’re much more interesting than people give them credit for!
+Tôi đã quan sát những Pokémon hệ Bọ quanh đây một thời gian rồi. Chúng thú vị hơn nhiều so với những gì mọi người vẫn nghĩ đấy!
+Some hide under leaves, some work together, and some will chase you halfway across the forest if you get too close.
+Có loài ẩn dưới lá cây, có loài phối hợp với nhau, và cũng có loài sẽ đuổi bạn qua nửa khu rừng nếu bạn đến quá gần.
+I’ve learned quite a few things just by watching them. Now I want to see how they behave in a real battle!
+Chỉ nhờ quan sát mà tôi đã học được khá nhiều điều. Giờ tôi muốn xem chúng thể hiện thế nào trong một trận đấu thực sự!
+Come on! Let’s put our Bug Pokémon to the test!
+Nào! Hãy cùng thử sức những Pokémon hệ Bọ của chúng ta!
+Wow... I thought I had figured out their battle style, but your Pokémon completely surprised me!
+Chà... Tôi cứ tưởng mình đã hiểu rõ cách chiến đấu của chúng, nhưng Pokémon của bạn khiến tôi hoàn toàn bất ngờ!
+I guess watching Pokémon isn’t enough. There’s always something new to learn when you actually battle with them.
+Có lẽ chỉ quan sát Pokémon thôi là chưa đủ. Khi thực sự chiến đấu cùng chúng, ta luôn có thêm những điều mới để học hỏi.
+What a lovely day for a picnic! The weather is perfect, the scenery is beautiful, and I even found a great spot to sit.
+Một ngày thật tuyệt để đi dã ngoại! Thời tiết đẹp, phong cảnh hữu tình, mà tôi còn tìm được một chỗ ngồi lý tưởng nữa.
+But you know what would make it even better? A little battle before lunch!
+Nhưng bạn biết điều gì sẽ khiến hôm nay tuyệt vời hơn không? Một trận đấu nhỏ trước bữa trưa!
+That was fun! Now I’m definitely ready for lunch.
+Vui thật đấy! Giờ thì tôi đã sẵn sàng ăn trưa rồi.
+Maybe I should remember to pack some extra snacks next time. Battles really work up an appetite!
+Có lẽ lần sau tôi nên mang thêm chút đồ ăn vặt. Đấu Pokémon đúng là khiến người ta nhanh đói thật!
+North: Van Uyen City
+Phía Bắc: Thành phố Văn Uyển
+South: Bach Trung Forest
+Phía Nam: Rừng Bách Trùng
+\ff[leader_trongdiep]Oh, hello there! Be careful around here. Heracross has been running around looking for honey, and I’ve been chasing after it all morning.
+\ff[leader_trongdiep]Ồ, chào cháu! Đi lại cẩn thận nhé. Heracross của chú cứ chạy khắp nơi tìm mật ong, làm chú phải đuổi theo nó suốt cả buổi sáng.
+\ff[leader_trongdiep]That one over there is my Heracross. It has quite a sweet tooth. Whenever it catches the smell of honey, nothing else seems to matter.
+\ff[leader_trongdiep]Con Heracross đằng kia là của chú đấy. Nó mê đồ ngọt lắm. Hễ ngửi thấy mùi mật ong là chẳng còn để tâm đến điều gì khác.
+\ff[leader_trongdiep]I’m Trong Diep, a researcher specializing in entomology at Van Uyen Academy.
+\ff[leader_trongdiep]Chú là Trọng Diệp, nhà nghiên cứu chuyên ngành côn trùng học tại Học viện Vạn Uyên.
+\ff[leader_trongdiep]I’m currently doing fieldwork around Bach Trung Woods, observing the behavior and habitats of Bug-type Pokémon in this area.
+\ff[leader_trongdiep]Hiện chú đang tiến hành nghiên cứu thực địa tại Rừng Bách Trùng, quan sát tập tính và môi trường sống của các Pokémon hệ Bọ trong khu vực này.
+\ff[leader_trongdiep]They’re fascinating creatures. Even Pokémon of the same species can behave very differently depending on their surroundings.
+\ff[leader_trongdiep]Chúng là những sinh vật vô cùng thú vị. Ngay cả Pokémon cùng loài cũng có thể biểu hiện những tập tính rất khác nhau tùy vào môi trường sống.
+\ff[leader_trongdiep]Oh? You said you’re a young researcher from Khai Nguyen Town?
+\ff[leader_trongdiep]Ồ? Cháu nói mình là một nhà nghiên cứu trẻ đến từ Thị trấn Khải Nguyên sao?
+\ff[leader_trongdiep]Now that’s interesting! Your research goals sound quite similar to mine.
+\ff[leader_trongdiep]Thú vị thật đấy! Mục tiêu nghiên cứu của cháu nghe có vẻ khá giống với chú.
+\ff[leader_trongdiep]Khai Nguyen has produced quite a few promising young researchers. I’d love to hear what you’ve discovered during your journey.
+\ff[leader_trongdiep]Khải Nguyên đã đào tạo ra không ít nhà nghiên cứu trẻ đầy triển vọng. Chú rất muốn nghe về những điều cháu đã khám phá được trong hành trình của mình.
+\ff[leader_trongdiep]I’m also a member of the Pokémon Association, so I’ve been following some of the recent reports.
+\ff[leader_trongdiep]Chú cũng là thành viên của Hiệp hội Pokémon, nên gần đây chú vẫn thường xuyên theo dõi các báo cáo mới.
+\ff[leader_trongdiep]Wait... You’re the young researcher who was given a special role in the response to Team Chaos and the strange effects of the Black Crystal, aren’t you?
+\ff[leader_trongdiep]Khoan đã... Cháu chính là nhà nghiên cứu trẻ được giao một vai trò đặc biệt trong việc đối phó với Bang Hỗn Mang và những tác động kỳ lạ của Pha Lê Đen, đúng không?
+\ff[leader_trongdiep]I’ve heard that you were able to resist its effects when others couldn’t. That’s quite remarkable.
+\ff[leader_trongdiep]Chú nghe nói cháu có thể chống lại ảnh hưởng của nó trong khi những người khác thì không. Quả là một điều đáng kinh ngạc.
+\ff[leader_trongdiep]Still, don’t let all that attention distract you from the reason you started researching Pokémon in the first place.
+\ff[leader_trongdiep]Dù vậy, đừng để sự chú ý của mọi người khiến cháu quên mất lý do ban đầu mình lựa chọn nghiên cứu Pokémon nhé.
+\ff[leader_trongdiep]The more we understand Pokémon, the more we can understand the world we share with them.
+\ff[leader_trongdiep]Chúng ta càng hiểu rõ Pokémon bao nhiêu, càng có thể hiểu sâu sắc hơn về thế giới mà con người và Pokémon đang cùng chung sống bấy nhiêu.
+\ff[leader_trongdiep]Anyway, I’ve collected enough data from this area for now. It’s probably time for me to head back to Van Uyen City.
+\ff[leader_trongdiep]Dù sao thì chú cũng đã thu thập đủ dữ liệu ở khu vực này rồi. Có lẽ đã đến lúc chú trở về Thành phố Văn Uyển.
+\ff[leader_trongdiep]If your journey takes you there, we can talk more about our research.
+\ff[leader_trongdiep]Nếu có dịp đến đó, cháu cứ ghé gặp chú. Chúng ta có thể trao đổi thêm về công việc nghiên cứu.
+\ff[leader_trongdiep]And if you happen to find any interesting Bug Pokémon along the way, be sure to tell me.
+\ff[leader_trongdiep]Và nếu tình cờ phát hiện loài Pokémon hệ Bọ nào thú vị trên đường đi, nhớ kể cho chú nghe nhé.
+\ff[leader_trongdiep]As for me, I’d better find my Heracross before it discovers an entire beehive.
+\ff[leader_trongdiep]Còn giờ, chú phải tìm Heracross trước khi nó phát hiện ra cả một tổ ong mới được.
+\ff[leader_trongdiep]Comeback Heracross!
+\ff[leader_trongdiep]Heracross, quay lại đây nào!
+\ff[leader_trongdiep]Good luck with your research, young colleague. I hope we’ll meet again in Van Uyen City.
+\ff[leader_trongdiep]Chúc cháu nghiên cứu thuận lợi nhé, đồng nghiệp trẻ! Hy vọng chú cháu ta sẽ gặp lại nhau ở Thành phố Văn Uyển.

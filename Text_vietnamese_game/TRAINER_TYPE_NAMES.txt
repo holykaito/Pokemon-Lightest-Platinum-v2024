@@ -2,157 +2,223 @@
 # translate every second line of this file.
 #-------------------------------
 [TRAINER_TYPE_NAMES]
-Backers
-Backers
+Abbot
+Trụ trì
 Backpacker
-Backpacker
+Phượt thủ
 Baker
-Baker
+Thợ làm bánh
 Baron
-Baron
+Nam tước
 Baroness
-Baroness
+Nữ nam tước
 Battle Girl
-Battle Girl
+Cô nàng võ thuật
+Bellhop
+Nhân viên khách sạn
+Blaze Biker
+Tay đua lửa
 Boarder
-Boarder
+Dân trượt tuyết
+Book Girl
+Cô nàng mọt sách
+Boxer
+Võ sĩ quyền Anh
 Butler
-Butler
-Cafe Master
-Cafe Master
+Quản gia
 Cameraman
-Cameraman
-Team Chaos
-Team Chaos
+Quay phim
+Cafe Master
+Chủ quán cà phê
+Cheerleader
+Cổ động viên
+Cheerleaders
+Đội cổ động viên
 Chef
-Chef
+Đầu bếp
 Clerk
-Clerk
+Nhân viên bán hàng
+Climber
+Người leo núi
 Clown
-Clown
+Chú hề
+Clown Girl
+Cô hề
 Collector
-Collector
+Nhà sưu tầm
 Cow Girl
-Cow Girl
+Nữ cao bồi
 Cyclist
-Cyclist
+Tay đua xe đạp
 Dancer
-Dancer
+Vũ công
 Deliquent
-Deliquent
+Thanh niên ngỗ nghịch
 Debot Agent
-Debot Agent
+Đặc vụ Debot
+Diver
+Thợ lặn
 Doctor
-Doctor
+Bác sĩ
 Dragon Tamer
-Dragon Tamer
+Người thuần rồng
 Expert
-Expert
+Chuyên gia
 Fairy Tale Girl
-Fairy Tale Girl
+Cô bé cổ tích
+Farmer
+Nông dân
 Fire Breather
-Fire Breather
+Nghệ sĩ phun lửa
+Firefighter
+Lính cứu hỏa
+Fisherwoman
+Nữ ngư dân
+Gardener
+Người làm vườn
+Gate Guard
+Lính gác cổng
+Golfer
+Tay chơi golf
 Guitarist
-Guitarist
+Nghệ sĩ guitar
 Harlequin
-Harlequin
+Hề Harlequin
 Hex Maniac
-Hex Maniac
+Cô gái huyền thuật
 Hoopster
-Hoopster
+Cầu thủ bóng rổ
 Idol
-Idol
+Thần tượng
 Infielder
-Infielder
+Cầu thủ bóng chày
+Interviewers
+Nhóm phỏng vấn
 Interviewer
-Interviewer
+Người phỏng vấn
 Janitor
-Janitor
+Nhân viên vệ sinh
 Kimono Girl
-Kimono Girl
+Thiếu nữ Kimono
 Kindler
-Kindler
+Người nhóm lửa
+Linebacker
+Cầu thủ bóng bầu dục
+Little Girl
+Bé gái
+Lumberjack
+Tiều phu
 Madame
-Madame
+Quý bà
 Maid
-Maid
+Hầu gái
 Model
-Model
-Motor Cyclist
-Motor Cyclist
+Người mẫu
+Miner
+Thợ mỏ
 Musician
-Musician
+Nhạc công
+Motor Cyclist
+Tay đua mô tô
 Ninja Boy
-Ninja Boy
-Neckbear
-Neckbear
+Thiếu niên Ninja
+Ninja Girl
+Thiếu nữ Ninja
+Nonla
+Người đội nón lá
+Nonla Expert
+Cao thủ nón lá
 Nurse
-Nurse
+Y tá
 Nursery Aide
-Nursery Aide
+Bảo mẫu
+Old Man
+Ông lão
+Old Woman
+Bà lão
 Owner
-Owner
+Chủ sở hữu
 Parasol Lady
-Parasol Lady
-PI
-PI
+Quý cô cầm ô
+Photographer
+Nhiếp ảnh gia
 Pilot
-Pilot
+Phi công
+Pirate
+Hải tặc
+Poet
+Nhà thơ
 Poke Kid
-Poke Kid
+Nhóc Pokémon
 Pokefan
-Pokefan
+Người hâm mộ Pokémon
 Policeman
-Policeman
+Cảnh sát
 Postman
-Postman
+Người đưa thư
 Preschool
-Preschool
+Trẻ mẫu giáo
 Punk Girl
-Punk Girl
+Nữ Punk
 Punk Guy
-Punk Guy
+Nam Punk
 Rancher
-Rancher
+Chủ trang trại
 Reporter
-Reporter
+Phóng viên
 Rich Boy
-Rich Boy
-Rough Neck
-Rough Neck
+Thiếu gia
+Rising Star
+Ngôi sao triển vọng
+Rough Rider
+Tay lái nổi loạn
+Rough Rider Leader
+Thủ lĩnh tay lái nổi loạn
+Sage
+Hiền giả
 School Kid
-School Kid
+Học sinh
+Secret Expert
+Chuyên gia bí thuật
 Skier
-Skier
+Người trượt tuyết
+Sky Trainer
+Huấn luyện viên Không chiến
 Smasher
-Smasher
-Socialite
-Socialite
+Võ sĩ đập phá
 Street Thug
-Street Thug
+Côn đồ đường phố
 Striker
-Striker
-Teenager
-Teenager
-Tester
-Tester
+Tiền đạo
+Surfer
+Người lướt sóng
+Teacher
+Giáo viên
 Tourist
-Tourist
+Du khách
+Trial Guide
+Hướng dẫn viên Thử thách
 Veteran
-Veteran
+Huấn luyện viên kỳ cựu
+Virtuous
+Bậc đức hạnh
 Waiter
-Waiter
+Nam phục vụ
 Waitress
-Waitress
+Nữ phục vụ
 Worker
-Worker
-Pokemon
-Pokemon
+Công nhân
+Trainer
+Huấn luyện viên
+Team Chaos
+Thành viên Team Chaos
+Team Chaos Masked
+Thành viên đeo mặt nạ Team Chaos
 Elite
-Elite
+Tinh anh
 Team Steam Admin
-Team Steam Admin
+Chỉ huy Team Steam
 Team Steam Grunt
-Team Steam Grunt
+Lính Team Steam
 Mage
-Mage
+Pháp sư

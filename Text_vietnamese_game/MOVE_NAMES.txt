@@ -424,6 +424,110 @@ Cursed Terrain
 Cursed Terrain
 Relic Dance
 Relic Dance
+Sovereign Slide
+Sovereign Slide
+Fragmentation
+Fragmentation
+Fertile Fangs
+Fertile Fangs
+Seismic Slam
+Seismic Slam
+Fight Forever
+Fight Forever
+Whirlwind Kick
+Whirlwind Kick
+Lovely Bite
+Lovely Bite
+Frantic Fang
+Frantic Fang
+Cotton Punch
+Cotton Punch
+Fairy Spheres
+Fairy Spheres
+Sylph Spell
+Sylph Spell
+Smite
+Smite
+Star Crash
+Star Crash
+Storm Drive
+Storm Drive
+Dragon Current
+Dragon Current
+Aqua Fang
+Aqua Fang
+Mystic Dance
+Mystic Dance
+Fish Harpoon
+Fish Harpoon
+Hone Horns
+Hone Horns
+Rider Kick
+Rider Kick
+Sky Kick
+Sky Kick
+Punishing Kick
+Punishing Kick
+Moony Night
+Moony Night
+Shadow Fangs
+Shadow Fangs
+Soil Drain
+Soil Drain
+Undertow
+Undertow
+Reckless Swing
+Reckless Swing
+Tough It Out
+Tough It Out
+Gem Missile
+Gem Missile
+Sandy Terrain
+Sandy Terrain
+Swamp Terrain
+Swamp Terrain
+Toxic Terrain
+Toxic Terrain
+Draconic Terrain
+Draconic Terrain
+Colosseum Terrain
+Colosseum Terrain
+Pollination Terrain
+Pollination Terrain
+Ravine Terrain
+Ravine Terrain
+Rip and Tear
+Rip and Tear
+Nightfelling
+Nightfelling
+Deep Breathing
+Deep Breathing
+Photon Edge
+Photon Edge
+Back Stab
+Back Stab
+Lurk
+Lurk
+Pixie Slash
+Pixie Slash
+Psyshield
+Psyshield
+Witchcraft
+Witchcraft
+Swift Slash
+Swift Slash
+Moonfall
+Moonfall
+Fae Core
+Fae Core
+Esper Waltz
+Esper Waltz
+Nectar Siphon
+Nectar Siphon
+Clay Dart
+Clay Dart
+Mountain Chunk
+Mountain Chunk
 Tera Blast
 Tera Blast
 Breakneck Blitz

@@ -1,0 +1,24 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map087]
+West: ThanhVu Town
+West: ThanhVu Town
+East: UTich Swamp
+East: UTich Swamp
+\rPokémon always like people who treat them well, causing them to be happy, and to build a greater connection with their Pokémon trainer.
+\rPokémon always like people who treat them well, causing them to be happy, and to build a greater connection with their Pokémon trainer.
+\bLet's say you have six Pokémon. If you catch another one. It is automatically sent to a Storage Box over a PC connection.
+\bLet's say you have six Pokémon. If you catch another one. It is automatically sent to a Storage Box over a PC connection.
+THANH VU TOWN
+THANH VU TOWN
+\bFishing is an art that should always be taken very seriously.
+\bFishing is an art that should always be taken very seriously.
+\bI've always liked Electric Pokémon because they can be very fast and strong.
+\bI've always liked Electric Pokémon because they can be very fast and strong.
+Toed..toed...
+Toed..toed...
+\rAny Pokémon you get in a trade, you can't change its nickname. The original Trainer's love for that Pokémon is in the nickname.
+\rAny Pokémon you get in a trade, you can't change its nickname. The original Trainer's love for that Pokémon is in the nickname.
+\bMany VILEPLUME live in the center of botanical research in Esmarald City. It's a very beautiful place, with many plants.
+\bMany VILEPLUME live in the center of botanical research in Esmarald City. It's a very beautiful place, with many plants.

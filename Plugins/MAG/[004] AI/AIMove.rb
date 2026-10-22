@@ -1,7 +1,5 @@
 class Battle::AI::AIMove
-alias mag_rough_damage rough_damage
   def rough_damage
-   mag_rough_damage
     base_dmg = base_power
     return base_dmg if @move.is_a?(Battle::Move::FixedDamageMove)
     max_stage = Battle::Battler::STAT_STAGE_MAXIMUM
@@ -236,17 +234,10 @@ alias mag_rough_damage rough_damage
       end
     end
     # Random variance - n/a
-    # STAB
-    if calc_type && user.has_type?(calc_type)
-      if user.has_active_ability?(:ADAPTABILITY)
-        multipliers[:final_damage_multiplier] *= 2
-      else
-        multipliers[:final_damage_multiplier] *= 1.5
-      end
-    end
-    # Type effectiveness
-    typemod = target.effectiveness_of_type_against_battler(calc_type, user, @move)
-    multipliers[:final_damage_multiplier] *= typemod
+    # Use DBK's shared STAB/type calculation.
+    calc_type_mults(
+      user, target, base_dmg, calc_type, is_critical, multipliers
+    )
     # Burn
     if @ai.trainer.high_skill? && user.status == :BURN && physicalMove?(calc_type) &&
        @move.damageReducedByBurn? && !user.has_active_ability?(:GUTS)

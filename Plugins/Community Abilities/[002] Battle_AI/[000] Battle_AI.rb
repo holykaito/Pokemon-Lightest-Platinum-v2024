@@ -54,7 +54,11 @@ class Battle::AI
 # PHANTOMTHIEF stat change perfering & #RAGEBAITING
 #-------------------------------------------------------------------------------
 	
-	alias CAL_get_score_for_target_stat_drop get_score_for_target_stat_drop
+	cal_stat_drop_base = instance_method(:get_score_for_target_stat_drop)
+	while cal_stat_drop_base.owner != self
+		cal_stat_drop_base = cal_stat_drop_base.super_method
+	end
+	define_method(:CAL_get_score_for_target_stat_drop, cal_stat_drop_base)
 	def get_score_for_target_stat_drop(score, target, stat_changes, whole_effect = true, fixed_change = false, ignore_contrary = false)
 		ret = CAL_get_score_for_target_stat_drop(score, target, stat_changes, whole_effect, fixed_change, ignore_contrary)
 		

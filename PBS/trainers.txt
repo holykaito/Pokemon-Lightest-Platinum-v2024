@@ -1,8 +1,11 @@
 ﻿# Hãy xem tài liệu trên wiki để biết cách chỉnh sửa file này.
 #-------------------------------
-[TEAMSTEAMGRUNT_M,Talor]
+[TEAMCHAOSGRUNT_M,Talor]
 LoseText = I will take revenge next time!
-Pokemon = ZIGZAGOON,2
+Items = MEGARING
+Pokemon = DODRIO,20
+    Form = 1
+Pokemon = MIENSHAO,20
     Form = 1
 #-------------------------------
 [STEAMADMIN_Shirley,Shirley]

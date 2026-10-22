@@ -2,5 +2,11 @@
 # translate every second line of this file.
 #-------------------------------
 [Map102]
-\bTo learn a POKéMON's secrets, just be a good friend!
-\bTo learn a POKéMON's secrets, just be a good friend!
+I used to spend all my free time playing games and watching TV.
+I used to spend all my free time playing games and watching TV.
+But recently, I started going outside more and exploring places around my hometown.
+But recently, I started going outside more and exploring places around my hometown.
+It’s funny how you can live somewhere for years and still discover something new.
+It’s funny how you can live somewhere for years and still discover something new.
+I found a small path near here with beautiful scenery that I never noticed before.
+I found a small path near here with beautiful scenery that I never noticed before.

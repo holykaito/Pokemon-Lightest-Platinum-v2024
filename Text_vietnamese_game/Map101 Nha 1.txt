@@ -2,7 +2,27 @@
 # translate every second line of this file.
 #-------------------------------
 [Map101]
-\bYou're a trainer. Think you can find a use for this?
-\bYou're a trainer. Think you can find a use for this?
-\bThe AMULET COIN quickly increases the money you make as soon as you equip it to a POKéMON. It'll help you on your journey.
-\bThe AMULET COIN quickly increases the money you make as soon as you equip it to a POKéMON. It'll help you on your journey.
+You look like someone who’s been traveling for quite a while.
+You look like someone who’s been traveling for quite a while.
+When I was younger, I used to travel with my Pokémon too.
+When I was younger, I used to travel with my Pokémon too.
+Back then, every road felt endless, and every new town felt like the start of another adventure.
+Back then, every road felt endless, and every new town felt like the start of another adventure.
+Before I left home, someone gave me a small Amulet and told me it would bring me luck.
+Before I left home, someone gave me a small Amulet and told me it would bring me luck.
+I never knew whether the Amulet actually did anything, but I kept it with me through my entire journey.
+I never knew whether the Amulet actually did anything, but I kept it with me through my entire journey.
+Somehow, just having it there made difficult days feel a little easier.
+Somehow, just having it there made difficult days feel a little easier.
+My traveling days are behind me now, so I suppose I don’t need it as much as I used to.
+My traveling days are behind me now, so I suppose I don’t need it as much as I used to.
+But you... you still have a long road ahead of you, don’t you?
+But you... you still have a long road ahead of you, don’t you?
+Here. Take this Amulet with you.
+Here. Take this Amulet with you.
+Maybe it’ll bring you the same kind of luck it once brought me.
+Maybe it’ll bring you the same kind of luck it once brought me.
+Of course, luck alone won’t get you very far. The rest is up to you and your Pokémon.
+Of course, luck alone won’t get you very far. The rest is up to you and your Pokémon.
+Take care of it... and take care of yourself out there.
+Take care of it... and take care of yourself out there.

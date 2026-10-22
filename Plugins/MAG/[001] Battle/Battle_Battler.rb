@@ -149,13 +149,22 @@ alias mag_pbSpeed pbSpeed
     # Calculation
     return [(speed * speedMult).round, 1].max
   end
-  
-alias mag_trappedInBattle? trappedInBattle?  
+end
+
+#===============================================================================
+# MAG trapping compatibility
+# Preserves normal trapping and Fae Core without recursive aliases.
+#===============================================================================
+module KaitoMAGTrappingCompatibility
   def trappedInBattle?
-   mag_trappedInBattle?
+    return true if super
     return true if @effects[PBEffects::LimitBreak]
-	return true if @effects[PBEffects::VinyHold] > 0
-	return true if @effects[PBEffects::Vengence] > 0
+    return true if @effects[PBEffects::VinyHold].to_i > 0
+    return true if @effects[PBEffects::Vengence].to_i > 0
     return false
   end
+end
+
+unless Battle::Battler.ancestors.include?(KaitoMAGTrappingCompatibility)
+  Battle::Battler.prepend(KaitoMAGTrappingCompatibility)
 end

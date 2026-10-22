@@ -4,58 +4,26 @@
 [MAP_NAMES]
 Intro
 Intro
-Đường D7
-Đường D7
+Đường A7
+Đường A7
 Thành phố Bắc Hải
 Thành phố Bắc Hải
 Học viện Văn Uyển
 Học viện Văn Uyển
 Vườn Sau Nhà
 Vườn Sau Nhà
-Route 1
-Route 1
-Cedolan City
-Cedolan City
-Lappet Town
-Lappet Town
-Route 2
-Route 2
+Hang Mạch Ngầm
+Hang Mạch Ngầm
+Nha
+Nha
 Thị trấn Khải Nguyên
 Thị trấn Khải Nguyên
-Lerucean Town
-Lerucean Town
-Natural Park
-Natural Park
-Route 3
-Route 3
-Ingido Plateau
-Ingido Plateau
-Route 4
-Route 4
-Route 5
-Route 5
 Đường A1
 Đường A1
 Viện Khải Nguyên
 Viện Khải Nguyên
-Route 6
-Route 6
-Route 7
-Route 7
 Thành phố Vạn Hội
 Thành phố Vạn Hội
-Battle Frontier
-Battle Frontier
-Safari Zone
-Safari Zone
-Route 8
-Route 8
-Berth Island
-Berth Island
-Faraday Island
-Faraday Island
-Tiall Region
-Tiall Region
 PokeCenter Vạn hội
 PokeCenter Vạn hội
 Đường A10
@@ -72,8 +40,8 @@ Thành phố Văn Uyển
 Đường A4
 Đường A5
 Đường A5
-Thị trấn Thiên Du
-Thị trấn Thiên Du
+Thị trấn Thanh Vũ
+Thị trấn Thanh Vũ
 Đầm lầy U Trạch
 Đầm lầy U Trạch
 Thành Phố Lạc Hoa
@@ -90,5 +58,5 @@ PokéCenter Văn Uyển
 Đạo quán Văn Uyển
 PokéCenter Thiên Du
 PokéCenter Thiên Du
-Thị trấn Thanh Vũ
-Thị trấn Thanh Vũ
+Thị trấn Thiên Du
+Thị trấn Thiên Du

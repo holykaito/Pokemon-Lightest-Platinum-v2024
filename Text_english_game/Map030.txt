@@ -1,0 +1,92 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map030]
+Barry: \bI work a lot, but that's not good enough to win.
+Barry: \bI work a lot, but that's not good enough to win.
+Samuel: \bI put lots of effort in, but that's not good enough to win.
+Samuel: \bI put lots of effort in, but that's not good enough to win.
+Abby: \rI try my best, but that's not good enough to win.
+Abby: \rI try my best, but that's not good enough to win.
+\bWe hope you'll take part in a Bug-Catching Contest in the future!
+\bWe hope you'll take part in a Bug-Catching Contest in the future!
+\bToday's \v[1].
+\bToday's \v[1].
+\bThat means the Bug-Catching Contest is on today.
+\bThat means the Bug-Catching Contest is on today.
+\bThe rules are simple.
+\bThe rules are simple.
+\bUsing one of your Pokémon, catch a Bug-type Pokémon to be judged.
+\bUsing one of your Pokémon, catch a Bug-type Pokémon to be judged.
+\bWould you like to give it a try?
+\bWould you like to give it a try?
+\bSorry, your PC boxes are full.
+\bSorry, your PC boxes are full.
+\bYou are only allowed to take 1 Pokémon into the Contest.
+\bYou are only allowed to take 1 Pokémon into the Contest.
+\bPlease choose which Pokémon you want to enter with.
+\bPlease choose which Pokémon you want to enter with.
+\bOK. We hope you'll take part in the future.
+\bOK. We hope you'll take part in the future.
+\bYou will be entering with \v[2], then.
+\bYou will be entering with \v[2], then.
+\bWe'll hold your other Pokémon while you compete.
+\bWe'll hold your other Pokémon while you compete.
+\PN's Pokémon were left with the Contest Helper.\se[Pkmn exp full]\wtnp[20]
+\PN's Pokémon were left with the Contest Helper.\se[Pkmn exp full]\wtnp[20]
+\bHere are the Sport Balls for the Contest.
+\bHere are the Sport Balls for the Contest.
+\PN received 20 Sport Balls.\me[Item get]\wtnp[40]
+\PN received 20 Sport Balls.\me[Item get]\wtnp[40]
+\bThe person who gets the strongest bug Pokémon is the winner.
+\bThe person who gets the strongest bug Pokémon is the winner.
+\bYou have 20 minutes.
+\bYou have 20 minutes.
+\bIf you run out of Sport Balls, you're done.
+\bIf you run out of Sport Balls, you're done.
+\bYou can keep the last Pokémon you catch as your own.
+\bYou can keep the last Pokémon you catch as your own.
+\bGo out and catch the strongest Bug-type Pokémon you can find!
+\bGo out and catch the strongest Bug-type Pokémon you can find!
+\bWe hold contests regularly in the Park. You should give it a shot.
+\bWe hold contests regularly in the Park. You should give it a shot.
+\bYou still have some time left. Do you want to finish now?
+\bYou still have some time left. Do you want to finish now?
+\bPlease wait here for the announcement of the winners.
+\bPlease wait here for the announcement of the winners.
+\bOK. Please go back outside and finish up.
+\bOK. Please go back outside and finish up.
+\bWe will now judge the Pokémon you've caught.
+\bWe will now judge the Pokémon you've caught.
+......\wt[10]\n......
+......\wt[10]\n......
+\bWe have chosen the winners!\nAre you ready for this?
+\bWe have chosen the winners!\nAre you ready for this?
+\bPlacing third is \v[1], who caught a writhing \v[2]!
+\bPlacing third is \v[1], who caught a writhing \v[2]!
+\bThe score was \v[3] points!
+\bThe score was \v[3] points!
+\bPlacing second is \v[1], who caught a wriggling \v[2]!
+\bPlacing second is \v[1], who caught a wriggling \v[2]!
+\bThis Bug-Catching Contest winner is...
+\bThis Bug-Catching Contest winner is...
+\b\v[1], who caught a whopping \v[2]!
+\b\v[1], who caught a whopping \v[2]!
+\me[Bug contest 1st]\b\PN, the First Place finisher, wins the \v[3]!
+\me[Bug contest 1st]\b\PN, the First Place finisher, wins the \v[3]!
+\me[Bug contest 1st]\b\PN, the First Place finisher, wins the Sun Stone!
+\me[Bug contest 1st]\b\PN, the First Place finisher, wins the Sun Stone!
+\me[Bug contest 2nd]\b\PN, the Second Place finisher, wins the Everstone!
+\me[Bug contest 2nd]\b\PN, the Second Place finisher, wins the Everstone!
+\me[Bug contest 3rd]\b\PN, the Third Place finisher, wins the Sitrus Berry!
+\me[Bug contest 3rd]\b\PN, the Third Place finisher, wins the Sitrus Berry!
+\bEveryone else gets a Shed Shell as a consolation prize!
+\bEveryone else gets a Shed Shell as a consolation prize!
+\bWe'll return the Pokémon we kept for you. Here you go!\se[Pkmn exp full]
+\bWe'll return the Pokémon we kept for you. Here you go!\se[Pkmn exp full]
+Josh: \bI study a lot, but that's not good enough to win.
+Josh: \bI study a lot, but that's not good enough to win.
+Yes
+Yes
+No
+No

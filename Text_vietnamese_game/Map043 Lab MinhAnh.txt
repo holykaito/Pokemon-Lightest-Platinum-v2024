@@ -1,0 +1,182 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map043]
+\ff[prominhanh]Ah, you must be the new research assistant I was expecting.
+\ff[prominhanh]Ah, you must be the new research assistant I was expecting.
+\ff[prominhanh]Welcome to my laboratory. I'm Professor Minh Anh.
+\ff[prominhanh]Welcome to my laboratory. I'm Professor Minh Anh.
+\ff[prominhanh]I've heard quite a lot about you from the Pokémon School.
+\ff[prominhanh]I've heard quite a lot about you from the Pokémon School.
+\ff[prominhanh]Your grades, your research reports, and especially your curiosity about Pokémon.
+\ff[prominhanh]Your grades, your research reports, and especially your curiosity about Pokémon.
+\ff[prominhanh]That's exactly the kind of person we need for this project.
+\ff[prominhanh]That's exactly the kind of person we need for this project.
+\ff[prominhanh]As you know, our goal is to complete the Pokémon Encyclopedia.
+\ff[prominhanh]As you know, our goal is to complete the Pokémon Encyclopedia.
+\ff[prominhanh]There are still many Pokémon whose habits, habitats, and abilities remain unknown.
+\ff[prominhanh]There are still many Pokémon whose habits, habitats, and abilities remain unknown.
+\ff[prominhanh]To understand them, we need more than just data from books.
+\ff[prominhanh]To understand them, we need more than just data from books.
+\ff[prominhanh]We need someone who can go out into the field, observe Pokémon directly, and record new discoveries.
+\ff[prominhanh]We need someone who can go out into the field, observe Pokémon directly, and record new discoveries.
+\ff[prominhanh]From today onward, you'll be helping me collect information for the Pokémon Encyclopedia.
+\ff[prominhanh]From today onward, you'll be helping me collect information for the Pokémon Encyclopedia.
+\ff[prominhanh]Actually... there's something important I need your help with.
+\ff[prominhanh]Actually... there's something important I need your help with.
+\ff[prominhanh]I need to send these research documents to Professor Oak.
+\ff[prominhanh]I need to send these research documents to Professor Oak.
+\ff[prominhanh]He is currently staying in Van Hoi City, where he is continuing his own Pokémon research.
+\ff[prominhanh]He is currently staying in Van Hoi City, where he is continuing his own Pokémon research.
+\ff[prominhanh]Could you deliver these documents to him for me?
+\ff[prominhanh]Could you deliver these documents to him for me?
+\ff[prominhanh]While you're there, please ask him about the Pokédex units he prepared for us.
+\ff[prominhanh]While you're there, please ask him about the Pokédex units he prepared for us.
+\ff[prominhanh]A Pokédex is an essential tool for any Pokémon researcher.
+\ff[prominhanh]A Pokédex is an essential tool for any Pokémon researcher.
+\ff[prominhanh]However...I heard Professor Oak might not be at his laboratory right now.
+\ff[prominhanh]However...I heard Professor Oak might not be at his laboratory right now.
+\ff[prominhanh]Apparently, he went somewhere along Route A10 to investigate something.
+\ff[prominhanh]Apparently, he went somewhere along Route A10 to investigate something.
+\ff[prominhanh]So you may have to find him before delivering the documents.
+\ff[prominhanh]So you may have to find him before delivering the documents.
+\ff[prominhanh]Here are the documents. Please take good care of them.
+\ff[prominhanh]Here are the documents. Please take good care of them.
+\ff[prominhanh]This will be your first official task as a Pokémon Research Assistant. ^^
+\ff[prominhanh]This will be your first official task as a Pokémon Research Assistant. ^^
+\ff[prominhanh]Before you leave, there's one more thing we need to prepare.
+\ff[prominhanh]Before you leave, there's one more thing we need to prepare.
+\ff[prominhanh]A Pokémon researcher can't properly study Pokémon by traveling alone.
+\ff[prominhanh]A Pokémon researcher can't properly study Pokémon by traveling alone.
+\ff[prominhanh]Having a Pokémon partner will make your journey safer and much more meaningful.
+\ff[prominhanh]Having a Pokémon partner will make your journey safer and much more meaningful.
+\ff[prominhanh]These three Pokémon have been raised here at the laboratory.
+\ff[prominhanh]These three Pokémon have been raised here at the laboratory.
+\ff[prominhanh]Each one has different strengths and different personalities.
+\ff[prominhanh]Each one has different strengths and different personalities.
+\ff[prominhanh]Take your time and choose the Pokémon that feels right for you.
+\ff[prominhanh]Take your time and choose the Pokémon that feels right for you.
+\ff[prominhanh]A wonderful choice.
+\ff[prominhanh]A wonderful choice.
+\ff[prominhanh]From now on, this Pokémon will be your research partner.
+\ff[prominhanh]From now on, this Pokémon will be your research partner.
+\ff[prominhanh]I'm sure the two of you will make many discoveries together.
+\ff[prominhanh]I'm sure the two of you will make many discoveries together.
+\ff[prominhanh]Oh, and you'll need these as well.
+\ff[prominhanh]Oh, and you'll need these as well.
+\ff[prominhanh]These Poké Balls will allow you to safely catch Pokémon you encounter during your journey.
+\ff[prominhanh]These Poké Balls will allow you to safely catch Pokémon you encounter during your journey.
+\ff[prominhanh]Use them carefully, and always treat Pokémon with respect.
+\ff[prominhanh]Use them carefully, and always treat Pokémon with respect.
+\ff[prominhanh]Now, go meet Professor Oak. Your first research assignment is waiting.
+\ff[prominhanh]Now, go meet Professor Oak. Your first research assignment is waiting.
+\ff[prominhanh]Oh, you’re here! I was waiting for you. Thank you for bringing these Pokédex devices back safely.
+\ff[prominhanh]Oh, you’re here! I was waiting for you. Thank you for bringing these Pokédex devices back safely.
+\ff[prominhanh]With these devices, the Pokémon Encyclopedia Project can finally move forward.
+\ff[prominhanh]With these devices, the Pokémon Encyclopedia Project can finally move forward.
+\ff[prominhanh]From now on, you’ll be able to conduct your own research through your journey.
+\ff[prominhanh]From now on, you’ll be able to conduct your own research through your journey.
+\ff[prominhanh]Every place you visit, every Pokémon you meet, and every experience you gain will become valuable knowledge.
+\ff[prominhanh]Every place you visit, every Pokémon you meet, and every experience you gain will become valuable knowledge.
+\ff[prominhanh]By the way... I’ve heard about what happened with Professor Oak.
+\ff[prominhanh]By the way... I’ve heard about what happened with Professor Oak.
+\ff[prominhanh]You helped him confront Team Chaos and played an important role in destroying the Black Crystal.
+\ff[prominhanh]You helped him confront Team Chaos and played an important role in destroying the Black Crystal.
+\ff[prominhanh]That was an incredibly dangerous situation, but you and your Pokémon managed to overcome it.
+\ff[prominhanh]That was an incredibly dangerous situation, but you and your Pokémon managed to overcome it.
+\ff[prominhanh]The Pokémon Association has also learned about your unique ability to resist the influence of the Black Crystal.
+\ff[prominhanh]The Pokémon Association has also learned about your unique ability to resist the influence of the Black Crystal.
+\ff[prominhanh]Because of that, they hope you can assist them if any similar situations appear in the future.
+\ff[prominhanh]Because of that, they hope you can assist them if any similar situations appear in the future.
+\ff[prominhanh]Professor Oak and Champion Blue from the Kanto region have also shared their thoughts about you.
+\ff[prominhanh]Professor Oak and Champion Blue from the Kanto region have also shared their thoughts about you.
+\ff[prominhanh]They spoke very highly of your battling skills and the strong bond you have with your Pokémon.
+\ff[prominhanh]They spoke very highly of your battling skills and the strong bond you have with your Pokémon.
+\ff[prominhanh]I have a special Pokémon waiting for you in my private room.
+\ff[prominhanh]I have a special Pokémon waiting for you in my private room.
+\ff[prominhanh]I’ve been taking care of it for quite some time, and I think it would be happier traveling with someone like you.
+\ff[prominhanh]I’ve been taking care of it for quite some time, and I think it would be happier traveling with someone like you.
+\ff[prominhanh]Your journey is going to take you through many unfamiliar places, and you never know what you might encounter along the way.
+\ff[prominhanh]Your journey is going to take you through many unfamiliar places, and you never know what you might encounter along the way.
+\ff[prominhanh]Having another Pokémon by your side could make your journey a little safer.
+\ff[prominhanh]Having another Pokémon by your side could make your journey a little safer.
+\ff[prominhanh]It’s a little different from the Pokémon you may have encountered before, so I’m curious to see how the two of you get along.
+\ff[prominhanh]It’s a little different from the Pokémon you may have encountered before, so I’m curious to see how the two of you get along.
+\ff[prominhanh]A Trainer’s strength is not only measured by victories, but also by the trust built with their Pokémon.
+\ff[prominhanh]A Trainer’s strength is not only measured by victories, but also by the trust built with their Pokémon.
+\ff[prominhanh]I think challenging the An Lam League could be a wonderful opportunity for you.
+\ff[prominhanh]I think challenging the An Lam League could be a wonderful opportunity for you.
+\ff[prominhanh]Through the Gym challenges and battles ahead, you may discover even more about the connection between humans and Pokémon.
+\ff[prominhanh]Through the Gym challenges and battles ahead, you may discover even more about the connection between humans and Pokémon.
+\ff[prominhanh]And perhaps, it will open a path toward a greater future and new possibilities for you.
+\ff[prominhanh]And perhaps, it will open a path toward a greater future and new possibilities for you.
+\ff[prominhanh]Before you decide your next step, there’s something you should know about the An Lam League.
+\ff[prominhanh]Before you decide your next step, there’s something you should know about the An Lam League.
+\ff[prominhanh]The An Lam region is protected by the An Lam League, an organization made up of some of the strongest Trainers in the region.
+\ff[prominhanh]The An Lam region is protected by the An Lam League, an organization made up of some of the strongest Trainers in the region.
+\ff[prominhanh]They are responsible for maintaining balance and supporting the growth of Trainers throughout An Lam.
+\ff[prominhanh]They are responsible for maintaining balance and supporting the growth of Trainers throughout An Lam.
+\ff[prominhanh]Across the region, there are eight Gyms established in different areas.
+\ff[prominhanh]Across the region, there are eight Gyms established in different areas.
+\ff[prominhanh]Each Gym serves as a place to maintain order in its area and provide challenges for Trainers who wish to become stronger.
+\ff[prominhanh]Each Gym serves as a place to maintain order in its area and provide challenges for Trainers who wish to become stronger.
+\ff[prominhanh]The leaders of these Gyms are known as Gym Leaders.
+\ff[prominhanh]The leaders of these Gyms are known as Gym Leaders.
+\ff[prominhanh]They are not only powerful Trainers, but also skilled strategists who have mastered the art of Pokémon battles.
+\ff[prominhanh]They are not only powerful Trainers, but also skilled strategists who have mastered the art of Pokémon battles.
+\ff[prominhanh]Defeating a Gym Leader requires more than just having strong Pokémon.
+\ff[prominhanh]Defeating a Gym Leader requires more than just having strong Pokémon.
+\ff[prominhanh]A Trainer must understand their Pokémon, create strategies, and overcome every challenge placed before them.
+\ff[prominhanh]A Trainer must understand their Pokémon, create strategies, and overcome every challenge placed before them.
+\ff[prominhanh]Trainers who earn all eight Gym Badges receive the honor of challenging the An Lam Elite Four.
+\ff[prominhanh]Trainers who earn all eight Gym Badges receive the honor of challenging the An Lam Elite Four.
+\ff[prominhanh]The Elite Four are considered the highest level of Trainers in the region.
+\ff[prominhanh]The Elite Four are considered the highest level of Trainers in the region.
+\ff[prominhanh]Each member has their own unique battle style and incredible experience.
+\ff[prominhanh]Each member has their own unique battle style and incredible experience.
+\ff[prominhanh]Very few Trainers are able to overcome all four of them.
+\ff[prominhanh]Very few Trainers are able to overcome all four of them.
+\ff[prominhanh]And those who do... will earn the right to challenge the current An Lam Champion.
+\ff[prominhanh]And those who do... will earn the right to challenge the current An Lam Champion.
+\ff[prominhanh]His name is K'Dam.
+\ff[prominhanh]His name is K'Dam.
+\ff[prominhanh]He is known as the strongest Trainer in An Lam, and one of the most powerful Trainers in the entire Pokémon world.
+\ff[prominhanh]He is known as the strongest Trainer in An Lam, and one of the most powerful Trainers in the entire Pokémon world.
+\ff[prominhanh]Challenging the Champion is not just a test of strength. It is a test of everything a Trainer has learned throughout their journey.
+\ff[prominhanh]Challenging the Champion is not just a test of strength. It is a test of everything a Trainer has learned throughout their journey.
+\ff[prominhanh]Perhaps someday, you may stand before him as well.
+\ff[prominhanh]Perhaps someday, you may stand before him as well.
+\ff[prominhanh]That is what she knows about the An Lam League.
+\ff[prominhanh]That is what she knows about the An Lam League.
+\ff[prominhanh]Oh, there’s one more thing I’ve already taken care of.
+\ff[prominhanh]Oh, there’s one more thing I’ve already taken care of.
+\ff[prominhanh]I’ve informed the necessary organizations about your travel authorization.
+\ff[prominhanh]I’ve informed the necessary organizations about your travel authorization.
+\ff[prominhanh]You should now be able to travel freely through the cities and continue your research without unnecessary restrictions.
+\ff[prominhanh]You should now be able to travel freely through the cities and continue your research without unnecessary restrictions.
+\ff[prominhanh]Your journey is just beginning, and I’m excited to see what discoveries await you.
+\ff[prominhanh]Your journey is just beginning, and I’m excited to see what discoveries await you.
+\ff[prominhanh]Take care of yourself, and please take good care of your Pokémon too.
+\ff[prominhanh]Take care of yourself, and please take good care of your Pokémon too.
+\ff[prominhanh]Good luck on your journey.
+\ff[prominhanh]Good luck on your journey.
+Ah! Don't mind the mess over there...
+À! Đừng để ý đống bừa bộn bên kia nhé...
+I was organizing the research documents, but then I found some interesting Pokémon records.
+Tôi đang sắp xếp tài liệu nghiên cứu thì lại tìm thấy vài ghi chép thú vị về Pokémon.
+One thing led to another, and now I have a bigger mess than before...
+Rồi cứ xem hết cái này đến cái khác, cuối cùng còn bừa hơn lúc đầu...
+Please be careful around these computers.
+Cẩn thận khi ở gần những máy tính này nhé.
+They contain years of research data collected from Pokémon across the region.
+Chúng lưu trữ dữ liệu nghiên cứu về Pokémon được thu thập suốt nhiều năm trên khắp vùng.
+Every single observation, no matter how small, can help us understand Pokémon better.
+Dù chỉ là một quan sát rất nhỏ cũng có thể giúp chúng ta hiểu Pokémon hơn.
+Professor Fennel has been studying Pokémon habitats for many years.
+Giáo sư Fennel đã nghiên cứu môi trường sống của Pokémon suốt nhiều năm.
+She believes that understanding Pokémon is the first step toward protecting them.
+Bà ấy tin rằng muốn bảo vệ Pokémon, trước hết phải hiểu được chúng.
+I'm lucky to be able to learn from her.
+Tôi thật may mắn khi được học hỏi từ bà ấy.
+\bI delve into the lives, powers, and evolutions of various Pokemon species. Each Pokemon is a complex system, and I am always excited to uncover their mysteries.
+\bTôi nghiên cứu tập tính, sức mạnh và quá trình Tiến hóa của nhiều loài Pokémon. Mỗi Pokémon đều là một thế giới phức tạp, và tôi luôn hào hứng khi khám phá những bí ẩn của chúng.

@@ -1,0 +1,38 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map077]
+I didn’t expect to use so many items on my journey.
+I didn’t expect to use so many items on my journey.
+At first, I thought I could just rely on my Pokémon’s strength.
+At first, I thought I could just rely on my Pokémon’s strength.
+But after a few close battles, I realized being prepared is just as important as training.
+But after a few close battles, I realized being prepared is just as important as training.
+Now I always make sure to bring enough Potions and Poké Balls before going somewhere new.
+Now I always make sure to bring enough Potions and Poké Balls before going somewhere new.
+I always stop by a Poké Mart whenever I arrive in a new town.
+I always stop by a Poké Mart whenever I arrive in a new town.
+Every place has different Trainers, different Pokémon, and different challenges waiting ahead.
+Every place has different Trainers, different Pokémon, and different challenges waiting ahead.
+Running out of supplies in the middle of nowhere is the last thing I want to happen.
+Running out of supplies in the middle of nowhere is the last thing I want to happen.
+A little preparation can save you from a lot of trouble later.
+A little preparation can save you from a lot of trouble later.
+I come to this Poké Mart pretty often.
+I come to this Poké Mart pretty often.
+My Pokémon aren’t used for battles very much, but they’re still an important part of my family.
+My Pokémon aren’t used for battles very much, but they’re still an important part of my family.
+I always make sure to keep some healing items at home, just in case.
+I always make sure to keep some healing items at home, just in case.
+Taking care of Pokémon is something everyone can do, whether they battle or not.
+Taking care of Pokémon is something everyone can do, whether they battle or not.
+Hmm... Let’s see... Potions go here, Poké Balls go there...
+Hmm... Let’s see... Potions go here, Poké Balls go there...
+Oh! Sorry, I didn’t notice you there. Welcome to the Poké Mart.
+Oh! Sorry, I didn’t notice you there. Welcome to the Poké Mart.
+I was just organizing the shelves. Keeping everything in the right place makes it easier for Trainers to find what they need.
+I was just organizing the shelves. Keeping everything in the right place makes it easier for Trainers to find what they need.
+You’d be surprised how many Trainers rush in here after a tough battle looking for something to help their Pokémon.
+You’d be surprised how many Trainers rush in here after a tough battle looking for something to help their Pokémon.
+Sometimes they’re in such a hurry that they don’t even notice what they’re buying.
+Sometimes they’re in such a hurry that they don’t even notice what they’re buying.

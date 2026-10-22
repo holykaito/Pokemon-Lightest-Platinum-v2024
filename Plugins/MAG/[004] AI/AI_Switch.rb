@@ -36,7 +36,12 @@ Battle::AI::Handlers::ShouldSwitch.add(:significant_eor_damage,
   }
 )
 
-alias mag_rate_replacement_pokemon rate_replacement_pokemon
+# Capture the class implementation without capturing prepended wrappers.
+mag_replacement_base = instance_method(:rate_replacement_pokemon)
+while mag_replacement_base.owner != self
+  mag_replacement_base = mag_replacement_base.super_method
+end
+define_method(:mag_rate_replacement_pokemon, mag_replacement_base)
   def rate_replacement_pokemon(idxBattler, pkmn, score)
     pkmn_types = pkmn.types
     entry_hazard_damage = calculate_entry_hazard_damage(pkmn, idxBattler & 1)
@@ -65,8 +70,7 @@ alias mag_rate_replacement_pokemon rate_replacement_pokemon
         score -= 15
       end
     end
-    mag_rate_replacement_pokemon(idxBattler, pkmn, score)
-    return score
+      return mag_rate_replacement_pokemon(idxBattler, pkmn, score)
   end
 
 alias mag_calculate_entry_hazard_damage calculate_entry_hazard_damage

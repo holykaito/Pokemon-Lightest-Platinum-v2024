@@ -2,32 +2,32 @@
 # translate every second line of this file.
 #-------------------------------
 [Map107]
-\rHello, and welcome to the Pokémon Center.
-\rHello, and welcome to the Pokémon Center.
-\rWe restore your tired Pokémon to full health.
-\rWe restore your tired Pokémon to full health.
-\rWould you like to rest your Pokémon?
-\rWould you like to rest your Pokémon?
-\rOK, I'll take your Pokémon for a few seconds.
-\rOK, I'll take your Pokémon for a few seconds.
-\rYour Pokémon may be infected by PokeRus.
-\rYour Pokémon may be infected by PokeRus.
-\rLittle is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
-\rLittle is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
-\rWhile infected, Pokémon are said to grow exceptionally well.
-\rWhile infected, Pokémon are said to grow exceptionally well.
-\rThank you for waiting.
-\rThank you for waiting.
-\rWe've restored your Pokémon to full health.
-\rWe've restored your Pokémon to full health.
-\rWe hope to see you again!
-\rWe hope to see you again!
-\rFirst, you should restore your Pokémon to full health.
-\rFirst, you should restore your Pokémon to full health.
-\rYour Pokémon have been healed to perfect health.
-\rYour Pokémon have been healed to perfect health.
-\rWe hope you excel!
-\rWe hope you excel!
+Hello, and welcome to the Pokémon Center.
+Hello, and welcome to the Pokémon Center.
+We restore your tired Pokémon to full health.
+We restore your tired Pokémon to full health.
+Would you like to rest your Pokémon?
+Would you like to rest your Pokémon?
+OK, I'll take your Pokémon for a few seconds.
+OK, I'll take your Pokémon for a few seconds.
+Your Pokémon may be infected by PokeRus.
+Your Pokémon may be infected by PokeRus.
+Little is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
+Little is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
+While infected, Pokémon are said to grow exceptionally well.
+While infected, Pokémon are said to grow exceptionally well.
+Thank you for waiting.
+Thank you for waiting.
+We've restored your Pokémon to full health.
+We've restored your Pokémon to full health.
+We hope to see you again!
+We hope to see you again!
+First, you should restore your Pokémon to full health.
+First, you should restore your Pokémon to full health.
+Your Pokémon have been healed to perfect health.
+Your Pokémon have been healed to perfect health.
+We hope you excel!
+We hope you excel!
 \bHi, I'm the one to help you "cheat" in this game. After you cheat, it will be saved in the Trainer Card information.
 \bHi, I'm the one to help you "cheat" in this game. After you cheat, it will be saved in the Trainer Card information.
 \bAre you sure you want my help?

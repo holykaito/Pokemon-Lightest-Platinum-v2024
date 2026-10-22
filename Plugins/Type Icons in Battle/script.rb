@@ -20,7 +20,8 @@ class Battle::Scene::PokemonDataBox
     @types_bitmap = AnimatedBitmap.new("Graphics/UI/Battle/icon_types")
     @types_sprite = Sprite.new(viewport)
     height = @types_bitmap.height / GameData::Type.count
-    @types_x, @types_y, height = 0
+    @types_x = 0
+    @types_y = 0
     case TYPE_ICONS_POSITION
     when 2
       height = @databoxBitmap.height
@@ -61,7 +62,7 @@ class Battle::Scene::PokemonDataBox
   alias __types__set_z z= unless method_defined?(:__types__set_z)
   def z=(value)
     __types__set_z(value)
-    @types_sprite.z = value - 1
+    @types_sprite.z = value + 3
   end
 
   alias __databox__refresh refresh unless method_defined?(:__databox__refresh)

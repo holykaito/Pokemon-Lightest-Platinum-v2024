@@ -1,0 +1,16 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map007]
+The world is home to countless creatures known as Pokémon.
+The world is home to countless creatures known as Pokémon.
+They live alongside humans, in forests, oceans, mountains, and even places yet to be discovered.
+They live alongside humans, in forests, oceans, mountains, and even places yet to be discovered.
+Some people battle with Pokémon. Some train them. Others study their behavior and uncover the mysteries of their existence.
+Some people battle with Pokémon. Some train them. Others study their behavior and uncover the mysteries of their existence.
+Among them, there are Pokémon Researchers who dedicate their lives to understanding these amazing creatures.
+Among them, there are Pokémon Researchers who dedicate their lives to understanding these amazing creatures.
+And this is the story of a young trainer with a dream...
+And this is the story of a young trainer with a dream...
+A dream to meet every Pokémon in the world.
+A dream to meet every Pokémon in the world.

@@ -20,7 +20,6 @@ Battle::AI::Handlers::MoveEffectAgainstTargetScore.add("BurnTarget",
       # Prefer if the user or an ally has a move/ability that is better if the target is burned
       ai.each_same_side_battler(user.side) do |b, i|
         score += 5 if b.has_move_with_function?("DoublePowerIfTargetStatusProblem")
-		score += 10 if b.has_active_ability?(:FUELEDBLAZE) # Fueled Blaze
       end
       # Don't prefer if target benefits from having the burn status problem
       score -= 8 if target.has_active_ability?([:FLAREBOOST, :GUTS, :MARVELSCALE, :QUICKFEET])

@@ -136,7 +136,7 @@ end
           value -= 12 if eligible && !battler.pbHasType?(:GROUND) && !battler.pbHasType?(:ROCK)
         when :Swamp
           value += power_opportunity(battler, :WATER, true)
-          if ground && !battler.pbHasType?(:WATER)
+          if ground && !battler.pbHasType?(:WATER) && !battler.hasActiveAbility?(:AMPHIBIOUS)
             value += battle.field.effects[PBEffects::TrickRoom] > 0 ? 14 : -14
           end
         when :Toxic

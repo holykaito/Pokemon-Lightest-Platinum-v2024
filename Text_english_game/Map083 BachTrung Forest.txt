@@ -1,0 +1,272 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map083]
+!!!
+!!!
+You like Bug-type Pokémon too, right? I can tell just by looking at you!
+You like Bug-type Pokémon too, right? I can tell just by looking at you!
+I’ve been exploring this forest all day and found some really interesting Pokémon.
+I’ve been exploring this forest all day and found some really interesting Pokémon.
+Let’s have a battle and see whose Bug Pokémon have learned more tricks!
+Let’s have a battle and see whose Bug Pokémon have learned more tricks!
+I need to spend more time watching how my Pokémon behave. Maybe I’ll discover something new!
+I need to spend more time watching how my Pokémon behave. Maybe I’ll discover something new!
+\ff[trainer_NhatDiem]Oh! So you’re the Trainer who beat Tan Loi?
+\ff[trainer_NhatDiem]Oh! So you’re the Trainer who beat Tan Loi?
+\ff[trainer_NhatDiem]I leave that idiot alone for five minutes, and he comes back telling everyone he got beaten by some incredible Trainer.
+\ff[trainer_NhatDiem]I leave that idiot alone for five minutes, and he comes back telling everyone he got beaten by some incredible Trainer.
+\ff[trainer_NhatDiem]Honestly, what a way to embarrass the Three Trouble Trio.
+\ff[trainer_NhatDiem]Honestly, what a way to embarrass the Three Trouble Trio.
+\ff[trainer_NhatDiem]He probably talked your ears off before the battle, didn’t he? That’s what he does best. Talking!
+\ff[trainer_NhatDiem]He probably talked your ears off before the battle, didn’t he? That’s what he does best. Talking!
+\ff[trainer_NhatDiem]But don’t get me wrong. Tan Loi may be a little... energetic, but he’s actually a pretty good Trainer.
+\ff[trainer_NhatDiem]But don’t get me wrong. Tan Loi may be a little... energetic, but he’s actually a pretty good Trainer.
+\ff[trainer_NhatDiem]Which makes losing to you even more embarrassing!
+\ff[trainer_NhatDiem]Which makes losing to you even more embarrassing!
+\ff[trainer_NhatDiem]Anyway, I’m Nhat Diem. I’m the second member of the Three Trouble Trio.
+\ff[trainer_NhatDiem]Anyway, I’m Nhat Diem. I’m the second member of the Three Trouble Trio.
+\ff[trainer_NhatDiem]If Tan Loi couldn’t handle you, I guess I’ll have to clean up his mess.
+\ff[trainer_NhatDiem]If Tan Loi couldn’t handle you, I guess I’ll have to clean up his mess.
+\ff[trainer_NhatDiem]Don’t worry, I’m much more reasonable than him.
+\ff[trainer_NhatDiem]Don’t worry, I’m much more reasonable than him.
+\ff[trainer_NhatDiem]Come on! Let’s see if you can make another member of the Three Trouble Trio lose face today!
+\ff[trainer_NhatDiem]Come on! Let’s see if you can make another member of the Three Trouble Trio lose face today!
+\ff[trainer_NhatDiem]Wait... I lost too?!
+\ff[trainer_NhatDiem]Wait... I lost too?!
+\ff[trainer_NhatDiem]Tan Loi is never going to let me hear the end of this...
+\ff[trainer_NhatDiem]Tan Loi is never going to let me hear the end of this...
+\ff[trainer_NhatDiem]Okay, okay! I get it! You’re seriously strong!
+\ff[trainer_NhatDiem]Okay, okay! I get it! You’re seriously strong!
+\ff[trainer_NhatDiem]I guess I owe Tan Loi an apology. Maybe he wasn’t exaggerating this time.
+\ff[trainer_NhatDiem]I guess I owe Tan Loi an apology. Maybe he wasn’t exaggerating this time.
+\ff[trainer_NhatDiem]But don’t celebrate just yet! There’s still one member of the Three Trouble Trio left.
+\ff[trainer_NhatDiem]But don’t celebrate just yet! There’s still one member of the Three Trouble Trio left.
+\ff[trainer_NhatDiem]And trust me, that one won’t let either of us hear the end of this!
+\ff[trainer_NhatDiem]And trust me, that one won’t let either of us hear the end of this!
+\ff[trainer_NhatDiem]They’ll definitely come looking for you. So be ready!
+\ff[trainer_NhatDiem]They’ll definitely come looking for you. So be ready!
+\ff[trainer_NhatDiem]See you around! I’m off before Tan Loi finds out I lost too!
+\ff[trainer_NhatDiem]See you around! I’m off before Tan Loi finds out I lost too!
+\ff[chaos_tramy]So this is the ruler of Bach Trung Forest... Vespiquen.
+\ff[chaos_tramy]So this is the ruler of Bach Trung Forest... Vespiquen.
+\ff[chaos_tramy]I can see it now. Just by looking at it, I can tell that it’s on a completely different level from the other Pokémon here.
+\ff[chaos_tramy]I can see it now. Just by looking at it, I can tell that it’s on a completely different level from the other Pokémon here.
+\ff[leader_trongdiep]Step away from that Pokémon.
+\ff[leader_trongdiep]Step away from that Pokémon.
+\ff[chaos_tramy]Oh? And you must be Trong Diep.
+\ff[chaos_tramy]Oh? And you must be Trong Diep.
+\ff[leader_trongdiep]You know my name?
+\ff[leader_trongdiep]You know my name?
+\ff[chaos_tramy]Of course. You’re the researcher from Van Uyen Academy, and the Gym Leader responsible for this area.
+\ff[chaos_tramy]Of course. You’re the researcher from Van Uyen Academy, and the Gym Leader responsible for this area.
+\ff[leader_trongdiep]Then you should know that you have no business being here.
+\ff[leader_trongdiep]Then you should know that you have no business being here.
+\ff[chaos_tramy]I came all this way because I heard about this Pokémon. I’m not leaving without learning what it’s capable of.
+\ff[chaos_tramy]I came all this way because I heard about this Pokémon. I’m not leaving without learning what it’s capable of.
+\ff[leader_trongdiep]You’re not going to touch it.
+\ff[leader_trongdiep]You’re not going to touch it.
+\ff[chaos_tramy]You seem quite protective of it.
+\ff[chaos_tramy]You seem quite protective of it.
+\ff[leader_trongdiep]I’ve spent years observing this Vespiquen. It plays an important role in maintaining the balance of this forest.
+\ff[leader_trongdiep]I’ve spent years observing this Vespiquen. It plays an important role in maintaining the balance of this forest.
+\ff[leader_trongdiep]Whatever your intentions are, you will not interfere with the Pokémon here.
+\ff[leader_trongdiep]Whatever your intentions are, you will not interfere with the Pokémon here.
+\ff[chaos_tramy]Then I suppose I should introduce myself properly.
+\ff[chaos_tramy]Then I suppose I should introduce myself properly.
+\ff[chaos_tramy]I’m Tra Mi. One of the Arrows of Team Chaos.
+\ff[chaos_tramy]I’m Tra Mi. One of the Arrows of Team Chaos.
+\ff[chaos_tramy]The world has become too comfortable. People believe their cities are safe, their Pokémon are under control, and tomorrow will always be the same as today.
+\ff[chaos_tramy]The world has become too comfortable. People believe their cities are safe, their Pokémon are under control, and tomorrow will always be the same as today.
+\ff[chaos_tramy]We’re going to remind them how fragile that peace really is.
+\ff[chaos_tramy]We’re going to remind them how fragile that peace really is.
+\ff[leader_trongdiep]By turning Pokémon against people?
+\ff[leader_trongdiep]By turning Pokémon against people?
+\ff[chaos_tramy]By breaking the order they’ve taken for granted.
+\ff[chaos_tramy]By breaking the order they’ve taken for granted.
+\ff[leader_trongdiep]And Vespiquen is part of that plan?
+\ff[leader_trongdiep]And Vespiquen is part of that plan?
+\ff[chaos_tramy]Look at it. A Pokémon with influence over countless others. Imagine what would happen if that influence became chaos instead of order.
+\ff[chaos_tramy]Look at it. A Pokémon with influence over countless others. Imagine what would happen if that influence became chaos instead of order.
+\ff[leader_trongdiep]Heracross, go!
+\ff[leader_trongdiep]Heracross, go!
+\ff[chaos_tramy]You really don’t understand, do you?
+\ff[chaos_tramy]You really don’t understand, do you?
+\ff[chaos_tramy]I don’t need to defeat your Heracross. I only need to make it stop obeying you.
+\ff[chaos_tramy]I don’t need to defeat your Heracross. I only need to make it stop obeying you.
+(Tra Mi raises the Black Crystal)
+(Tra Mi raises the Black Crystal)
+\ff[leader_trongdiep]That crystal...! I won’t let you use it on my Pokémon!
+\ff[leader_trongdiep]That crystal...! I won’t let you use it on my Pokémon!
+(Trong Diep quickly takes a Lum Berry from his bag.)
+(Trong Diep quickly takes a Lum Berry from his bag.)
+\ff[leader_trongdiep]Heracross, eat this! I prepared for something like this.
+\ff[leader_trongdiep]Heracross, eat this! I prepared for something like this.
+\ff[leader_trongdiep]This Lum Berry should help you recover from any abnormal condition.
+\ff[leader_trongdiep]This Lum Berry should help you recover from any abnormal condition.
+(Heracross eats the Lum Berry.)
+(Heracross eats the Lum Berry.)
+\ff[chaos_tramy]A Lum Berry? Clever.
+\ff[chaos_tramy]A Lum Berry? Clever.
+\ff[chaos_tramy]But you’re trying to treat the symptom, not the cause.
+\ff[chaos_tramy]But you’re trying to treat the symptom, not the cause.
+\ff[leader_trongdiep]Heracross...?
+\ff[leader_trongdiep]Heracross...?
+(Heracross suddenly staggers.)
+(Heracross suddenly staggers.)
+\ff[leader_trongdiep]The Lum Berry didn't work?!
+\ff[leader_trongdiep]The Lum Berry didn't work?!
+\ff[chaos_tramy]Did you really think an ordinary Berry could protect it from the Black Crystal?
+\ff[chaos_tramy]Did you really think an ordinary Berry could protect it from the Black Crystal?
+\ff[chaos_tramy]There’s no point. The crystal doesn’t care how strong your bond is.
+\ff[chaos_tramy]There’s no point. The crystal doesn’t care how strong your bond is.
+\ff[leader_trongdiep]Comeback, Heracross!
+\ff[leader_trongdiep]Comeback, Heracross!
+(Vespiquen suddenly becomes agitated as well.)
+(Vespiquen suddenly becomes agitated as well.)
+\ff[chaos_tramy]Now, let’s see what happens when the guardian of this forest loses control.
+\ff[chaos_tramy]Now, let’s see what happens when the guardian of this forest loses control.
+\ff[leader_trongdiep]\PN...!
+\ff[leader_trongdiep]\PN...!
+\ff[leader_trongdiep]If you’re here, I need your help! I can’t stop them by myself!
+\ff[leader_trongdiep]If you’re here, I need your help! I can’t stop them by myself!
+\ff[chaos_tramy]So, you’ve come too. The special Trainer who can resist the Black Crystal.
+\ff[chaos_tramy]So, you’ve come too. The special Trainer who can resist the Black Crystal.
+\ff[chaos_tramy]How convenient. Come on, then. Show me whether you can stop the chaos we’re about to unleash.
+\ff[chaos_tramy]How convenient. Come on, then. Show me whether you can stop the chaos we’re about to unleash.
+\ff[chaos_tramy]I’ll admit it. You’re stronger than I expected, \PN.
+\ff[chaos_tramy]I’ll admit it. You’re stronger than I expected, \PN.
+\ff[leader_trongdiep]The battle is over. You should leave this forest.
+\ff[leader_trongdiep]The battle is over. You should leave this forest.
+\ff[chaos_tramy]Perhaps I should. But don’t think this changes anything.
+\ff[chaos_tramy]Perhaps I should. But don’t think this changes anything.
+\ff[chaos_tramy]Team Chaos has only just begun to make its move.
+\ff[chaos_tramy]Team Chaos has only just begun to make its move.
+\ff[leader_trongdiep]...She’s gone.
+\ff[leader_trongdiep]...She’s gone.
+\ff[leader_trongdiep]Vespiquen...?
+\ff[leader_trongdiep]Vespiquen...?
+\ff[leader_trongdiep]It seems the effect of the Black Crystal hasn’t worn off yet.
+\ff[leader_trongdiep]It seems the effect of the Black Crystal hasn’t worn off yet.
+\ff[leader_trongdiep]Unfortunately, it seems to be more complicated than that.
+\ff[leader_trongdiep]Unfortunately, it seems to be more complicated than that.
+\ff[leader_trongdiep]I’ll try to calm it down, but we may need your strength to stop it.
+\ff[leader_trongdiep]I’ll try to calm it down, but we may need your strength to stop it.
+\ff[leader_trongdiep]Try not to hurt it more than necessary. It isn’t acting of its own will.
+\ff[leader_trongdiep]Try not to hurt it more than necessary. It isn’t acting of its own will.
+\ff[leader_trongdiep]If this continues, the other Pokémon in the forest may be affected as well.
+\ff[leader_trongdiep]If this continues, the other Pokémon in the forest may be affected as well.
+\ff[leader_trongdiep]There it goes. I suppose it needs some time alone.
+\ff[leader_trongdiep]There it goes. I suppose it needs some time alone.
+\ff[leader_trongdiep]I’m relieved that it wasn’t seriously hurt.
+\ff[leader_trongdiep]I’m relieved that it wasn’t seriously hurt.
+\ff[leader_trongdiep]Thank you for your help, \PN. Without you, things could have turned out very differently.
+\ff[leader_trongdiep]Thank you for your help, \PN. Without you, things could have turned out very differently.
+\ff[leader_trongdiep]I’ll return to Van Uyen City and report what happened to the Association. They need to know that the Black Crystal is still being used.
+\ff[leader_trongdiep]I’ll return to Van Uyen City and report what happened to the Association. They need to know that the Black Crystal is still being used.
+\ff[leader_trongdiep]You’ve shown me how you handle yourself in a difficult situation. Now I’d like to see how you perform in a proper Gym battle.
+\ff[leader_trongdiep]You’ve shown me how you handle yourself in a difficult situation. Now I’d like to see how you perform in a proper Gym battle.
+\ff[leader_trongdiep]When you come to Van Uyen City, come and challenge my Gym. I’ll be waiting for you.
+\ff[leader_trongdiep]When you come to Van Uyen City, come and challenge my Gym. I’ll be waiting for you.
+\ff[leader_trongdiep]Until then, take care of yourself and your Pokémon.
+\ff[leader_trongdiep]Until then, take care of yourself and your Pokémon.
+\ff[leader_trongdiep]I look forward to seeing how much you’ve grown by the time we meet again.
+\ff[leader_trongdiep]I look forward to seeing how much you’ve grown by the time we meet again.
+\bLately, I've seen a lot of Combee in this part of the forest.
+\bLately, I've seen a lot of Combee in this part of the forest.
+Shh... Keep your voice down. The Pokémon here are easily startled.
+Shh... Keep your voice down. The Pokémon here are easily startled.
+I come to Bach Trung Forest quite often. I like watching Pokémon from a distance instead of disturbing them.
+I come to Bach Trung Forest quite often. I like watching Pokémon from a distance instead of disturbing them.
+If you stay quiet and wait long enough, you’ll see all kinds of interesting things.
+If you stay quiet and wait long enough, you’ll see all kinds of interesting things.
+The other day, I watched a group of Combee gather around a tree. They were passing food between each other. It was really cute!
+The other day, I watched a group of Combee gather around a tree. They were passing food between each other. It was really cute!
+I came here looking for a quiet place to fish, but I haven’t had much luck today.
+I came here looking for a quiet place to fish, but I haven’t had much luck today.
+Not a single bite! Maybe the Pokémon around here are more interested in the forest than my bait.
+Not a single bite! Maybe the Pokémon around here are more interested in the forest than my bait.
+Well, since you’re here, how about a battle instead? At least that way I know something will bite!
+Well, since you’re here, how about a battle instead? At least that way I know something will bite!
+Well, that was a bigger catch than anything I could’ve pulled out of the water!
+Well, that was a bigger catch than anything I could’ve pulled out of the water!
+Maybe I should give up fishing for today. I think the forest just gave me enough excitement.
+Maybe I should give up fishing for today. I think the forest just gave me enough excitement.
+\rWell-trained Pokémon always look ready for battle. Any time, any place!
+\rWell-trained Pokémon always look ready for battle. Any time, any place!
+\rPachirisu is so cute ~
+\rPachirisu is so cute ~
+\rPach....Pach....
+\rPach....Pach....
+North: Bach Trung Forest
+North: Bach Trung Forest
+South: Route A3
+South: Route A3
+A dense forest home to many Bug-type Pokémon. Deep within the forest lies a rich ecosystem where Pokémon live and interact in their own unique ways. Travelers are advised to stay on the marked paths and avoid disturbing the Pokémon.
+A dense forest home to many Bug-type Pokémon. Deep within the forest lies a rich ecosystem where Pokémon live and interact in their own unique ways. Travelers are advised to stay on the marked paths and avoid disturbing the Pokémon.
+Oh, dear! Look at all these trees. They’re beautiful, but they’re not exactly kind to my hair.
+Oh, dear! Look at all these trees. They’re beautiful, but they’re not exactly kind to my hair.
+I came here hoping to find some beautiful Pokémon to photograph. Instead, I’ve been walking around trying not to get leaves stuck in my hair!
+I came here hoping to find some beautiful Pokémon to photograph. Instead, I’ve been walking around trying not to get leaves stuck in my hair!
+Still, you’re here now. How about a battle before I head back?
+Still, you’re here now. How about a battle before I head back?
+That battle was much rougher than I expected!
+That battle was much rougher than I expected!
+Well, at least I found something worth remembering today. Your Pokémon were wonderful!
+Well, at least I found something worth remembering today. Your Pokémon were wonderful!
+Hey! Stop right there! You’re not supposed to be here!
+Hey! Stop right there! You’re not supposed to be here!
+Turn around, or you’ll regret getting in our way!
+Turn around, or you’ll regret getting in our way!
+Tch! This wasn’t supposed to happen...
+Tch! This wasn’t supposed to happen...
+Fine! Enjoy your little victory while it lasts!
+Fine! Enjoy your little victory while it lasts!
+Halt! Nobody gets through this way!
+Halt! Nobody gets through this way!
+I don’t care who you are. You’re not getting past me!
+I don’t care who you are. You’re not getting past me!
+What?! I lost to some random Trainer?!
+What?! I lost to some random Trainer?!
+Ugh... Just my luck. I knew today was going too well.
+Ugh... Just my luck. I knew today was going too well.
+Oh, perfect! I was hoping I’d run into someone before heading deeper into the forest.
+Oh, perfect! I was hoping I’d run into someone before heading deeper into the forest.
+It gets pretty quiet around here, and sometimes I start talking to my Pokémon just to hear a voice.
+It gets pretty quiet around here, and sometimes I start talking to my Pokémon just to hear a voice.
+So, how about a little battle? It’ll be more fun than talking to myself!
+So, how about a little battle? It’ll be more fun than talking to myself!
+I was having such a good time that I forgot to concentrate!
+I was having such a good time that I forgot to concentrate!
+That was fun! Maybe I should challenge people more often instead of talking to myself.
+That was fun! Maybe I should challenge people more often instead of talking to myself.
+Hey! Have you noticed how dark it gets under these trees?
+Hey! Have you noticed how dark it gets under these trees?
+I was totally fine when I came in, but now every little sound makes me jump!
+I was totally fine when I came in, but now every little sound makes me jump!
+Anyway, I’m not going to admit I’m scared. Let’s battle!
+Anyway, I’m not going to admit I’m scared. Let’s battle!
+Agh! I knew I should’ve stayed on the main path!
+Agh! I knew I should’ve stayed on the main path!
+Okay... I’m definitely leaving this forest before it gets any darker.
+Okay... I’m definitely leaving this forest before it gets any darker.
+You picked the wrong place to take a walk.
+You picked the wrong place to take a walk.
+This road belongs to Team Chaos now. So turn back!
+This road belongs to Team Chaos now. So turn back!
+No way... I was supposed to stop you!
+No way... I was supposed to stop you!
+You’re stronger than you look. I’m not taking you on again!
+You’re stronger than you look. I’m not taking you on again!
+\bYou seem to be a good trainer, but you have much to learn.
+\bYou seem to be a good trainer, but you have much to learn.
+Look at this! I’ve been keeping notes on every Bug Pokémon I’ve encountered in this forest.
+Look at this! I’ve been keeping notes on every Bug Pokémon I’ve encountered in this forest.
+Some of them behave completely differently depending on the time of day. Isn’t that fascinating?
+Some of them behave completely differently depending on the time of day. Isn’t that fascinating?
+But enough talking. I want to see what your Pokémon can do!
+But enough talking. I want to see what your Pokémon can do!
+Amazing! I wasn’t expecting your Pokémon to fight like that!
+Amazing! I wasn’t expecting your Pokémon to fight like that!
+I’m adding this battle to my notes. It was definitely worth recording!
+I’m adding this battle to my notes. It was definitely worth recording!

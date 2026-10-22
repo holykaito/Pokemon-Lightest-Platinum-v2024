@@ -3,1332 +3,1332 @@
 #-------------------------------
 [ITEM_DESCRIPTIONS]
 An item that prevents weak wild Pokémon from appearing for 100 steps after its use.
-An item that prevents weak wild Pokémon from appearing for 100 steps after its use.
+Vật phẩm ngăn Pokémon hoang dã yếu xuất hiện trong 100 bước sau khi sử dụng.
 An item that prevents weak wild Pokémon from appearing for 200 steps after its use.
-An item that prevents weak wild Pokémon from appearing for 200 steps after its use.
+Vật phẩm ngăn Pokémon hoang dã yếu xuất hiện trong 200 bước sau khi sử dụng.
 An item that prevents weak wild Pokémon from appearing for 250 steps after its use.
-An item that prevents weak wild Pokémon from appearing for 250 steps after its use.
+Vật phẩm ngăn Pokémon hoang dã yếu xuất hiện trong 250 bước sau khi sử dụng.
 A black flute made from blown glass. Its melody makes wild Pokémon less likely to appear.
-A black flute made from blown glass. Its melody makes wild Pokémon less likely to appear.
+Chiếc sáo đen làm bằng thủy tinh thổi. Giai điệu của nó làm giảm khả năng gặp Pokémon hoang dã.
 A white flute made from blown glass. Its melody makes wild Pokémon more likely to appear.
-A white flute made from blown glass. Its melody makes wild Pokémon more likely to appear.
+Chiếc sáo trắng làm bằng thủy tinh thổi. Giai điệu của nó làm tăng khả năng gặp Pokémon hoang dã.
 A sweet honey with a lush aroma that attracts wild Pokémon when used in tall grass, in caves, or elsewhere.
-A sweet honey with a lush aroma that attracts wild Pokémon when used in tall grass, in caves, or elsewhere.
+Loại mật ong ngọt ngào, thơm nồng, thu hút Pokémon hoang dã khi dùng trong bụi cỏ cao, hang động hoặc những nơi khác.
 A small red shard. It appears to be from some sort of implement made long ago.
-A small red shard. It appears to be from some sort of implement made long ago.
+Một mảnh vỡ nhỏ màu đỏ, dường như thuộc về dụng cụ được chế tạo từ thời xa xưa.
 A small yellow shard. It appears to be from some sort of implement made long ago.
-A small yellow shard. It appears to be from some sort of implement made long ago.
+Một mảnh vỡ nhỏ màu vàng, dường như thuộc về dụng cụ được chế tạo từ thời xa xưa.
 A small blue shard. It appears to be from some sort of implement made long ago.
-A small blue shard. It appears to be from some sort of implement made long ago.
+Một mảnh vỡ nhỏ màu xanh dương, dường như thuộc về dụng cụ được chế tạo từ thời xa xưa.
 A small green shard. It appears to be from some sort of implement made long ago.
-A small green shard. It appears to be from some sort of implement made long ago.
+Một mảnh vỡ nhỏ màu xanh lá, dường như thuộc về dụng cụ được chế tạo từ thời xa xưa.
 A peculiar stone that makes certain species of Pokémon evolve. It is colored orange.
-A peculiar stone that makes certain species of Pokémon evolve. It is colored orange.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó có màu cam.
 A peculiar stone that makes certain species of Pokémon evolve. It has a thunderbolt pattern.
-A peculiar stone that makes certain species of Pokémon evolve. It has a thunderbolt pattern.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Trên đá có hoa văn hình tia sét.
 A peculiar stone that makes certain species of Pokémon evolve. It is a clear, light blue.
-A peculiar stone that makes certain species of Pokémon evolve. It is a clear, light blue.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó trong suốt và có màu xanh lam nhạt.
 A peculiar stone that makes certain species of Pokémon evolve. It has a leaf pattern.
-A peculiar stone that makes certain species of Pokémon evolve. It has a leaf pattern.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Trên đá có hoa văn hình chiếc lá.
 A peculiar stone that makes certain species of Pokémon evolve. It is as black as the night sky.
-A peculiar stone that makes certain species of Pokémon evolve. It is as black as the night sky.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó đen như bầu trời đêm.
 A peculiar stone that makes certain species of Pokémon evolve. It is as red as the sun.
-A peculiar stone that makes certain species of Pokémon evolve. It is as red as the sun.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó đỏ rực như mặt trời.
 A peculiar stone that makes certain species of Pokémon evolve. It is as dark as dark can be.
-A peculiar stone that makes certain species of Pokémon evolve. It is as dark as dark can be.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó mang màu đen sâu thẳm.
 A peculiar stone that makes certain species of Pokémon evolve. It sparkles like eyes.
-A peculiar stone that makes certain species of Pokémon evolve. It sparkles like eyes.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó lấp lánh tựa đôi mắt.
 A peculiar stone that makes certain species of Pokémon evolve. It shines with a dazzling light.
-A peculiar stone that makes certain species of Pokémon evolve. It shines with a dazzling light.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó tỏa ra ánh sáng chói lọi.
 A peculiar stone that makes certain species of Pokémon evolve. It has a snowflake pattern.
-A peculiar stone that makes certain species of Pokémon evolve. It has a snowflake pattern.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Trên đá có hoa văn hình bông tuyết.
 A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.
-A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally sweet.
+Quả táo kỳ lạ có thể khiến một loài Pokémon tiến hóa. Nó ngọt đặc biệt.
 A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.
-A peculiar apple that can make a certain species of Pokémon evolve. It's exceptionally tart.
+Quả táo kỳ lạ có thể khiến một loài Pokémon tiến hóa. Nó chua đặc biệt.
 A peculiar cracked teapot that can make a certain species of Pokémon evolve. It makes delicious tea.
-A peculiar cracked teapot that can make a certain species of Pokémon evolve. It makes delicious tea.
+Chiếc ấm trà kỳ lạ có vết nứt, giúp một loài Pokémon tiến hóa. Nó có thể pha trà rất ngon.
 A peculiar chipped teapot that can make a certain species of Pokémon evolve. It makes delicious tea.
-A peculiar chipped teapot that can make a certain species of Pokémon evolve. It makes delicious tea.
+Chiếc ấm trà kỳ lạ bị sứt mẻ, giúp một loài Pokémon tiến hóa. Nó có thể pha trà rất ngon.
 A cuff made from woven-together Galarica Twigs. Giving it to a Galarian Slowpoke would make it very happy.
-A cuff made from woven-together Galarica Twigs. Giving it to a Galarian Slowpoke would make it very happy.
+Chiếc vòng tay đan từ những cành Galarica. Slowpoke dạng Galar sẽ rất vui nếu được tặng nó.
 A wreath made from woven-together Galarica Twigs. A Galarian Slowpoke wearing this would be very happy.
-A wreath made from woven-together Galarica Twigs. A Galarian Slowpoke wearing this would be very happy.
+Chiếc vòng hoa đan từ những cành Galarica. Slowpoke dạng Galar sẽ rất vui khi đội nó.
 A red Apricorn. It assails your nostrils.
-A red Apricorn. It assails your nostrils.
+Quả Apricorn đỏ có mùi hăng xộc thẳng vào mũi.
 A yellow Apricorn. It has an invigorating scent.
-A yellow Apricorn. It has an invigorating scent.
+Quả Apricorn vàng có hương thơm giúp tinh thần sảng khoái.
 A blue Apricorn. It smells a bit like grass.
-A blue Apricorn. It smells a bit like grass.
+Quả Apricorn xanh dương có mùi hơi giống cỏ.
 A green Apricorn. It has a mysterious, aromatic scent.
-A green Apricorn. It has a mysterious, aromatic scent.
+Quả Apricorn xanh lá có hương thơm bí ẩn.
 A pink Apricorn. It has a nice, sweet scent.
-A pink Apricorn. It has a nice, sweet scent.
+Quả Apricorn hồng có mùi thơm ngọt ngào, dễ chịu.
 A white Apricorn. It doesn't smell like anything.
-A white Apricorn. It doesn't smell like anything.
+Quả Apricorn trắng gần như không có mùi.
 A black Apricorn. It has an indescribable scent.
-A black Apricorn. It has an indescribable scent.
+Quả Apricorn đen có mùi hương khó diễn tả.
 A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a seashell.
-A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a seashell.
+Hóa thạch của Pokémon cổ đại từng sống dưới biển. Nó dường như là một phần vỏ sò.
 A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a shell.
-A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a shell.
+Hóa thạch của Pokémon cổ đại từng sống dưới biển. Nó dường như là một phần lớp vỏ.
 A piece of amber that contains the genes of an ancient Pokémon. It is clear with a reddish tint.
-A piece of amber that contains the genes of an ancient Pokémon. It is clear with a reddish tint.
+Miếng hổ phách chứa gen của Pokémon cổ đại. Nó trong suốt và ánh đỏ.
 A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a plant root.
-A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a plant root.
+Hóa thạch của Pokémon cổ đại từng sống dưới biển. Nó trông giống một phần rễ cây.
 A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a claw.
-A fossil of an ancient Pokémon that lived in the sea. It appears to be part of a claw.
+Hóa thạch của Pokémon cổ đại từng sống dưới biển. Nó dường như là một phần móng vuốt.
 A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a head.
-A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a head.
+Hóa thạch của Pokémon thời tiền sử từng sống trên cạn. Nó dường như là một phần hộp sọ.
 A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a collar.
-A fossil from a prehistoric Pokémon that lived on the land. It appears to be part of a collar.
+Hóa thạch của Pokémon thời tiền sử từng sống trên cạn. Nó dường như là một phần vòng cổ.
 A fossil of an ancient Pokémon that lived in the sea in ancient times. It appears to be part of its back.
-A fossil of an ancient Pokémon that lived in the sea in ancient times. It appears to be part of its back.
+Hóa thạch của Pokémon cổ đại từng sống dưới biển. Nó dường như là một phần lưng.
 A fossil of an ancient Pokémon that flew in the sky in ancient times. It appears to be part of its wing.
-A fossil of an ancient Pokémon that flew in the sky in ancient times. It appears to be part of its wing.
+Hóa thạch của Pokémon cổ đại từng bay trên trời. Nó dường như là một phần cánh.
 A fossil from a prehistoric Pokémon that once lived on the land. It appears to be part of a large jaw.
-A fossil from a prehistoric Pokémon that once lived on the land. It appears to be part of a large jaw.
+Hóa thạch của Pokémon thời tiền sử từng sống trên cạn. Nó dường như là một phần bộ hàm lớn.
 A fossil from a prehistoric Pokémon that once lived on the land. It looks like the impression from a skin sail.
-A fossil from a prehistoric Pokémon that once lived on the land. It looks like the impression from a skin sail.
+Hóa thạch của Pokémon thời tiền sử từng sống trên cạn. Nó giống dấu in của một chiếc vây da lớn.
 The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.
-The fossil of an ancient Pokémon that once soared through the sky. What it looked like is a mystery.
+Hóa thạch của Pokémon cổ đại từng tung cánh trên bầu trời. Hình dạng thật của nó vẫn là bí ẩn.
 The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.
-The fossil of an ancient Pokémon that once lived in the sea. What it looked like is a mystery.
+Hóa thạch của Pokémon cổ đại từng sống dưới biển. Hình dạng thật của nó vẫn là bí ẩn.
 The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.
-The fossil of an ancient Pokémon that once roamed the land. What it looked like is a mystery.
+Hóa thạch của Pokémon cổ đại từng lang thang trên mặt đất. Hình dạng thật của nó vẫn là bí ẩn.
 Though this feather is beautiful, it's just a regular feather and has no effect on Pokémon.
-Though this feather is beautiful, it's just a regular feather and has no effect on Pokémon.
+Tuy rất đẹp, đây chỉ là chiếc lông vũ bình thường, không có tác dụng với Pokémon.
 A small and rare mushroom. It is sought after by collectors.
-A small and rare mushroom. It is sought after by collectors.
+Một cây nấm nhỏ quý hiếm, được giới sưu tầm săn đón.
 A large and rare mushroom. It is sought after by collectors.
-A large and rare mushroom. It is sought after by collectors.
+Một cây nấm lớn quý hiếm, được giới sưu tầm săn đón.
 A rare mushroom which gives off a nice fragrance. A maniac will buy it for a high price.
-A rare mushroom which gives off a nice fragrance. A maniac will buy it for a high price.
+Một loại nấm quý hiếm tỏa hương dễ chịu. Người sưu tầm sẵn sàng mua với giá cao.
 A somewhat-small pearl that sparkles in a pretty silver color. It can be sold cheaply to shops.
-A somewhat-small pearl that sparkles in a pretty silver color. It can be sold cheaply to shops.
+Viên ngọc trai khá nhỏ, lấp lánh ánh bạc tuyệt đẹp. Có thể bán cho cửa hàng với giá thấp.
 A quite-large pearl that sparkles in a pretty silver color. It can be sold at a high price to shops.
-A quite-large pearl that sparkles in a pretty silver color. It can be sold at a high price to shops.
+Viên ngọc trai khá lớn, lấp lánh ánh bạc tuyệt đẹp. Có thể bán cho cửa hàng với giá cao.
 Very large pearls that sparkle in a pretty silver color. A maniac will buy them for a high price.
-Very large pearls that sparkle in a pretty silver color. A maniac will buy them for a high price.
+Những viên ngọc trai cực lớn, lấp lánh ánh bạc tuyệt đẹp. Người sưu tầm sẵn sàng mua với giá cao.
 Lovely, red-colored sand with a loose, silky feel. It can be sold at a high price to shops.
-Lovely, red-colored sand with a loose, silky feel. It can be sold at a high price to shops.
+Loại cát đỏ tuyệt đẹp, tơi mịn như lụa. Có thể bán cho cửa hàng với giá cao.
 A shard of a pretty gem that sparkles in a red color. It can be sold at a high price to shops.
-A shard of a pretty gem that sparkles in a red color. It can be sold at a high price to shops.
+Mảnh đá quý tuyệt đẹp lấp lánh sắc đỏ. Có thể bán cho cửa hàng với giá cao.
 A shard which fell to the ground when a comet approached. A maniac will buy it for a high price.
-A shard which fell to the ground when a comet approached. A maniac will buy it for a high price.
+Mảnh thiên thạch rơi xuống mặt đất khi sao chổi bay đến gần. Người sưu tầm sẵn sàng mua với giá cao.
 A nugget of pure gold that gives off a lustrous gleam. It can be sold at a high price to shops.
-A nugget of pure gold that gives off a lustrous gleam. It can be sold at a high price to shops.
+Một thỏi vàng nguyên chất sáng bóng. Có thể bán cho cửa hàng với giá cao.
 A big nugget of pure gold that gives off a lustrous gleam. A maniac will buy it for a high price.
-A big nugget of pure gold that gives off a lustrous gleam. A maniac will buy it for a high price.
+Một thỏi vàng nguyên chất lớn, sáng bóng. Người sưu tầm sẵn sàng mua với giá cao.
 A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow.
-A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of the rainbow.
+Chiếc vảy hình trái tim tuyệt đẹp và cực kỳ quý hiếm, phát ra ánh sáng cầu vồng dịu nhẹ.
 A very tasty tail of something. It can be sold at a high price to shops.
-A very tasty tail of something. It can be sold at a high price to shops.
+Một chiếc đuôi không rõ nguồn gốc, có hương vị rất ngon. Có thể bán cho cửa hàng với giá cao.
 A bone that is extremely valuable for Pokémon archaeology. It can be sold for a high price to shops.
-A bone that is extremely valuable for Pokémon archaeology. It can be sold for a high price to shops.
+Khúc xương có giá trị đặc biệt đối với khảo cổ học Pokémon. Có thể bán cho cửa hàng với giá cao.
 A copper coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price.
-A copper coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price.
+Đồng xu bằng đồng của một nền văn minh cách đây khoảng 3.000 năm. Người sưu tầm sẵn sàng mua với giá cao.
 A silver coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price.
-A silver coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price.
+Đồng xu bằng bạc của một nền văn minh cách đây khoảng 3.000 năm. Người sưu tầm sẵn sàng mua với giá cao.
 A gold coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price.
-A gold coin used in a civilization about 3,000 years ago. A maniac will buy it for a high price.
+Đồng xu bằng vàng của một nền văn minh cách đây khoảng 3.000 năm. Người sưu tầm sẵn sàng mua với giá cao.
 A vase made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
-A vase made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
+Chiếc bình được chế tác bởi một nền văn minh cách đây khoảng 3.000 năm. Người sưu tầm sẵn sàng mua với giá cao.
 A bracelet made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
-A bracelet made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
+Chiếc vòng tay được chế tác bởi một nền văn minh cách đây khoảng 3.000 năm. Người sưu tầm sẵn sàng mua với giá cao.
 A stone figure made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
-A stone figure made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
+Bức tượng đá được chế tác bởi một nền văn minh cách đây khoảng 3.000 năm. Người sưu tầm sẵn sàng mua với giá cao.
 A crown made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
-A crown made in a civilization about 3,000 years ago. A maniac will buy it for a high price.
+Chiếc vương miện được chế tác bởi một nền văn minh cách đây khoảng 3.000 năm. Người sưu tầm sẵn sàng mua với giá cao.
 A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.
-A fertilizer to be spread on soft soil in regions where Berries are grown. A maniac will buy it for a high price.
+Loại phân bón dùng cho đất mềm ở những nơi trồng Berry. Người sưu tầm sẵn sàng mua với giá cao.
 Pure salt that can be discovered deep inside the Shoal Cave. A maniac will buy it for a high price.
-Pure salt that can be discovered deep inside the Shoal Cave. A maniac will buy it for a high price.
+Muối tinh khiết tìm thấy sâu trong Hang Shoal. Người sưu tầm sẵn sàng mua với giá cao.
 A pretty seashell that can be found deep inside the Shoal Cave. A maniac will buy it for a high price.
-A pretty seashell that can be found deep inside the Shoal Cave. A maniac will buy it for a high price.
+Vỏ sò tuyệt đẹp tìm thấy sâu trong Hang Shoal. Người sưu tầm sẵn sàng mua với giá cao.
 A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.
-A vital item that is needed to keep a stone tower from collapsing. Voices can be heard from it occasionally.
+Vật phẩm thiết yếu giúp một tòa tháp đá không bị sụp đổ. Đôi khi có thể nghe thấy những giọng nói phát ra từ nó.
 A flower nectar obtained at Ula'ula Meadow. It changes the form of certain species of Pokémon.
-A flower nectar obtained at Ula'ula Meadow. It changes the form of certain species of Pokémon.
+Mật hoa thu được tại Đồng cỏ Ula'ula, có thể thay đổi hình dạng của một số loài Pokémon.
 A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.
-A flower nectar obtained at Melemele Meadow. It changes the form of certain species of Pokémon.
+Mật hoa thu được tại Đồng cỏ Melemele, có thể thay đổi hình dạng của một số loài Pokémon.
 A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.
-A flower nectar obtained from shrubs on Royal Avenue. It changes the form of certain species of Pokémon.
+Mật hoa thu được từ các bụi cây trên Đại lộ Royal, có thể thay đổi hình dạng của một số loài Pokémon.
 A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.
-A flower nectar obtained at Poni Meadow. It changes the form of certain species of Pokémon.
+Mật hoa thu được tại Đồng cỏ Poni, có thể thay đổi hình dạng của một số loài Pokémon.
 An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.
-An item to be held by a Pokémon. The holder will float in the air until hit. Once hit, this item will burst.
+Vật phẩm cho Pokémon mang theo. Giúp nó lơ lửng trên không cho đến khi trúng đòn. Vật phẩm sẽ vỡ sau khi bị đánh trúng.
 An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.
-An item to be held by a Pokémon. It casts a tricky glare that lowers the opponent's accuracy.
+Vật phẩm cho Pokémon mang theo. Phát ra ánh sáng kỳ lạ làm giảm độ chính xác của đối thủ.
 A mysterious evolutionary lump. When held, it raises the Defense and Sp. Def if the holder can still evolve.
-A mysterious evolutionary lump. When held, it raises the Defense and Sp. Def if the holder can still evolve.
+Khối vật chất tiến hóa bí ẩn. Tăng Phòng thủ và Phòng thủ Đặc biệt nếu Pokémon mang nó vẫn có thể tiến hóa.
 A very light stone. It reduces the weight of a Pokémon when held.
-A very light stone. It reduces the weight of a Pokémon when held.
+Viên đá cực nhẹ giúp giảm trọng lượng của Pokémon mang theo.
 A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.
-A long, thin, bright-red string to be held by a Pokémon. If the holder becomes infatuated, so does the foe.
+Sợi dây dài, mảnh, màu đỏ tươi. Nếu Pokémon mang nó bị mê hoặc, đối thủ cũng sẽ bị mê hoặc.
 If the holder of this item takes damage, the attacker will also be damaged upon contact.
-If the holder of this item takes damage, the attacker will also be damaged upon contact.
+Nếu Pokémon mang vật phẩm này chịu sát thương, kẻ tấn công tiếp xúc trực tiếp cũng sẽ chịu sát thương.
 An item to be held by a Pokémon. This offensive vest raises Sp. Def but prevents the use of status moves.
-An item to be held by a Pokémon. This offensive vest raises Sp. Def but prevents the use of status moves.
+Áo giáp cho Pokémon mang theo. Tăng Phòng thủ Đặc biệt nhưng ngăn sử dụng các chiêu thức trạng thái.
 An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.
-An item to be held by a Pokémon. They protect the holder from weather-related damage and powder.
+Vật phẩm cho Pokémon mang theo. Bảo vệ khỏi sát thương thời tiết và các chiêu thức dạng bột phấn.
 An item to be held by a Pokémon. They protect the holder from effects caused by making contact.
-An item to be held by a Pokémon. They protect the holder from effects caused by making contact.
+Vật phẩm cho Pokémon mang theo. Bảo vệ khỏi các hiệu ứng phát sinh khi tiếp xúc trực tiếp.
 These boots prevent the effects of traps set on the battlefield.
-These boots prevent the effects of traps set on the battlefield.
+Đôi ủng giúp Pokémon tránh ảnh hưởng từ các loại bẫy đặt trên chiến trường.
 An item to be held by a Pokémon. This sturdy umbrella protects the holder from the effects of rain and sun.
-An item to be held by a Pokémon. This sturdy umbrella protects the holder from the effects of rain and sun.
+Chiếc ô chắc chắn cho Pokémon mang theo, bảo vệ nó khỏi ảnh hưởng của mưa và nắng.
 If the holder is hit by an attack, it will switch with another Pokémon in your party.
-If the holder is hit by an attack, it will switch with another Pokémon in your party.
+Khi Pokémon mang vật phẩm này trúng đòn tấn công, nó sẽ đổi chỗ với Pokémon khác trong đội.
 An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.
-An item to be held by a Pokémon. When the holder's stats are lowered, it will be switched out of battle.
+Vật phẩm cho Pokémon mang theo. Khi chỉ số bị giảm, Pokémon sẽ tự rời trận và được thay thế.
 A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.
-A card with a mysterious power. When the holder is struck by a foe, the attacker is removed from battle.
+Lá bài mang sức mạnh bí ẩn. Khi Pokémon mang nó bị đánh trúng, kẻ tấn công sẽ bị buộc rời trận.
 An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.
-An item to be held by a Pokémon. This discarded carapace lets the holder switch out of battle without fail.
+Chiếc vỏ lột cho Pokémon mang theo, giúp nó luôn có thể rút khỏi trận đấu.
 An item to be held by a Pokémon. It enables the holder to flee from any wild Pokémon without fail.
-An item to be held by a Pokémon. It enables the holder to flee from any wild Pokémon without fail.
+Vật phẩm cho Pokémon mang theo, đảm bảo chạy thoát khỏi mọi Pokémon hoang dã.
 An item to be held by a Pokémon. It is an egg filled with happiness that earns extra Exp. Points in battle.
-An item to be held by a Pokémon. It is an egg filled with happiness that earns extra Exp. Points in battle.
+Quả trứng chứa đầy niềm vui cho Pokémon mang theo, giúp nhận thêm điểm kinh nghiệm trong trận đấu.
 An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.
-An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.
+Vật phẩm cho Pokémon mang theo, giúp nhận một phần điểm kinh nghiệm dù không trực tiếp chiến đấu.
 An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.
-An item to be held by a Pokémon. It doubles a battle's prize money if the holding Pokémon joins in.
+Vật phẩm cho Pokémon mang theo, tăng gấp đôi tiền thưởng nếu Pokémon đó tham gia trận đấu.
 An item to be held by a Pokémon. The comforting chime of this bell calms the holder, making it friendly.
-An item to be held by a Pokémon. The comforting chime of this bell calms the holder, making it friendly.
+Chiếc chuông có âm thanh êm dịu, giúp Pokémon mang theo trở nên thân thiết hơn.
 An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.
-An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the first one in the party.
+Vật phẩm cho Pokémon mang theo, giúp giảm khả năng gặp Pokémon hoang dã nếu nó đứng đầu đội.
 An item to be held by a Pokémon. This headband ups Attack, but allows the use of only one move.
-An item to be held by a Pokémon. This headband ups Attack, but allows the use of only one move.
+Băng đô cho Pokémon mang theo, tăng Tấn công nhưng chỉ cho phép sử dụng một chiêu thức.
 An item to be held by a Pokémon. These curious glasses boost Sp. Atk but allows the use of only one move.
-An item to be held by a Pokémon. These curious glasses boost Sp. Atk but allows the use of only one move.
+Cặp kính kỳ lạ cho Pokémon mang theo, tăng Tấn công Đặc biệt nhưng chỉ cho phép sử dụng một chiêu thức.
 An item to be held by a Pokémon. This scarf boosts Speed but allows the use of only one move.
-An item to be held by a Pokémon. This scarf boosts Speed but allows the use of only one move.
+Khăn choàng cho Pokémon mang theo, tăng Tốc độ nhưng chỉ cho phép sử dụng một chiêu thức.
 A Pokémon held item that extends the duration of the move Sunny Day used by the holder.
-A Pokémon held item that extends the duration of the move Sunny Day used by the holder.
+Vật phẩm giúp kéo dài thời gian hiệu lực của chiêu Sunny Day do Pokémon mang nó sử dụng.
 A Pokémon held item that extends the duration of the move Rain Dance used by the holder.
-A Pokémon held item that extends the duration of the move Rain Dance used by the holder.
+Vật phẩm giúp kéo dài thời gian hiệu lực của chiêu Rain Dance do Pokémon mang nó sử dụng.
 A Pokémon held item that extends the duration of the move Sandstorm used by the holder.
-A Pokémon held item that extends the duration of the move Sandstorm used by the holder.
+Vật phẩm giúp kéo dài thời gian hiệu lực của chiêu Sandstorm do Pokémon mang nó sử dụng.
 A Pokémon held item that extends the duration of the move Hail used by the holder.
-A Pokémon held item that extends the duration of the move Hail used by the holder.
+Vật phẩm giúp kéo dài thời gian hiệu lực của chiêu Hail do Pokémon mang nó sử dụng.
 An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.
-An item to be held by a Pokémon. It extends the duration of the terrain caused by the holder.
+Vật phẩm cho Pokémon mang theo, kéo dài thời gian tồn tại của địa hình do nó tạo ra.
 An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective longer.
-An item to be held by a Pokémon. Protective moves like Light Screen and Reflect will be effective longer.
+Vật phẩm cho Pokémon mang theo, giúp các chiêu bảo vệ như Light Screen và Reflect kéo dài hiệu lực.
 A Pokémon held item that extends the duration of multiturn attacks like Bind and Wrap.
-A Pokémon held item that extends the duration of multiturn attacks like Bind and Wrap.
+Vật phẩm giúp kéo dài thời gian hiệu lực của các chiêu tấn công nhiều lượt như Bind và Wrap.
 A band that increases the power of binding moves when held.
-A band that increases the power of binding moves when held.
+Dải băng giúp tăng sức mạnh của các chiêu thức trói buộc khi Pokémon mang theo.
 A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.
-A Pokémon held item that boosts the power of HP-stealing moves to let the holder recover more HP.
+Vật phẩm giúp tăng lượng HP hồi phục từ các chiêu thức hút HP.
 A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.
-A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.
+Vật phẩm giúp Pokémon hệ Độc hồi HP dần, nhưng gây sát thương cho Pokémon thuộc các hệ khác.
 An item to be held by a Pokémon. The holder's HP is gradually restored during battle.
-An item to be held by a Pokémon. The holder's HP is gradually restored during battle.
+Vật phẩm cho Pokémon mang theo, giúp hồi HP dần trong trận đấu.
 An item to be held by a Pokémon. The holder's HP is restored a little every time it inflicts damage.
-An item to be held by a Pokémon. The holder's HP is restored a little every time it inflicts damage.
+Vật phẩm cho Pokémon mang theo, giúp hồi một ít HP mỗi khi gây sát thương.
 An item to be held by a Pokémon. It snaps the holder out of infatuation. It can be used only once.
-An item to be held by a Pokémon. It snaps the holder out of infatuation. It can be used only once.
+Vật phẩm giúp Pokémon thoát khỏi trạng thái mê hoặc. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. It restores any lowered stat in battle. It can be used only once.
-An item to be held by a Pokémon. It restores any lowered stat in battle. It can be used only once.
+Vật phẩm khôi phục các chỉ số bị giảm trong trận đấu. Chỉ sử dụng được một lần.
 A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.
-A single-use item to be held by a Pokémon. It allows the immediate use of a move that charges up first.
+Vật phẩm dùng một lần, cho phép Pokémon lập tức tung chiêu vốn cần một lượt tích tụ năng lượng.
 A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.
-A consumable bulb. If the holder is hit by a Water-type move, its Sp. Atk will rise.
+Bóng đèn dùng một lần, tăng Tấn công Đặc biệt khi Pokémon mang nó trúng chiêu hệ Nước.
 A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.
-A consumable battery. If the holder is hit by an Electric-type move, its Attack will rise.
+Pin dùng một lần, tăng Tấn công khi Pokémon mang nó trúng chiêu hệ Điện.
 An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack. It can only be used once.
-An item to be held by a Pokémon. It boosts Sp. Def if hit by a Water-type attack. It can only be used once.
+Vật phẩm tăng Phòng thủ Đặc biệt khi Pokémon trúng chiêu hệ Nước. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack. It can only be used once.
-An item to be held by a Pokémon. It boosts Attack if hit by an Ice-type attack. It can only be used once.
+Vật phẩm tăng Tấn công khi Pokémon trúng chiêu hệ Băng. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.
-An item to be held by a Pokémon. The holder's Attack and Sp. Atk sharply increase if hit by a move it's weak to.
+Vật phẩm giúp tăng mạnh Tấn công và Tấn công Đặc biệt khi Pokémon trúng chiêu siêu hiệu quả.
 Raises Speed sharply when a Pokémon misses with a move because of accuracy.
-Raises Speed sharply when a Pokémon misses with a move because of accuracy.
+Tăng mạnh Tốc độ khi chiêu thức của Pokémon đánh trượt do độ chính xác.
 Raises Sp. Atk when a Pokémon uses a sound-based move.
-Raises Sp. Atk when a Pokémon uses a sound-based move.
+Tăng Tấn công Đặc biệt khi Pokémon sử dụng chiêu thức âm thanh.
 An item to be held by a Pokémon. It boosts Speed when intimidated. It can be used only once.
-An item to be held by a Pokémon. It boosts Speed when intimidated. It can be used only once.
+Vật phẩm tăng Tốc độ khi Pokémon bị uy hiếp. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. Lowers Speed when Trick Room takes effect.
-An item to be held by a Pokémon. Lowers Speed when Trick Room takes effect.
+Vật phẩm làm giảm Tốc độ của Pokémon khi Trick Room có hiệu lực.
 An item to be held by a Pokémon. It boosts Defense on Electric Terrain. It can only be used once.
-An item to be held by a Pokémon. It boosts Defense on Electric Terrain. It can only be used once.
+Vật phẩm tăng Phòng thủ khi Pokémon ở trên Electric Terrain. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. It boosts Defense on Grassy Terrain. It can only be used once.
-An item to be held by a Pokémon. It boosts Defense on Grassy Terrain. It can only be used once.
+Vật phẩm tăng Phòng thủ khi Pokémon ở trên Grassy Terrain. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. It boosts Sp. Def on Misty Terrain. It can only be used once.
-An item to be held by a Pokémon. It boosts Sp. Def on Misty Terrain. It can only be used once.
+Vật phẩm tăng Phòng thủ Đặc biệt khi Pokémon ở trên Misty Terrain. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain. It can only be used once.
-An item to be held by a Pokémon. It boosts Sp. Def on Psychic Terrain. It can only be used once.
+Vật phẩm tăng Phòng thủ Đặc biệt khi Pokémon ở trên Psychic Terrain. Chỉ sử dụng được một lần.
 An item to be held by a Pokémon. It boosts the power of moves, but at the cost of some HP on each hit.
-An item to be held by a Pokémon. It boosts the power of moves, but at the cost of some HP on each hit.
+Vật phẩm cho Pokémon mang theo, tăng sức mạnh chiêu thức nhưng tiêu hao một ít HP mỗi khi đánh trúng.
 An item to be held by a Pokémon. It is a well-worn belt that slightly boosts the power of supereffective moves.
-An item to be held by a Pokémon. It is a well-worn belt that slightly boosts the power of supereffective moves.
+Chiếc đai cũ cho Pokémon mang theo, tăng nhẹ sức mạnh các chiêu thức siêu hiệu quả.
 A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.
-A Pokémon held item that boosts a move used consecutively. Its effect is reset if another move is used.
+Vật phẩm tăng dần sức mạnh của chiêu thức được sử dụng liên tiếp. Hiệu ứng được đặt lại khi dùng chiêu khác.
 An item to be held by a Pokémon. It is a headband that slightly boosts the power of physical moves.
-An item to be held by a Pokémon. It is a headband that slightly boosts the power of physical moves.
+Băng đô cho Pokémon mang theo, tăng nhẹ sức mạnh các chiêu thức vật lý.
 An item to be held by a Pokémon. It is a thick pair of glasses that slightly boosts the power of special moves.
-An item to be held by a Pokémon. It is a thick pair of glasses that slightly boosts the power of special moves.
+Cặp kính dày cho Pokémon mang theo, tăng nhẹ sức mạnh các chiêu thức đặc biệt.
 An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder's critical-hit ratio.
-An item to be held by a Pokémon. It is a sharply hooked claw that ups the holder's critical-hit ratio.
+Chiếc móng vuốt cong sắc nhọn cho Pokémon mang theo, tăng tỷ lệ chí mạng.
 An item to be held by a Pokémon. It is a lens that boosts the holder's critical-hit ratio.
-An item to be held by a Pokémon. It is a lens that boosts the holder's critical-hit ratio.
+Thấu kính cho Pokémon mang theo, tăng tỷ lệ chí mạng.
 An item to be held by a Pokémon. It is a magnifying lens that slightly boosts the accuracy of moves.
-An item to be held by a Pokémon. It is a magnifying lens that slightly boosts the accuracy of moves.
+Kính lúp cho Pokémon mang theo, tăng nhẹ độ chính xác của chiêu thức.
 An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be boosted.
-An item to be held by a Pokémon. If the holder moves after its target, its accuracy will be boosted.
+Vật phẩm cho Pokémon mang theo, tăng độ chính xác nếu nó hành động sau mục tiêu.
 An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.
-An item to be held by a Pokémon. When the holder inflicts damage, the target may flinch.
+Vật phẩm cho Pokémon mang theo, có thể khiến mục tiêu chùn bước khi chịu sát thương.
 An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.
-An item to be held by a Pokémon. It may make foes and allies flinch when the holder inflicts damage.
+Vật phẩm cho Pokémon mang theo, có thể khiến cả đối thủ lẫn đồng đội chùn bước khi chịu sát thương từ nó.
 An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.
-An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.
+Vật phẩm cực kỳ nặng, khiến Pokémon mang nó di chuyển chậm hơn bình thường.
 An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally.
-An item to be held by a Pokémon. A light, sharp claw that lets the bearer move first occasionally.
+Chiếc móng vuốt nhẹ và sắc bén, đôi khi giúp Pokémon mang nó hành động trước.
 An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.
-An item to be held by a Pokémon. The holder may endure a potential KO attack, leaving it with just 1 HP.
+Vật phẩm giúp Pokémon có cơ hội trụ lại với 1 HP khi trúng đòn đáng lẽ khiến nó bị hạ gục.
 An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.
-An item to be held by a Pokémon. If it has full HP, the holder will endure one potential KO attack, leaving 1 HP.
+Vật phẩm giúp Pokémon đang đầy HP chịu được một đòn chí tử và trụ lại với 1 HP.
 An item to be held by a Pokémon. It is a bizarre orb that inflicts a burn on the holder in battle.
-An item to be held by a Pokémon. It is a bizarre orb that inflicts a burn on the holder in battle.
+Quả cầu kỳ lạ cho Pokémon mang theo, khiến nó bị bỏng trong trận đấu.
 An item to be held by a Pokémon. It is a bizarre orb that badly poisons the holder in battle.
-An item to be held by a Pokémon. It is a bizarre orb that badly poisons the holder in battle.
+Quả cầu kỳ lạ cho Pokémon mang theo, khiến nó bị nhiễm độc nặng trong trận đấu.
 A held item that damages the holder on every turn. It may latch on to Pokémon that touch the holder.
-A held item that damages the holder on every turn. It may latch on to Pokémon that touch the holder.
+Vật phẩm gây sát thương cho Pokémon mang nó mỗi lượt. Nó có thể bám sang Pokémon tiếp xúc trực tiếp.
 A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.
-A Pokémon held item that cuts Speed. It makes Flying-type and levitating holders susceptible to Ground moves.
+Vật phẩm làm giảm Tốc độ, khiến Pokémon hệ Bay và Pokémon lơ lửng có thể trúng chiêu hệ Đất.
 Moves that would otherwise have no effect will land on the Pokémon that holds it.
-Moves that would otherwise have no effect will land on the Pokémon that holds it.
+Những chiêu thức vốn không có tác dụng vẫn có thể đánh trúng Pokémon mang vật phẩm này.
 An item to be held by a Pokémon. It is a stiff, heavy brace that promotes strong growth but lowers Speed.
-An item to be held by a Pokémon. It is a stiff, heavy brace that promotes strong growth but lowers Speed.
+Chiếc đai cứng và nặng giúp Pokémon phát triển mạnh hơn nhưng làm giảm Tốc độ.
 A Pokémon held item that promotes HP gain on leveling, but reduces the Speed stat.
-A Pokémon held item that promotes HP gain on leveling, but reduces the Speed stat.
+Vật phẩm tăng lượng HP nhận được khi lên cấp, nhưng làm giảm Tốc độ trong trận đấu.
 A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.
-A Pokémon held item that promotes Attack gain on leveling, but reduces the Speed stat.
+Vật phẩm tăng chỉ số Tấn công nhận được khi lên cấp, nhưng làm giảm Tốc độ trong trận đấu.
 A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.
-A Pokémon held item that promotes Defense gain on leveling, but reduces the Speed stat.
+Vật phẩm tăng chỉ số Phòng thủ nhận được khi lên cấp, nhưng làm giảm Tốc độ trong trận đấu.
 A Pokémon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat.
-A Pokémon held item that promotes Sp. Atk gain on leveling, but reduces the Speed stat.
+Vật phẩm tăng chỉ số Tấn công Đặc biệt nhận được khi lên cấp, nhưng làm giảm Tốc độ trong trận đấu.
 A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.
-A Pokémon held item that promotes Sp. Def gain on leveling, but reduces the Speed stat.
+Vật phẩm tăng chỉ số Phòng thủ Đặc biệt nhận được khi lên cấp, nhưng làm giảm Tốc độ trong trận đấu.
 A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.
-A Pokémon held item that promotes Speed gain on leveling, but reduces the Speed stat.
+Vật phẩm tăng chỉ số Tốc độ nhận được khi lên cấp, nhưng làm giảm Tốc độ trong trận đấu.
 An item to be held by a Pokémon. The tricky aroma of this incense may make attacks miss the holder.
-An item to be held by a Pokémon. The tricky aroma of this incense may make attacks miss the holder.
+Loại hương cho Pokémon mang theo, có mùi kỳ lạ khiến đòn tấn công của đối thủ dễ đánh trượt.
 An item to be held by a Pokémon. This exotic-smelling incense makes the holder bloated and slow moving.
-An item to be held by a Pokémon. This exotic-smelling incense makes the holder bloated and slow moving.
+Loại hương có mùi đặc biệt khiến Pokémon mang nó trở nên nặng nề và hành động chậm hơn.
 An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.
-An item to be held by a Pokémon. It has a curious aroma that boosts the power of Water-type moves.
+Loại hương có mùi thơm kỳ lạ, tăng sức mạnh các chiêu thức hệ Nước.
 An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Grass-type moves.
-An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Grass-type moves.
+Loại hương có mùi đặc biệt, tăng sức mạnh các chiêu thức hệ Cỏ.
 An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Psychic-type moves.
-An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Psychic-type moves.
+Loại hương có mùi đặc biệt, tăng sức mạnh các chiêu thức hệ Siêu linh.
 An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Rock-type moves.
-An item to be held by a Pokémon. This exotic-smelling incense boosts the power of Rock-type moves.
+Loại hương có mùi đặc biệt, tăng sức mạnh các chiêu thức hệ Đá.
 An item to be held by a Pokémon. It is a combustible fuel that boosts the power of Fire-type moves.
-An item to be held by a Pokémon. It is a combustible fuel that boosts the power of Fire-type moves.
+Loại nhiên liệu dễ cháy cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Lửa.
 An item to be held by a Pokémon. It is a teardrop-shaped gem that ups the power of Water-type moves.
-An item to be held by a Pokémon. It is a teardrop-shaped gem that ups the power of Water-type moves.
+Viên ngọc hình giọt nước cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Nước.
 An item to be held by a Pokémon. It is a powerful magnet that boosts the power of Electric-type moves.
-An item to be held by a Pokémon. It is a powerful magnet that boosts the power of Electric-type moves.
+Nam châm cực mạnh cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Điện.
 An item to be held by a Pokémon. It is a seed imbued with life that ups the power of Grass-type moves.
-An item to be held by a Pokémon. It is a seed imbued with life that ups the power of Grass-type moves.
+Hạt giống tràn đầy sức sống cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Cỏ.
 An item to be held by a Pokémon. It is a piece of ice that repels heat and boosts Ice-type moves.
-An item to be held by a Pokémon. It is a piece of ice that repels heat and boosts Ice-type moves.
+Mảnh băng có khả năng chống nhiệt, tăng sức mạnh các chiêu thức hệ Băng.
 An item to be held by a Pokémon. It is a belt that boosts determination and Fighting-type moves.
-An item to be held by a Pokémon. It is a belt that boosts determination and Fighting-type moves.
+Chiếc đai giúp tăng ý chí chiến đấu và sức mạnh các chiêu thức hệ Giác đấu.
 An item to be held by a Pokémon. It is a small, poisonous barb that ups the power of Poison-type moves.
-An item to be held by a Pokémon. It is a small, poisonous barb that ups the power of Poison-type moves.
+Chiếc gai độc nhỏ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Độc.
 An item to be held by a Pokémon. It is a loose, silky sand that boosts the power of Ground-type moves.
-An item to be held by a Pokémon. It is a loose, silky sand that boosts the power of Ground-type moves.
+Loại cát tơi mịn như lụa, tăng sức mạnh các chiêu thức hệ Đất.
 An item to be held by a Pokémon. It is a long, sharp beak that boosts the power of Flying-type moves.
-An item to be held by a Pokémon. It is a long, sharp beak that boosts the power of Flying-type moves.
+Chiếc mỏ dài và sắc nhọn, tăng sức mạnh các chiêu thức hệ Bay.
 An item to be held by a Pokémon. It is a spoon imbued with telekinetic power that boosts Psychic-type moves.
-An item to be held by a Pokémon. It is a spoon imbued with telekinetic power that boosts Psychic-type moves.
+Chiếc thìa chứa sức mạnh ngoại cảm, tăng sức mạnh các chiêu thức hệ Siêu linh.
 An item to be held by a Pokémon. It is a shiny, silver powder that ups the power of Bug-type moves.
-An item to be held by a Pokémon. It is a shiny, silver powder that ups the power of Bug-type moves.
+Loại bột bạc lấp lánh cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Bọ.
 An item to be held by a Pokémon. It is an unbreakable stone that ups the power of Rock-type moves.
-An item to be held by a Pokémon. It is an unbreakable stone that ups the power of Rock-type moves.
+Viên đá cực kỳ cứng chắc, tăng sức mạnh các chiêu thức hệ Đá.
 An item to be held by a Pokémon. It is a sinister, eerie tag that boosts the power of Ghost-type moves.
-An item to be held by a Pokémon. It is a sinister, eerie tag that boosts the power of Ghost-type moves.
+Lá bùa tà dị, tăng sức mạnh các chiêu thức hệ Ma.
 An item to be held by a Pokémon. It is a hard and sharp fang that ups the power of Dragon-type moves.
-An item to be held by a Pokémon. It is a hard and sharp fang that ups the power of Dragon-type moves.
+Chiếc nanh cứng và sắc nhọn, tăng sức mạnh các chiêu thức hệ Rồng.
 An item to be held by a Pokémon. It is a shady-looking pair of glasses that boosts Dark-type moves.
-An item to be held by a Pokémon. It is a shady-looking pair of glasses that boosts Dark-type moves.
+Cặp kính đen bí hiểm, tăng sức mạnh các chiêu thức hệ Bóng tối.
 An item to be held by a Pokémon. It is a special metallic film that ups the power of Steel-type moves.
-An item to be held by a Pokémon. It is a special metallic film that ups the power of Steel-type moves.
+Lớp phủ kim loại đặc biệt, tăng sức mạnh các chiêu thức hệ Thép.
 An item to be held by a Pokémon. It is a sumptuous scarf that boosts the power of Normal-type moves.
-An item to be held by a Pokémon. It is a sumptuous scarf that boosts the power of Normal-type moves.
+Chiếc khăn choàng sang trọng, tăng sức mạnh các chiêu thức hệ Thường.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fire-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fire-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Lửa.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Water-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Water-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Nước.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Electric-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Electric-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Điện.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Grass-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Grass-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Cỏ.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ice-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ice-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Băng.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fighting-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fighting-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Giác đấu.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Poison-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Poison-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Độc.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ground-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ground-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Đất.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Flying-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Flying-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Bay.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Psychic-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Psychic-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Siêu linh.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Bug-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Bug-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Bọ.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Rock-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Rock-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Đá.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ghost-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Ghost-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Ma.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dragon-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dragon-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Rồng.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dark-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Dark-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Bóng tối.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Steel-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Steel-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Thép.
 An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fairy-type moves.
-An item to be held by a Pokémon. It is a stone tablet that boosts the power of Fairy-type moves.
+Phiến đá cổ cho Pokémon mang theo, tăng sức mạnh các chiêu thức hệ Tiên.
 A gem with an essence of fire. When held, it strengthens the power of a Fire-type move only once.
-A gem with an essence of fire. When held, it strengthens the power of a Fire-type move only once.
+Viên ngọc chứa tinh hoa của lửa, tăng sức mạnh của một chiêu thức hệ Lửa khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of water. When held, it strengthens the power of a Water-type move only once.
-A gem with an essence of water. When held, it strengthens the power of a Water-type move only once.
+Viên ngọc chứa tinh hoa của nước, tăng sức mạnh của một chiêu thức hệ Nước khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of electricity. When held, it strengthens the power of an Electric-type move only once.
-A gem with an essence of electricity. When held, it strengthens the power of an Electric-type move only once.
+Viên ngọc chứa tinh hoa của điện, tăng sức mạnh của một chiêu thức hệ Điện khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of nature. When held, it strengthens the power of a Grass-type move only once.
-A gem with an essence of nature. When held, it strengthens the power of a Grass-type move only once.
+Viên ngọc chứa tinh hoa thiên nhiên, tăng sức mạnh của một chiêu thức hệ Cỏ khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of ice. When held, it strengthens the power of an Ice-type move only once.
-A gem with an essence of ice. When held, it strengthens the power of an Ice-type move only once.
+Viên ngọc chứa tinh hoa của băng, tăng sức mạnh của một chiêu thức hệ Băng khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of combat. When held, it strengthens the power of a Fighting-type move only once.
-A gem with an essence of combat. When held, it strengthens the power of a Fighting-type move only once.
+Viên ngọc chứa tinh hoa chiến đấu, tăng sức mạnh của một chiêu thức hệ Giác đấu khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of poison. When held, it strengthens the power of a Poison-type move only once.
-A gem with an essence of poison. When held, it strengthens the power of a Poison-type move only once.
+Viên ngọc chứa tinh hoa của độc tố, tăng sức mạnh của một chiêu thức hệ Độc khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of land. When held, it strengthens the power of a Ground-type move only once.
-A gem with an essence of land. When held, it strengthens the power of a Ground-type move only once.
+Viên ngọc chứa tinh hoa của đất, tăng sức mạnh của một chiêu thức hệ Đất khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of air. When held, it strengthens the power of a Flying-type move only once.
-A gem with an essence of air. When held, it strengthens the power of a Flying-type move only once.
+Viên ngọc chứa tinh hoa của không khí, tăng sức mạnh của một chiêu thức hệ Bay khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of the mind. When held, it strengthens the power of a Psychic-type move only once.
-A gem with an essence of the mind. When held, it strengthens the power of a Psychic-type move only once.
+Viên ngọc chứa tinh hoa tâm trí, tăng sức mạnh của một chiêu thức hệ Siêu linh khi mang theo. Chỉ dùng được một lần.
 A gem with an insect-like essence. When held, it strengthens the power of a Bug-type move only once.
-A gem with an insect-like essence. When held, it strengthens the power of a Bug-type move only once.
+Viên ngọc chứa tinh hoa côn trùng, tăng sức mạnh của một chiêu thức hệ Bọ khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of rock. When held, it strengthens the power of a Rock-type move only once.
-A gem with an essence of rock. When held, it strengthens the power of a Rock-type move only once.
+Viên ngọc chứa tinh hoa của đá, tăng sức mạnh của một chiêu thức hệ Đá khi mang theo. Chỉ dùng được một lần.
 A gem with a spectral essence. When held, it strengthens the power of a Ghost-type move only once.
-A gem with a spectral essence. When held, it strengthens the power of a Ghost-type move only once.
+Viên ngọc chứa tinh hoa linh hồn, tăng sức mạnh của một chiêu thức hệ Ma khi mang theo. Chỉ dùng được một lần.
 A gem with a draconic essence. When held, it strengthens the power of a Dragon-type move only once.
-A gem with a draconic essence. When held, it strengthens the power of a Dragon-type move only once.
+Viên ngọc chứa tinh hoa rồng, tăng sức mạnh của một chiêu thức hệ Rồng khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of darkness. When held, it strengthens the power of a Dark-type move only once.
-A gem with an essence of darkness. When held, it strengthens the power of a Dark-type move only once.
+Viên ngọc chứa tinh hoa bóng tối, tăng sức mạnh của một chiêu thức hệ Bóng tối khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of steel. When held, it strengthens the power of a Steel-type move only once.
-A gem with an essence of steel. When held, it strengthens the power of a Steel-type move only once.
+Viên ngọc chứa tinh hoa thép, tăng sức mạnh của một chiêu thức hệ Thép khi mang theo. Chỉ dùng được một lần.
 A gem with an essence of the fey. When held, it strengthens the power of a Fairy-type move only once.
-A gem with an essence of the fey. When held, it strengthens the power of a Fairy-type move only once.
+Viên ngọc chứa tinh hoa tiên giới, tăng sức mạnh của một chiêu thức hệ Tiên khi mang theo. Chỉ dùng được một lần.
 A gem with an ordinary essence. When held, it strengthens the power of a Normal-type move only once.
-A gem with an ordinary essence. When held, it strengthens the power of a Normal-type move only once.
+Viên ngọc chứa tinh hoa thông thường, tăng sức mạnh của một chiêu thức hệ Thường khi mang theo. Chỉ dùng được một lần.
 An item to be held by Pikachu. It is a puzzling orb that raises the Attack and Sp. Atk stat.
-An item to be held by Pikachu. It is a puzzling orb that raises the Attack and Sp. Atk stat.
+Quả cầu bí ẩn dành cho Pikachu mang theo, giúp tăng Tấn công và Tấn công Đặc biệt.
 An item to be held by Chansey. It is a pair of gloves that boosts Chansey's critical-hit ratio.
-An item to be held by Chansey. It is a pair of gloves that boosts Chansey's critical-hit ratio.
+Đôi găng tay dành cho Chansey mang theo, giúp tăng tỷ lệ chí mạng.
 An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat.
-An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat.
+Loại bột kỳ lạ dành cho Ditto mang theo, cực mịn nhưng cứng chắc, giúp tăng Phòng thủ.
 An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Speed stat.
-An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Speed stat.
+Loại bột kỳ lạ dành cho Ditto mang theo, cực mịn nhưng cứng chắc, giúp tăng Tốc độ.
 An item to be held by Cubone or Marowak. It is a hard bone of some sort that boosts the Attack stat.
-An item to be held by Cubone or Marowak. It is a hard bone of some sort that boosts the Attack stat.
+Khúc xương cứng dành cho Cubone hoặc Marowak mang theo, giúp tăng Tấn công.
 An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.
-An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.
+Cọng hành dài và cứng dành cho Farfetch'd mang theo, giúp tăng tỷ lệ chí mạng.
 A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.
-A wondrous orb to be held by either Latios or Latias. It raises the power of Psychic- and Dragon-type moves.
+Quả cầu kỳ diệu dành cho Latios hoặc Latias mang theo, tăng sức mạnh các chiêu thức hệ Siêu linh và Rồng.
 An item to be held by Clamperl. A fang that gleams a sharp silver, it raises the Sp. Atk stat.
-An item to be held by Clamperl. A fang that gleams a sharp silver, it raises the Sp. Atk stat.
+Chiếc nanh ánh bạc sắc lạnh dành cho Clamperl mang theo, giúp tăng Tấn công Đặc biệt.
 An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.
-An item to be held by Clamperl. A scale that shines a faint pink, it raises the Sp. Def stat.
+Chiếc vảy ánh hồng nhạt dành cho Clamperl mang theo, giúp tăng Phòng thủ Đặc biệt.
 A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.
-A brightly gleaming orb to be held by Dialga. It boosts the power of Dragon- and Steel-type moves.
+Quả cầu sáng rực dành cho Dialga mang theo, tăng sức mạnh các chiêu thức hệ Rồng và Thép.
 A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.
-A beautifully glowing orb to be held by Palkia. It boosts the power of Dragon- and Water-type moves.
+Quả cầu phát sáng tuyệt đẹp dành cho Palkia mang theo, tăng sức mạnh các chiêu thức hệ Rồng và Nước.
 A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.
-A glowing orb to be held by Giratina. It boosts the power of Dragon- and Ghost-type moves.
+Quả cầu phát sáng dành cho Giratina mang theo, tăng sức mạnh các chiêu thức hệ Rồng và Ma.
 It is said that a hero used this sword to halt a disaster in ancient times. But it's grown rusty and worn.
-It is said that a hero used this sword to halt a disaster in ancient times. But it's grown rusty and worn.
+Tương truyền, một vị anh hùng từng dùng thanh kiếm này ngăn chặn thảm họa thời cổ đại. Giờ đây, nó đã hoen gỉ và cũ mòn.
 It is said that a hero used this shield to halt a disaster in ancient times. But it's grown rusty and worn.
-It is said that a hero used this shield to halt a disaster in ancient times. But it's grown rusty and worn.
+Tương truyền, một vị anh hùng từng dùng chiếc khiên này ngăn chặn thảm họa thời cổ đại. Giờ đây, nó đã hoen gỉ và cũ mòn.
 A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.
-A cassette to be held by Genesect. It changes Techno Blast to a Water-type move.
+Băng dữ liệu dành cho Genesect mang theo, chuyển chiêu Techno Blast thành hệ Nước.
 A cassette to be held by Genesect. It changes Techno Blast to an Electric-type move.
-A cassette to be held by Genesect. It changes Techno Blast to an Electric-type move.
+Băng dữ liệu dành cho Genesect mang theo, chuyển chiêu Techno Blast thành hệ Điện.
 A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.
-A cassette to be held by Genesect. It changes Techno Blast to a Fire-type move.
+Băng dữ liệu dành cho Genesect mang theo, chuyển chiêu Techno Blast thành hệ Lửa.
 A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.
-A cassette to be held by Genesect. It changes Techno Blast to an Ice-type move.
+Băng dữ liệu dành cho Genesect mang theo, chuyển chiêu Techno Blast thành hệ Băng.
 A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Fire-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Lửa, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Water-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Water-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Nước, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Electric-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Electric-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Điện, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Grass-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Grass-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Cỏ, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Ice-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Ice-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Băng, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Fighting-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Fighting-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Giác đấu, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Poison-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Poison-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Độc, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Ground-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Ground-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Đất, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Flying-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Flying-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Bay, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Psychic-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Psychic-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Siêu linh, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Bug-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Bug-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Bọ, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Rock-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Rock-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Đá, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Ghost-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Ghost-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Ma, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Dragon-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Dragon-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Rồng, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Dark-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Dark-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Bóng tối, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Steel-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Steel-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Thép, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 A memory disc containing Fairy-type data. It changes the holder's type if held by a certain Pokémon.
-A memory disc containing Fairy-type data. It changes the holder's type if held by a certain Pokémon.
+Đĩa nhớ chứa dữ liệu hệ Tiên, có thể thay đổi hệ khi được một Pokémon nhất định mang theo.
 An item to be held by a Pokémon. The Pokémon holding this peculiar stone is prevented from evolving.
-An item to be held by a Pokémon. The Pokémon holding this peculiar stone is prevented from evolving.
+Viên đá kỳ lạ ngăn Pokémon mang nó tiến hóa.
 A thick and tough scale. Dragon-type Pokémon may be holding this item when caught.
-A thick and tough scale. Dragon-type Pokémon may be holding this item when caught.
+Chiếc vảy dày và cứng chắc. Pokémon hệ Rồng có thể mang vật phẩm này khi bị bắt.
 A transparent device filled with all sorts of data. It was produced by Silph Co.
-A transparent device filled with all sorts of data. It was produced by Silph Co.
+Thiết bị trong suốt chứa đủ loại dữ liệu, được sản xuất bởi Công ty Silph.
 A transparent device overflowing with dubious data. Its producer is unknown.
-A transparent device overflowing with dubious data.  Its producer is unknown.
+Thiết bị trong suốt chứa đầy dữ liệu đáng ngờ. Không rõ ai đã chế tạo nó.
 A protective item of some sort. It is extremely stiff and heavy. It is loved by a certain Pokémon.
-A protective item of some sort. It is extremely stiff and heavy. It is loved by a certain Pokémon.
+Một loại vật phẩm bảo vệ cực kỳ cứng và nặng, được một loài Pokémon đặc biệt yêu thích.
 A box packed with a tremendous amount of electric energy. It is loved by a certain Pokémon.
-A box packed with a tremendous amount of electric energy. It is loved by a certain Pokémon.
+Chiếc hộp chứa lượng năng lượng Điện khổng lồ, được một loài Pokémon đặc biệt yêu thích.
 A box packed with a tremendous amount of magma energy. It is loved by a certain Pokémon.
-A box packed with a tremendous amount of magma energy. It is loved by a certain Pokémon.
+Chiếc hộp chứa lượng năng lượng dung nham khổng lồ, được một loài Pokémon đặc biệt yêu thích.
 A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.
-A cloth imbued with horrifyingly strong spiritual energy. It is loved by a certain Pokémon.
+Tấm vải thấm đẫm linh lực mạnh đến đáng sợ, được một loài Pokémon đặc biệt yêu thích.
 A mysterious scale that evolves certain Pokémon. It shines in rainbow colors.
-A mysterious scale that evolves certain Pokémon. It shines in rainbow colors.
+Chiếc vảy bí ẩn giúp một số loài Pokémon tiến hóa. Nó lấp lánh sắc cầu vồng.
 A peculiar stone that makes certain species of Pokémon evolve. It is shaped like an egg.
-A peculiar stone that makes certain species of Pokémon evolve. It is shaped like an egg.
+Viên đá kỳ lạ giúp một số loài Pokémon tiến hóa. Nó có hình quả trứng.
 A soft and sweet treat made of fluffy, puffy and whirled cream. It's loved by a certain Pokémon.
-A soft and sweet treat made of fluffy, puffy and whirled cream. It's loved by a certain Pokémon.
+Món bánh ngọt mềm xốp làm từ kem đánh bông, được một loài Pokémon đặc biệt yêu thích.
 A sachet filled with slightly overwhelming fragrant perfumes. Yet it's loved by a certain Pokémon.
-A sachet filled with slightly overwhelming fragrant perfumes. Yet it's loved by a certain Pokémon.
+Túi hương chứa nước hoa có mùi nồng nàn, được một loài Pokémon đặc biệt yêu thích.
 A strawberry-shaped sweet. When a Milcery holds this, it will spin around happily.
-A strawberry-shaped sweet. When a Milcery holds this, it will spin around happily.
+Viên kẹo hình quả dâu tây. Khi mang nó, Milcery sẽ vui vẻ xoay tròn.
 A heart-shaped sweet. When a Milcery holds this, it spins around happily.
-A heart-shaped sweet. When a Milcery holds this, it spins around happily.
+Viên kẹo hình trái tim. Khi mang nó, Milcery sẽ vui vẻ xoay tròn.
 A berry-shaped sweet. When a Milcery holds this, it spins around happily.
-A berry-shaped sweet. When a Milcery holds this, it spins around happily.
+Viên kẹo hình quả Berry. Khi mang nó, Milcery sẽ vui vẻ xoay tròn.
 A clover-shaped sweet. When a Milcery holds this, it spins around happily.
-A clover-shaped sweet. When a Milcery holds this, it spins around happily.
+Viên kẹo hình cỏ ba lá. Khi mang nó, Milcery sẽ vui vẻ xoay tròn.
 A flower-shaped sweet. When a Milcery holds this, it spins around happily.
-A flower-shaped sweet. When a Milcery holds this, it spins around happily.
+Viên kẹo hình bông hoa. Khi mang nó, Milcery sẽ vui vẻ xoay tròn.
 A star-shaped sweet. When a Milcery holds this, it spins around happily.
-A star-shaped sweet. When a Milcery holds this, it spins around happily.
+Viên kẹo hình ngôi sao. Khi mang nó, Milcery sẽ vui vẻ xoay tròn.
 A ribbon-shaped sweet. When a Milcery holds this, it spins around happily.
-A ribbon-shaped sweet. When a Milcery holds this, it spins around happily.
+Viên kẹo hình dải ruy băng. Khi mang nó, Milcery sẽ vui vẻ xoay tròn.
 One of a variety of mysterious Mega Stones. Have Venusaur hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Venusaur hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Venusaur mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Charizard hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Charizard mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Blastoise hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Blastoise hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Blastoise mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Beedrill hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Beedrill hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Beedrill mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Pidgeot hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Pidgeot hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Pidgeot mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Alakazam hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Alakazam hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Alakazam mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Slowbro hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Slowbro hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Slowbro mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Gengar hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Gengar hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Gengar mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Kangaskhan hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Kangaskhan hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Kangaskhan mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Pinsir hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Pinsir hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Pinsir mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Gyarados hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Gyarados hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Gyarados mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Aerodactyl hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Aerodactyl hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Aerodactyl mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Mewtwo hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Mewtwo mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Ampharos hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Ampharos hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Ampharos mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Steelix hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Steelix hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Steelix mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Scizor hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Scizor hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Scizor mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Heracross hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Heracross hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Heracross mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Houndoom hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Houndoom hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Houndoom mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Tyranitar hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Tyranitar hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Tyranitar mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Sceptile hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Sceptile hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Sceptile mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Blaziken hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Blaziken hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Blaziken mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Swampert hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Swampert hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Swampert mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Gardevoir hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Gardevoir hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Gardevoir mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Sableye hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Sableye hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Sableye mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Mawile hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Mawile hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Mawile mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Aggron hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Aggron hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Aggron mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Medicham hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Medicham hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Medicham mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Manectric hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Manectric hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Manectric mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Sharpedo hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Sharpedo hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Sharpedo mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Camerupt hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Camerupt hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Camerupt mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Altaria hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Altaria hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Altaria mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Banette hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Banette hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Banette mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Absol hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Absol hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Absol mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Glalie hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Glalie hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Glalie mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Salamence hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Salamence hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Salamence mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Metagross hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Metagross hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Metagross mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Latias hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Latias hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Latias mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Latios hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Latios hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Latios mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Lopunny hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Lopunny hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Lopunny mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Garchomp hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Garchomp hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Garchomp mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Lucario hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Lucario hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Lucario mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Abomasnow hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Abomasnow hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Abomasnow mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Gallade hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Gallade hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Gallade mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Audino hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Audino hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Audino mang theo để có thể Mega Tiến hóa.
 One of a variety of mysterious Mega Stones. Have Diancie hold it, and it will be able to Mega Evolve.
-One of a variety of mysterious Mega Stones. Have Diancie hold it, and it will be able to Mega Evolve.
+Một trong những viên Mega Stone bí ẩn. Cho Diancie mang theo để có thể Mega Tiến hóa.
 A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.
-A shiny red orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.
+Quả cầu đỏ sáng rực gắn liền với một truyền thuyết cổ xưa. Nó được cho là có liên hệ với vùng Hoenn.
 A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.
-A shiny blue orb that is said to have a legend tied to it. It's known to be connected with the Hoenn region.
+Quả cầu xanh dương sáng rực gắn liền với một truyền thuyết cổ xưa. Nó được cho là có liên hệ với vùng Hoenn.
 A spray-type medicine for treating wounds. It can be used to restore 20 HP to a single Pokémon.
-A spray-type medicine for treating wounds. It can be used to restore 20 HP to a single Pokémon.
+Thuốc xịt chữa thương, giúp một Pokémon hồi 20 HP.
 A spray-type medicine for treating wounds. It can be used to restore 60 HP to a single Pokémon.
-A spray-type medicine for treating wounds. It can be used to restore 60 HP to a single Pokémon.
+Thuốc xịt chữa thương, giúp một Pokémon hồi 60 HP.
 A spray-type medicine for treating wounds. It can be used to restore 120 HP to a single Pokémon.
-A spray-type medicine for treating wounds. It can be used to restore 120 HP to a single Pokémon.
+Thuốc xịt chữa thương, giúp một Pokémon hồi 120 HP.
 A spray-type medicine for treating wounds. It can completely restore the max HP of a single Pokémon.
-A spray-type medicine for treating wounds. It can completely restore the max HP of a single Pokémon.
+Thuốc xịt chữa thương, giúp hồi đầy HP cho một Pokémon.
 A medicine that fully restores the HP and heals any status problems of a single Pokémon.
-A medicine that fully restores the HP and heals any status problems of a single Pokémon.
+Thuốc giúp hồi đầy HP và chữa mọi trạng thái bất lợi cho một Pokémon.
 It revives all fainted Pokémon. In doing so, it also fully restores their HP.
-It revives all fainted Pokémon. In doing so, it also fully restores their HP.
+Hồi sinh tất cả Pokémon đã bị hạ gục và hồi đầy HP cho chúng.
 A spray-type medicine. It awakens a Pokémon from the clutches of sleep.
-A spray-type medicine. It awakens a Pokémon from the clutches of sleep.
+Thuốc dạng xịt giúp đánh thức Pokémon đang ngủ.
 A spray-type medicine. It lifts the effect of poison from one Pokémon.
-A spray-type medicine. It lifts the effect of poison from one Pokémon.
+Thuốc dạng xịt giúp chữa nhiễm độc cho một Pokémon.
 A spray-type medicine. It heals a single Pokémon that is suffering from a burn.
-A spray-type medicine. It heals a single Pokémon that is suffering from a burn.
+Thuốc dạng xịt giúp chữa bỏng cho một Pokémon.
 A spray-type medicine. It eliminates paralysis from a single Pokémon.
-A spray-type medicine. It eliminates paralysis from a single Pokémon.
+Thuốc dạng xịt giúp chữa tê liệt cho một Pokémon.
 A spray-type medicine. It defrosts a Pokémon that has been frozen solid.
-A spray-type medicine. It defrosts a Pokémon that has been frozen solid.
+Thuốc dạng xịt giúp giải đông cho Pokémon bị đóng băng.
 A spray-type medicine. It heals all the status problems of a single Pokémon.
-A spray-type medicine. It heals all the status problems of a single Pokémon.
+Thuốc dạng xịt giúp chữa mọi trạng thái bất lợi cho một Pokémon.
 Pewter City's famous crunchy snack. They can be used to heal all status conditions of a single Pokémon.
-Pewter City's famous crunchy snack. They can be used to heal all status conditions of a single Pokémon.
+Món bánh giòn nổi tiếng của Thành phố Pewter, giúp chữa mọi trạng thái bất lợi cho một Pokémon.
 Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.
-Mahogany Town's famous candy. It can be used once to heal all the status conditions of a Pokémon.
+Kẹo đặc sản của Thị trấn Mahogany, giúp chữa mọi trạng thái bất lợi cho một Pokémon khi sử dụng.
 Lavaridge Town's local specialty. It heals all the status problems of one Pokémon.
-Lavaridge Town's local specialty. It heals all the status problems of one Pokémon.
+Đặc sản của Thị trấn Lavaridge, giúp chữa mọi trạng thái bất lợi cho một Pokémon.
 Old Chateau's hidden specialty. It heals all the status problems of a single Pokémon.
-Old Chateau's hidden specialty. It heals all the status problems of a single Pokémon.
+Đặc sản bí mật của Old Chateau, giúp chữa mọi trạng thái bất lợi cho một Pokémon.
 Castelia City's specialty, soft-serve ice cream. It heals all the status problems of a single Pokémon.
-Castelia City's specialty, soft-serve ice cream. It heals all the status problems of a single Pokémon.
+Kem tươi mềm đặc sản của Thành phố Castelia, giúp chữa mọi trạng thái bất lợi cho một Pokémon.
 A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pokémon.
-A popular treat in Lumiose City. It can be used once to heal all the status conditions of a Pokémon.
+Món ăn vặt nổi tiếng ở Thành phố Lumiose, giúp chữa mọi trạng thái bất lợi cho một Pokémon khi sử dụng.
 Shalour City's famous shortbread. It can be used once to heal all the status conditions of a Pokémon.
-Shalour City's famous shortbread. It can be used once to heal all the status conditions of a Pokémon.
+Bánh quy bơ nổi tiếng của Thành phố Shalour, giúp chữa mọi trạng thái bất lợi cho một Pokémon khi sử dụng.
 The Alola region's specialty--fried bread. It can be used once to heal all the status conditions of a Pokémon.
-The Alola region's specialty--fried bread. It can be used once to heal all the status conditions of a Pokémon.
+Bánh mì chiên đặc sản vùng Alola, giúp chữa mọi trạng thái bất lợi cho một Pokémon khi sử dụng.
 A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.
-A medicine that revives a fainted Pokémon. It restores half the Pokémon's maximum HP.
+Thuốc hồi sinh Pokémon đã bị hạ gục, giúp hồi một nửa HP tối đa.
 A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.
-A medicine that revives a fainted Pokémon. It fully restores the Pokémon's HP.
+Thuốc hồi sinh Pokémon đã bị hạ gục, giúp hồi đầy HP.
 A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.
-A 100% pure juice made of Berries. It restores the HP of one Pokémon by just 20 points.
+Nước ép nguyên chất 100% từ Berry, giúp một Pokémon hồi 20 HP.
 Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.
-Very sweet chocolate. It restores the HP of one Pokémon by only 20 points.
+Thanh sô-cô-la rất ngọt, giúp một Pokémon hồi 20 HP.
 Water with high mineral content. It can be used to restore 30 HP to a single Pokémon.
-Water with high mineral content. It can be used to restore 30 HP to a single Pokémon.
+Nước khoáng giàu khoáng chất, giúp một Pokémon hồi 30 HP.
 A highly carbonated soda drink. It can be used to restore 50 HP to a single Pokémon.
-A highly carbonated soda drink. It can be used to restore 50 HP to a single Pokémon.
+Nước ngọt có ga mạnh, giúp một Pokémon hồi 50 HP.
 A very sweet and refreshing drink. It can be used to restore 70 HP to a single Pokémon.
-A very sweet and refreshing drink. It can be used to restore 70 HP to a single Pokémon.
+Thức uống ngọt ngào và sảng khoái, giúp một Pokémon hồi 70 HP.
 Milk with a very high nutrition content. It restores the HP of one Pokémon by 100 points.
-Milk with a very high nutrition content. It restores the HP of one Pokémon by 100 points.
+Sữa cực kỳ bổ dưỡng, giúp một Pokémon hồi 100 HP.
 A very bitter medicinal powder. It can be used to restore 60 HP to a single Pokémon.
-A very bitter medicinal powder. It can be used to restore 60 HP to a single Pokémon.
+Bột thuốc rất đắng, giúp một Pokémon hồi 60 HP.
 An extremely bitter medicinal root. It can be used to restore 120 HP to a single Pokémon.
-An extremely bitter medicinal root. It can be used to restore 120 HP to a single Pokémon.
+Rễ cây thuốc cực đắng, giúp một Pokémon hồi 120 HP.
 A very bitter medicine powder. It heals all the status problems of a single Pokémon.
-A very bitter medicine powder. It heals all the status problems of a single Pokémon.
+Bột thuốc rất đắng, giúp chữa mọi trạng thái bất lợi cho một Pokémon.
 A very bitter medicinal herb. It revives a fainted Pokémon, fully restoring its HP.
-A very bitter medicinal herb. It revives a fainted Pokémon, fully restoring its HP.
+Thảo dược rất đắng, giúp hồi sinh Pokémon đã bị hạ gục và hồi đầy HP.
 Honey that Dynamax Vespiquen produces. It has the same effect as a Max Revive.
-Honey that Dynamax Vespiquen produces. It has the same effect as a Max Revive.
+Mật ong do Vespiquen Dynamax tạo ra, có tác dụng tương tự Max Revive.
 It restores the PP of a Pokémon's selected move by a maximum of 10 points.
-It restores the PP of a Pokémon's selected move by a maximum of 10 points.
+Hồi tối đa 10 PP cho một chiêu thức được chọn của Pokémon.
 It fully restores the PP of a single selected move that has been learned by the target Pokémon.
-It fully restores the PP of a single selected move that has been learned by the target Pokémon.
+Hồi đầy PP cho một chiêu thức được chọn mà Pokémon đã học.
 It restores the PP of all the moves learned by the targeted Pokémon by 10 points each.
-It restores the PP of all the moves learned by the targeted Pokémon by 10 points each.
+Hồi 10 PP cho mỗi chiêu thức mà Pokémon đã học.
 It fully restores the PP of all the moves learned by the targeted Pokémon.
-It fully restores the PP of all the moves learned by the targeted Pokémon.
+Hồi đầy PP cho tất cả chiêu thức mà Pokémon đã học.
 It slightly raises the maximum PP of a selected move that has been learned by the target Pokémon.
-It slightly raises the maximum PP of a selected move that has been learned by the target Pokémon.
+Tăng nhẹ PP tối đa của một chiêu thức được chọn mà Pokémon đã học.
 It maximally raises the top PP of a selected move that has been learned by the target Pokémon.
-It maximally raises the top PP of a selected move that has been learned by the target Pokémon.
+Tăng PP tối đa của một chiêu thức được chọn lên mức giới hạn cao nhất.
 A nutritious drink for Pokémon. It raises the base HP of a single Pokémon.
-A nutritious drink for Pokémon. It raises the base HP of a single Pokémon.
+Thức uống bổ dưỡng giúp tăng điểm nỗ lực HP của một Pokémon.
 A nutritious drink for Pokémon. It raises the base Attack stat of a single Pokémon.
-A nutritious drink for Pokémon. It raises the base Attack stat of a single Pokémon.
+Thức uống bổ dưỡng giúp tăng điểm nỗ lực Tấn công của một Pokémon.
 A nutritious drink for Pokémon. It raises the base Defense stat of a single Pokémon.
-A nutritious drink for Pokémon. It raises the base Defense stat of a single Pokémon.
+Thức uống bổ dưỡng giúp tăng điểm nỗ lực Phòng thủ của một Pokémon.
 A nutritious drink for Pokémon. It raises the base Sp. Atk (Special Attack) stat of a single Pokémon.
-A nutritious drink for Pokémon. It raises the base Sp. Atk (Special Attack) stat of a single Pokémon.
+Thức uống bổ dưỡng giúp tăng điểm nỗ lực Tấn công Đặc biệt của một Pokémon.
 A nutritious drink for Pokémon. It raises the base Sp. Def (Special Defense) stat of a single Pokémon.
-A nutritious drink for Pokémon. It raises the base Sp. Def (Special Defense) stat of a single Pokémon.
+Thức uống bổ dưỡng giúp tăng điểm nỗ lực Phòng thủ Đặc biệt của một Pokémon.
 A nutritious drink for Pokémon. It raises the base Speed stat of a single Pokémon.
-A nutritious drink for Pokémon. It raises the base Speed stat of a single Pokémon.
+Thức uống bổ dưỡng giúp tăng điểm nỗ lực Tốc độ của một Pokémon.
 An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
-An item for use on a Pokémon. It slightly increases the base HP of a single Pokémon.
+Vật phẩm giúp tăng nhẹ điểm nỗ lực HP của một Pokémon.
 An item for use on a Pokémon. It slightly increases the base Attack stat of a single Pokémon.
-An item for use on a Pokémon. It slightly increases the base Attack stat of a single Pokémon.
+Vật phẩm giúp tăng nhẹ điểm nỗ lực Tấn công của một Pokémon.
 An item for use on a Pokémon. It slightly increases the base Defense stat of a single Pokémon.
-An item for use on a Pokémon. It slightly increases the base Defense stat of a single Pokémon.
+Vật phẩm giúp tăng nhẹ điểm nỗ lực Phòng thủ của một Pokémon.
 An item for use on a Pokémon. It slightly increases the base Sp. Atk stat of a single Pokémon.
-An item for use on a Pokémon. It slightly increases the base Sp. Atk stat of a single Pokémon.
+Vật phẩm giúp tăng nhẹ điểm nỗ lực Tấn công Đặc biệt của một Pokémon.
 An item for use on a Pokémon. It slightly increases the base Sp. Def stat of a single Pokémon.
-An item for use on a Pokémon. It slightly increases the base Sp. Def stat of a single Pokémon.
+Vật phẩm giúp tăng nhẹ điểm nỗ lực Phòng thủ Đặc biệt của một Pokémon.
 An item for use on a Pokémon. It slightly increases the base Speed stat of a single Pokémon.
-An item for use on a Pokémon. It slightly increases the base Speed stat of a single Pokémon.
+Vật phẩm giúp tăng nhẹ điểm nỗ lực Tốc độ của một Pokémon.
 When a Pokémon smells this mint, its Attack will grow more easily, but its Defense will grow more slowly.
-When a Pokémon smells this mint, its Attack will grow more easily, but its Defense will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ phát triển chậm hơn.
 When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Atk will grow more slowly.
-When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Atk will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Def will grow more slowly.
-When a Pokémon smells this mint, its Attack will grow more easily, but its Sp. Def will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, its Attack will grow more easily, but its Speed will grow more slowly.
-When a Pokémon smells this mint, its Attack will grow more easily, but its Speed will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công của Pokémon sẽ phát triển nhanh hơn, nhưng Tốc độ phát triển chậm hơn.
 When a Pokémon smells this mint, its Defense will grow more easily, but its Attack will grow more slowly.
-When a Pokémon smells this mint, its Defense will grow more easily, but its Attack will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công phát triển chậm hơn.
 When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Atk will grow more slowly.
-When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Atk will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Def will grow more slowly.
-When a Pokémon smells this mint, its Defense will grow more easily, but its Sp. Def will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, its Defense will grow more easily, but its Speed will grow more slowly.
-When a Pokémon smells this mint, its Defense will grow more easily, but its Speed will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ của Pokémon sẽ phát triển nhanh hơn, nhưng Tốc độ phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Attack will grow more slowly.
-When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Attack will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Defense will grow more slowly.
-When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Defense will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Sp. Def will grow more slowly.
-When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Sp. Def will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Speed will grow more slowly.
-When a Pokémon smells this mint, its Sp. Atk will grow more easily, but its Speed will grow more slowly.
+Khi ngửi loại bạc hà này, Tấn công Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Tốc độ phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Attack will grow more slowly.
-When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Attack will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Defense will grow more slowly.
-When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Defense will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Sp. Atk will grow more slowly.
-When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Sp. Atk will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Speed will grow more slowly.
-When a Pokémon smells this mint, its Sp. Def will grow more easily, but its Speed will grow more slowly.
+Khi ngửi loại bạc hà này, Phòng thủ Đặc biệt của Pokémon sẽ phát triển nhanh hơn, nhưng Tốc độ phát triển chậm hơn.
 When a Pokémon smells this mint, its Speed will grow more easily, but its Attack will grow more slowly.
-When a Pokémon smells this mint, its Speed will grow more easily, but its Attack will grow more slowly.
+Khi ngửi loại bạc hà này, Tốc độ của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công phát triển chậm hơn.
 When a Pokémon smells this mint, its Speed will grow more easily, but its Defense will grow more slowly.
-When a Pokémon smells this mint, its Speed will grow more easily, but its Defense will grow more slowly.
+Khi ngửi loại bạc hà này, Tốc độ của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ phát triển chậm hơn.
 When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Atk will grow more slowly.
-When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Atk will grow more slowly.
+Khi ngửi loại bạc hà này, Tốc độ của Pokémon sẽ phát triển nhanh hơn, nhưng Tấn công Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Def will grow more slowly.
-When a Pokémon smells this mint, its Speed will grow more easily, but its Sp. Def will grow more slowly.
+Khi ngửi loại bạc hà này, Tốc độ của Pokémon sẽ phát triển nhanh hơn, nhưng Phòng thủ Đặc biệt phát triển chậm hơn.
 When a Pokémon smells this mint, all of its stats will grow at an equal rate.
-When a Pokémon smells this mint, all of its stats will grow at an equal rate.
+Khi ngửi loại bạc hà này, tất cả chỉ số của Pokémon sẽ phát triển với tốc độ như nhau.
 A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.
-A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.
+Viên nang giúp Pokémon có hai Đặc tính chuyển đổi qua lại giữa chúng khi sử dụng.
 A patch that allows a Pokémon with a regular Ability to have a rare Ability.
-A patch that allows a Pokémon with a regular Ability to have a rare Ability.
+Miếng vá giúp Pokémon sở hữu Đặc tính ẩn thay cho Đặc tính thông thường.
 A candy packed with energy. When consumed, it will grant a Pokémon a very small amount of Exp. Points.
-A candy packed with energy. When consumed, it will grant a Pokémon a very small amount of Exp. Points.
+Viên kẹo tràn đầy năng lượng, giúp Pokémon nhận được một lượng điểm kinh nghiệm rất nhỏ.
 A candy packed with energy. When consumed, it will grant a Pokémon a small amount of Exp. Points.
-A candy packed with energy. When consumed, it will grant a Pokémon a small amount of Exp. Points.
+Viên kẹo tràn đầy năng lượng, giúp Pokémon nhận được một ít điểm kinh nghiệm.
 A candy packed with energy. When consumed, it will grant a Pokémon a moderate amount of Exp. Points.
-A candy packed with energy. When consumed, it will grant a Pokémon a moderate amount of Exp. Points.
+Viên kẹo tràn đầy năng lượng, giúp Pokémon nhận được một lượng điểm kinh nghiệm vừa phải.
 A candy packed with energy. When consumed, it will grant a Pokémon a large amount of Exp. Points.
-A candy packed with energy. When consumed, it will grant a Pokémon a large amount of Exp. Points.
+Viên kẹo tràn đầy năng lượng, giúp Pokémon nhận được một lượng lớn điểm kinh nghiệm.
 A candy packed with energy. When consumed, it will grant a Pokémon a very large amount of Exp. Points.
-A candy packed with energy. When consumed, it will grant a Pokémon a very large amount of Exp. Points.
+Viên kẹo tràn đầy năng lượng, giúp Pokémon nhận được một lượng điểm kinh nghiệm cực lớn.
 A candy that is packed with energy. It raises the level of a single Pokémon by one.
-A candy that is packed with energy. It raises the level of a single Pokémon by one.
+Viên kẹo tràn đầy năng lượng, giúp một Pokémon tăng thêm một cấp.
 The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.
-The best Ball with the ultimate level of performance. It will catch any wild Pokémon without fail.
+Loại Ball tối thượng với hiệu suất hoàn hảo, đảm bảo bắt được bất kỳ Pokémon hoang dã nào.
 An ultra-performance Ball that provides a higher Pokémon catch rate than a Great Ball.
-An ultra-performance Ball that provides a higher Pokémon catch rate than a Great Ball.
+Loại Ball có hiệu suất cực cao, giúp bắt Pokémon dễ hơn Great Ball.
 A good, high-performance Ball that provides a higher Pokémon catch rate than a standard Poké Ball.
-A good, high-performance Ball that provides a higher Pokémon catch rate than a standard Poké Ball.
+Loại Ball chất lượng cao, giúp bắt Pokémon dễ hơn Poké Ball thông thường.
 A device for catching wild Pokémon. It is thrown like a ball at the target. It is designed as a capsule system.
-A device for catching wild Pokémon. It is thrown like a ball at the target. It is designed as a capsule system.
+Thiết bị dạng viên nang dùng để bắt Pokémon hoang dã bằng cách ném về phía mục tiêu.
 A special Poké Ball that is used only in the Safari Zone. It is decorated in a camouflage pattern.
-A special Poké Ball that is used only in the Safari Zone. It is decorated in a camouflage pattern.
+Loại Poké Ball đặc biệt chỉ dùng trong Safari Zone, được trang trí bằng hoa văn ngụy trang.
 A special Poké Ball for the Bug-Catching Contest.
-A special Poké Ball for the Bug-Catching Contest.
+Loại Poké Ball đặc biệt dành cho Cuộc thi Bắt Pokémon hệ Bọ.
 A somewhat different Poké Ball that works especially well on Water- and Bug-type Pokémon.
-A somewhat different Poké Ball that works especially well on Water- and Bug-type Pokémon.
+Loại Poké Ball đặc biệt hiệu quả khi bắt Pokémon hệ Nước và hệ Bọ.
 A somewhat different Poké Ball that works especially well on Pokémon that live underwater.
-A somewhat different Poké Ball that works especially well on Pokémon that live underwater.
+Loại Poké Ball đặc biệt hiệu quả khi bắt Pokémon sống dưới nước.
 A somewhat different Poké Ball that works especially well on weaker Pokémon in the wild.
-A somewhat different Poké Ball that works especially well on weaker Pokémon in the wild.
+Loại Poké Ball đặc biệt hiệu quả khi bắt Pokémon hoang dã có cấp độ thấp.
 A somewhat different Poké Ball that works especially well on Pokémon species that were previously caught.
-A somewhat different Poké Ball that works especially well on Pokémon species that were previously caught.
+Loại Poké Ball đặc biệt hiệu quả khi bắt những loài Pokémon bạn từng bắt trước đó.
 A somewhat different Ball that becomes progressively better the more turns there are in a battle.
-A somewhat different Ball that becomes progressively better the more turns there are in a battle.
+Loại Ball có hiệu quả bắt Pokémon tăng dần theo số lượt của trận đấu.
 A comfortable Poké Ball that makes a caught wild Pokémon quickly grow friendly.
-A comfortable Poké Ball that makes a caught wild Pokémon quickly grow friendly.
+Loại Poké Ball êm ái giúp Pokémon hoang dã sau khi bị bắt nhanh chóng trở nên thân thiết.
 A somewhat rare Poké Ball that has been specially made to commemorate an event of some sort.
-A somewhat rare Poké Ball that has been specially made to commemorate an event of some sort.
+Loại Poké Ball khá hiếm, được chế tạo đặc biệt để kỷ niệm một sự kiện nào đó.
 A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places like caves.
-A somewhat different Poké Ball that makes it easier to catch wild Pokémon at night or in dark places like caves.
+Loại Poké Ball giúp dễ bắt Pokémon hoang dã hơn vào ban đêm hoặc ở những nơi tối như hang động.
 A remedial Poké Ball that restores the caught Pokémon's HP and eliminates any status problem.
-A remedial Poké Ball that restores the caught Pokémon's HP and eliminates any status problem.
+Loại Poké Ball có khả năng hồi đầy HP và chữa mọi trạng thái bất lợi cho Pokémon vừa bắt được.
 A somewhat different Poké Ball that provides a better catch rate if used at the start of a wild encounter.
-A somewhat different Poké Ball that provides a better catch rate if used at the start of a wild encounter.
+Loại Poké Ball có tỷ lệ bắt cao hơn nếu được dùng ngay đầu cuộc chạm trán với Pokémon hoang dã.
 A quite rare Poké Ball that has been specially crafted to commemorate an occasion of some sort.
-A quite rare Poké Ball that has been specially crafted to commemorate an occasion of some sort.
+Loại Poké Ball khá quý hiếm, được chế tác đặc biệt để kỷ niệm một dịp nào đó.
 A Poké Ball that makes it easier to catch fast Pokémon.
-A Poké Ball that makes it easier to catch fast Pokémon.
+Loại Poké Ball giúp dễ bắt những Pokémon có Tốc độ cao.
 A Poké Ball for catching Pokémon that are a lower level than your own.
-A Poké Ball for catching Pokémon that are a lower level than your own.
+Loại Poké Ball chuyên bắt Pokémon có cấp độ thấp hơn Pokémon của bạn.
 A Poké Ball for catching Pokémon hooked by a Rod when fishing.
-A Poké Ball for catching Pokémon hooked by a Rod when fishing.
+Loại Poké Ball chuyên bắt Pokémon mắc câu khi câu cá.
 A Poké Ball for catching very heavy Pokémon.
-A Poké Ball for catching very heavy Pokémon.
+Loại Poké Ball chuyên bắt những Pokémon có trọng lượng rất lớn.
 A Poké Ball for catching Pokémon that are the opposite gender of your Pokémon.
-A Poké Ball for catching Pokémon that are the opposite gender of your Pokémon.
+Loại Poké Ball chuyên bắt Pokémon khác giới tính với Pokémon của bạn.
 A Poké Ball that makes caught Pokémon more friendly.
-A Poké Ball that makes caught Pokémon more friendly.
+Loại Poké Ball giúp Pokémon được bắt trở nên thân thiết hơn.
 A Poké Ball for catching Pokémon that evolve using the Moon Stone.
-A Poké Ball for catching Pokémon that evolve using the Moon Stone.
+Loại Poké Ball chuyên bắt những Pokémon tiến hóa bằng Moon Stone.
 A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.
-A somewhat different Poké Ball that makes it easier to catch wild Pokémon while they're asleep.
+Loại Poké Ball giúp dễ bắt Pokémon hoang dã hơn khi chúng đang ngủ.
 A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.
-A special Poké Ball designed to catch Ultra Beasts. It has a low success rate for catching others.
+Loại Poké Ball đặc biệt được thiết kế để bắt Ultra Beast, nhưng có tỷ lệ thành công thấp với các Pokémon khác.
 The user focuses its mind before launching a punch. This move fails if the user is hit before it is used.
-The user focuses its mind before launching a punch. This move fails if the user is hit before it is used.
+Người dùng tập trung tinh thần trước khi tung cú đấm. Chiêu thức thất bại nếu người dùng bị đánh trúng trước khi ra đòn.
 The user slashes the target with huge sharp claws.
-The user slashes the target with huge sharp claws.
+Người dùng dùng móng vuốt khổng lồ sắc bén chém vào mục tiêu.
 The user attacks the target with a pulsing blast of water. This may also confuse the target.
-The user attacks the target with a pulsing blast of water. This may also confuse the target.
+Người dùng phóng luồng nước xung kích vào mục tiêu. Có thể khiến mục tiêu bị hỗn loạn.
 The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.
-The user quietly focuses its mind and calms its spirit to raise its Sp. Atk and Sp. Def stats.
+Người dùng tĩnh tâm và tập trung tinh thần để tăng Tấn công Đặc biệt và Phòng thủ Đặc biệt.
 The target is scared off, and a different Pokémon is dragged out. In the wild, this ends the battle.
-The target is scared off, and a different Pokémon is dragged out. In the wild, this ends the battle.
+Dọa mục tiêu bỏ chạy và buộc Pokémon khác ra trận. Nếu gặp Pokémon hoang dã, trận đấu sẽ kết thúc.
 A move that leaves the target badly poisoned. Its poison damage worsens every turn.
-A move that leaves the target badly poisoned. Its poison damage worsens every turn.
+Chiêu thức khiến mục tiêu nhiễm độc nặng. Sát thương do độc tăng dần sau mỗi lượt.
 The user summons a hailstorm lasting five turns. It damages all Pokémon except Ice types.
-The user summons a hailstorm lasting five turns. It damages all Pokémon except Ice types.
+Người dùng tạo mưa đá kéo dài 5 lượt, gây sát thương cho mọi Pokémon trừ hệ Băng.
 The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats.
-The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats.
+Người dùng gồng cơ bắp để tăng sức mạnh cơ thể, đồng thời tăng Tấn công và Phòng thủ.
 The user forcefully shoots seeds at the target two to five times in a row.
-The user forcefully shoots seeds at the target two to five times in a row.
+Người dùng liên tục bắn hạt giống vào mục tiêu từ 2 đến 5 lần.
 The user is roused, and its Attack and Sp. Atk stats increase.
-The user is roused, and its Attack and Sp. Atk stats increase.
+Người dùng khích lệ tinh thần, tăng Tấn công và Tấn công Đặc biệt.
 The user intensifies the sun for five turns, powering up Fire-type moves and weakening Water-type moves.
-The user intensifies the sun for five turns, powering up Fire-type moves and weakening Water-type moves.
+Người dùng tạo nắng gắt trong 5 lượt, tăng sức mạnh chiêu hệ Lửa và giảm sức mạnh chiêu hệ Nước.
 The target is taunted into a rage that allows it to use only attack moves for three turns.
-The target is taunted into a rage that allows it to use only attack moves for three turns.
+Khiêu khích khiến mục tiêu tức giận và chỉ có thể dùng chiêu thức tấn công trong 3 lượt.
 The target is struck with an icy-cold beam of energy. This may also leave the target frozen.
-The target is struck with an icy-cold beam of energy. This may also leave the target frozen.
+Tấn công mục tiêu bằng tia năng lượng lạnh buốt. Có thể khiến mục tiêu bị đóng băng.
 A howling blizzard is summoned to strike opposing Pokémon. This may also leave them frozen.
-A howling blizzard is summoned to strike opposing Pokémon. This may also leave them frozen.
+Triệu hồi bão tuyết dữ dội tấn công Pokémon đối thủ. Có thể khiến chúng bị đóng băng.
 The target is attacked with a powerful beam. The user can't move on the next turn.
-The target is attacked with a powerful beam. The user can't move on the next turn.
+Tấn công mục tiêu bằng tia năng lượng cực mạnh. Người dùng không thể hành động ở lượt tiếp theo.
 A wondrous wall of light is put up to reduce damage from special attacks for five turns.
-A wondrous wall of light is put up to reduce damage from special attacks for five turns.
+Dựng bức tường ánh sáng giúp giảm sát thương từ chiêu thức đặc biệt trong 5 lượt.
 The user protects itself from all attacks. Its chance of failing rises if it is used in succession.
-The user protects itself from all attacks. Its chance of failing rises if it is used in succession.
+Người dùng tự bảo vệ khỏi mọi đòn tấn công. Tỷ lệ thất bại tăng nếu dùng liên tiếp.
 The user summons a heavy rain for five turns, powering up Water-type moves and weakening Fire-type ones.
-The user summons a heavy rain for five turns, powering up Water-type moves and weakening Fire-type ones.
+Người dùng tạo mưa lớn trong 5 lượt, tăng sức mạnh chiêu hệ Nước và giảm sức mạnh chiêu hệ Lửa.
 A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
-A nutrient-draining attack. The user's HP is restored by half the damage taken by the target.
+Đòn tấn công hút dưỡng chất, giúp người dùng hồi HP bằng một nửa sát thương gây ra cho mục tiêu.
 The user creates a protective field that prevents status conditions for five turns.
-The user creates a protective field that prevents status conditions for five turns.
+Người dùng tạo lá chắn bảo vệ, ngăn các trạng thái bất lợi trong 5 lượt.
 The user damages opposing Pokémon by emitting a powerful flash.
-The user damages opposing Pokémon by emitting a powerful flash.
+Người dùng phát ra luồng sáng cực mạnh để gây sát thương cho Pokémon đối thủ.
 In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.
-In this two-turn attack, the user gathers light, then blasts a bundled beam on the next turn.
+Chiêu thức diễn ra trong 2 lượt. Người dùng tích tụ ánh sáng rồi phóng tia năng lượng vào lượt tiếp theo.
 The target is slammed with a steel-hard tail. This may also lower the target's Defense stat.
-The target is slammed with a steel-hard tail. This may also lower the target's Defense stat.
+Dùng chiếc đuôi cứng như thép quật mạnh vào mục tiêu. Có thể làm giảm Phòng thủ của mục tiêu.
 A strong electric blast crashes down on the target. This may also leave the target with paralysis.
-A strong electric blast crashes down on the target. This may also leave the target with paralysis.
+Giáng luồng điện cực mạnh xuống mục tiêu. Có thể khiến mục tiêu bị tê liệt.
 A wicked thunderbolt is dropped on the target to inflict damage. This may also leave them with paralysis.
-A wicked thunderbolt is dropped on the target to inflict damage. This may also leave them with paralysis.
+Giáng tia sét dữ dội xuống mục tiêu để gây sát thương. Có thể khiến mục tiêu bị tê liệt.
 The user sets off an earthquake that strikes every Pokémon around it.
-The user sets off an earthquake that strikes every Pokémon around it.
+Người dùng tạo động đất, tấn công mọi Pokémon xung quanh.
 The user makes a swift attack on the target's legs, which lowers the target's Speed stat.
-The user makes a swift attack on the target's legs, which lowers the target's Speed stat.
+Người dùng nhanh chóng tấn công vào chân mục tiêu, làm giảm Tốc độ của nó.
 The user burrows into the ground, then attacks on the next turn. It can also be used to exit dungeons.
-The user burrows into the ground, then attacks on the next turn. It can also be used to exit dungeons.
+Người dùng đào xuống đất rồi tấn công ở lượt tiếp theo. Cũng có thể dùng để thoát khỏi hang động.
 The target is hit by a strong telekinetic force. This may also lower the target's Sp. Def stat.
-The target is hit by a strong telekinetic force. This may also lower the target's Sp. Def stat.
+Tấn công mục tiêu bằng sức mạnh ngoại cảm cực lớn. Có thể làm giảm Phòng thủ Đặc biệt của mục tiêu.
 The user hurls a shadowy blob at the target. This may also lower the target's Sp. Def stat.
-The user hurls a shadowy blob at the target. This may also lower the target's Sp. Def stat.
+Người dùng phóng khối bóng tối vào mục tiêu. Có thể làm giảm Phòng thủ Đặc biệt của mục tiêu.
 The user attacks with a swift chop. It can also break barriers, such as Light Screen and Reflect.
-The user attacks with a swift chop. It can also break barriers, such as Light Screen and Reflect.
+Người dùng tung nhát chém nhanh. Có thể phá hủy các lá chắn như Light Screen và Reflect.
 By moving rapidly, the user makes illusory copies of itself to raise its evasiveness.
-By moving rapidly, the user makes illusory copies of itself to raise its evasiveness.
+Người dùng di chuyển nhanh để tạo ra các phân thân ảo ảnh, tăng khả năng né tránh.
 A wondrous wall of light is put up to reduce damage from physical attacks for five turns.
-A wondrous wall of light is put up to reduce damage from physical attacks for five turns.
+Dựng bức tường ánh sáng giúp giảm sát thương từ chiêu thức vật lý trong 5 lượt.
 The user strikes the target with a quick jolt of electricity. This attack never misses.
-The user strikes the target with a quick jolt of electricity. This attack never misses.
+Người dùng phóng tia điện nhanh vào mục tiêu. Chiêu thức này không bao giờ đánh trượt.
 The target is scorched with an intense blast of fire. This may also leave the target with a burn.
-The target is scorched with an intense blast of fire. This may also leave the target with a burn.
+Thiêu đốt mục tiêu bằng luồng lửa dữ dội. Có thể khiến mục tiêu bị bỏng.
 Unsanitary sludge is hurled at the target. This may also poison the target.
-Unsanitary sludge is hurled at the target. This may also poison the target.
+Ném bùn độc bẩn thỉu vào mục tiêu. Có thể khiến mục tiêu bị nhiễm độc.
 A five-turn sandstorm is summoned to hurt all combatants except Rock, Ground, and Steel types.
-A five-turn sandstorm is summoned to hurt all combatants except Rock, Ground, and Steel types.
+Triệu hồi bão cát kéo dài 5 lượt, gây sát thương cho mọi Pokémon trừ hệ Đá, Đất và Thép.
 The target is attacked with an intense blast of all-consuming fire. This may also leave them with a burn.
-The target is attacked with an intense blast of all-consuming fire. This may also leave them with a burn.
+Tấn công mục tiêu bằng luồng lửa thiêu rụi mọi thứ. Có thể khiến mục tiêu bị bỏng.
 Boulders are hurled at the target. This also lowers the target's Speed stat by preventing its movement.
-Boulders are hurled at the target. This also lowers the target's Speed stat by preventing its movement.
+Ném những tảng đá lớn vào mục tiêu, đồng thời cản trở chuyển động và làm giảm Tốc độ của nó.
 The user confounds the target with speed, then slashes. This attack never misses.
-The user confounds the target with speed, then slashes. This attack never misses.
+Người dùng di chuyển nhanh khiến mục tiêu rối loạn rồi tung nhát chém. Chiêu thức này không bao giờ đánh trượt.
 The user torments and enrages the target, making it incapable of using the same move twice in a row.
-The user torments and enrages the target, making it incapable of using the same move twice in a row.
+Người dùng quấy nhiễu khiến mục tiêu tức giận, không thể sử dụng cùng một chiêu thức hai lượt liên tiếp.
 This attack move doubles its power if the user is poisoned, burned, or paralyzed.
-This attack move doubles its power if the user is poisoned, burned, or paralyzed.
+Sức mạnh chiêu thức tăng gấp đôi nếu người dùng bị nhiễm độc, bỏng hoặc tê liệt.
 After making its attack, the user rushes back to switch places with a party Pokémon in waiting.
-After making its attack, the user rushes back to switch places with a party Pokémon in waiting.
+Sau khi tấn công, người dùng nhanh chóng rút lui và đổi chỗ với một Pokémon khác trong đội.
 The user goes to sleep for two turns. This fully restores the user's HP and heals any status conditions.
-The user goes to sleep for two turns. This fully restores the user's HP and heals any status conditions.
+Người dùng ngủ trong 2 lượt, hồi đầy HP và chữa mọi trạng thái bất lợi.
 If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.
-If it is the opposite gender of the user, the target becomes infatuated and less likely to attack.
+Nếu khác giới tính với người dùng, mục tiêu sẽ bị mê hoặc và khó ra đòn hơn.
 The user attacks and steals the target's held item simultaneously.
-The user attacks and steals the target's held item simultaneously.
+Người dùng vừa tấn công vừa đánh cắp vật phẩm mang theo của mục tiêu.
 The target is hit with wings of steel. This may also raise the user's Defense stat.
-The target is hit with wings of steel. This may also raise the user's Defense stat.
+Dùng đôi cánh thép tấn công mục tiêu. Có thể tăng Phòng thủ của người dùng.
 The user employs its psychic power to exchange Abilities with the target.
-The user employs its psychic power to exchange Abilities with the target.
+Người dùng sử dụng sức mạnh Siêu linh để hoán đổi Đặc tính với mục tiêu.
 The user shoots boiling hot water at its target. This may also leave the target with a burn.
-The user shoots boiling hot water at its target. This may also leave the target with a burn.
+Người dùng phun nước sôi vào mục tiêu. Có thể khiến mục tiêu bị bỏng.
 The user attacks the target at full power. The attack's recoil harshly lowers the user's Sp. Atk stat.
-The user attacks the target at full power. The attack's recoil harshly lowers the user's Sp. Atk stat.
+Người dùng tấn công mục tiêu bằng toàn bộ sức mạnh. Phản lực khiến Tấn công Đặc biệt của người dùng giảm mạnh.
 The user lands and rests its body. This move restores the user's HP by up to half of its max HP.
-The user lands and rests its body. This move restores the user's HP by up to half of its max HP.
+Người dùng đáp xuống nghỉ ngơi, hồi HP bằng tối đa một nửa HP tối đa.
 The user heightens its mental focus and unleashes its power. This may also lower the target's Sp. Def stat.
-The user heightens its mental focus and unleashes its power. This may also lower the target's Sp. Def stat.
+Người dùng tập trung tinh thần rồi giải phóng sức mạnh. Có thể làm giảm Phòng thủ Đặc biệt của mục tiêu.
 The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.
-The user draws power from nature and fires it at the target. This may also lower the target's Sp. Def stat.
+Người dùng hấp thụ sức mạnh thiên nhiên rồi phóng vào mục tiêu. Có thể làm giảm Phòng thủ Đặc biệt của mục tiêu.
 A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
-A restrained attack that prevents the target from fainting. The target is left with at least 1 HP.
+Đòn tấn công được kiềm chế để không hạ gục mục tiêu, luôn để lại ít nhất 1 HP.
 If the target's HP is half or less, this attack will hit with double the power.
-If the target's HP is half or less, this attack will hit with double the power.
+Nếu HP của mục tiêu còn một nửa hoặc thấp hơn, sức mạnh chiêu thức sẽ tăng gấp đôi.
 The user flings its held item at the target to attack. This move's power and effects depend on the item.
-The user flings its held item at the target to attack. This move's power and effects depend on the item.
+Người dùng ném vật phẩm đang mang vào mục tiêu. Sức mạnh và hiệu ứng phụ thuộc vào vật phẩm.
 The user attacks the target with an electric charge. The user may use any remaining charge to raise its Sp. Atk.
-The user attacks the target with an electric charge. The user may use any remaining charge to raise its Sp. Atk.
+Người dùng tấn công mục tiêu bằng điện năng, đồng thời có thể tận dụng điện tích còn lại để tăng Tấn công Đặc biệt.
 The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
-The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession.
+Người dùng chịu đựng mọi đòn tấn công và trụ lại với ít nhất 1 HP. Tỷ lệ thất bại tăng nếu dùng liên tiếp.
 The target is attacked with a shock wave generated by the user's gaping mouth.
-The target is attacked with a shock wave generated by the user's gaping mouth.
+Người dùng há rộng miệng tạo ra sóng xung kích tấn công mục tiêu.
 An energy-draining punch. The user's HP is restored by half the damage taken by the target.
-An energy-draining punch. The user's HP is restored by half the damage taken by the target.
+Cú đấm hút năng lượng, giúp người dùng hồi HP bằng một nửa sát thương gây ra cho mục tiêu.
 The user shoots a sinister flame at the target to inflict a burn.
-The user shoots a sinister flame at the target to inflict a burn.
+Người dùng phóng ngọn lửa ma quái vào mục tiêu để gây bỏng.
 The user generates a damaging sound wave by vibration. This may also lower the target's Sp. Def stat.
-The user generates a damaging sound wave by vibration. This may also lower the target's Sp. Def stat.
+Người dùng rung cơ thể tạo ra sóng âm gây sát thương. Có thể làm giảm Phòng thủ Đặc biệt của mục tiêu.
 The user stimulates its brain by thinking bad thoughts. This sharply raises the user's Sp. Atk stat.
-The user stimulates its brain by thinking bad thoughts. This sharply raises the user's Sp. Atk stat.
+Người dùng kích thích não bộ bằng những ý nghĩ đen tối, tăng mạnh Tấn công Đặc biệt.
 The user attacks everything around it by causing a tremendous explosion. The user faints upon using this move.
-The user attacks everything around it by causing a tremendous explosion. The user faints upon using this move.
+Người dùng tạo vụ nổ khổng lồ tấn công mọi thứ xung quanh. Sau khi sử dụng, người dùng sẽ bị hạ gục.
 The user slashes with a sharp claw made from shadows. Critical hits land more easily.
-The user slashes with a sharp claw made from shadows. Critical hits land more easily.
+Người dùng chém bằng móng vuốt sắc bén tạo từ bóng tối. Chiêu thức có tỷ lệ chí mạng cao.
 The user stores power, then attacks. If the user moves after the target, this attack's power will be doubled.
-The user stores power, then attacks. If the user moves after the target, this attack's power will be doubled.
+Người dùng tích tụ sức mạnh rồi tấn công. Nếu hành động sau mục tiêu, sức mạnh chiêu thức tăng gấp đôi.
 The user recycles a held item that has been used in battle so it can be used again.
-The user recycles a held item that has been used in battle so it can be used again.
+Người dùng tái chế vật phẩm mang theo đã sử dụng trong trận để có thể dùng lại.
 The user charges at the target using every bit of its power. The user can't move on the next turn.
-The user charges at the target using every bit of its power. The user can't move on the next turn.
+Người dùng dồn toàn lực lao vào mục tiêu. Không thể hành động ở lượt tiếp theo.
 The user polishes its body to reduce drag. This sharply raises the Speed stat.
-The user polishes its body to reduce drag. This sharply raises the Speed stat.
+Người dùng đánh bóng cơ thể để giảm lực cản, tăng mạnh Tốc độ.
 The user flashes a light that lowers the target's accuracy. It can also be used to illuminate caves.
-The user flashes a light that lowers the target's accuracy. It can also be used to illuminate caves.
+Người dùng phát ra ánh sáng chói làm giảm độ chính xác của mục tiêu. Cũng có thể dùng để chiếu sáng hang động.
 The user stabs the target from below with sharpened stones. Critical hits land more easily.
-The user stabs the target from below with sharpened stones. Critical hits land more easily.
+Người dùng dùng những mũi đá sắc nhọn đâm mục tiêu từ bên dưới. Chiêu thức có tỷ lệ chí mạng cao.
 The power of this attack move is doubled if the user has been hurt by the target in the same turn.
-The power of this attack move is doubled if the user has been hurt by the target in the same turn.
+Sức mạnh chiêu thức tăng gấp đôi nếu người dùng đã chịu sát thương từ mục tiêu trong cùng lượt.
 The user launches a weak jolt of electricity that paralyzes the target.
-The user launches a weak jolt of electricity that paralyzes the target.
+Người dùng phóng tia điện nhẹ khiến mục tiêu bị tê liệt.
 The user tackles with a high-speed spin. This move is stronger the slower the user is than the target.
-The user tackles with a high-speed spin. This move is stronger the slower the user is than the target.
+Người dùng xoay tròn với tốc độ cao rồi lao vào mục tiêu. Người dùng càng chậm hơn mục tiêu, chiêu thức càng mạnh.
 A frenetic dance to uplift the fighting spirit. This sharply raises the user's Attack stat.
-A frenetic dance to uplift the fighting spirit. This sharply raises the user's Attack stat.
+Điệu nhảy cuồng nhiệt khơi dậy tinh thần chiến đấu, tăng mạnh Tấn công của người dùng.
 The user lays a trap of levitating stones around the opposing team that hurt Pokémon that switch in.
-The user lays a trap of levitating stones around the opposing team that hurt Pokémon that switch in.
+Người dùng đặt bẫy đá lơ lửng quanh sân đối thủ, gây sát thương cho Pokémon khi chúng vào trận.
 The user hypnotizes itself into copying any stat change made by the target.
-The user hypnotizes itself into copying any stat change made by the target.
+Người dùng tự thôi miên để sao chép mọi thay đổi chỉ số của mục tiêu.
 The user yells as if it's ranting about something, which lowers the Sp. Atk stats of opposing Pokémon.
-The user yells as if it's ranting about something, which lowers the Sp. Atk stats of opposing Pokémon.
+Người dùng hét lên như đang càu nhàu, làm giảm Tấn công Đặc biệt của Pokémon đối thủ.
 The user releases a horrible aura imbued with dark thoughts. This may also make the target flinch.
-The user releases a horrible aura imbued with dark thoughts. This may also make the target flinch.
+Người dùng giải phóng luồng hào quang đáng sợ chứa đầy ý nghĩ đen tối. Có thể khiến mục tiêu chùn bước.
 Large boulders are hurled at opposing Pokémon to inflict damage. This may also make them flinch.
-Large boulders are hurled at opposing Pokémon to inflict damage. This may also make them flinch.
+Ném những tảng đá lớn vào Pokémon đối thủ để gây sát thương. Có thể khiến chúng chùn bước.
 The user slashes at the target by crossing its scythes or claws as if they were a pair of scissors.
-The user slashes at the target by crossing its scythes or claws as if they were a pair of scissors.
+Người dùng bắt chéo lưỡi hái hoặc móng vuốt như chiếc kéo để chém mục tiêu.
 While it is asleep, the user randomly uses one of the moves it knows.
-While it is asleep, the user randomly uses one of the moves it knows.
+Trong lúc ngủ, người dùng ngẫu nhiên sử dụng một chiêu thức đã học.
 The user strikes everything around it by stomping down on the ground. This lowers the Speed of those hit.
-The user strikes everything around it by stomping down on the ground. This lowers the Speed of those hit.
+Người dùng giậm mạnh xuống đất, tấn công mọi thứ xung quanh và giảm Tốc độ của những Pokémon trúng đòn.
 The target is stabbed with a tentacle, arm, or the like steeped in poison. This may also poison them.
-The target is stabbed with a tentacle, arm, or the like steeped in poison. This may also poison them.
+Đâm mục tiêu bằng xúc tu, cánh tay hoặc bộ phận tương tự tẩm độc. Có thể khiến mục tiêu nhiễm độc.
 The user eats the dreams of a sleeping target. The user's HP is restored by half the damage dealt.
-The user eats the dreams of a sleeping target. The user's HP is restored by half the damage dealt.
+Người dùng ăn giấc mơ của mục tiêu đang ngủ, hồi HP bằng một nửa sát thương gây ra.
 The user snares the target with grass and trips it. The heavier the target, the strong the move is.
-The user snares the target with grass and trips it. The heavier the target, the strong the move is.
+Người dùng dùng cỏ quấn chân khiến mục tiêu vấp ngã. Mục tiêu càng nặng, chiêu thức càng mạnh.
 The user enrages and confuses the target. However, this also sharply raises the target's Attack stat.
-The user enrages and confuses the target. However, this also sharply raises the target's Attack stat.
+Người dùng chọc giận khiến mục tiêu bị hỗn loạn, nhưng đồng thời tăng mạnh Tấn công của mục tiêu.
 The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.
-The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect.
+Người dùng mổ mục tiêu. Nếu mục tiêu đang mang Berry, người dùng sẽ ăn và nhận hiệu ứng của quả đó.
 The user creates a substitute for itself using some of its HP. The substitute serves as a decoy.
-The user creates a substitute for itself using some of its HP. The substitute serves as a decoy.
+Người dùng tiêu hao một phần HP để tạo phân thân thế mạng, giúp đánh lạc hướng đối thủ.
 The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.
-The user gathers all its light energy and releases it all at once. This may also lower the target's Sp. Def stat.
+Người dùng tích tụ toàn bộ năng lượng ánh sáng rồi giải phóng cùng lúc. Có thể làm giảm Phòng thủ Đặc biệt của mục tiêu.
 The user creates a bizarre area in which slower Pokémon get to move first for five turns.
-The user creates a bizarre area in which slower Pokémon get to move first for five turns.
+Người dùng tạo không gian kỳ lạ trong 5 lượt, khiến Pokémon có Tốc độ thấp hơn được hành động trước.
 The target is cut with a scythe or claw.
-The target is cut with a scythe or claw.
+Dùng lưỡi hái hoặc móng vuốt chém vào mục tiêu.
 The user flies up into the sky and then strikes its target on the next turn.
-The user flies up into the sky and then strikes its target on the next turn.
+Người dùng bay lên trời rồi lao xuống tấn công mục tiêu ở lượt tiếp theo.
 The user attacks everything around it by swamping its surroundings with a giant wave.
-The user attacks everything around it by swamping its surroundings with a giant wave.
+Người dùng tạo sóng nước khổng lồ nhấn chìm xung quanh, tấn công mọi Pokémon trong phạm vi.
 The target is slugged with a punch thrown at maximum power.
-The target is slugged with a punch thrown at maximum power.
+Mục tiêu phải hứng chịu cú đấm tung ra với toàn bộ sức mạnh.
 A strong wind blows away the target's barriers, such as Reflect, and lowers their evasiveness.
-A strong wind blows away the target's barriers, such as Reflect, and lowers their evasiveness.
+Luồng gió mạnh thổi bay các lá chắn như Reflect của mục tiêu, đồng thời giảm khả năng né tránh.
 The user attacks with a punch that may lower the target's Defense stat.
-The user attacks with a punch that may lower the target's Defense stat.
+Người dùng tung cú đấm có thể làm giảm Phòng thủ của mục tiêu.
 The user charges at the target and may make it flinch.
-The user charges at the target and may make it flinch.
+Người dùng lao vào mục tiêu và có thể khiến nó chùn bước.
 A charging attack that may also leave the foe confused.
-A charging attack that may also leave the foe confused.
+Đòn tấn công lao thẳng vào mục tiêu, có thể khiến đối thủ bị hỗn loạn.
 The target is cut with a scythe or claw. This can also be used to cut down thin trees.
-The target is cut with a scythe or claw. This can also be used to cut down thin trees.
+Dùng lưỡi hái hoặc móng vuốt chém mục tiêu. Cũng có thể dùng để chặt cây nhỏ.
 The user soars and then strikes on the next turn. This can also be used to fly to any familiar town.
-The user soars and then strikes on the next turn. This can also be used to fly to any familiar town.
+Người dùng bay lên cao rồi tấn công ở lượt tiếp theo. Cũng có thể dùng để bay đến những thị trấn đã ghé thăm.
 Attacks everything by swamping the surroundings with a giant wave. This can also be used to cross water.
-Attacks everything by swamping the surroundings with a giant wave. This can also be used to cross water.
+Tạo sóng nước khổng lồ tấn công mọi thứ xung quanh. Cũng có thể dùng để di chuyển trên mặt nước.
 The target is slugged with a punch thrown at maximum power. This can also be used to move heavy boulders.
-The target is slugged with a punch thrown at maximum power. This can also be used to move heavy boulders.
+Tung cú đấm toàn lực vào mục tiêu. Cũng có thể dùng để đẩy những tảng đá nặng.
 The user charges at the target and may make it flinch. It can also be used to climb a waterfall.
-The user charges at the target and may make it flinch. It can also be used to climb a waterfall.
+Người dùng lao vào mục tiêu và có thể khiến nó chùn bước. Cũng có thể dùng để vượt thác nước.
 Diving on the first turn, the user floats up and attacks on the second. It can be used to dive underwater.
-Diving on the first turn, the user floats up and attacks on the second. It can be used to dive underwater.
+Người dùng lặn xuống ở lượt đầu rồi trồi lên tấn công ở lượt sau. Cũng có thể dùng để lặn dưới nước.
 It may be used or held by a Pokémon to recover from paralysis.
-It may be used or held by a Pokémon to recover from paralysis.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để chữa tê liệt.
 It may be used or held by a Pokémon to recover from sleep.
-It may be used or held by a Pokémon to recover from sleep.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để đánh thức khi đang ngủ.
 It may be used or held by a Pokémon to recover from poison.
-It may be used or held by a Pokémon to recover from poison.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để chữa nhiễm độc.
 It may be used or held by a Pokémon to recover from a burn.
-It may be used or held by a Pokémon to recover from a burn.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để chữa bỏng.
 It may be used or held by a Pokémon to defrost it.
-It may be used or held by a Pokémon to defrost it.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để chữa đóng băng.
 It may be used or held by a Pokémon to restore a move's PP by 10.
-It may be used or held by a Pokémon to restore a move's PP by 10.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để hồi 10 PP cho một chiêu thức.
 It may be used or held by a Pokémon to heal the user by just 10 HP.
-It may be used or held by a Pokémon to heal the user by just 10 HP.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để hồi 10 HP.
 It may be used or held by a Pokémon to recover from confusion.
-It may be used or held by a Pokémon to recover from confusion.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để chữa hỗn loạn.
 It may be used or held by a Pokémon to recover from any status problem.
-It may be used or held by a Pokémon to recover from any status problem.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để chữa mọi trạng thái bất lợi.
 It may be used or held by a Pokémon to heal the user's HP a little.
-It may be used or held by a Pokémon to heal the user's HP a little.
+Có thể sử dụng trực tiếp hoặc cho Pokémon mang theo để hồi một ít HP.
 If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.
-If held by a Pokémon, it restores the user's HP in a pinch, but will cause confusion if it hates the taste.
+Khi mang theo, Berry này hồi HP lúc nguy cấp, nhưng sẽ gây hỗn loạn nếu Pokémon không thích hương vị của nó.
 In the Sinnoh region, they like to make sweets known as Poffins with this Berry.
-In the Sinnoh region, they like to make sweets known as Poffins with this Berry.
+Ở vùng Sinnoh, người ta thường dùng loại Berry này để làm món bánh ngọt gọi là Poffin.
 Using it on a Pokémon makes it more friendly, but it also lowers its base HP.
-Using it on a Pokémon makes it more friendly, but it also lowers its base HP.
+Giúp Pokémon trở nên thân thiết hơn, nhưng đồng thời giảm điểm nỗ lực HP.
 Using it on a Pokémon makes it more friendly, but it also lowers its base Attack stat.
-Using it on a Pokémon makes it more friendly, but it also lowers its base Attack stat.
+Giúp Pokémon trở nên thân thiết hơn, nhưng đồng thời giảm điểm nỗ lực Tấn công.
 Using it on a Pokémon makes it more friendly, but it also lowers its base Defense stat.
-Using it on a Pokémon makes it more friendly, but it also lowers its base Defense stat.
+Giúp Pokémon trở nên thân thiết hơn, nhưng đồng thời giảm điểm nỗ lực Phòng thủ.
 Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Atk stat.
-Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Atk stat.
+Giúp Pokémon trở nên thân thiết hơn, nhưng đồng thời giảm điểm nỗ lực Tấn công Đặc biệt.
 Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Def stat.
-Using it on a Pokémon makes it more friendly, but it also lowers its base Sp. Def stat.
+Giúp Pokémon trở nên thân thiết hơn, nhưng đồng thời giảm điểm nỗ lực Phòng thủ Đặc biệt.
 Using it on a Pokémon makes it more friendly, but it also lowers its base Speed stat.
-Using it on a Pokémon makes it more friendly, but it also lowers its base Speed stat.
+Giúp Pokémon trở nên thân thiết hơn, nhưng đồng thời giảm điểm nỗ lực Tốc độ.
 Weakens a supereffective Fire-type attack against the holding Pokémon.
-Weakens a supereffective Fire-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Lửa siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Water-type attack against the holding Pokémon.
-Weakens a supereffective Water-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Nước siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Electric-type attack against the holding Pokémon.
-Weakens a supereffective Electric-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Điện siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Grass-type attack against the holding Pokémon.
-Weakens a supereffective Grass-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Cỏ siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Ice-type attack against the holding Pokémon.
-Weakens a supereffective Ice-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Băng siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Fighting-type attack against the holding Pokémon.
-Weakens a supereffective Fighting-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Giác đấu siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Poison-type attack against the holding Pokémon.
-Weakens a supereffective Poison-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Độc siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Ground-type attack against the holding Pokémon.
-Weakens a supereffective Ground-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Đất siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Flying-type attack against the holding Pokémon.
-Weakens a supereffective Flying-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Bay siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Psychic-type attack against the holding Pokémon.
-Weakens a supereffective Psychic-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Siêu linh siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Bug-type attack against the holding Pokémon.
-Weakens a supereffective Bug-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Bọ siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Rock-type attack against the holding Pokémon.
-Weakens a supereffective Rock-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Đá siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Ghost-type attack against the holding Pokémon.
-Weakens a supereffective Ghost-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Ma siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Dragon-type attack against the holding Pokémon.
-Weakens a supereffective Dragon-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Rồng siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Dark-type attack against the holding Pokémon.
-Weakens a supereffective Dark-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Bóng tối siêu hiệu quả nhằm vào Pokémon mang Berry.
 Weakens a supereffective Steel-type attack against the holding Pokémon.
-Weakens a supereffective Steel-type attack against the holding Pokémon.
+Giảm sát thương từ một đòn hệ Thép siêu hiệu quả nhằm vào Pokémon mang Berry.
 If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.
-If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fairy-type attack.
+Khi mang theo, Berry này giảm sát thương từ một đòn hệ Tiên siêu hiệu quả.
 Weakens a Normal-type attack against the Pokémon holding this berry.
-Weakens a Normal-type attack against the Pokémon holding this berry.
+Giảm sát thương từ một đòn hệ Thường nhằm vào Pokémon mang Berry.
 If held by a Pokémon, it raises its Attack stat in a pinch.
-If held by a Pokémon, it raises its Attack stat in a pinch.
+Khi mang theo, Berry này tăng Tấn công lúc HP xuống thấp.
 If held by a Pokémon, it raises its Defense stat in a pinch.
-If held by a Pokémon, it raises its Defense stat in a pinch.
+Khi mang theo, Berry này tăng Phòng thủ lúc HP xuống thấp.
 If held by a Pokémon, it raises its Speed stat in a pinch.
-If held by a Pokémon, it raises its Speed stat in a pinch.
+Khi mang theo, Berry này tăng Tốc độ lúc HP xuống thấp.
 If held by a Pokémon, it raises its Sp. Atk stat in a pinch.
-If held by a Pokémon, it raises its Sp. Atk stat in a pinch.
+Khi mang theo, Berry này tăng Tấn công Đặc biệt lúc HP xuống thấp.
 If held by a Pokémon, it raises its Sp. Def stat in a pinch.
-If held by a Pokémon, it raises its Sp. Def stat in a pinch.
+Khi mang theo, Berry này tăng Phòng thủ Đặc biệt lúc HP xuống thấp.
 If held by a Pokémon, it raises its critical-hit ratio in a pinch.
-If held by a Pokémon, it raises its critical-hit ratio in a pinch.
+Khi mang theo, Berry này tăng tỷ lệ chí mạng lúc HP xuống thấp.
 If held by a Pokémon, it sharply raises one of its stats in a pinch.
-If held by a Pokémon, it sharply raises one of its stats in a pinch.
+Khi mang theo, Berry này tăng mạnh một chỉ số lúc HP xuống thấp.
 If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.
-If held by a Pokémon, it restores its HP if it is hit by any supereffective attack.
+Khi mang theo, Berry này hồi HP nếu Pokémon trúng đòn siêu hiệu quả.
 If held by a Pokémon, it raises the accuracy of a move just once in a pinch.
-If held by a Pokémon, it raises the accuracy of a move just once in a pinch.
+Khi mang theo, Berry này tăng độ chính xác cho một chiêu thức lúc HP xuống thấp.
 If held by a Pokémon, it gets to move first just once in a pinch.
-If held by a Pokémon, it gets to move first just once in a pinch.
+Khi mang theo, Berry này giúp Pokémon được hành động trước một lần lúc HP xuống thấp.
 If held by a Pokémon and a physical attack lands, the attacker also takes damage.
-If held by a Pokémon and a physical attack lands, the attacker also takes damage.
+Khi Pokémon mang Berry trúng đòn vật lý, kẻ tấn công cũng phải chịu sát thương.
 If held by a Pokémon and a special attack lands, the attacker also takes damage.
-If held by a Pokémon and a special attack lands, the attacker also takes damage.
+Khi Pokémon mang Berry trúng đòn đặc biệt, kẻ tấn công cũng phải chịu sát thương.
 If held by a Pokémon, this Berry will increase the holder's Defense if it's hit with a physical move.
-If held by a Pokémon, this Berry will increase the holder's Defense if it's hit with a physical move.
+Khi mang theo, Berry này tăng Phòng thủ nếu Pokémon trúng chiêu thức vật lý.
 If held by a Pokémon, this Berry will increase the holder's Sp. Def if it's hit with a special move.
-If held by a Pokémon, this Berry will increase the holder's Sp. Def if it's hit with a special move.
+Khi mang theo, Berry này tăng Phòng thủ Đặc biệt nếu Pokémon trúng chiêu thức đặc biệt.
 Stationery featuring a print of a refreshingly green field. Let a Pokémon hold it for delivery.
-Stationery featuring a print of a refreshingly green field. Let a Pokémon hold it for delivery.
+Giấy thư in hình đồng cỏ xanh tươi. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of flames in blazing red. Let a Pokémon hold it for delivery.
-Stationery featuring a print of flames in blazing red. Let a Pokémon hold it for delivery.
+Giấy thư in hình ngọn lửa đỏ rực. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of a blue world underwater. Let a Pokémon hold it for delivery.
-Stationery featuring a print of a blue world underwater. Let a Pokémon hold it for delivery.
+Giấy thư in hình thế giới xanh thẳm dưới nước. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of pretty floral patterns. Let a Pokémon hold it for delivery.
-Stationery featuring a print of pretty floral patterns. Let a Pokémon hold it for delivery.
+Giấy thư in những họa tiết hoa xinh đẹp. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of a dimly lit coal mine. Let a Pokémon hold it for delivery.
-Stationery featuring a print of a dimly lit coal mine. Let a Pokémon hold it for delivery.
+Giấy thư in hình mỏ than tối mờ. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of cool mechanical designs. Let a Pokémon hold it for delivery.
-Stationery featuring a print of cool mechanical designs. Let a Pokémon hold it for delivery.
+Giấy thư in họa tiết máy móc độc đáo. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of giant heart patterns. Let a Pokémon hold it for delivery.
-Stationery featuring a print of giant heart patterns. Let a Pokémon hold it for delivery.
+Giấy thư in những hình trái tim lớn. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of a chilly, snow-covered world. Let a Pokémon hold it for delivery.
-Stationery featuring a print of a chilly, snow-covered world. Let a Pokémon hold it for delivery.
+Giấy thư in hình thế giới tuyết phủ lạnh giá. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print depicting the huge expanse of space. Let a Pokémon hold it for delivery.
-Stationery featuring a print depicting the huge expanse of space. Let a Pokémon hold it for delivery.
+Giấy thư in hình vũ trụ bao la. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of colorful letter sets. Let a Pokémon hold it for delivery.
-Stationery featuring a print of colorful letter sets. Let a Pokémon hold it for delivery.
+Giấy thư in những chữ cái đầy màu sắc. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of a vivid rainbow pattern. Let a Pokémon hold it for delivery.
-Stationery featuring a print of a vivid rainbow pattern. Let a Pokémon hold it for delivery.
+Giấy thư in họa tiết cầu vồng rực rỡ. Hãy cho Pokémon mang theo để chuyển thư.
 Stationery featuring a print of a tough-looking brick pattern. Let a Pokémon hold it for delivery.
-Stationery featuring a print of a tough-looking brick pattern. Let a Pokémon hold it for delivery.
+Giấy thư in họa tiết gạch đá cứng cáp. Hãy cho Pokémon mang theo để chuyển thư.
 An item that sharply boosts the Attack stat of a Pokémon while it remains in battle.
-An item that sharply boosts the Attack stat of a Pokémon while it remains in battle.
+Vật phẩm tăng mạnh Tấn công của Pokémon khi đang chiến đấu.
 It sharply raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It sharply raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng mạnh Tấn công trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It drastically raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It drastically raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng rất mạnh Tấn công trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It raises the Attack stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
-It raises the Attack stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
+Tăng cực mạnh Tấn công trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 An item that sharply boosts the Defense of a Pokémon while it remains in battle.
-An item that sharply boosts the Defense of a Pokémon while it remains in battle.
+Vật phẩm tăng mạnh Phòng thủ của Pokémon khi đang chiến đấu.
 It sharply raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It sharply raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng mạnh Phòng thủ trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It drastically raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It drastically raises the Defense stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng rất mạnh Phòng thủ trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It raises the Defense stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
-It raises the Defense stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
+Tăng cực mạnh Phòng thủ trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 An item that sharply boosts the Sp. Atk stat of a Pokémon while it remains in battle.
-An item that sharply boosts the Sp. Atk stat of a Pokémon while it remains in battle.
+Vật phẩm tăng mạnh Tấn công Đặc biệt của Pokémon khi đang chiến đấu.
 It sharply raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It sharply raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng mạnh Tấn công Đặc biệt trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It drastically raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It drastically raises the Sp. Atk stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng rất mạnh Tấn công Đặc biệt trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It raises the Sp. Atk stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
-It raises the Sp. Atk stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
+Tăng cực mạnh Tấn công Đặc biệt trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 An item that sharply boosts the Sp. Def stat of a Pokémon while it remains in battle.
-An item that sharply boosts the Sp. Def stat of a Pokémon while it remains in battle.
+Vật phẩm tăng mạnh Phòng thủ Đặc biệt của Pokémon khi đang chiến đấu.
 It sharply raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It sharply raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng mạnh Phòng thủ Đặc biệt trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It drastically raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It drastically raises the Sp. Def stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng rất mạnh Phòng thủ Đặc biệt trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It raises the Sp. Def stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
-It raises the Sp. Def stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
+Tăng cực mạnh Phòng thủ Đặc biệt trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 An item that sharply boosts the Speed stat of a Pokémon while it remains in battle.
-An item that sharply boosts the Speed stat of a Pokémon while it remains in battle.
+Vật phẩm tăng mạnh Tốc độ của Pokémon khi đang chiến đấu.
 It sharply raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It sharply raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng mạnh Tốc độ trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It drastically raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It drastically raises the Speed stat of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng rất mạnh Tốc độ trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It raises the Speed stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
-It raises the Speed stat of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
+Tăng cực mạnh Tốc độ trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 An item that sharply boosts the accuracy of a Pokémon while it remains in battle.
-An item that sharply boosts the accuracy of a Pokémon while it remains in battle.
+Vật phẩm tăng mạnh độ chính xác của Pokémon khi đang chiến đấu.
 It sharply raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It sharply raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng mạnh độ chính xác trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It drastically raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
-It drastically raises the accuracy of a Pokémon in battle. It wears off if the Pokémon is withdrawn.
+Tăng rất mạnh độ chính xác trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 It raises the accuracy of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
-It raises the accuracy of a Pokémon in battle immensely. It wears off if the Pokémon is withdrawn.
+Tăng cực mạnh độ chính xác trong trận đấu. Hiệu ứng mất đi khi Pokémon rời trận.
 Mushrooms that boost all stats of a Pokémon during battle.
-Mushrooms that boost all stats of a Pokémon during battle.
+Những cây nấm giúp tăng tất cả chỉ số của Pokémon trong trận đấu.
 An item that raises the critical-hit ratio greatly. It wears off if the Pokémon is withdrawn.
-An item that raises the critical-hit ratio greatly. It wears off if the Pokémon is withdrawn.
+Vật phẩm tăng đáng kể tỷ lệ chí mạng. Hiệu ứng mất đi khi Pokémon rời trận.
 It sharply raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.
-It sharply raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.
+Tăng mạnh tỷ lệ chí mạng. Hiệu ứng mất đi khi Pokémon rời trận.
 It greatly raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.
-It greatly raises the critical-hit ratio. It wears off if the Pokémon is withdrawn.
+Tăng đáng kể tỷ lệ chí mạng. Hiệu ứng mất đi khi Pokémon rời trận.
 An item that prevents stat reduction among the Trainer's party Pokémon for five turns after use.
-An item that prevents stat reduction among the Trainer's party Pokémon for five turns after use.
+Vật phẩm ngăn giảm chỉ số của Pokémon trong đội trong 5 lượt sau khi sử dụng.
 When used, it restores any stat changes of an ally Pokémon.
-When used, it restores any stat changes of an ally Pokémon.
+Khi sử dụng, vật phẩm này khôi phục các chỉ số đã thay đổi của Pokémon đồng đội.
 When used, it activates the Ability of an ally Pokémon.
-When used, it activates the Ability of an ally Pokémon.
+Khi sử dụng, vật phẩm này kích hoạt Đặc tính của Pokémon đồng đội.
 When used, it causes an ally Pokémon to use its held item.
-When used, it causes an ally Pokémon to use its held item.
+Khi sử dụng, vật phẩm này khiến Pokémon đồng đội kích hoạt vật phẩm đang mang.
 When used, it causes an ally Pokémon to drop a held item.
-When used, it causes an ally Pokémon to drop a held item.
+Khi sử dụng, vật phẩm này khiến Pokémon đồng đội đánh rơi vật phẩm đang mang.
 A blue flute made from blown glass. Its melody awakens a single Pokémon from sleep.
-A blue flute made from blown glass. Its melody awakens a single Pokémon from sleep.
+Chiếc sáo xanh dương làm bằng thủy tinh thổi. Giai điệu của nó đánh thức một Pokémon đang ngủ.
 A yellow flute made from blown glass. Its melody snaps a single Pokémon out of confusion.
-A yellow flute made from blown glass. Its melody snaps a single Pokémon out of confusion.
+Chiếc sáo vàng làm bằng thủy tinh thổi. Giai điệu của nó giúp một Pokémon thoát khỏi hỗn loạn.
 A red flute made from blown glass. Its melody snaps a single Pokémon out of infatuation.
-A red flute made from blown glass. Its melody snaps a single Pokémon out of infatuation.
+Chiếc sáo đỏ làm bằng thủy tinh thổi. Giai điệu của nó giúp một Pokémon thoát khỏi mê hoặc.
 A doll that attracts Pokémon. Use it to flee from any battle with a wild Pokémon.
-A doll that attracts Pokémon. Use it to flee from any battle with a wild Pokémon.
+Con búp bê thu hút Pokémon. Dùng để chạy thoát khỏi bất kỳ trận đấu nào với Pokémon hoang dã.
 An item that attracts Pokémon. Use it to flee from any battle with a wild Pokémon.
-An item that attracts Pokémon. Use it to flee from any battle with a wild Pokémon.
+Vật phẩm thu hút Pokémon. Dùng để chạy thoát khỏi bất kỳ trận đấu nào với Pokémon hoang dã.
 A folding Bicycle that enables much faster movement than the Running Shoes.
-A folding Bicycle that enables much faster movement than the Running Shoes.
+Chiếc xe đạp gấp giúp di chuyển nhanh hơn nhiều so với Giày Chạy.
 An old and beat-up fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
-An old and beat-up fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
+Chiếc cần câu cũ kỹ. Dùng ở nơi có nước để câu Pokémon hoang dã sống dưới nước.
 A new, good-quality fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
-A new, good-quality fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
+Chiếc cần câu mới có chất lượng tốt. Dùng ở nơi có nước để câu Pokémon hoang dã sống dưới nước.
 An awesome, high-tech fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
-An awesome, high-tech fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.
+Chiếc cần câu công nghệ cao tuyệt hảo. Dùng ở nơi có nước để câu Pokémon hoang dã sống dưới nước.
 A device used for finding items. If there is a hidden item nearby when it is used, it emits a signal.
-A device used for finding items. If there is a hidden item nearby when it is used, it emits a signal.
+Thiết bị tìm kiếm vật phẩm. Khi sử dụng, nó phát tín hiệu nếu có vật phẩm ẩn ở gần.
 It checks for unseen items in the area and makes noise and lights when it finds something.
-It checks for unseen items in the area and makes noise and lights when it finds something.
+Thiết bị dò tìm vật phẩm ẩn trong khu vực, phát ra âm thanh và ánh sáng khi phát hiện.
 A tool that can search out Pokémon that are hiding in grass. Its battery is recharged as you walk.
-A tool that can search out Pokémon that are hiding in grass. Its battery is recharged as you walk.
+Công cụ tìm Pokémon ẩn trong bụi cỏ. Pin của nó được sạc lại khi bạn di chuyển.
 A very convenient map that can be viewed anytime. It even shows your present location.
-A very convenient map that can be viewed anytime. It even shows your present location.
+Tấm bản đồ tiện lợi có thể xem bất cứ lúc nào, thậm chí hiển thị cả vị trí hiện tại của bạn.
 A long, durable rope. Use it to escape instantly from a cave or a dungeon.
-A long, durable rope. Use it to escape instantly from a cave or a dungeon.
+Sợi dây dài và bền chắc. Dùng để lập tức thoát khỏi hang động hoặc mê cung.
 A case for holding coins obtained at the Game Corner. It holds up to 99,999 coins.
-A case for holding coins obtained at the Game Corner. It holds up to 99,999 coins.
+Hộp đựng xu nhận được tại Game Corner, có thể chứa tối đa 99.999 xu.
 A flute that is said to instantly awaken any Pokémon. It has a lovely tone.
-A flute that is said to instantly awaken any Pokémon. It has a lovely tone.
+Chiếc sáo được cho là có thể lập tức đánh thức bất kỳ Pokémon nào. Âm thanh của nó rất du dương.
 A sack used to gather and hold volcanic ash.
-A sack used to gather and hold volcanic ash.
+Chiếc túi dùng để thu thập và đựng tro núi lửa.
 A scope that makes unseeable Pokémon visible. It is made by Silph Co.
-A scope that makes unseeable Pokémon visible. It is made by Silph Co.
+Thiết bị quan sát do Công ty Silph chế tạo, giúp nhìn thấy những Pokémon vốn vô hình.
 A device by Devon that signals any unseeable Pokémon.
-A device by Devon that signals any unseeable Pokémon.
+Thiết bị do Devon chế tạo, phát tín hiệu khi phát hiện Pokémon vô hình.
 A watering can shaped like a Squirtle. It helps promote healthy growth of Berries planted in soft soil.
-A watering can shaped like a Squirtle. It helps promote healthy growth of Berries planted in soft soil.
+Bình tưới hình Squirtle, giúp những cây Berry trồng trên đất mềm phát triển khỏe mạnh.
 A watering can shaped like a Psyduck. It helps promote healthy growth of Berries planted in soft soil.
-A watering can shaped like a Psyduck. It helps promote healthy growth of Berries planted in soft soil.
+Bình tưới hình Psyduck, giúp những cây Berry trồng trên đất mềm phát triển khỏe mạnh.
 A nifty watering pail. Use it to promote strong growth in Berries planted in soft soil.
-A nifty watering pail. Use it to promote strong growth in Berries planted in soft soil.
+Chiếc bình tưới tiện dụng, giúp những cây Berry trồng trên đất mềm phát triển tốt.
 A watering can shaped like a Lotad. It helps promote the healthy growth of any Berries planted in soft soil.
-A watering can shaped like a Lotad. It helps promote the healthy growth of any Berries planted in soft soil.
+Bình tưới hình Lotad, giúp những cây Berry trồng trên đất mềm phát triển khỏe mạnh.
 A flower sometimes bundled in bouquets to convey gratitude on special occasions like birthdays.
-A flower sometimes bundled in bouquets to convey gratitude on special occasions like birthdays.
+Loài hoa thường được kết thành bó để bày tỏ lòng biết ơn trong những dịp đặc biệt như sinh nhật.
 A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.
-A glass that reveals the truth. It is a mysterious glass that returns a Pokémon back to its original shape.
+Chiếc gương bí ẩn có thể phơi bày sự thật, giúp Pokémon trở về hình dạng ban đầu.
 A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.
-A bottle believed to have been used to seal away the power of a certain Pokémon long, long ago.
+Chiếc bình được cho là từng dùng để phong ấn sức mạnh của một Pokémon từ thời xa xưa.
 A catalog of devices that Rotom like. Use the catalog to have Rotom hop in and out of the devices listed within.
-A catalog of devices that Rotom like. Use the catalog to have Rotom hop in and out of the devices listed within.
+Cuốn danh mục các thiết bị Rotom yêu thích. Dùng để cho Rotom nhập vào hoặc thoát khỏi những thiết bị được liệt kê.
 An item in which Zygarde Cores and Cells are gathered. You can also use it to change Zygarde's forms.
-An item in which Zygarde Cores and Cells are gathered. You can also use it to change Zygarde's forms.
+Vật phẩm dùng để thu thập Lõi và Tế bào Zygarde. Cũng có thể dùng để thay đổi hình dạng của Zygarde.
 A splicer that fuses Kyurem and a certain Pokémon. They are said to have been one in the beginning.
-A splicer that fuses Kyurem and a certain Pokémon. They are said to have been one in the beginning.
+Thiết bị hợp nhất Kyurem với một Pokémon nhất định. Tương truyền, ban đầu chúng từng là một.
 A splicer that separates Kyurem and a certain Pokémon when they have been fused.
-A splicer that separates Kyurem and a certain Pokémon when they have been fused.
+Thiết bị tách Kyurem và Pokémon đã hợp nhất với nó.
 A machine to fuse Necrozma, which needs light, and Solgaleo.
-A machine to fuse Necrozma, which needs light, and Solgaleo.
+Thiết bị hợp nhất Necrozma đang cần ánh sáng với Solgaleo.
 A machine to separate Necrozma, which needed light, from Solgaleo.
-A machine to separate Necrozma, which needed light, from Solgaleo.
+Thiết bị tách Necrozma từng cần ánh sáng ra khỏi Solgaleo.
 A machine to fuse Necrozma, which needs light, and Lunala.
-A machine to fuse Necrozma, which needs light, and Lunala.
+Thiết bị hợp nhất Necrozma đang cần ánh sáng với Lunala.
 A machine to separate Necrozma, which needed light, from Lunala.
-A machine to separate Necrozma, which needed light, from Lunala.
+Thiết bị tách Necrozma từng cần ánh sáng ra khỏi Lunala.
 Reins that people presented to the king. They unite Calyrex with its beloved steed.
-Reins that people presented to the king. They unite Calyrex with its beloved steed.
+Dây cương được người dân dâng lên nhà vua, dùng để hợp nhất Calyrex với chiến mã yêu quý.
 Reins that people presented to the king. They separate Calyrex and its beloved steed.
-Reins that people presented to the king. They separate Calyrex and its beloved steed.
+Dây cương được người dân dâng lên nhà vua, dùng để tách Calyrex khỏi chiến mã yêu quý.
 An oval charm said to increase the chance of Eggs being found at the Day Care.
-An oval charm said to increase the chance of Eggs being found at the Day Care.
+Lá bùa hình bầu dục được cho là giúp tăng khả năng tìm thấy Trứng tại Nhà Chăm sóc Pokémon.
 A shiny charm said to increase the chance of finding a Shiny Pokémon.
-A shiny charm said to increase the chance of finding a Shiny Pokémon.
+Lá bùa lấp lánh được cho là giúp tăng khả năng gặp Pokémon Shiny.
 A charm said to increase the chance of getting a critical catch. The charm doesn't shake much.
-A charm said to increase the chance of getting a critical catch. The charm doesn't shake much.
+Lá bùa được cho là giúp tăng khả năng bắt Pokémon chí mạng. Nó hầu như không rung lắc.
 A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside it.
-A charm that increases the Exp. Points that Pokémon can get. A machine-like object is inside it.
+Lá bùa giúp tăng điểm kinh nghiệm Pokémon nhận được. Bên trong chứa một vật thể giống máy móc.
 This ring contains an untold power that somehow enables Pokémon carrying Mega Stones to Mega Evolve.
-This ring contains an untold power that somehow enables Pokémon carrying Mega Stones to Mega Evolve.
+Chiếc nhẫn chứa sức mạnh bí ẩn, cho phép Pokémon mang Mega Stone thực hiện Mega Tiến hóa.
 A device that allows you to access the Pokémon storage system. There are some places where it won't work.
-A device that allows you to access the Pokémon storage system. There are some places where it won't work.
+Thiết bị cho phép truy cập hệ thống lưu trữ Pokémon, nhưng không hoạt động ở một số địa điểm.
 A ticket required to board the ship to Doxy Island. It glows beautifully.
-A ticket required to board the ship to Doxy Island. It glows beautifully.
+Tấm vé cần thiết để lên tàu đến Đảo Doxy. Nó tỏa ra ánh sáng tuyệt đẹp.
 A faded sea chart that shows the way to a certain island.
-A faded sea chart that shows the way to a certain island.
+Tấm hải đồ đã phai màu, chỉ đường đến một hòn đảo nào đó.

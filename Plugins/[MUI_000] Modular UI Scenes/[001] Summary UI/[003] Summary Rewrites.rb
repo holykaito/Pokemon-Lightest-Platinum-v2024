@@ -51,9 +51,9 @@ class PokemonSummary_Scene
       imagepos.push(["Graphics/UI/shiny", 2, 134]) if @pokemon.shiny?
       textpos.push([@pokemon.level.to_s, 46, 98, :left, Color.new(64, 64, 64), Color.new(176, 176, 176)])
       if @pokemon.male?
-        textpos.push([_INTL("♂"), 178, 68, :left, Color.new(24, 112, 216), Color.new(136, 168, 208)])
+        imagepos.push(["Graphics/UI/Summary/male_icon", 170, 64])
       elsif @pokemon.female?
-        textpos.push([_INTL("♀"), 178, 68, :left, Color.new(248, 56, 32), Color.new(224, 152, 144)])
+        imagepos.push(["Graphics/UI/Summary/female_icon", 170, 64])
       end
     end
     # Draws the page.

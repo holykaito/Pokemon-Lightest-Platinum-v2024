@@ -2,302 +2,302 @@
 # translate every second line of this file.
 #-------------------------------
 [Map004]
-\ff[roxanne]\c[1]Roxanne: \c[0]Welcome to the History of Pokémon and Humans class! I’m Roxanne from <b>Hoenn Region</b>, and I’ll be your instructor for this subject. Throughout this course, you'll explore the relationship between humans and Pokémon from ancient times to the present, and you'll learn many fascinating things about how we’ve progressed together over the centuries.
-\ff[roxanne]\c[1]Roxanne: \c[0]Welcome to the History of Pokémon and Humans class! I’m Roxanne from <b>Hoenn Region</b>, and I’ll be your instructor for this subject. Throughout this course, you'll explore the relationship between humans and Pokémon from ancient times to the present, and you'll learn many fascinating things about how we’ve progressed together over the centuries.
-\ff[roxanne]\c[1]Roxanne: \c[0]This course isn’t just about historical events; it also helps you understand the deeper significance of how we and Pokémon can support each other in life. For example, some Pokémon have helped build cities, while others have inspired myths and legends that we pass down from generation to generation.
-\ff[roxanne]\c[1]Roxanne: \c[0]This course isn’t just about historical events; it also helps you understand the deeper significance of how we and Pokémon can support each other in life. For example, some Pokémon have helped build cities, while others have inspired myths and legends that we pass down from generation to generation.
-\ff[roxanne]\c[1]Roxanne: \c[0]Welcome to the History of Pokémon and Humans class! I’m Roxanne from <b>Hoenn Region<\b>, and I’ll be your instructor for this subject. Throughout this course, you'll explore the relationship between humans and Pokémon from ancient times to the present, and you'll learn many fascinating things about how we’ve progressed together over the centuries.
-\ff[roxanne]\c[1]Roxanne: \c[0]Welcome to the History of Pokémon and Humans class! I’m Roxanne from <b>Hoenn Region<\b>, and I’ll be your instructor for this subject. Throughout this course, you'll explore the relationship between humans and Pokémon from ancient times to the present, and you'll learn many fascinating things about how we’ve progressed together over the centuries.
-\ff[roxanne]\c[1]Roxanne: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[roxanne]\c[1]Roxanne: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[roxanne]\c[1]Roxanne: \c[0]I'll ask you some questions about history and archaeology in the world of Pokémon. Are you ready?
-\ff[roxanne]\c[1]Roxanne: \c[0]I'll ask you some questions about history and archaeology in the world of Pokémon. Are you ready?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 1:</b>Who was the first to discover the existence of the legendary Pokémon \c[5]Arceus \c[0]?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 1:</b>Who was the first to discover the existence of the legendary Pokémon \c[5]Arceus \c[0]?
-\ff[roxanne]\c[1]Roxanne: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[roxanne]\c[1]Roxanne: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[roxanne]\c[1]Roxanne: \c[0]Correct!
-\ff[roxanne]\c[1]Roxanne: \c[0]Correct!
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 2:</b>Which Pokémon caused devastation in the Kalos region in the event known as the "3000-year-old disaster"?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 2:</b>Which Pokémon caused devastation in the Kalos region in the event known as the "3000-year-old disaster"?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 3:</b>Why can Fossil Pokémon be revived?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 3:</b>Why can Fossil Pokémon be revived?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 4:</b>Pokémon \c[5]Necrozma\c[0] is a legendary Pokémon from which region, known for its ability to absorb light and change its form?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 4:</b>Pokémon \c[5]Necrozma\c[0] is a legendary Pokémon from which region, known for its ability to absorb light and change its form?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 5:</b>Who founded Team Aqua and Team Magma in the Hoenn region, with opposing goals to control the planet’s life and destruction?
-\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 5:</b>Who founded Team Aqua and Team Magma in the Hoenn region, with opposing goals to control the planet’s life and destruction?
-\ff[roxanne]\c[1]Roxanne: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[roxanne]\c[1]Roxanne: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[roxanne]\c[1]Roxanne: \c[0]Let me know when you're ready.
-\ff[roxanne]\c[1]Roxanne: \c[0]Let me know when you're ready.
-\ff[roxanne]\c[1]Roxanne: \c[0]My student, \c[2]Wilfredo\c[0], will be your opponent in the battle.
-\ff[roxanne]\c[1]Roxanne: \c[0]My student, \c[2]Wilfredo\c[0], will be your opponent in the battle.
-\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Hi there! I'm Wilfredo, one of Roxanne's students. Today, I'll be challenging you to a battle. Show me what you've got!
-\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Hi there! I'm Wilfredo, one of Roxanne's students. Today, I'll be challenging you to a battle. Show me what you've got!
-\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[roxanne]\c[1]Roxanne: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
-\ff[roxanne]\c[1]Roxanne: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
-Did you know that each type of Pokémon has its own strengths and weaknesses? Understanding them can help you in battles.
-Did you know that each type of Pokémon has its own strengths and weaknesses? Understanding them can help you in battles.
 There's a legend about a Pokémon hiding within the school. I'm still searching for clues to discover more.
-There's a legend about a Pokémon hiding within the school. I'm still searching for clues to discover more.
-\ff[cynthia]\c[1]Cynthia: \c[0]Hello \PN, nice to see you again.
-\ff[cynthia]\c[1]Cynthia: \c[0]Hello \PN, nice to see you again.
-\ff[cynthia]\c[1]Cynthia: \c[0]Have you visited the classrooms and greeted the teachers at this academy?
-\ff[cynthia]\c[1]Cynthia: \c[0]Have you visited the classrooms and greeted the teachers at this academy?
-\ff[cynthia]\c[1]Cynthia: \c[0]Not yet? If so, go and say hello, I'm a little busy right now. We'll talk later!
-\ff[cynthia]\c[1]Cynthia: \c[0]Not yet? If so, go and say hello, I'm a little busy right now. We'll talk later!
-\ff[cynthia]\c[1]Cynthia: \c[0]Seeing so many interested in the fascinating relationships between Pokémon and humans is wonderful. As you can see, I’m here today to assist \c[3]Roxanne\c[0]. She’s been kind enough to let me share some of my research with the class, especially about the ancient legends surrounding \c[10]Xerneas\c[0] and \c[10]Yveltal.
-\ff[cynthia]\c[1]Cynthia: \c[0]Seeing so many interested in the fascinating relationships between Pokémon and humans is wonderful. As you can see, I’m here today to assist \c[3]Roxanne\c[0]. She’s been kind enough to let me share some of my research with the class, especially about the ancient legends surrounding \c[10]Xerneas\c[0] and \c[10]Yveltal.
-\ff[cynthia]\c[1]Cynthia: \c[0]These two Legendary Pokémon represent life and destruction, two forces that have shaped the very fabric of our world. \c[10]Xerneas\c[0], the embodiment of life, is said to have the power to grant eternal life, while \c[10]Yveltal\c[0], the embodiment of destruction, brings about death and decay.
-\ff[cynthia]\c[1]Cynthia: \c[0]These two Legendary Pokémon represent life and destruction, two forces that have shaped the very fabric of our world. \c[10]Xerneas\c[0], the embodiment of life, is said to have the power to grant eternal life, while \c[10]Yveltal\c[0], the embodiment of destruction, brings about death and decay.
-\ff[cynthia]\c[1]Cynthia: \c[0]I’ve spent years studying these two, and it’s intriguing how their legend has appeared in various cultures across different regions, even though the details of the story differ.
-\ff[cynthia]\c[1]Cynthia: \c[0]I’ve spent years studying these two, and it’s intriguing how their legend has appeared in various cultures across different regions, even though the details of the story differ.
-\ff[cynthia]\c[1]Cynthia: \c[0]Of course, much of it remains a mystery. And that’s what makes studying Pokémon history so exciting. Every discovery leads to more questions and more pieces to fit together. There’s always something new to learn, a new theory to test.
-\ff[cynthia]\c[1]Cynthia: \c[0]Of course, much of it remains a mystery. And that’s what makes studying Pokémon history so exciting. Every discovery leads to more questions and more pieces to fit together. There’s always something new to learn, a new theory to test.
-\ff[cynthia]\c[1]Cynthia: \c[0]Ah, forgive me for rambling on. I tend to get carried away when I’m talking about Pokémon myths and legends.
-\ff[cynthia]\c[1]Cynthia: \c[0]Ah, forgive me for rambling on. I tend to get carried away when I’m talking about Pokémon myths and legends.
-\ff[cynthia]\c[1]Cynthia: \c[0]Have you challenged Inhore Gym yet? Probably not, because to challenge you need a certificate from this academy. Let me take you to meet the principal of this academy, he is an acquaintance of mine. Come with me.
-\ff[cynthia]\c[1]Cynthia: \c[0]Have you challenged Inhore Gym yet? Probably not, because to challenge you need a certificate from this academy. Let me take you to meet the principal of this academy, he is an acquaintance of mine. Come with me.
-I’m building a robot that can battle with Pokemon! It uses AI to analyze moves and predict what the opponent will do next. It’s still in development, but it’s getting there!
-I’m building a robot that can battle with Pokemon! It uses AI to analyze moves and predict what the opponent will do next. It’s still in development, but it’s getting there!
-There are many stories about the origins of different Pokémon. Some of them may have existed thousands of years ago.
-There are many stories about the origins of different Pokémon. Some of them may have existed thousands of years ago.
+Nghe nói có một truyền thuyết về Pokémon đang ẩn náu trong trường này. Tớ vẫn đang tìm manh mối để biết thêm đây!
+Did you know that each type of Pokémon has its own strengths and weaknesses? Understanding them can help you in battles.
+Cậu biết không, mỗi hệ Pokémon đều có điểm mạnh và điểm yếu riêng. Hiểu rõ chúng sẽ giúp cậu rất nhiều khi chiến đấu đấy.
+\ff[roxanne]\c[1]Roxanne: \c[0]Welcome to the History of Pokémon and Humans class! I’m Roxanne from <b>Hoenn Region</b>, and I’ll be your instructor for this subject. Throughout this course, you'll explore the relationship between humans and Pokémon from ancient times to the present, and you'll learn many fascinating things about how we’ve progressed together over the centuries.
+\ff[roxanne]\c[1]Roxanne: \c[0]Chào mừng em đến với môn Lịch sử Pokémon và Con người! Cô là Roxanne, đến từ <b>vùng Hoenn</b>, và sẽ phụ trách môn học này. Trong khóa học, em sẽ tìm hiểu mối quan hệ giữa con người và Pokémon từ thời cổ đại đến nay, cùng những điều thú vị về hành trình phát triển của cả hai qua nhiều thế kỷ.
+\ff[roxanne]\c[1]Roxanne: \c[0]This course isn’t just about historical events; it also helps you understand the deeper significance of how we and Pokémon can support each other in life. For example, some Pokémon have helped build cities, while others have inspired myths and legends that we pass down from generation to generation.
+\ff[roxanne]\c[1]Roxanne: \c[0]Môn học này không chỉ nói về các sự kiện lịch sử mà còn giúp em hiểu sâu hơn về cách con người và Pokémon hỗ trợ lẫn nhau. Chẳng hạn, có Pokémon từng giúp xây dựng thành phố, trong khi những loài khác trở thành nguồn cảm hứng cho các thần thoại và truyền thuyết được lưu truyền qua nhiều thế hệ.
+\ff[roxanne]\c[1]Roxanne: \c[0]Welcome to the History of Pokémon and Humans class! I’m Roxanne from <b>Hoenn Region<\b>, and I’ll be your instructor for this subject. Throughout this course, you'll explore the relationship between humans and Pokémon from ancient times to the present, and you'll learn many fascinating things about how we’ve progressed together over the centuries.
+\ff[roxanne]\c[1]Roxanne: \c[0]Chào mừng em đến với môn Lịch sử Pokémon và Con người! Cô là Roxanne, đến từ <b>vùng Hoenn<\b>, và sẽ phụ trách môn học này. Em sẽ tìm hiểu mối quan hệ giữa con người và Pokémon từ thời cổ đại đến nay, cùng hành trình phát triển của cả hai qua nhiều thế kỷ.
+\ff[roxanne]\c[1]Roxanne: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
+\ff[roxanne]\c[1]Roxanne: \c[0]Hiệu trưởng đã thông báo rằng học viện sẽ tổ chức kỳ đánh giá Huấn luyện viên bậc Cơ bản. Em sẽ phải vượt qua hai phần: lý thuyết và thực chiến.
+\ff[roxanne]\c[1]Roxanne: \c[0]I'll ask you some questions about history and archaeology in the world of Pokémon. Are you ready?
+\ff[roxanne]\c[1]Roxanne: \c[0]Cô sẽ hỏi em một số câu về lịch sử và khảo cổ học trong thế giới Pokémon. Em sẵn sàng chưa?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 1:</b>Who was the first to discover the existence of the legendary Pokémon \c[5]Arceus \c[0]?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Câu 1:</b>Ai là người đầu tiên phát hiện sự tồn tại của Pokémon huyền thoại \c[5]Arceus \c[0]?
+\ff[roxanne]\c[1]Roxanne: \c[0]Sorry, your answer is incorrect. Please study more!
+\ff[roxanne]\c[1]Roxanne: \c[0]Tiếc quá, em trả lời chưa đúng. Hãy ôn tập thêm nhé!
+\ff[roxanne]\c[1]Roxanne: \c[0]Correct!
+\ff[roxanne]\c[1]Roxanne: \c[0]Chính xác!
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 2:</b>Which Pokémon caused devastation in the Kalos region in the event known as the "3000-year-old disaster"?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Câu 2:</b>Pokémon nào đã gây ra sự tàn phá ở vùng Kalos trong sự kiện được gọi là "Thảm họa 3.000 năm trước"?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 3:</b>Why can Fossil Pokémon be revived?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Câu 3:</b>Vì sao Pokémon hóa thạch có thể được hồi sinh?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 4:</b>Pokémon \c[5]Necrozma\c[0] is a legendary Pokémon from which region, known for its ability to absorb light and change its form?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Câu 4:</b>Pokémon huyền thoại \c[5]Necrozma\c[0], nổi tiếng với khả năng hấp thụ ánh sáng và thay đổi hình dạng, đến từ vùng nào?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Question 5:</b>Who founded Team Aqua and Team Magma in the Hoenn region, with opposing goals to control the planet’s life and destruction?
+\ff[roxanne]\c[1]Roxanne: \c[0]<b>Câu 5:</b>Ai đã thành lập Team Aqua và Team Magma ở Hoenn, hai tổ chức có mục tiêu đối lập về việc thay đổi thế giới?
+\ff[roxanne]\c[1]Roxanne: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
+\ff[roxanne]\c[1]Roxanne: \c[0]Số câu trả lời đúng sẽ quyết định em có vượt qua phần lý thuyết hay không. Nếu đạt yêu cầu, chúng ta sẽ chuyển sang phần thực chiến.
+\ff[roxanne]\c[1]Roxanne: \c[0]Let me know when you're ready.
+\ff[roxanne]\c[1]Roxanne: \c[0]Khi nào sẵn sàng thì báo cô nhé.
+\ff[roxanne]\c[1]Roxanne: \c[0]My student, \c[2]Wilfredo\c[0], will be your opponent in the battle.
+\ff[roxanne]\c[1]Roxanne: \c[0]Học trò của cô, \c[2]Wilfredo\c[0], sẽ là đối thủ của em trong phần thực chiến.
+\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Hi there! I'm Wilfredo, one of Roxanne's students. Today, I'll be challenging you to a battle. Show me what you've got!
+\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Chào cậu! Tớ là Wilfredo, học trò của cô Roxanne. Hôm nay tớ sẽ đấu với cậu. Cho tớ xem thực lực của cậu nào!
+\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
+\ff[cameo_schoolboy]\c[1]Wilfredo: \c[0]Chà, cậu mạnh thật đấy! Cảm ơn vì đã cho tớ một bài học đáng nhớ. Chúc cậu may mắn trên hành trình sắp tới!
+\ff[roxanne]\c[1]Roxanne: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
+\ff[roxanne]\c[1]Roxanne: \c[0]Chúc mừng em! Em đã vượt qua cả bài kiểm tra lý thuyết lẫn thực chiến của cô. Em thật sự là một Huấn luyện viên xuất sắc. Hãy tiếp tục tiến bước và không ngừng học hỏi nhé!
 \ff[principal]\c[1]Principal: \c[0]Hello Cynthia, how do you feel about \c[3]Roxanne\c[0]'s class?
-\ff[principal]\c[1]Principal: \c[0]Hello Cynthia, how do you feel about \c[3]Roxanne\c[0]'s class?
+\ff[principal]\c[1]Principal: \c[0]Chào Cynthia, cô thấy lớp học của \c[3]Roxanne\c[0] thế nào?
 \ff[cynthia]\c[1]Cynthia: \c[3]Roxanne\c[0] is a wonderful instructor. She is always serious about her work and very dedicated to her students. Her class is always very dynamic and creative.
-\ff[cynthia]\c[1]Cynthia: \c[3]Roxanne\c[0] is a wonderful instructor. She is always serious about her work and very dedicated to her students. Her class is always very dynamic and creative.
+\ff[cynthia]\c[1]Cynthia: \c[3]Roxanne\c[0] là một giáo viên tuyệt vời. Cô ấy luôn nghiêm túc với công việc và hết lòng vì học sinh. Các tiết học của cô ấy cũng rất sinh động và sáng tạo.
 \ff[principal]\c[1]Principal: \c[0]That's great to hear. \c[3]Roxanne\c[0] has a very unique teaching method.
-\ff[principal]\c[1]Principal: \c[0]That's great to hear. \c[3]Roxanne\c[0] has a very unique teaching method.
+\ff[principal]\c[1]Principal: \c[0]Nghe vậy thì tốt quá. \c[3]Roxanne\c[0] quả thật có phương pháp giảng dạy rất độc đáo.
 \ff[principal]\c[1]Principal: \c[0]Oh, who is this young man?
-\ff[principal]\c[1]Principal: \c[0]Oh, who is this young man?
+\ff[principal]\c[1]Principal: \c[0]Ồ, còn cậu học trò trẻ này là ai vậy?
 \ff[cynthia]\c[1]Cynthia: \c[0]Ah, right. This is \PN. He’s very good at battling Pokémon. He’s also humble and hardworking, which makes me even more hopeful for his future.
-\ff[cynthia]\c[1]Cynthia: \c[0]Ah, right. This is \PN. He’s very good at battling Pokémon. He’s also humble and hardworking, which makes me even more hopeful for his future.
+\ff[cynthia]\c[1]Cynthia: \c[0]À, đây là \PN. Em ấy có khả năng chiến đấu Pokémon rất tốt, lại khiêm tốn và chăm chỉ. Điều đó khiến tôi càng kỳ vọng vào tương lai của em ấy.
 \ff[principal]\c[1]Principal: \c[0]Hello \PN, welcome to Pokémon Academy! I’m the principal of this academy, and I'm very glad to meet you. This is the largest academy in the region, where we not only train talented Pokémon trainers but also help them develop holistically, both in battles and knowledge. I’ve heard you went to Inhore Gym to challenge, but you couldn’t participate, right? That’s because the gyms are only open to Trainers who have reached at least the \c[2]Standard\c[0] level. If I’m not mistaken, you are still a \c[2]Beginner\c[0] Trainer, having just received your starter from \c[3]Pro. Fennel\c[0], right?
-\ff[principal]\c[1]Principal: \c[0]Hello \PN, welcome to Pokémon Academy! I’m the principal of this academy, and I'm very glad to meet you. This is the largest academy in the region, where we not only train talented Pokémon trainers but also help them develop holistically, both in battles and knowledge. I’ve heard you went to Inhore Gym to challenge, but you couldn’t participate, right? That’s because the gyms are only open to Trainers who have reached at least the \c[2]Standard\c[0] level. If I’m not mistaken, you are still a \c[2]Beginner\c[0] Trainer, having just received your starter from \c[3]Pro. Fennel\c[0], right?
+\ff[principal]\c[1]Principal: \c[0]Chào \PN, chào mừng em đến với Học viện Pokémon! Thầy là hiệu trưởng ở đây, rất vui được gặp em. Đây là học viện lớn nhất vùng, nơi đào tạo Huấn luyện viên cả về kỹ năng chiến đấu lẫn kiến thức. Thầy nghe nói em đã đến Nhà thi đấu Inhore nhưng không được tham gia, đúng không? Đó là vì chỉ Huấn luyện viên đạt ít nhất bậc \c[2]Cơ bản\c[0] mới được thử thách Nhà thi đấu. Nếu thầy không nhầm, em vẫn đang ở bậc \c[2]Tập sự\c[0], vừa nhận Pokémon khởi đầu từ \c[3]Giáo sư Fennel\c[0], phải không?
 \ff[principal]\c[1]Principal: \c[0]That’s right, Cynthia. To become a trainer eligible for Gym battles, you need to reach at least the \c[2]Standard\c[0] level. The \c[2]Standard\c[0] level is the basic requirement to participate in official Gym battles in the region. You won’t be able to compete in any Gym in Zhery until you reach this level.
-\ff[principal]\c[1]Principal: \c[0]That’s right, Cynthia. To become a trainer eligible for Gym battles, you need to reach at least the \c[2]Standard\c[0] level. The \c[2]Standard\c[0] level is the basic requirement to participate in official Gym battles in the region. You won’t be able to compete in any Gym in Zhery until you reach this level.
+\ff[principal]\c[1]Principal: \c[0]Đúng vậy, Cynthia. Muốn đủ điều kiện tham gia thử thách Nhà thi đấu, Huấn luyện viên phải đạt ít nhất bậc \c[2]Cơ bản\c[0]. Đây là yêu cầu tối thiểu để tham gia các trận đấu Nhà thi đấu chính thức trong vùng. Chừng nào chưa đạt cấp bậc này, em sẽ chưa thể thách đấu bất kỳ Nhà thi đấu nào ở Zhery.
 \ff[principal]\c[1]Principal: \c[0]To level up, you’ll need to be certified by the academy’s instructors. I recommend you take the basic courses offered here and complete the tests given by the instructors. Once you pass the tests and are recognized, I will grant you the \c[2]Standard\c[0] Trainer certification.
-\ff[principal]\c[1]Principal: \c[0]To level up, you’ll need to be certified by the academy’s instructors. I recommend you take the basic courses offered here and complete the tests given by the instructors. Once you pass the tests and are recognized, I will grant you the \c[2]Standard\c[0] Trainer certification.
+\ff[principal]\c[1]Principal: \c[0]Để thăng cấp, em cần được các giáo viên của học viện chứng nhận. Thầy khuyên em nên tham gia những khóa học cơ bản và hoàn thành các bài kiểm tra. Khi em vượt qua và được công nhận, thầy sẽ cấp chứng chỉ Huấn luyện viên bậc \c[2]Cơ bản\c[0] cho em.
 \ff[principal]\c[1]Principal: \c[0]Remember, each trainer level has its own set of skills, from understanding Pokémon to strategies and even technology. You’ll need a lot of effort and learning to go further. After \c[2]Standard\c[0], you can reach higher levels like \c[2]Capable, Proficient, Good\c[0], and possibly \c[2]Great\c[0].
-\ff[principal]\c[1]Principal: \c[0]Remember, each trainer level has its own set of skills, from understanding Pokémon to strategies and even technology. You’ll need a lot of effort and learning to go further. After \c[2]Standard\c[0], you can reach higher levels like \c[2]Capable, Proficient, Good\c[0], and possibly \c[2]Great\c[0].
+\ff[principal]\c[1]Principal: \c[0]Hãy nhớ rằng mỗi bậc Huấn luyện viên đòi hỏi những kỹ năng riêng, từ kiến thức Pokémon, chiến thuật đến công nghệ. Em sẽ cần nỗ lực học hỏi rất nhiều để tiến xa hơn. Sau bậc \c[2]Cơ bản\c[0], em có thể vươn tới các bậc \c[2]Khá, Thành thạo, Giỏi\c[0], thậm chí là \c[2]Xuất sắc\c[0].
 \ff[cynthia]\c[1]Cynthia: \c[0]I feel he can do it! He’s highly determined and has the right qualities to progress. Believe in yourself, and you’ll reach the \c[2]Standard\c[0] certification in no time!
-\ff[cynthia]\c[1]Cynthia: \c[0]I feel he can do it! He’s highly determined and has the right qualities to progress. Believe in yourself, and you’ll reach the \c[2]Standard\c[0] certification in no time!
+\ff[cynthia]\c[1]Cynthia: \c[0]Tôi tin em ấy làm được! Em ấy rất quyết tâm và có đủ tố chất để tiến bộ. Cứ tin vào bản thân nhé, chị tin em sẽ sớm nhận được chứng chỉ bậc \c[2]Cơ bản\c[0] thôi!
 \ff[principal]\c[1]Principal: \c[0]You can do it if you work hard and train well. Start with the basic courses, and don’t hesitate to meet with the instructors to learn more about the training and battling methods. I look forward to granting you the \c[2]Standard\c[0] Trainer certification soon.
-\ff[principal]\c[1]Principal: \c[0]You can do it if you work hard and train well. Start with the basic courses, and don’t hesitate to meet with the instructors to learn more about the training and battling methods. I look forward to granting you the \c[2]Standard\c[0] Trainer certification soon.
+\ff[principal]\c[1]Principal: \c[0]Chỉ cần chăm chỉ học tập và rèn luyện, em chắc chắn làm được. Hãy bắt đầu với các khóa học cơ bản và mạnh dạn trao đổi với giáo viên về phương pháp huấn luyện, chiến đấu. Thầy mong sớm được trao chứng chỉ Huấn luyện viên bậc \c[2]Cơ bản\c[0] cho em.
 \ff[principal]\c[1]Principal: \c[0]Good luck on your journey, and remember that our academy is always here to support you.
-\ff[principal]\c[1]Principal: \c[0]Good luck on your journey, and remember that our academy is always here to support you.
+\ff[principal]\c[1]Principal: \c[0]Chúc em may mắn trên hành trình phía trước. Hãy nhớ rằng học viện luôn sẵn sàng hỗ trợ em.
 \ff[principal]\c[1]Principal: \c[0]He’s really something special. What’s your next step, Cynthia?
-\ff[principal]\c[1]Principal: \c[0]He’s really something special. What’s your next step, Cynthia?
+\ff[principal]\c[1]Principal: \c[0]Cậu ấy quả thật rất đặc biệt. Còn kế hoạch tiếp theo của cô là gì, Cynthia?
 \ff[cynthia]\c[1]Cynthia: \c[0]I will continue my journey. There’s still so much out there to explore and learn.
-\ff[cynthia]\c[1]Cynthia: \c[0]I will continue my journey. There’s still so much out there to explore and learn.
+\ff[cynthia]\c[1]Cynthia: \c[0]Tôi sẽ tiếp tục cuộc hành trình. Ngoài kia vẫn còn quá nhiều điều để khám phá và học hỏi.
 \ff[principal]\c[1]Principal: \c[0]You’re still the one who always strives for more!
-\ff[principal]\c[1]Principal: \c[0]You’re still the one who always strives for more!
+\ff[principal]\c[1]Principal: \c[0]Cô vẫn luôn là người không ngừng vươn xa nhỉ!
 \ff[cynthia]\c[1]Cynthia: \c[0]Pokémon and humans always have interesting and mysterious things that I want to learn more about. I don’t want to stop before I’ve discovered all of my own potential, as well as the special Pokémon that have yet to be discovered.
-\ff[cynthia]\c[1]Cynthia: \c[0]Pokémon and humans always have interesting and mysterious things that I want to learn more about. I don’t want to stop before I’ve discovered all of my own potential, as well as the special Pokémon that have yet to be discovered.
+\ff[cynthia]\c[1]Cynthia: \c[0]Thế giới Pokémon và con người luôn ẩn chứa những điều thú vị, bí ẩn mà tôi muốn tìm hiểu. Tôi chưa muốn dừng lại khi vẫn còn tiềm năng của bản thân cần khám phá, cũng như những Pokémon đặc biệt chưa được biết đến.
 \ff[principal]\c[1]Principal: \c[0]That’s a profound perspective. You truly are an inspiring role model, Cynthia. I believe what you’ve done not only helps individuals but also contributes greatly to the development of the world as a whole. If given the chance, I’d love for you to continue sharing your experiences with the academy.
-\ff[principal]\c[1]Principal: \c[0]That’s a profound perspective. You truly are an inspiring role model, Cynthia. I believe what you’ve done not only helps individuals but also contributes greatly to the development of the world as a whole. If given the chance, I’d love for you to continue sharing your experiences with the academy.
+\ff[principal]\c[1]Principal: \c[0]Một quan điểm thật sâu sắc. Cô đúng là tấm gương truyền cảm hứng, Cynthia. Tôi tin những gì cô làm không chỉ giúp ích cho từng cá nhân mà còn đóng góp lớn vào sự phát triển của thế giới. Nếu có dịp, tôi rất mong cô tiếp tục chia sẻ kinh nghiệm với học viện.
 \ff[cynthia]\c[1]Cynthia: \c[0]That’s something I truly hope for. And I believe that young trainers will help me rediscover important values in myself, allowing me to continue my journey with a fresh perspective. Goodbye, and I look forward to seeing you again.
-\ff[cynthia]\c[1]Cynthia: \c[0]That’s something I truly hope for. And I believe that young trainers will help me rediscover important values in myself, allowing me to continue my journey with a fresh perspective. Goodbye, and I look forward to seeing you again.
-\ff[jacq]\c[1]Jacq: \c[0]HelloI’m Jacq, the Chemistry and Biology teacher here. I’m sure you’ve already learned a lot about Pokémon, but there’s so much more to discover, especially when it comes to their biology and chemistry. Have you ever wondered what makes a Pokémon’s body function the way it does?
-\ff[jacq]\c[1]Jacq: \c[0]HelloI’m Jacq, the Chemistry and Biology teacher here. I’m sure you’ve already learned a lot about Pokémon, but there’s so much more to discover, especially when it comes to their biology and chemistry. Have you ever wondered what makes a Pokémon’s body function the way it does?
-\ff[jacq]\c[1]Jacq: \c[0]Take the Paldean Lechonk, for instance. It’s an example of how the environment influences a Pokémon’s biochemistry. The unique mix of nutrients in the grasses of Paldea gives Pokémon like Lechonk the ability to metabolize food at an incredible rate, storing more energy for longer periods. Its biology is very different from Pokémon you might find in other regions!
-\ff[jacq]\c[1]Jacq: \c[0]Take the Paldean Lechonk, for instance. It’s an example of how the environment influences a Pokémon’s biochemistry. The unique mix of nutrients in the grasses of Paldea gives Pokémon like Lechonk the ability to metabolize food at an incredible rate, storing more energy for longer periods. Its biology is very different from Pokémon you might find in other regions!
-\ff[jacq]\c[1]Jacq: \c[0]Now, let’s dive into something even more amazing, the relationship between Pokémon and their ecosystems. In some regions, Pokémon are integral to maintaining the balance of their environment. For instance, Grass-type Pokémon help with pollination, while Poison-type Pokémon can control pest populations. Their biology is key to the health of their habitats.
-\ff[jacq]\c[1]Jacq: \c[0]Now, let’s dive into something even more amazing, the relationship between Pokémon and their ecosystems. In some regions, Pokémon are integral to maintaining the balance of their environment. For instance, Grass-type Pokémon help with pollination, while Poison-type Pokémon can control pest populations. Their biology is key to the health of their habitats.
-\ff[jacq]\c[1]Jacq: \c[0]I’ve been doing some research on how Pokémon in Paldea interact with their environments on a molecular level. If you’re ever interested in learning more about how chemistry and biology come together to shape the abilities of Pokémon, feel free to stop by my lab!
-\ff[jacq]\c[1]Jacq: \c[0]I’ve been doing some research on how Pokémon in Paldea interact with their environments on a molecular level. If you’re ever interested in learning more about how chemistry and biology come together to shape the abilities of Pokémon, feel free to stop by my lab!
-\ff[jacq]\c[1]Jacq: \c[0]Ah, before you go, I have something special for you.
-\ff[jacq]\c[1]Jacq: \c[0]Ah, before you go, I have something special for you.
-\ff[jacq]\c[1]Jacq: \c[0]It's a rare plant known for its healing properties, often used by Pokémon trainers to restore a Pokémon’s vitality after a battle. In the wild, some Pokémon even use this herb to heal themselves when they’re injured. It’s a perfect example of how biology and nature work together to keep Pokémon healthy.
-\ff[jacq]\c[1]Jacq: \c[0]It's a rare plant known for its healing properties, often used by Pokémon trainers to restore a Pokémon’s vitality after a battle. In the wild, some Pokémon even use this herb to heal themselves when they’re injured. It’s a perfect example of how biology and nature work together to keep Pokémon healthy.
-\ff[jacq]\c[1]Jacq: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[jacq]\c[1]Jacq: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[jacq]\c[1]Jacq: \c[0]The first part of the test will be theory, where you'll have to answer questions related to biological chemistry in the Pokémon world. Are you ready?
-\ff[jacq]\c[1]Jacq: \c[0]The first part of the test will be theory, where you'll have to answer questions related to biological chemistry in the Pokémon world. Are you ready?
-\ff[jacq]\c[1]Jacq: \c[0]What happens when a Pokémon gets poisoned?
-\ff[jacq]\c[1]Jacq: \c[0]What happens when a Pokémon gets poisoned?
-\ff[jacq]\c[1]Jacq: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[jacq]\c[1]Jacq: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[jacq]\c[1]Jacq: \c[0]Correct!
-\ff[jacq]\c[1]Jacq: \c[0]Correct!
-\ff[jacq]\c[1]Jacq: \c[0]What type of Pokémon is strong against Grass-type?
-\ff[jacq]\c[1]Jacq: \c[0]What type of Pokémon is strong against Grass-type?
-\ff[jacq]\c[1]Jacq: \c[0]Which part of a Pokémon's body can be compared to the DNA of living organisms in real life?
-\ff[jacq]\c[1]Jacq: \c[0]Which part of a Pokémon's body can be compared to the DNA of living organisms in real life?
-\ff[jacq]\c[1]Jacq: \c[0]Which Pokémon can affect the environment with its toxic substances?
-\ff[jacq]\c[1]Jacq: \c[0]Which Pokémon can affect the environment with its toxic substances?
-\ff[jacq]\c[1]Jacq: \c[0]What can increase a Pokémon's evolution potential?
-\ff[jacq]\c[1]Jacq: \c[0]What can increase a Pokémon's evolution potential?
-\ff[jacq]\c[1]Jacq: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[jacq]\c[1]Jacq: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[jacq]\c[1]Jacq: \c[0]Let me know when you're ready.
-\ff[jacq]\c[1]Jacq: \c[0]Let me know when you're ready.
-\ff[jacq]\c[1]Jacq: \c[0]Now, it’s time to show your battling skills in the practical test!
-\ff[jacq]\c[1]Jacq: \c[0]Now, it’s time to show your battling skills in the practical test!
-\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Hi there! I’m Reuben, one of Jacq' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
-\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Hi there! I’m Reuben, one of Jacq' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
-\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[jacq]\c[1]Jacq: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
-\ff[jacq]\c[1]Jacq: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
-Pokémon were once seen as wild creatures that humans feared. Over time, though, we learned how to befriend them and form strong bonds.
-Pokémon were once seen as wild creatures that humans feared. Over time, though, we learned how to befriend them and form strong bonds.
-One interesting thing about Pokémon history is that certain regions have their own unique legends. Take the Sinnoh region, for example—its mythology is full of Pokémon gods!
-One interesting thing about Pokémon history is that certain regions have their own unique legends. Take the Sinnoh region, for example—its mythology is full of Pokémon gods!
-I’ve been trying to perfect my strategy for double battles. Combining the right types is always tricky, but so rewarding!
-I’ve been trying to perfect my strategy for double battles. Combining the right types is always tricky, but so rewarding!
+\ff[cynthia]\c[1]Cynthia: \c[0]Tôi cũng thật lòng mong như vậy. Tôi tin những Huấn luyện viên trẻ sẽ giúp tôi nhìn nhận lại những giá trị quan trọng của bản thân, để tiếp tục hành trình với góc nhìn mới. Tạm biệt, mong sớm gặp lại mọi người!
+There are many stories about the origins of different Pokémon. Some of them may have existed thousands of years ago.
+Có rất nhiều câu chuyện về nguồn gốc các loài Pokémon. Một số loài có lẽ đã tồn tại từ hàng nghìn năm trước.
+I’m building a robot that can battle with Pokemon! It uses AI to analyze moves and predict what the opponent will do next. It’s still in development, but it’s getting there!
+Tớ đang chế tạo một robot có thể chiến đấu với Pokémon! Nó dùng AI để phân tích chiêu thức và dự đoán hành động tiếp theo của đối thủ. Vẫn đang phát triển thôi, nhưng cũng sắp thành công rồi!
+\ff[cynthia]\c[1]Cynthia: \c[0]Hello \PN, nice to see you again.
+\ff[cynthia]\c[1]Cynthia: \c[0]Chào \PN, rất vui được gặp lại em!
+\ff[cynthia]\c[1]Cynthia: \c[0]Have you visited the classrooms and greeted the teachers at this academy?
+\ff[cynthia]\c[1]Cynthia: \c[0]Em đã tham quan các lớp học và chào hỏi những giáo viên trong học viện chưa?
+\ff[cynthia]\c[1]Cynthia: \c[0]Not yet? If so, go and say hello, I'm a little busy right now. We'll talk later!
+\ff[cynthia]\c[1]Cynthia: \c[0]Vẫn chưa à? Vậy em hãy đi chào mọi người trước nhé. Chị đang hơi bận, lát nữa chúng ta nói chuyện sau!
+\ff[cynthia]\c[1]Cynthia: \c[0]Seeing so many interested in the fascinating relationships between Pokémon and humans is wonderful. As you can see, I’m here today to assist \c[3]Roxanne\c[0]. She’s been kind enough to let me share some of my research with the class, especially about the ancient legends surrounding \c[10]Xerneas\c[0] and \c[10]Yveltal.
+\ff[cynthia]\c[1]Cynthia: \c[0]Thật tuyệt khi thấy nhiều người quan tâm đến mối quan hệ giữa Pokémon và con người. Hôm nay chị đến hỗ trợ \c[3]Roxanne\c[0]. Cô ấy đã tạo điều kiện để chị chia sẻ một số nghiên cứu với cả lớp, đặc biệt là những truyền thuyết cổ xưa về \c[10]Xerneas\c[0] và \c[10]Yveltal.
+\ff[cynthia]\c[1]Cynthia: \c[0]These two Legendary Pokémon represent life and destruction, two forces that have shaped the very fabric of our world. \c[10]Xerneas\c[0], the embodiment of life, is said to have the power to grant eternal life, while \c[10]Yveltal\c[0], the embodiment of destruction, brings about death and decay.
+\ff[cynthia]\c[1]Cynthia: \c[0]Hai Pokémon huyền thoại này tượng trưng cho sự sống và hủy diệt, hai sức mạnh góp phần định hình thế giới. \c[10]Xerneas\c[0] là hiện thân của sự sống, được cho là có thể ban tặng sự sống vĩnh hằng. Còn \c[10]Yveltal\c[0], hiện thân của hủy diệt, mang đến cái chết và sự suy tàn.
+\ff[cynthia]\c[1]Cynthia: \c[0]I’ve spent years studying these two, and it’s intriguing how their legend has appeared in various cultures across different regions, even though the details of the story differ.
+\ff[cynthia]\c[1]Cynthia: \c[0]Chị đã dành nhiều năm nghiên cứu hai Pokémon này. Điều thú vị là truyền thuyết về chúng xuất hiện trong nhiều nền văn hóa ở các vùng khác nhau, dù mỗi nơi lại kể những chi tiết riêng.
+\ff[cynthia]\c[1]Cynthia: \c[0]Of course, much of it remains a mystery. And that’s what makes studying Pokémon history so exciting. Every discovery leads to more questions and more pieces to fit together. There’s always something new to learn, a new theory to test.
+\ff[cynthia]\c[1]Cynthia: \c[0]Tất nhiên, vẫn còn rất nhiều bí ẩn chưa được giải đáp. Chính điều đó khiến việc nghiên cứu lịch sử Pokémon trở nên hấp dẫn. Mỗi khám phá lại mở ra những câu hỏi mới, những mảnh ghép mới. Luôn có điều gì đó để tìm hiểu và giả thuyết mới để kiểm chứng.
+\ff[cynthia]\c[1]Cynthia: \c[0]Ah, forgive me for rambling on. I tend to get carried away when I’m talking about Pokémon myths and legends.
+\ff[cynthia]\c[1]Cynthia: \c[0]À, xin lỗi vì chị nói hơi nhiều nhé. Cứ nhắc đến thần thoại và truyền thuyết Pokémon là chị lại say sưa quên cả thời gian.
+\ff[cynthia]\c[1]Cynthia: \c[0]Have you challenged Inhore Gym yet? Probably not, because to challenge you need a certificate from this academy. Let me take you to meet the principal of this academy, he is an acquaintance of mine. Come with me.
+\ff[cynthia]\c[1]Cynthia: \c[0]Em đã thử thách Nhà thi đấu Inhore chưa? Chắc là chưa rồi, vì em cần chứng chỉ của học viện này mới được tham gia. Để chị đưa em đến gặp hiệu trưởng nhé, chị có quen thầy ấy. Đi cùng chị nào!
 This is the teacher's lounge, you cannot enter.
-This is the teacher's lounge, you cannot enter.
-I think moves like Swords Dance or Calm Mind are underrated. Boosting your stats mid-battle can make your Pokémon unstoppable! Timing is everything, though—if you use them at the wrong moment, it could cost you the match.
-I think moves like Swords Dance or Calm Mind are underrated. Boosting your stats mid-battle can make your Pokémon unstoppable! Timing is everything, though—if you use them at the wrong moment, it could cost you the match.
-I’m new to this, but I’m really excited about how Pokemon and technology can work together! I’ve heard of trainers who use tech to enhance their battle strategies.
-I’m new to this, but I’m really excited about how Pokemon and technology can work together! I’ve heard of trainers who use tech to enhance their battle strategies.
+Đây là phòng nghỉ giáo viên, em không được vào.
+I’ve been trying to perfect my strategy for double battles. Combining the right types is always tricky, but so rewarding!
+Tớ đang cố hoàn thiện chiến thuật đấu đôi. Phối hợp các hệ Pokémon sao cho hợp lý khá khó, nhưng khi thành công thì tuyệt lắm!
+Pokémon were once seen as wild creatures that humans feared. Over time, though, we learned how to befriend them and form strong bonds.
+Ngày xưa, con người từng xem Pokémon là những sinh vật hoang dã đáng sợ. Nhưng theo thời gian, chúng ta đã học cách kết bạn và xây dựng mối gắn kết bền chặt với chúng.
+One interesting thing about Pokémon history is that certain regions have their own unique legends. Take the Sinnoh region, for example—its mythology is full of Pokémon gods!
+Một điều thú vị về lịch sử Pokémon là mỗi vùng đều có những truyền thuyết riêng. Như Sinnoh chẳng hạn, thần thoại nơi đó đầy những Pokémon được tôn thờ như thần linh!
+\ff[jacq]\c[1]Jacq: \c[0]HelloI’m Jacq, the Chemistry and Biology teacher here. I’m sure you’ve already learned a lot about Pokémon, but there’s so much more to discover, especially when it comes to their biology and chemistry. Have you ever wondered what makes a Pokémon’s body function the way it does?
+\ff[jacq]\c[1]Jacq: \c[0]Chào em! Thầy là Jacq, giáo viên môn Hóa học và Sinh học ở đây. Chắc em đã biết khá nhiều về Pokémon, nhưng vẫn còn vô số điều cần khám phá, nhất là về sinh học và hóa học của chúng. Em từng thắc mắc điều gì khiến cơ thể Pokémon hoạt động theo cách riêng chưa?
+\ff[jacq]\c[1]Jacq: \c[0]Take the Paldean Lechonk, for instance. It’s an example of how the environment influences a Pokémon’s biochemistry. The unique mix of nutrients in the grasses of Paldea gives Pokémon like Lechonk the ability to metabolize food at an incredible rate, storing more energy for longer periods. Its biology is very different from Pokémon you might find in other regions!
+\ff[jacq]\c[1]Jacq: \c[0]Lấy Lechonk ở Paldea làm ví dụ nhé. Đây là minh chứng cho việc môi trường ảnh hưởng đến sinh hóa của Pokémon. Thành phần dinh dưỡng đặc biệt trong cỏ ở Paldea giúp Lechonk chuyển hóa thức ăn cực nhanh và dự trữ năng lượng lâu hơn. Đặc điểm sinh học của nó rất khác Pokémon ở những vùng khác đấy!
+\ff[jacq]\c[1]Jacq: \c[0]Now, let’s dive into something even more amazing, the relationship between Pokémon and their ecosystems. In some regions, Pokémon are integral to maintaining the balance of their environment. For instance, Grass-type Pokémon help with pollination, while Poison-type Pokémon can control pest populations. Their biology is key to the health of their habitats.
+\ff[jacq]\c[1]Jacq: \c[0]Giờ ta tìm hiểu một điều thú vị hơn: mối quan hệ giữa Pokémon và hệ sinh thái. Ở một số vùng, Pokémon đóng vai trò thiết yếu trong việc duy trì cân bằng môi trường. Chẳng hạn, Pokémon hệ Cỏ giúp thụ phấn, còn Pokémon hệ Độc có thể kiểm soát sâu hại. Đặc điểm sinh học của chúng góp phần giữ cho môi trường sống khỏe mạnh.
+\ff[jacq]\c[1]Jacq: \c[0]I’ve been doing some research on how Pokémon in Paldea interact with their environments on a molecular level. If you’re ever interested in learning more about how chemistry and biology come together to shape the abilities of Pokémon, feel free to stop by my lab!
+\ff[jacq]\c[1]Jacq: \c[0]Thầy đang nghiên cứu cách Pokémon ở Paldea tương tác với môi trường ở cấp độ phân tử. Nếu em muốn tìm hiểu cách hóa học và sinh học kết hợp để hình thành khả năng của Pokémon, cứ ghé phòng thí nghiệm của thầy nhé!
+\ff[jacq]\c[1]Jacq: \c[0]Ah, before you go, I have something special for you.
+\ff[jacq]\c[1]Jacq: \c[0]À, trước khi em đi, thầy có món quà đặc biệt dành cho em.
+\ff[jacq]\c[1]Jacq: \c[0]It's a rare plant known for its healing properties, often used by Pokémon trainers to restore a Pokémon’s vitality after a battle. In the wild, some Pokémon even use this herb to heal themselves when they’re injured. It’s a perfect example of how biology and nature work together to keep Pokémon healthy.
+\ff[jacq]\c[1]Jacq: \c[0]Đây là một loại thảo dược quý có khả năng chữa lành, thường được Huấn luyện viên dùng để phục hồi sức khỏe Pokémon sau trận đấu. Trong tự nhiên, một số Pokémon còn tự dùng loại cây này khi bị thương. Đó là ví dụ tuyệt vời về sự kết hợp giữa sinh học và thiên nhiên để bảo vệ sức khỏe Pokémon.
+\ff[jacq]\c[1]Jacq: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
+\ff[jacq]\c[1]Jacq: \c[0]Hiệu trưởng đã thông báo học viện sẽ tổ chức kỳ đánh giá Huấn luyện viên bậc Cơ bản. Em phải vượt qua hai phần: lý thuyết và thực chiến.
+\ff[jacq]\c[1]Jacq: \c[0]The first part of the test will be theory, where you'll have to answer questions related to biological chemistry in the Pokémon world. Are you ready?
+\ff[jacq]\c[1]Jacq: \c[0]Phần đầu tiên là lý thuyết. Em sẽ trả lời những câu hỏi về sinh học và hóa học trong thế giới Pokémon. Em sẵn sàng chưa?
+\ff[jacq]\c[1]Jacq: \c[0]What happens when a Pokémon gets poisoned?
+\ff[jacq]\c[1]Jacq: \c[0]Điều gì xảy ra khi Pokémon bị trúng độc?
+\ff[jacq]\c[1]Jacq: \c[0]Sorry, your answer is incorrect. Please study more!
+\ff[jacq]\c[1]Jacq: \c[0]Tiếc quá, câu trả lời chưa đúng. Em hãy ôn tập thêm nhé!
+\ff[jacq]\c[1]Jacq: \c[0]Correct!
+\ff[jacq]\c[1]Jacq: \c[0]Chính xác!
+\ff[jacq]\c[1]Jacq: \c[0]What type of Pokémon is strong against Grass-type?
+\ff[jacq]\c[1]Jacq: \c[0]Hệ Pokémon nào có lợi thế khi đối đầu hệ Cỏ?
+\ff[jacq]\c[1]Jacq: \c[0]Which part of a Pokémon's body can be compared to the DNA of living organisms in real life?
+\ff[jacq]\c[1]Jacq: \c[0]Yếu tố nào của Pokémon có thể so sánh với DNA của sinh vật ngoài đời thực?
+\ff[jacq]\c[1]Jacq: \c[0]Which Pokémon can affect the environment with its toxic substances?
+\ff[jacq]\c[1]Jacq: \c[0]Pokémon nào có thể tác động đến môi trường bằng các chất độc của mình?
+\ff[jacq]\c[1]Jacq: \c[0]What can increase a Pokémon's evolution potential?
+\ff[jacq]\c[1]Jacq: \c[0]Điều gì có thể gia tăng khả năng tiến hóa của Pokémon?
+\ff[jacq]\c[1]Jacq: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
+\ff[jacq]\c[1]Jacq: \c[0]Số câu trả lời đúng sẽ quyết định em có vượt qua phần lý thuyết không. Nếu đạt yêu cầu, chúng ta sẽ chuyển sang thực chiến.
+\ff[jacq]\c[1]Jacq: \c[0]Let me know when you're ready.
+\ff[jacq]\c[1]Jacq: \c[0]Sẵn sàng thì báo thầy nhé.
+\ff[jacq]\c[1]Jacq: \c[0]Now, it’s time to show your battling skills in the practical test!
+\ff[jacq]\c[1]Jacq: \c[0]Giờ là lúc em thể hiện kỹ năng chiến đấu trong bài kiểm tra thực hành!
+\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Hi there! I’m Reuben, one of Jacq' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
+\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Chào cậu! Tớ là Reuben, học trò của thầy Jacq. Hôm nay tớ sẽ đấu với cậu. Cho tớ xem khả năng chiến đấu của cậu nào!
+\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
+\ff[cameo_breeder1m]\c[1]Reuben: \c[0]Chà, cậu mạnh thật đấy! Cảm ơn vì bài học đáng nhớ này. Chúc cậu may mắn trên hành trình sắp tới!
+\ff[jacq]\c[1]Jacq: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
+\ff[jacq]\c[1]Jacq: \c[0]Chúc mừng em! Em đã vượt qua cả phần lý thuyết lẫn thực chiến của thầy. Em đúng là một Huấn luyện viên xuất sắc. Hãy tiếp tục tiến bước và không ngừng học hỏi nhé!
 Have you ever compared the stats of Pokemon in Mega Evolution? I’m gathering real-world data for my thesis!
-Have you ever compared the stats of Pokemon in Mega Evolution? I’m gathering real-world data for my thesis!
-Did you know that some Pokémon can generate their own food? Like the Grass-type Pokémon! They use a process called photosynthesis to create energy. It’s like how plants work, but they can do it even faster because of their natural abilities!
-Did you know that some Pokémon can generate their own food? Like the Grass-type Pokémon! They use a process called photosynthesis to create energy. It’s like how plants work, but they can do it even faster because of their natural abilities!
-Did you know that humans and Pokémon have coexisted for thousands of years? It's fascinating to think about how far we've come together!
-Did you know that humans and Pokémon have coexisted for thousands of years? It's fascinating to think about how far we've come together!
-The relationship between Pokémon and people has always been one of mutual respect, but it hasn't always been easy. There were times when humans misunderstood Pokémon and vice versa.
-The relationship between Pokémon and people has always been one of mutual respect, but it hasn't always been easy. There were times when humans misunderstood Pokémon and vice versa.
+Cậu từng so sánh chỉ số Pokémon khi Mega Tiến hóa chưa? Tớ đang thu thập dữ liệu thực tế cho luận văn của mình!
+I’m new to this, but I’m really excited about how Pokemon and technology can work together! I’ve heard of trainers who use tech to enhance their battle strategies.
+Tớ mới tìm hiểu lĩnh vực này thôi, nhưng rất hào hứng với sự kết hợp giữa Pokémon và công nghệ! Nghe nói có những Huấn luyện viên dùng công nghệ để cải thiện chiến thuật chiến đấu đấy.
+I think moves like Swords Dance or Calm Mind are underrated. Boosting your stats mid-battle can make your Pokémon unstoppable! Timing is everything, though—if you use them at the wrong moment, it could cost you the match.
+Tớ nghĩ những chiêu như Swords Dance hay Calm Mind thường bị đánh giá thấp. Tăng chỉ số giữa trận có thể khiến Pokémon cực kỳ đáng gờm! Nhưng thời điểm sử dụng rất quan trọng, chọn sai lúc là có thể thua cả trận đấy.
 A good trainer knows when to push their Pokemon and when to give them a break. Balance is the key to success.
-A good trainer knows when to push their Pokemon and when to give them a break. Balance is the key to success.
-Sometimes, the best offense is a good defense. Have you ever tried using moves like Protect or Substitute? They can completely throw off your opponent’s rhythm, especially when they’re expecting a strong attack.
-Sometimes, the best offense is a good defense. Have you ever tried using moves like Protect or Substitute? They can completely throw off your opponent’s rhythm, especially when they’re expecting a strong attack.
-I'm creating a large painting of Pokémon. Expressing creativity through art is truly enjoyable.
-I'm creating a large painting of Pokémon. Expressing creativity through art is truly enjoyable.
+Một Huấn luyện viên giỏi phải biết khi nào nên thúc đẩy Pokémon luyện tập và khi nào nên cho chúng nghỉ ngơi. Cân bằng chính là chìa khóa thành công.
+Did you know that humans and Pokémon have coexisted for thousands of years? It's fascinating to think about how far we've come together!
+Cậu biết con người và Pokémon đã chung sống hàng nghìn năm chưa? Nghĩ đến chặng đường mà cả hai cùng trải qua thật kỳ diệu!
+The relationship between Pokémon and people has always been one of mutual respect, but it hasn't always been easy. There were times when humans misunderstood Pokémon and vice versa.
+Mối quan hệ giữa con người và Pokémon được xây dựng trên sự tôn trọng lẫn nhau, nhưng không phải lúc nào cũng suôn sẻ. Đã có thời con người hiểu lầm Pokémon và ngược lại.
+Did you know that some Pokémon can generate their own food? Like the Grass-type Pokémon! They use a process called photosynthesis to create energy. It’s like how plants work, but they can do it even faster because of their natural abilities!
+Cậu biết có những Pokémon tự tạo ra thức ăn không? Như Pokémon hệ Cỏ ấy! Chúng dùng quá trình quang hợp để tạo năng lượng giống thực vật, nhưng nhờ khả năng tự nhiên mà còn làm nhanh hơn nữa!
 I’m exploring how trainers can enhance their Pokémon's abilities through nutrition and training.
-I’m exploring how trainers can enhance their Pokémon's abilities through nutrition and training.
-I read that some Pokémon, like Snorlax, have unique digestive systems. They can eat anything, but their bodies break down food in a way that’s different from most Pokémon. I think it’s a chemical process that helps them store energy for long periods of time.
-I read that some Pokémon, like Snorlax, have unique digestive systems. They can eat anything, but their bodies break down food in a way that’s different from most Pokémon. I think it’s a chemical process that helps them store energy for long periods of time.
-Many of the earliest Pokémon trainers were actually explorers, venturing into unknown lands to discover new Pokémon species. They played a key role in understanding Pokémon habitats.
-Many of the earliest Pokémon trainers were actually explorers, venturing into unknown lands to discover new Pokémon species. They played a key role in understanding Pokémon habitats.
-The first Poké Balls were made using materials found in nature. It's amazing to think about how far we've come, with technology now allowing us to catch Pokémon so easily.
-The first Poké Balls were made using materials found in nature. It's amazing to think about how far we've come, with technology now allowing us to catch Pokémon so easily.
+Tớ đang nghiên cứu cách Huấn luyện viên cải thiện khả năng Pokémon thông qua dinh dưỡng và luyện tập.
+I'm creating a large painting of Pokémon. Expressing creativity through art is truly enjoyable.
+Tớ đang vẽ một bức tranh Pokémon khổ lớn. Thể hiện sự sáng tạo qua nghệ thuật thật sự rất vui!
+Sometimes, the best offense is a good defense. Have you ever tried using moves like Protect or Substitute? They can completely throw off your opponent’s rhythm, especially when they’re expecting a strong attack.
+Đôi khi phòng thủ tốt lại là cách tấn công hiệu quả nhất. Cậu từng thử Protect hay Substitute chưa? Những chiêu này có thể phá vỡ hoàn toàn nhịp chiến đấu của đối thủ, nhất là khi họ đang chờ một đòn tấn công mạnh.
 Communicating with your Pokémon is very important. Remember that they can sense your emotions.
-Communicating with your Pokémon is very important. Remember that they can sense your emotions.
-I just learned about setting up hazards like Stealth Rock and Spikes. They deal damage every time your opponent switches Pokémon! It’s a great way to chip away at their team over time.
-I just learned about setting up hazards like Stealth Rock and Spikes. They deal damage every time your opponent switches Pokémon! It’s a great way to chip away at their team over time.
-Hello! If you're looking for information about a specific Pokémon, feel free to ask me. I have many interesting books here!
-Hello! If you're looking for information about a specific Pokémon, feel free to ask me. I have many interesting books here!
+Giao tiếp với Pokémon rất quan trọng. Hãy nhớ rằng chúng có thể cảm nhận cảm xúc của cậu.
+Many of the earliest Pokémon trainers were actually explorers, venturing into unknown lands to discover new Pokémon species. They played a key role in understanding Pokémon habitats.
+Nhiều Huấn luyện viên Pokémon đầu tiên thực chất là những nhà thám hiểm, đặt chân đến vùng đất chưa được khám phá để tìm kiếm loài Pokémon mới. Họ đóng vai trò quan trọng trong việc tìm hiểu môi trường sống của Pokémon.
+The first Poké Balls were made using materials found in nature. It's amazing to think about how far we've come, with technology now allowing us to catch Pokémon so easily.
+Những Poké Ball đầu tiên được làm từ vật liệu tự nhiên. Thật đáng kinh ngạc khi công nghệ ngày nay đã phát triển đến mức giúp chúng ta bắt Pokémon dễ dàng như vậy.
+I read that some Pokémon, like Snorlax, have unique digestive systems. They can eat anything, but their bodies break down food in a way that’s different from most Pokémon. I think it’s a chemical process that helps them store energy for long periods of time.
+Tớ đọc được rằng một số Pokémon như Snorlax có hệ tiêu hóa rất đặc biệt. Chúng ăn được gần như mọi thứ, nhưng cách cơ thể phân giải thức ăn lại khác phần lớn Pokémon. Tớ nghĩ đó là quá trình hóa học giúp chúng dự trữ năng lượng lâu dài.
 I just read an old document about Eevee's alternate evolutions! Want to check it out? Who knows, we might discover a new way for it to evolve!
-I just read an old document about Eevee's alternate evolutions! Want to check it out? Who knows, we might discover a new way for it to evolve!
-I’ve been reading a lot about the different chemicals Pokémon can create! Some, like Grimer and Muk, have toxins in their bodies that can be used as weapons. I wonder if scientists have figured out how they produce these chemicals...
-I’ve been reading a lot about the different chemicals Pokémon can create! Some, like Grimer and Muk, have toxins in their bodies that can be used as weapons. I wonder if scientists have figured out how they produce these chemicals...
-\ff[corless]\c[1]Corless: \c[0]Welcome, class! My name is Coreless, and I come from <b>Unova</b>. You see, Pokémon evolution isn’t just about biology, it’s about understanding the energies that influence it.
-\ff[corless]\c[1]Corless: \c[0]Welcome, class! My name is Coreless, and I come from <b>Unova</b>. You see, Pokémon evolution isn’t just about biology, it’s about understanding the energies that influence it.
-\ff[corless]\c[1]Corless: \c[0]In Unova, we’ve developed technology that allows us to better understand how energy interacts with a Pokémon’s DNA, which is crucial in understanding phenomena like Mega Evolution and regional forms. It’s all about energy flow and the way it shapes the Pokémon’s traits.
-\ff[corless]\c[1]Corless: \c[0]In Unova, we’ve developed technology that allows us to better understand how energy interacts with a Pokémon’s DNA, which is crucial in understanding phenomena like Mega Evolution and regional forms. It’s all about energy flow and the way it shapes the Pokémon’s traits.
-\ff[corless]\c[1]Corless: \c[0]If you’re ever interested in learning more about the technology behind all of this, feel free to come by my lab. There’s always room for one more curious mind. We can dive deep into how we use energy fields to boost a Pokémon’s abilities or how we are improving the Poké Balls themselves.
-\ff[corless]\c[1]Corless: \c[0]If you’re ever interested in learning more about the technology behind all of this, feel free to come by my lab. There’s always room for one more curious mind. We can dive deep into how we use energy fields to boost a Pokémon’s abilities or how we are improving the Poké Balls themselves.
-\ff[corless]\c[1]Corless: \c[0]Ah, before you go, I have something for you. Given your potential, I think you’ll find this useful.
-\ff[corless]\c[1]Corless: \c[0]Ah, before you go, I have something for you. Given your potential, I think you’ll find this useful.
-\ff[corless]\c[1]Corless: \c[0]This is an Ultra Ball, designed with the latest technology to better adapt to a Pokémon’s energy signature. It could be just what you need the next time you face a tough challenge.
-\ff[corless]\c[1]Corless: \c[0]This is an Ultra Ball, designed with the latest technology to better adapt to a Pokémon’s energy signature. It could be just what you need the next time you face a tough challenge.
-\ff[corless]\c[1]Coreless: \c[0]If you’re ever interested in learning more about the technology behind all of this, feel free to come by my lab. There’s always room for one more curious mind. We can dive deep into how we use energy fields to boost a Pokémon’s abilities or how we are improving the Poké Balls themselves.
-\ff[corless]\c[1]Coreless: \c[0]If you’re ever interested in learning more about the technology behind all of this, feel free to come by my lab. There’s always room for one more curious mind. We can dive deep into how we use energy fields to boost a Pokémon’s abilities or how we are improving the Poké Balls themselves.
-\ff[corless]\c[1]Corless: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[corless]\c[1]Corless: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[corless]\c[1]Corless: \c[0]The first part of the test will be theory, where you'll have to answer questions related to science and technology in the Pokémon world. This is a great opportunity for you to demonstrate your knowledge of items, devices, and technologies that assist trainers on their journey. Are you ready?
-\ff[corless]\c[1]Corless: \c[0]The first part of the test will be theory, where you'll have to answer questions related to science and technology in the Pokémon world. This is a great opportunity for you to demonstrate your knowledge of items, devices, and technologies that assist trainers on their journey. Are you ready?
-\ff[corless]\c[1]Corless: \c[0]<b>Question 1:</b>Which machine is used to transfer Pokémon from one region to another?
-\ff[corless]\c[1]Corless: \c[0]<b>Question 1:</b>Which machine is used to transfer Pokémon from one region to another?
-\ff[corless]\c[1]Corless: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[corless]\c[1]Corless: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[corless]\c[1]Corless: \c[0]Correct!
-\ff[corless]\c[1]Corless: \c[0]Correct!
-\ff[corless]\c[1]Corless: \c[0]<b>Question 2:</b>Which Pokémon can interact with technology to connect with devices in the Pokémon world?
-\ff[corless]\c[1]Corless: \c[0]<b>Question 2:</b>Which Pokémon can interact with technology to connect with devices in the Pokémon world?
-\ff[corless]\c[1]Coreless: \c[0]Correct!
-\ff[corless]\c[1]Coreless: \c[0]Correct!
-\ff[corless]\c[1]Coreless: \c[0]<b>Question 3:</b>Which of the following is not a man-made Pokémon?
-\ff[corless]\c[1]Coreless: \c[0]<b>Question 3:</b>Which of the following is not a man-made Pokémon?
-\ff[corless]\c[1]Corless: \c[0]<b>Question 4:</b>Which of the following Pokeballs has the highest catch rate under ideal conditions?
-\ff[corless]\c[1]Corless: \c[0]<b>Question 4:</b>Which of the following Pokeballs has the highest catch rate under ideal conditions?
-\ff[corless]\c[1]Corless: \c[0]<b>Question 5:</b>WWhich is not a hold item?
-\ff[corless]\c[1]Corless: \c[0]<b>Question 5:</b>WWhich is not a hold item?
-\ff[corless]\c[1]Corless: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[corless]\c[1]Corless: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[corless]\c[1]Corless: \c[0]Let me know when you're ready.
-\ff[corless]\c[1]Corless: \c[0]Let me know when you're ready.
-\ff[corless]\c[1]Corless: \c[0]Now, it’s time to show your battling skills in the practical test!
-\ff[corless]\c[1]Corless: \c[0]Now, it’s time to show your battling skills in the practical test!
-\ff[cameo_lass]\c[1]Jamie: \c[0]Hi there! I’m Jamie, one of Coreless' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
-\ff[cameo_lass]\c[1]Jamie: \c[0]Hi there! I’m Jamie, one of Coreless' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
-\ff[cameo_lass]\c[1]Jamie: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[cameo_lass]\c[1]Jamie: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[corless]\c[1]Corless: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
-\ff[corless]\c[1]Corless: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
+Tớ vừa đọc một tài liệu cũ về những dạng tiến hóa khác nhau của Eevee! Cậu muốn xem không? Biết đâu chúng ta lại khám phá ra cách tiến hóa mới!
+Hello! If you're looking for information about a specific Pokémon, feel free to ask me. I have many interesting books here!
+Xin chào! Nếu cậu đang tìm thông tin về Pokémon nào đó thì cứ hỏi nhé. Ở đây có rất nhiều sách thú vị!
+I just learned about setting up hazards like Stealth Rock and Spikes. They deal damage every time your opponent switches Pokémon! It’s a great way to chip away at their team over time.
+Tớ vừa học cách đặt bẫy như Stealth Rock và Spikes. Chúng gây sát thương mỗi khi đối thủ đổi Pokémon! Đó là cách tuyệt vời để bào mòn cả đội hình theo thời gian.
 Oh, and here’s something interesting. It says that Pokémon that live in high-altitude areas tend to have stronger lungs and are more resistant to cold. It makes sense, given the harsh conditions. I wonder how they evolved to survive in such environments.
-Oh, and here’s something interesting. It says that Pokémon that live in high-altitude areas tend to have stronger lungs and are more resistant to cold. It makes sense, given the harsh conditions. I wonder how they evolved to survive in such environments.
-I’m studying the special abilities of Pokémon. They can change how Pokémon fight and interact with each other.
-I’m studying the special abilities of Pokémon. They can change how Pokémon fight and interact with each other.
+À, có một điều thú vị đây! Theo tài liệu, Pokémon sống ở vùng núi cao thường có phổi khỏe hơn và chịu lạnh tốt hơn. Cũng hợp lý vì môi trường nơi đó rất khắc nghiệt. Không biết chúng đã tiến hóa thế nào để thích nghi nhỉ?
+\ff[corless]\c[1]Corless: \c[0]Welcome, class! My name is Coreless, and I come from <b>Unova</b>. You see, Pokémon evolution isn’t just about biology, it’s about understanding the energies that influence it.
+\ff[corless]\c[1]Corless: \c[0]Chào mừng các em đến lớp! Thầy là Coreless, đến từ <b>Unova</b>. Các em thấy đấy, tiến hóa Pokémon không chỉ liên quan đến sinh học mà còn đòi hỏi hiểu biết về những dạng năng lượng tác động đến quá trình ấy.
+\ff[corless]\c[1]Corless: \c[0]In Unova, we’ve developed technology that allows us to better understand how energy interacts with a Pokémon’s DNA, which is crucial in understanding phenomena like Mega Evolution and regional forms. It’s all about energy flow and the way it shapes the Pokémon’s traits.
+\ff[corless]\c[1]Corless: \c[0]Ở Unova, chúng tôi đã phát triển công nghệ giúp nghiên cứu cách năng lượng tương tác với DNA Pokémon. Điều này rất quan trọng để giải thích những hiện tượng như Mega Tiến hóa và dạng Pokémon vùng miền. Tất cả nằm ở dòng chảy năng lượng và cách nó định hình đặc điểm của Pokémon.
+\ff[corless]\c[1]Corless: \c[0]If you’re ever interested in learning more about the technology behind all of this, feel free to come by my lab. There’s always room for one more curious mind. We can dive deep into how we use energy fields to boost a Pokémon’s abilities or how we are improving the Poké Balls themselves.
+\ff[corless]\c[1]Corless: \c[0]Nếu em muốn tìm hiểu sâu hơn về công nghệ này, cứ ghé phòng thí nghiệm của thầy. Thầy luôn hoan nghênh những bộ óc ham học hỏi. Chúng ta có thể nghiên cứu cách dùng trường năng lượng tăng cường khả năng Pokémon, hoặc những cải tiến dành cho Poké Ball.
+\ff[corless]\c[1]Corless: \c[0]Ah, before you go, I have something for you. Given your potential, I think you’ll find this useful.
+\ff[corless]\c[1]Corless: \c[0]À, trước khi em đi, thầy có thứ này muốn tặng. Với tiềm năng của em, thầy nghĩ nó sẽ rất hữu ích.
+\ff[corless]\c[1]Corless: \c[0]This is an Ultra Ball, designed with the latest technology to better adapt to a Pokémon’s energy signature. It could be just what you need the next time you face a tough challenge.
+\ff[corless]\c[1]Corless: \c[0]Đây là Ultra Ball, được thiết kế bằng công nghệ tiên tiến để thích ứng tốt hơn với dấu hiệu năng lượng của Pokémon. Có lẽ em sẽ cần đến nó khi đối mặt thử thách khó khăn.
+\ff[corless]\c[1]Coreless: \c[0]If you’re ever interested in learning more about the technology behind all of this, feel free to come by my lab. There’s always room for one more curious mind. We can dive deep into how we use energy fields to boost a Pokémon’s abilities or how we are improving the Poké Balls themselves.
+\ff[corless]\c[1]Coreless: \c[0]Nếu em muốn tìm hiểu sâu hơn về công nghệ này, cứ ghé phòng thí nghiệm của thầy. Thầy luôn hoan nghênh những bộ óc ham học hỏi. Chúng ta có thể nghiên cứu cách dùng trường năng lượng tăng cường khả năng Pokémon, hoặc những cải tiến dành cho Poké Ball.
+\ff[corless]\c[1]Corless: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
+\ff[corless]\c[1]Corless: \c[0]Hiệu trưởng đã thông báo học viện sẽ tổ chức kỳ đánh giá Huấn luyện viên bậc Cơ bản. Em phải vượt qua hai phần: lý thuyết và thực chiến.
+\ff[corless]\c[1]Corless: \c[0]The first part of the test will be theory, where you'll have to answer questions related to science and technology in the Pokémon world. This is a great opportunity for you to demonstrate your knowledge of items, devices, and technologies that assist trainers on their journey. Are you ready?
+\ff[corless]\c[1]Corless: \c[0]Phần đầu là bài kiểm tra lý thuyết về khoa học và công nghệ Pokémon. Đây là cơ hội để em thể hiện hiểu biết về vật phẩm, thiết bị và những công nghệ hỗ trợ Huấn luyện viên trên hành trình. Em sẵn sàng chưa?
+\ff[corless]\c[1]Corless: \c[0]<b>Question 1:</b>Which machine is used to transfer Pokémon from one region to another?
+\ff[corless]\c[1]Corless: \c[0]<b>Câu 1:</b>Thiết bị nào được dùng để chuyển Pokémon từ vùng này sang vùng khác?
+\ff[corless]\c[1]Corless: \c[0]Sorry, your answer is incorrect. Please study more!
+\ff[corless]\c[1]Corless: \c[0]Tiếc quá, em trả lời chưa đúng. Hãy ôn tập thêm nhé!
+\ff[corless]\c[1]Corless: \c[0]Correct!
+\ff[corless]\c[1]Corless: \c[0]Chính xác!
+\ff[corless]\c[1]Corless: \c[0]<b>Question 2:</b>Which Pokémon can interact with technology to connect with devices in the Pokémon world?
+\ff[corless]\c[1]Corless: \c[0]<b>Câu 2:</b>Pokémon nào có thể tương tác với công nghệ và kết nối với các thiết bị trong thế giới Pokémon?
+\ff[corless]\c[1]Coreless: \c[0]Correct!
+\ff[corless]\c[1]Coreless: \c[0]Chính xác!
+\ff[corless]\c[1]Coreless: \c[0]<b>Question 3:</b>Which of the following is not a man-made Pokémon?
+\ff[corless]\c[1]Coreless: \c[0]<b>Câu 3:</b>Pokémon nào sau đây không phải do con người tạo ra?
+\ff[corless]\c[1]Corless: \c[0]<b>Question 4:</b>Which of the following Pokeballs has the highest catch rate under ideal conditions?
+\ff[corless]\c[1]Corless: \c[0]<b>Câu 4:</b>Loại Poké Ball nào sau đây có tỷ lệ bắt Pokémon cao nhất trong điều kiện lý tưởng?
+\ff[corless]\c[1]Corless: \c[0]<b>Question 5:</b>WWhich is not a hold item?
+\ff[corless]\c[1]Corless: \c[0]<b>Câu 5:</b>Vật phẩm nào sau đây không phải vật phẩm Pokémon có thể mang theo?
+\ff[corless]\c[1]Corless: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
+\ff[corless]\c[1]Corless: \c[0]Số câu trả lời đúng sẽ quyết định em có vượt qua phần lý thuyết không. Nếu đạt yêu cầu, chúng ta sẽ chuyển sang thực chiến.
+\ff[corless]\c[1]Corless: \c[0]Let me know when you're ready.
+\ff[corless]\c[1]Corless: \c[0]Khi nào sẵn sàng thì báo thầy nhé.
+\ff[corless]\c[1]Corless: \c[0]Now, it’s time to show your battling skills in the practical test!
+\ff[corless]\c[1]Corless: \c[0]Giờ là lúc em thể hiện kỹ năng chiến đấu trong bài kiểm tra thực hành!
+\ff[cameo_lass]\c[1]Jamie: \c[0]Hi there! I’m Jamie, one of Coreless' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
+\ff[cameo_lass]\c[1]Jamie: \c[0]Chào cậu! Tớ là Jamie, học trò của thầy Coreless. Hôm nay tớ sẽ đấu với cậu. Cho tớ xem thực lực của cậu nào!
+\ff[cameo_lass]\c[1]Jamie: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
+\ff[cameo_lass]\c[1]Jamie: \c[0]Chà, cậu mạnh thật đấy! Cảm ơn vì đã cho tớ một bài học đáng nhớ. Chúc cậu may mắn trên hành trình sắp tới!
+\ff[corless]\c[1]Corless: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
+\ff[corless]\c[1]Corless: \c[0]Chúc mừng em! Em đã vượt qua cả lý thuyết lẫn thực chiến của thầy. Em quả là một Huấn luyện viên xuất sắc. Hãy tiếp tục tiến bước và không ngừng học hỏi!
+I’ve been reading a lot about the different chemicals Pokémon can create! Some, like Grimer and Muk, have toxins in their bodies that can be used as weapons. I wonder if scientists have figured out how they produce these chemicals...
+Dạo này tớ đọc nhiều về những hóa chất Pokémon có thể tạo ra! Một số loài như Grimer và Muk có độc tố trong cơ thể, thậm chí dùng chúng làm vũ khí. Không biết các nhà khoa học đã tìm ra cách chúng tạo ra những chất ấy chưa...
 The teachers here are strict... but I’ve learned so much! Yesterday, I taught my Bulbasaur Solar Beam!
-The teachers here are strict... but I’ve learned so much! Yesterday, I taught my Bulbasaur Solar Beam!
-\ff[cheren]\c[1]Cheren: \c[0]Welcome to my class! I’m Cheren, and I teach the art of Pokémon battle tactics. I’m from the Unova region, where I’ve spent years learning and teaching the best strategies to succeed in battle. If you’re serious about becoming a skilled trainer, you’ll need more than just raw strength, strategy is everything.
-\ff[cheren]\c[1]Cheren: \c[0]Welcome to my class! I’m Cheren, and I teach the art of Pokémon battle tactics. I’m from the Unova region, where I’ve spent years learning and teaching the best strategies to succeed in battle. If you’re serious about becoming a skilled trainer, you’ll need more than just raw strength, strategy is everything.
-\ff[cheren]\c[1]Cheren: \c[0]You see, battle isn’t just about brute force. You need to think ahead and be flexible. For example, consider moves like Thunder Wave or Will-O-Wisp. They can disrupt your opponent’s strategy by paralyzing or burning them, giving you the upper hand even when your Pokémon is at a disadvantage.
-\ff[cheren]\c[1]Cheren: \c[0]You see, battle isn’t just about brute force. You need to think ahead and be flexible. For example, consider moves like Thunder Wave or Will-O-Wisp. They can disrupt your opponent’s strategy by paralyzing or burning them, giving you the upper hand even when your Pokémon is at a disadvantage.
-\ff[cheren]\c[1]Cheren: \c[0]One thing that’s always fascinated me is the synergy between Pokémon. It’s not just about having strong Pokémon, but creating a team that works together—covering each other’s weaknesses and building on each other’s strengths. Have you thought about how your Pokémon can complement each other’s abilities?
-\ff[cheren]\c[1]Cheren: \c[0]One thing that’s always fascinated me is the synergy between Pokémon. It’s not just about having strong Pokémon, but creating a team that works together—covering each other’s weaknesses and building on each other’s strengths. Have you thought about how your Pokémon can complement each other’s abilities?
-\ff[cheren]\c[1]Cheren: \c[0]Finally, remember to learn from every battle, whether you win or lose. There’s always something new to take away from each fight. Even if you’re defeated, think about what went wrong and how you can improve next time. The best trainers are always learning.
-\ff[cheren]\c[1]Cheren: \c[0]Finally, remember to learn from every battle, whether you win or lose. There’s always something new to take away from each fight. Even if you’re defeated, think about what went wrong and how you can improve next time. The best trainers are always learning.
-\ff[cheren]\c[1]Cheren: \c[0]I want to give you this as a token of my support.
-\ff[cheren]\c[1]Cheren: \c[0]I want to give you this as a token of my support.
-\ff[cheren]\c[1]Cheren: \c[0]It’s an Ability Capsule. This item lets you change your Pokémon's ability to another one they can learn. It can be a game-changer, especially if you want to maximize your Pokémon’s potential in different situations.
-\ff[cheren]\c[1]Cheren: \c[0]It’s an Ability Capsule. This item lets you change your Pokémon's ability to another one they can learn. It can be a game-changer, especially if you want to maximize your Pokémon’s potential in different situations.
-\ff[cheren]\c[1]Cheren: \c[0]Remember to learn from every battle, whether you win or lose. There’s always something new to take away from each fight. Even if you’re defeated, think about what went wrong and how you can improve next time. The best trainers are always learning.
-\ff[cheren]\c[1]Cheren: \c[0]Remember to learn from every battle, whether you win or lose. There’s always something new to take away from each fight. Even if you’re defeated, think about what went wrong and how you can improve next time. The best trainers are always learning.
-\ff[cheren]\c[1]Cheren: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[cheren]\c[1]Cheren: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
-\ff[cheren]\c[1]Cheren: \c[0]The first part of the test will be theory, where you'll have to answer questions related to strategy in the Pokémon Battles. Are you ready?
-\ff[cheren]\c[1]Cheren: \c[0]The first part of the test will be theory, where you'll have to answer questions related to strategy in the Pokémon Battles. Are you ready?
-\ff[cheren]\c[1]Cheren: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[cheren]\c[1]Cheren: \c[0]Sorry, your answer is incorrect. Please study more!
-\ff[cheren]\c[1]Cheren: \c[0]When should you consider using a status move like "Sleep Powder" or "Thunder Wave"?
-\ff[cheren]\c[1]Cheren: \c[0]When should you consider using a status move like "Sleep Powder" or "Thunder Wave"?
-\ff[cheren]\c[1]Cheren: \c[0]Correct!
-\ff[cheren]\c[1]Cheren: \c[0]Correct!
-\ff[cheren]\c[1]Cheren: \c[0]What is the advantage of using a Pokémon with the ability "Levitate"?
-\ff[cheren]\c[1]Cheren: \c[0]What is the advantage of using a Pokémon with the ability "Levitate"?
-\ff[cheren]\c[1]Cheren: \c[0]What is the primary benefit of having a Pokémon with the ability "Prankster"?
-\ff[cheren]\c[1]Cheren: \c[0]What is the primary benefit of having a Pokémon with the ability "Prankster"?
-\ff[cheren]\c[1]Cheren: \c[0]What is the advantage of using a "Swords Dance" move?
-\ff[cheren]\c[1]Cheren: \c[0]What is the advantage of using a "Swords Dance" move?
-\ff[cheren]\c[1]Cheren: \c[0]What is the best counter-strategy for a Pokémon using "Stealth Rock"?
-\ff[cheren]\c[1]Cheren: \c[0]What is the best counter-strategy for a Pokémon using "Stealth Rock"?
-\ff[cheren]\c[1]Cheren: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[cheren]\c[1]Cheren: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
-\ff[cheren]\c[1]Cheren: \c[0]Let me know when you're ready.
-\ff[cheren]\c[1]Cheren: \c[0]Let me know when you're ready.
-\ff[cheren]\c[1]Cheren: \c[0]Now, it’s time to show your battling skills in the practical test!
-\ff[cheren]\c[1]Cheren: \c[0]Now, it’s time to show your battling skills in the practical test!
-\ff[beauty1]\c[1]Bret: \c[0]Hi there! I’m Bret, one of Jacq' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
-\ff[beauty1]\c[1]Bret: \c[0]Hi there! I’m Bret, one of Jacq' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
-\ff[beauty1]\c[1]Bret: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[beauty1]\c[1]Bret: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
-\ff[cheren]\c[1]Cheren: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
-\ff[cheren]\c[1]Cheren: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
-I’ve always wondered how they can keep track of so many Pokemon with the Pokédex. It must be so hard to process all that data in real-time!
-I’ve always wondered how they can keep track of so many Pokemon with the Pokédex. It must be so hard to process all that data in real-time!
-Many mythical Pokémon are believed to possess supernatural powers. They are often tied to legends and cultures from various regions.
-Many mythical Pokémon are believed to possess supernatural powers. They are often tied to legends and cultures from various regions.
+Giáo viên ở đây nghiêm khắc thật... nhưng tớ học được nhiều lắm! Hôm qua tớ vừa dạy Bulbasaur chiêu Solar Beam đấy!
+I’m studying the special abilities of Pokémon. They can change how Pokémon fight and interact with each other.
+Tớ đang nghiên cứu các Đặc tính của Pokémon. Chúng có thể thay đổi cách Pokémon chiến đấu và tương tác với nhau đấy.
 Hmm, the readings are steady now. Much better than before. This is exactly what we need for the upcoming field tests. The system is now capable of measuring fluctuations in energy levels, which could be crucial for understanding Pokémon’s behavioral responses during evolution.
-Hmm, the readings are steady now. Much better than before. This is exactly what we need for the upcoming field tests. The system is now capable of measuring fluctuations in energy levels, which could be crucial for understanding Pokémon’s behavioral responses during evolution.
+Ừm, các chỉ số giờ đã ổn định. Tốt hơn trước nhiều rồi. Đây chính là thứ chúng ta cần cho đợt thử nghiệm thực địa sắp tới. Hệ thống đã đo được dao động mức năng lượng, điều có thể rất quan trọng để tìm hiểu phản ứng hành vi của Pokémon trong quá trình tiến hóa.
+Many mythical Pokémon are believed to possess supernatural powers. They are often tied to legends and cultures from various regions.
+Nhiều Pokémon huyễn thoại được cho là sở hữu sức mạnh siêu nhiên. Chúng thường gắn liền với truyền thuyết và văn hóa của nhiều vùng khác nhau.
+I’ve always wondered how they can keep track of so many Pokemon with the Pokédex. It must be so hard to process all that data in real-time!
+Tớ luôn thắc mắc làm sao Pokédex có thể theo dõi nhiều Pokémon đến vậy. Xử lý khối dữ liệu khổng lồ ấy theo thời gian thực chắc khó lắm!
+\ff[cheren]\c[1]Cheren: \c[0]Welcome to my class! I’m Cheren, and I teach the art of Pokémon battle tactics. I’m from the Unova region, where I’ve spent years learning and teaching the best strategies to succeed in battle. If you’re serious about becoming a skilled trainer, you’ll need more than just raw strength, strategy is everything.
+\ff[cheren]\c[1]Cheren: \c[0]Chào mừng em đến lớp! Thầy là Cheren, giáo viên bộ môn Chiến thuật Pokémon. Thầy đến từ vùng Unova và đã dành nhiều năm nghiên cứu, giảng dạy những chiến thuật hiệu quả nhất. Nếu muốn trở thành Huấn luyện viên giỏi, chỉ sức mạnh thôi là chưa đủ. Chiến thuật mới là yếu tố quyết định.
+\ff[cheren]\c[1]Cheren: \c[0]You see, battle isn’t just about brute force. You need to think ahead and be flexible. For example, consider moves like Thunder Wave or Will-O-Wisp. They can disrupt your opponent’s strategy by paralyzing or burning them, giving you the upper hand even when your Pokémon is at a disadvantage.
+\ff[cheren]\c[1]Cheren: \c[0]Chiến đấu không chỉ dựa vào sức mạnh. Em cần biết tính trước và ứng biến linh hoạt. Chẳng hạn, Thunder Wave hay Will-O-Wisp có thể làm rối chiến thuật đối thủ bằng cách gây tê liệt hoặc bỏng. Nhờ đó, em vẫn có thể chiếm ưu thế ngay cả khi Pokémon đang bất lợi.
+\ff[cheren]\c[1]Cheren: \c[0]One thing that’s always fascinated me is the synergy between Pokémon. It’s not just about having strong Pokémon, but creating a team that works together—covering each other’s weaknesses and building on each other’s strengths. Have you thought about how your Pokémon can complement each other’s abilities?
+\ff[cheren]\c[1]Cheren: \c[0]Điều khiến thầy hứng thú nhất là sự phối hợp giữa các Pokémon. Không chỉ cần những Pokémon mạnh, em còn phải xây dựng đội hình biết hỗ trợ nhau, bù đắp điểm yếu và phát huy điểm mạnh. Em đã nghĩ đến cách các Pokémon trong đội bổ trợ khả năng cho nhau chưa?
+\ff[cheren]\c[1]Cheren: \c[0]Finally, remember to learn from every battle, whether you win or lose. There’s always something new to take away from each fight. Even if you’re defeated, think about what went wrong and how you can improve next time. The best trainers are always learning.
+\ff[cheren]\c[1]Cheren: \c[0]Cuối cùng, hãy nhớ rút kinh nghiệm sau mỗi trận, dù thắng hay thua. Trận đấu nào cũng có điều đáng học hỏi. Nếu thất bại, hãy xem mình sai ở đâu và lần sau có thể cải thiện thế nào. Những Huấn luyện viên giỏi nhất luôn không ngừng học hỏi.
+\ff[cheren]\c[1]Cheren: \c[0]I want to give you this as a token of my support.
+\ff[cheren]\c[1]Cheren: \c[0]Thầy muốn tặng em thứ này để thể hiện sự ủng hộ.
+\ff[cheren]\c[1]Cheren: \c[0]It’s an Ability Capsule. This item lets you change your Pokémon's ability to another one they can learn. It can be a game-changer, especially if you want to maximize your Pokémon’s potential in different situations.
+\ff[cheren]\c[1]Cheren: \c[0]Đây là Ability Capsule. Vật phẩm này cho phép đổi Đặc tính Pokémon sang một Đặc tính khác mà chúng có thể sở hữu. Nó có thể thay đổi cục diện chiến đấu, đặc biệt khi em muốn phát huy tối đa tiềm năng Pokémon trong từng tình huống.
+\ff[cheren]\c[1]Cheren: \c[0]Remember to learn from every battle, whether you win or lose. There’s always something new to take away from each fight. Even if you’re defeated, think about what went wrong and how you can improve next time. The best trainers are always learning.
+\ff[cheren]\c[1]Cheren: \c[0]Hãy nhớ rút kinh nghiệm sau mỗi trận, dù thắng hay thua. Trận đấu nào cũng có điều đáng học hỏi. Nếu thất bại, hãy xem mình sai ở đâu và lần sau có thể cải thiện thế nào. Những Huấn luyện viên giỏi nhất luôn không ngừng học hỏi.
+\ff[cheren]\c[1]Cheren: \c[0]The principal has announced that there will be a Standard Trainer evaluation here. You will go through two parts: theory and battle.
+\ff[cheren]\c[1]Cheren: \c[0]Hiệu trưởng đã thông báo học viện sẽ tổ chức kỳ đánh giá Huấn luyện viên bậc Cơ bản. Em phải vượt qua hai phần: lý thuyết và thực chiến.
+\ff[cheren]\c[1]Cheren: \c[0]The first part of the test will be theory, where you'll have to answer questions related to strategy in the Pokémon Battles. Are you ready?
+\ff[cheren]\c[1]Cheren: \c[0]Phần đầu là bài kiểm tra lý thuyết về chiến thuật đấu Pokémon. Em sẵn sàng chưa?
+\ff[cheren]\c[1]Cheren: \c[0]Sorry, your answer is incorrect. Please study more!
+\ff[cheren]\c[1]Cheren: \c[0]Tiếc quá, câu trả lời chưa đúng. Em hãy ôn tập thêm nhé!
+\ff[cheren]\c[1]Cheren: \c[0]When should you consider using a status move like "Sleep Powder" or "Thunder Wave"?
+\ff[cheren]\c[1]Cheren: \c[0]Khi nào em nên cân nhắc dùng chiêu gây trạng thái như "Sleep Powder" hoặc "Thunder Wave"?
+\ff[cheren]\c[1]Cheren: \c[0]Correct!
+\ff[cheren]\c[1]Cheren: \c[0]Chính xác!
+\ff[cheren]\c[1]Cheren: \c[0]What is the advantage of using a Pokémon with the ability "Levitate"?
+\ff[cheren]\c[1]Cheren: \c[0]Pokémon có Đặc tính "Levitate" sở hữu lợi thế gì?
+\ff[cheren]\c[1]Cheren: \c[0]What is the primary benefit of having a Pokémon with the ability "Prankster"?
+\ff[cheren]\c[1]Cheren: \c[0]Lợi ích chính của Đặc tính "Prankster" là gì?
+\ff[cheren]\c[1]Cheren: \c[0]What is the advantage of using a "Swords Dance" move?
+\ff[cheren]\c[1]Cheren: \c[0]Sử dụng chiêu "Swords Dance" mang lại lợi thế gì?
+\ff[cheren]\c[1]Cheren: \c[0]What is the best counter-strategy for a Pokémon using "Stealth Rock"?
+\ff[cheren]\c[1]Cheren: \c[0]Chiến thuật nào hiệu quả nhất để đối phó với Pokémon sử dụng "Stealth Rock"?
+\ff[cheren]\c[1]Cheren: \c[0]Your correct answers will determine if you pass the theory section. If you do well, we can move on to the battle part.
+\ff[cheren]\c[1]Cheren: \c[0]Số câu trả lời đúng sẽ quyết định em có vượt qua phần lý thuyết không. Nếu đạt yêu cầu, chúng ta sẽ chuyển sang thực chiến.
+\ff[cheren]\c[1]Cheren: \c[0]Let me know when you're ready.
+\ff[cheren]\c[1]Cheren: \c[0]Khi nào sẵn sàng thì báo thầy nhé.
+\ff[cheren]\c[1]Cheren: \c[0]Now, it’s time to show your battling skills in the practical test!
+\ff[cheren]\c[1]Cheren: \c[0]Giờ là lúc em thể hiện kỹ năng chiến đấu trong bài kiểm tra thực hành!
+\ff[beauty1]\c[1]Bret: \c[0]Hi there! I’m Bret, one of Jacq' students. Today, I'll be challenging you in this battle. Show me what you’ve got on the battlefield!
+\ff[beauty1]\c[1]Bret: \c[0]Chào cậu! Tớ là Bret, học trò của thầy Jacq. Hôm nay tớ sẽ đấu với cậu. Cho tớ xem thực lực của cậu nào!
+\ff[beauty1]\c[1]Bret: \c[0]Wow, you're really strong! Thanks for teaching me a big lesson. Good luck on your journey ahead
+\ff[beauty1]\c[1]Bret: \c[0]Chà, cậu mạnh thật đấy! Cảm ơn vì đã cho tớ một bài học đáng nhớ. Chúc cậu may mắn trên hành trình sắp tới!
+\ff[cheren]\c[1]Cheren: \c[0]Congratulations! You've passed both the theory and practical tests of my class. You're truly an outstanding trainer. Keep moving forward and never stop learning!
+\ff[cheren]\c[1]Cheren: \c[0]Chúc mừng em! Em đã vượt qua cả lý thuyết lẫn thực chiến của thầy. Em quả là một Huấn luyện viên xuất sắc. Hãy tiếp tục tiến bước và không ngừng học hỏi!
 Yes
-Yes
+Có
 No
-No
+Không
 Cynthia
 Cynthia
 Professor Rowan
-Professor Rowan
+Giáo sư Rowan
 Cyrus
 Cyrus
 Professor Oak
-Professor Oak
+Giáo sư Oak
 Diance
 Diance
 Xerneas
@@ -307,13 +307,13 @@ Yveltal
 Zygarde
 Zygarde
 Special machine
-Special machine
+Máy móc đặc biệt
 Legendary Pokémon
-Legendary Pokémon
+Pokémon huyền thoại
 Natural power
-Natural power
+Sức mạnh tự nhiên
 Special event
-Special event
+Sự kiện đặc biệt
 Kalos
 Kalos
 Alola
@@ -323,29 +323,29 @@ Galar
 Paldea
 Paldea
 Maxie & Archie
-Maxie & Archie
+Maxie và Archie
 Giovanni & Lysandre
-Giovanni & Lysandre
+Giovanni và Lysandre
 Cyrus & Lysandre
-Cyrus & Lysandre
+Cyrus và Lysandre
 N & Ghetsis
-N & Ghetsis
+N và Ghetsis
 It heals over time
-It heals over time
+Hồi HP theo thời gian
 It loses HP over time
-It loses HP over time
+Mất HP theo thời gian
 It becomes stronger
-It becomes stronger
+Trở nên mạnh hơn
 It can’t attack
-It can’t attack
+Không thể tấn công
 Water-type
-Water-type
+Hệ Nước
 Fire-type
-Fire-type
+Hệ Lửa
 Electric-type
-Electric-type
+Hệ Điện
 Psychic-type
-Psychic-type
+Hệ Siêu linh
 HP
 HP
 PP
@@ -363,13 +363,13 @@ Gourgeist
 Flabébé
 Flabébé
 Item Evolution Stones
-Item Evolution Stones
+Đá Tiến hóa
 Exp. Points
-Exp. Points
+Điểm kinh nghiệm
 Friendship Level
-Friendship Level
+Độ thân thiết
 All of the above
-All of the above
+Tất cả đáp án trên
 PokéNav
 PokéNav
 PC
@@ -409,42 +409,42 @@ Focus Band
 Sitrus Berry
 Sitrus Berry
 To control the opponent
-To control the opponent
+Kiểm soát đối thủ
 To deal damage
-To deal damage
+Gây sát thương
 To increase your own stats
-To increase your own stats
+Tăng chỉ số bản thân
 To heal myself
-To heal myself
+Hồi phục bản thân
 Prevents all status effects
-Prevents all status effects
+Ngăn mọi trạng thái bất lợi
 Immune to Ground-move
-Immune to Ground-move
+Miễn nhiễm chiêu hệ Đất
 Boosts special attack
-Boosts special attack
+Tăng Công ĐB
 Heals the Pokémon
-Heals the Pokémon
+Hồi phục Pokémon
 Boosts offensive moves
-Boosts offensive moves
+Tăng sức mạnh chiêu tấn công
 Status moves with priority
-Status moves with priority
+Chiêu trạng thái được ưu tiên
 Raises the user’s Speed
-Raises the user’s Speed
+Tăng Tốc của bản thân
 Heals when it’s in danger
-Heals when it’s in danger
+Hồi phục khi gặp nguy hiểm
 Raises user's Defense
-Raises user's Defense
+Tăng Thủ của bản thân
 Raises user's Speed
-Raises user's Speed
+Tăng Tốc của bản thân
 Raises user's Attack
-Raises user's Attack
+Tăng Công của bản thân
 Raises user's Accuracy
-Raises user's Accuracy
+Tăng độ chính xác
 Use a Flying-type Pokemon
-Use a Flying-type Pokemon
+Dùng Pokémon hệ Bay
 Switch out to a Tanker
-Switch out to a Tanker
+Đổi sang Pokémon chống chịu
 Use a strong physical move
-Use a strong physical move
+Dùng chiêu vật lý mạnh
 Use "Rapid Spin" or "Defog"
-Use "Rapid Spin" or "Defog"
+Dùng "Rapid Spin" hoặc "Defog"

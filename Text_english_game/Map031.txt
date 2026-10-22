@@ -1,0 +1,106 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map031]
+\bDid I notice you, or did you notice me?
+\bDid I notice you, or did you notice me?
+\bShall we exchange numbers, so we can have a rematch?
+\bShall we exchange numbers, so we can have a rematch?
+\bLet's have a rematch!
+\bLet's have a rematch!
+\bI don't think I'll ever be able to beat you.
+\bI don't think I'll ever be able to beat you.
+\bI'll get even stronger, and beat you next time!
+\bI'll get even stronger, and beat you next time!
+\rI'll wait here, then.
+\rI'll wait here, then.
+\rYou'll need at least two Pokémon or a partner if you want to battle us.
+\rYou'll need at least two Pokémon or a partner if you want to battle us.
+\rAh, looks like a challenging trainer. Ready, Bob?
+\rAh, looks like a challenging trainer. Ready, Bob?
+\rOur events weren't created by comments, because we need to check how many Pokémon you had.
+\rOur events weren't created by comments, because we need to check how many Pokémon you had.
+\rDo you want to team up with me again?
+\rDo you want to team up with me again?
+\PN teamed up with May!\me[Item get]\wtnp[40]
+\PN teamed up with May!\me[Item get]\wtnp[40]
+\rOK then.
+\rOK then.
+\rBattle me now!
+\rBattle me now!
+\rCan I add you to my contacts list?
+\rCan I add you to my contacts list?
+\rI say the same thing after every battle. Why? Just because.
+\rI say the same thing after every battle. Why? Just because.
+Something unseeable is in the way. Want to use the Silph Scope?
+Something unseeable is in the way. Want to use the Silph Scope?
+Something unseeable is in the way. Want to use the Devon Scope?
+Something unseeable is in the way. Want to use the Devon Scope?
+Something unseeable is in the way.
+Something unseeable is in the way.
+The invisible Pokémon became completely visible!
+The invisible Pokémon became completely visible!
+The startled Pokémon attacked!
+The startled Pokémon attacked!
+\bYou'll need at least two Pokémon or a partner if you want to battle us.
+\bYou'll need at least two Pokémon or a partner if you want to battle us.
+\bAh, looks like a challenging trainer. Ready, Alice?
+\bAh, looks like a challenging trainer. Ready, Alice?
+\bOur events weren't created by comments, because we need to check how many Pokémon you had.
+\bOur events weren't created by comments, because we need to check how many Pokémon you had.
+\rI've brought my own special backdrop!
+\rI've brought my own special backdrop!
+\rIf exactly 2 trainers notice you at the same time, they become a double battle.
+\rIf exactly 2 trainers notice you at the same time, they become a double battle.
+\rHere, though, 3 trainers noticed you at once, so I battled you by myself. Then the 2 remaining trainers noticing you at the same time became a double battle.
+\rHere, though, 3 trainers noticed you at once, so I battled you by myself. Then the 2 remaining trainers noticing you at the same time became a double battle.
+\rI battled you first because my event's ID number (7) comes before the Hiker's and Fisherman's event ID numbers (8 and 9).
+\rI battled you first because my event's ID number (7) comes before the Hiker's and Fisherman's event ID numbers (8 and 9).
+\rDo you want to team up with me?
+\rDo you want to team up with me?
+\bThis battle will go without a hitch!
+\bThis battle will go without a hitch!
+\bHow did you manage to face all three of us?
+\bHow did you manage to face all three of us?
+These are all the particle effects available in Essentials. An event can only have one particle effect.
+These are all the particle effects available in Essentials. An event can only have one particle effect.
+Shadow sources can be modified as in the top left particle event.
+Shadow sources can be modified as in the top left particle event.
+All four parameters (anglemax, anglemin, maxdistance, opacity) must be included in that order if you want to change any of them.
+All four parameters (anglemax, anglemin, maxdistance, opacity) must be included in that order if you want to change any of them.
+The default values are "anglemax 0", "anglemin 0", "maxdistance 350", "opacity 100". Distance is in pixels.
+The default values are "anglemax 0", "anglemin 0", "maxdistance 350", "opacity 100". Distance is in pixels.
+The shadow-related comments must come before the particle effect comment.
+The shadow-related comments must come before the particle effect comment.
+\bI'll get my tackle out for you!
+\bI'll get my tackle out for you!
+\bI don't understand why my Magikarp couldn't beat you.
+\bI don't understand why my Magikarp couldn't beat you.
+\bHi \PN! I'm your Rival!
+\bHi \PN! I'm your Rival!
+\bDo you want to name me, or leave me with my default name as defined in trainers.txt?
+\bDo you want to name me, or leave me with my default name as defined in trainers.txt?
+Rival's name?
+Rival's name?
+\bSo my name is \v[12], huh? Okay then.
+\bSo my name is \v[12], huh? Okay then.
+\bLet's get down to the battle!
+\bLet's get down to the battle!
+\bI'm going to leave now. Smell you later!
+\bI'm going to leave now. Smell you later!
+\bHi! I like shorts! They're comfy and easy to wear!
+\bHi! I like shorts! They're comfy and easy to wear!
+\bYou can't get a trainer event simpler than me!
+\bYou can't get a trainer event simpler than me!
+\rGet ready for a double battle!
+\rGet ready for a double battle!
+\rMake sure all double battle opponents have at least 2 Pokémon!
+\rMake sure all double battle opponents have at least 2 Pokémon!
+Yes
+Yes
+No
+No
+Rename
+Rename
+Cancel
+Cancel

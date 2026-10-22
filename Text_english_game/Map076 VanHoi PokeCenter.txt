@@ -1,0 +1,72 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map076]
+Ah... A Pokémon Center. There’s no place quite like it for a traveling Trainer.
+Ah... A Pokémon Center. There’s no place quite like it for a traveling Trainer.
+When I was young, I traveled across many regions with my Pokémon by my side.
+When I was young, I traveled across many regions with my Pokémon by my side.
+Back then, Pokémon Centers were the places where tired Trainers and Pokémon could always find a warm welcome.
+Back then, Pokémon Centers were the places where tired Trainers and Pokémon could always find a warm welcome.
+Take good care of your Pokémon, young Trainer. They’re not just partners in battle, they’re your companions in life.
+Take good care of your Pokémon, young Trainer. They’re not just partners in battle, they’re your companions in life.
+Hello, and welcome to the Pokémon Center.
+Hello, and welcome to the Pokémon Center.
+We restore your tired Pokémon to full health.
+We restore your tired Pokémon to full health.
+Would you like to rest your Pokémon?
+Would you like to rest your Pokémon?
+OK, I'll take your Pokémon for a few seconds.
+OK, I'll take your Pokémon for a few seconds.
+Your Pokémon may be infected by PokeRus.
+Your Pokémon may be infected by PokeRus.
+Little is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
+Little is known about the PokeRus except that they are microscopic life-forms that attach to Pokémon.
+While infected, Pokémon are said to grow exceptionally well.
+While infected, Pokémon are said to grow exceptionally well.
+Thank you for waiting.
+Thank you for waiting.
+We've restored your Pokémon to full health.
+We've restored your Pokémon to full health.
+We hope to see you again!
+We hope to see you again!
+First, you should restore your Pokémon to full health.
+First, you should restore your Pokémon to full health.
+Your Pokémon have been healed to perfect health.
+Your Pokémon have been healed to perfect health.
+We hope you excel!
+We hope you excel!
+\bHi, I'm the one to help you "cheat" in this game. After you cheat, it will be saved in the Trainer Card information.
+\bHi, I'm the one to help you "cheat" in this game. After you cheat, it will be saved in the Trainer Card information.
+\bAre you sure you want my help?
+\bAre you sure you want my help?
+\bWhat do you want me to help?
+\bWhat do you want me to help?
+This is my first time traveling far away from home with my Pokémon.
+This is my first time traveling far away from home with my Pokémon.
+At first, I thought becoming a strong Trainer was all about winning battles.
+At first, I thought becoming a strong Trainer was all about winning battles.
+But after spending more time with my Pokémon, I realized there’s much more to it than that.
+But after spending more time with my Pokémon, I realized there’s much more to it than that.
+Training, exploring, and creating memories together... that’s what makes this journey special.
+Training, exploring, and creating memories together... that’s what makes this journey special.
+I spend a lot of time observing Pokémon whenever I travel.
+I spend a lot of time observing Pokémon whenever I travel.
+Some Trainers only focus on battles, but there are so many other amazing things about Pokémon.
+Some Trainers only focus on battles, but there are so many other amazing things about Pokémon.
+That’s why I always stop by Pokémon Centers. You can meet Trainers from all kinds of places here.
+That’s why I always stop by Pokémon Centers. You can meet Trainers from all kinds of places here.
+Everyone has their own story, and every Pokémon has its own journey.
+Everyone has their own story, and every Pokémon has its own journey.
+Yes
+Yes
+No
+No
+Exp
+Exp
+Ball
+Ball
+Medicine
+Medicine
+Repel
+Repel

@@ -2,8 +2,6 @@
 # translate every second line of this file.
 #-------------------------------
 [Map110]
-\rI trade Pokémon with my friends. If a traded Pokémon is holding an item, it makes me twice as happy!
-\rI trade Pokémon with my friends. If a traded Pokémon is holding an item, it makes me twice as happy!
 \rHello, and welcome to the Pokémon Center.
 \rHello, and welcome to the Pokémon Center.
 \rWe restore your tired Pokémon to full health.
@@ -30,6 +28,8 @@
 \rYour Pokémon have been healed to perfect health.
 \rWe hope you excel!
 \rWe hope you excel!
+\rI trade Pokémon with my friends. If a traded Pokémon is holding an item, it makes me twice as happy!
+\rI trade Pokémon with my friends. If a traded Pokémon is holding an item, it makes me twice as happy!
 \bWant a tip for battling? I'd say it's raising different kinds of Pokémon in a balanced manner. It's no good to make just one Pokémon strong. If it has a type disadvantage, it might not stand a chance.
 \bWant a tip for battling? I'd say it's raising different kinds of Pokémon in a balanced manner. It's no good to make just one Pokémon strong. If it has a type disadvantage, it might not stand a chance.
 \bHi, I'm the one to help you "cheat" in this game. After you cheat, it will be saved in the Trainer Card information.

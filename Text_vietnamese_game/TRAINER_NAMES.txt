@@ -6,8 +6,6 @@ Talor
 Talor
 Shirley
 Shirley
-Esmaralda
-Esmaralda
 Year
 Year
 Akashi
@@ -18,50 +16,58 @@ Vthun
 Vthun
 Vincent
 Vincent
-Jose
-Jose
-Juan
-Juan
-Matt
-Matt
-Adele
-Adele
-Timmy
-Timmy
-Vicky
-Vicky
-Kathy
-Kathy
-Elisa
-Elisa
-Nicole
-Nicole
+HoanTien
+Hoàng Tiến
+VanLoc
+Văn Lộc
+MinhPhuong
+Minh Phương
+ThaoUyen
+Thảo Uyên
+TanDong
+Tấn Đồng
+TienDat
+Tiến Đạt
+MinhNhu
+Minh Như
+TuongVi
+Tường Vi
+VanTuong
+Văn Tường
+MyThuy
+Mỹ Thùy
+NgocSon
+Ngọc Sơn
+ThuTruc
+Thu Trúc
+NgocTram
+Ngọc Trâm
+BinhKhiem
+Bỉnh Khiêm
+ThienBao
+Thiên Bảo
+VanHao
+Văn Hào
+ThienTam
+Thiện Tâm
+TheTrung
+Thế Trung
+AnhQuan
+Anh Quân
+LamOanh
+Lâm Oanh
+NhuNguyet
+Như Nguyệt
+VanTiep
+Văn Tiệp
+HongGam
+Hồng Gấm
+QuocTrang
+Quốc Tráng
+TraMy
+Trà My
 Blue
 Blue
-Raymond
-Raymond
-Spencer
-Spencer
-Brent
-Brent
-Lamar
-Lamar
-Cameron
-Cameron
-Felipe
-Felipe
-Margarita
-Margarita
-Ramiro
-Ramiro
-Senth
-Senth
-Lesla
-Lesla
-Nikon
-Nikon
-Sheila
-Sheila
 Joel
 Joel
 Brendan
@@ -124,8 +130,6 @@ Test
 Test
 Frieren
 Frieren
-Guras
-Guras
 Limv
 Limv
 Freya
@@ -144,6 +148,8 @@ Jamie
 Jamie
 Reuben
 Reuben
+TanLoi
+TanLoi
 Lenora
 Lenora
 Roxie

@@ -275,27 +275,27 @@ Hiếm
 HP
 HP
 Attack
-Tấn công
+Công
 Atk
-Tấn công
+Công
 Defense
-Phòng thủ
+Thủ
 Def
-Phòng thủ
+Thủ
 Special Attack
-Tấn công Đặc biệt
+Công ĐB
 SpAtk
-Tấn công ĐB
+Công ĐB
 Special Defense
-Phòng thủ Đặc biệt
+Thủ ĐB
 SpDef
 Phòng thủ ĐB
 Speed
-Tốc độ
+Tốc
 Spd
-Tốc độ
+Tốc
 accuracy
-độ chính xác
+Chính xác
 Acc
 Chính xác
 evasiveness
@@ -1591,9 +1591,9 @@ Mist của {1} đã tan!
 {1}'s stats can't be raised further!
 Các chỉ số của {1} không thể tăng thêm!
 {1} switched all changes to its Attack and Sp. Atk with the target!
-{1} đã hoán đổi mọi thay đổi Tấn công và Tấn công Đặc biệt với mục tiêu!
+{1} đã hoán đổi mọi thay đổi Công và Công ĐB với mục tiêu!
 {1} switched all changes to its Defense and Sp. Def with the target!
-{1} đã hoán đổi mọi thay đổi Phòng thủ và Phòng thủ Đặc biệt với mục tiêu!
+{1} đã hoán đổi mọi thay đổi Thủ và Thủ ĐB với mục tiêu!
 {1} switched stat changes with the target!
 {1} đã hoán đổi các thay đổi chỉ số với mục tiêu!
 {1} copied {2}'s stat changes!
@@ -1929,9 +1929,9 @@ Dùng lên Pokémon nào?
 Restore which move?
 Khôi phục chiêu thức nào?
 Max. HP<r>+{1}<<n>>Attack<r>+{2}<<n>>Defense<r>+{3}<<n>>Sp. Atk<r>+{4}<<n>>Sp. Def<r>+{5}<<n>>Speed<r>+{6}
-HP tối đa<r>+{1}<<n>>Tấn công<r>+{2}<<n>>Phòng thủ<r>+{3}<<n>>Tấn công ĐB<r>+{4}<<n>>Phòng thủ ĐB<r>+{5}<<n>>Tốc độ<r>+{6}
+Max. HP<r>+{1}<<n>>Công<r>+{2}<<n>>Thủ<r>+{3}<<n>>Công ĐB<r>+{4}<<n>>Thủ ĐB<r>+{5}<<n>>Tốc<r>+{6}
 Max. HP<r>{1}<<n>>Attack<r>{2}<<n>>Defense<r>{3}<<n>>Sp. Atk<r>{4}<<n>>Sp. Def<r>{5}<<n>>Speed<r>{6}
-HP tối đa<r>{1}<<n>>Tấn công<r>{2}<<n>>Phòng thủ<r>{3}<<n>>Tấn công ĐB<r>{4}<<n>>Phòng thủ ĐB<r>{5}<<n>>Tốc độ<r>{6}
+Max. HP<r>{1}<<n>>Công<r>{2}<<n>>Thủ<r>{3}<<n>>Công ĐB<r>{4}<<n>>Thủ ĐB<r>{5}<<n>>Tốc<r>{6}
 Graphics/UI/Battle/cursor_command
 Graphics/UI/Battle/cursor_command
 Graphics/UI/Battle/cursor_fight
@@ -2310,8 +2310,8 @@ REFEREE: Judgment: {1} to {2}!<<n>>The winner is {3}!
 TRỌNG TÀI: Phán quyết: {1} - {2}!<<n>>Người thắng là {3}!
 The game has detected that the battery is low. You should save soon to avoid losing your progress.
 Game phát hiện pin đang yếu. Bạn nên lưu sớm để tránh mất tiến trình.
-{1} survived the poisoning.<<n>>The poison faded away!
-{1} đã sống sót qua chất độc.<<n>>Chất độc đã tan biến!
+{1} survived the poisoning.\<<n>>The poison faded away!
+{1} survived the poisoning.\<<n>>The poison faded away!
 {1} fainted...
 {1} mất khả năng chiến đấu...
 You found \c[1]{1}\c[0]!
@@ -2326,8 +2326,8 @@ You found an \c[1]{1}\c[0]!
 Bạn tìm thấy \c[1]{1}\c[0]!
 You found a \c[1]{1}\c[0]!
 Bạn tìm thấy \c[1]{1}\c[0]!
-You put the {1} in<<n>>your Bag's <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> pocket.
-Bạn cất {1} vào<<n>>ngăn <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> trong Túi.
+You put the {1} in\<<n>>your Bag's <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> pocket.
+You put the {1} in\<<n>>your Bag's <icon=bagPocket{2}>\c<<[>>1<<]>>{3}\c<<[>>0<<]>> pocket.
 But your Bag is full...
 Nhưng Túi của bạn đã đầy...
 You obtained \c[1]{1}\c[0]!
@@ -2644,8 +2644,8 @@ Không thể dạy chiêu thức cho Shadow Pokémon.
 {1} đã biết {2} rồi.
 1, 2, and...\wt[16] ...\wt[16] ...\wt[16] Ta-da!
 1, 2, và...\wt[16] ...\wt[16] ...\wt[16] Ta-da!
-{1} forgot how to use {2}.<<n>>And...
-{1} đã quên cách dùng {2}.<<n>>Và...
+{1} forgot how to use {2}.\<<n>>And...
+{1} forgot how to use {2}.\<<n>>And...
 There is no Pokémon.
 Không có Pokémon.
 ABLE
@@ -3407,19 +3407,19 @@ Hơi thích làm trò.
 Quick to flee.
 Hay bỏ chạy.
 Sp. Atk
-Tấn công ĐB
+Công ĐB
 Sp. Def
-Phòng thủ ĐB
+Thủ ĐB
 Ability
 Đặc tính
 PP
 PP
 CATEGORY
-PHÂN LOẠI
+Loại
 POWER
-SỨC MẠNH
+Sức mạnh
 ACCURACY
-ĐỘ CHÍNH XÁC
+Chính xác
 No. of Ribbons:
 Số Ribbon:
 Mark {1}
@@ -3686,8 +3686,8 @@ Full
 Toàn màn hình
 Choose the size of the game window.
 Chọn kích thước cửa sổ game.
-99
-99
+>99
+>99
 x{1}
 x{1}
 An item in the Bag can be registered to this key for instant use.
@@ -4189,7 +4189,7 @@ HP: {1}
 {1}: {2}
 {1}: {2}
 DEFEND
-PHÒNG THỦ
+THỦ
 PRECISE ATTACK
 TẤN CÔNG CHÍNH XÁC
 FIERCE ATTACK
@@ -6488,10 +6488,10 @@ Undefined nature constant name: {1}<<n>>Make sure the nature is defined in the s
 Tên hằng số Nature chưa được định nghĩa: {1}<<n>>Hãy đảm bảo Nature được định nghĩa trong script.<<n>>{2}
 Undefined Trainer type constant name: {1}<<n>>Make sure the trainer type is defined in PBS/trainer_types.txt.<<n>>{2}
 Tên hằng số loại Huấn luyện viên chưa được định nghĩa: {1}<<n>>Hãy đảm bảo loại Huấn luyện viên được định nghĩa trong PBS/trainer_types.txt.<<n>>{2}
-Compiling PBS file {1}...
-Đang biên dịch file PBS {1}...
-Writing PBS file {1}...
-Đang ghi file PBS {1}...
+Compiling PBS file `{1}`...
+Compiling PBS file `{1}`...
+Writing PBS file `{1}`...
+Writing PBS file `{1}`...
 Checking game data
 Đang kiểm tra dữ liệu game
 Game data was not compiled

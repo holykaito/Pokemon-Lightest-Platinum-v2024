@@ -2,9 +2,25 @@
 # translate every second line of this file.
 #-------------------------------
 [Map104]
-\rThese cowboy clothes I'm wearing are the latest fashion trend.
-\rThese cowboy clothes I'm wearing are the latest fashion trend.
-\rThe current Champion of Zhery is KAORI. She was born here in Central City, and is now one of the best trainers in the world!
-\rThe current Champion of Zhery is KAORI. She was born here in Central City, and is now one of the best trainers in the world!
-\bIn Inhore, there's a place called Sunset Farms. It's where I work but right now I'm taking a long vacation.
-\bIn Inhore, there's a place called Sunset Farms. It's where I work but right now I'm taking a long vacation.
+If you’re visiting Van Hoi for the first time, don’t try to see everything in one day.
+If you’re visiting Van Hoi for the first time, don’t try to see everything in one day.
+The TV Station, the Stage, the Conservation Area, the station... there’s simply too much to do.
+The TV Station, the Stage, the Conservation Area, the station... there’s simply too much to do.
+Pick one place, take your time, and enjoy it properly.
+Pick one place, take your time, and enjoy it properly.
+There’s no need to rush.
+There’s no need to rush.
+Whew... Shopping in a city this crowded is harder than it looks.
+Whew... Shopping in a city this crowded is harder than it looks.
+I only came out to buy dinner ingredients, and somehow I’ve already been gone for two hours.
+I only came out to buy dinner ingredients, and somehow I’ve already been gone for two hours.
+My family will probably start wondering where I went if I don’t hurry home.
+My family will probably start wondering where I went if I don’t hurry home.
+I’ve lived in Van Hoi for more years than I care to count.
+I’ve lived in Van Hoi for more years than I care to count.
+Every few years, another building goes up and another crowd of newcomers arrives.
+Every few years, another building goes up and another crowd of newcomers arrives.
+Sometimes I miss how quiet this place used to be, but seeing the city grow isn’t so bad either.
+Sometimes I miss how quiet this place used to be, but seeing the city grow isn’t so bad either.
+A city that never changes is probably a city that’s been left behind.
+A city that never changes is probably a city that’s been left behind.

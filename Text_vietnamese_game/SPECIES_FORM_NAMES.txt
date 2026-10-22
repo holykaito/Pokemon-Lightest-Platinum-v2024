@@ -172,6 +172,34 @@ Mega Tatsugiri (Stretchy Form)
 Mega Tatsugiri (Stretchy Form)
 Mega Baxcalibur
 Mega Baxcalibur
+Eastern
+Eastern
+Northern
+Northern
+Mega Tentacruel
+Mega Tentacruel
+Mega Rapidash
+Mega Rapidash
+Mega Kingdra
+Mega Kingdra
+Mega Azumarill
+Mega Azumarill
+Mega Tropius
+Mega Tropius
+Mega Vespiquen
+Mega Vespiquen
+Mega Machamp
+Mega Machamp
+Mega Torterra
+Mega Torterra
+Mega Infernape
+Mega Infernape
+Mega Empoleon
+Mega Empoleon
+Mega Kricketune
+Mega Kricketune
+Mega Roserade
+Mega Roserade
 Gigantamax
 Gigantamax
 Eternamax
@@ -196,25 +224,3 @@ Partner Cap
 Partner Cap
 World Cap
 World Cap
-Zherian
-Zherian
-Mega Tentacruel
-Mega Tentacruel
-Mega Rapidash
-Mega Rapidash
-Mega Kingdra
-Mega Kingdra
-Mega Azumarill
-Mega Azumarill
-Mega Tropius
-Mega Tropius
-Mega Vespiquen
-Mega Vespiquen
-Mega Machamp
-Mega Machamp
-Mega Empoleon
-Mega Empoleon
-Mega Kricketune
-Mega Kricketune
-Mega Roserade
-Mega Roserade

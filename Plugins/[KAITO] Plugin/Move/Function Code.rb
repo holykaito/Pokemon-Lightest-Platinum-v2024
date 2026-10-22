@@ -897,3 +897,207 @@ class Battle::Move::SuperEffectiveAgainstFlying < Battle::Move
     return super
   end
 end
+
+#===============================================================================
+# Fae Core
+# Turn 1: charges and temporarily traps the target.
+# Turn 2: deals damage.
+# Does not hook pbInitEffects, avoiding Community Abilities alias recursion.
+#===============================================================================
+module KaitoFaeCore
+  module BattlerHooks
+    def pbFaeCoreTrapped?
+      data = @kaito_fae_core_trap
+      return false if !data
+
+      source, source_pokemon, target_pokemon, expires = data
+
+      valid = !fainted? &&
+              pokemon.equal?(target_pokemon) &&
+              source &&
+              !source.fainted? &&
+              source.pokemon.equal?(source_pokemon) &&
+              @battle.battlers[source.index].equal?(source) &&
+              @battle.turnCount <= expires &&
+              source.effects[PBEffects::TwoTurnAttack] == :FAECORE
+
+      @kaito_fae_core_trap = nil if !valid
+      return !!valid
+    end
+
+    def pbTrapWithFaeCore(user)
+      @kaito_fae_core_trap = [
+        user,
+        user.pokemon,
+        pokemon,
+        @battle.turnCount + 1
+      ]
+    end
+
+    def trappedInBattle?
+      return true if pbFaeCoreTrapped?
+      return super
+    end
+  end
+end
+
+unless Battle::Battler.ancestors.include?(KaitoFaeCore::BattlerHooks)
+  Battle::Battler.prepend(KaitoFaeCore::BattlerHooks)
+end
+
+#===============================================================================
+# FunctionCode = TwoTurnAttackTrapTargetFaeCore
+# Power Herb allows immediate damage without the temporary trapping phase.
+#===============================================================================
+class Battle::Move::TwoTurnAttackTrapTargetFaeCore <
+      Battle::Move::TwoTurnMove
+  def pbChargingTurnMessage(user, targets)
+    @battle.pbDisplay(
+      _INTL("{1} is forming a core of fairy energy!", user.pbThis)
+    )
+  end
+
+  def pbChargingTurnEffect(user, target)
+    return if @damagingTurn
+    return if target.fainted?
+    return if target.effects[PBEffects::Substitute] > 0
+    return if target.pbHasType?(:GHOST) &&
+              Settings::MORE_TYPE_EFFECTS
+
+    target.pbTrapWithFaeCore(user)
+    @battle.pbDisplay(
+      _INTL("{1} was trapped inside the fairy core!", target.pbThis)
+    )
+  end
+
+  def pbAttackingTurnMessage(user, targets)
+    @battle.pbDisplay(_INTL("The fairy core exploded!"))
+  end
+end
+
+#===============================================================================
+# Severe Poison
+# Poison statusCount:
+#   0 = regular poison
+#   1 = standard bad poison
+#   2 = accelerated bad poison
+#===============================================================================
+class Battle::Move::BadPoisonTargetFasterIgnoreTargetAbility <
+      Battle::Move::IgnoreTargetAbility
+
+  def canMagicCoat?
+    return true
+  end
+
+  def pbFailsAgainstTarget?(user, target, show_message)
+    return !target.pbCanPoison?(user, show_message, self)
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    target.pbPoison(user, nil, true)
+
+    # Only mark the status if poisoning remains after its callbacks.
+    if target.status == :POISON && target.statusCount > 0
+      target.statusCount = 2
+    end
+  end
+end
+
+#===============================================================================
+# Accelerated poison gains one extra Toxic counter before the normal increment.
+# The original method still handles damage, abilities, items and fainting.
+#===============================================================================
+module KaitoSeverePoisonEndOfRound
+  def pbEORStatusProblemDamage(priority)
+    priority.each do |battler|
+      next if battler.fainted?
+      next if battler.status != :POISON
+      next if battler.statusCount != 2
+
+      battler.effects[PBEffects::Toxic] = [
+        battler.effects[PBEffects::Toxic] + 1, 16
+      ].min
+    end
+
+    super
+  end
+end
+
+unless Battle.ancestors.include?(KaitoSeverePoisonEndOfRound)
+  Battle.prepend(KaitoSeverePoisonEndOfRound)
+end
+
+#===============================================================================
+# Neurotoxin: prevents Psychic-type moves for 2 more rounds.
+#===============================================================================
+class Battle::Move::DisableTargetPsychicMoves < Battle::Move
+  def pbAdditionalEffect(user, target)
+    return if target.fainted? || target.damageState.substitute
+
+    if target.kaito_neurotoxin_turns.to_i == 0
+      @battle.pbDisplay(_INTL(
+        "{1} can no longer use Psychic-type moves!", target.pbThis
+      ))
+    end
+    target.kaito_neurotoxin_turns = 3
+  end
+end
+
+#===============================================================================
+# Track the effect and prevent selecting/using Psychic-type moves.
+#===============================================================================
+module KaitoNeurotoxinBattler
+  attr_accessor :kaito_neurotoxin_turns
+
+  def pbInitEffects(batonPass)
+    super
+    @kaito_neurotoxin_turns = 0
+  end
+
+  def pbCanChooseMove?(move, commandPhase, showMessages = true,
+                       specialUsage = false)
+    if @kaito_neurotoxin_turns.to_i > 0 && move.type == :PSYCHIC
+      if showMessages
+        msg = _INTL(
+          "{1} can't use {2} because of Neurotoxin!",
+          pbThis, move.name
+        )
+        if commandPhase
+          @battle.pbDisplayPaused(msg)
+        else
+          @battle.pbDisplay(msg)
+        end
+      end
+      return false
+    end
+    super
+  end
+end
+
+unless Battle::Battler.ancestors.include?(KaitoNeurotoxinBattler)
+  Battle::Battler.prepend(KaitoNeurotoxinBattler)
+end
+
+#===============================================================================
+# Count down at the end of each round.
+#===============================================================================
+module KaitoNeurotoxinBattle
+  def pbEOREndBattlerEffects(priority)
+    super
+    priority.each do |battler|
+      next if battler.fainted?
+      next if battler.kaito_neurotoxin_turns.to_i <= 0
+
+      battler.kaito_neurotoxin_turns -= 1
+      next if battler.kaito_neurotoxin_turns > 0
+
+      pbDisplay(_INTL(
+        "{1} can use Psychic-type moves again!", battler.pbThis
+      ))
+    end
+  end
+end
+
+unless Battle.ancestors.include?(KaitoNeurotoxinBattle)
+  Battle.prepend(KaitoNeurotoxinBattle)
+end

@@ -7,33 +7,33 @@ Huấn luyện viên
 Rival
 Đối thủ
 Aroma Lady
-Quý cô hương hoa
+Cô nàng ngát hương
 Beauty
 Người đẹp
 Biker
 Dân mô tô
 Bird Keeper
-Người nuôi chim
+Thợ nuôi chim
 Bug Catcher
-Người bắt côn trùng
+Thợ bắt bọ
 Burglar
-Kẻ trộm
+Tên trộng
 Channeler
 Bà đồng
 Cue Ball
-Tên trọc
+Đầu trọc
 Engineer
 Kỹ sư
 Fisherman
-Ngư dân
+Người câu cá
 Gambler
 Con bạc
 Gentleman
 Quý ông
 Hiker
-Dân đi bộ
+Dân leo núi
 Juggler
-Nghệ sĩ tung hứng
+Thợ tung hứng
 Lady
 Tiểu thư
 Painter
@@ -53,19 +53,19 @@ Thủy thủ
 Scientist
 Nhà khoa học
 Super Nerd
-Siêu mọt sách
+Mọt sách
 Tamer
-Người thuần hóa
+Thợ thuần hóa
 Black Belt
 Võ sư đai đen
 Crush Girl
 Cô nàng võ sĩ
 Camper
-Người cắm trại
+Dân cắm trại
 Picnicker
-Người dã ngoại
+Dân dã ngoại
 Cool Trainer
-Huấn luyện viên lão luyện
+HLV Đỉnh cao
 Youngster
 Nhóc con
 Lass
@@ -74,12 +74,12 @@ Pokémon Ranger
 Kiểm lâm PKM
 Psychic
 Nhà ngoại cảm
-Swimmer
+Dân bơi lội
 Vận động viên bơi lội
 Tuber
 Nhóc nghịch nước
 Cool Couple
-Cặp đôi sành điệu
+Cặp đôi Đỉnh cao
 Crush Kin
 Cặp võ sĩ
 Sis and Bro
@@ -89,12 +89,12 @@ Cặp bé gái
 Young Couple
 Cặp đôi trẻ
 Team Rocket
-Tổ chức Rocket
+Bang Tên lửa
 Rocket Boss
-Trùm Rocket
+Trùm Bang Tên lửa
 Gym Leader
-Chủ Hội Quán
+Trưởng hội quán
 Elite Four
-Tứ Thiên Vương
+Thiên vương
 Champion
 Nhà Vô Địch

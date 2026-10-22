@@ -1,0 +1,36 @@
+﻿# To localize this text for a particular language, please
+# translate every second line of this file.
+#-------------------------------
+[Map009]
+Hello there! Be careful when you come in. The little ones are playing around everywhere.
+Hello there! Be careful when you come in. The little ones are playing around everywhere.
+I take care of Baby Pokémon here. Some of them are waiting for their Trainers, while others are simply here to grow up in a safe place.
+I take care of Baby Pokémon here. Some of them are waiting for their Trainers, while others are simply here to grow up in a safe place.
+Baby Pokémon are quite different from fully grown Pokémon. They need plenty of attention, patience, and of course... lots of playtime!
+Baby Pokémon are quite different from fully grown Pokémon. They need plenty of attention, patience, and of course... lots of playtime!
+They’re naturally curious. A little game, a new sound, or even a strange-looking object can keep them entertained for hours.
+They’re naturally curious. A little game, a new sound, or even a strange-looking object can keep them entertained for hours.
+Playing isn’t just for fun, either. It helps them become more confident and learn how to interact with other Pokémon and people.
+Playing isn’t just for fun, either. It helps them become more confident and learn how to interact with other Pokémon and people.
+You look like you’ve spent quite a lot of time traveling with Pokémon yourself.
+You look like you’ve spent quite a lot of time traveling with Pokémon yourself.
+Would you mind helping me for a little while? The little ones could use someone new to play with.
+Would you mind helping me for a little while? The little ones could use someone new to play with.
+How about a friendly battle? It would give them a chance to move around and practice at the same time.
+How about a friendly battle? It would give them a chance to move around and practice at the same time.
+Don’t worry about going too hard. Just treat them gently and let them have fun.
+Don’t worry about going too hard. Just treat them gently and let them have fun.
+Oh my! Look at them! They’re completely worn out, but they look so happy!
+Oh my! Look at them! They’re completely worn out, but they look so happy!
+You did a wonderful job. You didn’t just battle them—you paid attention to how they were feeling.
+You did a wonderful job. You didn’t just battle them—you paid attention to how they were feeling.
+That kind of understanding is very important when raising a Baby Pokémon.
+That kind of understanding is very important when raising a Baby Pokémon.
+I have something that I think would be perfect for a Trainer who knows how to build a strong bond with Pokémon.
+I have something that I think would be perfect for a Trainer who knows how to build a strong bond with Pokémon.
+Here, take this Soothe Bell.
+Here, take this Soothe Bell.
+Pokémon that carry it can grow closer to their Trainer more easily.
+Pokémon that carry it can grow closer to their Trainer more easily.
+Keep taking good care of your Pokémon, and I’m sure your bonds will grow stronger with every step of your journey.
+Keep taking good care of your Pokémon, and I’m sure your bonds will grow stronger with every step of your journey.

@@ -2,60 +2,94 @@
 # translate every second line of this file.
 #-------------------------------
 [Map084]
-\bInhore City's old gym leader was a very strange guy. He talked a lot with everyone.
-\bInhore City's old gym leader was a very strange guy. He talked a lot with everyone.
+Finally! I thought my friend was never going to show up.
+Finally! I thought my friend was never going to show up.
+We agreed to meet here an hour ago, but knowing him, he probably got distracted by something along the way.
+We agreed to meet here an hour ago, but knowing him, he probably got distracted by something along the way.
+I can't even complain. Last time, I stopped to watch a wild Pokémon and forgot about our plans entirely.
+I can't even complain. Last time, I stopped to watch a wild Pokémon and forgot about our plans entirely.
+Guess I'll just enjoy the weather until he gets here.
+Guess I'll just enjoy the weather until he gets here.
 Zzz Zzz Zzz Zzz ... ... ...
 Zzz Zzz Zzz Zzz ... ... ...
-\r\ff[leaderjessica]\pn, look! The Combee have invaded Inhore City and practically shut it down. See for yourself!
-\r\ff[leaderjessica]\pn, look! The Combee have invaded Inhore City and practically shut it down. See for yourself!
-\r\ff[leaderjessica]Look, they're being vicious and attacking people for no reason. The villagers are hiding in their houses.
-\r\ff[leaderjessica]Look, they're being vicious and attacking people for no reason. The villagers are hiding in their houses.
-\r\ff[leaderjessica]I think that the hive these Combee are from is in Inhore Woods.
-\r\ff[leaderjessica]I think that the hive these Combee are from is in Inhore Woods.
-\r\ff[leaderjessica]I'll go there now, and reopen the Gym when this matter is resolved.
-\r\ff[leaderjessica]I'll go there now, and reopen the Gym when this matter is resolved.
-\bA Pokémon you get in a trade from someone grows fast. But if you don't have certain Gym Badges, it may not obey you.
-\bA Pokémon you get in a trade from someone grows fast. But if you don't have certain Gym Badges, it may not obey you.
-\rMy favorite Pokémon is Eevee, it's always cute and happy.
-\rMy favorite Pokémon is Eevee, it's always cute and happy.
-\b\ff[blue]Hey \pn, I just got my first Zhery league badge here in Inhore City.
-\b\ff[blue]Hey \pn, I just got my first Zhery league badge here in Inhore City.
-\b\ff[blue]Now I'm going after the second gym. It's said it's very hard, but first I'll test your strength with a Pokémon battle!
-\b\ff[blue]Now I'm going after the second gym. It's said it's very hard, but first I'll test your strength with a Pokémon battle!
-\b\ff[blue]That was a stroke of luck. I hope we meet again. I think you can defeat this gym leader if you fight smart.
-\b\ff[blue]That was a stroke of luck. I hope we meet again. I think you can defeat this gym leader if you fight smart.
-\b\ff[blue]I'll give you a gift, for winning!
-\b\ff[blue]I'll give you a gift, for winning!
-\b\ff[blue]That HM contains CUT. It can be used to cut down small bushes anywhere in the world, but only if you have the Inhore City badge.
-\b\ff[blue]That HM contains CUT. It can be used to cut down small bushes anywhere in the world, but only if you have the Inhore City badge.
-\b\ff[blue]For now, I'll wish you good luck in this battle and say goodbye.
-\b\ff[blue]For now, I'll wish you good luck in this battle and say goodbye.
+Ah, a young Trainer! Tell me, have you ever wondered why certain Pokémon thrive in one environment but struggle in another?
+Ah, a young Trainer! Tell me, have you ever wondered why certain Pokémon thrive in one environment but struggle in another?
+At the Academy, we study everything from habitat and diet to social behavior. Yet even after years of research, we still encounter things that challenge what we thought we knew.
+At the Academy, we study everything from habitat and diet to social behavior. Yet even after years of research, we still encounter things that challenge what we thought we knew.
+That is the wonderful thing about studying Pokémon. Every discovery can lead to another question, and sometimes the most important progress comes from admitting that we were wrong.
+That is the wonderful thing about studying Pokémon. Every discovery can lead to another question, and sometimes the most important progress comes from admitting that we were wrong.
+If you ever find yourself curious about something during your travels, don't dismiss it as unimportant. A small observation may one day become the beginning of a great discovery.
+If you ever find yourself curious about something during your travels, don't dismiss it as unimportant. A small observation may one day become the beginning of a great discovery.
+Van Uyen has always struck me as a city of thoughtful people.
+Van Uyen has always struck me as a city of thoughtful people.
+You can see students discussing their studies in cafés, researchers carrying stacks of papers, and Trainers exchanging stories after a long day.
+You can see students discussing their studies in cafés, researchers carrying stacks of papers, and Trainers exchanging stories after a long day.
+It's refreshing to be somewhere that encourages people to ask questions rather than simply accept things as they are.
+It's refreshing to be somewhere that encourages people to ask questions rather than simply accept things as they are.
+Of course, not every question has an answer. I've come to appreciate that, too.
+Of course, not every question has an answer. I've come to appreciate that, too.
+Another delivery for the Academy! Honestly, I think I've carried more equipment into that place than some of the researchers have carried books.
+Another delivery for the Academy! Honestly, I think I've carried more equipment into that place than some of the researchers have carried books.
+Microscopes, storage cases, boxes of supplies... and every now and then, something I can't even identify.
+Microscopes, storage cases, boxes of supplies... and every now and then, something I can't even identify.
+The researchers always tell me to handle everything carefully. I do, of course! I'd rather not be remembered as the guy who broke an entire laboratory.
+The researchers always tell me to handle everything carefully. I do, of course! I'd rather not be remembered as the guy who broke an entire laboratory.
+Still, it's nice knowing that all this work helps someone discover something new.
+Still, it's nice knowing that all this work helps someone discover something new.
 \rFire is the key to beating Bug Pokémon, but you should be wary of their power. They seem harmless, but they're not!
 \rFire is the key to beating Bug Pokémon, but you should be wary of their power. They seem harmless, but they're not!
-\bDid you know this? You can have a 2-on-2 battle even if you're not with another Trainer.
-\bDid you know this? You can have a 2-on-2 battle even if you're not with another Trainer.
-\bIf you catch the eyes of two Trainers when you have two or more Pokémon, they'll both challenge you.
-\bIf you catch the eyes of two Trainers when you have two or more Pokémon, they'll both challenge you.
-\bDon't you think it'd be cool if you could beat two Trainers by yourself?
-\bDon't you think it'd be cool if you could beat two Trainers by yourself?
+I'm studying Pokémon behavior at Van Uyen Academy. There's so much to learn that I sometimes feel like I'm falling behind.
+I'm studying Pokémon behavior at Van Uyen Academy. There's so much to learn that I sometimes feel like I'm falling behind.
+My classmates seem to understand everything so quickly, while I have to read the same material several times.
+My classmates seem to understand everything so quickly, while I have to read the same material several times.
+But one of my professors told me that understanding something deeply is more important than understanding it first.
+But one of my professors told me that understanding something deeply is more important than understanding it first.
+I've been trying to remember that whenever I feel discouraged. Everyone has their own pace, I suppose.
+I've been trying to remember that whenever I feel discouraged. Everyone has their own pace, I suppose.
 \bI love buying items to pretty up my Pokémon.
 \bI love buying items to pretty up my Pokémon.
-\rAt the Pokémart, you can buy various important items, like Potions, Pokéballs, and more!
-\rAt the Pokémart, you can buy various important items, like Potions, Pokéballs, and more!
-\bWow, you have Pokémon with you, too. When I get bigger, I'm going to go places with Pokémon, too.
-\bWow, you have Pokémon with you, too. When I get bigger, I'm going to go places with Pokémon, too.
-\bYou've made it this far, but can you beat me?
-\bYou've made it this far, but can you beat me?
-\bI often work in the caves on Route 7, digging up fossils.
-\bI often work in the caves on Route 7, digging up fossils.
-\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
-\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
-\rPokémon Trainer's University! If I go to this school, will I be able to catch rare Pokémon easily?
-\rPokémon Trainer's University! If I go to this school, will I be able to catch rare Pokémon easily?
-\bExploring a cave isn't like walking on a road. You never know when wild Pokémon will appear. It's full of suspense.
-\bExploring a cave isn't like walking on a road. You never know when wild Pokémon will appear. It's full of suspense.
-\bInhore City is my hometown, so I've always loved insects. It's in my blood.
-\bInhore City is my hometown, so I've always loved insects. It's in my blood.
+I'm working on a small project about how Trainers communicate with their Pokémon.
+I'm working on a small project about how Trainers communicate with their Pokémon.
+It's interesting how some Pokémon respond immediately to a command, while others seem to understand what their Trainer wants before a word is even spoken.
+It's interesting how some Pokémon respond immediately to a command, while others seem to understand what their Trainer wants before a word is even spoken.
+I don't think it's simply a matter of training. Trust must play a part in it, too.
+I don't think it's simply a matter of training. Trust must play a part in it, too.
+I hope I can learn enough to explain that connection someday. It may not be something you can measure easily, but that doesn't make it any less real.
+I hope I can learn enough to explain that connection someday. It may not be something you can measure easily, but that doesn't make it any less real.
+My dad says I shouldn't wander too far from home, but there's a patch of grass near the edge of town where wild Pokémon sometimes appear!
+My dad says I shouldn't wander too far from home, but there's a patch of grass near the edge of town where wild Pokémon sometimes appear!
+Yesterday, I saw one eating berries, and it looked so surprised when it noticed me.
+Yesterday, I saw one eating berries, and it looked so surprised when it noticed me.
+I wanted to follow it, but Dad caught me before I could go any farther.
+I wanted to follow it, but Dad caught me before I could go any farther.
+Do you think Pokémon get curious about people the same way we get curious about them?
+Do you think Pokémon get curious about people the same way we get curious about them?
+A lively city surrounded by nature, where tradition and modern life come together. Van Uyen is home to the prestigious Van Uyen Academy and the Van Uyen Gym, attracting researchers, Trainers, and visitors from all over An Lam.
+A lively city surrounded by nature, where tradition and modern life come together. Van Uyen is home to the prestigious Van Uyen Academy and the Van Uyen Gym, attracting researchers, Trainers, and visitors from all over An Lam.
+I don't study at Van Uyen Academy, but I visit the library whenever I can.
+I don't study at Van Uyen Academy, but I visit the library whenever I can.
+The researchers there are so knowledgeable! Sometimes I go in looking for one answer and come out with five new questions.
+The researchers there are so knowledgeable! Sometimes I go in looking for one answer and come out with five new questions.
+My friends say I'm wasting my time reading things I'll never use.
+My friends say I'm wasting my time reading things I'll never use.
+But isn't learning something new worthwhile even if it doesn't help you right away?
+But isn't learning something new worthwhile even if it doesn't help you right away?
+I've lived in Van Uyen for most of my life. It's changed quite a bit over the years.
+I've lived in Van Uyen for most of my life. It's changed quite a bit over the years.
+The Academy has grown, more visitors come through the city, and even the little shops around the streets seem to change every few seasons.
+The Academy has grown, more visitors come through the city, and even the little shops around the streets seem to change every few seasons.
+Some people complain that the city isn't as quiet as it used to be.
+Some people complain that the city isn't as quiet as it used to be.
+Personally, I don't mind. A place should be allowed to grow, as long as it doesn't forget what made it special in the first place.
+Personally, I don't mind. A place should be allowed to grow, as long as it doesn't forget what made it special in the first place.
+Have you ever noticed how many different Bug Pokémon live around Van Uyen?
+Have you ever noticed how many different Bug Pokémon live around Van Uyen?
+I used to think the ones near the city were less interesting than those deep in the forest, but I was completely wrong.
+I used to think the ones near the city were less interesting than those deep in the forest, but I was completely wrong.
+Some species have learned to live near people, while others only come out when the streets are quiet.
+Some species have learned to live near people, while others only come out when the streets are quiet.
+I've started keeping a notebook of every species I encounter. At this rate, I'll need a bigger notebook before the year is over!
+I've started keeping a notebook of every species I encounter. At this rate, I'll need a bigger notebook before the year is over!
 \rWelcome to Inhore City's Honey Shop!
 \rWelcome to Inhore City's Honey Shop!
 \rWould you buy Honey for $800?
@@ -68,12 +102,42 @@ Zzz Zzz Zzz Zzz ... ... ...
 \rYou don't have enough money to buy.
 \rCome back any time.
 \rCome back any time.
-\bIf a Pokémon gains experience in battles, it can sometimes change in the way it looks.
-\bIf a Pokémon gains experience in battles, it can sometimes change in the way it looks.
-\bIf you give a Quick Claw to a Pokémon, it will always strike first, even if its speed is lower than that of its opponent.
-\bIf you give a Quick Claw to a Pokémon, it will always strike first, even if its speed is lower than that of its opponent.
-\bThis is Inhore City's University. This place is currently under repair, please come back later.
-\bThis is Inhore City's University. This place is currently under repair, please come back later.
+\bYou've made it this far, but can you beat me?
+\bYou've made it this far, but can you beat me?
+\bI often work in the caves on Route 7, digging up fossils.
+\bI often work in the caves on Route 7, digging up fossils.
+\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
+\bThere's a man in the Pokémon Institute who can revive fossils into living Pokémon.
+I just got back from a field study, and my shoes are still covered in mud.
+I just got back from a field study, and my shoes are still covered in mud.
+We were supposed to observe how wild Pokémon interact with their surroundings, but it started raining halfway through.
+We were supposed to observe how wild Pokémon interact with their surroundings, but it started raining halfway through.
+Our notes got soaked, our equipment was a mess, and we barely made it back before dark.
+Our notes got soaked, our equipment was a mess, and we barely made it back before dark.
+Honestly, it was a disaster. But now that I think about it, I learned more that afternoon than I would have from a week of lectures.
+Honestly, it was a disaster. But now that I think about it, I learned more that afternoon than I would have from a week of lectures.
+I've been painting Van Uyen for decades, yet I still haven't finished capturing it.
+I've been painting Van Uyen for decades, yet I still haven't finished capturing it.
+People often ask why I keep painting the same streets and buildings. Surely there must be something new to paint elsewhere.
+People often ask why I keep painting the same streets and buildings. Surely there must be something new to paint elsewhere.
+But a place never stays quite the same. The light changes, the trees grow, and the people who once filled these streets move on.
+But a place never stays quite the same. The light changes, the trees grow, and the people who once filled these streets move on.
+Perhaps one day, someone will look at my paintings and see a version of this city that no longer exists. If that happens, I think my work will have been worthwhile.
+Perhaps one day, someone will look at my paintings and see a version of this city that no longer exists. If that happens, I think my work will have been worthwhile.
+Have you seen what’s happening outside?! The whole city is in chaos!
+Have you seen what’s happening outside?! The whole city is in chaos!
+A huge swarm of Beedrill has come out of Bach Trung Forest and started attacking the city!
+A huge swarm of Beedrill has come out of Bach Trung Forest and started attacking the city!
+Nobody knows what caused them to become so aggressive. They’re usually dangerous, but this is completely different.
+Nobody knows what caused them to become so aggressive. They’re usually dangerous, but this is completely different.
+People are trying to stay indoors, but there are Beedrill flying through the streets everywhere.
+People are trying to stay indoors, but there are Beedrill flying through the streets everywhere.
+The staff from the Van Uyen Gym are doing everything they can to protect the residents.
+The staff from the Van Uyen Gym are doing everything they can to protect the residents.
+I’ve never seen the Gym staff work this hard before. They’re putting themselves in danger to protect everyone.
+I’ve never seen the Gym staff work this hard before. They’re putting themselves in danger to protect everyone.
+I just hope they can figure out what’s happening in Bach Trung Forest before things get even worse.
+I just hope they can figure out what’s happening in Bach Trung Forest before things get even worse.
 \bI challenged the Gym Leader, but It's not going to be easy winning with my Grass-type Pokémon.
 \bI challenged the Gym Leader, but It's not going to be easy winning with my Grass-type Pokémon.
 \bGrass-type Pokémon don't match up well against Bug-type Pokémon.

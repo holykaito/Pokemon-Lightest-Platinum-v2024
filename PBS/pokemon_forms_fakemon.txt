@@ -1,7 +1,23 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+[DODUO,1]
+FormName = Eastern
+Types = WATER,FAIRY
+Color = Pink
+Category = Snow Hump
+Pokedex = Their humps are slightly larger than their counterparts which they use to store water inside. This water freezes which causes Numels body temperature to drop.
+Generation = 10
+#-------------------------------
+[DODRIO,1]
+FormName = Eastern
+Types = WATER,FAIRY
+Color = Pink
+Category = Snow Hump
+Pokedex = Their humps are slightly larger than their counterparts which they use to store water inside. This water freezes which causes Numels body temperature to drop.
+Generation = 10
+#-------------------------------
 [NUMEL,1]
-FormName = Zherian
+FormName = Northern
 Types = ICE,GROUND
 Color = White
 Category = Snow Hump
@@ -9,9 +25,42 @@ Pokedex = Their humps are slightly larger than their counterparts which they use
 Generation = 10
 #-------------------------------
 [CAMERUPT,2]
+FormName = Northern
 Types = ICE,GROUND
 Abilities = SNOWCLOAK,SOLIDROCK
 Color = White
+Category = Dormant
+Pokedex = The lava inside its body has solidified and unable to be expelled, causing its humps to grow larger and sharper. They are known to cause avalanches when threatened.
+Generation = 10
+#-------------------------------
+[ROTOM,7]
+FormName = Micrio
+Types = ELECTRIC,BUG
+Color = Red
+Category = Micro
+Pokedex = The lava inside its body has solidified and unable to be expelled, causing its humps to grow larger and sharper. They are known to cause avalanches when threatened.
+Generation = 10
+#-------------------------------
+[CONKELDURR,1]
+FormName = Northern
+Types = FIGHTING,DARK
+Color = Gray
+Category = Dormant
+Pokedex = They use concrete pillars as walking canes. They know moves that enable them to swing the pillars freely in battle.
+Generation = 10
+#-------------------------------
+[MIENFOO,1]
+FormName = Northern
+Types = FIGHTING,FAIRY
+Color = Pink
+Category = Snow Hump
+Pokedex = Their humps are slightly larger than their counterparts which they use to store water inside. This water freezes which causes Numels body temperature to drop.
+Generation = 10
+#-------------------------------
+[MIENSHAO,1]
+FormName = Northern
+Types = FIGHTING,FAIRY
+Color = Pink
 Category = Dormant
 Pokedex = The lava inside its body has solidified and unable to be expelled, causing its humps to grow larger and sharper. They are known to cause avalanches when threatened.
 Generation = 10
@@ -102,7 +151,7 @@ Generation = 6
 #-------------------------------
 [TORTERRA,1]
 FormName = Mega Torterra
-MegaStone = VENUSAURITE
+MegaStone = TORTERITE
 BaseStats = 95,139,155,56,85,105
 BaseExp = 313
 Abilities = STAMINA
@@ -114,7 +163,7 @@ Generation = 10
 #-------------------------------
 [INFERNAPE,1]
 FormName = Mega Infernape
-MegaStone = VENUSAURITE
+MegaStone = INFERNAPITE
 BaseStats = 76,134,91,139,124,71
 BaseExp = 313
 Abilities = LEVITATE
@@ -126,7 +175,7 @@ Generation = 10
 #-------------------------------
 [EMPOLEON,1]
 FormName = Mega Empoleon
-MegaStone = VENUSAURITE
+MegaStone = EMPOLEONITE
 BaseStats = 84,116,113,60,131,131
 BaseExp = 313
 Abilities = SUPREMEOVERLORD

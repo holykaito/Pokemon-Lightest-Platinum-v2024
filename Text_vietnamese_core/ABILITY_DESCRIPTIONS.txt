@@ -3,506 +3,506 @@
 #-------------------------------
 [ABILITY_DESCRIPTIONS]
 The stench may cause the target to flinch.
-The stench may cause the target to flinch.
+Mùi hôi có thể khiến mục tiêu chùn bước.
 The Pokémon makes it rain if it appears in battle.
-The Pokémon makes it rain if it appears in battle.
+Pokémon này tạo ra mưa khi vào trận.
 Its Speed stat is gradually boosted.
-Its Speed stat is gradually boosted.
+Chỉ số Tốc độ tăng dần theo thời gian.
 The Pokémon is protected against critical hits.
-The Pokémon is protected against critical hits.
+Pokémon này không phải chịu đòn chí mạng.
 It cannot be knocked out with one hit.
-It cannot be knocked out with one hit.
+Pokémon này không thể bị hạ gục chỉ bằng một đòn.
 Prevents the use of self-destructing moves.
-Prevents the use of self-destructing moves.
+Ngăn sử dụng các chiêu thức tự hủy.
 The Pokémon is protected from paralysis.
-The Pokémon is protected from paralysis.
+Pokémon này không thể bị tê liệt.
 Boosts the Pokémon's evasion in a sandstorm.
-Boosts the Pokémon's evasion in a sandstorm.
+Tăng khả năng né tránh trong bão cát.
 Contact with the Pokémon may cause paralysis.
-Contact with the Pokémon may cause paralysis.
+Tiếp xúc với Pokémon này có thể gây tê liệt.
 Restores HP if hit by an Electric-type move.
-Restores HP if hit by an Electric-type move.
+Hồi HP khi trúng chiêu thức hệ Điện.
 Restores HP if hit by a Water-type move.
-Restores HP if hit by a Water-type move.
+Hồi HP khi trúng chiêu thức hệ Nước.
 Prevents it from becoming infatuated.
-Prevents it from becoming infatuated.
+Ngăn Pokémon này bị mê hoặc.
 Eliminates the effects of weather.
-Eliminates the effects of weather.
+Vô hiệu hóa các hiệu ứng thời tiết.
 The Pokémon's accuracy is boosted.
-The Pokémon's accuracy is boosted.
+Tăng độ chính xác của Pokémon.
 Prevents the Pokémon from falling asleep.
-Prevents the Pokémon from falling asleep.
+Ngăn Pokémon này rơi vào trạng thái ngủ.
 Changes the Pokémon's type to the foe's move.
-Changes the Pokémon's type to the foe's move.
+Đổi hệ của Pokémon theo hệ chiêu thức đối thủ.
 Prevents the Pokémon from getting poisoned.
-Prevents the Pokémon from getting poisoned.
+Ngăn Pokémon này bị nhiễm độc.
 It powers up Fire-type moves if it's hit by one.
-It powers up Fire-type moves if it's hit by one.
+Tăng sức mạnh chiêu hệ Lửa khi trúng chiêu hệ Lửa.
 Blocks the added effects of attacks taken.
-Blocks the added effects of attacks taken.
+Ngăn các hiệu ứng phụ từ đòn tấn công nhận phải.
 Prevents the Pokémon from becoming confused.
-Prevents the Pokémon from becoming confused.
+Ngăn Pokémon này bị hỗn loạn.
 Negates all moves that force switching out.
-Negates all moves that force switching out.
+Vô hiệu hóa các chiêu thức buộc đổi Pokémon.
 Lowers the foe's Attack stat.
-Lowers the foe's Attack stat.
+Giảm chỉ số Tấn công của đối thủ.
 Prevents the foe from escaping.
-Prevents the foe from escaping.
+Ngăn đối thủ bỏ chạy.
 Inflicts damage to the foe on contact.
-Inflicts damage to the foe on contact.
+Gây sát thương cho đối thủ khi tiếp xúc.
 Only super-effective moves will hit.
-Only super-effective moves will hit.
+Chỉ các chiêu thức siêu hiệu quả mới đánh trúng.
 Gives full immunity to all Ground-type moves.
-Gives full immunity to all Ground-type moves.
+Miễn nhiễm hoàn toàn với chiêu thức hệ Đất.
 Contact may poison or cause paralysis or sleep.
-Contact may poison or cause paralysis or sleep.
+Tiếp xúc có thể gây nhiễm độc, tê liệt hoặc ngủ.
 Passes a burn, poison, or paralysis to the foe.
-Passes a burn, poison, or paralysis to the foe.
+Truyền trạng thái bỏng, nhiễm độc hoặc tê liệt sang đối thủ.
 Prevents other Pokémon from lowering its stats.
-Prevents other Pokémon from lowering its stats.
+Ngăn Pokémon khác làm giảm chỉ số của nó.
 All status problems heal when it switches out.
-All status problems heal when it switches out.
+Chữa mọi trạng thái bất lợi khi rời trận.
 Draws in all Electric-type moves to up Sp. Attack.
-Draws in all Electric-type moves to up Sp. Attack.
+Thu hút chiêu hệ Điện để tăng Tấn công Đặc biệt.
 Boosts the likelihood of added effects appearing.
-Boosts the likelihood of added effects appearing.
+Tăng tỷ lệ xuất hiện hiệu ứng phụ của chiêu thức.
 Boosts the Pokémon's Speed in rain.
-Boosts the Pokémon's Speed in rain.
+Tăng Tốc độ của Pokémon khi trời mưa.
 Boosts the Pokémon's Speed in sunshine.
-Boosts the Pokémon's Speed in sunshine.
+Tăng Tốc độ của Pokémon khi trời nắng.
 Raises the likelihood of meeting wild Pokémon.
-Raises the likelihood of meeting wild Pokémon.
+Tăng khả năng gặp Pokémon hoang dã.
 The Pokémon copies a foe's Ability.
-The Pokémon copies a foe's Ability.
+Pokémon này sao chép Đặc tính của đối thủ.
 Raises the Pokémon's Attack stat.
-Raises the Pokémon's Attack stat.
+Tăng chỉ số Tấn công của Pokémon.
 Contact with the Pokémon may poison the attacker.
-Contact with the Pokémon may poison the attacker.
+Tiếp xúc với Pokémon này có thể khiến kẻ tấn công nhiễm độc.
 The Pokémon is protected from flinching.
-The Pokémon is protected from flinching.
+Pokémon này không bị chùn bước.
 Prevents the Pokémon from becoming frozen.
-Prevents the Pokémon from becoming frozen.
+Ngăn Pokémon này bị đóng băng.
 Prevents the Pokémon from getting a burn.
-Prevents the Pokémon from getting a burn.
+Ngăn Pokémon này bị bỏng.
 Prevents Steel-type Pokémon from escaping.
-Prevents Steel-type Pokémon from escaping.
+Ngăn Pokémon hệ Thép bỏ chạy.
 Gives full immunity to all sound-based moves.
-Gives full immunity to all sound-based moves.
+Miễn nhiễm hoàn toàn với các chiêu thức âm thanh.
 The Pokémon gradually regains HP in rain.
-The Pokémon gradually regains HP in rain.
+Pokémon này hồi HP dần khi trời mưa.
 The Pokémon summons a sandstorm in battle.
-The Pokémon summons a sandstorm in battle.
+Pokémon này tạo ra bão cát khi vào trận.
 The Pokémon raises the foe's PP usage.
-The Pokémon raises the foe's PP usage.
+Khiến đối thủ tiêu hao nhiều PP hơn.
 Ups resistance to Fire- and Ice-type moves.
-Ups resistance to Fire- and Ice-type moves.
+Tăng khả năng chống chịu chiêu hệ Lửa và Băng.
 The Pokémon awakens quickly from sleep.
-The Pokémon awakens quickly from sleep.
+Pokémon này tỉnh giấc nhanh hơn.
 Contact with the Pokémon may burn the attacker.
-Contact with the Pokémon may burn the attacker.
+Tiếp xúc với Pokémon này có thể khiến kẻ tấn công bị bỏng.
 Enables a sure getaway from wild Pokémon.
-Enables a sure getaway from wild Pokémon.
+Đảm bảo chạy thoát khỏi Pokémon hoang dã.
 Prevents other Pokémon from lowering accuracy.
-Prevents other Pokémon from lowering accuracy.
+Ngăn Pokémon khác làm giảm độ chính xác.
 Prevents other Pokémon from lowering Attack stat.
-Prevents other Pokémon from lowering Attack stat.
+Ngăn Pokémon khác làm giảm chỉ số Tấn công.
 The Pokémon may pick up items.
-The Pokémon may pick up items.
+Pokémon này có thể nhặt được vật phẩm.
 Pokémon can't attack on consecutive turns.
-Pokémon can't attack on consecutive turns.
+Pokémon này không thể tấn công trong hai lượt liên tiếp.
 Boosts the Attack stat, but lowers accuracy.
-Boosts the Attack stat, but lowers accuracy.
+Tăng Tấn công nhưng giảm độ chính xác.
 Contact with the Pokémon may cause infatuation.
-Contact with the Pokémon may cause infatuation.
+Tiếp xúc với Pokémon này có thể gây mê hoặc.
 Ups Sp. Atk if another Pokémon has Plus or Minus.
-Ups Sp. Atk if another Pokémon has Plus or Minus.
+Tăng Tấn công Đặc biệt nếu Pokémon khác có Plus hoặc Minus.
 Castform transforms with the weather.
-Castform transforms with the weather.
+Castform thay đổi hình dạng theo thời tiết.
 Protects the Pokémon from item theft.
-Protects the Pokémon from item theft.
+Ngăn vật phẩm của Pokémon bị đánh cắp.
 The Pokémon may heal its own status problems.
-The Pokémon may heal its own status problems.
+Pokémon này có thể tự chữa trạng thái bất lợi.
 Boosts Attack if there is a status problem.
-Boosts Attack if there is a status problem.
+Tăng Tấn công khi mắc trạng thái bất lợi.
 Ups Defense if there is a status problem.
-Ups Defense if there is a status problem.
+Tăng Phòng thủ khi mắc trạng thái bất lợi.
 Damages attackers using any draining move.
-Damages attackers using any draining move.
+Gây sát thương cho kẻ sử dụng chiêu thức hút HP.
 Powers up Grass-type moves in a pinch.
-Powers up Grass-type moves in a pinch.
+Tăng sức mạnh chiêu hệ Cỏ khi HP xuống thấp.
 Powers up Fire-type moves in a pinch.
-Powers up Fire-type moves in a pinch.
+Tăng sức mạnh chiêu hệ Lửa khi HP xuống thấp.
 Powers up Water-type moves in a pinch.
-Powers up Water-type moves in a pinch.
+Tăng sức mạnh chiêu hệ Nước khi HP xuống thấp.
 Powers up Bug-type moves in a pinch.
-Powers up Bug-type moves in a pinch.
+Tăng sức mạnh chiêu hệ Bọ khi HP xuống thấp.
 Protects the Pokémon from recoil damage.
-Protects the Pokémon from recoil damage.
+Ngăn Pokémon chịu sát thương phản lại.
 Turns the sunlight harsh if it is in battle.
-Turns the sunlight harsh if it is in battle.
+Tạo ánh nắng gay gắt khi Pokémon vào trận.
 Prevents the foe from fleeing.
-Prevents the foe from fleeing.
+Ngăn đối thủ bỏ chạy.
 Raises evasion if the Pokémon is confused.
-Raises evasion if the Pokémon is confused.
+Tăng khả năng né tránh khi Pokémon bị hỗn loạn.
 Raises Speed if hit by an Electric-type move.
-Raises Speed if hit by an Electric-type move.
+Tăng Tốc độ khi trúng chiêu thức hệ Điện.
 Deals more damage to a foe of the same gender.
-Deals more damage to a foe of the same gender.
+Gây nhiều sát thương hơn lên đối thủ cùng giới tính.
 Raises Speed each time the Pokémon flinches.
-Raises Speed each time the Pokémon flinches.
+Tăng Tốc độ mỗi khi Pokémon bị chùn bước.
 Raises evasion in a hailstorm.
-Raises evasion in a hailstorm.
+Tăng khả năng né tránh khi có mưa đá.
 Encourages the early use of a held Berry.
-Encourages the early use of a held Berry.
+Khiến Pokémon sử dụng Berry mang theo sớm hơn.
 Maxes Attack after taking a critical hit.
-Maxes Attack after taking a critical hit.
+Tăng Tấn công lên tối đa khi chịu đòn chí mạng.
 Raises Speed if a held item is used.
-Raises Speed if a held item is used.
+Tăng Tốc độ khi sử dụng vật phẩm mang theo.
 Weakens the power of Fire-type moves.
-Weakens the power of Fire-type moves.
+Giảm sức mạnh các chiêu thức hệ Lửa.
 The Pokémon is prone to wild stat changes.
-The Pokémon is prone to wild stat changes.
+Các chỉ số của Pokémon có thể thay đổi thất thường.
 Reduces HP if it is hot. Water restores HP.
-Reduces HP if it is hot. Water restores HP.
+Mất HP khi trời nóng, nhưng hồi HP khi gặp nước.
 Adjusts power according to a foe's defenses.
-Adjusts power according to a foe's defenses.
+Điều chỉnh sức mạnh đòn đánh theo khả năng phòng thủ của đối thủ.
 Boosts the power of punching moves.
-Boosts the power of punching moves.
+Tăng sức mạnh các chiêu thức đấm.
 Restores HP if the Pokémon is poisoned.
-Restores HP if the Pokémon is poisoned.
+Hồi HP khi Pokémon bị nhiễm độc.
 Powers up moves of the same type.
-Powers up moves of the same type.
+Tăng sức mạnh các chiêu thức cùng hệ.
 Increases the frequency of multi-strike moves.
-Increases the frequency of multi-strike moves.
+Tăng số lần đánh của các chiêu thức liên hoàn.
 Heals status problems if it is raining.
-Heals status problems if it is raining.
+Chữa trạng thái bất lợi khi trời mưa.
 In sunshine, Sp. Atk is boosted but HP decreases.
-In sunshine, Sp. Atk is boosted but HP decreases.
+Khi trời nắng, Tấn công Đặc biệt tăng nhưng HP giảm.
 Boosts Speed if there is a status problem.
-Boosts Speed if there is a status problem.
+Tăng Tốc độ khi mắc trạng thái bất lợi.
 All the Pokémon's moves become the Normal type.
-All the Pokémon's moves become the Normal type.
+Tất cả chiêu thức của Pokémon chuyển thành hệ Thường.
 Powers up moves if they become critical hits.
-Powers up moves if they become critical hits.
+Tăng sức mạnh của các đòn chí mạng.
 The Pokémon only takes damage from attacks.
-The Pokémon only takes damage from attacks.
+Pokémon này chỉ chịu sát thương trực tiếp từ đòn tấn công.
 Ensures attacks by or against the Pokémon land.
-Ensures attacks by or against the Pokémon land.
+Đảm bảo các đòn tấn công của và nhằm vào Pokémon đều đánh trúng.
 The Pokémon moves after all other Pokémon do.
-The Pokémon moves after all other Pokémon do.
+Pokémon này luôn hành động sau các Pokémon khác.
 Powers up the Pokémon's weaker moves.
-Powers up the Pokémon's weaker moves.
+Tăng sức mạnh các chiêu thức yếu của Pokémon.
 Prevents problems with status in sunny weather.
-Prevents problems with status in sunny weather.
+Ngăn trạng thái bất lợi khi trời nắng.
 The Pokémon can't use any held items.
-The Pokémon can't use any held items.
+Pokémon này không thể sử dụng vật phẩm mang theo.
 Moves can be used regardless of Abilities.
-Moves can be used regardless of Abilities.
+Chiêu thức có thể bỏ qua Đặc tính của đối thủ.
 Heightens the critical-hit ratios of moves.
-Heightens the critical-hit ratios of moves.
+Tăng tỷ lệ chí mạng của các chiêu thức.
 Damages the attacker landing the finishing hit.
-Damages the attacker landing the finishing hit.
+Gây sát thương cho kẻ tung đòn kết liễu Pokémon này.
 Senses a foe's dangerous moves.
-Senses a foe's dangerous moves.
+Phát hiện các chiêu thức nguy hiểm của đối thủ.
 Determines what moves a foe has.
-Determines what moves a foe has.
+Nhận biết các chiêu thức mà đối thủ sở hữu.
 Ignores any stat changes in the Pokémon.
-Ignores any stat changes in the Pokémon.
+Bỏ qua mọi thay đổi chỉ số của Pokémon.
 Powers up "not very effective" moves.
-Powers up "not very effective" moves.
+Tăng sức mạnh những chiêu thức không hiệu quả lắm.
 Reduces damage from super-effective attacks.
-Reduces damage from super-effective attacks.
+Giảm sát thương từ các chiêu thức siêu hiệu quả.
 Temporarily halves Attack and Speed.
-Temporarily halves Attack and Speed.
+Tạm thời giảm một nửa Tấn công và Tốc độ.
 Enables moves to hit Ghost-type Pokémon.
-Enables moves to hit Ghost-type Pokémon.
+Cho phép chiêu thức đánh trúng Pokémon hệ Ma.
 Draws in all Water-type moves to up Sp. Attack.
-Draws in all Water-type moves to up Sp. Attack.
+Thu hút chiêu hệ Nước để tăng Tấn công Đặc biệt.
 The Pokémon gradually regains HP in a hailstorm.
-The Pokémon gradually regains HP in a hailstorm.
+Pokémon này hồi HP dần khi có mưa đá.
 The Pokémon summons a hailstorm in battle.
-The Pokémon summons a hailstorm in battle.
+Pokémon này tạo ra mưa đá khi vào trận.
 The Pokémon may gather Honey from somewhere.
-The Pokémon may gather Honey from somewhere.
+Pokémon này có thể tìm được Honey.
 The Pokémon can check a foe's held item.
-The Pokémon can check a foe's held item.
+Pokémon này có thể nhận biết vật phẩm của đối thủ.
 Powers up moves that have recoil damage.
-Powers up moves that have recoil damage.
+Tăng sức mạnh các chiêu thức gây sát thương phản lại.
 Changes type to match the held Plate.
-Changes type to match the held Plate.
+Thay đổi hệ theo loại Plate đang mang.
 Powers up party Pokémon when it is sunny.
-Powers up party Pokémon when it is sunny.
+Tăng sức mạnh Pokémon trong đội khi trời nắng.
 Reduces a sleeping foe's HP.
-Reduces a sleeping foe's HP.
+Làm giảm HP của đối thủ đang ngủ.
 Steals an item when hit by another Pokémon.
-Steals an item when hit by another Pokémon.
+Đánh cắp vật phẩm khi bị Pokémon khác tấn công.
 Removes added effects to increase move damage.
-Removes added effects to increase move damage.
+Loại bỏ hiệu ứng phụ để tăng sát thương chiêu thức.
 Makes stat changes have an opposite effect.
-Makes stat changes have an opposite effect.
+Đảo ngược hiệu quả của các thay đổi chỉ số.
 Makes the foe nervous and unable to eat Berries.
-Makes the foe nervous and unable to eat Berries.
+Khiến đối thủ căng thẳng và không thể ăn Berry.
 When its stats are lowered its Attack increases.
-When its stats are lowered its Attack increases.
+Tăng Tấn công khi có chỉ số bị giảm.
 Lowers stats when HP becomes half or less.
-Lowers stats when HP becomes half or less.
+Giảm chỉ số khi HP còn một nửa hoặc thấp hơn.
 May disable a move used on the Pokémon.
-May disable a move used on the Pokémon.
+Có thể vô hiệu hóa chiêu thức vừa đánh trúng Pokémon.
 May heal an ally's status conditions.
-May heal an ally's status conditions.
+Có thể chữa trạng thái bất lợi cho đồng đội.
 Reduces damage done to allies.
-Reduces damage done to allies.
+Giảm sát thương mà đồng đội phải chịu.
 Physical attacks lower Defense and raise Speed.
-Physical attacks lower Defense and raise Speed.
+Trúng đòn vật lý sẽ giảm Phòng thủ và tăng Tốc độ.
 Doubles the Pokémon's weight.
-Doubles the Pokémon's weight.
+Tăng gấp đôi trọng lượng của Pokémon.
 Halves the Pokémon's weight.
-Halves the Pokémon's weight.
+Giảm một nửa trọng lượng của Pokémon.
 Reduces damage when HP is full.
-Reduces damage when HP is full.
+Giảm sát thương nhận vào khi HP đầy.
 Powers up physical attacks when poisoned.
-Powers up physical attacks when poisoned.
+Tăng sức mạnh đòn vật lý khi bị nhiễm độc.
 Powers up special attacks when burned.
-Powers up special attacks when burned.
+Tăng sức mạnh đòn đặc biệt khi bị bỏng.
 May create another Berry after one is used.
-May create another Berry after one is used.
+Có thể tạo thêm Berry sau khi sử dụng một quả.
 Anticipates an ally's attack and dodges it.
-Anticipates an ally's attack and dodges it.
+Đoán trước và né tránh đòn tấn công của đồng đội.
 Raises one stat and lowers another.
-Raises one stat and lowers another.
+Tăng một chỉ số và giảm một chỉ số khác.
 Protects the Pokémon from damage from weather.
-Protects the Pokémon from damage from weather.
+Bảo vệ Pokémon khỏi sát thương do thời tiết.
 May poison targets when a Pokémon makes contact.
-May poison targets when a Pokémon makes contact.
+Có thể khiến mục tiêu nhiễm độc khi Pokémon tiếp xúc.
 Restores a little HP when withdrawn from battle.
-Restores a little HP when withdrawn from battle.
+Hồi một ít HP khi Pokémon rời trận.
 Protects from Defense-lowering attacks.
-Protects from Defense-lowering attacks.
+Ngăn các đòn tấn công làm giảm Phòng thủ.
 Boosts the Pokémon's Speed in a sandstorm.
-Boosts the Pokémon's Speed in a sandstorm.
+Tăng Tốc độ của Pokémon trong bão cát.
 Makes status-changing moves more likely to miss.
-Makes status-changing moves more likely to miss.
+Khiến các chiêu thức trạng thái dễ đánh trượt hơn.
 Boosts move power when the Pokémon moves last.
-Boosts move power when the Pokémon moves last.
+Tăng sức mạnh chiêu thức khi Pokémon hành động cuối.
 Comes out disguised as the Pokémon in back.
-Comes out disguised as the Pokémon in back.
+Xuất trận dưới hình dạng Pokémon cuối cùng trong đội.
 It transforms itself into the Pokémon it is facing.
-It transforms itself into the Pokémon it is facing.
+Biến hình thành Pokémon đang đối mặt.
 Passes through the foe's barrier and strikes.
-Passes through the foe's barrier and strikes.
+Xuyên qua lá chắn của đối thủ để tấn công.
 Contact with this Pokémon spreads this Ability.
-Contact with this Pokémon spreads this Ability.
+Tiếp xúc với Pokémon này sẽ bị truyền Đặc tính.
 Boosts Attack after knocking out any Pokémon.
-Boosts Attack after knocking out any Pokémon.
+Tăng Tấn công sau khi hạ gục một Pokémon.
 Raises Attack when hit by a Dark-type move.
-Raises Attack when hit by a Dark-type move.
+Tăng Tấn công khi trúng chiêu hệ Bóng tối.
 Some move types scare it and boost its Speed.
-Some move types scare it and boost its Speed.
+Một số hệ chiêu thức khiến nó hoảng sợ và tăng Tốc độ.
 Reflects status-changing moves.
-Reflects status-changing moves.
+Phản lại các chiêu thức trạng thái.
 Boosts Attack when hit by a Grass-type move.
-Boosts Attack when hit by a Grass-type move.
+Tăng Tấn công khi trúng chiêu hệ Cỏ.
 Gives priority to a status move.
-Gives priority to a status move.
+Tăng độ ưu tiên của chiêu thức trạng thái.
 Boosts certain moves' power in a sandstorm.
-Boosts certain moves' power in a sandstorm.
+Tăng sức mạnh một số chiêu thức trong bão cát.
 Inflicts damage to the Pokémon on contact.
-Inflicts damage to the Pokémon on contact.
+Gây sát thương cho Pokémon này khi tiếp xúc.
 Changes the Pokémon's shape when HP is halved.
-Changes the Pokémon's shape when HP is halved.
+Thay đổi hình dạng khi HP còn một nửa.
 Boosts the accuracy of its allies and itself.
-Boosts the accuracy of its allies and itself.
+Tăng độ chính xác cho bản thân và đồng đội.
 Protects against attacks that limit move choices.
-Protects against attacks that limit move choices.
+Ngăn các chiêu thức hạn chế lựa chọn chiêu.
 Protects Grass-type allies from stat/status effects.
-Protects Grass-type allies from stat/status effects.
+Bảo vệ đồng đội hệ Cỏ khỏi hiệu ứng giảm chỉ số và trạng thái bất lợi.
 Restores HP as well when the Pokémon eats a Berry.
-Restores HP as well when the Pokémon eats a Berry.
+Hồi thêm HP khi Pokémon ăn Berry.
 It changes type to that of the move it's about to use.
-It changes type to that of the move it's about to use.
+Thay đổi hệ theo chiêu thức sắp sử dụng.
 Halves the damage from physical moves.
-Halves the damage from physical moves.
+Giảm một nửa sát thương từ chiêu thức vật lý.
 Steals the held item of a Pokémon it hits.
-Steals the held item of a Pokémon it hits.
+Đánh cắp vật phẩm của Pokémon bị nó đánh trúng.
 Protects the Pokémon from some ball and bomb moves.
-Protects the Pokémon from some ball and bomb moves.
+Bảo vệ Pokémon khỏi một số chiêu thức dạng bóng và bom.
 Sharply boosts Sp. Atk when a stat is lowered.
-Sharply boosts Sp. Atk when a stat is lowered.
+Tăng mạnh Tấn công Đặc biệt khi có chỉ số bị giảm.
 Boosts the power of biting moves.
-Boosts the power of biting moves.
+Tăng sức mạnh các chiêu thức cắn.
 Normal-type moves become Ice-type and powered up.
-Normal-type moves become Ice-type and powered up.
+Chiêu hệ Thường chuyển thành hệ Băng và được tăng sức mạnh.
 Prevents itself and allies from falling asleep.
-Prevents itself and allies from falling asleep.
+Ngăn bản thân và đồng đội rơi vào trạng thái ngủ.
 Changes between Blade and Shield Forme with attacks.
-Changes between Blade and Shield Forme with attacks.
+Chuyển đổi giữa Dạng Kiếm và Dạng Khiên khi chiến đấu.
 Flying-type moves gain priority when its HP is full.
-Flying-type moves gain priority when its HP is full.
+Chiêu hệ Bay được tăng độ ưu tiên khi HP đầy.
 Powers up aura and pulse moves.
-Powers up aura and pulse moves.
+Tăng sức mạnh các chiêu thức hào quang và xung năng lượng.
 Boosts the Defense stat on Grassy Terrain.
-Boosts the Defense stat on Grassy Terrain.
+Tăng Phòng thủ trên Grassy Terrain.
 Passes its held item to an ally that has used theirs.
-Passes its held item to an ally that has used theirs.
+Chuyển vật phẩm đang mang cho đồng đội đã dùng hết vật phẩm.
 Powers up moves that make direct contact.
-Powers up moves that make direct contact.
+Tăng sức mạnh các chiêu thức tiếp xúc trực tiếp.
 Normal-type moves become Fairy-type and powered up.
-Normal-type moves become Fairy-type and powered up.
+Chiêu hệ Thường chuyển thành hệ Tiên và được tăng sức mạnh.
 Contact with it lowers the attacker's Speed stat.
-Contact with it lowers the attacker's Speed stat.
+Tiếp xúc với Pokémon này sẽ làm giảm Tốc độ của kẻ tấn công.
 Normal-type moves become Flying-type and power up.
-Normal-type moves become Flying-type and power up.
+Chiêu hệ Thường chuyển thành hệ Bay và được tăng sức mạnh.
 Parent and child each attacks.
-Parent and child each attacks.
+Cả Pokémon bố mẹ và con đều cùng tấn công.
 Powers up each Pokémon's Dark-type moves.
-Powers up each Pokémon's Dark-type moves.
+Tăng sức mạnh chiêu hệ Bóng tối của mọi Pokémon.
 Powers up each Pokémon's Fairy-type moves.
-Powers up each Pokémon's Fairy-type moves.
+Tăng sức mạnh chiêu hệ Tiên của mọi Pokémon.
 Reverses "Aura" Abilities to weaken affected moves.
-Reverses "Aura" Abilities to weaken affected moves.
+Đảo ngược hiệu ứng Đặc tính Aura, khiến các chiêu liên quan yếu đi.
 Changes the weather to nullify Fire-type moves.
-Changes the weather to nullify Fire-type moves.
+Thay đổi thời tiết để vô hiệu hóa chiêu hệ Lửa.
 Changes the weather to nullify Water-type moves.
-Changes the weather to nullify Water-type moves.
+Thay đổi thời tiết để vô hiệu hóa chiêu hệ Nước.
 Alters weather to remove Flying-type's weaknesses.
-Alters weather to remove Flying-type's weaknesses.
+Thay đổi thời tiết để xóa bỏ điểm yếu của hệ Bay.
 Boosts Defense when hit by an attack.
-Boosts Defense when hit by an attack.
+Tăng Phòng thủ khi trúng đòn tấn công.
 Cowardly switches out if its HP becomes half or less.
-Cowardly switches out if its HP becomes half or less.
+Sợ hãi và tự rút lui khi HP còn một nửa hoặc thấp hơn.
 Switches out if its HP becomes half or less.
-Switches out if its HP becomes half or less.
+Tự rút lui khi HP còn một nửa hoặc thấp hơn.
 Sharply ups Defense when hit by a Water-type move.
-Sharply ups Defense when hit by a Water-type move.
+Tăng mạnh Phòng thủ khi trúng chiêu hệ Nước.
 Its attacks are critical hits when it is poisoned.
-Its attacks are critical hits when it is poisoned.
+Các đòn tấn công luôn chí mạng khi Pokémon bị nhiễm độc.
 Its shell breaks if its HP becomes half or less.
-Its shell breaks if its HP becomes half or less.
+Lớp vỏ vỡ ra khi HP còn một nửa hoặc thấp hơn.
 Deals doubles damage to a target's replacement.
-Deals doubles damage to a target's replacement.
+Gây gấp đôi sát thương lên Pokémon thay thế mục tiêu.
 Weakens incoming Fire-type moves and prevents burns.
-Weakens incoming Fire-type moves and prevents burns.
+Giảm sức mạnh chiêu hệ Lửa nhận vào và ngăn bị bỏng.
 Powers up Steel-type moves.
-Powers up Steel-type moves.
+Tăng sức mạnh các chiêu thức hệ Thép.
 Ups Sp. Atk if a hit makes its HP half or less.
-Ups Sp. Atk if a hit makes its HP half or less.
+Tăng Tấn công Đặc biệt khi trúng đòn khiến HP còn một nửa hoặc thấp hơn.
 Boosts the Pokémon's Speed stat in a hailstorm.
-Boosts the Pokémon's Speed stat in a hailstorm.
+Tăng Tốc độ của Pokémon khi có mưa đá.
 Uses moves without making contact with the target.
-Uses moves without making contact with the target.
+Sử dụng chiêu thức mà không tiếp xúc trực tiếp với mục tiêu.
 Its sound-based moves become Water-type.
-Its sound-based moves become Water-type.
+Các chiêu thức âm thanh chuyển thành hệ Nước.
 Gives priority to a healing move.
-Gives priority to a healing move.
+Tăng độ ưu tiên của chiêu thức hồi phục.
 Normal-type moves become Electric-type and powered.
-Normal-type moves become Electric-type and powered.
+Chiêu hệ Thường chuyển thành hệ Điện và được tăng sức mạnh.
 Doubles Speed on Electric Terrain.
-Doubles Speed on Electric Terrain.
+Tăng gấp đôi Tốc độ trên Electric Terrain.
 Forms a powerful school while it has a lot of HP.
-Forms a powerful school while it has a lot of HP.
+Tập hợp thành đàn hùng mạnh khi còn nhiều HP.
 Its shroud protects it from an attack just once.
-Its shroud protects it from an attack just once.
+Lớp áo bảo vệ giúp Pokémon chống chịu một đòn tấn công.
 Defeating a foe lets it become Ash-Greninja.
-Defeating a foe lets it become Ash-Greninja.
+Hạ gục đối thủ cho phép biến thành Ash-Greninja.
 Changes with other Cells if HP becomes half or less.
-Changes with other Cells if HP becomes half or less.
+Kết hợp với các Tế bào khác khi HP còn một nửa hoặc thấp hơn.
 It can poison Steel- and Poison-type targets.
-It can poison Steel- and Poison-type targets.
+Có thể gây nhiễm độc cho cả mục tiêu hệ Thép và Độc.
 It's always drowsing, and attacks without waking.
-It's always drowsing, and attacks without waking.
+Luôn trong trạng thái mơ màng và vẫn tấn công khi chưa tỉnh giấc.
 Makes foes unable to use priority attacks.
-Makes foes unable to use priority attacks.
+Ngăn đối thủ sử dụng các chiêu thức ưu tiên.
 Damages an attacker that lands the finishing hit.
-Damages an attacker that lands the finishing hit.
+Gây sát thương cho kẻ tung đòn kết liễu Pokémon này.
 Repeats another Pokémon's dance move immediately.
-Repeats another Pokémon's dance move immediately.
+Lập tức sử dụng lại chiêu thức nhảy múa của Pokémon khác.
 Powers up ally Pokémon's special moves.
-Powers up ally Pokémon's special moves.
+Tăng sức mạnh các chiêu thức đặc biệt của đồng đội.
 Resists contact damage but weaker to Fire-type.
-Resists contact damage but weaker to Fire-type.
+Giảm sát thương tiếp xúc nhưng yếu hơn trước chiêu hệ Lửa.
 Boosts Sp. Atk each time a Pokémon faints.
-Boosts Sp. Atk each time a Pokémon faints.
+Tăng Tấn công Đặc biệt mỗi khi một Pokémon bị hạ gục.
 Contact with it lowers the attacker's Speed.
-Contact with it lowers the attacker's Speed.
+Tiếp xúc với Pokémon này sẽ làm giảm Tốc độ của kẻ tấn công.
 Copies the Ability of a defeated ally.
-Copies the Ability of a defeated ally.
+Sao chép Đặc tính của đồng đội đã bị hạ gục.
 Boosts its best stat each time it deals a KO.
-Boosts its best stat each time it deals a KO.
+Tăng chỉ số cao nhất mỗi khi hạ gục một Pokémon.
 Its type matches the memory disc it holds.
-Its type matches the memory disc it holds.
+Hệ của Pokémon thay đổi theo Memory Disc đang mang.
 Turns the ground into Electric Terrain.
-Turns the ground into Electric Terrain.
+Biến mặt đất thành Địa hình Điện.
 Turns the ground into Psychic Terrain.
-Turns the ground into Psychic Terrain.
-Turns the ground into Misty Terrain.
-Turns the ground into Misty Terrain.
+Biến mặt đất thành Địa hình Siêu linh.
+Turns the ground into Địa hình Sương mù.
+Biến mặt đất thành Misty Terrain.
 Turns the ground into Grassy Terrain.
-Turns the ground into Grassy Terrain.
+Biến mặt đất thành Địa hình Cỏ.
 Resists damage while its HP is full.
-Resists damage while its HP is full.
+Giảm sát thương nhận vào khi HP đầy.
 Powers up moves that are super-effective.
-Powers up moves that are super-effective.
+Tăng sức mạnh các chiêu thức siêu hiệu quả.
 Boosts Attack when entering a battle.
-Boosts Attack when entering a battle.
+Tăng Tấn công khi vào trận.
 Boosts Defense when entering a battle.
-Boosts Defense when entering a battle.
+Tăng Phòng thủ khi vào trận.
 Retrieves the first thrown Poké Ball if it failed.
-Retrieves the first thrown Poké Ball if it failed.
+Thu hồi Poké Ball đầu tiên nếu bắt Pokémon thất bại.
 Scatters Speed-lowering cotton fluff when hit.
-Scatters Speed-lowering cotton fluff when hit.
+Phát tán bông làm giảm Tốc độ khi trúng đòn.
 This Pokémon's moves cannot be redirected.
-This Pokémon's moves cannot be redirected.
+Chiêu thức của Pokémon này không thể bị chuyển hướng.
 Bounces back stat-lowering effects.
-Bounces back stat-lowering effects.
+Phản lại các hiệu ứng làm giảm chỉ số.
 Catches prey via Surf or Dive, spits it out when hit.
-Catches prey via Surf or Dive, spits it out when hit.
+Bắt mồi bằng Surf hoặc Dive rồi phun ra khi bị tấn công.
 Boosts Speed drastically if hit by a Fire or Water move.
-Boosts Speed drastically if hit by a Fire or Water move.
+Tăng mạnh Tốc độ khi trúng chiêu hệ Lửa hoặc Nước.
 Powers up own sound moves. Resists other sound moves.
-Powers up own sound moves. Resists other sound moves.
+Tăng sức mạnh chiêu âm thanh của bản thân và giảm sát thương từ chiêu âm thanh khác.
 Creates a sandstorm when hit by an attack.
-Creates a sandstorm when hit by an attack.
+Tạo bão cát khi trúng đòn tấn công.
 Halves the damage taken from special moves.
-Halves the damage taken from special moves.
+Giảm một nửa sát thương từ chiêu thức đặc biệt.
 Ripens Berries and doubles their effect.
-Ripens Berries and doubles their effect.
+Làm Berry chín và tăng gấp đôi hiệu quả của chúng.
 Blocks a physical hit, but the ice head breaks.
-Blocks a physical hit, but the ice head breaks.
+Chặn một đòn vật lý nhưng khiến đầu băng vỡ ra.
 Just being next to the Pokémon powers up moves.
-Just being next to the Pokémon powers up moves.
+Chỉ cần đứng cạnh Pokémon này cũng giúp tăng sức mạnh chiêu thức.
 Changes type depending on the terrain.
-Changes type depending on the terrain.
+Thay đổi hệ tùy theo địa hình.
 On entering battle, clears effects of Reflect, etc.
-On entering battle, clears effects of Reflect, etc.
+Khi vào trận, xóa bỏ các hiệu ứng như Reflect và tương tự.
 Powers up ally Pokémon's Steel-type moves.
-Powers up ally Pokémon's Steel-type moves.
+Tăng sức mạnh chiêu hệ Thép của đồng đội.
 Both Pokémon faint 3 turns after taking a contact hit.
-Both Pokémon faint 3 turns after taking a contact hit.
+Cả hai Pokémon sẽ bị hạ gục sau 3 lượt kể từ khi có đòn tiếp xúc.
 Swaps Abilities with contact-making Pokémon.
-Swaps Abilities with contact-making Pokémon.
+Hoán đổi Đặc tính với Pokémon tiếp xúc trực tiếp.
 Boosts Attack, but allows only one move to be used.
-Boosts Attack, but allows only one move to be used.
+Tăng Tấn công nhưng chỉ được sử dụng một chiêu thức.
 Nullifies the effects of all other Abilities.
-Nullifies the effects of all other Abilities.
+Vô hiệu hóa hiệu ứng của tất cả Đặc tính khác.
 Protects the Pokémon and its allies from poisoning.
-Protects the Pokémon and its allies from poisoning.
+Bảo vệ bản thân và đồng đội khỏi nhiễm độc.
 Changes between Full Belly and Hangry Mode each turn.
-Changes between Full Belly and Hangry Mode each turn.
+Chuyển đổi giữa Chế độ No bụng và Đói bụng mỗi lượt.
 Enables the Pokémon to move first occasionally.
-Enables the Pokémon to move first occasionally.
+Đôi khi cho phép Pokémon hành động trước.
 The Pokémon's contact moves ignore protections.
-The Pokémon's contact moves ignore protections.
+Các chiêu thức tiếp xúc của Pokémon bỏ qua hiệu ứng bảo vệ.
 Removes all allies' stat changes on joining battle.
-Removes all allies' stat changes on joining battle.
+Xóa bỏ mọi thay đổi chỉ số của đồng đội khi vào trận.
 Powers up Electric-type moves.
-Powers up Electric-type moves.
+Tăng sức mạnh các chiêu thức hệ Điện.
 Powers up Dragon-type moves.
-Powers up Dragon-type moves.
+Tăng sức mạnh các chiêu thức hệ Rồng.
 When knocking out a target, raises Attack.
-When knocking out a target, raises Attack.
+Tăng Tấn công khi hạ gục mục tiêu.
 When knocking out a target, raises Sp. Atk.
-When knocking out a target, raises Sp. Atk.
+Tăng Tấn công Đặc biệt khi hạ gục mục tiêu.
 Combines Unnerve and Chilling Neigh Abilities.
-Combines Unnerve and Chilling Neigh Abilities.
+Kết hợp hai Đặc tính Unnerve và Chilling Neigh.
 Combines Unnerve and Grim Neigh Abilities.
-Combines Unnerve and Grim Neigh Abilities.
+Kết hợp hai Đặc tính Unnerve và Grim Neigh.

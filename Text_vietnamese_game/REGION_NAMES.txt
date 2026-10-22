@@ -2,7 +2,7 @@
 # translate every second line of this file.
 #-------------------------------
 [REGION_NAMES]
-Essen
-Essen
+An Lâm
+An Lâm
 Tiall
 Tiall

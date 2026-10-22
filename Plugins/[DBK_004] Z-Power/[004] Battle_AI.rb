@@ -42,7 +42,11 @@ class Battle::AI
   #-----------------------------------------------------------------------------
   # Aliased to allow the AI to consider Z-Healing effects when switching out.
   #-----------------------------------------------------------------------------
-  alias zmove_rate_replacement_pokemon rate_replacement_pokemon
+  zmove_replacement_base = instance_method(:rate_replacement_pokemon)
+  while zmove_replacement_base.owner != self
+    zmove_replacement_base = zmove_replacement_base.super_method
+  end
+  define_method(:zmove_rate_replacement_pokemon, zmove_replacement_base)
   def rate_replacement_pokemon(idxBattler, pkmn, score)
     score = zmove_rate_replacement_pokemon(idxBattler, pkmn, score)
     position = @battle.positions[idxBattler]

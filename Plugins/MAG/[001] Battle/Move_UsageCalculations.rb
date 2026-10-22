@@ -23,14 +23,6 @@ class Battle::Move
 		if user.pbOwnSide.effects[PBEffects::GoldHoard] > 0 && type == :DRAGON
 			multipliers[:power_multiplier] *= 1.3
 		end
-		# STAB
-		if type && user.pbHasType?(type)
-			if user.hasActiveAbility?(:ADAPTABILITY)
-				multipliers[:final_damage_multiplier] *= 2
-				else
-				multipliers[:final_damage_multiplier] *= 1.5 
-			end
-		end
 		# Frostbite
 		if user.status == :FROSTBITE && specialMove? &&
 			!user.hasActiveAbility?(:EXTREMEFOCUS)

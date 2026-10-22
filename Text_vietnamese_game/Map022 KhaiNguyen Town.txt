@@ -4,17 +4,25 @@
 [Map022]
 You cannot venture out into the wild without a Pokémon companion; it is very dangerous.
 You cannot venture out into the wild without a Pokémon companion; it is very dangerous.
+Today's technology is incredible! I can trade Pokemon with people around the world.
+Today's technology is incredible! I can trade Pokemon with people around the world.
 Yellow Town - Route A1
 Yellow Town - Route A1
-\bToday's technology is incredible! I can trade Pokemon with people around the world.
-\bToday's technology is incredible! I can trade Pokemon with people around the world.
-Prof. Fennel's laboratory is one of the best research centres in the whole AnLam Region.
-Prof. Fennel's laboratory is one of the best research centres in the whole AnLam Region.
+Prof. Minh Anh's laboratory is one of the best research centres in the whole AnLam Region.
+Prof. Minh Anh's laboratory is one of the best research centres in the whole AnLam Region.
 Research Laboratory Pro. Jasmine
 Research Laboratory Pro. Jasmine
-\bArceus is a legendary Pokemon that can change its type to anything, but that's only a theory because no one's seen it.
-\bArceus is a legendary Pokemon that can change its type to anything, but that's only a theory because no one's seen it.
 I'm cleaning the house for Pro. Fennel.
 I'm cleaning the house for Pro. Fennel.
+They say Khai Nguyen Town has always been a place where miracles happen.
+They say Khai Nguyen Town has always been a place where miracles happen.
+Many legendary figures who left their mark on history once walked these very streets.
+Many legendary figures who left their mark on history once walked these very streets.
+But perhaps the greatest legend of all is the one about Arceus.
+But perhaps the greatest legend of all is the one about Arceus.
+They say Arceus itself once descended upon this town long, long ago.
+They say Arceus itself once descended upon this town long, long ago.
+See that statue right in front of us? It was built in memory of that miracle.
+See that statue right in front of us? It was built in memory of that miracle.
 In Yellow Town, people always want their children to be good trainer, who will be the pride of their families and of the city.
 In Yellow Town, people always want their children to be good trainer, who will be the pride of their families and of the city.

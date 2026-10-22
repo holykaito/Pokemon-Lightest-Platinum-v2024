@@ -3,158 +3,158 @@
 #-------------------------------
 [RIBBON_DESCRIPTIONS]
 Hoenn Cool Contest Normal Rank winner!
-Hoenn Cool Contest Normal Rank winner!
+Vô địch cuộc thi Phong cách hạng Thường tại Hoenn!
 Hoenn Cool Contest Super Rank winner!
-Hoenn Cool Contest Super Rank winner!
+Vô địch cuộc thi Phong cách hạng Siêu cấp tại Hoenn!
 Hoenn Cool Contest Hyper Rank winner!
-Hoenn Cool Contest Hyper Rank winner!
+Vô địch cuộc thi Phong cách hạng Cao cấp tại Hoenn!
 Hoenn Cool Contest Master Rank winner!
-Hoenn Cool Contest Master Rank winner!
+Vô địch cuộc thi Phong cách hạng Bậc thầy tại Hoenn!
 Hoenn Beauty Contest Normal Rank winner!
-Hoenn Beauty Contest Normal Rank winner!
+Vô địch cuộc thi Sắc đẹp hạng Thường tại Hoenn!
 Hoenn Beauty Contest Super Rank winner!
-Hoenn Beauty Contest Super Rank winner!
+Vô địch cuộc thi Sắc đẹp hạng Siêu cấp tại Hoenn!
 Hoenn Beauty Contest Hyper Rank winner!
-Hoenn Beauty Contest Hyper Rank winner!
+Vô địch cuộc thi Sắc đẹp hạng Cao cấp tại Hoenn!
 Hoenn Beauty Contest Master Rank winner!
-Hoenn Beauty Contest Master Rank winner!
+Vô địch cuộc thi Sắc đẹp hạng Bậc thầy tại Hoenn!
 Hoenn Cute Contest Normal Rank winner!
-Hoenn Cute Contest Normal Rank winner!
+Vô địch cuộc thi Dễ thương hạng Thường tại Hoenn!
 Hoenn Cute Contest Super Rank winner!
-Hoenn Cute Contest Super Rank winner!
+Vô địch cuộc thi Dễ thương hạng Siêu cấp tại Hoenn!
 Hoenn Cute Contest Hyper Rank winner!
-Hoenn Cute Contest Hyper Rank winner!
+Vô địch cuộc thi Dễ thương hạng Cao cấp tại Hoenn!
 Hoenn Cute Contest Master Rank winner!
-Hoenn Cute Contest Master Rank winner!
+Vô địch cuộc thi Dễ thương hạng Bậc thầy tại Hoenn!
 Hoenn Smart Contest Normal Rank winner!
-Hoenn Smart Contest Normal Rank winner!
+Vô địch cuộc thi Trí tuệ hạng Thường tại Hoenn!
 Hoenn Smart Contest Super Rank winner!
-Hoenn Smart Contest Super Rank winner!
+Vô địch cuộc thi Trí tuệ hạng Siêu cấp tại Hoenn!
 Hoenn Smart Contest Hyper Rank winner!
-Hoenn Smart Contest Hyper Rank winner!
+Vô địch cuộc thi Trí tuệ hạng Cao cấp tại Hoenn!
 Hoenn Smart Contest Master Rank winner!
-Hoenn Smart Contest Master Rank winner!
+Vô địch cuộc thi Trí tuệ hạng Bậc thầy tại Hoenn!
 Hoenn Tough Contest Normal Rank winner!
-Hoenn Tough Contest Normal Rank winner!
+Vô địch cuộc thi Mạnh mẽ hạng Thường tại Hoenn!
 Hoenn Tough Contest Super Rank winner!
-Hoenn Tough Contest Super Rank winner!
+Vô địch cuộc thi Mạnh mẽ hạng Siêu cấp tại Hoenn!
 Hoenn Tough Contest Hyper Rank winner!
-Hoenn Tough Contest Hyper Rank winner!
+Vô địch cuộc thi Mạnh mẽ hạng Cao cấp tại Hoenn!
 Hoenn Tough Contest Master Rank winner!
-Hoenn Tough Contest Master Rank winner!
+Vô địch cuộc thi Mạnh mẽ hạng Bậc thầy tại Hoenn!
 Super Contest Cool Category Normal Rank winner!
-Super Contest Cool Category Normal Rank winner!
+Vô địch Siêu cuộc thi hạng mục Phong cách, cấp Thường!
 Super Contest Cool Category Great Rank winner!
-Super Contest Cool Category Great Rank winner!
+Vô địch Siêu cuộc thi hạng mục Phong cách, cấp Giỏi!
 Super Contest Cool Category Ultra Rank winner!
-Super Contest Cool Category Ultra Rank winner!
+Vô địch Siêu cuộc thi hạng mục Phong cách, cấp Siêu cấp!
 Super Contest Cool Category Master Rank winner!
-Super Contest Cool Category Master Rank winner!
+Vô địch Siêu cuộc thi hạng mục Phong cách, cấp Bậc thầy!
 Super Contest Beauty Category Normal Rank winner!
-Super Contest Beauty Category Normal Rank winner!
+Vô địch Siêu cuộc thi hạng mục Sắc đẹp, cấp Thường!
 Super Contest Beauty Category Great Rank winner!
-Super Contest Beauty Category Great Rank winner!
+Vô địch Siêu cuộc thi hạng mục Sắc đẹp, cấp Giỏi!
 Super Contest Beauty Category Ultra Rank winner!
-Super Contest Beauty Category Ultra Rank winner!
+Vô địch Siêu cuộc thi hạng mục Sắc đẹp, cấp Siêu cấp!
 Super Contest Beauty Category Master Rank winner!
-Super Contest Beauty Category Master Rank winner!
+Vô địch Siêu cuộc thi hạng mục Sắc đẹp, cấp Bậc thầy!
 Super Contest Cute Category Normal Rank winner!
-Super Contest Cute Category Normal Rank winner!
+Vô địch Siêu cuộc thi hạng mục Dễ thương, cấp Thường!
 Super Contest Cute Category Great Rank winner!
-Super Contest Cute Category Great Rank winner!
+Vô địch Siêu cuộc thi hạng mục Dễ thương, cấp Giỏi!
 Super Contest Cute Category Ultra Rank winner!
-Super Contest Cute Category Ultra Rank winner!
+Vô địch Siêu cuộc thi hạng mục Dễ thương, cấp Siêu cấp!
 Super Contest Cute Category Master Rank winner!
-Super Contest Cute Category Master Rank winner!
+Vô địch Siêu cuộc thi hạng mục Dễ thương, cấp Bậc thầy!
 Super Contest Smart Category Normal Rank winner!
-Super Contest Smart Category Normal Rank winner!
+Vô địch Siêu cuộc thi hạng mục Trí tuệ, cấp Thường!
 Super Contest Smart Category Great Rank winner!
-Super Contest Smart Category Great Rank winner!
+Vô địch Siêu cuộc thi hạng mục Trí tuệ, cấp Giỏi!
 Super Contest Smart Category Ultra Rank winner!
-Super Contest Smart Category Ultra Rank winner!
+Vô địch Siêu cuộc thi hạng mục Trí tuệ, cấp Siêu cấp!
 Super Contest Smart Category Master Rank winner!
-Super Contest Smart Category Master Rank winner!
+Vô địch Siêu cuộc thi hạng mục Trí tuệ, cấp Bậc thầy!
 Super Contest Tough Category Normal Rank winner!
-Super Contest Tough Category Normal Rank winner!
+Vô địch Siêu cuộc thi hạng mục Mạnh mẽ, cấp Thường!
 Super Contest Tough Category Great Rank winner!
-Super Contest Tough Category Great Rank winner!
+Vô địch Siêu cuộc thi hạng mục Mạnh mẽ, cấp Giỏi!
 Super Contest Tough Category Ultra Rank winner!
-Super Contest Tough Category Ultra Rank winner!
+Vô địch Siêu cuộc thi hạng mục Mạnh mẽ, cấp Siêu cấp!
 Super Contest Tough Category Master Rank winner!
-Super Contest Tough Category Master Rank winner!
+Vô địch Siêu cuộc thi hạng mục Mạnh mẽ, cấp Bậc thầy!
 Ribbon awarded for clearing Hoenn's Battle Tower's Lv. 50 challenge.
-Ribbon awarded for clearing Hoenn's Battle Tower's Lv. 50 challenge.
+Ruy băng trao tặng khi vượt qua thử thách cấp 50 tại Battle Tower ở Hoenn.
 Ribbon awarded for clearing Hoenn's Battle Tower's Lv. 100 challenge.
-Ribbon awarded for clearing Hoenn's Battle Tower's Lv. 100 challenge.
+Ruy băng trao tặng khi vượt qua thử thách cấp 100 tại Battle Tower ở Hoenn.
 A Ribbon awarded for defeating the Tower Tycoon at the Battle Tower.
-A Ribbon awarded for defeating the Tower Tycoon at the Battle Tower.
+Ruy băng trao tặng khi đánh bại Tower Tycoon tại Battle Tower.
 A Ribbon awarded for completing the Battle Tower Double challenge.
-A Ribbon awarded for completing the Battle Tower Double challenge.
+Ruy băng trao tặng khi hoàn thành thử thách Đấu Đôi tại Battle Tower.
 A Ribbon awarded for completing the Battle Tower Multi challenge.
-A Ribbon awarded for completing the Battle Tower Multi challenge.
+Ruy băng trao tặng khi hoàn thành thử thách Đấu Phối Hợp tại Battle Tower.
 A Ribbon awarded for completing the Battle Tower Link Multi challenge.
-A Ribbon awarded for completing the Battle Tower Link Multi challenge.
+Ruy băng trao tặng khi hoàn thành thử thách Đấu Phối Hợp Liên Kết tại Battle Tower.
 A Ribbon awarded for completing the Wi-Fi Battle Tower challenge.
-A Ribbon awarded for completing the Wi-Fi Battle Tower challenge.
+Ruy băng trao tặng khi hoàn thành thử thách Battle Tower qua Wi-Fi.
 Ribbon for clearing the Pokémon League and entering the Hall of Fame in another region.
-Ribbon for clearing the Pokémon League and entering the Hall of Fame in another region.
+Ruy băng dành cho Pokémon vượt qua Liên minh Pokémon và ghi danh vào Sảnh Danh vọng ở vùng đất khác.
 Ribbon awarded for beating the Sinnoh Champion and entering the Hall of Fame.
-Ribbon awarded for beating the Sinnoh Champion and entering the Hall of Fame.
+Ruy băng trao tặng khi đánh bại Nhà Vô địch Sinnoh và ghi danh vào Đại sảnh Danh vọng.
 A Ribbon awarded for setting an incredible record.
-A Ribbon awarded for setting an incredible record.
+Ruy băng trao tặng khi lập được một kỷ lục đáng kinh ngạc.
 Pokémon Event Participation Ribbon.
-Pokémon Event Participation Ribbon.
+Ruy băng kỷ niệm tham gia sự kiện Pokémon.
 A Ribbon awarded for setting a legendary record.
-A Ribbon awarded for setting a legendary record.
+Ruy băng trao tặng khi lập được một kỷ lục huyền thoại.
 An extraordinarily gorgeous and extravagant Ribbon.
-An extraordinarily gorgeous and extravagant Ribbon.
+Một dải ruy băng vô cùng lộng lẫy và xa hoa.
 An incredibly regal Ribbon with an air of nobility.
-An incredibly regal Ribbon with an air of nobility.
+Một dải ruy băng mang vẻ uy nghi và quý phái.
 A gorgeous and regal Ribbon that is the peak of fabulous.
-A gorgeous and regal Ribbon that is the peak of fabulous.
+Một dải ruy băng lộng lẫy, cao quý, đạt đến đỉnh cao của sự xa hoa.
 A Ribbon for recalling an invigorating event that created life energy.
-A Ribbon for recalling an invigorating event that created life energy.
+Ruy băng gợi nhớ một sự kiện đầy hứng khởi, mang đến sức sống mới.
 A Ribbon for recalling a thrilling event that made life more exciting.
-A Ribbon for recalling a thrilling event that made life more exciting.
+Ruy băng gợi nhớ một sự kiện hồi hộp khiến cuộc sống thêm thú vị.
 A Ribbon for recalling feelings of sadness that added spice to life.
-A Ribbon for recalling feelings of sadness that added spice to life.
+Ruy băng gợi nhớ những nỗi buồn đã làm cuộc sống thêm nhiều cung bậc cảm xúc.
 A Ribbon for recalling a careless error that helped steer life decisions.
-A Ribbon for recalling a careless error that helped steer life decisions.
+Ruy băng gợi nhớ một sai lầm bất cẩn đã giúp định hướng những lựa chọn trong đời.
 A Ribbon for recalling a refreshing event that added sparkle to life.
-A Ribbon for recalling a refreshing event that added sparkle to life.
+Ruy băng gợi nhớ một sự kiện tươi mới khiến cuộc sống thêm rạng rỡ.
 A Ribbon for recalling a deep slumber that made life soothing.
-A Ribbon for recalling a deep slumber that made life soothing.
+Ruy băng gợi nhớ một giấc ngủ sâu mang lại sự bình yên.
 A Ribbon for recalling that smiles enrich the quality of life.
-A Ribbon for recalling that smiles enrich the quality of life.
+Ruy băng nhắc nhở rằng những nụ cười khiến cuộc sống thêm tươi đẹp.
 A Ribbon awarded to a Pokémon deemed to have a top-quality footprint.
-A Ribbon awarded to a Pokémon deemed to have a top-quality footprint.
+Ruy băng trao cho Pokémon có dấu chân được đánh giá xuất sắc nhất.
 Ribbon awarded for being chosen as a super sketch model in Hoenn.
-Ribbon awarded for being chosen as a super sketch model in Hoenn.
+Ruy băng trao tặng khi được chọn làm mẫu vẽ xuất sắc tại Hoenn.
 Ribbon awarded for being an exceptionally hard worker.
-Ribbon awarded for being an exceptionally hard worker.
+Ruy băng trao tặng cho Pokémon có tinh thần nỗ lực phi thường.
 A Ribbon to celebrate a birthday.
-A Ribbon to celebrate a birthday.
+Ruy băng kỷ niệm sinh nhật.
 A special Ribbon for a special day.
-A special Ribbon for a special day.
+Ruy băng đặc biệt dành cho một ngày đặc biệt.
 A Ribbon that proclaims love for Pokémon.
-A Ribbon that proclaims love for Pokémon.
+Ruy băng thể hiện tình yêu dành cho Pokémon.
 Special Holiday Ribbon.
-Special Holiday Ribbon.
+Ruy băng kỷ niệm ngày lễ đặc biệt.
 A Ribbon to cherish a special memory.
-A Ribbon to cherish a special memory.
+Ruy băng lưu giữ một kỷ niệm đặc biệt.
 A Ribbon said to make your wish come true.
-A Ribbon said to make your wish come true.
+Ruy băng được cho là có thể biến điều ước thành hiện thực.
 A Ribbon awarded for overcoming all difficult challenges.
-A Ribbon awarded for overcoming all difficult challenges.
+Ruy băng trao tặng khi vượt qua mọi thử thách khó khăn.
 Pokémon League Champion Ribbon.
-Pokémon League Champion Ribbon.
+Ruy băng Nhà Vô địch Liên minh Pokémon.
 Battle Competition Champion Ribbon.
-Battle Competition Champion Ribbon.
+Ruy băng Nhà Vô địch Giải đấu Pokémon.
 Pokémon World Championships Regional Champion Ribbon.
-Pokémon World Championships Regional Champion Ribbon.
+Ruy băng Vô địch Khu vực của Giải Vô địch Pokémon Thế giới.
 A Ribbon awarded for winning 100 matches in a row.
-A Ribbon awarded for winning 100 matches in a row.
+Ruy băng trao tặng khi giành chiến thắng 100 trận liên tiếp.
 Pokémon World Championships National Champion Ribbon.
-Pokémon World Championships National Champion Ribbon.
+Ruy băng Vô địch Quốc gia của Giải Vô địch Pokémon Thế giới.
 Pokémon World Championships World Champion Ribbon.
-Pokémon World Championships World Champion Ribbon.
+Ruy băng Nhà Vô địch Thế giới của Giải Vô địch Pokémon Thế giới.
