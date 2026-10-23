@@ -804,7 +804,7 @@ EffectChance = 20
 Description = A fierce dust storm that may lower opposing Pokémon's accuracy.
 #-------------------------------
 [WYRMWIND]
-Name = Wyrm Wind
+Name = Wyrm Winds
 Type = DRAGON
 Category = Special
 Power = 25
