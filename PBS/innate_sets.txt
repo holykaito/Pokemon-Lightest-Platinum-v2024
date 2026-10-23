@@ -11,6 +11,18 @@ Innates = SWARM,LEVITATE,MERCILESS
 [BEEDRILL_1]
 Innates = SWARM,LEVITATE,MERCILESS
 #----------------------------------------
+[PIDGEY]
+Innates = THICKFLOSS,KEENEYE
+#----------------------------------------
+[PIDGEOTTO]
+Innates = THICKFLOSS,KEENEYE,TANGLEDFEET
+#----------------------------------------
+[PIDGEOT]
+Innates = THICKFLOSS,KEENEYE,TANGLEDFEET
+#----------------------------------------
+[PIDGEOT_1]
+Innates = THICKFLOSS,NOGUARD,TANGLEDFEET
+#----------------------------------------
 [RATTATA]
 Innates = RUNAWAY
 #----------------------------------------
