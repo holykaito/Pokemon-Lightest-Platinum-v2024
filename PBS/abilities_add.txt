@@ -331,6 +331,10 @@ Description = Guards against status and damage when HP is high.
 Name = Powder Burst
 Description = Gives powder moves +1 priority.
 #-------------------------------
+[PRETENTIOUS] ###
+Name = Pretentious
+Description = Raises its critical-hit ratio whenever it knocks out a target.
+#-------------------------------
 [PYROMANCY] ###
 Name = Pyromancy
 Description = Move inflicts burn x5 as often.

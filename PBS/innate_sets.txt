@@ -343,6 +343,15 @@ Innates = PRESSURE,TELEPATHY
 [GIRATINA_1]
 Innates = PRESSURE,TELEPATHY,LEVITATE
 #----------------------------------------
+[PIDOVE]
+Innates = SUPERLUCK
+#----------------------------------------
+[TRANQUILL]
+Innates = SUPERLUCK,KEENEYE
+#----------------------------------------
+[UNFEZANT]
+Innates = SUPERLUCK,KEENEYE,PRETENTIOUS
+#----------------------------------------
 [PURRLOIN]
 Innates = CATSLUCK,LIMBER
 #----------------------------------------

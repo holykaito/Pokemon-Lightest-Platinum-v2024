@@ -14454,3 +14454,83 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(DustCloudAbility::BattleConstruction)
 end
+
+#===============================================================================
+# PRETENTIOUS
+# Raises critical-hit stage after knocking out a target.
+#===============================================================================
+Battle::AbilityEffects::OnEndOfUsingMove.add(:PRETENTIOUS,
+  proc { |ability, user, targets, move, battle|
+    next if user.fainted? || !user.hasActiveAbility?(:PRETENTIOUS)
+    next if !move.damagingMove?
+    next if battle.pbAllFainted?(user.idxOpposingSide)
+
+    knocked_out = targets.compact.uniq.count do |target|
+      target.damageState.fainted
+    end
+    next if knocked_out == 0
+
+    maximum = Battle::Move::CRITICAL_HIT_RATIOS.length - 1
+    previous = user.effects[PBEffects::FocusEnergy]
+    updated = [previous + knocked_out, maximum].min
+    next if updated <= previous
+
+    battle.pbShowAbilitySplash(user)
+    user.effects[PBEffects::FocusEnergy] = updated
+
+    battle.pbDisplay(
+      _INTL("{1}'s critical-hit ratio rose!", user.pbThis)
+    )
+
+    battle.pbHideAbilitySplash(user)
+  }
+)
+
+#===============================================================================
+# Native AI
+# Its critical-hit calculation already reads the FocusEnergy counter.
+#===============================================================================
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:PRETENTIOUS)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :PRETENTIOUS
+end
+
+Battle::AI::Handlers::AbilityRanking.add(:PRETENTIOUS,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.check_for_move { |move| move.damagingMove? }
+
+    maximum = Battle::Move::CRITICAL_HIT_RATIOS.length - 1
+    next 1 if battler.battler.effects[PBEffects::FocusEnergy] >= maximum
+
+    next 6
+  }
+)
+
+#===============================================================================
+# Advanced AI - offensive ability recognition.
+# Its existing critical-hit scoring also reads FocusEnergy.
+#===============================================================================
+module PretentiousAI
+  def self.install!
+    return if @installed
+
+    if defined?(AdvancedAI::CustomContent::OFFENSIVE_ABILITIES)
+      AdvancedAI::CustomContent::OFFENSIVE_ABILITIES[:PRETENTIOUS] = 1.5
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      PretentiousAI.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  PretentiousAI::BattleConstruction
+)
+  Battle.singleton_class.prepend(PretentiousAI::BattleConstruction)
+end

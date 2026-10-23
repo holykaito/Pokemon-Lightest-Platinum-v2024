@@ -1101,3 +1101,34 @@ end
 unless Battle.ancestors.include?(KaitoNeurotoxinBattle)
   Battle.prepend(KaitoNeurotoxinBattle)
 end
+
+#===============================================================================
+# Gloat: raises all five main stats by 1 stage if a foe is below half HP.
+#===============================================================================
+class Battle::Move::RaiseUserMainStats1IfFoeBelowHalf <
+      Battle::Move::MultiStatUpMove
+
+  def initialize(battle, move)
+    super
+    @statUp = [
+      :ATTACK,         1,
+      :DEFENSE,        1,
+      :SPECIAL_ATTACK, 1,
+      :SPECIAL_DEFENSE,1,
+      :SPEED,          1
+    ]
+  end
+
+  def pbMoveFailed?(user, targets)
+    eligible = @battle.allOtherSideBattlers(user).any? do |b|
+      !b.fainted? && b.hp * 2 < b.totalhp
+    end
+
+    if !eligible
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+
+    return super
+  end
+end
