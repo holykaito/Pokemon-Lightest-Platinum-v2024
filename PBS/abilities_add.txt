@@ -3,6 +3,10 @@
 Name = Agile
 Description = The user gains priority on its first turn.
 #-------------------------------
+[AIRBLOWER]
+Name = Air Blower
+Description = Sets Tailwind for 4 turns upon entry.
+#-------------------------------
 [AMPHIBIOUS] ###
 Name = Amphibious
 Description = Water, Poison and Ground moves gain STAB. Ignores Swamp penalties.
@@ -131,6 +135,10 @@ Description = User has chance to avoid any moves.
 Name = Dream Catcher
 Description = Boosts damage if any active Pokémon is asleep.
 #-------------------------------
+[DUSTCLOUD] ###
+Name = Dust Cloud
+Description = Uses Sand Attack upon entry.
+#-------------------------------
 [DWARFHIDE] ###
 Name = Dwarfhide
 Description = Halves the chance of additional effects when hit by a move.
@@ -183,9 +191,17 @@ Description = Immune to Ground-type moves and powers up moves first.
 Name = False Front
 Description = Adds Fighting or Fairy or Dark-type when entering battle.
 #-------------------------------
+[GIANTWINGS]
+Name = Giant Wings
+Description = Boosts wing and wind moves. Extends Tailwind.
+#-------------------------------
 [GNAWING]
 Name = Gnawing
 Description = Doubles the additional effect chance of biting moves.
+#-------------------------------
+[GRANDMANE] ###
+Name = Grand Mane
+Description = Resists contact moves but is weak to wind moves.
 #-------------------------------
 [GREATWISDOM] ###
 Name = Great Wisdom
@@ -466,6 +482,10 @@ Description = May endure a knockout blow with 1 HP.
 [TERRORSOWER] ###
 Name = Terror Sower
 Description = Lowers opposing Pokémon’s Sp. Atk on entry.
+#-------------------------------
+[THICKFLOSS] ###
+Name = Thick Floss
+Description = Reduces damage taken from supereffective moves.
 #-------------------------------
 [TIDINESS]
 Name = Tidiness

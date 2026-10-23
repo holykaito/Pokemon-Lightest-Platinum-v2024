@@ -310,6 +310,12 @@ Innates = JUSTIFIED,AURAMANIPULATION
 [LUCARIO_2]
 Innates = JUSTIFIED,AURAMANIPULATION
 #----------------------------------------
+[CROAGUNK]
+Innates = AMPHIBIOUS,POISONTOUCH
+#----------------------------------------
+[TOXICROAK]
+Innates = AMPHIBIOUS,POISONTOUCH,DEBILITATE
+#----------------------------------------
 [DARKRAI]
 Innates = BADDREAMS,PHANTOMIMAGE
 #----------------------------------------

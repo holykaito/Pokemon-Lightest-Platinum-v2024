@@ -13787,3 +13787,670 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(AmphibiousAbility::BattleConstruction)
 end
+
+#===============================================================================
+# AIR BLOWER
+# Sets Tailwind for 4 turns upon entering battle.
+#===============================================================================
+Battle::AbilityEffects::OnSwitchIn.add(:AIRBLOWER,
+  proc { |ability, battler, battle, switch_in|
+    next if battler.fainted?
+    next if !battler.hasActiveAbility?(:AIRBLOWER)
+
+    battle.pbShowAbilitySplash(battler)
+
+    battler.pbOwnSide.effects[PBEffects::Tailwind] = 4
+
+    battle.pbAnimation(:TAILWIND, battler, [battler])
+    battle.pbDisplay(
+      _INTL("The Tailwind blew from behind {1}!", battler.pbTeam(true))
+    )
+
+    battle.pbHideAbilitySplash(battler)
+  }
+)
+
+# Native AI ability rating.
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[7].include?(:AIRBLOWER)
+  Battle::AI::BASE_ABILITY_RATINGS[7] << :AIRBLOWER
+end
+
+#===============================================================================
+# GIANT WINGS
+#===============================================================================
+module GiantWingsAbility
+  WING_MOVES = [
+    :WINGATTACK, :STEELWING, :DUALWINGBEAT,
+    :OBLIVIONWING, :ESPERWING, :BLAZINGWINGS
+  ].freeze
+
+  def self.active?(object)
+    battler = object.respond_to?(:battler) ? object.battler : object
+    return false if !battler
+
+    if battler.respond_to?(:hasActiveAbility?)
+      return battler.hasActiveAbility?(:GIANTWINGS)
+    end
+
+    return battler.ability_id == :GIANTWINGS if battler.respond_to?(:ability_id)
+    return false
+  end
+
+  def self.boosted_move?(move)
+    return false if !move
+
+    data = GameData::Move.try_get(move.id)
+    return false if !data || data.category == 2
+
+    return WING_MOVES.include?(data.id) ||
+           data.has_flag?("Wind") || data.has_flag?("Wing")
+  end
+
+  # Preserve the existing Tailwind effects, including Gen 9 ability triggers.
+  module TailwindHook
+    def pbEffectGeneral(user)
+      result = super
+
+      if GiantWingsAbility.active?(user) &&
+         user.pbOwnSide.effects[PBEffects::Tailwind] > 0
+        user.pbOwnSide.effects[PBEffects::Tailwind] = 6
+      end
+
+      return result
+    end
+  end
+
+  # Advanced AI: shared damage estimator.
+  module AdvancedCombatHook
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = super
+
+      if GiantWingsAbility.active?(attacker) &&
+         GiantWingsAbility.boosted_move?(move)
+        result *= 1.3
+      end
+
+      return result
+    end
+  end
+
+  # Advanced AI: separate move damage estimator.
+  module AdvancedScorerHook
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = super
+      return result if result <= 0 || !GiantWingsAbility.active?(user)
+      return result if !GiantWingsAbility.boosted_move?(move)
+
+      native = ExtendedTerrains::Advanced.native_move(move, user)
+      return result if native.is_a?(Battle::Move::FixedDamageMove)
+      return result if native.function_code.start_with?("OHKO")
+
+      return [(result * 1.3).round, 1].max
+    end
+  end
+
+  # Delay installation until all plugin aliases have finished loading.
+  def self.install!
+    return if @installed
+
+    Battle::Move::StartUserSideDoubleSpeed.prepend(TailwindHook)
+
+    if defined?(AdvancedAI::CombatUtilities)
+      AdvancedAI::CombatUtilities.singleton_class.prepend(
+        AdvancedCombatHook
+      )
+    end
+
+    if defined?(ExtendedTerrains::Advanced) &&
+       Battle::AI.method_defined?(:calculate_rough_damage)
+      Battle::AI.prepend(AdvancedScorerHook)
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      GiantWingsAbility.install!
+      super(*args, &block)
+    end
+  end
+end
+
+# Actual battle damage and native AI ability damage calculation.
+Battle::AbilityEffects::DamageCalcFromUser.add(:GIANTWINGS,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !GiantWingsAbility.active?(user)
+    next if !GiantWingsAbility.boosted_move?(move)
+
+    mults[:power_multiplier] *= 1.3
+  }
+)
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[7].include?(:GIANTWINGS)
+  Battle::AI::BASE_ABILITY_RATINGS[7] << :GIANTWINGS
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  GiantWingsAbility::BattleConstruction
+)
+  Battle.singleton_class.prepend(GiantWingsAbility::BattleConstruction)
+end
+
+#===============================================================================
+# KEEN EYE
+# Prevents Accuracy loss through its existing StatLossImmunity handler.
+# Ignores positive Evasion stages and boosts move accuracy.
+#===============================================================================
+Battle::AbilityEffects::AccuracyCalcFromUser.add(:KEENEYE,
+  proc { |ability, mods, user, target, move, type|
+    next if !user.hasActiveAbility?(:KEENEYE)
+
+    # Ignore the target's Evasion boosts.
+    mods[:evasion_stage] = 0 if mods[:evasion_stage] > 0
+
+    # Increase the user's move accuracy.
+    mods[:accuracy_multiplier] *= 1.2
+  }
+)
+
+#===============================================================================
+# TANGLED FEET - Rework
+#===============================================================================
+
+# Replace the original accuracy handler.
+Battle::AbilityEffects::AccuracyCalcFromTarget.add(:TANGLEDFEET,
+  proc { |ability, mods, user, target, move, type|
+    next if !target.hasActiveAbility?(:TANGLEDFEET)
+    next if target.effects[PBEffects::Confusion] <= 0
+
+    mods[:accuracy_multiplier] *= 0.5
+  }
+)
+
+module TangledFeetRework
+  module BattlerHook
+    def pbConfusionDamage(msg)
+      return super unless hasActiveAbility?(:TANGLEDFEET)
+
+      @battle.pbShowAbilitySplash(self)
+      @battle.pbDisplay(
+        _INTL("{1} avoided hurting itself in confusion!", pbThis)
+      )
+      @battle.pbHideAbilitySplash(self)
+      return
+    end
+  end
+
+  # Install after all plugins, including MAG, have loaded.
+  def self.install!
+    return if @installed
+
+    unless Battle::Battler.ancestors.include?(BattlerHook)
+      Battle::Battler.prepend(BattlerHook)
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      TangledFeetRework.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  TangledFeetRework::BattleConstruction
+)
+  Battle.singleton_class.prepend(TangledFeetRework::BattleConstruction)
+end
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:TANGLEDFEET,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !user.hasActiveAbility?(:TANGLEDFEET)
+    next if user.effects[PBEffects::Confusion] <= 0
+    next if !move.damagingMove?
+
+    mults[:final_damage_multiplier] *= 1.25
+  }
+)
+
+#===============================================================================
+# BIG PECKS - Contact damage boost
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromUser.add(:BIGPECKS,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !user.hasActiveAbility?(:BIGPECKS)
+    next if !move.damagingMove?
+    next if !move.contactMove?
+
+    mults[:final_damage_multiplier] *= 1.15
+  }
+)
+
+#===============================================================================
+# THICK FLOSS
+# Reduces damage from supereffective moves by 25%.
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromTarget.copy(:FILTER, :THICKFLOSS)
+
+#===============================================================================
+# THICK FLOSS - Advanced AI integration
+#===============================================================================
+module ThickFlossAI
+  def self.real(object)
+    return object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.factor(user, target, move, effectiveness)
+    return 1.0 if !user || !target
+    return 1.0 if !Effectiveness.super_effective?(effectiveness)
+
+    source   = real(user)
+    defender = real(target)
+
+    return 1.0 if !AdvancedAI::Utilities.ability_active?(
+      defender, :THICKFLOSS
+    )
+
+    return 1.0 if AdvancedAI::Utilities.ignores_ability?(
+      source, move, defender
+    )
+
+    return 0.75
+  end
+
+  # Shared damage estimator.
+  module SharedDamageHook
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      result = super
+
+      return result * ThickFlossAI.factor(
+        attacker, target, move, effectiveness
+      )
+    end
+  end
+
+  # Separate damage estimator used when choosing moves.
+  module MoveScorerHook
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      result = super
+      return result if !move || !user || !target || result <= 0
+
+      # These moves use the shared estimator in Pollination Terrain.
+      # Avoid applying the same reduction twice.
+      if defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         @battle.field.terrain == :Pollination &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return result
+      end
+
+      native = ExtendedTerrains::Advanced.native_move(move, user)
+      return result if !native.damagingMove?
+      return result if native.is_a?(Battle::Move::FixedDamageMove)
+      return result if native.function_code.start_with?("OHKO")
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      effectiveness = AdvancedAI::CombatUtilities.move_type_effectiveness(
+        move, user, target, type
+      )
+
+      factor = ThickFlossAI.factor(
+        user, target, native, effectiveness
+      )
+
+      return result if factor == 1.0
+      return [(result * factor).round, 1].max
+    end
+  end
+
+  # Install after all plugins have finished loading.
+  def self.install!
+    return if @installed
+    return if !defined?(AdvancedAI::CombatUtilities)
+
+    singleton = AdvancedAI::CombatUtilities.singleton_class
+    unless singleton.ancestors.include?(SharedDamageHook)
+      singleton.prepend(SharedDamageHook)
+    end
+
+    if defined?(ExtendedTerrains::Advanced) &&
+       Battle::AI.method_defined?(:calculate_rough_damage)
+      unless Battle::AI.ancestors.include?(MoveScorerHook)
+        Battle::AI.prepend(MoveScorerHook)
+      end
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      ThickFlossAI.install!
+      super(*args, &block)
+    end
+  end
+end
+
+# Native AI ability rating.
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:THICKFLOSS)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :THICKFLOSS
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  ThickFlossAI::BattleConstruction
+)
+  Battle.singleton_class.prepend(ThickFlossAI::BattleConstruction)
+end
+
+#===============================================================================
+# GRAND MANE - Contact resistance and wind weakness
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromTarget.add(:GRANDMANE,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !target.hasActiveAbility?(:GRANDMANE)
+    next if !move.damagingMove?
+
+    mults[:final_damage_multiplier] *= 0.5 if move.pbContactMove?(user)
+    mults[:final_damage_multiplier] *= 2.0 if move.windMove?
+  }
+)
+
+#===============================================================================
+# GRAND MANE - AI
+# Extends the shared helper used by both Thick Floss AI prediction paths.
+#===============================================================================
+module GrandManeAIExtension
+  def factor(user, target, move, effectiveness)
+    result = super
+    return result if !user || !target || !move
+
+    source    = ThickFlossAI.real(user)
+    defender  = ThickFlossAI.real(target)
+    utilities = AdvancedAI::Utilities
+
+    return result if !utilities.ability_active?(defender, :GRANDMANE)
+    return result if utilities.ignores_ability?(source, move, defender)
+
+    native = move.respond_to?(:move) ? move.move : move
+    data = GameData::Move.try_get(native.id)
+    return result if !data || data.category == 2
+
+    contact = if native.respond_to?(:pbContactMove?) &&
+                 source.respond_to?(:hasActiveAbility?)
+                native.pbContactMove?(source)
+              else
+                data.has_flag?("Contact") &&
+                  !utilities.ability_active?(source, :LONGREACH) &&
+                  !(data.has_flag?("Punching") &&
+                    utilities.item_active?(source, :PUNCHINGGLOVE))
+              end
+
+    result *= 0.5 if contact
+    result *= 2.0 if data.has_flag?("Wind")
+    return result
+  end
+end
+
+unless ThickFlossAI.singleton_class.ancestors.include?(
+  GrandManeAIExtension
+)
+  ThickFlossAI.singleton_class.prepend(GrandManeAIExtension)
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:GRANDMANE)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :GRANDMANE
+end
+
+#===============================================================================
+# DUST CLOUD
+# Uses Sand Attack upon entry without consuming the regular action.
+#===============================================================================
+module DustCloudAbility
+  MOVE = :SANDATTACK
+
+  TURN_VARS = [
+    :@lastRoundMoved, :@currentMove, :@lastRegularMoveUsed,
+    :@lastRegularMoveTarget, :@lastMoveFailed, :@powerMoveIndex,
+    :@lastMoveUsedIsZMove, :@turnCount
+  ].freeze
+
+  TURN_EFFECTS = [
+    :TwoTurnAttack, :Outrage, :Rollout, :Uproar, :Bide,
+    :FuryCutter, :ProtectRate, :Metronome, :ChoiceBand,
+    :Truant, :ParentalBond, :Prankster
+  ].freeze
+
+  def self.targets(user, battle)
+    return battle.allOtherSideBattlers(user.index).select do |b|
+      !b.fainted? && b.near?(user)
+    end
+  end
+
+  # Only affects the temporary Sand Attack object.
+  module MoveHook
+    def pbChangeUsageCounters(user, specialUsage)
+      # Don't reset regular-turn move chains or Fusion flags.
+    end
+  end
+
+  module BattlerHook
+    def dust_cloud_virtual?
+      return @dust_cloud_owner && @dust_cloud_owner.equal?(pokemon)
+    end
+
+    def pbBeginTurn(choice)
+      return if dust_cloud_virtual?
+      super
+    end
+
+    def pbEndTurn(choice)
+      return if dust_cloud_virtual?
+      super
+    end
+
+    def pbCancelMoves(*args)
+      return if dust_cloud_virtual?
+      super
+    end
+
+    def usingMultiTurnAttack?
+      return false if dust_cloud_virtual?
+      super
+    end
+
+    # This is an ability-triggered move, not a trainer command.
+    def pbObedienceCheck?(choice)
+      return true if dust_cloud_virtual?
+      super
+    end
+
+    # Keep normal restrictions such as Taunt.
+    def pbCanChooseMove?(move, commandPhase,
+                         showMessages = true, specialUsage = false)
+      if dust_cloud_virtual? && move.id == DustCloudAbility::MOVE
+        specialUsage = false
+      end
+
+      super(move, commandPhase, showMessages, specialUsage)
+    end
+
+    def pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
+      unless dust_cloud_virtual? && move.id == DustCloudAbility::MOVE
+        return super
+      end
+
+      original      = pokemon
+      old_status    = status
+      old_count     = statusCount
+      old_confusion = effects[PBEffects::Confusion]
+      old_truant    = effects[PBEffects::Truant]
+
+      begin
+        # Run normal status checks without advancing their turn counters.
+        self.statusCount += 1 if old_status == :SLEEP
+        effects[PBEffects::Confusion] += 1 if old_confusion > 0
+
+        return super(choice, move, specialUsage, false)
+      ensure
+        if pokemon.equal?(original) && !fainted?
+          if old_status == :SLEEP && status == :SLEEP
+            self.statusCount = old_count
+          end
+
+          if old_confusion > 0 && effects[PBEffects::Confusion] > 0
+            effects[PBEffects::Confusion] = old_confusion
+          end
+
+          effects[PBEffects::Truant] = old_truant
+        end
+      end
+    end
+
+    # Called moves normally skip accuracy; Dust Cloud must check normally.
+    def pbSuccessCheckPerHit(move, user, target, skipAccuracyCheck)
+      if dust_cloud_virtual? && move.id == DustCloudAbility::MOVE
+        skipAccuracyCheck = false
+      end
+
+      super(move, user, target, skipAccuracyCheck)
+    end
+  end
+
+  def self.trigger(user, battle)
+    return if user.fainted? || battle.decision != 0
+    return if !user.hasActiveAbility?(:DUSTCLOUD)
+    return if user.dust_cloud_virtual?
+
+    foes = targets(user, battle)
+    return if foes.empty?
+
+    target = foes[battle.pbRandom(foes.length)]
+
+    original   = user.pokemon
+    old_owner  = user.instance_variable_get(:@dust_cloud_owner)
+    old_choice = battle.choices[user.index].dup
+    old_mold   = battle.moldBreaker
+    old_names  = [$aamName, $aamName2]
+
+    saved_vars = TURN_VARS.map do |name|
+      [
+        name,
+        user.instance_variable_defined?(name),
+        user.instance_variable_get(name)
+      ]
+    end
+
+    saved_effects = TURN_EFFECTS.filter_map do |name|
+      next if !PBEffects.const_defined?(name)
+
+      key = PBEffects.const_get(name)
+      [key, user.effects[key]]
+    end
+
+    begin
+      user.instance_variable_set(:@dust_cloud_owner, original)
+
+      battle.pbShowAbilitySplash(user)
+      battle.pbHideAbilitySplash(user)
+
+      move = Battle::Move.from_pokemon_move(
+        battle, Pokemon::Move.new(MOVE)
+      )
+      move.pp = -1
+      move.singleton_class.prepend(MoveHook)
+
+      # Calculate this move's priority for normal defensive interactions.
+      user.effects[PBEffects::Prankster] = false
+      priority = move.pbPriority(user)
+
+      if user.abilityActive?
+        priority = Battle::AbilityEffects.triggerPriorityChange(
+          user.ability, user, move, priority
+        )
+      end
+
+      choice = [:UseMove, -1, move, target.index, priority]
+      battle.choices[user.index] = choice
+
+      # Use the real move pipeline without consuming PP.
+      user.pbUseMove(choice, true)
+    ensure
+      # Don't restore the previous occupant's action after a forced switch.
+      if user.pokemon.equal?(original) && !user.fainted?
+        saved_vars.each do |name, existed, value|
+          if existed
+            user.instance_variable_set(name, value)
+          elsif user.instance_variable_defined?(name)
+            user.remove_instance_variable(name)
+          end
+        end
+
+        saved_effects.each do |key, value|
+          user.effects[key] = value
+        end
+
+        battle.choices[user.index] = old_choice
+      end
+
+      user.instance_variable_set(:@dust_cloud_owner, old_owner)
+      battle.moldBreaker = old_mold
+      $aamName, $aamName2 = old_names
+    end
+  end
+
+  # Install after all plugin aliases, including MAG, have loaded.
+  def self.install!
+    return if @installed
+
+    Battle::Battler.prepend(BattlerHook)
+
+    # Basic Advanced AI support-ability recognition.
+    if defined?(AdvancedAI::CustomContent::SUPPORT_ABILITIES)
+      AdvancedAI::CustomContent::SUPPORT_ABILITIES[:DUSTCLOUD] = 1.0
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      DustCloudAbility.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AbilityEffects::OnSwitchIn.add(:DUSTCLOUD,
+  proc { |ability, battler, battle, switch_in|
+    DustCloudAbility.trigger(battler, battle)
+  }
+)
+
+# Basic native AI ability rating.
+Battle::AI::BASE_ABILITY_RATINGS[5] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[5].include?(:DUSTCLOUD)
+  Battle::AI::BASE_ABILITY_RATINGS[5] << :DUSTCLOUD
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  DustCloudAbility::BattleConstruction
+)
+  Battle.singleton_class.prepend(DustCloudAbility::BattleConstruction)
+end
