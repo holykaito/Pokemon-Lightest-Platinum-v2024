@@ -89,6 +89,12 @@ Innates = LEVITATE,INFLATABLE,MULTIHEADED
 [WEEZING_1]
 Innates = LEVITATE,INFLATABLE,MULTIHEADED
 #----------------------------------------
+[GOLDEEN]
+Innates = SWIFTSWIM,WATERVEIL
+#----------------------------------------
+[SEAKING]
+Innates = SWIFTSWIM,WATERVEIL,MIGHTYHORN
+#----------------------------------------
 [STARYU]
 Innates = NATURALCURE
 #----------------------------------------

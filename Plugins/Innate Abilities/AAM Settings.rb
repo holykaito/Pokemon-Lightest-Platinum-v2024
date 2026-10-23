@@ -62,18 +62,45 @@ module Settings
   # For example, using "[:MEWTWO, 45, 70, 90]," before the "nameless" array, will make that Mewtwo and ALL OF IT'S FORMS have their Innates 
   # to be unloked at level 45, 70 and 90. You can use as many of these special cases as you want. You can use this to make let pokemon unlock their innates
   # sooner or later than the rest.
-  # LEVELS_TO_UNLOCK =  [
-  # [:TORTERRA, 1, 1, 55],
-  # [:INFERNAPE, 1, 1, 50],
-  # [:EMPOLEON, 1, 1, 60], #<- Always remember to end with a "," in arrays prior to the "nameless" one.
-  # [1, 15, 45]
-  # ]
   #-----------------------------------------------------------------------------
   LEVELS_TO_UNLOCK =  [
+  [:PIDGEY, 1, 15],
+  [:PIDGEOTTO, 1, 15, 50],
+  [:PIDGEOT, 1, 15, 50],
+  [:PIDGEOT_1, 1, 15, 50],
+  [:RATICATE, 1, 30, 50],
+  [:RATICATE_1, 1, 30, 50],
+  [:MEOWTH, 1, 15],
+  [:MEOWTH_1, 1, 15],
+  [:MEOWTH_2, 1, 20],
+  [:PERSIAN, 1, 15, 50],
+  [:PERSIAN_1, 1, 15, 50],
+  [:PERRSERKER, 1, 20, 50],
+  [:GOLDEEN, 1, 20],
+  [:SEAKING, 1, 20, 55],
+  [:GYARADOS, 1, 50, 70],
+  [:GYARADOS_1, 1, 50, 70],
+  [:JUMPLUFF, 1, 1, 50],
+  [:POOCHYENA, 1, 15],
+  [:MIGHTYENA, 1, 30, 50],
+  [:KIRLIA, 1, 25],
+  [:GARDEVOIR, 1, 25, 60],
+  [:GARDEVOIR_1, 1, 25, 60],
+  [:GALLADE, 1, 25, 60],
+  [:GALLADE_1, 1, 25, 60],
   [:TORTERRA, 1, 1, 55],
   [:INFERNAPE, 1, 1, 50],
   [:EMPOLEON, 1, 1, 60],
   [:STARAPTOR, 1, 1, 65],
+  [:LUXIO, 1, 25],
+  [:LUXRAY, 1, 25, 60],
+  [:WORMADAM, 1, 1, 40],
+  [:WORMADAM_1, 1, 1, 40],
+  [:WORMADAM_2, 1, 1, 40],
+  [:MOTHIM, 1, 1, 40],
+  [:CROAGUNK, 1, 25],
+  [:TOXICROAK, 1, 25, 60],
+  [:LIEPARD, 1, 35, 60],
   [1, 1, 1]
   ]
 
