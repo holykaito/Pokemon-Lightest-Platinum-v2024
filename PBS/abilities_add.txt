@@ -375,6 +375,10 @@ Description = Moves that inflict poison may paralyze instead.
 Name = Outbreak
 Description = Spreads status and lowers Attack when inflicting status.
 #-------------------------------
+[PARANOID] ###
+Name = Paranoid
+Description = Doubles Sp. Def but takes double damage from Psychic-type moves.
+#-------------------------------
 [PRECISEFIST]
 Name = Precise Fist
 Description = Punching moves gain crit chance and doubled secondary effect.
@@ -406,6 +410,10 @@ Description = Heals and cures allies switching in.
 [RESILIENCE]
 Name = Resilience
 Description = Recovers health gradually when seriously injured.
+#-------------------------------
+[REFRACTIVE] ###
+Name = Refractive
+Description = Boosts light moves and gains their type.
 #-------------------------------
 [RAGNAROK] ###
 Name = Ragnarok

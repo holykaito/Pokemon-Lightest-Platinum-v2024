@@ -1138,12 +1138,6 @@ Battle::AbilityEffects::AccuracyCalcFromUser.add(:COMPOUNDEYES,
   }
 )
 
-Battle::AbilityEffects::AccuracyCalcFromUser.add(:ILLUMINATE,
-  proc { |ability, mods, user, target, move, type|
-    mods[:accuracy_multiplier] *= 1.2
-  }
-)
-
 Battle::AbilityEffects::AccuracyCalcFromUser.add(:HUSTLE,
   proc { |ability, mods, user, target, move, type|
     mods[:accuracy_multiplier] *= 0.8 if move.physicalMove?

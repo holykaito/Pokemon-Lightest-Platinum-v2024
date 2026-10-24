@@ -1198,3 +1198,65 @@ class Battle::Move::PoisonDrenchOrSeedTarget < Battle::Move
     end
   end
 end
+
+#===============================================================================
+# Odor Sleuth: original effect + raises Attack and Accuracy by 1 stage.
+#===============================================================================
+class Battle::Move::IdentifyTargetRaiseUserAtkAcc1 <
+      Battle::Move::StartNegateTargetEvasionStatStageAndGhostImmunity
+
+  def pbEffectAgainstTarget(user, target)
+    super
+    show_anim = true
+    [:ATTACK, :ACCURACY].each do |stat|
+      next if !user.pbCanRaiseStatStage?(stat, user, self)
+      if user.pbRaiseStatStage(stat, 1, user, show_anim)
+        show_anim = false
+      end
+    end
+  end
+end
+
+#===============================================================================
+# Ready or Not: hides, then attacks with a chance to flinch.
+#===============================================================================
+class Battle::Move::TwoTurnHideThenAttackFlinchTarget <
+      Battle::Move::TwoTurnAttackFlinchTarget
+
+  def pbChargingTurnMessage(user, targets)
+    @battle.pbDisplay(_INTL("{1} hid out of sight!", user.pbThis))
+  end
+end
+
+#===============================================================================
+# Recognize the hiding turn as semi-invulnerable.
+# Reuses the engine's existing checks for vanished targets.
+#===============================================================================
+module KaitoReadyOrNotHiding
+  def inTwoTurnAttack?(*functions)
+    move_id = @effects[PBEffects::TwoTurnAttack]
+
+    if move_id &&
+       functions.include?("TwoTurnAttackInvulnerableRemoveProtections")
+      move_data = GameData::Move.try_get(move_id)
+      if move_data &&
+         move_data.function_code == "TwoTurnHideThenAttackFlinchTarget"
+        return true
+      end
+    end
+
+    return super
+  end
+end
+
+unless Battle::Battler.ancestors.include?(KaitoReadyOrNotHiding)
+  Battle::Battler.prepend(KaitoReadyOrNotHiding)
+end
+
+#===============================================================================
+# AI: reuse the existing two-turn attack + flinch scoring.
+#===============================================================================
+Battle::AI::Handlers::MoveEffectAgainstTargetScore.copy(
+  "TwoTurnAttackFlinchTarget",
+  "TwoTurnHideThenAttackFlinchTarget"
+)

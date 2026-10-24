@@ -136,9 +136,9 @@ Description = Boosts the Pokémon's Speed in rain.
 Name = Chlorophyll
 Description = Boosts the Pokémon's Speed in sunshine.
 #-------------------------------
-[ILLUMINATE]
+[ILLUMINATE] ###
 Name = Illuminate
-Description = Prevents other Pokémon from lowering accuracy.
+Description = Guards accuracy and lowers foes' accuracy on entry.
 #-------------------------------
 [TRACE]
 Name = Trace

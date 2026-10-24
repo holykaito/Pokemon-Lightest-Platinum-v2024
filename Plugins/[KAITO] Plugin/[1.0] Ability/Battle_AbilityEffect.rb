@@ -15268,3 +15268,486 @@ Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
 unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:JUMPSCARE)
   Battle::AI::BASE_ABILITY_RATINGS[6] << :JUMPSCARE
 end
+
+#===============================================================================
+# ILLUMINATE
+# Prevents Accuracy loss, ignores Evasion boosts,
+# and lowers opposing Pokemon's Accuracy upon entry.
+#===============================================================================
+module KaitoIlluminate
+  def self.install!
+    return if @installed
+
+    # Independent handler: no accuracy multiplier.
+    Battle::AbilityEffects::AccuracyCalcFromUser.add(:ILLUMINATE,
+      proc { |ability, mods, user, target, move, type|
+        next if !user.hasActiveAbility?(:ILLUMINATE)
+
+        mods[:evasion_stage] = 0 if mods[:evasion_stage] > 0
+      }
+    )
+
+    Battle::AbilityEffects::StatLossImmunity.add(:ILLUMINATE,
+      proc { |ability, battler, stat, battle, showMessages|
+        next false if stat != :ACCURACY
+        next false if !battler.hasActiveAbility?(:ILLUMINATE)
+
+        if showMessages
+          battle.pbShowAbilitySplash(battler)
+          battle.pbDisplay(
+            _INTL("{1}'s accuracy cannot be lowered!", battler.pbThis)
+          )
+          battle.pbHideAbilitySplash(battler)
+        end
+
+        next true
+      }
+    )
+
+    Battle::AbilityEffects::OnSwitchIn.add(:ILLUMINATE,
+      proc { |ability, user, battle, switch_in|
+        next if user.fainted? || battle.decision != 0
+        next if !user.hasActiveAbility?(:ILLUMINATE)
+
+        battle.pbShowAbilitySplash(user)
+        begin
+          battle.allOtherSideBattlers(user.index).each do |target|
+            next if target.fainted?
+            next if target.effects[PBEffects::Substitute] > 0
+
+            next if !target.pbCanLowerStatStage?(
+              :ACCURACY, user, nil, true
+            )
+
+            target.pbLowerStatStage(:ACCURACY, 1, user)
+          end
+        ensure
+          battle.pbHideAbilitySplash(user)
+        end
+      }
+    )
+
+    if Battle::AI.method_defined?(:evaluate_switch_candidate_detailed) &&
+       Battle::AI.method_defined?(:switch_entry_hp_preview)
+      Battle::AI.prepend(SwitchAI)
+    end
+
+    @installed = true
+  end
+
+  # Advanced AI: value the entry Accuracy drop when choosing a switch.
+  module SwitchAI
+    def evaluate_switch_candidate_detailed(pkmn, current_user, skill)
+      value = super
+      return value if !value.is_a?(Numeric) || !pkmn || skill < 55
+
+      probe = switch_entry_hp_preview(
+        pkmn, get_battler_index(current_user)
+      )
+      return value if probe.fainted?
+      return value if !probe.hasActiveAbility?(:ILLUMINATE)
+      return value if probe.hasActiveAbility?(:NOGUARD)
+
+      old_names = [$aamName, $aamName2]
+      begin
+        bonus = probe.battle.allOtherSideBattlers(probe.index).sum do |foe|
+          next 0 if foe.fainted?
+          next 0 if foe.effects[PBEffects::Substitute] > 0
+          next 0 if foe.hasActiveAbility?(:NOGUARD)
+          next 0 if !foe.moves.any? { |m| m && m.accuracy > 0 }
+          next 0 if !foe.pbCanLowerStatStage?(:ACCURACY, probe)
+
+          contrary = foe.hasActiveAbility?(:CONTRARY)
+
+          # Reflected Accuracy drops are blocked by Illuminate.
+          next 0 if !contrary && foe.hasActiveAbility?(:MIRRORARMOR)
+
+          delta = contrary ? 1 : -1
+          delta *= 2 if foe.hasActiveAbility?(:SIMPLE)
+
+          old = foe.stages[:ACCURACY]
+          delta = (old + delta).clamp(-6, 6) - old
+
+          next -8 * delta
+        end
+
+        return value + bonus
+      ensure
+        $aamName, $aamName2 = old_names
+      end
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoIlluminate.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoIlluminate::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoIlluminate::BattleConstruction
+  )
+end
+
+#===============================================================================
+# REFRACTIVE
+# Light moves add their type before use and gain 20% power.
+#===============================================================================
+module Refractive
+  def self.real(user)
+    return user.respond_to?(:battler) ? user.battler : user
+  end
+
+  def self.native(move)
+    return move.respond_to?(:move) ? move.move : move
+  end
+
+  def self.light?(move)
+    move = native(move)
+    return false if !move
+
+    data = GameData::Move.try_get(move.id)
+    return data && data.flags.any? do |flag|
+      flag.downcase == "light"
+    end
+  end
+
+  def self.active?(user)
+    user = real(user)
+    return false if !user || user.fainted?
+
+    if user.respond_to?(:hasActiveAbility?)
+      return user.hasActiveAbility?(:REFRACTIVE)
+    end
+
+    return user.ability_id == :REFRACTIVE
+  end
+
+  def self.extra_type(user, type)
+    return user.pbTypes(false).include?(type) ? nil : type
+  end
+
+  def self.activate(user, move)
+    return if !active?(user) || !light?(move)
+    return if !user.canChangeType?
+
+    type = move.calcType || move.pbCalcType(user)
+    return if !type || !GameData::Type.exists?(type)
+
+    extra = extra_type(user, type)
+    return if user.effects[PBEffects::ExtraType] == extra
+
+    user.effects[PBEffects::ExtraType] = extra
+    battle = user.battle
+
+    battle.pbShowAbilitySplash(user)
+    begin
+      if extra
+        battle.pbDisplay(
+          _INTL("{1} gained the {2} type!", user.pbThis,
+                GameData::Type.get(extra).name)
+        )
+      else
+        battle.pbDisplay(
+          _INTL("{1}'s added type faded!", user.pbThis)
+        )
+      end
+    ensure
+      battle.pbHideAbilitySplash(user)
+    end
+  end
+
+  # Predict the new typing without messages or lasting changes.
+  def self.predict(user, move)
+    source = real(user)
+
+    unless active?(source) && light?(move) &&
+           source.respond_to?(:effects) && source.canChangeType?
+      return yield
+    end
+
+    type = if defined?(AdvancedAI::CombatUtilities)
+             AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+           else
+             native(move).pbCalcType(source)
+           end
+    return yield if !type || !GameData::Type.exists?(type)
+
+    previous = source.effects[PBEffects::ExtraType]
+    begin
+      source.effects[PBEffects::ExtraType] = extra_type(source, type)
+      return yield
+    ensure
+      source.effects[PBEffects::ExtraType] = previous
+    end
+  end
+
+  # Runs after resolving the actual user, including Snatch,
+  # and before the move's use message and animation.
+  module BattlerHook
+    def pbChangeUser(choice, move, user)
+      actual_user = super
+      Refractive.activate(actual_user, move)
+      return actual_user
+    end
+  end
+
+  module NativeAI
+    def rough_damage
+      Refractive.predict(@ai.user, @move) { super }
+    end
+  end
+
+  module SharedPrediction
+    def estimate_damage(attacker, move, defender, options = {})
+      Refractive.predict(attacker, move) { super }
+    end
+
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      value = super
+
+      if Refractive.active?(attacker) && Refractive.light?(move)
+        return value * 1.2
+      end
+
+      return value
+    end
+  end
+
+  module ScorerPrediction
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = Refractive.predict(user, move) { super }
+      return value if !value.is_a?(Numeric) || value <= 0 || !move
+
+      # These terrain calculations already use the shared estimator.
+      if defined?(ExtendedTerrains::Advanced) &&
+         @battle.field.terrain == :Pollination &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      return value unless Refractive.active?(user) &&
+                          Refractive.light?(move)
+
+      native = Refractive.native(move)
+      unless native.is_a?(Battle::Move)
+        native = Battle::Move.from_pokemon_move(
+          @battle, Pokemon::Move.new(native.id)
+        )
+      end
+
+      return value if !native.damagingMove?
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+      return value if native.function_code.start_with?("OHKO")
+
+      return [(value * 1.2).round, 1].max
+    end
+  end
+
+  def self.install!
+    return if @installed
+
+    Battle::Battler.prepend(BattlerHook)
+    Battle::AI::AIMove.prepend(NativeAI)
+
+    Battle::AbilityEffects::DamageCalcFromUser.add(:REFRACTIVE,
+      proc { |ability, user, target, move, mults, power, type|
+        next if !Refractive.active?(user)
+        next if !Refractive.light?(move) || !move.damagingMove?
+
+        mults[:power_multiplier] *= 1.2
+      }
+    )
+
+    if defined?(AdvancedAI::CombatUtilities)
+      AdvancedAI::CombatUtilities.singleton_class.prepend(
+        SharedPrediction
+      )
+
+      if Battle::AI.method_defined?(:calculate_rough_damage)
+        Battle::AI.prepend(ScorerPrediction)
+      end
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      Refractive.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[7].include?(:REFRACTIVE)
+  Battle::AI::BASE_ABILITY_RATINGS[7] << :REFRACTIVE
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  Refractive::BattleConstruction
+)
+  Battle.singleton_class.prepend(Refractive::BattleConstruction)
+end
+
+#===============================================================================
+# PARANOID
+# Doubles Sp. Defense in damage calculations.
+# Takes double damage from Psychic-type moves.
+#===============================================================================
+module Paranoid
+  def self.real(battler)
+    return battler.respond_to?(:battler) ? battler.battler : battler
+  end
+
+  def self.uses_spdef?(move, user, target, type, physical = nil)
+    native = move.respond_to?(:move) ? move.move : move
+    special = physical.nil? ? native.specialMove?(type) : !physical
+
+    if native.function_code == "UseTargetDefenseInsteadOfTargetSpDef"
+      special = false
+    end
+
+    battle = real(target).battle
+    special = !special if battle.field.effects[PBEffects::WonderRoom] > 0
+
+    return special
+  end
+
+  def self.ai_factor(user, target, move, type, uses_spdef)
+    return 1.0 if !user || !target
+
+    return 1.0 unless AdvancedAI::Utilities.ability_active?(
+      real(target), :PARANOID
+    )
+    return 1.0 if AdvancedAI::Utilities.ignores_ability?(
+      user, move, target
+    )
+
+    factor = uses_spdef ? 0.5 : 1.0
+    factor *= 2.0 if type == :PSYCHIC
+    return factor
+  end
+
+  module SharedDamage
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      value = super
+
+      return value * Paranoid.ai_factor(
+        attacker, target, move, type, !physical_defense
+      )
+    end
+  end
+
+  module ScorerDamage
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !value.is_a?(Numeric) || value <= 0
+      return value if !move || !user || !target
+
+      # These terrain calculations already use the shared estimator.
+      if defined?(ExtendedTerrains::Advanced) &&
+         @battle.field.terrain == :Pollination &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      native = move.respond_to?(:move) ? move.move : move
+      unless native.is_a?(Battle::Move)
+        native = Battle::Move.from_pokemon_move(
+          @battle, Pokemon::Move.new(native.id)
+        )
+      end
+
+      return value if !native.damagingMove?
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+      return value if native.function_code.start_with?("OHKO")
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      physical = native.physicalMove?(type)
+
+      if [:PHOTONGEYSER, :LIGHTTHATBURNSTHESKY].include?(move.id) ||
+         (move.id == :TERABLAST && tera_type)
+        combat = AdvancedAI::CombatUtilities
+        atk = user.attack *
+              combat.stage_multiplier(user.stages[:ATTACK])
+        spa = user.spatk *
+              combat.stage_multiplier(user.stages[:SPECIAL_ATTACK])
+        physical = atk > spa
+      end
+
+      spdef = Paranoid.uses_spdef?(
+        native, user, target, type, physical
+      )
+      factor = Paranoid.ai_factor(user, target, move, type, spdef)
+
+      return value if factor == 1.0
+      return [(value * factor).round, 1].max
+    end
+  end
+
+  def self.install!
+    return if @installed
+
+    if defined?(AdvancedAI::CombatUtilities)
+      AdvancedAI::CombatUtilities.singleton_class.prepend(
+        SharedDamage
+      )
+
+      if Battle::AI.method_defined?(:calculate_rough_damage)
+        Battle::AI.prepend(ScorerDamage)
+      end
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      Paranoid.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AbilityEffects::DamageCalcFromTarget.add(:PARANOID,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !target.hasActiveAbility?(:PARANOID)
+    next if !move.damagingMove?
+
+    if Paranoid.uses_spdef?(move, user, target, type)
+      mults[:defense_multiplier] *= 2.0
+    end
+
+    mults[:final_damage_multiplier] *= 2.0 if type == :PSYCHIC
+  }
+)
+
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[7].include?(:PARANOID)
+  Battle::AI::BASE_ABILITY_RATINGS[7] << :PARANOID
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  Paranoid::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    Paranoid::BattleConstruction
+  )
+end

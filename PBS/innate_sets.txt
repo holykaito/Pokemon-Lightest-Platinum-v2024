@@ -383,10 +383,10 @@ Innates = PICKUP,SCRAPPY,OVERCOAT
 Innates = PICKUP,SCRAPPY,OVERCOAT
 #----------------------------------------
 [PATRAT]
-Innates = RUNAWAY,KEENEYE
+Innates = KEENEYE,GROWINGTOOTH
 #----------------------------------------
 [WATCHOG]
-Innates = RUNAWAY,KEENEYE
+Innates = KEENEYE,GROWINGTOOTH,PARANOID
 #----------------------------------------
 [MUNNA]
 Innates = LEVITATE,TELEPATHY

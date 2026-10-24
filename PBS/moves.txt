@@ -108,7 +108,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = ConfuseTarget
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Light
 EffectChance = 10
 Description = The user attacks with a sinister beam of light. It may also confuse the target.
 #-------------------------------
@@ -347,7 +347,7 @@ TotalPP = 20
 Target = User
 FunctionCode = RaiseUserSpAtk3
 Description = The user stares at flashing lights to focus its mind, drastically raising its Sp. Atk stat.
-Flags = ZPower_ResetStats
+Flags = ZPower_ResetStats,Light
 #-------------------------------
 [HYPERSPACEFURY]
 Name = Hyperspace Fury
@@ -1552,7 +1552,7 @@ Accuracy = 90
 TotalPP = 5
 Target = NearOther
 FunctionCode = RecoilHalfOfDamageDealt
-Flags = CanProtect,CanMirrorMove,CannotMetronome
+Flags = CanProtect,CanMirrorMove,CannotMetronome,Light
 Description = Fires a powerful beam of light drawn from the Eternal Flower. It also damages the user a lot.
 #-------------------------------
 [FLEURCANNON]
@@ -1627,7 +1627,7 @@ Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
 FunctionCode = None
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Light
 Description = The user damages opposing Pokémon by emitting a powerful flash.
 #-------------------------------
 [SPIRITBREAK]
@@ -3394,7 +3394,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = ConfuseTarget
-Flags = CanProtect,CanMirrorMove,ZPower_SPECIAL_ATTACK_1
+Flags = CanProtect,CanMirrorMove,ZPower_SPECIAL_ATTACK_1,Light
 Description = The target is exposed to a sinister ray that triggers confusion.
 #-------------------------------
 [CURSE]
@@ -5969,14 +5969,16 @@ Description = The user dances to compel the target to mimic it, making the targe
 #-------------------------------
 [FLASH]
 Name = Flash
-Type = NORMAL
-Category = Status
+Type = ELECTRIC
+Category = Special
+Power = 60
 Accuracy = 100
 TotalPP = 20
 Target = NearOther
 FunctionCode = LowerTargetAccuracy1
-Flags = CanProtect,CanMirrorMove,ZPower_EVASION_1
-Description = The user flashes a light that cuts the target's accuracy. It can also be used to illuminate caves.
+Flags = CanProtect,CanMirrorMove,Light
+EffectChance = 100
+Description = A blinding electric flash that lowers the target's accuracy.
 #-------------------------------
 [FOCUSENERGY]
 Name = Focus Energy
@@ -6282,9 +6284,9 @@ Category = Status
 Accuracy = 0
 TotalPP = 40
 Target = NearOther
-FunctionCode = StartNegateTargetEvasionStatStageAndGhostImmunity
+FunctionCode = IdentifyTargetRaiseUserAtkAcc1
 Flags = CanProtect,CanMirrorMove,ZPower_ATTACK_1
-Description = Enables the user to hit a Ghost type with any type of move. It also enables the user to hit an evasive foe.
+Description = Negates evasion boosts and Ghost immunity. Raises the user's Attack.
 #-------------------------------
 [PAINSPLIT]
 Name = Pain Split
@@ -6550,7 +6552,7 @@ TotalPP = 15
 Target = NearOther
 Priority = 3
 FunctionCode = RedirectAllMovesToTarget
-Flags = CanProtect,ZPower_SPECIAL_DEFENSE_1
+Flags = CanProtect,ZPower_SPECIAL_DEFENSE_1,Light
 Description = The user shines a spotlight on the target so that only it will be attacked during the turn.
 #-------------------------------
 [STOCKPILE]
@@ -7099,7 +7101,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = AttackAndSkipNextTurn
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Light
 Description = The user shoots powerful lasers using the power of a prism. The user can't move on the next turn.
 #-------------------------------
 [PSYCHOBOOST]
@@ -7158,7 +7160,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = CategoryDependsOnHigherDamageIgnoreTargetAbility
-Flags = CanProtect,CanMirrorMove,CannotMetronome
+Flags = CanProtect,CanMirrorMove,CannotMetronome,Light
 Description = The user attacks with a pillar of light. This move the higher of the user's Attack or Sp. Atk stat.
 #-------------------------------
 [PSYSTRIKE]
@@ -7295,7 +7297,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetSpDef1
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Light
 EffectChance = 50
 Description = The user lets loose a damaging burst of light. It may also reduce the target's Sp. Def stat.
 #-------------------------------
@@ -7596,7 +7598,7 @@ TotalPP = 30
 Target = UserSide
 FunctionCode = StartWeakenSpecialDamageAgainstUserSide
 Description = A wondrous wall of light is put up to suppress damage from special attacks for five turns.
-Flags = ZPower_SPECIAL_DEFENSE_1
+Flags = ZPower_SPECIAL_DEFENSE_1,Light
 #-------------------------------
 [LUNARDANCE]
 Name = Lunar Dance
@@ -7729,7 +7731,7 @@ TotalPP = 20
 Target = UserSide
 FunctionCode = StartWeakenPhysicalDamageAgainstUserSide
 Description = A wondrous wall of light is put up to suppress damage from physical attacks for five turns.
-Flags = ZPower_DEFENSE_1
+Flags = ZPower_DEFENSE_1,Light
 #-------------------------------
 [REST]
 Name = Rest
@@ -7903,7 +7905,7 @@ Accuracy = 100
 TotalPP = 20
 Target = NearOther
 FunctionCode = None
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Light
 Description = The user attacks with a ray of light that sparkles as if it were made of gemstones.
 #-------------------------------
 [ROCKSLIDE]
@@ -8071,6 +8073,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = AttackTwoTurnsLater
+Flags = Light
 Description = Two turns after this move is used, the user blasts the target with a concentrated bundle of light.
 #-------------------------------
 [STEELBEAM]
@@ -8181,7 +8184,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetSpDef1
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Light
 EffectChance = 10
 Description = The user gathers all its light energy and releases it at once. It may also lower the target's Sp. Def stat.
 #-------------------------------
@@ -8245,7 +8248,7 @@ Accuracy = 85
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetAccuracy1
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Light
 EffectChance = 30
 Description = The user looses a flash of energy from its polished body. It may also lower the target's accuracy.
 #-------------------------------
@@ -8447,7 +8450,7 @@ Accuracy = 85
 TotalPP = 10
 Target = AllNearFoes
 FunctionCode = None
-Flags = CanProtect,CanMirrorMove,Pulse,CannotMetronome
+Flags = CanProtect,CanMirrorMove,Pulse,CannotMetronome,Light
 Description = The user attacks opposing Pokémon with countless beams of light that glow a deep and brilliant blue.
 #-------------------------------
 [STEAMERUPTION]

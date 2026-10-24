@@ -582,7 +582,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = None
-Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing
+Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing,Light
 Description = Slashes with light. Critical hits land more easily.
 Animation = PSYCHOCUT
 #-------------------------------
@@ -861,3 +861,16 @@ FunctionCode = PoisonDrenchOrSeedTarget
 Flags = CanProtect
 EffectChance = 45
 Description = Has a 15% chance each to poison, drench or seed the target.
+#-------------------------------
+[READYORNOT]
+Name = Ready or Not
+Type = NORMAL
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = TwoTurnHideThenAttackFlinchTarget
+Flags = CanProtect,CanMirrorMove
+EffectChance = 30
+Description = Hides on the first turn, then strikes on the next. May cause flinching.
