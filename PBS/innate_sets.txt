@@ -164,6 +164,21 @@ Innates = RUNAWAY
 [MIGHTYENA]
 Innates = INTIMIDATE,STRONGJAW,SUBJUGATE
 #----------------------------------------
+[ZIGZAGOON]
+Innates = PICKUP
+#----------------------------------------
+[LINOONE]
+Innates = PICKUP,GLUTTONY,SPEEDFORCE
+#----------------------------------------
+[ZIGZAGOON_1]
+Innates = GUTS
+#----------------------------------------
+[LINOONE_1]
+Innates = GUTS,RECKLESS
+#----------------------------------------
+[OBSTAGOON]
+Innates = GUTS,RECKLESS,NIGHTSTALKER
+#----------------------------------------
 [RALTS]
 Innates = TELEPATHY
 #----------------------------------------

@@ -283,202 +283,6 @@ Battle::AbilityEffects::OnSwitchIn.add(:WANDERINGORBS,
 )
 
 #===============================================================================
-# Cheap Tactics
-# Pokemon Essentials v21.1
-#
-# Effect:
-#   When this Pokemon enters battle, it performs a fake Scratch attack
-#   with 40 BP against a random opposing Pokemon.
-#
-# Important:
-#   - This is an "ảo lượt".
-#   - It does NOT use battle.choices.
-#   - It does NOT consume the Pokemon's first real turn.
-#   - It does NOT call pbUseMove, so it won't replace the user's action.
-#===============================================================================
-
-module CheapTactics
-  MOVE_ID = :SCRATCH
-  MOVE_TYPE = :NORMAL
-  BASE_POWER = 40
-
-  def self.possible_targets(user)
-    battle = user.battle
-    targets = []
-
-    battle.allOtherSideBattlers(user.index).each do |b|
-      next if !b
-      next if b.fainted?
-
-      # Prefer nearby targets if the method exists.
-      begin
-        next if b.respond_to?(:near?) && !b.near?(user)
-      rescue
-      end
-
-      targets.push(b)
-    end
-
-    # Fallback: any opposing active battler.
-    if targets.empty?
-      battle.allOtherSideBattlers(user.index).each do |b|
-        next if !b
-        next if b.fainted?
-        targets.push(b)
-      end
-    end
-
-    return targets
-  end
-
-  def self.random_target(user)
-    targets = possible_targets(user)
-    return nil if targets.empty?
-    return targets[user.battle.pbRandom(targets.length)]
-  end
-
-  def self.target_types(target)
-    begin
-      return target.pbTypes(true)
-    rescue
-      begin
-        return target.pbTypes
-      rescue
-        return []
-      end
-    end
-  end
-
-  def self.effectiveness_multiplier(type_mod)
-    return 0.0 if Effectiveness.ineffective?(type_mod)
-
-    begin
-      return Effectiveness.multiplier(type_mod)
-    rescue
-    end
-
-    begin
-      normal = Effectiveness.const_defined?(:NORMAL_EFFECTIVE) ? Effectiveness::NORMAL_EFFECTIVE : 8
-      return type_mod.to_f / normal
-    rescue
-    end
-
-    return 1.0
-  end
-
-  def self.calc_damage(user, target)
-    atk = [user.attack, 1].max
-    defense = [target.defense, 1].max
-    level = [user.level, 1].max
-
-    damage = (((((2 * level / 5) + 2) * BASE_POWER * atk / defense) / 50) + 2)
-
-    # STAB for Normal-type Scratch.
-    if user.pbHasType?(MOVE_TYPE)
-      if user.hasActiveAbility?(:ADAPTABILITY)
-        damage = (damage * 2).floor
-      else
-        damage = (damage * 3 / 2).floor
-      end
-    end
-
-    # Type effectiveness.
-    type_mod = Effectiveness.calculate(MOVE_TYPE, *target_types(target))
-    mult = effectiveness_multiplier(type_mod)
-
-    return 0 if mult <= 0
-
-    damage = (damage * mult).floor
-
-    # Random damage roll: 85% - 100%.
-    damage = damage * (user.battle.pbRandom(16) + 85) / 100
-
-    # Burn physical damage reduction.
-    if user.burned? && !user.hasActiveAbility?(:GUTS)
-      damage = damage / 2
-    end
-
-    damage = 1 if damage < 1
-    return damage
-  end
-
-  def self.play_animation(user, target)
-    battle = user.battle
-
-    begin
-      pkmn_move = Pokemon::Move.new(MOVE_ID)
-      battle_move = Battle::Move.from_pokemon_move(battle, pkmn_move)
-      battle_move.pbShowAnimation(MOVE_ID, user, [target], 0, true)
-      return
-    rescue
-    end
-
-    begin
-      battle.scene.pbDamageAnimation(target)
-    rescue
-    end
-  end
-
-  def self.apply_damage(user, target, damage)
-    battle = user.battle
-    damage = target.hp if damage > target.hp
-    return 0 if damage <= 0
-
-    real_damage = 0
-
-    battle.scene.pbDamageAnimation(target)
-
-    target.pbTakeEffectDamage(damage, false) do |hp_lost|
-      real_damage = hp_lost
-    end
-
-    target.pbFaint if target.fainted?
-    return real_damage
-  end
-
-  def self.trigger(user)
-    return if !user
-    return if user.fainted?
-
-    target = random_target(user)
-    return if !target
-
-    battle = user.battle
-
-    battle.pbShowAbilitySplash(user)
-
-    damage = calc_damage(user, target)
-
-    if damage <= 0
-      battle.pbDisplay(_INTL("It doesn't affect {1}...", target.pbThis(true)))
-      battle.pbHideAbilitySplash(user)
-      return
-    end
-
-    play_animation(user, target)
-
-    real_damage = apply_damage(user, target, damage)
-
-    if real_damage > 0
-      battle.pbDisplay(_INTL("{1}'s {2} struck {3} with a cheap tactic!",
-        user.pbThis, user.abilityName, target.pbThis(true)))
-    end
-
-    battle.pbHideAbilitySplash(user)
-  end
-end
-
-#===============================================================================
-# Ability effect
-#===============================================================================
-
-Battle::AbilityEffects::OnSwitchIn.add(:CHEAPTACTICS,
-  proc { |ability, battler, battle, switch_in|
-    CheapTactics.trigger(battler)
-  }
-)
-
-#===============================================================================
 # Aura Manipulation
 #===============================================================================
 
@@ -912,82 +716,233 @@ if defined?(Battle::AI) && Battle::AI.method_defined?(:pbGetMoveScore)
 end
 
 #===============================================================================
-# Charge Rush
+# CHARGE RUSH
+# Attack and Speed x1.2 upon entry and during the first action round.
 #===============================================================================
-
 module ChargeRush
   BOOST_MULTIPLIER = 1.2
 
-  def self.active?(battler)
-    return false if battler.nil?
-    return battler.turnCount == 0
+  def self.real(user)
+    return user.respond_to?(:battler) ? user.battler : user
+  end
+
+  def self.active?(user)
+    user = real(user)
+    return false if !user || !user.respond_to?(:turnCount)
+
+    # Newly entered Pokemon.
+    return true if user.turnCount == 0
+
+    # First action round: the engine has already increased turnCount.
+    return false if user.turnCount != 1
+
+    # During the next command phase, the bonus has expired.
+    return !user.battle.command_phase
+  end
+
+  def self.ai_factor(user, physical)
+    return 1.0 if !user || !physical
+
+    source = real(user)
+    return 1.0 if !source
+    return 1.0 unless AdvancedAI::Utilities.ability_active?(
+      source, :CHARGERUSH
+    )
+
+    # A party Pokemon is evaluated as a proposed new entrant.
+    if source.respond_to?(:turnCount)
+      return 1.0 if !active?(source)
+    end
+
+    return BOOST_MULTIPLIER
+  end
+
+  def self.native_move(move, user, battle)
+    native = move.respond_to?(:move) ? move.move : move
+    return native if native.is_a?(Battle::Move)
+
+    return Battle::Move.from_pokemon_move(
+      battle, Pokemon::Move.new(native.id)
+    )
+  end
+
+  # Shared Advanced AI damage estimator.
+  module SharedDamage
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      value = super
+      return value * ChargeRush.ai_factor(attacker, physical)
+    end
+  end
+
+  # Advanced AI's separate move damage estimator.
+  module ScorerDamage
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+
+      return value if !value.is_a?(Numeric) || value <= 0
+      return value if !move || !user
+
+      # Extended Terrains delegates these moves to the shared estimator.
+      # Its Charge Rush multiplier has already been applied there.
+      if defined?(ExtendedTerrains::Advanced) &&
+         @battle.field.terrain == :Pollination &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      native = ChargeRush.native_move(move, user, @battle)
+      return value if !native.damagingMove?
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+      return value if native.function_code.start_with?("OHKO")
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      physical = native.physicalMove?(type)
+
+      # Match Advanced AI's prediction for category-changing moves.
+      if [:PHOTONGEYSER, :LIGHTTHATBURNSTHESKY].include?(move.id) ||
+         (move.id == :TERABLAST && tera_type)
+        combat = AdvancedAI::CombatUtilities
+        atk = user.attack *
+              combat.stage_multiplier(user.stages[:ATTACK])
+        spa = user.spatk *
+              combat.stage_multiplier(user.stages[:SPECIAL_ATTACK])
+        physical = atk > spa
+      end
+
+      factor = ChargeRush.ai_factor(user, physical)
+      return value if factor == 1.0
+
+      return [(value * factor).round, 1].max
+    end
+  end
+
+  # Install after plugin aliases have finished loading.
+  def self.install!
+    return if @installed
+
+    if defined?(AdvancedAI::CombatUtilities)
+      AdvancedAI::CombatUtilities.singleton_class.prepend(SharedDamage)
+    end
+
+    if Battle::AI.method_defined?(:calculate_rough_damage)
+      Battle::AI.prepend(ScorerDamage)
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      ChargeRush.install!
+      super(*args, &block)
+    end
   end
 end
 
+#===============================================================================
+# Entry announcement
+#===============================================================================
 Battle::AbilityEffects::OnSwitchIn.add(:CHARGERUSH,
   proc { |ability, battler, battle, switch_in|
+    next if battler.fainted?
+    next if !battler.hasActiveAbility?(:CHARGERUSH)
+
     battle.pbShowAbilitySplash(battler)
-
-    if Battle::Scene::USE_ABILITY_SPLASH
-      battle.pbDisplay(_INTL("{1} is ready to rush in!", battler.pbThis))
-    else
-      battle.pbDisplay(_INTL("{1}'s {2} raised its momentum!",
-         battler.pbThis, battler.abilityName))
-    end
-
+    battle.pbDisplay(
+      _INTL("{1} is ready to rush in!", battler.pbThis)
+    )
     battle.pbHideAbilitySplash(battler)
   }
 )
 
+#===============================================================================
+# Speed
+#===============================================================================
 Battle::AbilityEffects::SpeedCalc.add(:CHARGERUSH,
   proc { |ability, battler, mult|
-    next if !ChargeRush.active?(battler)
+    next mult if !battler.hasActiveAbility?(:CHARGERUSH)
+    next mult if !ChargeRush.active?(battler)
 
     next mult * ChargeRush::BOOST_MULTIPLIER
   }
 )
 
+#===============================================================================
+# Physical attacks
+#===============================================================================
 Battle::AbilityEffects::DamageCalcFromUser.add(:CHARGERUSH,
   proc { |ability, user, target, move, mults, power, type|
+    next if !user.hasActiveAbility?(:CHARGERUSH)
     next if !ChargeRush.active?(user)
-    next if !move.physicalMove?
+    next if !move.physicalMove?(type)
 
     mults[:attack_multiplier] *= ChargeRush::BOOST_MULTIPLIER
   }
 )
 
-if defined?(Battle::AI) && Battle::AI.method_defined?(:pbGetMoveScore)
-  class Battle::AI
-    alias charge_rush_pbGetMoveScore pbGetMoveScore
+#===============================================================================
+# Native AI ability evaluation
+# Native damage and Speed predictions use the handlers above.
+#===============================================================================
+Battle::AI::Handlers::AbilityRanking.add(:CHARGERUSH,
+  proc { |ability, score, battler, ai|
+    next ChargeRush.active?(battler) ? 6 : 0
+  }
+)
 
-    def pbGetMoveScore(*args)
-      score = charge_rush_pbGetMoveScore(*args)
+unless Battle.singleton_class.ancestors.include?(
+  ChargeRush::BattleConstruction
+)
+  Battle.singleton_class.prepend(ChargeRush::BattleConstruction)
+end
 
-      move = nil
-      user = nil
+#===============================================================================
+# Fix Innate Abilities Speed multiplier stacking.
+# Install after all plugins have finished loading.
+#===============================================================================
+module KaitoInnateSpeedFix
+  module SpeedCalculation
+    def triggerSpeedCalc(ability, battler, mult)
+      return super unless battler.respond_to?(:abilityMutationList)
 
-      args.each do |arg|
-        if arg.respond_to?(:physicalMove?) && arg.respond_to?(:damagingMove?)
-          move = arg
-        elsif arg.respond_to?(:hasActiveAbility?) &&
-              arg.respond_to?(:turnCount)
-          user = arg if user.nil?
-        end
+      battler.abilityMutationList.each do |id|
+        $aamName = GameData::Ability.get(id).name
+        mult = trigger(SpeedCalc, id, battler, mult, ret: mult)
       end
 
-      if score.is_a?(Numeric) &&
-         user &&
-         move &&
-         user.hasActiveAbility?(:CHARGERUSH) &&
-         ChargeRush.active?(user) &&
-         move.physicalMove?
-        score += 15
-        PBDebug.log_ai("     + Charge Rush boosts physical damage this turn: 15") if defined?(PBDebug)
-      end
-
-      return score
+      return mult
     end
   end
+
+  def self.install!
+    target = Battle::AbilityEffects.singleton_class
+    return if target.ancestors.include?(SpeedCalculation)
+
+    target.prepend(SpeedCalculation)
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoInnateSpeedFix.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoInnateSpeedFix::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoInnateSpeedFix::BattleConstruction
+  )
 end
 
 #===============================================================================
@@ -2781,137 +2736,6 @@ class Battle::Move::AddToxicSpikesToFoeSide
     after_count = NinjaStyle.layer_count(user, :ToxicSpikes)
 
     NinjaStyle.apply_extra_layer(user, :ToxicSpikes, before_count, after_count)
-
-    return ret
-  end
-end
-
-#===============================================================================
-# Brave Heart
-# Pokemon Essentials v21.1
-#
-# Effect:
-#   When an opposing Pokemon gains any stat stage, this Pokemon's Attack rises
-#   by 1 stage.
-#
-# Notes:
-#   - Triggers only if the stat gain actually happened.
-#   - Triggers once per successful stat-raising call.
-#   - Does not chain infinitely with opposing Brave Heart users.
-#   - Includes basic support for Innate Abilities-style plugins.
-#===============================================================================
-
-module BraveHeart
-  ABILITY = :BRAVEHEART
-
-  def self.has_brave_heart?(battler)
-    return false if !battler
-    return false if battler.fainted?
-
-    begin
-      return true if battler.hasActiveAbility?(ABILITY)
-    rescue
-    end
-
-    begin
-      return true if battler.hasAbility?(ABILITY)
-    rescue
-    end
-
-    # Innate Abilities plugin support.
-    begin
-      return true if battler.respond_to?(:abilityMutationList) &&
-                     battler.abilityMutationList &&
-                     battler.abilityMutationList.include?(ABILITY)
-    rescue
-    end
-
-    [
-      :hasInnateAbility?,
-      :hasActiveInnateAbility?,
-      :hasInnate?,
-      :hasActiveInnate?,
-      :pbHasInnateAbility?
-    ].each do |method_name|
-      begin
-        return true if battler.respond_to?(method_name) &&
-                       battler.send(method_name, ABILITY)
-      rescue
-      end
-    end
-
-    return false
-  end
-
-  def self.stat_stage(battler, stat)
-    return 0 if !battler
-    return battler.stages[stat].to_i
-  rescue
-    return 0
-  end
-
-  def self.trigger_for_stat_gain(stat_gainer, source = nil)
-    return if !stat_gainer
-    return if stat_gainer.fainted?
-
-    battle = stat_gainer.battle
-    return if !battle
-
-    # Prevent Brave Heart from chaining into itself forever.
-    return if battle.instance_variable_get(:@brave_heart_resolving)
-
-    brave_users = []
-    battle.allOtherSideBattlers(stat_gainer.index).each do |b|
-      next if !has_brave_heart?(b)
-      next if !b.pbCanRaiseStatStage?(:ATTACK, b)
-      brave_users.push(b)
-    end
-
-    return if brave_users.empty?
-
-    battle.instance_variable_set(:@brave_heart_resolving, true)
-
-    brave_users.each do |b|
-      battle.pbShowAbilitySplash(b)
-
-      # Use ByAbility if available; fallback to normal stat raise.
-      begin
-        b.pbRaiseStatStageByAbility(:ATTACK, 1, b)
-      rescue
-        b.pbRaiseStatStage(:ATTACK, 1, b)
-      end
-
-      battle.pbHideAbilitySplash(b)
-    end
-
-    battle.instance_variable_set(:@brave_heart_resolving, false)
-  ensure
-    battle.instance_variable_set(:@brave_heart_resolving, false) if battle
-  end
-end
-
-#===============================================================================
-# Patch stat gain
-#===============================================================================
-# Most stat-raising effects eventually call pbRaiseStatStage.
-# This checks whether the target's stat stage actually increased.
-#===============================================================================
-
-class Battle::Battler
-  if !method_defined?(:brave_heart_pbRaiseStatStage)
-    alias brave_heart_pbRaiseStatStage pbRaiseStatStage
-  end
-
-  def pbRaiseStatStage(stat, increment, user = nil, showAnim = true, *args)
-    old_stage = BraveHeart.stat_stage(self, stat)
-
-    ret = brave_heart_pbRaiseStatStage(stat, increment, user, showAnim, *args)
-
-    new_stage = BraveHeart.stat_stage(self, stat)
-
-    if new_stage > old_stage
-      BraveHeart.trigger_for_stat_gain(self, user)
-    end
 
     return ret
   end
@@ -14533,4 +14357,914 @@ unless Battle.singleton_class.ancestors.include?(
   PretentiousAI::BattleConstruction
 )
   Battle.singleton_class.prepend(PretentiousAI::BattleConstruction)
+end
+
+#===============================================================================
+# FLUID GUARD
+# Damage multiplier = attacker Speed / defender Speed, limited to 0.5–1.0.
+#===============================================================================
+module FluidGuard
+  def self.real(battler)
+    return battler.respond_to?(:battler) ? battler.battler : battler
+  end
+
+  def self.speed(battler)
+    battler = real(battler)
+    value = battler.respond_to?(:pbSpeed) ? battler.pbSpeed : battler.speed
+    return [value, 1].max
+  end
+
+  def self.factor(user, target)
+    ratio = speed(user).to_f / speed(target)
+    return [[ratio, 0.5].max, 1.0].min
+  end
+
+  def self.ai_factor(user, target, move)
+    return 1.0 if !user || !target
+    return 1.0 if move && !move.damagingMove?
+    return 1.0 unless AdvancedAI::Utilities.ability_active?(
+      real(target), :FLUIDGUARD
+    )
+    return 1.0 if AdvancedAI::Utilities.ignores_ability?(
+      user, move, target
+    )
+
+    return factor(user, target)
+  end
+
+  # Shared Advanced AI damage estimator.
+  module SharedDamage
+    def ability_damage_modifier(attacker, target, type, physical,
+                                effectiveness, move = nil,
+                                physical_defense = physical)
+      return super * FluidGuard.ai_factor(attacker, target, move)
+    end
+  end
+
+  # Advanced AI's separate move damage estimator.
+  module ScorerDamage
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+
+      return value if !value.is_a?(Numeric) || value <= 0
+      return value if !move || !user || !target
+
+      # These terrain calculations already use the shared estimator.
+      if defined?(ExtendedTerrains::Advanced) &&
+         @battle.field.terrain == :Pollination &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      native = move.respond_to?(:move) ? move.move : move
+      unless native.is_a?(Battle::Move)
+        native = Battle::Move.from_pokemon_move(
+          @battle, Pokemon::Move.new(native.id)
+        )
+      end
+
+      return value if !native.damagingMove?
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+      return value if native.function_code.start_with?("OHKO")
+
+      factor = FluidGuard.ai_factor(user, target, move)
+      return value if factor == 1.0
+
+      return [(value * factor).round, 1].max
+    end
+  end
+
+  # Install after all plugin aliases have loaded.
+  def self.install!
+    return if @installed
+
+    if defined?(AdvancedAI::CombatUtilities)
+      AdvancedAI::CombatUtilities.singleton_class.prepend(SharedDamage)
+
+      if Battle::AI.method_defined?(:calculate_rough_damage)
+        Battle::AI.prepend(ScorerDamage)
+      end
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      FluidGuard.install!
+      super(*args, &block)
+    end
+  end
+end
+
+#===============================================================================
+# Battle effect and native AI damage prediction.
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromTarget.add(:FLUIDGUARD,
+  proc { |ability, user, target, move, mults, power, type|
+    next if !target.hasActiveAbility?(:FLUIDGUARD)
+    next if !move.damagingMove?
+
+    mults[:final_damage_multiplier] *= FluidGuard.factor(user, target)
+  }
+)
+
+# Native AI ability rating.
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:FLUIDGUARD)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :FLUIDGUARD
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  FluidGuard::BattleConstruction
+)
+  Battle.singleton_class.prepend(FluidGuard::BattleConstruction)
+end
+
+#===============================================================================
+# SPEED FORCE - KAITO replacement
+# Contact moves gain flat damage equal to 20% of effective Speed per hit.
+#===============================================================================
+module KaitoSpeedForce
+  RATE = 0.20
+
+  def self.real(user)
+    return user.respond_to?(:battler) ? user.battler : user
+  end
+
+  def self.bonus(user, move)
+    user = real(user)
+    move = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !move
+    return 0 if !move.damagingMove? || !move.contactMove?
+    return 0 if move.is_a?(Battle::Move::FixedDamageMove)
+
+    code = move.function_code
+    return 0 if code.start_with?("FixedDamage", "OHKO", "Counter")
+    return 0 if [
+      "LowerTargetHPToUserHP",
+      "UserFaintsFixedDamageUserHP",
+      "MultiTurnAttackBideThenReturnDoubleDamage"
+    ].include?(code)
+
+    active = if user.respond_to?(:hasActiveAbility?)
+               user.hasActiveAbility?(:SPEEDFORCE)
+             else
+               user.ability_id == :SPEEDFORCE
+             end
+    return 0 if !active
+
+    speed = user.respond_to?(:pbSpeed) ? user.pbSpeed : user.speed
+    return (speed * RATE).floor
+  end
+
+  # Expected hit count for AI predictions.
+  def self.hits(user, move)
+    return 1.0 unless defined?(AdvancedAI::CombatUtilities)
+
+    # AAI weights these moves by power rather than hit count.
+    count = if [:TRIPLEAXEL, :TRIPLEKICK].include?(move.id)
+              3.0
+            else
+              AdvancedAI::CombatUtilities.expected_hit_multiplier(
+                move, user
+              )
+            end
+
+    if count == 1.0 && !move.multiHitMove? &&
+       AdvancedAI::Utilities.ability_active?(user, :PARENTALBOND)
+      count = 2.0
+    end
+
+    return count
+  end
+
+  def self.add_prediction(value, user, target, move, count = 1.0)
+    return value if !value.is_a?(Numeric) || value <= 0
+
+    extra = bonus(user, move)
+    return value if extra == 0
+
+    result = value + (extra * count).round
+    native = move.respond_to?(:move) ? move.move : move
+
+    if native.respond_to?(:nonLethal?) &&
+       native.nonLethal?(real(user), real(target))
+      result = [result, [target.hp - 1, 0].max].min
+    end
+
+    return result
+  end
+
+  # Actual damage, before Substitute and survival effects are resolved.
+  module BattleDamage
+    def pbCalcDamage(user, target, numTargets = 1)
+      result = super
+      state = target.damageState
+
+      return result if state.disguise || state.iceFace
+      return result if Effectiveness.ineffective?(state.typeMod)
+      return result if state.calcDamage <= 0
+
+      state.calcDamage += KaitoSpeedForce.bonus(user, self)
+      return result
+    end
+  end
+
+  # Native AI, including MAG's rough_damage implementation.
+  module NativeAI
+    def rough_damage
+      value = super
+
+      return KaitoSpeedForce.add_prediction(
+        value, @ai.user, @ai.target, @move,
+        KaitoSpeedForce.hits(@ai.user, @move)
+      )
+    end
+  end
+
+  # Advanced AI shared damage estimator.
+  module SharedAI
+    def estimate_damage(attacker, move, defender, options = {})
+      value = super
+      return value if !attacker || !move || !defender
+
+      scale = options[:as_percent] ?
+        [defender.totalhp, 1].max.to_f : 1.0
+
+      damage = KaitoSpeedForce.add_prediction(
+        value * scale, attacker, defender, move,
+        KaitoSpeedForce.hits(attacker, move)
+      )
+
+      return damage / scale if options[:as_percent]
+      return damage
+    end
+  end
+
+  # Advanced AI's separate move damage estimator.
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+
+      # Extended Terrains already used the shared estimator here.
+      if defined?(ExtendedTerrains::Advanced) &&
+         @battle.field.terrain == :Pollination &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      count = override_bp ? 1.0 : KaitoSpeedForce.hits(user, move)
+
+      return KaitoSpeedForce.add_prediction(
+        value, user, target, move, count
+      )
+    end
+  end
+
+  def self.install!
+    return if @installed
+
+    # Disable the old Community Abilities handler and its messages.
+    Battle::AbilityEffects::DamageCalcFromUser.add(
+      :SPEEDFORCE, proc { |*args| }
+    )
+
+    Battle::Move.prepend(BattleDamage)
+    Battle::AI::AIMove.prepend(NativeAI)
+
+    if defined?(AdvancedAI::CombatUtilities)
+      AdvancedAI::CombatUtilities.singleton_class.prepend(SharedAI)
+
+      if Battle::AI.method_defined?(:calculate_rough_damage)
+        Battle::AI.prepend(ScorerAI)
+      end
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      result = super(*args, &block)
+      KaitoSpeedForce.install!
+      return result
+    end
+  end
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:SPEEDFORCE)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :SPEEDFORCE
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoSpeedForce::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoSpeedForce::BattleConstruction
+  )
+end
+
+#===============================================================================
+# BRAVE HEART
+# Gain one Attack stage per successful opposing stat increase.
+#===============================================================================
+module BraveHeart
+  def self.real(battler)
+    return battler.respond_to?(:battler) ? battler.battler : battler
+  end
+
+  def self.active?(battler)
+    battler = real(battler)
+    return battler && !battler.fainted? &&
+           battler.hasActiveAbility?(:BRAVEHEART)
+  end
+
+  # Resolve reactions after the original stat-change messages.
+  def self.with_change(battler)
+    battle = battler.battle
+    depth = battle.instance_variable_get(:@bh_depth).to_i
+    battle.instance_variable_set(:@bh_depth, depth + 1)
+    completed = false
+
+    begin
+      result = yield
+      completed = true
+      return result
+    ensure
+      battle.instance_variable_set(:@bh_depth, depth)
+
+      if depth == 0
+        events = battle.instance_variable_get(:@bh_events) || []
+        battle.instance_variable_set(:@bh_events, [])
+        resolve(battle, events) if completed && !events.empty?
+      end
+    end
+  end
+
+  def self.record(battler)
+    battle = battler.battle
+    return if battle.instance_variable_get(:@bh_resolving)
+
+    events = battle.instance_variable_get(:@bh_events) || []
+    events << battler
+    battle.instance_variable_set(:@bh_events, events)
+  end
+
+  def self.resolve(battle, events)
+    return if battle.instance_variable_get(:@bh_resolving)
+
+    battle.instance_variable_set(:@bh_resolving, true)
+    begin
+      events.each do |gainer|
+        next if gainer.fainted?
+
+        battle.allOtherSideBattlers(gainer.index).each do |b|
+          next if !active?(b)
+          next if !b.pbCanRaiseStatStage?(:ATTACK, b)
+
+          # This method handles its own ability splash.
+          b.pbRaiseStatStageByAbility(:ATTACK, 1, b)
+        end
+      end
+    ensure
+      battle.instance_variable_set(:@bh_resolving, false)
+    end
+  end
+
+  module StatChanges
+    [:pbRaiseStatStage, :pbRaiseStatStageByCause,
+     :pbLowerStatStage, :pbLowerStatStageByCause].each do |name|
+      define_method(name) do |*args, &block|
+        BraveHeart.with_change(self) { super(*args, &block) }
+      end
+    end
+
+    def pbRaiseStatStageBasic(stat, increment, ignoreContrary = false)
+      BraveHeart.with_change(self) do
+        before = stages[stat]
+        result = super
+
+        BraveHeart.record(self) if stages[stat] > before
+        result
+      end
+    end
+  end
+
+  # Positive cost means the opposing side gains an advantage.
+  def self.ai_cost(gainer)
+    gainer = real(gainer)
+    return 0 if !gainer
+
+    battle = gainer.battle
+
+    return battle.allOtherSideBattlers(gainer.index).sum do |b|
+      next 0 if !active?(b)
+      next 0 if !b.pbCanRaiseStatStage?(:ATTACK, b)
+
+      delta = 1
+      unless battle.moldBreaker
+        delta = -1 if b.hasActiveAbility?(:CONTRARY)
+        delta *= 2 if b.hasActiveAbility?(:SIMPLE)
+      end
+
+      limit = Battle::Battler::STAT_STAGE_MAXIMUM
+      old = b.stages[:ATTACK]
+      delta = (old + delta).clamp(-limit, limit) - old
+
+      physical = b.moves.any? do |m|
+        m && m.damagingMove? && m.physicalMove? &&
+          ![
+            "UseTargetAttackInsteadOfUserAttack",
+            "UseUserDefenseInsteadOfUserAttack"
+          ].include?(m.function_code)
+      end
+
+      next delta * (physical ? 12 : 4)
+    end
+  end
+
+  # Native AI: account for each allied stat increase being evaluated.
+  module NativeAI
+    def get_target_stat_raise_score_one(score, target, stat, increment,
+                                       desire_mult = 1)
+      value = super
+      return value if !value.is_a?(Numeric)
+      return value if value <= Battle::AI::MOVE_USELESS_SCORE
+
+      gainer = BraveHeart.real(target)
+      return value if gainer.opposes?(BraveHeart.real(@user))
+
+      chance = @move.damagingMove? ?
+        @move.move.addlEffect.to_f / 100 : 1.0
+      chance = chance.clamp(0.0, 1.0)
+
+      return value - (BraveHeart.ai_cost(gainer) * chance).round
+    end
+  end
+
+  # Advanced AI: penalize recognized self-setup moves.
+  module AdvancedAIHook
+    def score_setup_value(move, user, target, skill,
+                          status_multiplier = 1.0)
+      value = super
+      return value if skill < 55 || !move || !user
+
+      source = BraveHeart.real(user)
+      native = move.respond_to?(:move) ? move.move : move
+
+      unless native.is_a?(Battle::Move)
+        native = Battle::Move.from_pokemon_move(
+          @battle, Pokemon::Move.new(native.id)
+        )
+      end
+
+      return value unless AdvancedAI.setup_move?(move.id)
+      return value unless native.respond_to?(:statUp)
+
+      count = native.statUp.each_slice(2).count do |stat, amount|
+        amount > 0 &&
+          source.pbCanRaiseStatStage?(stat, source) &&
+          !(!@battle.moldBreaker &&
+            source.hasActiveAbility?(:CONTRARY))
+      end
+
+      return value - BraveHeart.ai_cost(source) * count
+    end
+  end
+
+  # Install after all plugins have finished defining aliases.
+  def self.install!
+    return if @installed
+
+    Battle::Battler.prepend(StatChanges)
+    Battle::AI.prepend(NativeAI)
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:score_setup_value)
+      Battle::AI.prepend(AdvancedAIHook)
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      BraveHeart.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:BRAVEHEART)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :BRAVEHEART
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  BraveHeart::BattleConstruction
+)
+  Battle.singleton_class.prepend(BraveHeart::BattleConstruction)
+end
+
+#===============================================================================
+# NIGHTSTALKER
+# Dark-type moves gain +1 priority while above half HP.
+#===============================================================================
+module Nightstalker
+  def self.boost?(user, move)
+    user = user.battler if user.respond_to?(:battler)
+    move = move.move if move.respond_to?(:move)
+
+    return false if !user || !move || user.fainted?
+    return false if user.hp * 2 <= user.totalhp
+    return false if move.type != :DARK
+
+    if user.respond_to?(:hasActiveAbility?)
+      return user.hasActiveAbility?(:NIGHTSTALKER)
+    end
+
+    return user.ability_id == :NIGHTSTALKER
+  end
+
+  # Advanced AI also has a separate priority utility.
+  module AdvancedPriority
+    def effective_priority(user, move, battle = nil)
+      value = super
+      return Nightstalker.boost?(user, move) ? value + 1 : value
+    end
+  end
+
+  def self.install!
+    return if @installed
+
+    if defined?(AdvancedAI::Utilities)
+      AdvancedAI::Utilities.singleton_class.prepend(
+        AdvancedPriority
+      )
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      Nightstalker.install!
+      super(*args, &block)
+    end
+  end
+end
+
+# Actual battle, native AI and Advanced AI PriorityTiers.
+Battle::AbilityEffects::PriorityChange.add(:NIGHTSTALKER,
+  proc { |ability, battler, move, priority|
+    next priority + (
+      Nightstalker.boost?(battler, move) ? 1 : 0
+    )
+  }
+)
+
+# Native AI ability evaluation.
+Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[7].include?(:NIGHTSTALKER)
+  Battle::AI::BASE_ABILITY_RATINGS[7] << :NIGHTSTALKER
+end
+
+Battle::AI::Handlers::AbilityRanking.add(:NIGHTSTALKER,
+  proc { |ability, score, battler, ai|
+    next 0 if !battler.check_for_move { |move| move.type == :DARK }
+    next battler.hp * 2 > battler.totalhp ? 8 : 4
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  Nightstalker::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    Nightstalker::BattleConstruction
+  )
+end
+
+#===============================================================================
+# CHEAP TACTICS
+# Use a real Scratch upon entry without consuming the regular action.
+#===============================================================================
+module CheapTactics
+  MOVE = :SCRATCH
+
+  TURN_VARS = [
+    :@lastRoundMoved, :@currentMove, :@lastRegularMoveUsed,
+    :@lastRegularMoveTarget, :@lastMoveFailed, :@powerMoveIndex,
+    :@lastMoveUsedIsZMove, :@turnCount
+  ].freeze
+
+  TURN_EFFECTS = [
+    :TwoTurnAttack, :Outrage, :Rollout, :Uproar, :Bide,
+    :FuryCutter, :ProtectRate, :Metronome, :ChoiceBand,
+    :Truant, :ParentalBond, :Prankster
+  ].freeze
+
+  def self.targets(user, battle)
+    return battle.allOtherSideBattlers(user.index).select do |b|
+      !b.fainted? && b.near?(user)
+    end
+  end
+
+  # Only attached to the temporary Scratch object.
+  module MoveHook
+    def pbChangeUsageCounters(user, specialUsage)
+      # Preserve regular move chains and Fusion flags.
+    end
+  end
+
+  module BattlerHook
+    def cheap_tactics_virtual?
+      return @cheap_tactics_owner &&
+             @cheap_tactics_owner.equal?(pokemon)
+    end
+
+    def pbBeginTurn(choice)
+      return if @cheap_tactics_owner
+      super
+    end
+
+    def pbEndTurn(choice)
+      return if @cheap_tactics_owner
+      super
+    end
+
+    def pbCancelMoves(*args)
+      return if @cheap_tactics_owner
+      super
+    end
+
+    def usingMultiTurnAttack?
+      return false if cheap_tactics_virtual?
+      super
+    end
+
+    def pbObedienceCheck?(choice)
+      return true if cheap_tactics_virtual?
+      super
+    end
+
+    # Apply normal move restrictions.
+    def pbCanChooseMove?(move, commandPhase,
+                         showMessages = true, specialUsage = false)
+      if cheap_tactics_virtual? && [:SCRATCH, :ASTONISH].include?(move.id)
+        specialUsage = false
+      end
+
+      super(move, commandPhase, showMessages, specialUsage)
+    end
+
+    def pbTryUseMove(choice, move, specialUsage, skipAccuracyCheck)
+      unless cheap_tactics_virtual? && move.id == CheapTactics::MOVE
+        return super
+      end
+
+      original      = pokemon
+      old_status    = status
+      old_count     = statusCount
+      old_confusion = effects[PBEffects::Confusion]
+      old_truant    = effects[PBEffects::Truant]
+
+      begin
+        # Run status checks without advancing turn-based counters.
+        self.statusCount += 1 if old_status == :SLEEP
+        effects[PBEffects::Confusion] += 1 if old_confusion > 0
+
+        return super(choice, move, specialUsage, false)
+      ensure
+        if pokemon.equal?(original) && !fainted?
+          if old_status == :SLEEP && status == :SLEEP
+            self.statusCount = old_count
+          end
+
+          if old_confusion > 0 && effects[PBEffects::Confusion] > 0
+            effects[PBEffects::Confusion] = old_confusion
+          end
+
+          effects[PBEffects::Truant] = old_truant
+        end
+      end
+    end
+
+    # Called moves normally skip accuracy; this Scratch must not.
+    def pbSuccessCheckPerHit(move, user, target, skipAccuracyCheck)
+      if cheap_tactics_virtual? && move.id == CheapTactics::MOVE
+        skipAccuracyCheck = false
+      end
+
+      super(move, user, target, skipAccuracyCheck)
+    end
+  end
+
+  def self.trigger(user, battle, move_id = MOVE, ability_id = :CHEAPTACTICS)
+    return if user.fainted? || battle.decision != 0
+    return if !user.hasActiveAbility?(ability_id)
+    return if user.cheap_tactics_virtual?
+
+    foes = targets(user, battle)
+    return if foes.empty?
+
+    target = foes[battle.pbRandom(foes.length)]
+
+    original   = user.pokemon
+    old_owner  = user.instance_variable_get(:@cheap_tactics_owner)
+    old_choice = battle.choices[user.index]&.dup
+    old_mold   = battle.moldBreaker
+    old_names  = [$aamName, $aamName2]
+
+    saved_vars = TURN_VARS.map do |name|
+      [
+        name,
+        user.instance_variable_defined?(name),
+        user.instance_variable_get(name)
+      ]
+    end
+
+    saved_effects = TURN_EFFECTS.filter_map do |name|
+      next if !PBEffects.const_defined?(name)
+
+      key = PBEffects.const_get(name)
+      [key, user.effects[key]]
+    end
+
+    begin
+      user.instance_variable_set(:@cheap_tactics_owner, original)
+
+      battle.pbShowAbilitySplash(user)
+      battle.pbHideAbilitySplash(user)
+
+      move = Battle::Move.from_pokemon_move(
+        battle, Pokemon::Move.new(move_id)
+      )
+      move.pp = -1
+      move.singleton_class.prepend(MoveHook)
+
+      # Needed for Psychic Terrain and other priority protections.
+      user.effects[PBEffects::Prankster] = false
+      priority = move.pbPriority(user)
+
+      if user.abilityActive?
+        priority = Battle::AbilityEffects.triggerPriorityChange(
+          user.ability, user, move, priority
+        )
+      end
+
+      choice = [:UseMove, -1, move, target.index, priority]
+      battle.choices[user.index] = choice
+
+      user.pbUseMove(choice, true)
+    ensure
+      # Never restore the old occupant's action after a forced switch/KO.
+      if user.pokemon.equal?(original) && !user.fainted?
+        saved_vars.each do |name, existed, value|
+          if existed
+            user.instance_variable_set(name, value)
+          elsif user.instance_variable_defined?(name)
+            user.remove_instance_variable(name)
+          end
+        end
+
+        saved_effects.each do |key, value|
+          user.effects[key] = value
+        end
+
+        battle.choices[user.index] = old_choice
+      end
+
+      user.instance_variable_set(:@cheap_tactics_owner, old_owner)
+      battle.moldBreaker = old_mold
+      $aamName, $aamName2 = old_names
+    end
+  end
+
+  # Advanced AI: value the entry attack when comparing switch candidates.
+  module SwitchAI
+    def evaluate_switch_candidate_detailed(pkmn, current_user, skill)
+      value = super
+      return value if !value.is_a?(Numeric) || !pkmn || skill < 55
+
+      probe = switch_entry_hp_preview(
+        pkmn, get_battler_index(current_user)
+      )
+      return value if probe.fainted?
+
+      move_ids = []
+      move_ids << :SCRATCH if probe.hasActiveAbility?(:CHEAPTACTICS)
+      move_ids << :ASTONISH if probe.hasActiveAbility?(:JUMPSCARE)
+      return value if move_ids.empty?
+      return value if [:SLEEP, :FROZEN].include?(probe.status)
+
+      preview = probe.battle
+      foes = CheapTactics.targets(probe, preview)
+      return value if foes.empty?
+
+      expected = move_ids.sum do |move_id|
+        move = Battle::Move.from_pokemon_move(
+          preview, Pokemon::Move.new(move_id)
+        )
+
+        foes.sum do |foe|
+          next 0.0 if AdvancedAI::Utilities.counter_priority_blocked?(
+            preview, move, probe, foe
+          )
+
+          damage = AdvancedAI::CombatUtilities.estimate_damage(
+            probe, move, foe
+          )
+          next 0.0 if damage <= 0
+
+          gain = 30.0 * [
+            damage.to_f / [foe.hp, 1].max, 1.0
+          ].min
+          gain += 10 if damage >= foe.hp
+
+          if move.pbContactMove?(probe) &&
+             probe.takesIndirectDamage? &&
+             !probe.hasActiveItem?(:PROTECTIVEPADS)
+            recoil = 0
+
+            if foe.hasActiveItem?(:ROCKYHELMET)
+              recoil += [probe.totalhp / 6, 1].max
+            end
+
+            if foe.hasActiveAbility?([:ROUGHSKIN, :IRONBARBS])
+              recoil += [probe.totalhp / 8, 1].max
+            end
+
+            gain -= 30.0 * recoil / [probe.hp, 1].max
+            gain -= 20 if recoil >= probe.hp
+          end
+
+          gain
+        end / foes.length
+      end
+
+      expected *= 0.75 if probe.status == :PARALYSIS
+      return value + expected.round
+    end
+  end
+
+  # Install after all plugin aliases, including MAG, have loaded.
+  def self.install!
+    return if @installed
+
+    Battle::Battler.prepend(BattlerHook)
+
+    if defined?(AdvancedAI::CustomContent::OFFENSIVE_ABILITIES)
+      AdvancedAI::CustomContent::OFFENSIVE_ABILITIES[:CHEAPTACTICS] = 1.0
+    end
+
+    if Battle::AI.method_defined?(:evaluate_switch_candidate_detailed) &&
+       Battle::AI.method_defined?(:switch_entry_hp_preview)
+      Battle::AI.prepend(SwitchAI)
+    end
+
+    @installed = true
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      CheapTactics.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AbilityEffects::OnSwitchIn.add(:CHEAPTACTICS,
+  proc { |ability, battler, battle, switch_in|
+    CheapTactics.trigger(battler, battle)
+  }
+)
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:CHEAPTACTICS)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :CHEAPTACTICS
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  CheapTactics::BattleConstruction
+)
+  Battle.singleton_class.prepend(CheapTactics::BattleConstruction)
+end
+
+#===============================================================================
+# JUMPSCARE
+# Shares Cheap Tactics' virtual move pipeline.
+#===============================================================================
+Battle::AbilityEffects::OnSwitchIn.add(:JUMPSCARE,
+  proc { |ability, battler, battle, switch_in|
+    CheapTactics.trigger(battler, battle, :ASTONISH, :JUMPSCARE)
+  }
+)
+
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+unless Battle::AI::BASE_ABILITY_RATINGS[6].include?(:JUMPSCARE)
+  Battle::AI::BASE_ABILITY_RATINGS[6] << :JUMPSCARE
 end

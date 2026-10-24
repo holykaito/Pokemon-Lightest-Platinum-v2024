@@ -93,7 +93,7 @@ Description = Creates Trick Room when entering battle.
 #-------------------------------
 [CHARGERUSH] ####
 Name = Charge Rush
-Description = Boosts Attack and Speed by 20% on its first turn.
+Description = Boosts Attack and Speed on its first turn.
 #-------------------------------
 [CHEAPTACTICS] ####
 Name = Cheap Tactics
@@ -162,6 +162,10 @@ Description = Super-effective moves hit true and crit more often.
 [FLORESCENCE] ###
 Name = Florescence
 Description = Gives Grass-type moves priority at high HP.
+#-------------------------------
+[FLUIDGUARD] ###
+Name = Fluid Guard
+Description = Takes less damage the faster it is than the attacker.
 #-------------------------------
 [FORTITUDE] ###
 Name = Fortitude
@@ -259,6 +263,10 @@ Description = Inhales wind-based moves to expand the body & boost defense.
 Name = Intoxicate
 Description = Normal-moves becomes Poison-moves and be boosted.
 #-------------------------------
+[JUMPSCARE] ###
+Name = Jumpscare
+Description = Uses Astonish upon entry.
+#-------------------------------
 [KAMENRIDER] ###
 Name = Kamen Rider
 Description = Powers up attacks after an ally falls.
@@ -333,7 +341,7 @@ Description = Gives powder moves +1 priority.
 #-------------------------------
 [PRETENTIOUS] ###
 Name = Pretentious
-Description = Raises its critical-hit ratio whenever it knocks out a target.
+Description = Knockouts raise its critical-hit ratio.
 #-------------------------------
 [PYROMANCY] ###
 Name = Pyromancy
@@ -346,6 +354,10 @@ Description = May survive with 1 HP and attacks faster in a pinch.
 [NINJASTYLE]
 Name = Ninja Style
 Description = Sets extra Spikes or Toxic Spikes layers.
+#-------------------------------
+[NIGHTSTALKER] ###
+Name = Nightstalker
+Description = Gives Dark-type moves priority while above half HP.
 #-------------------------------
 [NIMBLEFIST]
 Name = Nimble Fist
@@ -441,7 +453,7 @@ Description = +1 all stats on KO
 #-------------------------------
 [SPEEDFORCE] ###
 Name = Speed Force
-Description = Use an additional Speed ​​to calculate damage.
+Description = Speed adds damage to contact moves.
 #-------------------------------
 [SPELLCASTER] ###
 Name = Spellcaster

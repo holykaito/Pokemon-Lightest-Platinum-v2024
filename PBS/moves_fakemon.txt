@@ -825,3 +825,39 @@ Target = User
 FunctionCode = RaiseUserMainStats1IfFoeBelowHalf
 Flags = CanSnatch
 Description = Raises all five main stats if a foe has less than half its HP.
+#-------------------------------
+[STANDTOGETHER]
+Name = Stand Together
+Type = FIGHTING
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+FunctionCode = RaiseUserDef2AlliesAtk1
+Flags = CanSnatch
+Description = Raises the user's Defense by two stages and allies' Attack by one.
+#-------------------------------
+[CARNAGE]
+Name = Carnage
+Type = DRAGON
+Category = Physical
+Power = 120
+Accuracy = 100
+TotalPP = 10
+Target = AllNearOthers
+FunctionCode = RecoilHalfOfDamageDealt
+Flags = CanProtect
+Description = Strikes all nearby Pokémon. The user takes half the damage dealt as recoil.
+#-------------------------------
+[CHAOSWHEEL]
+Name = Chaos Wheel
+Type = NORMAL
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = PoisonDrenchOrSeedTarget
+Flags = CanProtect
+EffectChance = 45
+Description = Has a 15% chance each to poison, drench or seed the target.

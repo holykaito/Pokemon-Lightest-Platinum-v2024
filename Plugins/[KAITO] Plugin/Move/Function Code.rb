@@ -1132,3 +1132,69 @@ class Battle::Move::RaiseUserMainStats1IfFoeBelowHalf <
     return super
   end
 end
+
+#===============================================================================
+# Stand Together
+# Raises user's Defense by 3 and active allies' Attack by 1.
+#===============================================================================
+class Battle::Move::RaiseUserDef3AlliesAtk1 < Battle::Move
+  def canSnatch?
+    return true
+  end
+
+  def pbMoveFailed?(user, targets)
+    can_raise = user.pbCanRaiseStatStage?(:DEFENSE, user, self)
+
+    user.allAllies.each do |ally|
+      next if ally.fainted?
+      if ally.pbCanRaiseStatStage?(:ATTACK, user, self)
+        can_raise = true
+      end
+    end
+
+    if !can_raise
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    return false
+  end
+
+  def pbEffectGeneral(user)
+    if user.pbCanRaiseStatStage?(:DEFENSE, user, self)
+      user.pbRaiseStatStage(:DEFENSE, 2, user)
+    end
+
+    user.allAllies.each do |ally|
+      next if ally.fainted?
+      next if !ally.pbCanRaiseStatStage?(:ATTACK, user, self)
+      ally.pbRaiseStatStage(:ATTACK, 1, user)
+    end
+  end
+end
+
+#===============================================================================
+# Chaos Wheel: randomly poisons, drenches or seeds the target.
+# PBS EffectChance handles the initial 45% activation chance.
+#===============================================================================
+class Battle::Move::PoisonDrenchOrSeedTarget < Battle::Move
+  def pbAdditionalEffect(user, target)
+    return if target.fainted? || target.damageState.substitute
+
+    case @battle.pbRandom(3)
+    when 0
+      if target.pbCanPoison?(user, false, self)
+        target.pbPoison(user)
+      end
+    when 1
+      if target.pbCanDrenched?(user, false, self)
+        target.pbDrenched(user)
+      end
+    when 2
+      return if target.pbHasType?(:GRASS)
+      return if target.effects[PBEffects::LeechSeed] >= 0
+
+      target.effects[PBEffects::LeechSeed] = user.index
+      @battle.pbDisplay(_INTL("{1} was seeded!", target.pbThis))
+    end
+  end
+end
