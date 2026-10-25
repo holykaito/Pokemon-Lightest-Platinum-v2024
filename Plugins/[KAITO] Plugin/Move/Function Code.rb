@@ -1004,27 +1004,27 @@ class Battle::Move::BadPoisonTargetFasterIgnoreTargetAbility <
 end
 
 #===============================================================================
-# Accelerated poison gains one extra Toxic counter before the normal increment.
-# The original method still handles damage, abilities, items and fainting.
+# Severe Poison: accelerate Toxic without prepending the Battle class.
 #===============================================================================
-module KaitoSeverePoisonEndOfRound
-  def pbEORStatusProblemDamage(priority)
-    priority.each do |battler|
-      next if battler.fainted?
-      next if battler.status != :POISON
-      next if battler.statusCount != 2
+class Battle
+  unless method_defined?(:kaito_severe_poison_v2_eor_status_damage)
+    alias_method :kaito_severe_poison_v2_eor_status_damage,
+                 :pbEORStatusProblemDamage
 
-      battler.effects[PBEffects::Toxic] = [
-        battler.effects[PBEffects::Toxic] + 1, 16
-      ].min
+    def pbEORStatusProblemDamage(priority)
+      priority.each do |battler|
+        next if battler.fainted?
+        next if battler.status != :POISON
+        next if battler.statusCount != 2
+
+        battler.effects[PBEffects::Toxic] = [
+          battler.effects[PBEffects::Toxic] + 1, 16
+        ].min
+      end
+
+      return kaito_severe_poison_v2_eor_status_damage(priority)
     end
-
-    super
   end
-end
-
-unless Battle.ancestors.include?(KaitoSeverePoisonEndOfRound)
-  Battle.prepend(KaitoSeverePoisonEndOfRound)
 end
 
 #===============================================================================
@@ -1074,10 +1074,6 @@ module KaitoNeurotoxinBattler
   end
 end
 
-unless Battle::Battler.ancestors.include?(KaitoNeurotoxinBattler)
-  Battle::Battler.prepend(KaitoNeurotoxinBattler)
-end
-
 #===============================================================================
 # Count down at the end of each round.
 #===============================================================================
@@ -1098,8 +1094,35 @@ module KaitoNeurotoxinBattle
   end
 end
 
-unless Battle.ancestors.include?(KaitoNeurotoxinBattle)
-  Battle.prepend(KaitoNeurotoxinBattle)
+#===============================================================================
+# Neurotoxin: install hooks after every plugin has finished loading.
+# Avoids prepend/alias recursion with Community Abilities.
+#===============================================================================
+module KaitoNeurotoxinLoadFix
+  def self.install!
+    unless Battle::Battler.ancestors.include?(KaitoNeurotoxinBattler)
+      Battle::Battler.prepend(KaitoNeurotoxinBattler)
+    end
+
+    unless Battle.ancestors.include?(KaitoNeurotoxinBattle)
+      Battle.prepend(KaitoNeurotoxinBattle)
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoNeurotoxinLoadFix.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoNeurotoxinLoadFix::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoNeurotoxinLoadFix::BattleConstruction
+  )
 end
 
 #===============================================================================
@@ -1135,9 +1158,10 @@ end
 
 #===============================================================================
 # Stand Together
-# Raises user's Defense by 3 and active allies' Attack by 1.
+# Singles: user's Defense +2.
+# Other formats: user's Defense +3, active allies' Attack +1.
 #===============================================================================
-class Battle::Move::RaiseUserDef3AlliesAtk1 < Battle::Move
+class Battle::Move::RaiseUserDef2AlliesAtk1 < Battle::Move
   def canSnatch?
     return true
   end
@@ -1145,10 +1169,13 @@ class Battle::Move::RaiseUserDef3AlliesAtk1 < Battle::Move
   def pbMoveFailed?(user, targets)
     can_raise = user.pbCanRaiseStatStage?(:DEFENSE, user, self)
 
-    user.allAllies.each do |ally|
-      next if ally.fainted?
-      if ally.pbCanRaiseStatStage?(:ATTACK, user, self)
-        can_raise = true
+    if !@battle.singleBattle?
+      user.allAllies.each do |ally|
+        next if ally.fainted?
+        if ally.pbCanRaiseStatStage?(:ATTACK, user, self)
+          can_raise = true
+          break
+        end
       end
     end
 
@@ -1160,9 +1187,13 @@ class Battle::Move::RaiseUserDef3AlliesAtk1 < Battle::Move
   end
 
   def pbEffectGeneral(user)
+    defense_boost = 2
+
     if user.pbCanRaiseStatStage?(:DEFENSE, user, self)
-      user.pbRaiseStatStage(:DEFENSE, 2, user)
+      user.pbRaiseStatStage(:DEFENSE, defense_boost, user)
     end
+
+    return if @battle.singleBattle?
 
     user.allAllies.each do |ally|
       next if ally.fainted?
@@ -1260,3 +1291,29 @@ Battle::AI::Handlers::MoveEffectAgainstTargetScore.copy(
   "TwoTurnAttackFlinchTarget",
   "TwoTurnHideThenAttackFlinchTarget"
 )
+
+#===============================================================================
+# Ready or Not - Keep the user hidden between turns.
+# Pokemon Essentials v21.1 + DBK Animated Pokemon System
+#===============================================================================
+class Battle::Move::TwoTurnHideThenAttackFlinchTarget <
+      Battle::Move::TwoTurnAttackFlinchTarget
+
+  def pbShowAnimation(id, user, targets, hitNum = 0, showAnimation = true)
+    # Use the actual charging state so Power Herb can skip the hiding turn.
+    hiding = @chargingTurn && !@damagingTurn
+
+    # Play the existing animation first.
+    result = super
+
+    # DBK manages both the Pokemon sprite and its shadow.
+    # 1 = completely hidden; 0 = visible again.
+    @battle.scene.pbChangePokemon(
+      user,
+      user.visiblePokemon,
+      hiding ? 1 : 0
+    )
+
+    return result
+  end
+end

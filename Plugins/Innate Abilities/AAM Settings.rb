@@ -81,8 +81,11 @@ module Settings
   [:GYARADOS, 1, 50, 70],
   [:GYARADOS_1, 1, 50, 70],
   [:JUMPLUFF, 1, 1, 50],
+  [:LINOONE, 1, 1, 55],
+  [:OBSTAGOON, 1, 1, 60],
   [:POOCHYENA, 1, 15],
   [:MIGHTYENA, 1, 30, 50],
+  [:PELIPPER, 1, 1, 50],
   [:KIRLIA, 1, 25],
   [:GARDEVOIR, 1, 25, 60],
   [:GARDEVOIR_1, 1, 25, 60],
@@ -100,6 +103,9 @@ module Settings
   [:MOTHIM, 1, 1, 40],
   [:CROAGUNK, 1, 25],
   [:TOXICROAK, 1, 25, 60],
+  [:UNFEZANT, 1, 1, 55],
+  [:PATRAT, 1, 15],
+  [:WATCHOG, 1, 15, 55],
   [:LIEPARD, 1, 35, 60],
   [1, 1, 1]
   ]

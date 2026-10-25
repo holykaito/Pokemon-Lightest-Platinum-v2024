@@ -613,6 +613,15 @@ Innates = IRONFIST,SCRAPPY,ANGERPOINT
 [YVELTAL]
 Innates = IRONFIST,SCRAPPY,ANGERPOINT
 #----------------------------------------
+[LYCANROC]
+Innates = KEENEYE,SANDRUSH,RECKLESS
+#----------------------------------------
+[LYCANROC_1]
+Innates = KEENEYE,NOCTURNAL,WILDTANTRUM
+#----------------------------------------
+[LYCANROC_2]
+Innates = KEENEYE,OWNTEMPO,SHATTERMARK
+#----------------------------------------
 [ORANGURU]
 Innates = INNERFOCUS
 #----------------------------------------

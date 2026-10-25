@@ -365,7 +365,7 @@ Description = Punching moves may gain priority.
 #-------------------------------
 [NOCTURNAL] ###
 Name = Nocturnal
-Description = Reduces damage from Fairy-type and Dark-type moves.
+Description = Dark moves gain STAB; faster in Gloom Moonlight.
 #-------------------------------
 [NUMBINGPOISON]
 Name = Numbing Poison
@@ -447,6 +447,10 @@ Description = Grass-type moves boost offenses while free of status.
 Name = Self-Sufficient
 Description = Restores HP each turn, healing more below half HP.
 #-------------------------------
+[SHATTERMARK] ###
+Name = Shatter Mark
+Description = Contact and Rock moves may inflict Splinter.
+#-------------------------------
 [SHOWDOWNMODE] ###
 Name = Showdown Mode
 Description = Enhance stats when in danger, but gradually weaken
@@ -518,6 +522,10 @@ Description = Clears entry hazards from its side when switches in.
 [TRAUMATICFIST] ###
 Name = Traumatic Fist
 Description = When hits with a punching move, lowers one of the target's stats.
+#-------------------------------
+[UMBRALGRIT] ###
+Name = Umbral Grit 
+Description = Takes less damage from non-Steel moves during Gloom Moonlight.
 #-------------------------------
 [VAMPIRIC] ###
 Name = Vampiric

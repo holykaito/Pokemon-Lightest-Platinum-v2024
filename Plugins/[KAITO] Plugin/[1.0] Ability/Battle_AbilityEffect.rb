@@ -915,9 +915,8 @@ module KaitoInnateSpeedFix
 
       battler.abilityMutationList.each do |id|
         $aamName = GameData::Ability.get(id).name
-        mult = trigger(SpeedCalc, id, battler, mult, ret: mult)
+        mult = trigger(Battle::AbilityEffects::SpeedCalc, id, battler, mult, ret: mult)
       end
-
       return mult
     end
   end
@@ -12884,6 +12883,109 @@ Battle::AI::Handlers::AbilityRanking.add(:NOCTURNAL,
 )
 
 #===============================================================================
+# NOCTURNAL - Advanced AI compatibility patch
+# Requires the existing NocturnalRework code.
+#===============================================================================
+module KaitoNocturnalAIPatch
+  module Scorer
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0
+      return value if !move.damagingMove?
+      return value if !NocturnalRework.has_ability?(user, :NOCTURNAL)
+
+      # Fixed damage and OHKO moves do not receive STAB.
+      native = move.respond_to?(:move) ? move.move : move
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+
+      function = move.function_code.to_s
+      return value if function.start_with?(
+        "FixedDamage", "OHKO", "Counter"
+      )
+      return value if [
+        "LowerTargetHPToUserHP",
+        "UserFaintsFixedDamageUserHP",
+        "MultiTurnAttackBideThenReturnDoubleDamage"
+      ].include?(function)
+
+      # These moves already use the shared estimator in Pollination.
+      # Its existing Nocturnal hook supplies the bonus.
+      if @battle && @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+      return value if type != :DARK
+
+      # STAB already included by Advanced AI's separate calculator.
+      existing = user.pbHasType?(type) ? 1.5 : 1.0
+      if user.hasActiveAbility?(:PROTEAN) ||
+         user.hasActiveAbility?(:LIBERO)
+        existing = [existing, 1.5].max
+      end
+      if user.pbHasType?(type) &&
+         user.hasActiveAbility?(:ADAPTABILITY)
+        existing = 2.0
+      end
+
+      # Match Nocturnal's intended STAB, including Terastallization.
+      desired = [
+        existing,
+        NocturnalRework.existing_stab(user, type),
+        NocturnalRework.granted_stab(user)
+      ].max
+
+      return [(value * desired / existing).round, 1].max
+    end
+  end
+
+  def self.install!
+    return if !defined?(NocturnalRework)
+    return if !defined?(AdvancedAI::CombatUtilities)
+    return if !Battle::AI.method_defined?(:calculate_rough_damage)
+
+    # Install the existing shared-estimator hook if its initial
+    # installation was skipped because of plugin load order.
+    if defined?(NocturnalReworkAdvancedAI) &&
+       AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      unless singleton.ancestors.include?(NocturnalReworkAdvancedAI)
+        singleton.prepend(NocturnalReworkAdvancedAI)
+      end
+    end
+
+    unless Battle::AI.ancestors.include?(KaitoNocturnalAIPatch::Scorer)
+      Battle::AI.prepend(KaitoNocturnalAIPatch::Scorer)
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoNocturnalAIPatch.install!
+      super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoNocturnalAIPatch::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoNocturnalAIPatch::BattleConstruction
+  )
+end
+
+#===============================================================================
 # SPARE SCALES
 #===============================================================================
 
@@ -15514,7 +15616,7 @@ module Refractive
       value = super
 
       if Refractive.active?(attacker) && Refractive.light?(move)
-        return value * 1.2
+        return value * 1.3
       end
 
       return value
@@ -15547,7 +15649,7 @@ module Refractive
       return value if native.is_a?(Battle::Move::FixedDamageMove)
       return value if native.function_code.start_with?("OHKO")
 
-      return [(value * 1.2).round, 1].max
+      return [(value * 1.3).round, 1].max
     end
   end
 
@@ -15562,7 +15664,7 @@ module Refractive
         next if !Refractive.active?(user)
         next if !Refractive.light?(move) || !move.damagingMove?
 
-        mults[:power_multiplier] *= 1.2
+        mults[:power_multiplier] *= 1.3
       }
     )
 
@@ -15749,5 +15851,649 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(
     Paranoid::BattleConstruction
+  )
+end
+
+#===============================================================================
+# Sand Rush - Sandstorm or Sandy Terrain
+#===============================================================================
+Battle::AbilityEffects::SpeedCalc.add(:SANDRUSH,
+  proc { |ability, battler, mult|
+    battle = battler.instance_variable_get(:@battle)
+    sandy = battle && battle.field.terrain == :Sandy
+
+    if battler.effectiveWeather == :Sandstorm || sandy
+      next mult * 2.0
+    end
+
+    next mult
+  }
+)
+
+#===============================================================================
+# Sand Force - Sandstorm or Sandy Terrain
+#===============================================================================
+module KaitoSandForce
+  TYPES = [:GROUND, :ROCK, :STEEL].freeze
+
+  def self.active?(user, type)
+    user = user.battler if user.respond_to?(:battler)
+    return false if !user || !TYPES.include?(type)
+    return false if !user.hasActiveAbility?(:SANDFORCE)
+
+    battle = user.instance_variable_get(:@battle)
+    return user.effectiveWeather == :Sandstorm ||
+           (battle && battle.field.terrain == :Sandy)
+  end
+
+  # Advanced AI's shared damage estimator.
+  module CombatAI
+    def ability_damage_modifier(
+      attacker, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+      value *= 1.3 if KaitoSandForce.active?(attacker, type)
+      return value
+    end
+  end
+
+  # Advanced AI's separate move-scoring damage calculator.
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+
+      # Pollination delegates these moves to the shared estimator.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      native = move.respond_to?(:move) ? move.move : move
+      if defined?(ExtendedTerrains::Advanced)
+        native = ExtendedTerrains::Advanced.native_move(move, user)
+      end
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+
+      function = move.function_code.to_s
+      return value if function.start_with?("FixedDamage", "OHKO", "Counter")
+      return value if [
+        "LowerTargetHPToUserHP",
+        "UserFaintsFixedDamageUserHP",
+        "MultiTurnAttackBideThenReturnDoubleDamage"
+      ].include?(function)
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+      return value if !KaitoSandForce::TYPES.include?(type)
+
+      # The original calculator already adds Sand Force in Sandstorm.
+      existing = if user.hasActiveAbility?(:SANDFORCE) &&
+                    @battle.pbWeather == :Sandstorm
+                   1.3
+                 else
+                   1.0
+                 end
+      desired = KaitoSandForce.active?(user, type) ? 1.3 : 1.0
+
+      return [(value * desired / existing).round, 1].max
+    end
+  end
+
+  def self.install!
+    Battle::AbilityEffects::DamageCalcFromUser.add(:SANDFORCE,
+      proc { |ability, user, target, move, mults, power, type|
+        if KaitoSandForce.active?(user, type)
+          mults[:power_multiplier] *= 1.3
+        end
+      }
+    )
+
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      unless singleton.ancestors.include?(KaitoSandForce::CombatAI)
+        singleton.prepend(KaitoSandForce::CombatAI)
+      end
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage) &&
+       !Battle::AI.ancestors.include?(KaitoSandForce::ScorerAI)
+      Battle::AI.prepend(KaitoSandForce::ScorerAI)
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoSandForce.install!
+      super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoSandForce::BattleConstruction
+)
+  Battle.singleton_class.prepend(KaitoSandForce::BattleConstruction)
+end
+
+#===============================================================================
+# Sand Veil - Sandstorm or Sandy Terrain
+#===============================================================================
+Battle::AbilityEffects::AccuracyCalcFromTarget.add(:SANDVEIL,
+  proc { |ability, mods, user, target, move, type|
+    battle = target.instance_variable_get(:@battle)
+    sandy = battle && battle.field.terrain == :Sandy
+
+    if target.effectiveWeather == :Sandstorm || sandy
+      mods[:evasion_multiplier] *= 1.25
+    end
+  }
+)
+
+#===============================================================================
+# Shatter Mark
+# Damaging hits have a 30% chance to inflict MAG's Splinter status.
+#===============================================================================
+Battle::AbilityEffects::OnDealingHit.add(:SHATTERMARK,
+  proc { |ability, user, target, move, battle|
+    next if !user.hasActiveAbility?(:SHATTERMARK)
+    next if !move.damagingMove?
+	next if !move.contactMove? && move.calcType != :ROCK
+    next if target.fainted?
+    next if target.damageState.substitute
+    next if target.damageState.calcDamage <= 0
+
+    # Like Poison Touch, Shield Dust blocks this ability's status effect.
+    next if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+    next if !target.pbCanSplinter?(user, false)
+    next if battle.pbRandom(100) >= 30
+
+    battle.pbShowAbilitySplash(user)
+    begin
+      message = nil
+      if !Battle::Scene::USE_ABILITY_SPLASH
+        message = _INTL(
+          "{1}'s {2} left {3} with splinters!",
+          user.pbThis, GameData::Ability.get(ability).name,
+          target.pbThis(true)
+        )
+      end
+      target.pbSplinter(user, message)
+    ensure
+      battle.pbHideAbilitySplash(user)
+    end
+  }
+)
+
+#===============================================================================
+# MAG Splinter - Halves Defense while afflicted
+#===============================================================================
+module KaitoSplinterFix
+  module BattlerStats
+    def defense
+      value = super
+      return value if status != :SPLINTER
+
+      # In Wonder Room, this getter returns Special Defense.
+      return value if @battle.field.effects[PBEffects::WonderRoom] > 0
+
+      return [value / 2, 1].max
+    end
+
+    def spdef
+      value = super
+      return value if status != :SPLINTER
+
+      # In Wonder Room, this getter returns Defense.
+      return value if @battle.field.effects[PBEffects::WonderRoom] <= 0
+
+      return [value / 2, 1].max
+    end
+  end
+
+  def self.install!
+    unless Battle::Battler.ancestors.include?(
+      KaitoSplinterFix::BattlerStats
+    )
+      Battle::Battler.prepend(KaitoSplinterFix::BattlerStats)
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoSplinterFix.install!
+      super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoSplinterFix::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoSplinterFix::BattleConstruction
+  )
+end
+
+#===============================================================================
+# Boulder Barrier
+# Blocking a move stores a boost for the next damaging Rock-type move.
+#===============================================================================
+module KaitoBoulderBarrier
+  TOKEN = :@kaito_boulder_move_token
+  STACK = :@kaito_boulder_move_frames
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.charged?(object)
+    battler = real(object)
+    return false if !battler || battler.fainted?
+    return battler.hasActiveAbility?(:BOULDERBARRIER) &&
+           battler.effects[PBEffects::BoulderBarrier]
+  end
+
+  # During an actual move, the token preserves the bonus across all hits.
+  # Outside move execution, AI reads the stored charge without consuming it.
+  def self.boosted?(object, move)
+    user = real(object)
+    return false if !user || user.fainted?
+    return false if !user.hasActiveAbility?(:BOULDERBARRIER)
+
+    native = move.respond_to?(:move) ? move.move : move
+    token = native.instance_variable_get(TOKEN)
+
+    return charged?(user) if token.nil?
+    return token.is_a?(Array) &&
+           token[0].equal?(user) &&
+           token[1].equal?(user.pokemon)
+  end
+
+  def self.fixed?(move, user)
+    native = move.respond_to?(:move) ? move.move : move
+    if defined?(ExtendedTerrains::Advanced)
+      native = ExtendedTerrains::Advanced.native_move(move, user)
+    end
+    return true if native.is_a?(Battle::Move::FixedDamageMove)
+
+    function = move.function_code.to_s
+    return true if function.start_with?("FixedDamage", "OHKO", "Counter")
+    return [
+      "LowerTargetHPToUserHP",
+      "UserFaintsFixedDamageUserHP",
+      "MultiTurnAttackBideThenReturnDoubleDamage"
+    ].include?(function)
+  end
+
+  def self.protect_bonus(move, object)
+    user = real(object)
+    return 0 if !user || user.fainted?
+    return 0 if !user.hasActiveAbility?(:BOULDERBARRIER)
+    return 0 if charged?(user)
+
+    function = move.function_code.to_s
+    return 0 if !function.start_with?("ProtectUser")
+    return 0 if function.start_with?("ProtectUserSide")
+
+    usable_rock = user.moves.any? do |m|
+      m && (m.pp > 0 || m.total_pp == 0) &&
+        m.damagingMove? && !fixed?(m, user) &&
+        m.pbCalcType(user) == :ROCK
+    end
+    return 0 if !usable_rock
+
+    battle = user.instance_variable_get(:@battle)
+    threat = battle.allBattlers.any? do |foe|
+      next false if foe.fainted? || !foe.opposes?(user)
+      next false if !foe.near?(user)
+
+      foe.moves.any? do |m|
+        m && (m.pp > 0 || m.total_pp == 0) &&
+          m.damagingMove? && m.canProtectAgainst? &&
+          !(foe.hasActiveAbility?(:UNSEENFIST) && m.contactMove?)
+      end
+    end
+    return 0 if !threat
+
+    rate = [user.effects[PBEffects::ProtectRate].to_i, 1].max
+    return rate >= 3 ? 0 : 10
+  end
+
+  module BattlerHook
+    def pbInitEffects(batonPass)
+      super
+      @effects[PBEffects::BoulderBarrier] = false
+    end
+
+    def pbSuccessCheckAgainstTarget(move, user, target, targets)
+      result = super
+
+      # Track protection of this target, not the attacker's global result.
+      # Unblocked attacks do not remove a stored charge.
+      if target.hasActiveAbility?(:BOULDERBARRIER) &&
+         target.damageState.protected
+        target.effects[PBEffects::BoulderBarrier] = true
+      end
+
+      return result
+    end
+
+    def pbUseMove(choice, specialUsage = false)
+      stack = @battle.instance_variable_get(KaitoBoulderBarrier::STACK)
+      if !stack
+        stack = []
+        @battle.instance_variable_set(KaitoBoulderBarrier::STACK, stack)
+      end
+
+      frame = []
+      stack.push(frame)
+      begin
+        super
+      ensure
+        # Restore tokens even if the move fails, switches a battler or errors.
+        frame.reverse_each do |move, previous|
+          move.instance_variable_set(KaitoBoulderBarrier::TOKEN, previous)
+        end
+        stack.pop
+      end
+    end
+
+    def pbChangeUser(choice, move, user)
+      actual_user = super
+
+      stack = @battle.instance_variable_get(KaitoBoulderBarrier::STACK)
+      frame = stack && stack.last
+      return actual_user if !frame
+
+      previous = move.instance_variable_get(KaitoBoulderBarrier::TOKEN)
+      frame.push([move, previous])
+
+      # Shadow any token belonging to an outer/nested use of this move.
+      move.instance_variable_set(KaitoBoulderBarrier::TOKEN, false)
+
+      return actual_user if !KaitoBoulderBarrier.charged?(actual_user)
+      return actual_user if !move.damagingMove?
+      return actual_user if move.calcType != :ROCK
+
+      # Keep the charge during the charging-only turn of a two-turn move.
+      if move.chargingTurnMove? &&
+         move.instance_variable_get(:@damagingTurn) == false
+        return actual_user
+      end
+
+      # Consume now, but preserve this use's bonus in its own token.
+      # A new charge earned during this move remains available afterwards.
+      actual_user.effects[PBEffects::BoulderBarrier] = false
+      move.instance_variable_set(
+        KaitoBoulderBarrier::TOKEN,
+        [actual_user, actual_user.pokemon]
+      )
+
+      return actual_user
+    end
+  end
+
+  # Advanced AI: shared damage estimator.
+  module CombatAI
+    def ability_damage_modifier(
+      attacker, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+      if type == :ROCK && KaitoBoulderBarrier.charged?(attacker)
+        value *= 1.5
+      end
+      return value
+    end
+  end
+
+  # Advanced AI: separate damage calculator and Protect scoring.
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+      return value if !KaitoBoulderBarrier.charged?(user)
+      return value if KaitoBoulderBarrier.fixed?(move, user)
+
+      # Avoid applying the bonus twice through terrain delegation.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+      return value if type != :ROCK
+
+      return [(value * 1.5).round, 1].max
+    end
+
+    def score_protect_utility(move, user, target)
+      value = super
+      return value if value < 0
+      return value + KaitoBoulderBarrier.protect_bonus(move, user)
+    end
+  end
+
+  # Native AI already estimates damage through the actual ability handler.
+  module NativeScoring
+    def apply_move_effect_score(function, score, move, user, ai, battle)
+      value = super
+      return value if value <= Battle::AI::MOVE_USELESS_SCORE
+      return value + KaitoBoulderBarrier.protect_bonus(move, user)
+    end
+  end
+
+  def self.install!
+    Battle::AbilityEffects::DamageCalcFromUser.add(:BOULDERBARRIER,
+      proc { |ability, user, target, move, mults, power, type|
+        if type == :ROCK &&
+           KaitoBoulderBarrier.boosted?(user, move)
+          mults[:attack_multiplier] *= 1.5
+        end
+      }
+    )
+
+    unless Battle::Battler.ancestors.include?(BattlerHook)
+      Battle::Battler.prepend(BattlerHook)
+    end
+
+    handlers = Battle::AI::Handlers.singleton_class
+    unless handlers.ancestors.include?(NativeScoring)
+      handlers.prepend(NativeScoring)
+    end
+
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      unless singleton.ancestors.include?(CombatAI)
+        singleton.prepend(CombatAI)
+      end
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage) &&
+       !Battle::AI.ancestors.include?(ScorerAI)
+      Battle::AI.prepend(ScorerAI)
+    end
+
+    if defined?(Battle::AI::CAL_BASE_ABILITY_RATINGS)
+      Battle::AI::CAL_BASE_ABILITY_RATINGS.each_value do |abilities|
+        abilities.delete(:BOULDERBARRIER)
+      end
+    end
+
+    Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+      abilities.delete(:BOULDERBARRIER)
+    end
+    Battle::AI::BASE_ABILITY_RATINGS[5] ||= []
+    Battle::AI::BASE_ABILITY_RATINGS[5] << :BOULDERBARRIER
+  end
+
+  # Install after plugin aliases have finished loading.
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoBoulderBarrier.install!
+      super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoBoulderBarrier::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoBoulderBarrier::BattleConstruction
+  )
+end
+
+#===============================================================================
+# Umbral Grit
+# Takes 1/3 less damage from non-Steel moves in Gloom Moonlight.
+#===============================================================================
+module KaitoUmbralGrit
+  WEATHER = :GloomMoonlight
+  MULTIPLIER = 2.0 / 3.0
+
+  def self.active?(object, type)
+    target = object.respond_to?(:battler) ? object.battler : object
+    return false if !target || target.fainted?
+    return false if type == :STEEL
+    return false if !target.hasActiveAbility?(:UMBRALGRIT)
+
+    return target.effectiveWeather == WEATHER
+  end
+
+  def self.ai_factor(user, target, move, type)
+    return 1.0 if !active?(target, type)
+    return 1.0 if AdvancedAI::Utilities.ignores_ability?(
+      user, move, target
+    )
+    return MULTIPLIER
+  end
+
+  def self.fixed?(move, user)
+    native = move.respond_to?(:move) ? move.move : move
+    if defined?(ExtendedTerrains::Advanced)
+      native = ExtendedTerrains::Advanced.native_move(move, user)
+    end
+    return true if native.is_a?(Battle::Move::FixedDamageMove)
+
+    function = move.function_code.to_s
+    return true if function.start_with?("FixedDamage", "OHKO", "Counter")
+    return [
+      "LowerTargetHPToUserHP",
+      "UserFaintsFixedDamageUserHP",
+      "MultiTurnAttackBideThenReturnDoubleDamage"
+    ].include?(function)
+  end
+
+  # Advanced AI's shared damage estimator.
+  module CombatAI
+    def ability_damage_modifier(
+      attacker, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+      return value * KaitoUmbralGrit.ai_factor(
+        attacker, target, move, type
+      )
+    end
+  end
+
+  # Advanced AI's separate damage calculator.
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+      return value if KaitoUmbralGrit.fixed?(move, user)
+
+      # These terrain calculations already use the shared estimator.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      factor = KaitoUmbralGrit.ai_factor(user, target, move, type)
+      return value if factor == 1.0
+      return [(value * factor).round, 1].max
+    end
+  end
+
+  def self.install!
+    Battle::AbilityEffects::DamageCalcFromTarget.add(:UMBRALGRIT,
+      proc { |ability, user, target, move, mults, power, type|
+        if move.damagingMove? && KaitoUmbralGrit.active?(target, type)
+          mults[:final_damage_multiplier] *= KaitoUmbralGrit::MULTIPLIER
+        end
+      }
+    )
+
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      unless singleton.ancestors.include?(CombatAI)
+        singleton.prepend(CombatAI)
+      end
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage) &&
+       !Battle::AI.ancestors.include?(ScorerAI)
+      Battle::AI.prepend(ScorerAI)
+    end
+
+    Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+      abilities.delete(:UMBRALGRIT)
+    end
+    Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+    Battle::AI::BASE_ABILITY_RATINGS[6] << :UMBRALGRIT
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoUmbralGrit.install!
+      super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoUmbralGrit::BattleConstruction
+)
+  Battle.singleton_class.prepend(
+    KaitoUmbralGrit::BattleConstruction
   )
 end

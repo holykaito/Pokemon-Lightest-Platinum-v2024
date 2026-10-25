@@ -4,7 +4,7 @@ alias mag_pbCanInflictStatus? pbCanInflictStatus?
 def pbCanInflictStatus?(newStatus, user, showMessages, move = nil, ignoreStatus = false)
     originalStatus = newStatus
     return false if fainted?
-	if [:FATIGUE, :WINDED, :VERTIGO, :SPINTERS, :PESTER, :SCARED, :BRITTLE,
+	if [:FATIGUE, :WINDED, :VERTIGO, :SPINTER, :PESTER, :SCARED, :BRITTLE,
 	    :DRENCHED, :ALLERGIES, :MIGRAINE, :OPULENT, :BLINDED, :IDOLIZE].include?(newStatus)
     self_inflicted = (user && user.index == @index)   # Rest and Flame Orb/Toxic Orb only
     # Already have that status problem
@@ -483,7 +483,7 @@ alias mag_pbInflictStatus pbInflictStatus
 #-----------------------------------------------------------------
 alias mag_pbCureStatus pbCureStatus
   def pbCureStatus(showMessages = true)
-  if [:FATIGUE, :WINDED, :VERTIGO, :SPINTERS, :PESTER, :SCARED, :BRITTLE,
+  if [:FATIGUE, :WINDED, :VERTIGO, :SPINTER, :PESTER, :SCARED, :BRITTLE,
       :DRENCHED, :ALLERGIES, :MIGRAINE, :OPULENT, :BLINDED, :IDOLIZE].include?(self.status)
     oldStatus = status
     self.status = :NONE
@@ -560,13 +560,21 @@ alias mag_pbEORStatusProblemDamage pbEORStatusProblemDamage
   def pbEORStatusProblemDamage(priority)
     mag_pbEORStatusProblemDamage(priority)
     priority.each do |battler|
-      next if battler.status != :SPLINTER || battler.status != :PESTER || !battler.takesIndirectDamage? 
+      next if battler.fainted?
+      next if battler.status != :SPLINTER
+      next if !battler.takesIndirectDamage?
+
       battler.droppedBelowHalfHP = false
-      dmg = battler.totalhp / 16
-      battler.pbContinueStatus { battler.pbReduceHP(dmg, false) }
+
+      damage = [battler.totalhp / 16, 1].max
+      pbCommonAnimation("Splinter", battler)
+      battler.pbReduceHP(damage, false)
+      pbDisplay(_INTL("{1} was hurt by its splinters!", battler.pbThis))
+
       battler.pbItemHPHealCheck
       battler.pbAbilitiesOnDamageTaken
       battler.pbFaint if battler.fainted?
+
       battler.droppedBelowHalfHP = false
     end
     priority.each do |battler|

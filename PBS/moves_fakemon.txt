@@ -874,3 +874,17 @@ FunctionCode = TwoTurnHideThenAttackFlinchTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 30
 Description = Hides on the first turn, then strikes on the next. May cause flinching.
+#-------------------------------
+[JAGGEDFANGS]
+Name = Jagged Fangs
+Type = ROCK
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+Priority = 0
+FunctionCode = RaiseUserAttack1
+Flags = Contact,CanProtect,CanMirrorMove,Biting
+EffectChance = 10
+Description = A ferocious bite that may raise the user's Attack.

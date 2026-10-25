@@ -28,10 +28,6 @@ class Battle::Move
 			!user.hasActiveAbility?(:EXTREMEFOCUS)
 			multipliers[:final_damage_multiplier] /= 2
 		end
-        # Splinter
-        if target.status == :SPLINTER && physicalMove?
-            multipliers[:final_damage_multiplier] /= 2
-        end
 		# Brittle
         if target.status == :BRITTLE && physicalMove?
             multipliers[:final_damage_multiplier] *= 2

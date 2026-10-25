@@ -159,23 +159,6 @@ class Battle::Battler
       end
     end
   end
-
-  #BOULDERBARRIER
-  alias CAL_pbSuccessCheckAgainstTarget pbSuccessCheckAgainstTarget
-  def pbSuccessCheckAgainstTarget(move, user, target, targets)
-    ret = CAL_pbSuccessCheckAgainstTarget(
-      move, user, target, targets
-    )
-
-    return ret if @battle.moldBreaker
-
-    if target.hasActiveAbility?(:BOULDERBARRIER)
-      target.effects[PBEffects::BoulderBarrier] =
-        !!@battle.successStates[user.index].protected
-    end
-
-    return ret
-  end
 	
   #SOUPFILLER
   alias CAL_pbEffectsAfterMove pbEffectsAfterMove

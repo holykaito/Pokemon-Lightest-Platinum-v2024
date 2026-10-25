@@ -30,7 +30,7 @@ Description = The Pokémon is protected from paralysis.
 #-------------------------------
 [SANDVEIL]
 Name = Sand Veil
-Description = Boosts the Pokémon's evasion in a sandstorm.
+Description = Raises evasion in sandstorms or Sandy Terrain.
 #-------------------------------
 [STATIC]
 Name = Static
@@ -582,9 +582,9 @@ Description = Restores a little HP when withdrawn from battle.
 Name = Big Pecks
 Description = Prevents Defense loss and boosts slightly contact moves.
 #-------------------------------
-[SANDRUSH]
+[SANDRUSH] ###
 Name = Sand Rush
-Description = Boosts the Pokémon's Speed in a sandstorm.
+Description = Boosts Speed in sandstorm and Sandy Terrain.
 #-------------------------------
 [WONDERSKIN]
 Name = Wonder Skin
@@ -636,7 +636,7 @@ Description = Gives priority to a status move.
 #-------------------------------
 [SANDFORCE]
 Name = Sand Force
-Description = Boosts certain moves' power in a sandstorm.
+Description = Boosts Ground, Rock and Steel moves in sand or Sandy Terrain.
 #-------------------------------
 [IRONBARBS]
 Name = Iron Barbs
