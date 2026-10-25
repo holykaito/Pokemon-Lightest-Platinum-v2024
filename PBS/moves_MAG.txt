@@ -200,8 +200,8 @@ Flags = Contact,CanProtect,CanMirrorMove
 EffectChance = 30
 Description = The user dives at the target with a Rock & Water type move. This has a chance to heal the user and allies.
 #-------------------------------
-[PEBBLEFLICK]
-Name = Pebble Flick
+[FLICKEDPEBBLE]
+Name = Flicked Pebble
 Type = ROCK
 Category = Physical
 Power = 10
