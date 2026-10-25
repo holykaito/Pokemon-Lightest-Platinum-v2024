@@ -32,6 +32,7 @@
         user = real(user)
         target = real(target)
         return 1.0 if !user || !target
+        return 1.0 if !ExtendedTerrains.battle_of(user) || !ExtendedTerrains.battle_of(target)
         return 1.0 if !ExtendedTerrains::DATA.key?(ExtendedTerrains.battle_of(user).field.terrain)
         native = native_move(move, user)
         return 1.0 if native.is_a?(Battle::Move::FixedDamageMove)
@@ -218,7 +219,7 @@ end
         target = Advanced.real(defender)
         type = effective_type || resolve_move_type(user, move)
         if source && target && type == :DRAGON &&
-           ExtendedTerrains.battle_of(source).field.terrain == :Draconic &&
+           ExtendedTerrains.battle_of(source)&.field&.terrain == :Draconic &&
            ExtendedTerrains.grounded?(source)
           return Advanced.native_move(move, source).pbCalcTypeMod(type, source, target)
         end
@@ -233,14 +234,20 @@ end
 
       def estimate_damage(attacker, move, defender, options = {})
         return super if !attacker || !move || !defender
-        native = Advanced.native_move(move, attacker)
-        return 0 if ExtendedTerrains.move_block_reason(Advanced.real(attacker), native)
+        source = Advanced.real(attacker)
+        target = Advanced.real(defender)
+        return super if !source || !target
+        return super if !ExtendedTerrains.battle_of(source) ||
+                        !ExtendedTerrains.battle_of(target)
+        native = Advanced.native_move(move, source)
+        return 0 if ExtendedTerrains.move_block_reason(source, native)
         return Advanced.with_stages([attacker, defender]) { super }
       end
 
       def resolve_move_power(move, attacker = nil, defender = nil)
         source = Advanced.real(attacker || defender)
-        return super if !source || ExtendedTerrains.battle_of(source).field.terrain != :Pollination
+        battle = source && ExtendedTerrains.battle_of(source)
+        return super if !battle || battle.field.terrain != :Pollination
         if attacker && [:STOREDPOWER, :POWERTRIP].include?(move.id)
           boosts = Advanced.raw_stages(attacker).values.select { |s| s > 0 }.sum
           return 20 + 20 * boosts

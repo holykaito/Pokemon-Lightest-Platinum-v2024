@@ -70,7 +70,7 @@ module AdvancedAI
   # 70-84 = Advanced features  
   # 85-99 = Expert AI (items, patterns, personalities)
   # 100   = Master AI (Terastallization requires the matching DBK plugin)
-  WILD_POKEMON_SKILL_LEVEL = 100
+  WILD_POKEMON_SKILL_LEVEL = 55
   
   # ============================================================================
   # SKILL LEVEL THRESHOLDS

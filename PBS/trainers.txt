@@ -3,10 +3,9 @@
 [TEAMCHAOSGRUNT_M,Talor]
 LoseText = I will take revenge next time!
 Items = MEGARING
-Pokemon = DODRIO,20
+Pokemon = LINOONE,20
     Form = 1
-Pokemon = MIENSHAO,20
-    Form = 1
+    Abilitiy = BRAVEHEART
 #-------------------------------
 [STEAMADMIN_Shirley,Shirley]
 LoseText = I will take revenge next time!

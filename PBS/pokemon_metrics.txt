@@ -6612,19 +6612,19 @@ ShadowSprite = 0,0,0
 #-------------------------------
 [LYCANROC]
 BackSprite = 0,50
-FrontSprite = -2,23
+FrontSprite = -2,4
 ShadowSize = 2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 0,33
-ShadowSprite = 0,0,0
+ShadowSprite = 0,0,2
 #-------------------------------
 [LYCANROC,1]
 BackSprite = 0,46
-FrontSprite = -9,14
+FrontSprite = -8,2
 ShadowSize = 2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 0,21
-ShadowSprite = 0,0,0
+ShadowSprite = -2,0,8
 #-------------------------------
 [WISHIWASHI]
 BackSprite = 0,54
@@ -8036,3 +8036,10 @@ FrontSprite = 14,-8
 DmaxBackSprite = 0,0
 DmaxFrontSprite = -2,12
 ShadowSprite = 0,0,0
+#-------------------------------
+[LYCANROC_2]
+BackSprite = 3,64
+FrontSprite = 2,19
+DmaxBackSprite = 0,0
+DmaxFrontSprite = 0,0
+ShadowSprite = -1,0,-5

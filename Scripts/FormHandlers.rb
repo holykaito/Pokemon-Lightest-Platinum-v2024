@@ -487,8 +487,6 @@ MultipleForms.register(:HOOPA, {
 
 MultipleForms.register(:ROCKRUFF, {
   "getForm" => proc { |pkmn|
-    next if pkmn.form_simple >= 2   # Own Tempo Rockruff cannot become another form
-    next 1 if PBDayNight.isNight?
     next 0
   }
 })

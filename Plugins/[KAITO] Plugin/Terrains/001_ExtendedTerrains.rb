@@ -88,7 +88,10 @@ module ExtendedTerrains
   # Restrictions imposed by terrain.
   #=============================================================================
   def self.move_block_reason(battler, move)
-    case battle_of(battler).field.terrain
+    return nil if !battler || !move
+    battle = battle_of(battler)
+    return nil if !battle
+    case battle.field.terrain
     when :Colosseum
       if move.statusMove?
         return _INTL("Colosseum Terrain prevents status moves!")

@@ -8006,12 +8006,16 @@ Battle::AbilityEffects::AfterMoveUseFromTarget.add(:SHOWDOWNMODE,
 
     target.effects[PBEffects::ShowdownMode] = true
 
-    ShowdownModePlus.with_splash(target, battle) do
-      ShowdownModePlus::STATS.each do |stat|
-        next if !target.pbCanRaiseStatStage?(stat, target)
-        target.pbRaiseStatStageByAbility(stat, 1, target, false)
-      end
-    end
+	ShowdownModePlus.with_splash(target, battle) do
+	  show_animation = true
+	  ShowdownModePlus::STATS.each do |stat|
+		next if !target.pbCanRaiseStatStage?(stat, target)
+		changed = target.pbRaiseStatStage(
+		  stat, 1, target, show_animation
+		)
+		show_animation = false if changed
+	  end
+	end
   }
 )
 
@@ -14598,11 +14602,21 @@ module KaitoSpeedForce
     user = real(user)
     move = move.respond_to?(:move) ? move.move : move
 
-    return 0 if !user || !move
-    return 0 if !move.damagingMove? || !move.contactMove?
-    return 0 if move.is_a?(Battle::Move::FixedDamageMove)
-
-    code = move.function_code
+	return 0 if !user || !move
+	return 0 if !move.damagingMove?
+	return 0 if move.is_a?(Battle::Move::FixedDamageMove)
+	data = GameData::Move.try_get(move.id)
+	contact = if move.respond_to?(:contactMove?)
+				move.contactMove?
+			  else
+				data && data.has_flag?("Contact")
+			  end
+	return 0 if !contact
+	code = if move.respond_to?(:function_code)
+			 move.function_code.to_s
+		   else
+			 data ? data.function_code.to_s : ""
+		   end
     return 0 if code.start_with?("FixedDamage", "OHKO", "Counter")
     return 0 if [
       "LowerTargetHPToUserHP",
@@ -15199,8 +15213,8 @@ module CheapTactics
     begin
       user.instance_variable_set(:@cheap_tactics_owner, original)
 
-      battle.pbShowAbilitySplash(user)
-      battle.pbHideAbilitySplash(user)
+		battle.pbShowAbilitySplash(user, true)
+		battle.pbHideAbilitySplash(user)
 
       move = Battle::Move.from_pokemon_move(
         battle, Pokemon::Move.new(move_id)
@@ -15876,15 +15890,35 @@ Battle::AbilityEffects::SpeedCalc.add(:SANDRUSH,
 module KaitoSandForce
   TYPES = [:GROUND, :ROCK, :STEEL].freeze
 
-  def self.active?(user, type)
-    user = user.battler if user.respond_to?(:battler)
-    return false if !user || !TYPES.include?(type)
-    return false if !user.hasActiveAbility?(:SANDFORCE)
+	def self.active?(user, type, battle = nil)
+	  user = user.battler if user.respond_to?(:battler)
+	  return false if !user || !TYPES.include?(type)
 
-    battle = user.instance_variable_get(:@battle)
-    return user.effectiveWeather == :Sandstorm ||
-           (battle && battle.field.terrain == :Sandy)
-  end
+	  battle ||= user.instance_variable_get(:@battle)
+
+	  if user.respond_to?(:hasActiveAbility?)
+		return false if !user.hasActiveAbility?(:SANDFORCE)
+	  else
+		# AI may evaluate a Pokemon that is not currently on the field.
+		abilities = []
+		abilities << user.ability_id if user.respond_to?(:ability_id)
+		if user.respond_to?(:active_innates)
+		  abilities.concat(Array(user.active_innates))
+		end
+		return false if !abilities.include?(:SANDFORCE)
+		return false if battle &&
+						battle.pbCheckGlobalAbility(:NEUTRALIZINGGAS)
+	  end
+
+	  weather = if user.respond_to?(:effectiveWeather)
+				  user.effectiveWeather
+				elsif battle
+				  battle.pbWeather
+				end
+
+	  return weather == :Sandstorm ||
+			 !!(battle && battle.field.terrain == :Sandy)
+	end
 
   # Advanced AI's shared damage estimator.
   module CombatAI
@@ -15892,9 +15926,13 @@ module KaitoSandForce
       attacker, target, type, physical, effectiveness,
       move = nil, physical_defense = physical
     )
-      value = super
-      value *= 1.3 if KaitoSandForce.active?(attacker, type)
-      return value
+	value = super
+	source = attacker.respond_to?(:battler) ? attacker.battler : attacker
+	victim = target.respond_to?(:battler) ? target.battler : target
+	battle = source && source.instance_variable_get(:@battle)
+	battle ||= victim && victim.instance_variable_get(:@battle)
+	value *= 1.3 if KaitoSandForce.active?(source, type, battle)
+	return value
     end
   end
 
@@ -16017,7 +16055,7 @@ Battle::AbilityEffects::OnDealingHit.add(:SHATTERMARK,
     # Like Poison Touch, Shield Dust blocks this ability's status effect.
     next if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
     next if !target.pbCanSplinter?(user, false)
-    next if battle.pbRandom(100) >= 30
+    next if battle.pbRandom(100) >= 100
 
     battle.pbShowAbilitySplash(user)
     begin
@@ -16369,6 +16407,134 @@ unless Battle.singleton_class.ancestors.include?(
 end
 
 #===============================================================================
+# Boulder Barrier - Reliable damage application
+# Requires the existing KaitoBoulderBarrier implementation.
+#===============================================================================
+module KaitoBoulderBarrier
+  # Reserve Pokemon cannot carry a charge from the current battlefield.
+  def self.charged?(object)
+    battler = real(object)
+    return false if !battler
+    return false if !battler.respond_to?(:effects)
+    return false if !battler.respond_to?(:hasActiveAbility?)
+    return false if battler.fainted?
+
+    return battler.hasActiveAbility?(:BOULDERBARRIER) &&
+           !!battler.effects[PBEffects::BoulderBarrier]
+  end
+
+  module ReliableState
+    def pbSuccessCheckAgainstTarget(move, user, target, targets)
+      had_charge = !!target.effects[PBEffects::BoulderBarrier]
+      result = super
+
+      if target.hasActiveAbility?(:BOULDERBARRIER)
+        protected = !!target.damageState.protected
+
+        # Preserve a charge even if an older handler cleared its flag.
+        target.effects[PBEffects::BoulderBarrier] =
+          had_charge || protected
+
+        if protected && !had_charge
+          @battle.pbShowAbilitySplash(target)
+          begin
+            @battle.pbDisplay(_INTL(
+              "{1} stored power for its next Rock-type attack!",
+              target.pbThis
+            ))
+          ensure
+            @battle.pbHideAbilitySplash(target)
+          end
+        end
+      end
+
+      return result
+    end
+
+    def pbChangeUser(choice, move, user)
+      move.instance_variable_set(:@kaito_bb_damage_announced, false)
+      return super
+    end
+  end
+
+  module ReliableDamage
+    def pbCalcDamageMultipliers(
+      user, target, numTargets, type, baseDmg, multipliers
+    )
+      # Prevent the ability handler from applying a second multiplier.
+      previous = @kaito_bb_calculating_damage
+      @kaito_bb_calculating_damage = true
+      begin
+        result = super
+      ensure
+        @kaito_bb_calculating_damage = previous
+      end
+
+      return result if type != :ROCK
+      return result if !damagingMove?
+      return result if is_a?(Battle::Move::FixedDamageMove)
+      return result if !KaitoBoulderBarrier.boosted?(user, self)
+
+      multipliers[:attack_multiplier] *= 1.5
+
+      # Announce once per actual move, not once per hit or target.
+      token = instance_variable_get(KaitoBoulderBarrier::TOKEN)
+      if token.is_a?(Array) && !@kaito_bb_damage_announced
+        @kaito_bb_damage_announced = true
+        @battle.pbDisplay(_INTL(
+          "{1}'s {2} strengthened {3}!",
+          user.pbThis,
+          GameData::Ability.get(:BOULDERBARRIER).name,
+          name
+        ))
+      end
+
+      return result
+    end
+  end
+
+  module ReliableInstaller
+    def install!
+      super
+
+      unless Battle::Battler.ancestors.include?(
+        KaitoBoulderBarrier::ReliableState
+      )
+        Battle::Battler.prepend(KaitoBoulderBarrier::ReliableState)
+      end
+
+      unless Battle::Move.ancestors.include?(
+        KaitoBoulderBarrier::ReliableDamage
+      )
+        Battle::Move.prepend(KaitoBoulderBarrier::ReliableDamage)
+      end
+
+      # Native AI still uses this handler directly.
+      # Actual battle damage receives its bonus through ReliableDamage.
+      Battle::AbilityEffects::DamageCalcFromUser.add(:BOULDERBARRIER,
+        proc { |ability, user, target, move, mults, power, type|
+          next if move.instance_variable_get(
+            :@kaito_bb_calculating_damage
+          )
+          next if type != :ROCK
+          next if !KaitoBoulderBarrier.boosted?(user, move)
+
+          mults[:attack_multiplier] *= 1.5
+        }
+      )
+    end
+  end
+end
+
+unless KaitoBoulderBarrier.singleton_class.ancestors.include?(
+  KaitoBoulderBarrier::ReliableInstaller
+)
+  KaitoBoulderBarrier.singleton_class.prepend(
+    KaitoBoulderBarrier::ReliableInstaller
+  )
+end
+
+#===============================================================================
 # Umbral Grit
 # Takes 1/3 less damage from non-Steel moves in Gloom Moonlight.
 #===============================================================================
@@ -16496,4 +16662,63 @@ unless Battle.singleton_class.ancestors.include?(
   Battle.singleton_class.prepend(
     KaitoUmbralGrit::BattleConstruction
   )
+end
+
+#===============================================================================
+# Umbral Grit - Handle battlers and reserve Pokemon in AI predictions
+#===============================================================================
+module KaitoUmbralGrit
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.battle_of(object)
+    object = real(object)
+    return nil if !object
+
+    battle = object.battle if object.respond_to?(:battle)
+    return battle if battle
+
+    return object.instance_variable_get(:@battle)
+  end
+
+  def self.active?(object, type, battle = nil)
+    target = real(object)
+    return false if !target || type == :STEEL
+    return false if target.fainted?
+
+    has_ability = if target.respond_to?(:hasActiveAbility?)
+                    # Active battlers: respect ability suppression.
+                    target.hasActiveAbility?(:UMBRALGRIT)
+                  elsif target.respond_to?(:set_innate_limits)
+                    # Reserve Pokemon: include unlocked innates.
+                    Array(target.set_innate_limits).include?(:UMBRALGRIT)
+                  else
+                    target.respond_to?(:ability_id) &&
+                      target.ability_id == :UMBRALGRIT
+                  end
+    return false if !has_ability
+
+    weather = if target.respond_to?(:effectiveWeather)
+                target.effectiveWeather
+              else
+                battle ||= battle_of(target)
+                battle ? battle.pbWeather : nil
+              end
+
+    return weather == KaitoUmbralGrit::WEATHER
+  end
+
+  def self.ai_factor(user, target, move, type)
+    native = move.respond_to?(:move) ? move.move : move
+    battle = battle_of(target) || battle_of(user) || battle_of(native)
+
+    return 1.0 if !active?(target, type, battle)
+    return 1.0 if AdvancedAI::Utilities.ignores_ability?(
+      user, move, target
+    )
+
+    return KaitoUmbralGrit::MULTIPLIER
+  end
 end

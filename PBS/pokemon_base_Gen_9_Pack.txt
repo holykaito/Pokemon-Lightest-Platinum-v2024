@@ -547,6 +547,7 @@ Category = Grasshopper
 Pokedex = It has its third set of legs folded up. When it's in a tough spot, this Pokémon jumps over 30 feet using the strength of its legs.
 Generation = 9
 Evolutions = LOKIX,Level,24
+Flags = Done
 #-------------------------------
 [LOKIX]
 Name = Lokix
@@ -572,6 +573,7 @@ Habitat = Grassland
 Category = Grasshopper
 Pokedex = When it decides to fight all out, it stands on its previously folded legs to enter Showdown Mode. It neutralizes its enemies in short order.
 Generation = 9
+Flags = Done
 #-------------------------------
 [PAWMI]
 Name = Pawmi
@@ -782,6 +784,7 @@ Category = Olive
 Pokedex = It protects itself from enemies by emitting oil from the fruit on its head. This oil is bitter and astringent enough to make someone flinch.
 Generation = 9
 Evolutions = DOLLIV,Level,25
+Flags = Done
 #-------------------------------
 [DOLLIV]
 Name = Dolliv
@@ -808,6 +811,7 @@ Category = Olive
 Pokedex = Dolliv shares its tasty, fresh-scented oil with others. This species has coexisted with humans since times long gone.
 Generation = 9
 Evolutions = ARBOLIVA,Level,35
+Flags = Done
 #-------------------------------
 [ARBOLIVA]
 Name = Arboliva
@@ -833,6 +837,7 @@ Habitat = Grassland
 Category = Olive
 Pokedex = This calm Pokémon is very compassionate. It will share its delicious, nutrient-rich oil with weakened Pokémon.
 Generation = 9
+Flags = Done
 #-------------------------------
 [SQUAWKABILLY]
 Name = Squawkabilly
