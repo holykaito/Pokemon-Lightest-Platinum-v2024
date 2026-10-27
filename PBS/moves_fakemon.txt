@@ -936,3 +936,17 @@ Target = BothSides
 Priority = 0
 FunctionCode = StartInverseRoom
 Description = Reverses type matchups for five turns.
+#-------------------------------
+[BLACKMAGIC]
+Name = Black Magic
+Type = DARK
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = BleedTarget
+Flags = CanProtect,CanMirrorMove
+EffectChance = 20
+Description = Calls on dark power to attack and may cause bleeding.
