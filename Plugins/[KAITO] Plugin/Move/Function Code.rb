@@ -1317,3 +1317,49 @@ class Battle::Move::TwoTurnHideThenAttackFlinchTarget <
     return result
   end
 end
+
+#===============================================================================
+# Inverse Room - Uses DBK's existing Inverse Battle mechanic.
+#===============================================================================
+class Battle
+  attr_accessor :kaito_inverse_room_turns
+
+  def kaito_end_inverse_room
+    $game_temp.inverse_battle = @kaito_inverse_room_previous
+    @kaito_inverse_room_previous = nil
+    @kaito_inverse_room_turns = 0
+    pbDisplay(_INTL("Inverse Room wore off!"))
+  end
+
+  def kaito_start_inverse_room
+    @kaito_inverse_room_previous = $game_temp.inverse_battle
+    @kaito_inverse_room_turns = 5
+    $game_temp.inverse_battle = true
+    pbDisplay(_INTL("The type matchups were reversed!"))
+  end
+
+  unless method_defined?(:kaito_inverse_room_original_end_field)
+    alias_method :kaito_inverse_room_original_end_field,
+                 :pbEOREndFieldEffects
+
+    def pbEOREndFieldEffects(priority)
+      kaito_inverse_room_original_end_field(priority)
+      return if @kaito_inverse_room_turns.to_i <= 0
+      @kaito_inverse_room_turns -= 1
+      kaito_end_inverse_room if @kaito_inverse_room_turns == 0
+    end
+  end
+end
+
+#===============================================================================
+# Starts Inverse Room, or ends it if already active.
+#===============================================================================
+class Battle::Move::StartInverseRoom < Battle::Move
+  def pbEffectGeneral(user)
+    if @battle.kaito_inverse_room_turns.to_i > 0
+      @battle.kaito_end_inverse_room
+    else
+      @battle.kaito_start_inverse_room
+    end
+  end
+end

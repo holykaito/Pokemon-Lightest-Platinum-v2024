@@ -140,6 +140,12 @@ Innates = TORRENT,STRONGJAW,ROUGHSKIN
 [FERALIGATR_1]
 Innates = TORRENT,STRONGJAW,ROUGHSKIN
 #----------------------------------------
+[SENTRET]
+Innates = RUNAWAY
+#----------------------------------------
+[FURRET]
+Innates = RUNAWAY,FRISK,KINETIC
+#----------------------------------------
 [HOPPIP]
 Innates = WINDRIDER
 #----------------------------------------
@@ -689,7 +695,7 @@ Innates = EARLYBIRD
 Innates = EARLYBIRD,CUTECHARM
 #----------------------------------------
 [ARBOLIVA]
-Innates = EARLYBIRD,OVERCOAT,SEEDSOWER
+Innates = EARLYBIRD,SEEDSOWER,OLEUMBURST
 #----------------------------------------
 [FLUTTERMANE]
 Innates = PROTOSYNTHESIS

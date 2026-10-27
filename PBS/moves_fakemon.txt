@@ -888,3 +888,51 @@ FunctionCode = RaiseUserAttack1
 Flags = Contact,CanProtect,CanMirrorMove,Biting
 EffectChance = 10
 Description = A ferocious bite that may raise the user's Attack.
+#-------------------------------
+[RETREAT]
+Name = Retreat
+Type = NORMAL
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+Priority = -6
+FunctionCode = SwitchOutUserStatusMove
+Description = The user switches out to a party Pokémon, moving last.
+#-------------------------------
+[BUBBLEBLASTER]
+Name = Bubble Blaster
+Type = WATER
+Category = Special
+Power = 90
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = LowerTargetSpeed1
+Flags = CanProtect
+EffectChance = 20
+Description = A blast of bubbles that may lower the target's Speed.
+#-------------------------------
+[LUNARFLARE]
+Name = Lunar Flare
+Type = FIRE
+Category = Special
+Power = 110
+Accuracy = 70
+TotalPP = 10
+Target = NearOther
+FunctionCode = BurnTarget
+Flags = CanProtect,CanMirrorMove,Cosmic
+EffectChance = 30
+Description = A moonlight attack that may burn the target.
+#-------------------------------
+[INVERSEROOM]
+Name = Inverse Room
+Type = PSYCHIC
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = BothSides
+Priority = 0
+FunctionCode = StartInverseRoom
+Description = Reverses type matchups for five turns.

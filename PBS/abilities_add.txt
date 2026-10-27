@@ -117,7 +117,7 @@ Description = Creates Cursed Terrain when entering battle.
 #-------------------------------
 [DANCINGPANIC] ###
 Name = Dancing Panic
-Description = Reverses stat changes of other's dance moves.
+Description = Foes' dances reverse stat changes and cause confusion.
 #-------------------------------
 [DEBILITATE] ###
 Name = Debilitate
@@ -239,13 +239,17 @@ Description = Increases the power of moves against targets infatuated.
 Name = Hunted One
 Description = Resistance and evasion ability is drastically reduced.
 #-------------------------------
+[HUSHEDSOAR] ###
+Name = Hushed Soar
+Description = Gains priority one above opposing priority moves.
+#-------------------------------
 [HUBRIS] ###
 Name = Hubris
 Description = Boosts Sp.Attack after knocking out any Pokémon.
 #-------------------------------
 [HYDROPONIC] ###
 Name = Hydroponic
-Description = Increases Grass-type moves damage in rain.
+Description = Boosts Grass moves in rain or Swamp Terrain.
 #-------------------------------
 [ICEDEW] ###
 Name = Ice Dew
@@ -271,6 +275,10 @@ Description = Uses Astonish upon entry.
 Name = Kamen Rider
 Description = Powers up attacks after an ally falls.
 #-------------------------------
+[KINETIC] ###
+Name = Kinetic
+Description = Uses Speed to attack, but suffers recoil.
+#-------------------------------
 [KINTSUGI] ###
 Name = Kintsugi
 Description = If this Pokémon was damaged this turn, it restores of its max HP.
@@ -295,9 +303,17 @@ Description = Sound attacks may confuse the target.
 Name = Malignate
 Description = Normal-type moves become Dark-type moves and boosted.
 #-------------------------------
+[MINDINSIGHT] ###
+Name = Mind Insight
+Description = Normal gains Psychic's strengths and hits Ghost. Psychic gets STAB.
+#-------------------------------
 [MULTIHEADED] ###
 Name = Multi Headed
 Description = Hits extra times based on the Pokémon's heads.
+#-------------------------------
+[OLEUMBURST] ###
+Name = Oleum Burst
+Description = Hits taking 1/3 of max HP lower the attacker's Speed.
 #-------------------------------
 [OVERWHELM] ###
 Name = Overwhelm
@@ -433,7 +449,7 @@ Description = Moves that inflict poison may burn instead.
 #-------------------------------
 [SEAWEED] ###
 Name = Seaweed
-Description = Grass-type takes half damage and deal double damage to Fire-type Pokémon.
+Description = Halves Fire damage taken. Grass moves are strong against Fire.
 #-------------------------------
 [SEEDPARASITE] ###
 Name = Seed Parasite
@@ -534,6 +550,10 @@ Description = Restores a little HP when using contact moves.
 [VENGEANCE] ###
 Name = Vengeance
 Description = Powers up Ghost-type moves when the Pokémon's HP is low.
+#-------------------------------
+[VIGORDASH] ###
+Name = Vigor Dash
+Description = Doubles Speed while its HP is above 3/4s.
 #-------------------------------
 [WANDERINGORBS] ###
 Name = Wandering Orbs

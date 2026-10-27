@@ -64,7 +64,8 @@ module Settings
   # sooner or later than the rest.
   #-----------------------------------------------------------------------------
   LEVELS_TO_UNLOCK =  [
-  [:PIDGEY, 1, 15],
+  #Kanto
+  [:PIDGEY, 1, 15], 
   [:PIDGEOTTO, 1, 15, 50],
   [:PIDGEOT, 1, 15, 50],
   [:PIDGEOT_1, 1, 15, 50],
@@ -80,17 +81,26 @@ module Settings
   [:SEAKING, 1, 20, 55],
   [:GYARADOS, 1, 50, 70],
   [:GYARADOS_1, 1, 50, 70],
-  [:JUMPLUFF, 1, 1, 50],
+  
+  #Johto
+  [:FURRET, 1, 1, 50],
+  [:ENCHANTOW, 1, 1, 60],
+  [:JUMPLUFF, 1, 1, 55],
+  
+  #Hoenn
   [:LINOONE, 1, 1, 55],
   [:OBSTAGOON, 1, 1, 60],
   [:POOCHYENA, 1, 15],
-  [:MIGHTYENA, 1, 30, 50],
+  [:MIGHTYENA, 1, 30],
+  [:HIGHYENA, 1, 30, 60],
   [:PELIPPER, 1, 1, 50],
   [:KIRLIA, 1, 25],
   [:GARDEVOIR, 1, 25, 60],
   [:GARDEVOIR_1, 1, 25, 60],
   [:GALLADE, 1, 25, 60],
   [:GALLADE_1, 1, 25, 60],
+  
+  #Sinnoh
   [:TORTERRA, 1, 1, 55],
   [:INFERNAPE, 1, 1, 50],
   [:EMPOLEON, 1, 1, 60],
@@ -103,10 +113,24 @@ module Settings
   [:MOTHIM, 1, 1, 40],
   [:CROAGUNK, 1, 25],
   [:TOXICROAK, 1, 25, 60],
+  
+  #Unova
   [:UNFEZANT, 1, 1, 55],
   [:PATRAT, 1, 15],
   [:WATCHOG, 1, 15, 55],
   [:LIEPARD, 1, 35, 60],
+  
+  #Alola
+  [:LYCANROC, 1, 1, 60],
+  [:LYCANROC_1, 1, 1, 60],
+  [:LYCANROC_2, 1, 1, 60],
+  
+  #Galar
+  [:BOLTUND, 1, 35, 60],
+  
+  #Paldea
+  [:LOKIX, 1, 40, 60],
+  [:ARBOLIVA, 1, 1, 60],
   [1, 1, 1]
   ]
 

@@ -85,37 +85,6 @@ Battle::AbilityEffects::DamageCalcFromTarget.add(:AQUATIC,
 )
 
 #===============================================================================
-# Seaweed
-# Takes 1/2 damage from Fire-type moves.
-# Grass-type moves used by this Pokémon deal x2 damage to Fire-type targets.
-#===============================================================================
-
-Battle::AbilityEffects::DamageCalcFromTarget.add(:SEAWEED,
-  proc { |ability, user, target, move, mults, power, type|
-    mults[:power_multiplier] /= 2 if type == :FIRE
-  }
-)
-
-Battle::AbilityEffects::DamageCalcFromUser.add(:SEAWEED,
-  proc { |ability, user, target, move, mults, power, type|
-    mults[:attack_multiplier] *= 2 if move.damagingMove? && type == :GRASS && target.pbHasType?(:FIRE)
-  }
-)
-
-#===============================================================================
-# Hydroponic
-# Increases Grass-type move damage by 30% in rain.
-#===============================================================================
-
-Battle::AbilityEffects::DamageCalcFromUser.add(:HYDROPONIC,
-  proc { |ability, user, target, move, mults, power, type|
-    if [:Rain, :HeavyRain].include?(user.effectiveWeather) && type == :GRASS
-      mults[:power_multiplier] *= 1.3
-    end
-  }
-)
-
-#===============================================================================
 # Rampage
 # If the user K.O.s a target with a recharge move, it doesn't need to recharge.
 # Shows ability splash when activated.
@@ -16721,4 +16690,1546 @@ module KaitoUmbralGrit
 
     return KaitoUmbralGrit::MULTIPLIER
   end
+end
+
+#===============================================================================
+# Kinetic
+# Uses effective Speed as the attacking stat.
+# Successful damaging moves cost 20% maximum HP once per use.
+#===============================================================================
+module KaitoKinetic
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    object
+  end
+
+  def self.has?(object, ability)
+    object = real(object)
+    return false if !object
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(ability)
+    end
+    if object.respond_to?(:set_innate_limits)
+      return Array(object.set_innate_limits).include?(ability)
+    end
+
+    object.respond_to?(:ability_id) && object.ability_id == ability
+  end
+
+  def self.active?(object)
+    object = real(object)
+    object && !object.fainted? && has?(object, :KINETIC)
+  end
+
+  # Resolve PBS data even for an AI MoveProxy.
+  def self.data(move)
+    return nil if !move
+    id = move.respond_to?(:id) ? move.id : nil
+    id ? GameData::Move.try_get(id) : nil
+  end
+
+  def self.speed(object)
+    object = real(object)
+    value = object.respond_to?(:pbSpeed) ? object.pbSpeed : object.speed
+    [value.to_i, 1].max
+  end
+
+  def self.stage(object, stat)
+    object = real(object)
+    object.respond_to?(:stages) ? object.stages[stat].to_i : 0
+  end
+
+  def self.staged(value, stage)
+    factor = stage >= 0 ? (2.0 + stage) / 2 : 2.0 / (2 - stage)
+    [(value * factor).floor, 1].max
+  end
+
+  def self.fixed?(move)
+    info = data(move)
+    return true if !info
+    code = info.function_code
+
+    return true if code.start_with?("FixedDamage", "OHKO", "Counter")
+    return true if [
+      "LowerTargetHPToUserHP",
+      "UserFaintsFixedDamageUserHP",
+      "MultiTurnAttackBideThenReturnDoubleDamage"
+    ].include?(code)
+
+    if Battle::Move.const_defined?(code, false)
+      klass = Battle::Move.const_get(code, false)
+    end
+    !!(klass.is_a?(Class) && klass <= Battle::Move::FixedDamageMove)
+  end
+
+  def self.physical?(user, move, tera = false)
+    info = data(move)
+    return false if !info
+
+    source = real(user)
+    dynamic = [:PHOTONGEYSER, :LIGHTTHATBURNSTHESKY].include?(info.id)
+    dynamic ||= info.id == :TERABLAST &&
+      (tera || (source.respond_to?(:tera?) && source.tera?))
+
+    if dynamic
+      return staged(source.attack, stage(source, :ATTACK)) >
+             staged(source.spatk, stage(source, :SPECIAL_ATTACK))
+    end
+    info.category == 0
+  end
+
+  # Advanced AI correction relative to its original attacking stat.
+  def self.ai_ratio(user, target, move, physical)
+    return 1.0 if !active?(user) || fixed?(move)
+
+    info = data(move)
+    return 1.0 if info.category == 2
+
+    source = real(user)
+    stat = physical ? :ATTACK : :SPECIAL_ATTACK
+    value = physical ? source.attack : source.spatk
+
+    if info.function_code == "UseTargetAttackInsteadOfUserAttack"
+      source = real(target)
+      stat, value = :ATTACK, source.attack
+    elsif info.function_code == "UseUserDefenseInsteadOfUserAttack"
+      stat, value = :DEFENSE, source.defense
+    end
+
+    increment = stage(source, stat)
+    if info.function_code != "UseTargetAttackInsteadOfUserAttack" &&
+       has?(target, :UNAWARE) &&
+       !AdvancedAI::Utilities.ignores_ability?(user, move, target)
+      increment = 0
+    end
+
+    speed(user).to_f / staged(value, increment)
+  end
+
+  def self.recoil(object)
+    user = real(object)
+    return 0 if !active?(user)
+    return 0 if has?(user, :MAGICGUARD) || has?(user, :ROCKHEAD)
+    if user.respond_to?(:takesIndirectDamage?)
+      return 0 if !user.takesIndirectDamage?
+    end
+
+    [user.totalhp / 5, 1].max
+  end
+
+  def self.risk(move, user)
+    info = data(move)
+    return 0 if !info || info.category == 2
+
+    cost = recoil(user)
+    return 0 if cost <= 0
+    hp = [real(user).hp, 1].max
+
+    (40.0 * cost / hp).round + (cost >= hp ? 30 : 0)
+  end
+
+  module AttackStats
+    def pbGetAttackStats(user, target)
+      if damagingMove? && KaitoKinetic.active?(user)
+        # pbSpeed already includes Speed stages and other Speed modifiers.
+        # Return a neutral attack stage to avoid applying stages twice.
+        return KaitoKinetic.speed(user),
+               Battle::Battler::STAT_STAGE_MAXIMUM
+      end
+      super
+    end
+  end
+
+  # Deduplicate recoil within one use, while allowing Instruct/called moves
+  # to create their own independent uses.
+  module UseFrame
+    def pbUseMove(*args, &block)
+      frames = @battle.instance_variable_get(:@kaito_kinetic_frames)
+      if !frames
+        frames = []
+        @battle.instance_variable_set(:@kaito_kinetic_frames, frames)
+      end
+
+      frames.push({})
+      begin
+        super(*args, &block)
+      ensure
+        frames.pop
+      end
+    end
+  end
+
+  module CombatAI
+    def ability_damage_modifier(
+      user, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+      value * KaitoKinetic.ai_ratio(user, target, move, physical)
+    end
+  end
+
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target || !value || value <= 0
+      return value if !KaitoKinetic.active?(user)
+      return value if KaitoKinetic.fixed?(move)
+
+      # Avoid multiplying twice through terrain delegation.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      tera = move.id == :TERABLAST && !!get_tera_type_for_move(user)
+      physical = KaitoKinetic.physical?(user, move, tera)
+      ratio = KaitoKinetic.ai_ratio(user, target, move, physical)
+
+      [(value * ratio).round, 1].max
+    end
+
+    def score_recoil_risk(move, user)
+      super - KaitoKinetic.risk(move, user)
+    end
+  end
+
+  def self.install!
+    # Include moves overriding pbGetAttackStats, such as Body Press/Foul Play.
+    @patched_classes ||= []
+    ObjectSpace.each_object(Class) do |klass|
+      next if !(klass <= Battle::Move)
+      next if !klass.instance_methods(false).include?(:pbGetAttackStats)
+      next if @patched_classes.include?(klass)
+
+      klass.prepend(AttackStats)
+      @patched_classes.push(klass)
+    end
+
+    unless Battle::Battler.ancestors.include?(UseFrame)
+      Battle::Battler.prepend(UseFrame)
+    end
+
+    Battle::AbilityEffects::OnEndOfUsingMove.add(:KINETIC,
+      proc { |ability, user, targets, move, battle|
+        next if !move.damagingMove?
+        next if !targets.any? { |t| t.damageState.totalHPLost > 0 }
+
+        amount = KaitoKinetic.recoil(user)
+        next if amount <= 0
+
+        frames = battle.instance_variable_get(:@kaito_kinetic_frames)
+        paid = frames && frames.last
+        key = user.pokemon.object_id
+
+        next if paid && paid[key]
+        paid[key] = true if paid
+
+        user.pbReduceHP(amount, false)
+        battle.pbDisplay(_INTL(
+          "{1} is damaged by Kinetic's recoil!", user.pbThis
+        ))
+        user.pbItemHPHealCheck
+        user.pbFaint if user.fainted?
+      }
+    )
+
+    Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:kaito_kinetic,
+      proc { |score, move, user, target, ai, battle|
+        next score if score <= Battle::AI::MOVE_USELESS_SCORE
+        next score - KaitoKinetic.risk(move, user)
+      }
+    )
+
+    if defined?(AdvancedAI::CombatUtilities)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      unless singleton.ancestors.include?(CombatAI)
+        singleton.prepend(CombatAI)
+      end
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage)
+      Battle::AI.prepend(ScorerAI) unless Battle::AI.ancestors.include?(ScorerAI)
+    end
+
+    Battle::AI::BASE_ABILITY_RATINGS.each_value do |ids|
+      ids.delete(:KINETIC)
+    end
+    Battle::AI::BASE_ABILITY_RATINGS[7] ||= []
+    Battle::AI::BASE_ABILITY_RATINGS[7] << :KINETIC
+  end
+
+  # Delay installation until plugin aliases finish loading.
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoKinetic.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoKinetic::BattleConstruction
+)
+  Battle.singleton_class.prepend(KaitoKinetic::BattleConstruction)
+end
+
+#===============================================================================
+# Vigor Dash
+# Doubles Speed while HP is strictly above 75%.
+#===============================================================================
+Battle::AbilityEffects::SpeedCalc.add(:VIGORDASH,
+  proc { |ability, battler, multiplier|
+    if battler.hp * 4 > battler.totalhp * 3
+      multiplier *= 2
+    end
+    next multiplier
+  }
+)
+
+#===============================================================================
+# Dancing Panic - Extension for this project's existing Dance reversal system
+#===============================================================================
+module KaitoDancingPanic
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.native_move(move)
+    move.respond_to?(:move) ? move.move : move
+  end
+
+  # Find an opposing, active Dancing Panic holder.
+  # Multiple holders do not stack or reverse the effect twice.
+  def self.holder(battle, object)
+    user = real(object)
+    return nil if !user || user.fainted?
+
+    battle.allBattlers.each do |b|
+      next if b.fainted?
+      next if !b.opposes?(user)
+      next if !b.hasActiveAbility?(:DANCINGPANIC)
+      return b
+    end
+    return nil
+  end
+
+  def self.affected?(battle, user, move)
+    move = native_move(move)
+    return false if !move || !move.respond_to?(:danceMove?)
+    return false if !move.danceMove?
+
+    return !!holder(battle, user)
+  end
+
+  # AI penalty for the confusion inflicted after using the move.
+  def self.confusion_penalty(battle, object)
+    user = real(object)
+    source = holder(battle, user)
+    return 0 if !source
+    return 0 if !user.pbCanConfuse?(source, false)
+
+    return 15
+  end
+
+  # Status Dance moves using the project's existing reversal branches.
+  def self.self_setup?(move)
+    move = native_move(move)
+    return false if !move || !move.statusMove?
+
+    return move.is_a?(Battle::Move::StatUpMove) ||
+           move.is_a?(Battle::Move::MultiStatUpMove)
+  end
+
+  def self.target_drop?(move)
+    move = native_move(move)
+    return false if !move || !move.statusMove?
+
+    return move.is_a?(Battle::Move::TargetStatDownMove) ||
+           move.is_a?(Battle::Move::TargetMultiStatDownMove)
+  end
+
+  # Shared heuristic for Native AI and Advanced AI.
+  def self.adjust_score(score, battle, user, target, move, floor)
+    return score if !affected?(battle, user, move)
+
+    user = real(user)
+    target = real(target) if target
+
+    # Self-boosting Dance moves become self-debuffs.
+    # Contrary reverses the debuffs again through the normal engine.
+    if self_setup?(move) && !user.hasActiveAbility?(:CONTRARY)
+      return [score, floor].min
+    end
+
+    # A stat-lowering Dance now boosts its recipient.
+    # Do not reject this when boosting an ally, or when Contrary
+    # converts the boost back into a drop on an opposing target.
+    if target && target_drop?(move) && target.opposes?(user) &&
+       !target.hasActiveAbility?(:CONTRARY)
+      return [score, floor].min
+    end
+
+    return score - confusion_penalty(battle, user)
+  end
+
+  module MoveHook
+    def pbReverseDanceEffect?(user)
+      # Preserve ALL existing reversal branches, including Feather Dance.
+      return KaitoDancingPanic.affected?(@battle, user, self)
+    end
+  end
+
+  module BattlerHook
+    def pbEffectsAfterMove(user, targets, move, numHits)
+      # This hook runs after the move's hits and direct effects.
+      # Apply before post-move switching and other general effects.
+      if move.danceMove? && numHits > 0 &&
+         !user.lastMoveFailed && !user.fainted?
+        source = KaitoDancingPanic.holder(@battle, user)
+
+        if source && user.pbCanConfuse?(source, false)
+          @battle.pbShowAbilitySplash(source, true)
+          begin
+            user.pbConfuse(_INTL(
+              "{1} became confused from the frantic rhythm!",
+              user.pbThis
+            ))
+          ensure
+            @battle.pbHideAbilitySplash(source)
+          end
+        end
+      end
+
+      return super
+    end
+  end
+
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+
+      return KaitoDancingPanic.adjust_score(
+        score, @battle, user, target, move, -100
+      )
+    end
+  end
+
+  def self.install_ai!
+    return if !defined?(AdvancedAI)
+    return if !Battle::AI.method_defined?(:score_move_advanced)
+    return if Battle::AI.ancestors.include?(AdvancedScoring)
+
+    Battle::AI.prepend(AdvancedScoring)
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoDancingPanic.install_ai!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle::Move.ancestors.include?(KaitoDancingPanic::MoveHook)
+  Battle::Move.prepend(KaitoDancingPanic::MoveHook)
+end
+
+unless Battle::Battler.ancestors.include?(KaitoDancingPanic::BattlerHook)
+  Battle::Battler.prepend(KaitoDancingPanic::BattlerHook)
+end
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :kaito_dancing_panic,
+  proc { |score, move, user, target, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+
+    next KaitoDancingPanic.adjust_score(
+      score, battle, user, target, move,
+      Battle::AI::MOVE_USELESS_SCORE
+    )
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoDancingPanic::BattleConstruction
+)
+  Battle.singleton_class.prepend(KaitoDancingPanic::BattleConstruction)
+end
+
+#===============================================================================
+# Hydroponic
+# Grass moves deal 30% more damage in rain OR Swamp Terrain.
+#===============================================================================
+module KaitoHydroponic
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.battle_of(object)
+    object = real(object)
+    return nil if !object
+    return object.instance_variable_get(:@battle)
+  end
+
+  def self.has?(object)
+    user = real(object)
+    return false if !user || user.fainted?
+
+    if user.respond_to?(:hasActiveAbility?)
+      return user.hasActiveAbility?(:HYDROPONIC)
+    end
+
+    # Reserve Pokemon: ordinary ability plus unlocked innates.
+    return true if user.respond_to?(:ability_id) &&
+                   user.ability_id == :HYDROPONIC
+
+    return user.respond_to?(:set_innate_limits) &&
+           Array(user.set_innate_limits).include?(:HYDROPONIC)
+  end
+
+  def self.active?(object, type, battle = nil)
+    return false if type != :GRASS || !has?(object)
+
+    user = real(object)
+    battle ||= battle_of(user)
+
+    # OR condition: never apply two multipliers.
+    return true if battle && battle.field.terrain == :Swamp
+
+    weather = if user.respond_to?(:effectiveWeather)
+                user.effectiveWeather
+              elsif battle
+                battle.pbWeather
+              end
+
+    return [:Rain, :HeavyRain].include?(weather)
+  end
+
+  module CombatAI
+    def ability_damage_modifier(
+      attacker, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+      battle = KaitoHydroponic.battle_of(attacker) ||
+               KaitoHydroponic.battle_of(target) ||
+               KaitoHydroponic.battle_of(move)
+
+      if KaitoHydroponic.active?(attacker, type, battle)
+        value *= 1.3
+      end
+
+      return value
+    end
+  end
+
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+
+      native = move.respond_to?(:move) ? move.move : move
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+
+      code = move.function_code.to_s
+      return value if code.start_with?("FixedDamage", "OHKO", "Counter")
+      return value if [
+        "LowerTargetHPToUserHP",
+        "UserFaintsFixedDamageUserHP",
+        "MultiTurnAttackBideThenReturnDoubleDamage"
+      ].include?(code)
+
+      # These terrain calculations already use the shared estimator.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      return value if !KaitoHydroponic.active?(user, type, @battle)
+      return [(value * 1.3).round, 1].max
+    end
+  end
+
+  def self.install_ai!
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      singleton.prepend(CombatAI) unless singleton.ancestors.include?(CombatAI)
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage)
+      Battle::AI.prepend(ScorerAI) unless Battle::AI.ancestors.include?(ScorerAI)
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoHydroponic.install_ai!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:HYDROPONIC,
+  proc { |ability, user, target, move, mults, power, type|
+    if KaitoHydroponic.active?(user, type)
+      mults[:power_multiplier] *= 1.3
+    end
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoHydroponic::BattleConstruction
+)
+  Battle.singleton_class.prepend(KaitoHydroponic::BattleConstruction)
+end
+
+#===============================================================================
+# Seaweed
+# Halves incoming Fire damage.
+# Grass is super effective against the target's Fire typing.
+#===============================================================================
+module KaitoSeaweed
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.has?(object)
+    object = real(object)
+    return false if !object || object.fainted?
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(:SEAWEED)
+    end
+
+    return true if object.respond_to?(:ability_id) &&
+                   object.ability_id == :SEAWEED
+
+    return object.respond_to?(:set_innate_limits) &&
+           Array(object.set_innate_limits).include?(:SEAWEED)
+  end
+
+  def self.fire_resistance(user, target, move, type)
+    return 1.0 if type != :FIRE || !has?(target)
+    return 1.0 if AdvancedAI::Utilities.ignores_ability?(
+      user, move, target
+    )
+    return 0.5
+  end
+
+  # Actual battle and Native AI type effectiveness.
+  module TypeEffect
+    def pbCalcTypeModSingle(moveType, defType, user, target)
+      if moveType == :GRASS && defType == :FIRE &&
+         KaitoSeaweed.has?(user)
+        return Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+      end
+
+      return super
+    end
+  end
+
+  module CombatAI
+    # Both Advanced AI damage paths use this type-effectiveness helper.
+    def move_type_effectiveness(move, user, defender, effective_type = nil)
+      value = super
+      type = effective_type || resolve_move_type(user, move)
+      return value if type != :GRASS || !KaitoSeaweed.has?(user)
+
+      target = KaitoSeaweed.real(defender)
+      types = target.respond_to?(:pbTypes) ?
+                target.pbTypes(true) : target.types
+
+      # Grass vs Fire changes from 0.5 to 2: ratio = 4.
+      return types.include?(:FIRE) ? value * 4 : value
+    end
+
+    def ability_damage_modifier(
+      user, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+
+      return value * KaitoSeaweed.fire_resistance(
+        user, target, move, type
+      )
+    end
+  end
+
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+
+      native = move.respond_to?(:move) ? move.move : move
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+
+      code = move.function_code.to_s
+      return value if code.start_with?("FixedDamage", "OHKO", "Counter")
+      return value if [
+        "LowerTargetHPToUserHP",
+        "UserFaintsFixedDamageUserHP",
+        "MultiTurnAttackBideThenReturnDoubleDamage"
+      ].include?(code)
+
+      # Terrain delegation already uses the shared damage estimator.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      factor = KaitoSeaweed.fire_resistance(user, target, move, type)
+      return value if factor == 1.0
+      return [(value * factor).round, 1].max
+    end
+  end
+
+  def self.install!
+    # Patch classes that define their own per-type calculation as well.
+    @patched_classes ||= []
+    ObjectSpace.each_object(Class) do |klass|
+      next if !(klass <= Battle::Move)
+      next if !klass.instance_methods(false).include?(:pbCalcTypeModSingle)
+      next if @patched_classes.include?(klass)
+
+      klass.prepend(TypeEffect)
+      @patched_classes.push(klass)
+    end
+
+    if defined?(AdvancedAI::CombatUtilities)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      singleton.prepend(CombatAI) unless singleton.ancestors.include?(CombatAI)
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage)
+      Battle::AI.prepend(ScorerAI) unless Battle::AI.ancestors.include?(ScorerAI)
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoSeaweed.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AbilityEffects::DamageCalcFromTarget.add(:SEAWEED,
+  proc { |ability, user, target, move, mults, power, type|
+    mults[:final_damage_multiplier] *= 0.5 if type == :FIRE
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoSeaweed::BattleConstruction
+)
+  Battle.singleton_class.prepend(KaitoSeaweed::BattleConstruction)
+end
+
+#===============================================================================
+# Hushed Soar
+# Actual battle priority + Native AI / Advanced AI scoring.
+#===============================================================================
+module KaitoHushedSoar
+  ABILITY = :HUSHEDSOAR
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.native(move)
+    move.respond_to?(:move) ? move.move : move
+  end
+
+  def self.active?(object)
+    battler = real(object)
+    return false if !battler || battler.fainted?
+    return false if !battler.respond_to?(:hasActiveAbility?)
+    return battler.hasActiveAbility?(ABILITY)
+  end
+
+  def self.move_choice?(battle, battler)
+    choice = battle.choices[battler.index]
+    return choice && choice[0] == :UseMove && choice[2]
+  end
+
+  def self.boosted_priority(original, opposing_priority)
+    return original if opposing_priority.nil? || opposing_priority <= 0
+    return [original, opposing_priority + 1].max
+  end
+
+  #---------------------------------------------------------------------------
+  # Actual battle: use the completed engine priority table.
+  #---------------------------------------------------------------------------
+  module BattleHook
+    def pbCalculatePriority(fullCalc = false, indexArray = nil)
+      # Remove our old contribution before any full/partial recalculation.
+      if @priority
+        @priority.each do |entry|
+          saved = entry.instance_variable_get(:@kaito_hushed_original)
+          next if saved.nil?
+
+          entry[5] = saved
+          choice = @choices[entry[0].index]
+          choice[4] = saved if choice && choice[0] == :UseMove
+          entry.remove_instance_variable(:@kaito_hushed_original)
+        end
+      end
+
+      result = super
+      return result if !@priority || @priority.empty?
+
+      # Snapshot before applying ANY Hushed Soar.
+      snapshot = @priority.map { |entry|
+        [entry, entry[5], entry[4]]
+      }
+
+      snapshot.each do |entry, original, subpriority|
+        user = entry[0]
+        next if !KaitoHushedSoar.active?(user)
+        next if !KaitoHushedSoar.move_choice?(self, user)
+
+        highest = nil
+        snapshot.each do |foe_entry, foe_priority, foe_subpriority|
+          foe = foe_entry[0]
+          next if foe.fainted? || !foe.opposes?(user)
+          next if !KaitoHushedSoar.move_choice?(self, foe)
+
+          # Positive sub-priority is an additional virtual point.
+          value = foe_priority + (foe_subpriority > 0 ? 1 : 0)
+          next if value <= 0
+
+          highest = value if highest.nil? || value > highest
+        end
+
+        boosted = KaitoHushedSoar.boosted_priority(original, highest)
+        next if boosted == original
+
+        entry.instance_variable_set(:@kaito_hushed_original, original)
+        entry[5] = boosted
+        @choices[user.index][4] = boosted
+      end
+
+      # Match the engine's ordering, including Trick Room and tie-breakers.
+      @priority.sort! do |a, b|
+        if a[5] != b[5]
+          b[5] <=> a[5]
+        elsif a[4] != b[4]
+          b[4] <=> a[4]
+        elsif a[1] == b[1]
+          b[6] <=> a[6]
+        elsif @priorityTrickRoom
+          a[1] <=> b[1]
+        else
+          b[1] <=> a[1]
+        end
+      end
+
+      return result
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # AI: evaluate base priority without modifying the actual battler.
+  # Do not inspect battle.choices or reroll priority items.
+  #---------------------------------------------------------------------------
+  def self.base_priority(object, move)
+    battler = real(object)
+    move = native(move)
+    return 0 if !battler || !move
+
+    return move.priority.to_i if !move.respond_to?(:pbPriority)
+
+    probe = battler.dup
+    probe.instance_variable_set(:@effects, battler.effects.dup)
+    probe.instance_variable_set(:@stages, battler.stages.dup)
+
+    previous_name = $aamName
+    begin
+      priority = move.pbPriority(probe)
+      if probe.abilityActive?
+        priority = Battle::AbilityEffects.triggerPriorityChange(
+          probe.ability, probe, move, priority
+        )
+      end
+      return priority
+    ensure
+      $aamName = previous_name
+    end
+  end
+
+  # Known probability of positive sub-priority.
+  # Actual battle still uses the engine's real result for every item/ability.
+  def self.quick_chance(battler)
+    ability_chance =
+      battler.hasActiveAbility?(:QUICKDRAW) ? 0.30 : 0.0
+
+    item_chance = 0.0
+    if battler.hasActiveItem?(:QUICKCLAW)
+      item_chance = 0.20
+    elsif battler.hasActiveItem?(:CUSTAPBERRY) &&
+          battler.canConsumePinchBerry?
+      item_chance = 1.0
+    end
+
+    return 1.0 - (1.0 - ability_chance) * (1.0 - item_chance)
+  end
+
+  # Distribution of a foe's possible priority, using usable moves.
+  # Equal move weights are a heuristic, not knowledge of their chosen move.
+  def self.foe_distribution(battle, foe)
+    options = []
+
+    foe.moves.each_with_index do |move, index|
+      next if !move
+      next if !battle.pbCanChooseMove?(foe.index, index, false)
+      next if move.id == :FAKEOUT && foe.turnCount > 0
+
+      options.push(base_priority(foe, move))
+    end
+
+    return { 0 => 1.0 } if options.empty?
+
+    quick = quick_chance(foe)
+    result = Hash.new(0.0)
+    weight = 1.0 / options.length
+
+    options.each do |priority|
+      result[priority] += weight * (1.0 - quick)
+      result[priority + 1] += weight * quick
+    end
+
+    return result
+  end
+
+  # Combine all opponents: use their maximum, never sum their priorities.
+  def self.opposing_distribution(battle, user)
+    result = { 0 => 1.0 }
+
+    battle.allBattlers.each do |foe|
+      next if foe.fainted? || !foe.opposes?(user)
+
+      combined = Hash.new(0.0)
+      options = foe_distribution(battle, foe)
+
+      result.each do |current, probability|
+        options.each do |priority, chance|
+          combined[[current, priority].max] += probability * chance
+        end
+      end
+
+      result = combined
+    end
+
+    return result
+  end
+
+  def self.priority_blocked?(battle, user, target, move)
+    return false if !target || !target.opposes?(user)
+
+    if battle.field.terrain == :Psychic && target.affectedByTerrain?
+      return true
+    end
+
+    ignores = if defined?(AdvancedAI::Utilities)
+                AdvancedAI::Utilities.ignores_ability?(user, move, target)
+              else
+                user.hasMoldBreaker?
+              end
+    return false if ignores
+
+    blockers = [:DAZZLING, :QUEENLYMAJESTY, :ARMORTAIL]
+    return battle.allBattlers.any? do |b|
+      !b.fainted? && !b.opposes?(target) &&
+        blockers.any? { |ability| b.hasActiveAbility?(ability) }
+    end
+  end
+
+  def self.score_adjustment(battle, object, target_object, move)
+    user = real(object)
+    target = real(target_object)
+    move = native(move)
+    return 0 if !user || !target || !move
+    return 0 if user.fainted? || target.fainted?
+
+    original = base_priority(user, move)
+    adjustment = 0.0
+
+    if active?(user)
+      probability = 0.0
+
+      opposing_distribution(battle, user).each do |priority, chance|
+        boosted = boosted_priority(original, priority)
+        probability += chance if boosted > original
+      end
+
+      if probability > 0
+        if original <= 0 &&
+           priority_blocked?(battle, user, target, move)
+          # Becoming positive-priority can make the move fail.
+          adjustment -= 100 * probability
+        else
+          # Prefer useful damage/healing when priority is likely to improve.
+          value = move.damagingMove? ? 20 : 8
+          value += 10 if user.hp * 3 <= user.totalhp
+          adjustment += value * probability
+        end
+      end
+    end
+
+    # Also recognise the danger of feeding priority to an opposing holder.
+    # A positive-priority move cannot rely on outspeeding that holder.
+    if target.opposes?(user) && active?(target)
+      virtual = original + quick_chance(user)
+      if virtual > 0
+        adjustment -= move.damagingMove? ? 25 : 10
+      end
+    end
+
+    return adjustment.round
+  end
+
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if score <= -100
+
+      return score + KaitoHushedSoar.score_adjustment(
+        @battle, user, target, move
+      )
+    end
+  end
+
+  def self.install_ai!
+    return if !defined?(AdvancedAI)
+    return if !Battle::AI.method_defined?(:score_move_advanced)
+    return if Battle::AI.ancestors.include?(AdvancedScoring)
+
+    Battle::AI.prepend(AdvancedScoring)
+  end
+
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoHushedSoar.install_ai!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.ancestors.include?(KaitoHushedSoar::BattleHook)
+  Battle.prepend(KaitoHushedSoar::BattleHook)
+end
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :kaito_hushed_soar,
+  proc { |score, move, user, target, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+
+    # Advanced AI receives its adjustment through AdvancedScoring.
+    # Avoid a second adjustment if it delegates to Native scoring.
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:score_move_advanced)
+      next score
+    end
+
+    next score + KaitoHushedSoar.score_adjustment(
+      battle, user, target, move
+    )
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoHushedSoar::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoHushedSoar::ConstructionHook)
+end
+
+#===============================================================================
+# Mind Insight
+# Normal attacks gain Psychic's super-effective matchups and can hit Ghost.
+# Includes Native AI and Advanced AI type-effectiveness support.
+#===============================================================================
+module KaitoMindInsight
+  ABILITY = :MINDINSIGHT
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.active?(object)
+    user = real(object)
+    return false if !user || user.fainted?
+
+    if user.respond_to?(:hasActiveAbility?)
+      return user.hasActiveAbility?(ABILITY)
+    end
+
+    # Reserve Pokemon: ordinary ability and unlocked innates.
+    return true if user.respond_to?(:ability_id) &&
+                   user.ability_id == ABILITY
+
+    return user.respond_to?(:set_innate_limits) &&
+           Array(user.set_innate_limits).include?(ABILITY)
+  end
+
+  # nil means this ability does not override this defensive type.
+  def self.override(defending_type)
+    if Effectiveness.super_effective_type?(:PSYCHIC, defending_type)
+      return Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+    end
+
+    if defending_type == :GHOST
+      return Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
+    end
+
+    return nil
+  end
+
+  module MoveHook
+    def pbCalcTypeModSingle(moveType, defType, user, target)
+      if moveType == :NORMAL && damagingMove? &&
+         KaitoMindInsight.active?(user)
+        replacement = KaitoMindInsight.override(defType)
+        return replacement unless replacement.nil?
+      end
+
+      return super
+    end
+  end
+
+  module AdvancedTypes
+    def move_type_effectiveness(move, user, defender, effective_type = nil)
+      type = effective_type || resolve_move_type(user, move)
+
+      unless type == :NORMAL && KaitoMindInsight.active?(user)
+        return super
+      end
+
+      native = move.respond_to?(:move) ? move.move : move
+      info = GameData::Move.try_get(move.id)
+      return super if !info || info.category == 2
+
+      attacker = KaitoMindInsight.real(user)
+      target = KaitoMindInsight.real(defender)
+
+      # Live battlers: use the actual engine calculation, preserving
+      # move-specific rules and the project's other type-effectiveness hooks.
+      if native.is_a?(Battle::Move) &&
+         attacker.is_a?(Battle::Battler) &&
+         target.is_a?(Battle::Battler)
+        return native.pbCalcTypeMod(type, attacker, target)
+      end
+
+      # Reserve Pokemon / MoveProxy prediction.
+      types = target.respond_to?(:pbTypes) ?
+                target.pbTypes(true) : target.types
+
+      value = Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
+      types.each do |def_type|
+        multiplier = KaitoMindInsight.override(def_type)
+        if multiplier.nil?
+          multiplier = Effectiveness.calculate(type, def_type)
+        end
+
+        value = value * multiplier /
+                Effectiveness::NORMAL_EFFECTIVE_MULTIPLIER
+      end
+
+      return value
+    end
+  end
+
+  def self.install!
+    # Include move subclasses defining their own per-type calculation.
+    @patched_classes ||= []
+
+    ObjectSpace.each_object(Class) do |klass|
+      next if !(klass <= Battle::Move)
+      next if !klass.instance_methods(false).include?(:pbCalcTypeModSingle)
+      next if @patched_classes.include?(klass)
+
+      klass.prepend(MoveHook)
+      @patched_classes.push(klass)
+    end
+
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:move_type_effectiveness)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      unless singleton.ancestors.include?(AdvancedTypes)
+        singleton.prepend(AdvancedTypes)
+      end
+    end
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoMindInsight.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoMindInsight::BattleConstruction
+)
+  Battle.singleton_class.prepend(KaitoMindInsight::BattleConstruction)
+end
+
+#===============================================================================
+# Mind Insight - Additional Psychic STAB
+# Requires the existing KaitoMindInsight implementation.
+#===============================================================================
+module KaitoMindInsight
+  def self.has_ability?(object, ability)
+    user = real(object)
+    return false if !user
+
+    if user.respond_to?(:hasActiveAbility?)
+      return user.hasActiveAbility?(ability)
+    end
+
+    return true if user.respond_to?(:ability_id) &&
+                   user.ability_id == ability
+
+    return user.respond_to?(:set_innate_limits) &&
+           Array(user.set_innate_limits).include?(ability)
+  end
+
+  def self.psychic_stab
+    :PSYCHIC
+  end
+
+  def self.desired_stab(object)
+    user = real(object)
+    stellar = user.respond_to?(:tera?) && user.tera? &&
+              user.tera_type == :STELLAR
+
+    return 2.0 if !stellar && has_ability?(user, :ADAPTABILITY)
+    return 1.5
+  end
+
+  # STAB already granted by the actual engine, including Terastallization.
+  def self.engine_stab(object)
+    user = real(object)
+    type = psychic_stab
+    adaptability = has_ability?(user, :ADAPTABILITY)
+    existing = 1.0
+
+    if user.respond_to?(:tera?) && user.tera?
+      stellar = user.tera_type == :STELLAR
+      adaptability = false if stellar
+
+      if user.pbPreTeraTypes.include?(type)
+        existing = if user.typeTeraBoosted?(type)
+                     adaptability ? 2.25 : 2.0
+                   else
+                     adaptability ? 2.0 : 1.5
+                   end
+      elsif user.typeTeraBoosted?(type)
+        existing = adaptability ? 2.0 : (stellar ? 1.2 : 1.5)
+      end
+    else
+      matches = user.respond_to?(:pbHasType?) ?
+                  user.pbHasType?(type) : user.types.include?(type)
+      existing = adaptability ? 2.0 : 1.5 if matches
+    end
+
+    # Respect the existing Mimicry original-type STAB extension.
+    if defined?(MimicryOriginalSTAB) &&
+       MimicryOriginalSTAB.retains_stab?(user, type)
+      existing = [
+        existing, MimicryOriginalSTAB.retained_stab(user)
+      ].max
+    end
+
+    return existing
+  end
+
+  def self.extra_stab(object, type)
+    return 1.0 if type != psychic_stab || !active?(object)
+
+    existing = engine_stab(object)
+    return [existing, desired_stab(object)].max / existing
+  end
+
+  # Advanced AI currently calculates ordinary STAB separately.
+  def self.ai_extra_stab(object, type)
+    return 1.0 if type != psychic_stab || !active?(object)
+
+    user = real(object)
+    matches = user.respond_to?(:pbHasType?) ?
+                user.pbHasType?(type) : user.types.include?(type)
+
+    existing = matches ? 1.5 : 1.0
+    existing = 2.0 if matches && has_ability?(user, :ADAPTABILITY)
+
+    if has_ability?(user, :PROTEAN) || has_ability?(user, :LIBERO)
+      existing = [existing, 1.5].max
+    end
+
+    if defined?(MimicryOriginalSTAB) &&
+       MimicryOriginalSTAB.retains_stab?(user, type)
+      existing = [
+        existing, MimicryOriginalSTAB.retained_stab(user)
+      ].max
+    end
+
+    return [existing, desired_stab(user)].max / existing
+  end
+
+  module PsychicCombatAI
+    def ability_damage_modifier(
+      user, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+      return value * KaitoMindInsight.ai_extra_stab(user, type)
+    end
+  end
+
+  module PsychicScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+
+      native = move.respond_to?(:move) ? move.move : move
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+
+      code = move.function_code.to_s
+      return value if code.start_with?("FixedDamage", "OHKO", "Counter")
+      return value if [
+        "LowerTargetHPToUserHP",
+        "UserFaintsFixedDamageUserHP",
+        "MultiTurnAttackBideThenReturnDoubleDamage"
+      ].include?(code)
+
+      # Avoid applying STAB twice through shared-estimator delegation.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      factor = KaitoMindInsight.ai_extra_stab(user, type)
+      return value if factor == 1.0
+      return [(value * factor).round, 1].max
+    end
+  end
+
+  module PsychicInstaller
+    def install!
+      super
+
+      if defined?(AdvancedAI::CombatUtilities)
+        singleton = AdvancedAI::CombatUtilities.singleton_class
+        unless singleton.ancestors.include?(PsychicCombatAI)
+          singleton.prepend(PsychicCombatAI)
+        end
+      end
+
+      if defined?(AdvancedAI) &&
+         Battle::AI.method_defined?(:calculate_rough_damage) &&
+         !Battle::AI.ancestors.include?(PsychicScorerAI)
+        Battle::AI.prepend(PsychicScorerAI)
+      end
+    end
+  end
+end
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:MINDINSIGHT,
+  proc { |ability, user, target, move, mults, power, type|
+    mults[:final_damage_multiplier] *=
+      KaitoMindInsight.extra_stab(user, type)
+  }
+)
+
+unless KaitoMindInsight.singleton_class.ancestors.include?(
+  KaitoMindInsight::PsychicInstaller
+)
+  KaitoMindInsight.singleton_class.prepend(
+    KaitoMindInsight::PsychicInstaller
+  )
+end
+
+#===============================================================================
+# Oleum Burst
+# An opposing hit removing more than 1/3 max HP lowers the attacker's Speed.
+#===============================================================================
+Battle::AbilityEffects::OnBeingHit.add(:OLEUMBURST,
+  proc { |ability, user, target, move, battle|
+    next if !user || !target || !move
+    next if user.fainted? || !user.opposes?(target)
+    next if target.damageState.substitute
+    next if target.damageState.hpLost * 3 <= target.totalhp
+
+    # Standard stat-drop handling: Contrary, Simple, immunities,
+    # Mirror Armor, stat limits, ability splash and messages.
+    user.pbLowerStatStageByAbility(:SPEED, 1, target)
+  }
+)
+
+#===============================================================================
+# Native AI + Advanced AI scoring
+#===============================================================================
+module KaitoOleumBurst
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.applicable?(user, target, move)
+    user = real(user)
+    target = real(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return false if !user || !target || !native
+    return false if user.fainted? || target.fainted?
+    return false if !user.opposes?(target)
+    return false if !target.hasActiveAbility?(:OLEUMBURST)
+    return false if !native.damagingMove?
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !native.ignoresSubstitute?(user)
+      return false
+    end
+
+    return true
+  end
+
+  # Positive values are bonuses; negative values are penalties.
+  def self.adjustment(user, target, estimated_damage)
+    user = real(user)
+    target = real(target)
+    return 0 if !estimated_damage || estimated_damage <= 0
+
+    # Compare actual predicted HP loss, not overkill damage.
+    lost = [estimated_damage, target.hp].min
+    return 0 if lost * 3 <= target.totalhp
+    return 0 if !user.pbCanLowerStatStage?(:SPEED, target, nil, false)
+
+    # Contrary turns the Speed drop into a benefit.
+    return 12 if user.hasActiveAbility?(:CONTRARY)
+
+    # Mirror Armor can reflect the drop back to the defender.
+    if user.hasActiveAbility?(:MIRRORARMOR)
+      return target.hp > lost ? 8 : 0
+    end
+
+    penalty = 12
+    penalty += 8 if user.hasActiveAbility?(:SIMPLE)
+
+    # Losing a speed advantage is particularly costly.
+    if user.pbSpeed > target.pbSpeed
+      stage = user.stages[:SPEED]
+      before = stage >= 0 ? (2.0 + stage) / 2 : 2.0 / (2 - stage)
+      after_stage = [stage - 1, -6].max
+      after = after_stage >= 0 ?
+                (2.0 + after_stage) / 2 : 2.0 / (2 - after_stage)
+
+      predicted_speed = user.pbSpeed * after / before
+      penalty += 10 if predicted_speed < target.pbSpeed
+    end
+
+    # Stat-drop-triggered offensive boosts can offset the drawback.
+    penalty -= 20 if user.hasActiveAbility?(:DEFIANT) ||
+                     user.hasActiveAbility?(:COMPETITIVE)
+
+    return -penalty
+  end
+
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      # Prevent duplicate scoring if Advanced AI delegates to Native handlers.
+      @kaito_oleum_scoring_depth = @kaito_oleum_scoring_depth.to_i + 1
+      begin
+        score = super
+        return score if score <= -100
+        return score if !KaitoOleumBurst.applicable?(user, target, move)
+
+        damage = calculate_rough_damage(move, user, target)
+
+        return score + KaitoOleumBurst.adjustment(
+          user, target, damage
+        )
+      ensure
+        @kaito_oleum_scoring_depth -= 1
+      end
+    end
+  end
+
+  def self.install_ai!
+    return if !defined?(AdvancedAI)
+    return if !Battle::AI.method_defined?(:score_move_advanced)
+    return if Battle::AI.ancestors.include?(AdvancedScoring)
+
+    Battle::AI.prepend(AdvancedScoring)
+  end
+
+  module BattleConstruction
+    def new(*args, &block)
+      KaitoOleumBurst.install_ai!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :kaito_oleum_burst,
+  proc { |score, move, user, target, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+    next score if ai.instance_variable_get(
+      :@kaito_oleum_scoring_depth
+    ).to_i > 0
+    next score if !KaitoOleumBurst.applicable?(user, target, move)
+
+    next score + KaitoOleumBurst.adjustment(
+      user, target, move.rough_damage
+    )
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoOleumBurst::BattleConstruction
+)
+  Battle.singleton_class.prepend(KaitoOleumBurst::BattleConstruction)
 end

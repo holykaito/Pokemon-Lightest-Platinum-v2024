@@ -1,5 +1,31 @@
 ﻿# See the documentation on the wiki to learn how to edit this file.
 #-------------------------------
+[ENCHANTOW]
+Name = Enchantow
+Types = NORMAL,FLYING
+BaseStats = 100,60,70,80,100,115
+GenderRatio = Female50Percent
+GrowthRate = Medium
+BaseExp = 258
+EVs = HP,1,SPECIAL_DEFENSE,2
+CatchRate = 90
+Happiness = 50
+Abilities = INSOMNIA,KEENEYE
+HiddenAbilities = TINTEDLENS
+Moves = 1,GROWL,1,PECK,1,SKYATTACK,1,ECHOEDVOICE,1,TACKLE,9,CONFUSION,12,REFLECT,15,DEFOG,18,AIRSLASH,23,EXTRASENSORY,28,TAKEDOWN,33,UPROAR,38,ROOST,43,MOONBLAST,48,HYPNOSIS,53,DREAMEATER
+TutorMoves = ACROBATICS,AERIALACE,AGILITY,AIRCUTTER,AIRSLASH,AMNESIA,BODYSLAM,BRAVEBIRD,CALMMIND,CONFUSERAY,CURSE,DOUBLEEDGE,DUALWINGBEAT,ENDURE,FACADE,FEATHERDANCE,FLY,FUTURESIGHT,GIGAIMPACT,HAZE,HEATWAVE,HURRICANE,HYPERBEAM,HYPERVOICE,IMPRISON,NASTYPLOT,NIGHTSHADE,PROTECT,PSYBEAM,PSYCHIC,PSYCHICNOISE,PSYCHUP,RAINDANCE,REFLECT,REST,SCARYFACE,SHADOWBALL,SKILLSWAP,SLEEPTALK,SPITE,STOREDPOWER,SUBSTITUTE,SUNNYDAY,SWIFT,TAILWIND,TAKEDOWN,THIEF,UPROAR,ZENHEADBUTT,TERABLAST
+EggGroups = Flying
+HatchSteps = 3840
+Height = 1.8
+Weight = 52.0
+Color = Brown
+Shape = Winged
+Habitat = Forest
+Category = Enchanter
+Pokedex = When Enchantow’s eyes gleam, anyone who meets its gaze becomes lost in a dream of its creation. It silently observes them to understand their minds.
+Generation = 10
+RaidRanks = 4,5
+#-------------------------------
 [AMPLIPOM]
 Name = Amplipom
 Types = NORMAL
@@ -29,7 +55,7 @@ RaidRanks = 3,4,5
 [HIGHYENA]
 Name = Highyena
 Types = DARK
-BaseStats = 70,90,70,90,60,60
+BaseStats = 85,110,90,95,70,70
 GenderRatio = Female50Percent
 GrowthRate = Medium
 BaseExp = 147
@@ -42,15 +68,15 @@ Moves = -1,INSTRUCT,0,SNARL,1,TACKLE,1,THIEF,1,FIREFANG,1,ICEFANG,1,THUNDERFANG,
 TutorMoves = BODYSLAM,CHARM,CRUNCH,DARKPULSE,DIG,DOUBLEEDGE,ENDEAVOR,ENDURE,FACADE,FIREFANG,FOULPLAY,GIGAIMPACT,HELPINGHAND,HYPERBEAM,HYPERVOICE,ICEFANG,LASHOUT,MUDSLAP,NASTYPLOT,PLAYROUGH,PROTECT,PSYCHICFANGS,RAINDANCE,REST,ROAR,SCARYFACE,SHADOWBALL,SLEEPTALK,SNARL,SPITE,SUBSTITUTE,SUNNYDAY,SUPERFANG,TAKEDOWN,TAUNT,THIEF,THROATCHOP,THUNDERFANG,TRAILBLAZE,UPROAR,TERABLAST
 EggGroups = Field
 HatchSteps = 3840
-Height = 1.0
-Weight = 37.0
+Height = 1.5
+Weight = 62.0
 Color = Gray
 Shape = Quadruped
 Habitat = Grassland
-Category = Bite
-Pokedex = In the wild, Mightyena live in a pack. They never defy their leader's orders. They defeat foes with perfectly coordinated teamwork.
-Generation = 3
-RaidRanks = 3,4
+Category = Intimidation
+Pokedex = When Highyena raises its mane, even larger Pokémon become wary. A single growl is enough to send intruders retreating.
+Generation = 10
+RaidRanks = 4,5
 #-------------------------------
 [SOLFLORA]
 Name = Solflora
