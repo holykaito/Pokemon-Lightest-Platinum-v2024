@@ -546,8 +546,8 @@ Habitat = Grassland
 Category = Grasshopper
 Pokedex = It has its third set of legs folded up. When it's in a tough spot, this Pokémon jumps over 30 feet using the strength of its legs.
 Generation = 9
-Evolutions = LOKIX,Level,24
 Flags = Done
+Evolutions = LOKIX,Level,24
 #-------------------------------
 [LOKIX]
 Name = Lokix
@@ -783,8 +783,8 @@ Habitat = Grassland
 Category = Olive
 Pokedex = It protects itself from enemies by emitting oil from the fruit on its head. This oil is bitter and astringent enough to make someone flinch.
 Generation = 9
-Evolutions = DOLLIV,Level,25
 Flags = Done
+Evolutions = DOLLIV,Level,25
 #-------------------------------
 [DOLLIV]
 Name = Dolliv
@@ -810,8 +810,8 @@ Habitat = Grassland
 Category = Olive
 Pokedex = Dolliv shares its tasty, fresh-scented oil with others. This species has coexisted with humans since times long gone.
 Generation = 9
-Evolutions = ARBOLIVA,Level,35
 Flags = Done
+Evolutions = ARBOLIVA,Level,35
 #-------------------------------
 [ARBOLIVA]
 Name = Arboliva

@@ -36,7 +36,6 @@ Generation = 10
 [ROTOM,7]
 FormName = Micrio
 Types = ELECTRIC,BUG
-Color = Red
 Category = Micro
 Pokedex = The lava inside its body has solidified and unable to be expelled, causing its humps to grow larger and sharper. They are known to cause avalanches when threatened.
 Generation = 10
@@ -46,7 +45,6 @@ FormName = Northern
 Types = FIGHTING,DARK
 Color = Gray
 Category = Dormant
-Pokedex = They use concrete pillars as walking canes. They know moves that enable them to swing the pillars freely in battle.
 Generation = 10
 #-------------------------------
 [MIENFOO,1]
@@ -180,7 +178,6 @@ BaseStats = 84,116,113,60,131,131
 BaseExp = 313
 Abilities = SUPREMEOVERLORD
 HiddenAbilities = SUPREMEOVERLORD
-Height = 1.7
 Weight = 104.5
 Pokedex = Its golden steel blades cleave icebergs with ease. A single regal cry makes its entire colony bow.
 Generation = 10

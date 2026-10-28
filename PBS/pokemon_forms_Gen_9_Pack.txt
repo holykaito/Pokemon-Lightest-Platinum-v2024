@@ -672,6 +672,7 @@ Height = 1.9
 Weight = 50.0
 Pokedex = Mega Staraptor is a top-class flier. It can easily soar through the sky while gripping a Steelix that weighs more than 880 lbs.
 Generation = 9
+Flags = Done
 #-------------------------------
 [GARCHOMP,2]
 FormName = Mega Garchomp Z

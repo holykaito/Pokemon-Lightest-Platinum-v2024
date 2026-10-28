@@ -1022,3 +1022,28 @@ FunctionCode = BurnTarget
 Flags = Contact,CanProtect,CanMirrorMove,Slicing
 EffectChance = 10
 Description = Slashes the target with a fiery blade that may burn it.
+#-------------------------------
+[SUPERSONICBREAK]
+Name = Supersonic Break
+Type = FLYING
+Category = Special
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = PowerUpIfTargetFaster
+Flags = CanProtect,CanMirrorMove,Sound
+Description = A sonic blast that grows stronger against faster targets.
+#-------------------------------
+[CREEPOUT]
+Name = Creep Out
+Type = BUG
+Category = Special
+Power = 50
+Accuracy = 100
+TotalPP = 12
+Target = NearOther
+FunctionCode = MakeTargetWeakerToBug
+Flags = CanProtect
+EffectChance = 100
+Description = Attacks the target and makes it weaker to Bug-type moves.

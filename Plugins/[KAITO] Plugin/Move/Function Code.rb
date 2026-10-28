@@ -1608,26 +1608,26 @@ class Battle
     alias_method :kaito_soul_trap_original_replace,
                  :pbRecallAndReplace
 
-    def pbRecallAndReplace(idxBattler, idxParty,
-                           randomReplacement = false, batonPass = false)
-      outgoing = @battlers[idxBattler]
-      trap_data = nil
+	def pbRecallAndReplace(idxBattler, idxParty,
+						   randomReplacement = false, batonPass = false)
+	  outgoing = @battlers[idxBattler]
+	  trap_data = nil
 
-      if outgoing && !outgoing.fainted? &&
-         outgoing.pokemonIndex != idxParty
-        trap_data = kaito_soul_traps.delete(idxBattler)
-      end
+	  # Trigger on replacement, including replacement after fainting.
+	  if outgoing && outgoing.pokemonIndex != idxParty
+		trap_data = kaito_soul_traps.delete(idxBattler)
+	  end
 
-      result = kaito_soul_trap_original_replace(
-        idxBattler, idxParty, randomReplacement, batonPass
-      )
+	  result = kaito_soul_trap_original_replace(
+		idxBattler, idxParty, randomReplacement, batonPass
+	  )
 
-      if trap_data
-        kaito_trigger_soul_trap(idxBattler, trap_data)
-      end
+	  if trap_data
+		kaito_trigger_soul_trap(idxBattler, trap_data)
+	  end
 
-      return result
-    end
+	  return result
+	end
   end
 end
 
@@ -1694,3 +1694,84 @@ Battle::AI::Handlers::MoveBasePower.add(
     next (battle.field.terrain == :Grassy) ? power * 2 : power
   }
 )
+
+#===============================================================================
+# More power against faster targets, up to double power.
+# Uses normal Special Attack vs. Special Defense.
+#===============================================================================
+class Battle::Move::PowerUpIfTargetFaster < Battle::Move
+  def pbBaseDamage(baseDmg, user, target)
+    user_speed = [user.pbSpeed, 1].max
+    ratio = target.pbSpeed.to_f / user_speed
+    multiplier = [[ratio, 1.0].max, 2.0].min
+    return (baseDmg * multiplier).round
+  end
+end
+
+#===============================================================================
+# AI power calculation.
+#===============================================================================
+Battle::AI::Handlers::MoveBasePower.add(
+  "PowerUpIfTargetFaster",
+  proc { |power, move, user, target, ai, battle|
+    user_speed = [user.battler.pbSpeed, 1].max
+    ratio = target.battler.pbSpeed.to_f / user_speed
+    multiplier = [[ratio, 1.0].max, 2.0].min
+    next (power * multiplier).round
+  }
+)
+
+#===============================================================================
+# Creep Out vulnerability. Resets on switching, including Baton Pass.
+#===============================================================================
+class Battle::Battler
+  attr_accessor :kaito_creep_out
+
+  unless method_defined?(:kaito_creep_out_original_init)
+    alias_method :kaito_creep_out_original_init, :pbInitEffects
+
+    def pbInitEffects(batonPass)
+      @kaito_creep_out = false
+      kaito_creep_out_original_init(batonPass)
+    end
+  end
+end
+
+#===============================================================================
+# Double damage received from Bug-type moves.
+#===============================================================================
+class Battle::Move
+  unless method_defined?(:kaito_creep_out_original_multipliers)
+    alias_method :kaito_creep_out_original_multipliers,
+                 :pbCalcDamageMultipliers
+
+    def pbCalcDamageMultipliers(user, target, numTargets, type,
+                                baseDmg, multipliers)
+      result = kaito_creep_out_original_multipliers(
+        user, target, numTargets, type, baseDmg, multipliers
+      )
+
+      if type == :BUG && target.kaito_creep_out
+        multipliers[:final_damage_multiplier] *= 2
+      end
+
+      return result
+    end
+  end
+end
+
+#===============================================================================
+# Apply vulnerability after dealing damage.
+#===============================================================================
+class Battle::Move::MakeTargetWeakerToBug < Battle::Move
+  def pbAdditionalEffect(user, target)
+    return if target.fainted?
+    return if target.damageState.substitute
+    return if target.kaito_creep_out
+
+    target.kaito_creep_out = true
+    @battle.pbDisplay(
+      _INTL("{1} became weaker to Bug-type moves!", target.pbThis)
+    )
+  end
+end

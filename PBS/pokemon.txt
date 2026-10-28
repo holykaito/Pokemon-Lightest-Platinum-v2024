@@ -430,9 +430,9 @@ Habitat = Forest
 Category = Tiny Bird
 Pokedex = It has an extremely sharp sense of direction. It can unerringly return home to its nest, however far it may be removed from its familiar surroundings.
 Generation = 1
+Flags = Done
 Evolutions = PIDGEOTTO,Level,18
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [PIDGEOTTO]
 Name = Pidgeotto
@@ -458,9 +458,9 @@ Habitat = Forest
 Category = Bird
 Pokedex = This Pokémon flies around, patrolling its large territory. If its living space is violated, it shows no mercy in thoroughly punishing the foe with its sharp claws.
 Generation = 1
+Flags = Done
 Evolutions = PIDGEOT,Level,36
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [PIDGEOT]
 Name = Pidgeot
@@ -486,8 +486,8 @@ Habitat = Forest
 Category = Bird
 Pokedex = Pidgeot has gorgeous, glossy feathers. Many trainers are so captivated by the beautiful feathers on its head that they choose Pidgeot as their Pokémon.
 Generation = 1
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [RATTATA]
 Name = Rattata
@@ -1436,10 +1436,10 @@ Habitat = Urban
 Category = Scratch Cat
 Pokedex = Meowth withdraw their sharp claws into their paws to silently sneak about. For some reason, this Pokémon loves shiny coins that glitter with light.
 Generation = 1
+Flags = Done
 WildItemUncommon = QUICKCLAW
 Evolutions = PERSIAN,Level,28,PERRSERKER,None,
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [PERSIAN]
 Name = Persian
@@ -1465,9 +1465,9 @@ Habitat = Urban
 Category = Classy Cat
 Pokedex = A Persian's six bold whiskers sense air movements to determine what is in its vicinity. It becomes docile if grabbed by the whiskers.
 Generation = 1
+Flags = Done
 WildItemUncommon = QUICKCLAW
 RaidRanks = 3,4
-Flags = Done
 #-------------------------------
 [PSYDUCK]
 Name = Psyduck
@@ -4452,9 +4452,9 @@ Habitat = Grassland
 Category = Scout
 Pokedex = They take turns standing guard when it is time to sleep. The sentry awakens the others if it senses danger. If one gets separated, it turns sleepless with fear.
 Generation = 2
+Flags = Done
 Evolutions = FURRET,Level,15
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [FURRET]
 Name = Furret
@@ -4480,8 +4480,8 @@ Habitat = Grassland
 Category = Long Body
 Pokedex = A Furret has a very slim build. When under attack, it can squirm through narrow spaces and get away. In spite of its short limbs, it is very nimble and fleet.
 Generation = 2
-RaidRanks = 2,3
 Flags = Done
+RaidRanks = 2,3
 #-------------------------------
 [HOOTHOOT]
 Name = Hoothoot
@@ -4508,9 +4508,9 @@ Habitat = Forest
 Category = Owl
 Pokedex = It has an internal organ that senses the earth's rotation. Using this special organ, a Hoothoot begins hooting at precisely the same time every day.
 Generation = 2
+Flags = Done
 Evolutions = NOCTOWL,Level,20
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [NOCTOWL]
 Name = Noctowl
@@ -4536,9 +4536,9 @@ Habitat = Forest
 Category = Owl
 Pokedex = It unfailingly catches prey in darkness. Noctowl owe their success to superior vision that allows them to see in minimal light, and to their supple and silent wings.
 Generation = 2
+Flags = Done
 Evolutions = ENCHANTOW,LevelNight,45
 RaidRanks = 3,4
-Flags = Done
 #-------------------------------
 [LEDYBA]
 Name = Ledyba
@@ -5169,9 +5169,9 @@ Habitat = Grassland
 Category = Cottonweed
 Pokedex = This Pokémon drifts and floats with the wind. If it senses the approach of strong winds, a Hoppip links leaves with others to prepare against being blown away.
 Generation = 2
+Flags = Done
 Evolutions = SKIPLOOM,Level,18
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [SKIPLOOM]
 Name = Skiploom
@@ -5197,9 +5197,9 @@ Habitat = Grassland
 Category = Cottonweed
 Pokedex = It blossoms when the temperature rises above 64 degrees F. Because its flower's blooming changes with the temperature, it is sometimes used as a thermometer.
 Generation = 2
+Flags = Done
 Evolutions = JUMPLUFF,Level,27
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [JUMPLUFF]
 Name = Jumpluff
@@ -5225,8 +5225,8 @@ Habitat = Grassland
 Category = Cottonweed
 Pokedex = Jumpluff ride warm southern winds to cross the sea and fly to foreign lands. This Pokémon lands when it encounters cold air while it is floating.
 Generation = 2
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [AIPOM]
 Name = Aipom
@@ -7214,9 +7214,9 @@ Habitat = Grassland
 Category = Bite
 Pokedex = It savagely threatens foes with bared fangs. It chases after fleeing targets tenaciously. It turns tail and runs, however, if the foe strikes back.
 Generation = 3
+Flags = Done
 Evolutions = MIGHTYENA,Level,18
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [MIGHTYENA]
 Name = Mightyena
@@ -7242,9 +7242,9 @@ Habitat = Grassland
 Category = Bite
 Pokedex = In the wild, Mightyena live in a pack. They never defy their leader's orders. They defeat foes with perfectly coordinated teamwork.
 Generation = 3
+Flags = Done
 Evolutions = HIGHYENA,Level,43
 RaidRanks = 3,4
-Flags = Done
 #-------------------------------
 [ZIGZAGOON]
 Name = Zigzagoon
@@ -7271,11 +7271,11 @@ Habitat = Grassland
 Category = Tiny Raccoon
 Pokedex = Rubbing its nose against the ground, it always wanders about back and forth in search of something. It is distinguished by the zigzag footprints it leaves.
 Generation = 3
+Flags = Done
 WildItemCommon = POTION
 WildItemUncommon = REVIVE
 Evolutions = LINOONE,Level,20
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [LINOONE]
 Name = Linoone
@@ -7301,10 +7301,10 @@ Habitat = Grassland
 Category = Rushing
 Pokedex = It is exceedingly fast if it only has to run in a straight line. When it spots pond- dwelling prey underwater, it quickly leaps in and catches it with its sharp claws.
 Generation = 3
+Flags = Done
 WildItemCommon = POTION
 WildItemUncommon = MAXREVIVE
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [WURMPLE]
 Name = Wurmple
@@ -7468,10 +7468,10 @@ Habitat = WatersEdge
 Category = Water Weed
 Pokedex = This Pokémon lives in ponds with clean water. It is known to ferry small Pokémon across ponds by carrying them on the broad leaf on its head.
 Generation = 3
+Flags = Done
 WildItemUncommon = MENTALHERB
 Evolutions = LOMBRE,Level,14
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [LOMBRE]
 Name = Lombre
@@ -7497,10 +7497,10 @@ Habitat = WatersEdge
 Category = Jolly
 Pokedex = In the evening, it takes great delight in popping out of rivers and startling people. It feeds on aquatic moss that grows on rocks in the riverbed.
 Generation = 3
+Flags = Done
 WildItemUncommon = MENTALHERB
 Evolutions = LUDICOLO,Item,WATERSTONE
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [LUDICOLO]
 Name = Ludicolo
@@ -7555,10 +7555,10 @@ Habitat = Forest
 Category = Acorn
 Pokedex = It hangs off branches and absorbs nutrients. When it finishes eating, its body becomes so heavy that it drops to the ground with a thump.
 Generation = 3
+Flags = Done
 WildItemUncommon = POWERHERB
 Evolutions = NUZLEAF,Level,14
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [NUZLEAF]
 Name = Nuzleaf
@@ -7696,10 +7696,10 @@ Habitat = Sea
 Category = Seagull
 Pokedex = It makes its nest on a sheer cliff at the edge of the sea. It has trouble keeping its wings flapping in flight. Instead, it soars on updrafts.
 Generation = 3
+Flags = Done
 WildItemCommon = PRETTYFEATHER
 Evolutions = PELIPPER,Level,25
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [PELIPPER]
 Name = Pelipper
@@ -7725,9 +7725,9 @@ Habitat = Sea
 Category = Water Bird
 Pokedex = It skims the tops of waves as it flies. When it spots prey, it uses its large beak to scoop up the victim with water. It protects its eggs in its beak.
 Generation = 3
+Flags = Done
 WildItemCommon = PRETTYFEATHER
 RaidRanks = 3,4
-Flags = Done
 #-------------------------------
 [RALTS]
 Name = Ralts
@@ -7754,9 +7754,9 @@ Habitat = Urban
 Category = Feeling
 Pokedex = A Ralts has the power to sense the emotions of people and Pokémon with the horns on its head. It takes cover if it senses any hostility.
 Generation = 3
+Flags = Done
 Evolutions = KIRLIA,Level,20
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [KIRLIA]
 Name = Kirlia
@@ -7782,9 +7782,9 @@ Habitat = Urban
 Category = Emotion
 Pokedex = A Kirlia has the psychic power to create a rip in the dimensions and see into the future. It is said to dance with pleasure on sunny mornings.
 Generation = 3
+Flags = Done
 Evolutions = GARDEVOIR,Level,30,GALLADE,ItemMale,DAWNSTONE
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [GARDEVOIR]
 Name = Gardevoir
@@ -7810,8 +7810,8 @@ Habitat = Urban
 Category = Embrace
 Pokedex = It apparently does not feel the pull of gravity because it supports itself with psychic power. It will give its life to protect its trainer.
 Generation = 3
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [SURSKIT]
 Name = Surskit
@@ -10704,9 +10704,9 @@ Habitat = Forest
 Category = Tiny Leaf
 Pokedex = Made from soil, the shell on its back hardens when it drinks water. It lives along lakes.
 Generation = 4
+Flags = Done
 Evolutions = GROTLE,Level,18
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [GROTLE]
 Name = Grotle
@@ -10732,9 +10732,9 @@ Habitat = Forest
 Category = Grove
 Pokedex = It lives along water in forests. In the daytime, it leaves the forest to sunbathe its treed shell.
 Generation = 4
+Flags = Done
 Evolutions = TORTERRA,Level,32
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [TORTERRA]
 Name = Torterra
@@ -10760,8 +10760,8 @@ Habitat = Forest
 Category = Continent
 Pokedex = Small Pokémon occasionally gather on its unmoving back to begin building their nests.
 Generation = 4
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [CHIMCHAR]
 Name = Chimchar
@@ -10788,9 +10788,9 @@ Habitat = Forest
 Category = Chimp
 Pokedex = It agilely scales sheer cliffs to live atop craggy mountains. Its fire is put out when it sleeps.
 Generation = 4
+Flags = Done
 Evolutions = MONFERNO,Level,14
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [MONFERNO]
 Name = Monferno
@@ -10816,9 +10816,9 @@ Habitat = Forest
 Category = Playful
 Pokedex = To intimidate attackers, it stretches the fire on its tail to make itself appear bigger.
 Generation = 4
+Flags = Done
 Evolutions = INFERNAPE,Level,36
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [INFERNAPE]
 Name = Infernape
@@ -10844,8 +10844,8 @@ Habitat = Forest
 Category = Flame
 Pokedex = It uses a special kind of martial arts involving all its limbs. Its fire never goes out.
 Generation = 4
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [PIPLUP]
 Name = Piplup
@@ -10872,9 +10872,9 @@ Habitat = WatersEdge
 Category = Penguin
 Pokedex = Because it is very proud, it hates accepting food from people. Its thick down guards it from cold.
 Generation = 4
+Flags = Done
 Evolutions = PRINPLUP,Level,16
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [PRINPLUP]
 Name = Prinplup
@@ -10900,9 +10900,9 @@ Habitat = WatersEdge
 Category = Penguin
 Pokedex = It lives alone, away from others. Apparently, every one of them believes it is the most important.
 Generation = 4
+Flags = Done
 Evolutions = EMPOLEON,Level,36
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [EMPOLEON]
 Name = Empoleon
@@ -10928,8 +10928,8 @@ Habitat = WatersEdge
 Category = Emperor
 Pokedex = The three horns that extend from its beak attest to its power. The leader has the biggest horns.
 Generation = 4
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [STARLY]
 Name = Starly
@@ -11928,9 +11928,9 @@ Habitat = Urban
 Category = Catty
 Pokedex = It claws if displeased and purrs when affectionate. Its fickleness is very popular among some.
 Generation = 4
+Flags = Done
 Evolutions = PURUGLY,Level,38
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [PURUGLY]
 Name = Purugly
@@ -11956,8 +11956,8 @@ Habitat = Urban
 Category = Tiger Cat
 Pokedex = It is a brazen brute that barges its way into another Pokémon's nest and claims it as its own.
 Generation = 4
-RaidRanks = 3,4
 Flags = Done
+RaidRanks = 3,4
 #-------------------------------
 [CHINGLING]
 Name = Chingling
@@ -13148,8 +13148,8 @@ Habitat = Urban
 Category = Blade
 Pokedex = A master of courtesy and swordsmanship, it fights using extending swords on its elbows.
 Generation = 4
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [PROBOPASS]
 Name = Probopass
@@ -13926,9 +13926,9 @@ Habitat = Grassland
 Category = Scout
 Pokedex = Extremely cautious, they take shifts to maintain a constant watch of their nest. They feel insecure without a lookout.
 Generation = 5
+Flags = Done
 Evolutions = WATCHOG,Level,20
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [WATCHOG]
 Name = Watchog
@@ -13954,8 +13954,8 @@ Habitat = Grassland
 Category = Lookout
 Pokedex = They make the patterns on their bodies shine in order to threaten predators. Keen eyesight lets them see in the dark.
 Generation = 5
-RaidRanks = 2,3
 Flags = Done
+RaidRanks = 2,3
 #-------------------------------
 [LILLIPUP]
 Name = Lillipup
@@ -14063,9 +14063,9 @@ Habitat = Urban
 Category = Devious
 Pokedex = Its cute act is a ruse. When victims let down their guard, they find their items taken. It attacks with sharp claws.
 Generation = 5
+Flags = Done
 Evolutions = LIEPARD,Level,20
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [LIEPARD]
 Name = Liepard
@@ -14091,8 +14091,8 @@ Habitat = Urban
 Category = Cruel
 Pokedex = Stealthily, it sneaks up on its target, striking from behind before its victim has a chance to react.
 Generation = 5
-RaidRanks = 3,4
 Flags = Done
+RaidRanks = 3,4
 #-------------------------------
 [PANSAGE]
 Name = Pansage
@@ -14335,9 +14335,9 @@ Habitat = Urban
 Category = Tiny Pigeon
 Pokedex = These Pokémon live in cities. They are accustomed to people. Flocks often gather in parks and plazas.
 Generation = 5
+Flags = Done
 Evolutions = TRANQUILL,Level,21
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [TRANQUILL]
 Name = Tranquill
@@ -14363,9 +14363,9 @@ Habitat = Urban
 Category = Wild Pigeon
 Pokedex = Many people believe that, deep in the forest where Tranquill live, there is a peaceful place where there is no war.
 Generation = 5
+Flags = Done
 Evolutions = UNFEZANT,Level,32
 RaidRanks = 2,3
-Flags = Done
 #-------------------------------
 [UNFEZANT]
 Name = Unfezant
@@ -14391,9 +14391,8 @@ Habitat = Urban
 Category = Proud
 Pokedex = Males have plumage on their heads. They will never let themselves feel close to anyone other than their Trainers.
 Generation = 5
-Flags = HasGenderedSprites
+Flags = Done,HasGenderedSprites
 RaidRanks = 3,4,5
-Flags = Done
 #-------------------------------
 [BLITZLE]
 Name = Blitzle
@@ -20475,9 +20474,9 @@ Habitat = Mountain
 Category = Puppy
 Pokedex = This Pokémon has lived with people since times long ago. It can sense when its Trainer is in the dumps and will stick close by its Trainer's side.
 Generation = 7
+Flags = Done
 Evolutions = LYCANROC,Level,25
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [LYCANROC]
 Name = Lycanroc
@@ -20504,8 +20503,8 @@ Habitat = Mountain
 Category = Wolf
 Pokedex = Its quick movements confuse its enemies. Well equipped with claws and fangs, it also uses the sharp rocks in its mane as weapons.
 Generation = 7
-RaidRanks = 3,4,5
 Flags = Done
+RaidRanks = 3,4,5
 #-------------------------------
 [WISHIWASHI]
 Name = Wishiwashi
@@ -22935,9 +22934,9 @@ Habitat = Urban
 Category = Puppy
 Pokedex = This gluttonous Pokémon only assists people with their work because it wants treats. As it runs, it crackles with electricity.
 Generation = 8
+Flags = Done
 Evolutions = BOLTUND,Level,25
 RaidRanks = 1,2
-Flags = Done
 #-------------------------------
 [BOLTUND]
 Name = Boltund
@@ -22963,8 +22962,8 @@ Habitat = Urban
 Category = Dog
 Pokedex = This Pokémon generates electricity and channels it into its legs to keep them going strong. Boltund can run nonstop for three full days.
 Generation = 8
-RaidRanks = 3,4
 Flags = Done
+RaidRanks = 3,4
 #-------------------------------
 [ROLYCOLY]
 Name = Rolycoly

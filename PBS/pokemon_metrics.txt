@@ -1611,33 +1611,33 @@ DmaxFrontSprite = -6,14
 ShadowSprite = 0,0,0
 #-------------------------------
 [SENTRET]
-BackSprite = 0,52
-FrontSprite = 6,20
+BackSprite = 0,39
+FrontSprite = 6,0
 DmaxBackSprite = 0,0
 DmaxFrontSprite = -1,16
 ShadowSprite = 0,0,0
 #-------------------------------
 [FURRET]
-BackSprite = 0,48
-FrontSprite = 0,24
+BackSprite = -16,36
+FrontSprite = 0,2
 ShadowSize = 2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = -2,22
 ShadowSprite = 0,0,0
 #-------------------------------
 [HOOTHOOT]
-BackSprite = 0,48
-FrontSprite = 3,30
+BackSprite = -4,36
+FrontSprite = 3,3
 DmaxBackSprite = 0,0
 DmaxFrontSprite = -1,30
-ShadowSprite = 0,0,0
+ShadowSprite = 0,0,3
 #-------------------------------
 [NOCTOWL]
-BackSprite = 0,54
-FrontSprite = 1,20
+BackSprite = 1,42
+FrontSprite = 1,2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 0,17
-ShadowSprite = 0,0,0
+ShadowSprite = 0,0,5
 #-------------------------------
 [LEDYBA]
 BackSprite = 0,48
@@ -2525,49 +2525,49 @@ DmaxFrontSprite = 0,8
 ShadowSprite = 0,0,0
 #-------------------------------
 [LOTAD]
-BackSprite = 0,62
-FrontSprite = -1,35
+BackSprite = -8,44
+FrontSprite = 3,8
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 0,40
-ShadowSprite = 0,0,0
+ShadowSprite = 0,0,1
 #-------------------------------
 [LOMBRE]
-BackSprite = 0,48
-FrontSprite = 0,29
+BackSprite = 0,37
+FrontSprite = 3,4
 ShadowSize = 2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = -1,33
-ShadowSprite = 0,0,0
+ShadowSprite = 2,0,4
 #-------------------------------
 [LUDICOLO]
-BackSprite = 0,48
-FrontSprite = 2,15
+BackSprite = 3,43
+FrontSprite = 4,12
 ShadowSize = 2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = -2,14
 ShadowSprite = 0,0,0
 #-------------------------------
 [SEEDOT]
-BackSprite = 0,54
-FrontSprite = 0,32
+BackSprite = -12,26
+FrontSprite = 4,0
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 1,37
-ShadowSprite = 0,0,0
+ShadowSprite = -1,0,4
 #-------------------------------
 [NUZLEAF]
-BackSprite = 0,44
-FrontSprite = 4,24
+BackSprite = -13,34
+FrontSprite = 7,-2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 2,29
-ShadowSprite = 0,0,0
+ShadowSprite = -1,0,5
 #-------------------------------
 [SHIFTRY]
-BackSprite = 4,48
-FrontSprite = 4,18
+BackSprite = -4,63
+FrontSprite = 7,22
 ShadowSize = 2
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 3,18
-ShadowSprite = 0,0,0
+ShadowSprite = 1,0,-7
 #-------------------------------
 [TAILLOW]
 BackSprite = 0,58
@@ -8043,3 +8043,10 @@ FrontSprite = 2,19
 DmaxBackSprite = 0,0
 DmaxFrontSprite = 0,0
 ShadowSprite = -1,0,-5
+#-------------------------------
+[ENCHANTOW]
+BackSprite = 3,61
+FrontSprite = 0,16
+DmaxBackSprite = 0,0
+DmaxFrontSprite = 0,0
+ShadowSprite = 0,0,-2

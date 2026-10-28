@@ -70,8 +70,7 @@ Height = 2.2
 Weight = 50.5
 Pokedex = With its muscular strength now greatly increased, it can fly continuously for two weeks without resting.
 Generation = 6
-Flags = Done
-#------------------------------
+#-------------------------------
 [RATTATA,1]
 FormName = Alolan
 Types = DARK,NORMAL
@@ -518,9 +517,9 @@ FormName = Mega Gyarados
 MegaStone = GYARADOSITE
 Types = WATER,DARK
 BaseStats = 95,155,109,81,70,130
+BaseExp = 224
 Abilities = BEASTBOOST
 HiddenAbilities = BEASTBOOST
-BaseExp = 224
 Weight = 305.0
 Pokedex = It zooms out of the water at Mach speeds. Even large ships caught in its path are split cleanly in two!
 Generation = 6
@@ -857,7 +856,6 @@ BaseExp = 309
 Abilities = PIXILATE
 HiddenAbilities = PIXILATE
 Generation = 6
-Flags = Done
 #-------------------------------
 [SABLEYE,1]
 FormName = Mega Sableye
@@ -1194,7 +1192,6 @@ Abilities = BLADEMASTER
 HiddenAbilities = BLADEMASTER
 Weight = 56.4
 Generation = 6
-Flags = Done
 #-------------------------------
 [ROTOM,1]
 FormName = Heat Rotom
@@ -1835,7 +1832,6 @@ Height = 1.1
 Color = Red
 Shape = BipedalTail
 Pokedex = It goads its enemies into attacking, withstands the hits, and in return, delivers a headbutt, crushing their bones with its rocky mane.
-Flags = Done
 #-------------------------------
 [LYCANROC,2]
 FormName = Dusk Form

@@ -79,6 +79,10 @@ Description = Add Bug-type to user.
 Name = Battle Intellect
 Description = Opposing Pokemon can be marked as hunted at the end of the turn.
 #-------------------------------
+[CAPACITOR]
+Name = Capacitor
+Description = Raises Sp. Def after using a status move.
+#-------------------------------
 [CARRIONFEAST] ####
 Name = Carrion Feast
 Description = Weakens super-effective hits and heals after KOing foes.
@@ -394,6 +398,10 @@ Description = Moves that inflict poison may paralyze instead.
 [OUTBREAK] ###
 Name = Outbreak
 Description = Spreads status and lowers Attack when inflicting status.
+#-------------------------------
+[OVERCHARGE] ###
+Name = Overcharge
+Description = Electric moves hit Electric super effectively and pierce absorption.
 #-------------------------------
 [PARANOID] ###
 Name = Paranoid

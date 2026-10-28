@@ -59,6 +59,7 @@ alias mag_pbEntryHazards pbEntryHazards
       bTypes = battler.pbTypes(true)
       eff = Effectiveness.calculate(:WATER, *bTypes)
       if !Effectiveness.ineffective?(eff)
+        @scene.pbAnimation(:WATERCHANNEL, battler, [battler], 1)
         battler.pbReduceHP(battler.totalhp * eff / 8, false)
         pbDisplay(_INTL("A rough wave crashed into {1}!", battler.pbThis))
         battler.pbItemHPHealCheck

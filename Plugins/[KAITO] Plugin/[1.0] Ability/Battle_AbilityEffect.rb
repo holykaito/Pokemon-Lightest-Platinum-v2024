@@ -17137,14 +17137,6 @@ module KaitoDancingPanic
   end
 end
 
-unless Battle::Move.ancestors.include?(KaitoDancingPanic::MoveHook)
-  Battle::Move.prepend(KaitoDancingPanic::MoveHook)
-end
-
-unless Battle::Battler.ancestors.include?(KaitoDancingPanic::BattlerHook)
-  Battle::Battler.prepend(KaitoDancingPanic::BattlerHook)
-end
-
 Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
   :kaito_dancing_panic,
   proc { |score, move, user, target, ai, battle|
@@ -17271,13 +17263,20 @@ module KaitoHydroponic
   def self.install_ai!
     if defined?(AdvancedAI::CombatUtilities) &&
        AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+
       singleton = AdvancedAI::CombatUtilities.singleton_class
-      singleton.prepend(CombatAI) unless singleton.ancestors.include?(CombatAI)
+
+      unless singleton.ancestors.include?(KaitoHydroponic::CombatAI)
+        singleton.prepend(KaitoHydroponic::CombatAI)
+      end
     end
 
     if defined?(AdvancedAI) &&
        Battle::AI.method_defined?(:calculate_rough_damage)
-      Battle::AI.prepend(ScorerAI) unless Battle::AI.ancestors.include?(ScorerAI)
+
+      unless Battle::AI.ancestors.include?(KaitoHydroponic::ScorerAI)
+        Battle::AI.prepend(KaitoHydroponic::ScorerAI)
+      end
     end
   end
 
@@ -17302,6 +17301,13 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(KaitoHydroponic::BattleConstruction)
 end
+
+# Dancing Panic - No announcement on switch-in.
+Battle::AbilityEffects::OnSwitchIn.add(:DANCINGPANIC,
+  proc { |ability, battler, battle, switch_in|
+    # No switch-in announcement.
+  }
+)
 
 #===============================================================================
 # Seaweed
@@ -18602,10 +18608,21 @@ module KaitoTenguReprisal
     end
   end
 
-  #---------------------------------------------------------------------------
-  # Install after plugin aliases and move classes have finished loading.
-  #---------------------------------------------------------------------------
   def self.install!
+    # Install only when a Battle is constructed, after plugin loading.
+    unless Battle::Battler.ancestors.include?(BattlerHook)
+      Battle::Battler.prepend(BattlerHook)
+    end
+
+    unless Battle.ancestors.include?(BattleHook)
+      Battle.prepend(BattleHook)
+    end
+
+    singleton = Battle::AbilityEffects.singleton_class
+    unless singleton.ancestors.include?(AbilityOrigin)
+      singleton.prepend(AbilityOrigin)
+    end
+
     @source_patches ||= []
 
     relevant = [
@@ -18637,24 +18654,6 @@ module KaitoTenguReprisal
   end
 end
 
-unless Battle::Battler.ancestors.include?(
-  KaitoTenguReprisal::BattlerHook
-)
-  Battle::Battler.prepend(KaitoTenguReprisal::BattlerHook)
-end
-
-unless Battle.ancestors.include?(KaitoTenguReprisal::BattleHook)
-  Battle.prepend(KaitoTenguReprisal::BattleHook)
-end
-
-unless Battle::AbilityEffects.singleton_class.ancestors.include?(
-  KaitoTenguReprisal::AbilityOrigin
-)
-  Battle::AbilityEffects.singleton_class.prepend(
-    KaitoTenguReprisal::AbilityOrigin
-  )
-end
-
 Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
   :kaito_tengu_reprisal,
   proc { |score, move, user, target, ai, battle|
@@ -18671,6 +18670,46 @@ unless Battle.singleton_class.ancestors.include?(
   Battle.singleton_class.prepend(
     KaitoTenguReprisal::ConstructionHook
   )
+end
+
+#===============================================================================
+# Tengu Reprisal - Fix MAG applying major status twice in one call chain.
+# Wait until the outer pbInflictStatus finishes before curing major status.
+#===============================================================================
+module KaitoTenguReprisal
+  def self.defer_major_cure?(b)
+    return false if !ready?(b)
+
+    stack = b.instance_variable_get(:@kaito_tr_receiving)
+    frame = stack && stack.last
+    return false if !frame || frame[0] != :pbInflictStatus
+
+    source = real(frame[2])
+    return false if !source || !source.respond_to?(:opposes?)
+    return false if source.equal?(b) || !source.opposes?(b)
+
+    # Only defer for a newly applied, opposing major status.
+    return b.status != :NONE &&
+           state(b, :pbInflictStatus) != frame[1]
+  end
+
+  module BattlerHook
+    def pbItemStatusCureCheck(*args, &block)
+      # The outer pbInflictStatus wrapper will trigger the cure after
+      # MAG and all delegated status methods finish assigning the status.
+      return if KaitoTenguReprisal.defer_major_cure?(self)
+
+      KaitoTenguReprisal.try_trigger(self)
+      return super(*args, &block)
+    end
+
+    def pbAbilityStatusCureCheck(*args, &block)
+      return if KaitoTenguReprisal.defer_major_cure?(self)
+
+      KaitoTenguReprisal.try_trigger(self)
+      return super(*args, &block)
+    end
+  end
 end
 
 #===============================================================================
@@ -18946,4 +18985,288 @@ unless Battle.singleton_class.ancestors.include?(
   KaitoMaleficent::ConstructionHook
 )
   Battle.singleton_class.prepend(KaitoMaleficent::ConstructionHook)
+end
+
+#===============================================================================
+# Capacitor
+# Raises Special Defense by 1 stage after using a status move.
+#===============================================================================
+Battle::AbilityEffects::OnEndOfUsingMove.add(:CAPACITOR,
+  proc { |ability, user, targets, move, battle|
+    next if !user || user.fainted? || !move
+    next if !move.statusMove?
+    next if !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user)
+
+    user.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE, 1, user)
+  }
+)
+
+#===============================================================================
+# Native AI + Advanced AI
+#===============================================================================
+module KaitoCapacitor
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.bonus(object, move, battle)
+    user = real(object)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || user.fainted? || !native
+    return 0 if !user.respond_to?(:hasActiveAbility?)
+    return 0 if !user.hasActiveAbility?(:CAPACITOR)
+    return 0 if !native.statusMove?
+    return 0 if !user.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, user)
+
+    # Contrary turns Capacitor into a Special Defense drop.
+    return -12 if user.hasActiveAbility?(:CONTRARY)
+
+    special_threat = battle.allBattlers.any? do |foe|
+      next false if foe.fainted? || !foe.opposes?(user)
+
+      foe.moves.any? do |m|
+        info = m && GameData::Move.try_get(m.id)
+        info && info.category == 1
+      end
+    end
+
+    value = special_threat ? 10 : 5
+
+    if user.hasActiveAbility?(:SIMPLE) &&
+       user.stages[:SPECIAL_DEFENSE] <= 4
+      value += 4
+    end
+
+    return value
+  end
+
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      @kaito_capacitor_ai_depth = @kaito_capacitor_ai_depth.to_i + 1
+
+      begin
+        score = super
+        return score if score <= -100
+
+        return score + KaitoCapacitor.bonus(user, move, @battle)
+      ensure
+        @kaito_capacitor_ai_depth -= 1
+      end
+    end
+  end
+
+  def self.install_ai!
+    return if !defined?(AdvancedAI)
+    return if !Battle::AI.method_defined?(:score_move_advanced)
+    return if Battle::AI.ancestors.include?(AdvancedScoring)
+
+    Battle::AI.prepend(AdvancedScoring)
+  end
+
+  # Install after all plugin aliases have loaded.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoCapacitor.install_ai!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AI::Handlers::GeneralMoveScore.add(
+  :kaito_capacitor,
+  proc { |score, move, user, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+    next score if ai.instance_variable_get(
+      :@kaito_capacitor_ai_depth
+    ).to_i > 0
+
+    next score + KaitoCapacitor.bonus(user, move, battle)
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoCapacitor::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoCapacitor::ConstructionHook)
+end
+
+#===============================================================================
+# Overcharge
+# Electric attacks are super effective against Electric typing.
+# Bypasses selected absorption immunities but preserves their other effects.
+#===============================================================================
+module KaitoOvercharge
+  ABILITY = :OVERCHARGE
+  ABSORBERS = [:VOLTABSORB, :MOTORDRIVE, :LIGHTNINGROD]
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.active?(object)
+    user = real(object)
+    return false if !user || user.fainted?
+
+    if user.respond_to?(:hasActiveAbility?)
+      return user.hasActiveAbility?(ABILITY)
+    end
+
+    return true if user.respond_to?(:ability_id) &&
+                   user.ability_id == ABILITY
+
+    return user.respond_to?(:set_innate_limits) &&
+           Array(user.set_innate_limits).include?(ABILITY)
+  end
+
+  # PBS lookup also supports Advanced AI MoveProxy objects.
+  def self.applies?(user, move, type)
+    return false if type != :ELECTRIC || !active?(user)
+    return false if !move
+
+    info = GameData::Move.try_get(move.id)
+    return info && info.category != 2
+  end
+
+  def self.absorber?(ability)
+    ability = ability.id if ability.respond_to?(:id)
+    return ABSORBERS.include?(ability)
+  end
+
+  #---------------------------------------------------------------------------
+  # Actual type effectiveness + Native AI.
+  #---------------------------------------------------------------------------
+  module MoveType
+    def pbCalcTypeModSingle(moveType, defType, user, target)
+      if defType == :ELECTRIC &&
+         KaitoOvercharge.applies?(user, self, moveType)
+        return Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+      end
+
+      return super
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Wrap each individual immunity handler, not the aggregate innate result.
+  # The original handler still performs healing/stat boosts.
+  # Other immunity abilities remain able to block the attack.
+  #---------------------------------------------------------------------------
+  module ImmunityHandler
+    def trigger(ability, user, target, move, type, battle, show_message)
+      bypass = KaitoOvercharge.absorber?(ability) &&
+               KaitoOvercharge.applies?(user, move, type)
+
+      if bypass && show_message
+        # Avoid the original "doesn't affect" message when no benefit is possible.
+        benefit = case ability
+                  when :VOLTABSORB
+                    target.canHeal?
+                  when :MOTORDRIVE
+                    target.pbCanRaiseStatStage?(:SPEED, target)
+                  when :LIGHTNINGROD
+                    target.pbCanRaiseStatStage?(:SPECIAL_ATTACK, target)
+                  else
+                    true
+                  end
+
+        show_message = false if !benefit
+      end
+
+      result = super(
+        ability, user, target, move, type, battle, show_message
+      )
+
+      # Preserve everything the handler did, remove only its immunity result.
+      return false if bypass
+      return result
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Advanced AI: shared type calculation used by both damage paths.
+  #---------------------------------------------------------------------------
+  module AdvancedTypes
+    def move_type_effectiveness(move, user, defender, effective_type = nil)
+      value = super
+      type = effective_type || resolve_move_type(user, move)
+
+      return value if !KaitoOvercharge.applies?(user, move, type)
+
+      target = KaitoOvercharge.real(defender)
+      types = target.respond_to?(:pbTypes) ?
+                target.pbTypes(true) : target.types
+
+      return value if !types.include?(:ELECTRIC)
+
+      original = Effectiveness.calculate(:ELECTRIC, :ELECTRIC)
+      replacement = Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+
+      # Modify only the Electric component. Ground immunity remains zero.
+      return value * replacement / original
+    end
+  end
+
+  module AdvancedAbsorption
+    def type_absorbing_immunity?(user, target, move_type, move = nil)
+      result = super
+      return result if !result
+      return result if !KaitoOvercharge.applies?(user, move, move_type)
+      return result if !KaitoOvercharge.absorber?(result[:ability])
+
+      return nil
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Install after all plugin aliases and handler registrations have loaded.
+  #---------------------------------------------------------------------------
+  def self.install!
+    @type_patches ||= []
+
+    ObjectSpace.each_object(Class) do |klass|
+      next if !(klass <= Battle::Move)
+      next if @type_patches.include?(klass)
+      next if !klass.instance_methods(false).include?(:pbCalcTypeModSingle)
+
+      klass.prepend(MoveType)
+      @type_patches.push(klass)
+    end
+
+    singleton = Battle::AbilityEffects::MoveImmunity.singleton_class
+    unless singleton.ancestors.include?(ImmunityHandler)
+      singleton.prepend(ImmunityHandler)
+    end
+
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:move_type_effectiveness)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+
+      unless singleton.ancestors.include?(AdvancedTypes)
+        singleton.prepend(AdvancedTypes)
+      end
+    end
+
+    if defined?(AdvancedAI::Utilities) &&
+       AdvancedAI::Utilities.respond_to?(:type_absorbing_immunity?)
+      singleton = AdvancedAI::Utilities.singleton_class
+
+      unless singleton.ancestors.include?(AdvancedAbsorption)
+        singleton.prepend(AdvancedAbsorption)
+      end
+    end
+  end
+
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoOvercharge.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoOvercharge::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoOvercharge::ConstructionHook)
 end
