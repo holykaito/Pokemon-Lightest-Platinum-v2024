@@ -4273,13 +4273,13 @@ Description = The user hurls mud in the target's face to inflict damage and lowe
 Name = Fissure
 Type = GROUND
 Category = Physical
-Power = 1
-Accuracy = 30
+Power = 120
+Accuracy = 70
 TotalPP = 5
 Target = NearOther
-FunctionCode = OHKOHitsUndergroundTarget
+FunctionCode = RemoveTargetItemWithoutPowerBoost
 Flags = CanProtect,CanMirrorMove
-Description = The user opens up a fissure in the ground and drops the foe in. The target instantly faints if it hits.
+Description = Opens a fissure beneath the target, knocking away its held item.
 #-------------------------------
 [MAGNITUDE]
 Name = Magnitude
@@ -4606,13 +4606,14 @@ Description = A consecutive three-kick attack that becomes more powerful with ea
 Name = Sheer Cold
 Type = ICE
 Category = Special
-Power = 1
-Accuracy = 30
+Power = 120
+Accuracy = 70
 TotalPP = 5
 Target = NearOther
-FunctionCode = OHKOIce
+FunctionCode = FrostbiteTarget
 Flags = CanProtect,CanMirrorMove
-Description = The foe is attacked with a blast of absolute-zero cold. The target instantly faints if it hits.
+EffectChance = 30
+Description = An extremely cold attack that may inflict frostbite.
 #-------------------------------
 [AURORAVEIL]
 Name = Aurora Veil
@@ -5606,25 +5607,25 @@ Description = A full-power attack that grows more powerful the less the user lik
 Name = Guillotine
 Type = NORMAL
 Category = Physical
-Power = 1
-Accuracy = 30
+Power = 120
+Accuracy = 70
 TotalPP = 5
 Target = NearOther
-FunctionCode = OHKO
-Flags = Contact,CanProtect,CanMirrorMove
-Description = A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits.
+FunctionCode = None
+Flags = Contact,CanProtect,CanMirrorMove,HighCriticalHitRate,Slicing
+Description = A powerful cutting attack with a heightened critical-hit ratio.
 #-------------------------------
 [HORNDRILL]
 Name = Horn Drill
 Type = NORMAL
 Category = Physical
-Power = 1
-Accuracy = 30
+Power = 120
+Accuracy = 70
 TotalPP = 5
 Target = NearOther
-FunctionCode = OHKO
-Flags = Contact,CanProtect,CanMirrorMove,Horn
-Description = The user stabs the foe with a horn that rotates like a drill. If it hits, the target faints instantly.
+FunctionCode = IgnoreTargetAbilityAndRaisedDefense
+Flags = Contact,CanProtect,CanMirrorMove,Horn,Drill
+Description = A drilling attack that ignores the target's Defense boosts and Ability.
 #-------------------------------
 [NATURALGIFT]
 Name = Natural Gift

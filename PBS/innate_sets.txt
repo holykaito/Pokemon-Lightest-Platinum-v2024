@@ -637,6 +637,15 @@ Innates = KEENEYE,NOCTURNAL,WILDTANTRUM
 [LYCANROC_2]
 Innates = KEENEYE,OWNTEMPO,SHATTERMARK
 #----------------------------------------
+[GRUBBIN]
+Innates = SWARM
+#----------------------------------------
+[CHARJABUG]
+Innates = BATTLEARMOR,MINUS
+#----------------------------------------
+[VIKAVOLT]
+Innates = LEVITATE,MINUS,SPEEDBOOST
+#----------------------------------------
 [ORANGURU]
 Innates = INNERFOCUS
 #----------------------------------------

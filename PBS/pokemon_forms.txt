@@ -72,7 +72,7 @@ Pokedex = With its muscular strength now greatly increased, it can fly continuou
 Generation = 6
 #-------------------------------
 [RATTATA,1]
-FormName = Alolan
+FormName = Southwest
 Types = DARK,NORMAL
 Abilities = HUSTLE,THICKFAT
 HiddenAbilities = CHEEKPOUCH
@@ -87,7 +87,7 @@ WildItemUncommon = PECHABERRY
 Evolutions = RATICATE,LevelNight,20
 #-------------------------------
 [RATICATE,1]
-FormName = Alolan
+FormName = Southwest
 Types = DARK,NORMAL
 BaseStats = 95,81,70,77,40,80
 Abilities = HUSTLE,THICKFAT
@@ -205,7 +205,7 @@ Generation = 7
 Flags = InheritFormWithEverStone
 #-------------------------------
 [MEOWTH,1]
-FormName = Alolan
+FormName = Central
 Types = DARK
 BaseStats = 40,35,35,90,50,40
 Abilities = TECHNICIAN,RATTLED
@@ -220,7 +220,7 @@ Flags = InheritFormWithEverStone,Done
 Evolutions = PERSIAN,Happiness,
 #-------------------------------
 [MEOWTH,2]
-FormName = Galarian
+FormName = Northeast
 Types = STEEL
 BaseStats = 50,65,55,40,40,40
 Abilities = IRONBARBS,UNNERVE
@@ -237,7 +237,7 @@ Flags = InheritFormWithEverStone,Done
 Evolutions = PERRSERKER,Level,28
 #-------------------------------
 [PERSIAN,1]
-FormName = Alolan
+FormName = Central
 Types = DARK
 BaseStats = 65,60,60,115,75,65
 Abilities = TECHNICIAN,RATTLED

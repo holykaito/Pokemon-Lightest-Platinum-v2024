@@ -22,7 +22,9 @@ module Settings
   #-----------------------------------------------------------------------------
   # List of regional names to check for to display for evolution methods.
   #-----------------------------------------------------------------------------
-  REGIONAL_NAMES = ["Alolan", "Galarian", "Hisuian", "Paldean"]
+  REGIONAL_NAMES = ["Alolan", "Galarian", "Hisuian", "Paldean",
+                    "North", "South", "East", "West", "Central",
+                    "Northeast", "Northwest", "Southeast", "Southwest"]
 end
 
 

@@ -126,6 +126,7 @@ module Settings
   [:LYCANROC, 1, 1, 60],
   [:LYCANROC_1, 1, 1, 60],
   [:LYCANROC_2, 1, 1, 60],
+  [:VIKAVOLT, 1, 1, 60],
   
   #Galar
   [:BOLTUND, 1, 35, 60],

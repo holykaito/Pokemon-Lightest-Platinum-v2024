@@ -1775,3 +1775,26 @@ class Battle::Move::MakeTargetWeakerToBug < Battle::Move
     )
   end
 end
+
+#===============================================================================
+# Knock Off's item removal without its power boost.
+#===============================================================================
+class Battle::Move::RemoveTargetItemWithoutPowerBoost <
+      Battle::Move::RemoveTargetItem
+  def pbBaseDamage(baseDmg, user, target)
+    return baseDmg
+  end
+end
+
+#===============================================================================
+# Ignore target's Ability and positive defensive stat stages.
+# Negative defensive stages still apply.
+#===============================================================================
+class Battle::Move::IgnoreTargetAbilityAndRaisedDefense <
+      Battle::Move::IgnoreTargetAbility
+  def pbGetDefenseStats(user, target)
+    defense, stage = super
+    stage = [stage, Battle::Battler::STAT_STAGE_MAXIMUM].min
+    return defense, stage
+  end
+end

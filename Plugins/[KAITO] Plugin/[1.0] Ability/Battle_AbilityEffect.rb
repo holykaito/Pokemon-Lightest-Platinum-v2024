@@ -19270,3 +19270,273 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(KaitoOvercharge::ConstructionHook)
 end
+
+#===============================================================================
+# Plus / Minus - Complete party-based rework
+# Plus:  +10% Electric power per party Pokemon with Minus; 15% Burn.
+# Minus: +10% Electric power per party Pokemon with Plus; 15% Frostbite.
+#===============================================================================
+module KaitoPlusMinusParty
+  COUNT_FAINTED = true
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.has?(object, ability)
+    object = real(object)
+    return false if !object
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(ability)
+    end
+
+    abilities = []
+    abilities.concat(Array(object.ability_id)) if object.respond_to?(:ability_id)
+
+    if object.respond_to?(:set_innate_limits)
+      abilities.concat(Array(object.set_innate_limits))
+    end
+
+    return abilities.flatten.include?(ability)
+  end
+
+  def self.party_member?(pokemon, wanted)
+    return false if !pokemon || pokemon.egg?
+    return false if !COUNT_FAINTED && pokemon.fainted?
+
+    abilities = Array(pokemon.ability_id)
+
+    if pokemon.respond_to?(:set_innate_limits)
+      abilities.concat(Array(pokemon.set_innate_limits))
+    end
+
+    return abilities.flatten.include?(wanted)
+  end
+
+  def self.battle_of(object)
+    object = real(object)
+    return object ? object.instance_variable_get(:@battle) : nil
+  end
+
+  # Return the party side and trainer owner.
+  # Supports both active battlers and reserve Pokemon in AI predictions.
+  def self.owner_context(battle, object)
+    user = real(object)
+    return nil if !battle || !user
+
+    if user.is_a?(Battle::Battler)
+      return [
+        user.index,
+        battle.pbGetOwnerIndexFromBattlerIndex(user.index)
+      ]
+    end
+
+    [0, 1].each do |side|
+      index = battle.pbParty(side).index { |p| p.equal?(user) }
+      next if index.nil?
+
+      return [
+        side,
+        battle.pbGetOwnerIndexFromPartyIndex(side, index)
+      ]
+    end
+
+    return nil
+  end
+
+  def self.count(battle, object, wanted)
+    context = owner_context(battle, object)
+    return 0 if !context
+
+    side, owner = context
+    total = 0
+
+    battle.pbParty(side).each_with_index do |pokemon, index|
+      next if battle.pbGetOwnerIndexFromPartyIndex(side, index) != owner
+      total += 1 if party_member?(pokemon, wanted)
+    end
+
+    return total
+  end
+
+  def self.factor(object, type, battle = nil)
+    return 1.0 if type != :ELECTRIC
+
+    battle ||= battle_of(object)
+    return 1.0 if !battle
+
+    counts = []
+
+    if has?(object, :PLUS)
+      counts.push(count(battle, object, :MINUS))
+    end
+
+    if has?(object, :MINUS)
+      counts.push(count(battle, object, :PLUS))
+    end
+
+    return 1.0 if counts.empty?
+    return 1.0 + counts.max * 0.10
+  end
+
+  #---------------------------------------------------------------------------
+  # Retained secondary effects.
+  #---------------------------------------------------------------------------
+  def self.inflict(ability, user, target, move, battle)
+    return if !user || !target || !move
+    return if user.fainted? || target.fainted?
+    return if !move.damagingMove? || move.calcType != :ELECTRIC
+    return if target.damageState.substitute
+    return if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+
+    can_inflict = if ability == :PLUS
+                    target.pbCanBurn?(user, false)
+                  else
+                    target.pbCanFrostbite?(user, false)
+                  end
+    return if !can_inflict
+    return if battle.pbRandom(100) >= 20
+
+    battle.pbShowAbilitySplash(user)
+    begin
+      if ability == :PLUS
+        target.pbBurn(user)
+      else
+        target.pbFrostbite(user)
+      end
+    ensure
+      battle.pbHideAbilitySplash(user)
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Advanced AI: shared damage estimator.
+  #---------------------------------------------------------------------------
+  module CombatAI
+    def ability_damage_modifier(
+      user, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+
+      battle = KaitoPlusMinusParty.battle_of(user) ||
+               KaitoPlusMinusParty.battle_of(target) ||
+               KaitoPlusMinusParty.battle_of(move)
+
+      return value * KaitoPlusMinusParty.factor(user, type, battle)
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Advanced AI: separate damage calculator.
+  #---------------------------------------------------------------------------
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+
+      native = move.respond_to?(:move) ? move.move : move
+      return value if native.is_a?(Battle::Move::FixedDamageMove)
+
+      code = move.function_code.to_s
+      return value if code.start_with?("FixedDamage", "OHKO", "Counter")
+      return value if [
+        "LowerTargetHPToUserHP",
+        "UserFaintsFixedDamageUserHP",
+        "MultiTurnAttackBideThenReturnDoubleDamage"
+      ].include?(code)
+
+      # Avoid a second multiplier when terrain delegates to the shared estimator.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+
+      if move.id == :TERABLAST
+        tera_type = get_tera_type_for_move(user)
+        type = tera_type if tera_type
+      end
+
+      factor = KaitoPlusMinusParty.factor(user, type, @battle)
+      return value if factor == 1.0
+
+      return [(value * factor).round, 1].max
+    end
+  end
+
+  def self.install_ai!
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+
+      unless singleton.ancestors.include?(CombatAI)
+        singleton.prepend(CombatAI)
+      end
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage) &&
+       !Battle::AI.ancestors.include?(ScorerAI)
+      Battle::AI.prepend(ScorerAI)
+    end
+  end
+
+  # Delay installation until plugin loading has finished.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoPlusMinusParty.install_ai!
+      super(*args, &block)
+    end
+  end
+end
+
+#===============================================================================
+# Replace the original Sp. Atk bonus.
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromUser.add(:PLUS,
+  proc { |ability, user, target, move, mults, power, type|
+    mults[:power_multiplier] *=
+      KaitoPlusMinusParty.factor(user, type)
+  }
+)
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:MINUS,
+  proc { |ability, user, target, move, mults, power, type|
+    # If both abilities are active, PLUS supplies the shared bonus once.
+    next if user.hasActiveAbility?(:PLUS)
+
+    mults[:power_multiplier] *=
+      KaitoPlusMinusParty.factor(user, type)
+  }
+)
+
+#===============================================================================
+# Replace the original status handlers, preserving their 15% effects.
+#===============================================================================
+Battle::AbilityEffects::OnDealingHit.add(:PLUS,
+  proc { |ability, user, target, move, battle|
+    KaitoPlusMinusParty.inflict(:PLUS, user, target, move, battle)
+  }
+)
+
+Battle::AbilityEffects::OnDealingHit.add(:MINUS,
+  proc { |ability, user, target, move, battle|
+    KaitoPlusMinusParty.inflict(:MINUS, user, target, move, battle)
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoPlusMinusParty::ConstructionHook
+)
+  Battle.singleton_class.prepend(
+    KaitoPlusMinusParty::ConstructionHook
+  )
+end
