@@ -18233,3 +18233,717 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(KaitoOleumBurst::BattleConstruction)
 end
+
+#===============================================================================
+# Tengu Reprisal
+# Once per entry:
+# - Cures a newly received opposing major status/confusion/flinch/attraction.
+# - Uses Leaf Tornado without consuming the normal action.
+# - Supports Early Bird waking-turn priority and AI scoring.
+#===============================================================================
+module KaitoTenguReprisal
+  ABILITY = :TENGUREPRISAL
+  MOVE    = :LEAFTORNADO
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.ready?(object)
+    b = real(object)
+    return false if !b || b.fainted?
+    return false if !b.respond_to?(:hasActiveAbility?)
+    return false if b.instance_variable_get(:@kaito_tr_used)
+
+    return b.hasActiveAbility?(ABILITY)
+  end
+
+  #---------------------------------------------------------------------------
+  # Track the actual source of an effect.
+  #---------------------------------------------------------------------------
+  def self.with_origin(battle, source)
+    old = battle.instance_variable_get(:@kaito_tr_origin)
+    battle.instance_variable_set(:@kaito_tr_origin, source)
+
+    begin
+      return yield
+    ensure
+      battle.instance_variable_set(:@kaito_tr_origin, old)
+    end
+  end
+
+  def self.state(b, kind)
+    case kind
+    when :pbInflictStatus
+      return [b.status, b.statusCount]
+    when :pbConfuse
+      return b.effects[PBEffects::Confusion]
+    when :pbAttract
+      return b.effects[PBEffects::Attract]
+    when :pbFlinch
+      return b.effects[PBEffects::Flinch]
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Cure only the newly received effect, then queue the retaliation.
+  #---------------------------------------------------------------------------
+  def self.try_trigger(b)
+    return if !ready?(b)
+
+    stack = b.instance_variable_get(:@kaito_tr_receiving)
+    frame = stack && stack.last
+    return if !frame
+
+    kind, before, source = frame
+    source = real(source)
+
+    return if !source || !source.respond_to?(:opposes?)
+    return if source.equal?(b) || !source.opposes?(b)
+
+    current = state(b, kind)
+    return if current == before
+
+    valid = case kind
+            when :pbInflictStatus then b.status != :NONE
+            when :pbConfuse       then current.to_i > 0
+            when :pbAttract       then current.to_i >= 0
+            when :pbFlinch        then current == true
+            end
+    return if !valid
+
+    # Consume first to prevent recursive activation during cure callbacks.
+    b.instance_variable_set(:@kaito_tr_used, true)
+
+    battle = b.instance_variable_get(:@battle)
+    queue = battle.instance_variable_get(:@kaito_tr_queue)
+    if !queue
+      queue = []
+      battle.instance_variable_set(:@kaito_tr_queue, queue)
+    end
+
+    queue.push([
+      b, b.pokemon,
+      b.instance_variable_get(:@kaito_tr_generation)
+    ])
+
+    was_asleep = kind == :pbInflictStatus && b.status == :SLEEP
+
+    battle.pbShowAbilitySplash(b, true)
+    begin
+      case kind
+      when :pbInflictStatus
+        # Calls the existing Early Bird wake-record hook.
+        b.pbCureStatus(false)
+      when :pbConfuse
+        b.pbCureConfusion
+      when :pbAttract
+        b.pbCureAttract
+      when :pbFlinch
+        b.effects[PBEffects::Flinch] = false
+      end
+
+      battle.pbDisplay(_INTL(
+        "{1} broke free with its fighting spirit!", b.pbThis
+      ))
+    ensure
+      battle.pbHideAbilitySplash(b)
+    end
+
+    if was_asleep && b.status != :SLEEP &&
+       b.hasActiveAbility?(:EARLYBIRD)
+      battle.instance_variable_set(:@kaito_tr_refresh_priority, true)
+    end
+  end
+
+  def self.same_entry?(b, pokemon, generation)
+    return b.pokemon.equal?(pokemon) &&
+           b.instance_variable_get(:@kaito_tr_generation) == generation
+  end
+
+  #---------------------------------------------------------------------------
+  # Resolve queued moves outside the current move/action/switching operation.
+  #---------------------------------------------------------------------------
+  def self.flush(battle)
+    return if battle.instance_variable_get(:@kaito_tr_busy).to_i > 0
+    return if battle.instance_variable_get(:@kaito_tr_draining)
+
+    battle.instance_variable_set(:@kaito_tr_draining, true)
+    begin
+      queue = battle.instance_variable_get(:@kaito_tr_queue) || []
+
+      until queue.empty?
+        b, pokemon, generation = queue.shift
+
+        next if !same_entry?(b, pokemon, generation) || b.fainted?
+        next if battle.decision != 0
+
+        foes = battle.allBattlers.select do |foe|
+          !foe.fainted? && foe.opposes?(b) && foe.near?(b)
+        end
+        next if foes.empty?
+
+        target = foes[battle.pbRandom(foes.length)]
+
+        saved = [
+          b.lastRoundMoved,
+          b.currentMove,
+          b.lastMoveFailed,
+          b.effects[PBEffects::Dancer],
+          b.effects[PBEffects::Outrage]
+        ]
+
+        begin
+          # Dancer-style called move: preserve the normal action.
+          b.effects[PBEffects::Dancer] = true
+
+          if saved[4] > 0
+            b.effects[PBEffects::Outrage] = saved[4] + 1
+          end
+
+          b.pbUseMoveSimple(MOVE, target.index)
+        ensure
+          # Never restore old state onto a replacement Pokemon.
+          if same_entry?(b, pokemon, generation)
+            b.lastRoundMoved = saved[0]
+            b.currentMove = saved[1]
+            b.lastMoveFailed = saved[2]
+            b.effects[PBEffects::Dancer] = saved[3]
+            b.effects[PBEffects::Outrage] = saved[4]
+          end
+        end
+      end
+    ensure
+      battle.instance_variable_set(:@kaito_tr_draining, false)
+    end
+
+    # Refresh after all reactions, preserving the engine's item rolls.
+    if battle.instance_variable_get(:@kaito_tr_refresh_priority)
+      battle.instance_variable_set(:@kaito_tr_refresh_priority, false)
+
+      priority = battle.instance_variable_get(:@priority)
+      if battle.decision == 0 && priority && !priority.empty?
+        battle.pbCalculatePriority(false)
+      end
+    end
+  end
+
+  def self.boundary(battle)
+    old = battle.instance_variable_get(:@kaito_tr_busy).to_i
+    battle.instance_variable_set(:@kaito_tr_busy, old + 1)
+
+    begin
+      result = yield
+    ensure
+      battle.instance_variable_set(:@kaito_tr_busy, old)
+    end
+
+    flush(battle)
+    return result
+  end
+
+  #---------------------------------------------------------------------------
+  # Battler hooks.
+  #---------------------------------------------------------------------------
+  module BattlerHook
+    def pbInitEffects(batonPass)
+      result = super
+
+      @kaito_tr_generation = @kaito_tr_generation.to_i + 1
+      @kaito_tr_used = false
+      @kaito_tr_receiving = []
+
+      return result
+    end
+
+    [:pbInflictStatus, :pbConfuse, :pbAttract, :pbFlinch].each do |kind|
+      define_method(kind) do |*args, &block|
+        source = case kind
+                 when :pbInflictStatus
+                   args[3]
+                 when :pbAttract, :pbFlinch
+                   args[0]
+                 end
+
+        source ||= @battle.instance_variable_get(:@kaito_tr_origin)
+
+        @kaito_tr_receiving ||= []
+        @kaito_tr_receiving.push([
+          kind, KaitoTenguReprisal.state(self, kind), source
+        ])
+
+        begin
+          result = super(*args, &block)
+          KaitoTenguReprisal.try_trigger(self)
+        ensure
+          @kaito_tr_receiving.pop
+        end
+
+        KaitoTenguReprisal.flush(@battle)
+        return result
+      end
+    end
+
+    # Give the ability the opportunity to cure before status berries.
+    def pbItemStatusCureCheck(*args, &block)
+      KaitoTenguReprisal.try_trigger(self)
+      return super(*args, &block)
+    end
+
+    [:pbUseMove, :pbProcessTurn].each do |name|
+      define_method(name) do |*args, &block|
+        KaitoTenguReprisal.boundary(@battle) do
+          super(*args, &block)
+        end
+      end
+    end
+  end
+
+  module BattleHook
+    [:pbRecallAndReplace, :pbOnAllBattlersEnteringBattle,
+     :pbEndOfRoundPhase].each do |name|
+      define_method(name) do |*args, &block|
+        KaitoTenguReprisal.boundary(self) do
+          super(*args, &block)
+        end
+      end
+    end
+  end
+
+  module MoveOrigin
+    [:pbEffectGeneral, :pbEffectAgainstTarget,
+     :pbAdditionalEffect, :pbEffectAfterAllHits].each do |name|
+      define_method(name) do |*args, &block|
+        KaitoTenguReprisal.with_origin(@battle, args[0]) do
+          super(*args, &block)
+        end
+      end
+    end
+  end
+
+  module AbilityOrigin
+    def triggerOnBeingHit(ability, user, target, move, battle)
+      KaitoTenguReprisal.with_origin(battle, target) do
+        super
+      end
+    end
+
+    def triggerOnDealingHit(ability, user, target, move, battle)
+      KaitoTenguReprisal.with_origin(battle, user) do
+        super
+      end
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # AI: heuristic penalty for triggering an unused Tengu Reprisal.
+  #---------------------------------------------------------------------------
+  def self.ai_adjustment(user, target, move)
+    user = real(user)
+    target = real(target)
+    move = move.move if move.respond_to?(:move)
+
+    return 0 if !user || !target || !move
+    return 0 if !user.opposes?(target) || !ready?(target)
+
+    info = GameData::Move.try_get(move.id)
+    return 0 if !info
+
+    code = info.function_code.to_s
+    return 0 if code !~
+      /(Sleep|Poison|Burn|Paraly[sz]e|Freeze|Frostbite|Confuse|Flinch|Attract)Target/
+
+    if target.effects[PBEffects::Substitute] > 0 &&
+       !move.ignoresSubstitute?(user)
+      return 0
+    end
+
+    chance = 1.0
+
+    if move.damagingMove?
+      return 0 if user.hasActiveAbility?(:SHEERFORCE)
+      return 0 if target.hasActiveItem?(:COVERTCLOAK)
+
+      ignores = defined?(AdvancedAI::Utilities) &&
+                AdvancedAI::Utilities.ignores_ability?(user, move, target)
+
+      return 0 if target.hasActiveAbility?(:SHIELDDUST) && !ignores
+
+      chance = [info.effect_chance / 100.0, 1.0].min
+      if user.hasActiveAbility?(:SERENEGRACE)
+        chance = [chance * 2, 1.0].min
+      end
+    end
+
+    penalty = move.damagingMove? ? 30 : 60
+
+    if code.include?("SleepTarget") &&
+       target.hasActiveAbility?(:EARLYBIRD)
+      penalty += 15
+    end
+
+    return -(penalty * chance).round
+  end
+
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      @kaito_tr_ai_depth = @kaito_tr_ai_depth.to_i + 1
+
+      begin
+        score = super
+        return score if score <= -100
+
+        return score + KaitoTenguReprisal.ai_adjustment(
+          user, target, move
+        )
+      ensure
+        @kaito_tr_ai_depth -= 1
+      end
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Install after plugin aliases and move classes have finished loading.
+  #---------------------------------------------------------------------------
+  def self.install!
+    @source_patches ||= []
+
+    relevant = [
+      :pbEffectGeneral, :pbEffectAgainstTarget,
+      :pbAdditionalEffect, :pbEffectAfterAllHits
+    ]
+
+    ObjectSpace.each_object(Class) do |klass|
+      next if !(klass <= Battle::Move)
+      next if @source_patches.include?(klass)
+      next if (klass.instance_methods(false) & relevant).empty?
+
+      klass.prepend(MoveOrigin)
+      @source_patches.push(klass)
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:score_move_advanced) &&
+       !Battle::AI.ancestors.include?(AdvancedScoring)
+      Battle::AI.prepend(AdvancedScoring)
+    end
+  end
+
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoTenguReprisal.install!
+      super(*args, &block)
+    end
+  end
+end
+
+unless Battle::Battler.ancestors.include?(
+  KaitoTenguReprisal::BattlerHook
+)
+  Battle::Battler.prepend(KaitoTenguReprisal::BattlerHook)
+end
+
+unless Battle.ancestors.include?(KaitoTenguReprisal::BattleHook)
+  Battle.prepend(KaitoTenguReprisal::BattleHook)
+end
+
+unless Battle::AbilityEffects.singleton_class.ancestors.include?(
+  KaitoTenguReprisal::AbilityOrigin
+)
+  Battle::AbilityEffects.singleton_class.prepend(
+    KaitoTenguReprisal::AbilityOrigin
+  )
+end
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :kaito_tengu_reprisal,
+  proc { |score, move, user, target, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+    next score if ai.instance_variable_get(:@kaito_tr_ai_depth).to_i > 0
+
+    next score + KaitoTenguReprisal.ai_adjustment(user, target, move)
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoTenguReprisal::ConstructionHook
+)
+  Battle.singleton_class.prepend(
+    KaitoTenguReprisal::ConstructionHook
+  )
+end
+
+#===============================================================================
+# Maleficent
+# Gloom Moonlight: highest offensive stat x1.5, loses 1/16 max HP per turn.
+#===============================================================================
+module KaitoMaleficent
+  ABILITY = :MALEFICENT
+  WEATHER = :GloomMoonlight
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.battle_of(object)
+    object = real(object)
+    object ? object.instance_variable_get(:@battle) : nil
+  end
+
+  def self.has?(object)
+    user = real(object)
+    return false if !user || user.fainted?
+
+    if user.respond_to?(:hasActiveAbility?)
+      return user.hasActiveAbility?(ABILITY)
+    end
+
+    return true if user.respond_to?(:ability_id) &&
+                   user.ability_id == ABILITY
+
+    return user.respond_to?(:set_innate_limits) &&
+           Array(user.set_innate_limits).include?(ABILITY)
+  end
+
+  def self.active?(object, battle = nil)
+    user = real(object)
+    return false if !has?(user)
+
+    battle ||= battle_of(user)
+    weather = if user.respond_to?(:effectiveWeather)
+                user.effectiveWeather
+              elsif battle
+                battle.pbWeather
+              end
+
+    return weather == WEATHER
+  end
+
+  def self.staged(object, stat)
+    user = real(object)
+    value = stat == :ATTACK ? user.attack : user.spatk
+    stage = user.respond_to?(:stages) ? user.stages[stat].to_i : 0
+    stage = [[stage, -6].max, 6].min
+
+    factor = stage >= 0 ? (2.0 + stage) / 2 : 2.0 / (2 - stage)
+    return [(value * factor).floor, 1].max
+  end
+
+  def self.highest(object)
+    return staged(object, :ATTACK) >= staged(object, :SPECIAL_ATTACK) ?
+             :ATTACK : :SPECIAL_ATTACK
+  end
+
+  # Only boost moves actually using the user's offensive stats.
+  def self.factor(user, physical, move, battle = nil)
+    return 1.0 if !active?(user, battle)
+
+    if move
+      info = GameData::Move.try_get(move.id)
+      if info
+        code = info.function_code.to_s
+        return 1.0 if code.start_with?("FixedDamage", "OHKO", "Counter")
+        return 1.0 if [
+          "UseTargetAttackInsteadOfUserAttack",
+          "UseUserDefenseInsteadOfUserAttack",
+          "LowerTargetHPToUserHP",
+          "UserFaintsFixedDamageUserHP",
+          "MultiTurnAttackBideThenReturnDoubleDamage"
+        ].include?(code)
+      end
+    end
+
+    # Kinetic replaces offensive stats with Speed.
+    if defined?(KaitoKinetic) && KaitoKinetic.active?(user)
+      return 1.0
+    end
+
+    stat = physical ? :ATTACK : :SPECIAL_ATTACK
+    return highest(user) == stat ? 1.5 : 1.0
+  end
+
+  def self.cost(object)
+    user = real(object)
+    return 0 if !user || !active?(user)
+    return 0 if !user.respond_to?(:takesIndirectDamage?)
+    return 0 if !user.takesIndirectDamage?
+
+    return [user.totalhp / 16, 1].max
+  end
+
+  # Expected cost after weather expiration at the start of end-of-round effects.
+  def self.predicted_cost(object)
+    user = real(object)
+    amount = cost(user)
+    return 0 if amount <= 0
+
+    battle = battle_of(user)
+    if battle && battle.field.weatherDuration == 1 &&
+       battle.field.defaultWeather != WEATHER
+      return 0
+    end
+
+    return amount
+  end
+
+  def self.fixed?(move)
+    native = move.respond_to?(:move) ? move.move : move
+    return true if native.is_a?(Battle::Move::FixedDamageMove)
+
+    info = GameData::Move.try_get(move.id)
+    return false if !info
+
+    code = info.function_code.to_s
+    return true if code.start_with?("FixedDamage", "OHKO", "Counter")
+    return [
+      "LowerTargetHPToUserHP",
+      "UserFaintsFixedDamageUserHP",
+      "MultiTurnAttackBideThenReturnDoubleDamage"
+    ].include?(code)
+  end
+
+  def self.physical?(user, move, tera = false)
+    info = GameData::Move.try_get(move.id)
+    return false if !info
+
+    dynamic = [:PHOTONGEYSER, :LIGHTTHATBURNSTHESKY].include?(info.id)
+    source = real(user)
+    dynamic ||= info.id == :TERABLAST &&
+      (tera || (source.respond_to?(:tera?) && source.tera?))
+
+    if dynamic
+      return staged(user, :ATTACK) > staged(user, :SPECIAL_ATTACK)
+    end
+
+    return info.category == 0
+  end
+
+  # Shared Advanced AI damage estimator.
+  module CombatAI
+    def ability_damage_modifier(
+      user, target, type, physical, effectiveness,
+      move = nil, physical_defense = physical
+    )
+      value = super
+      battle = KaitoMaleficent.battle_of(user) ||
+               KaitoMaleficent.battle_of(target) ||
+               KaitoMaleficent.battle_of(move)
+
+      return value * KaitoMaleficent.factor(
+        user, physical, move, battle
+      )
+    end
+  end
+
+  # Advanced AI's separate damage calculator.
+  module ScorerAI
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      value = super
+      return value if !move || !user || !target
+      return value if !value || value <= 0 || !move.damagingMove?
+      return value if KaitoMaleficent.fixed?(move)
+
+      # These calculations already delegate to the shared estimator.
+      if @battle.field.terrain == :Pollination &&
+         defined?(ExtendedTerrains::AdvancedScorerHooks) &&
+         Battle::AI.ancestors.include?(
+           ExtendedTerrains::AdvancedScorerHooks
+         ) &&
+         [:STOREDPOWER, :POWERTRIP, :PUNISHMENT].include?(move.id)
+        return value
+      end
+
+      tera = move.id == :TERABLAST && !!get_tera_type_for_move(user)
+      physical = KaitoMaleficent.physical?(user, move, tera)
+      factor = KaitoMaleficent.factor(user, physical, move, @battle)
+
+      return value if factor == 1.0
+      return [(value * factor).round, 1].max
+    end
+
+    # Discourage waiting out the turn when Maleficent's HP loss is dangerous.
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if score <= -100 || !move || !user
+
+      amount = KaitoMaleficent.predicted_cost(user)
+      return score if amount <= 0 || !move.statusMove?
+
+      native = move.respond_to?(:move) ? move.move : move
+      return score if native.respond_to?(:healingMove?) && native.healingMove?
+
+      hp = KaitoMaleficent.real(user).hp
+      return score - (amount >= hp ? 35 : 5)
+    end
+  end
+
+  # Native AI already obtains the offensive bonus through the damage handler.
+  module NativeResidual
+    def rough_end_of_round_damage
+      return super + KaitoMaleficent.predicted_cost(battler)
+    end
+  end
+
+  def self.install!
+    unless Battle::AI::AIBattler.ancestors.include?(NativeResidual)
+      Battle::AI::AIBattler.prepend(NativeResidual)
+    end
+
+    if defined?(AdvancedAI::CombatUtilities) &&
+       AdvancedAI::CombatUtilities.respond_to?(:ability_damage_modifier)
+      singleton = AdvancedAI::CombatUtilities.singleton_class
+      singleton.prepend(CombatAI) unless singleton.ancestors.include?(CombatAI)
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:calculate_rough_damage) &&
+       !Battle::AI.ancestors.include?(ScorerAI)
+      Battle::AI.prepend(ScorerAI)
+    end
+  end
+
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoMaleficent.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AbilityEffects::DamageCalcFromUser.add(:MALEFICENT,
+  proc { |ability, user, target, move, mults, power, type|
+    mults[:attack_multiplier] *= KaitoMaleficent.factor(
+      user, move.physicalMove?, move
+    )
+  }
+)
+
+Battle::AbilityEffects::EndOfRoundWeather.add(:MALEFICENT,
+  proc { |ability, weather, battler, battle|
+    next if weather != KaitoMaleficent::WEATHER
+
+    amount = KaitoMaleficent.cost(battler)
+    next if amount <= 0
+
+    battle.pbShowAbilitySplash(battler)
+    begin
+      battle.scene.pbDamageAnimation(battler)
+      battler.pbReduceHP(amount, false)
+      battle.pbDisplay(_INTL(
+        "{1} was drained by its {2}!",
+        battler.pbThis,
+        GameData::Ability.get(:MALEFICENT).name
+      ))
+    ensure
+      battle.pbHideAbilitySplash(battler)
+    end
+
+    battler.pbItemHPHealCheck
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoMaleficent::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoMaleficent::ConstructionHook)
+end

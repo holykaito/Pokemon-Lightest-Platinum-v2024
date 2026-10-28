@@ -204,13 +204,13 @@ Innates = TELEPATHY,JUSTIFIED,DUALWIELD
 Innates = TELEPATHY,JUSTIFIED,DUALWIELD
 #----------------------------------------
 [LOTAD]
-Innates = SEAWEED,HYDROPONIC
+Innates = SEAWEED
 #----------------------------------------
 [LOMBRE]
-Innates = SEAWEED,HYDROPONIC
+Innates = SEAWEED,OWNTEMPO
 #----------------------------------------
 [LUDICOLO]
-Innates = SEAWEED,HYDROPONIC,OWNTEMPO
+Innates = SEAWEED,OWNTEMPO,DANCINGPANIC
 #----------------------------------------
 [WINGULL]
 Innates = FLOCK

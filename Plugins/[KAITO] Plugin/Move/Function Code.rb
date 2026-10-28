@@ -1363,3 +1363,334 @@ class Battle::Move::StartInverseRoom < Battle::Move
     end
   end
 end
+
+#===============================================================================
+# Razor Edge counter. Resets on switching, including Baton Pass.
+#===============================================================================
+class Battle::Battler
+  attr_accessor :kaito_razor_edge_uses
+
+  unless method_defined?(:kaito_razor_edge_original_init)
+    alias_method :kaito_razor_edge_original_init, :pbInitEffects
+
+    def pbInitEffects(batonPass)
+      @kaito_razor_edge_uses = 0
+      kaito_razor_edge_original_init(batonPass)
+    end
+  end
+end
+
+#===============================================================================
+# Any other move resets the counter, including Hone Claws.
+#===============================================================================
+class Battle::Move
+  unless method_defined?(:kaito_razor_edge_original_usage)
+    alias_method :kaito_razor_edge_original_usage,
+                 :pbChangeUsageCounters
+
+    def pbChangeUsageCounters(user, specialUsage)
+      if @id != :RAZOREDGE
+        user.kaito_razor_edge_uses = 0
+      end
+      kaito_razor_edge_original_usage(user, specialUsage)
+    end
+  end
+end
+
+#===============================================================================
+# Power: 100 -> 80 -> 60 -> 40 -> 20.
+# Counts once per use, regardless of number of hits.
+#===============================================================================
+class Battle::Move::LowerPower20EachConsecutiveUse < Battle::Move
+  def pbChangeUsageCounters(user, specialUsage)
+    super
+    user.kaito_razor_edge_uses =
+      [user.kaito_razor_edge_uses.to_i + 1, 5].min
+  end
+
+  def pbBaseDamage(baseDmg, user, target)
+    previous_uses = [user.kaito_razor_edge_uses.to_i - 1, 0].max
+    return [baseDmg - 20 * previous_uses, 20].max
+  end
+end
+
+#===============================================================================
+# AI predicts the power of the next use.
+#===============================================================================
+Battle::AI::Handlers::MoveBasePower.add(
+  "LowerPower20EachConsecutiveUse",
+  proc { |power, move, user, target, ai, battle|
+    uses = user.battler.kaito_razor_edge_uses.to_i
+    next [power - 20 * uses, 20].max
+  }
+)
+
+#===============================================================================
+# Restores 25% max HP and raises Defense by 1 stage.
+#===============================================================================
+class Battle::Move::HealUserQuarterRaiseUserDef1 < Battle::Move::HealingMove
+  def pbHealAmount(user)
+    return [(user.totalhp / 4.0).round, 1].max
+  end
+
+  def pbMoveFailed?(user, targets)
+    can_heal = user.canHeal?
+    can_raise = user.pbCanRaiseStatStage?(:DEFENSE, user, self)
+    return false if can_heal || can_raise
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true
+  end
+
+  def pbEffectGeneral(user)
+    if user.canHeal?
+      recovered = user.pbRecoverHP(pbHealAmount(user))
+      if recovered > 0
+        @battle.pbDisplay(_INTL("{1}'s HP was restored.", user.pbThis))
+      end
+    end
+    if user.pbCanRaiseStatStage?(:DEFENSE, user, self)
+      user.pbRaiseStatStage(:DEFENSE, 1, user)
+    end
+  end
+end
+
+#===============================================================================
+# Mud Bath shield. Removed on switching, including Baton Pass.
+#===============================================================================
+class Battle::Battler
+  attr_accessor :kaito_mud_bath_shield
+
+  unless method_defined?(:kaito_mud_bath_original_init)
+    alias_method :kaito_mud_bath_original_init, :pbInitEffects
+
+    def pbInitEffects(batonPass)
+      @kaito_mud_bath_shield = false
+      kaito_mud_bath_original_init(batonPass)
+    end
+  end
+
+  # Consume after all hits, so a multi-hit move is weakened for every hit.
+  unless method_defined?(:kaito_mud_bath_original_after_move)
+    alias_method :kaito_mud_bath_original_after_move,
+                 :pbEffectsAfterMove
+
+    def pbEffectsAfterMove(user, targets, move, numHits)
+      if move.damagingMove? && numHits > 0
+        targets.each do |target|
+          next if !target.kaito_mud_bath_shield
+          next if target.damageState.unaffected
+          next if target.damageState.totalHPLost <= 0
+          target.kaito_mud_bath_shield = false
+          @battle.pbDisplay(
+            _INTL("The mud protecting {1} wore off!", target.pbThis(true))
+          )
+        end
+      end
+      kaito_mud_bath_original_after_move(user, targets, move, numHits)
+    end
+  end
+end
+
+#===============================================================================
+# Halve incoming move power without consuming the shield during calculations.
+#===============================================================================
+class Battle::Move
+  unless method_defined?(:kaito_mud_bath_original_damage_multipliers)
+    alias_method :kaito_mud_bath_original_damage_multipliers,
+                 :pbCalcDamageMultipliers
+
+    def pbCalcDamageMultipliers(user, target, numTargets, type,
+                                baseDmg, multipliers)
+      result = kaito_mud_bath_original_damage_multipliers(
+        user, target, numTargets, type, baseDmg, multipliers
+      )
+      if target.kaito_mud_bath_shield
+        multipliers[:power_multiplier] *= 0.5
+      end
+      return result
+    end
+  end
+end
+
+#===============================================================================
+# Cure the user and active allies; shield only the user.
+#===============================================================================
+class Battle::Move::CureUserAndAlliesStatusWeakenNextAttack < Battle::Move
+  def canSnatch?; return true; end
+
+  def pbMoveFailed?(user, targets)
+    affected = [user] + user.allAllies
+    can_cure = affected.any? { |b| !b.fainted? && b.status != :NONE }
+    return false if can_cure || !user.kaito_mud_bath_shield
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true
+  end
+
+  def pbEffectGeneral(user)
+    ([user] + user.allAllies).each do |battler|
+      next if battler.fainted? || battler.status == :NONE
+      battler.pbCureStatus
+    end
+    if !user.kaito_mud_bath_shield
+      user.kaito_mud_bath_shield = true
+      @battle.pbDisplay(
+        _INTL("{1} became protected by mud!", user.pbThis)
+      )
+    end
+  end
+end
+
+#===============================================================================
+# Soul Trap
+# - Sets a trap at the target's position.
+# - Triggers once when a conscious Pokemon switches out of that position.
+# - Does not trigger when replacing a fainted Pokemon.
+# - Remains effective even if the original user switches out or faints.
+#===============================================================================
+class Battle
+  def kaito_soul_traps
+    @kaito_soul_traps ||= {}
+    return @kaito_soul_traps
+  end
+
+  #-----------------------------------------------------------------------------
+  # Resolve the delayed attack.
+  #-----------------------------------------------------------------------------
+  def kaito_trigger_soul_trap(index, data)
+    target = @battlers[index]
+    return if !target || target.fainted?
+
+    user_index, party_index, move_id = data
+
+    # Use the original battler if it is still active and conscious.
+    source = allBattlers.find do |b|
+      !b.fainted? &&
+        !b.opposes?(user_index) &&
+        b.pokemonIndex == party_index
+    end
+
+    # Otherwise, create a temporary attacker from the original Pokemon.
+    if !source
+      original = pbParty(user_index)[party_index]
+      return if !original
+
+      attacker_copy = original.clone
+      attacker_copy.hp = 1 if attacker_copy.hp <= 0
+
+      source = Battle::Battler.new(self, user_index)
+      source.pbInitDummyPokemon(attacker_copy, party_index)
+    end
+
+    pbDisplay(
+      _INTL("A spectral trap exploded around {1}!",
+            target.pbThis(true))
+    )
+
+    previous_future_sight = @futureSight
+    previous_failure = source.lastMoveFailed
+
+    begin
+      # Reuse the engine's delayed-attack handling.
+      @futureSight = true
+      source.pbUseMoveSimple(move_id, index)
+    ensure
+      @futureSight = previous_future_sight
+      source.lastMoveFailed = previous_failure
+    end
+
+    target.pbFaint if target.fainted?
+  end
+
+  #-----------------------------------------------------------------------------
+  # Trigger after the replacement Pokemon has been sent out.
+  #-----------------------------------------------------------------------------
+  unless method_defined?(:kaito_soul_trap_original_replace)
+    alias_method :kaito_soul_trap_original_replace,
+                 :pbRecallAndReplace
+
+    def pbRecallAndReplace(idxBattler, idxParty,
+                           randomReplacement = false, batonPass = false)
+      outgoing = @battlers[idxBattler]
+      trap_data = nil
+
+      if outgoing && !outgoing.fainted? &&
+         outgoing.pokemonIndex != idxParty
+        trap_data = kaito_soul_traps.delete(idxBattler)
+      end
+
+      result = kaito_soul_trap_original_replace(
+        idxBattler, idxParty, randomReplacement, batonPass
+      )
+
+      if trap_data
+        kaito_trigger_soul_trap(idxBattler, trap_data)
+      end
+
+      return result
+    end
+  end
+end
+
+#===============================================================================
+# Soul Trap move effect.
+# Inherits delayed-attack handling to avoid damage during setup.
+#===============================================================================
+class Battle::Move::SetSoulTrapOnTargetPosition <
+      Battle::Move::AttackTwoTurnsLater
+
+  def pbFailsAgainstTarget?(user, target, show_message)
+    return false if @battle.futureSight
+
+    if !user.opposes?(target)
+      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      return true
+    end
+
+    if @battle.kaito_soul_traps.key?(target.index)
+      @battle.pbDisplay(_INTL("But it failed!")) if show_message
+      return true
+    end
+
+    return false
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    return if @battle.futureSight
+
+    @battle.kaito_soul_traps[target.index] = [
+      user.index, user.pokemonIndex, @id
+    ]
+
+    @battle.pbDisplay(
+      _INTL("{1} set a spectral trap around {2}!",
+            user.pbThis, target.pbThis(true))
+    )
+  end
+
+  # Show the assigned SOULTRAP animation during setup and explosion.
+  def pbShowAnimation(id, user, targets, hitNum = 0,
+                      showAnimation = true)
+    return if !showAnimation
+    @battle.pbAnimation(id, user, targets, hitNum)
+  end
+end
+
+#===============================================================================
+# Double power while Grassy Terrain is active.
+#===============================================================================
+class Battle::Move::DoublePowerInGrassyTerrain < Battle::Move
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 2 if @battle.field.terrain == :Grassy
+    return baseDmg
+  end
+end
+
+#===============================================================================
+# AI power calculation.
+#===============================================================================
+Battle::AI::Handlers::MoveBasePower.add(
+  "DoublePowerInGrassyTerrain",
+  proc { |power, move, user, target, ai, battle|
+    next (battle.field.terrain == :Grassy) ? power * 2 : power
+  }
+)

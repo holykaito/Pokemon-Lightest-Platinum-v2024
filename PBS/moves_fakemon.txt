@@ -950,3 +950,75 @@ FunctionCode = BleedTarget
 Flags = CanProtect,CanMirrorMove
 EffectChance = 20
 Description = Calls on dark power to attack and may cause bleeding.
+#-------------------------------
+[RAZOREDGE]
+Name = Razor Edge
+Type = STEEL
+Category = Physical
+Power = 100
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = LowerPower20EachConsecutiveUse
+Flags = Contact,CanProtect,CanMirrorMove,Slicing
+Description = Repeated use dulls its blades. Using another move or switching out restores power.
+#-------------------------------
+[METALLURGY]
+Name = Metallurgy
+Type = STEEL
+Category = Status
+Accuracy = 0
+TotalPP = 5
+Target = User
+FunctionCode = HealUserQuarterRaiseUserDef1
+Flags = CanSnatch
+Description = Restores a quarter of the user's max HP and raises its Defense.
+#-------------------------------
+[MUDBATH]
+Name = Mud Bath
+Type = GROUND
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = User
+FunctionCode = CureUserAndAlliesStatusWeakenNextAttack
+Flags = CanSnatch
+Description = Cures the user's and allies' status. Halves the next attack's power against the user.
+#-------------------------------
+[SOULTRAP]
+Name = Soul Trap
+Type = GHOST
+Category = Special
+Power = 120
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+Priority = -3
+FunctionCode = SetSoulTrapOnTargetPosition
+Description = Secretly sets a trap that strikes the replacement when the target switches out.
+#-------------------------------
+[FORESTFURY]
+Name = Forest Fury
+Type = GRASS
+Category = Special
+Power = 70
+Accuracy = 100
+TotalPP = 20
+Target = NearOther
+FunctionCode = DoublePowerInGrassyTerrain
+Flags = CanProtect,CanMirrorMove
+Description = This move's power doubles in Grassy Terrain.
+#-------------------------------
+[FLAMETONGUE]
+Name = Flame Tongue
+Type = FIRE
+Category = Physical
+Power = 80
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+Priority = 0
+FunctionCode = BurnTarget
+Flags = Contact,CanProtect,CanMirrorMove,Slicing
+EffectChance = 10
+Description = Slashes the target with a fiery blade that may burn it.

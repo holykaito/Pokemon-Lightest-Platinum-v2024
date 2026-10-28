@@ -299,6 +299,10 @@ Description = Takes less contact damage but more Water damage.
 Name = Loud Bang
 Description = Sound attacks may confuse the target.
 #-------------------------------
+[MALEFICENT] ###
+Name = Maleficent
+Description = Gloom Moonlight boosts the higher offense but drains HP.
+#-------------------------------
 [MALIGNATE]
 Name = Malignate
 Description = Normal-type moves become Dark-type moves and boosted.
@@ -522,6 +526,10 @@ Description = On first turn out, slicing moves gain priority.
 [TENACITY] ###
 Name = Tenacity
 Description = May endure a knockout blow with 1 HP.
+#-------------------------------
+[TENGUREPRISAL]
+Name = Tengu Reprisal
+Description = Cures foes' status effects and uses Leaf Tornado.
 #-------------------------------
 [TERRORSOWER] ###
 Name = Terror Sower
