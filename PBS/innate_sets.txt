@@ -212,6 +212,15 @@ Innates = SEAWEED,OWNTEMPO
 [LUDICOLO]
 Innates = SEAWEED,OWNTEMPO,DANCINGPANIC
 #----------------------------------------
+[SEEDOT]
+Innates = STURDY
+#----------------------------------------
+[NUZLEAF]
+Innates = PICKPOCKET,MALEFICENT
+#----------------------------------------
+[SHIFTRY]
+Innates = PICKPOCKET,MALEFICENT,TENGUREPRISAL
+#----------------------------------------
 [WINGULL]
 Innates = FLOCK
 #----------------------------------------

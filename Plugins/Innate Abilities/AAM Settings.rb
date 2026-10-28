@@ -94,6 +94,7 @@ module Settings
   [:MIGHTYENA, 1, 30],
   [:HIGHYENA, 1, 30, 60],
   [:LUDICOLO, 1, 1, 60],
+  [:SHIFTRY, 1, 1, 60],
   [:PELIPPER, 1, 1, 50],
   [:KIRLIA, 1, 25],
   [:GARDEVOIR, 1, 25, 60],
