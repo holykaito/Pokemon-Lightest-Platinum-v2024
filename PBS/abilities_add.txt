@@ -127,6 +127,10 @@ Description = Foes' dances reverse stat changes and cause confusion.
 Name = Debilitate
 Description = Contact moves weaken targets with status conditions.
 #-------------------------------
+[BURROWIN] ###
+Name = Burrow In
+Description = Automatically uses Dig upon entering battle.
+#-------------------------------
 [DISTORTION] ###
 Name = Distortion
 Description = When this Pokémon hits an enemy, it reduces any stat.
@@ -158,6 +162,10 @@ Description = Blocks its second type to boost Defense and neutralizes weaknesses
 [ETERNALDREAM] ###
 Name = Eternal Dream
 Description = It recovers HP when attacking a sleeping enemy.
+#-------------------------------
+[EXCAVATOR] ###
+Name = Excavator
+Description = Ground attacks raise Defense and clear its side's hazards.
 #-------------------------------
 [FATALPRECISION] ###
 Name = Fatal Precision

@@ -2269,3 +2269,83 @@ FieldUse = TR
 Move = UPPERHAND
 Flags = Fling_65
 Description = An attack that hits first and makes the target flinch. Fails if the target isn't using a high priority move.
+#-------------------------------
+[TM230]
+Name = TM230
+NamePlural = TM230s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = SANDYTERRAIN
+Flags = Fling_10
+Description = An attack
+#-------------------------------
+[TM231]
+Name = TM231
+NamePlural = TM231s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = SWAMPTERRAIN
+Flags = Fling_10
+Description = An attack
+#-------------------------------
+[TM232]
+Name = TM232
+NamePlural = TM232s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = TOXICTERRAIN
+Flags = Fling_10
+Description = An attack
+#-------------------------------
+[TM233]
+Name = TM233
+NamePlural = TM233s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = DRACONICTERRAIN
+Flags = Fling_10
+Description = An attack
+#-------------------------------
+[TM234]
+Name = TM234
+NamePlural = TM234s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = COLOSSEUMTERRAIN
+Flags = Fling_10
+Description = An attack
+#-------------------------------
+[TM235]
+Name = TM235
+NamePlural = TM235s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = POLLINATIONTERRAIN
+Flags = Fling_10
+Description = An attack
+#-------------------------------
+[TM236]
+Name = TM236
+NamePlural = TM236s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = RAVINETERRAIN
+Flags = Fling_10
+Description = An attack
+#-------------------------------
+[TM237]
+Name = TM237
+NamePlural = TM237s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = MOONYNIGHT
+Flags = Fling_10
+Description = An attack

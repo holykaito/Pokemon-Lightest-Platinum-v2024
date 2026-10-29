@@ -1047,3 +1047,15 @@ FunctionCode = MakeTargetWeakerToBug
 Flags = CanProtect
 EffectChance = 100
 Description = Attacks the target and makes it weaker to Bug-type moves.
+#-------------------------------
+[BERRYSMASH]
+Name = Berry Smash
+Type = GRASS
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 5
+Target = NearOther
+FunctionCode = DoublePowerDestroyTargetBerry
+Flags = Contact,CanProtect,CanMirrorMove
+Description = Destroys the target's Berry and deals double damage if it holds one.

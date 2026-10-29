@@ -212,7 +212,7 @@ Description = Prevents other Pokémon from lowering Attack stat.
 #-------------------------------
 [PICKUP] ###
 Name = Pickup
-Description = Collects items and clears its side’s entry hazards on entry.
+Description = The Pokémon may pick up items.
 #-------------------------------
 [TRUANT]
 Name = Truant
@@ -226,13 +226,13 @@ Description = Boosts the Attack stat, but lowers accuracy.
 Name = Cute Charm
 Description = Contact with the Pokémon may cause infatuation.
 #-------------------------------
-[PLUS]
+[PLUS] ###
 Name = Plus
-Description = Ups Sp. Atk if another Pokémon has Plus or Minus.
+Description = Each party Minus boosts Electric moves. May burn.
 #-------------------------------
 [MINUS]
 Name = Minus
-Description = Ups Sp. Atk if another Pokémon has Plus or Minus.
+Description = Each party Plus boosts Electric moves.. May frostbite.
 #-------------------------------
 [FORECAST]
 Name = Forecast

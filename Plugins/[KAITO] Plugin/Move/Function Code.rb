@@ -1798,3 +1798,44 @@ class Battle::Move::IgnoreTargetAbilityAndRaisedDefense <
     return defense, stage
   end
 end
+
+#===============================================================================
+# Double power only if the target's Berry can be destroyed.
+#===============================================================================
+class Battle::Move::DoublePowerDestroyTargetBerry < Battle::Move
+  def canDestroyTargetBerry?(target)
+    return false if !target.item || !target.item.is_berry?
+    return false if target.effects[PBEffects::Substitute] > 0 &&
+                    !ignoresSubstitute?(target)
+    return false if target.unlosableItem?(target.item)
+    return false if target.hasActiveAbility?(:STICKYHOLD) &&
+                    !@battle.moldBreaker
+    return true
+  end
+
+  def pbBaseDamage(baseDmg, user, target)
+    baseDmg *= 2 if canDestroyTargetBerry?(target)
+    return baseDmg
+  end
+
+  def pbEffectWhenDealingDamage(user, target)
+    return if target.damageState.substitute
+    return if target.damageState.berryWeakened
+    return if !canDestroyTargetBerry?(target)
+
+    berry_name = target.itemName
+    target.pbRemoveItem
+    @battle.pbDisplay(
+      _INTL("{1}'s {2} was destroyed!", target.pbThis, berry_name)
+    )
+  end
+end
+
+Battle::AI::Handlers::MoveBasePower.add(
+  "DoublePowerDestroyTargetBerry",
+  proc { |power, move, user, target, ai, battle|
+    next move.move.pbBaseDamage(
+      power, user.battler, target.battler
+    )
+  }
+)

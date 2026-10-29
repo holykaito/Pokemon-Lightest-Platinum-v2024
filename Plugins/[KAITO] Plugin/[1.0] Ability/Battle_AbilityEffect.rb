@@ -12053,113 +12053,6 @@ if defined?(AdvancedAI::CombatUtilities) &&
 end
 
 #===============================================================================
-# PICKUP - Additional entry hazard cleanup
-#===============================================================================
-
-module PickupHazardCleaner
-  HAZARDS = {
-    :StealthRock => false,
-    :Spikes      => 0,
-    :ToxicSpikes => 0,
-    :StickyWeb   => false,
-    :Steelsurge  => false
-  }.freeze
-
-  def self.active_hazards(side)
-    found = []
-
-    HAZARDS.each do |name, empty_value|
-      next if !PBEffects.const_defined?(name)
-
-      effect = PBEffects.const_get(name)
-      value  = side.effects[effect]
-
-      active = if empty_value == false
-                 value == true
-               else
-                 value && value > 0
-               end
-
-      found << [effect, empty_value] if active
-    end
-
-    return found
-  end
-
-  def self.clear(battler, battle)
-    return false if battler.fainted?
-    return false if !battler.hasActiveAbility?(:PICKUP)
-
-    side = battler.pbOwnSide
-    hazards = active_hazards(side)
-
-    return false if hazards.empty?
-
-    previous_name  = $aamName
-    previous_name2 = $aamName2
-
-    begin
-      # Show Pickup's name correctly when it is an Innate.
-      name = GameData::Ability.get(:PICKUP).name
-      $aamName  = name
-      $aamName2 = name
-
-      battle.pbShowAbilitySplash(battler)
-
-      hazards.each do |effect, empty_value|
-        side.effects[effect] = empty_value
-      end
-
-      battle.pbDisplay(
-        _INTL("{1} picked up all entry hazards on its side!",
-              battler.pbThis)
-      )
-    ensure
-      battle.pbHideAbilitySplash(battler)
-      $aamName  = previous_name
-      $aamName2 = previous_name2
-    end
-
-    return true
-  end
-end
-
-#===============================================================================
-# Additional switch-in effect.
-# Does not replace Pickup's EndOfRoundGainItem handler.
-#===============================================================================
-
-Battle::AbilityEffects::OnSwitchIn.add(:PICKUP,
-  proc { |ability, battler, battle, switch_in|
-    next if !switch_in
-    next if battler.fainted?
-
-    PickupHazardCleaner.clear(battler, battle)
-  }
-)
-
-#===============================================================================
-# Native AI ability ranking.
-# Entry hazard damage calculations remain unchanged.
-#===============================================================================
-
-Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
-  abilities.delete(:PICKUP)
-end
-
-Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
-Battle::AI::BASE_ABILITY_RATINGS[6] << :PICKUP
-
-Battle::AI::Handlers::AbilityRanking.add(:PICKUP,
-  proc { |ability, score, battler, ai|
-    side = battler.battler.pbOwnSide
-
-    next 8 if !PickupHazardCleaner.active_hazards(side).empty?
-    next 1
-  }
-)
-
-#===============================================================================
 # MIMICRY - Retain original-type STAB
 #===============================================================================
 
@@ -19538,5 +19431,473 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(
     KaitoPlusMinusParty::ConstructionHook
+  )
+end
+
+#===============================================================================
+# Excavator
+# After dealing damage with a Ground move:
+# raises Defense by 1 stage and clears the user's side's entry hazards.
+#===============================================================================
+module KaitoExcavator
+  SIDE_HAZARDS = {
+    :StealthRock     => false,
+    :Spikes          => 0,
+    :ToxicSpikes     => 0,
+    :StickyWeb       => false,
+    :Steelsurge      => false,
+    :TerrainSmash    => false,
+    :RestictiveWinds => false,
+    :HauntedOrbs     => false,
+    :SharpSteel      => false,
+    :CopperJacks     => false,
+    :BurningDebris   => false,
+    :WaterChannel    => false,
+    :RoseField       => false,
+    :ProtonOverload  => false,
+    :MindField       => false,
+    :IceRing         => false,
+    :DraconicRift    => false,
+    :DarkMist        => false,
+    :ManaFlux        => false,
+    :Miasma          => false
+  }.freeze
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.side_hazards(user)
+    effects = user.pbOwnSide.effects
+    result = []
+
+    SIDE_HAZARDS.each do |name, empty|
+      next if !PBEffects.const_defined?(name)
+
+      key = PBEffects.const_get(name)
+      value = effects[key]
+
+      active = if empty == false
+                 value == true
+               else
+                 value.is_a?(Numeric) && value > 0
+               end
+
+      result.push([key, empty]) if active
+    end
+
+    return result
+  end
+
+  def self.hazard_count(user, battle)
+    return side_hazards(user).length
+  end
+
+  def self.clear_hazards(user, battle)
+    hazards = side_hazards(user)
+
+    hazards.each do |key, empty|
+      user.pbOwnSide.effects[key] = empty
+    end
+
+    return !hazards.empty?
+  end
+
+  #---------------------------------------------------------------------------
+  # AI: value Defense gain and clearing existing hazards.
+  #---------------------------------------------------------------------------
+  def self.ai_bonus(object, move, battle, type, damage)
+    user = real(object)
+    return 0 if !user || user.fainted? || !move
+    return 0 if !user.respond_to?(:hasActiveAbility?)
+    return 0 if !user.hasActiveAbility?(:EXCAVATOR)
+    return 0 if type != :GROUND || !damage || damage <= 0
+
+    score = 0
+
+    if user.pbCanRaiseStatStage?(:DEFENSE, user)
+      if user.hasActiveAbility?(:CONTRARY)
+        score -= 12
+      else
+        score += 10
+        if user.hasActiveAbility?(:SIMPLE) &&
+           user.stages[:DEFENSE] <= 4
+          score += 4
+        end
+      end
+    end
+
+    hazards = hazard_count(user, battle)
+    score += [15 + hazards * 5, 40].min if hazards > 0
+
+    return score
+  end
+
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      @kaito_excavator_ai_depth =
+        @kaito_excavator_ai_depth.to_i + 1
+
+      begin
+        score = super
+        return score if score <= -100 || !move || !user || !target
+        return score if !move.damagingMove?
+        return score if !KaitoExcavator.real(user).
+          hasActiveAbility?(:EXCAVATOR)
+
+        type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+
+        if move.id == :TERABLAST
+          tera_type = get_tera_type_for_move(user)
+          type = tera_type if tera_type
+        end
+
+        return score if type != :GROUND
+
+        damage = calculate_rough_damage(move, user, target)
+
+        return score + KaitoExcavator.ai_bonus(
+          user, move, @battle, type, damage
+        )
+      ensure
+        @kaito_excavator_ai_depth -= 1
+      end
+    end
+  end
+
+  def self.install_ai!
+    return if !defined?(AdvancedAI)
+    return if !Battle::AI.method_defined?(:score_move_advanced)
+    return if Battle::AI.ancestors.include?(AdvancedScoring)
+
+    Battle::AI.prepend(AdvancedScoring)
+  end
+
+  # Install after plugin aliases have finished loading.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoExcavator.install_ai!
+      super(*args, &block)
+    end
+  end
+end
+
+#===============================================================================
+# Actual effect: existing end-of-move ability handler.
+#===============================================================================
+Battle::AbilityEffects::OnEndOfUsingMove.add(:EXCAVATOR,
+  proc { |ability, user, targets, move, battle|
+    next if !user || user.fainted? || !move
+    next if !move.damagingMove? || move.calcType != :GROUND
+
+    dealt_damage = targets.any? do |target|
+      target && target.damageState.totalHPLost.to_i > 0
+    end
+    next if !dealt_damage
+
+    can_raise = user.pbCanRaiseStatStage?(:DEFENSE, user)
+    has_hazards = KaitoExcavator.hazard_count(user, battle) > 0
+    next if !can_raise && !has_hazards
+
+    battle.pbShowAbilitySplash(user, true)
+    begin
+      # Clear independently of whether Defense can change.
+      if KaitoExcavator.clear_hazards(user, battle)
+        battle.pbDisplay(_INTL(
+          "{1} cleared away all entry hazards on its side!",
+          user.pbThis
+        ))
+      end
+
+      if can_raise
+        user.pbRaiseStatStageByAbility(:DEFENSE, 1, user, false)
+      end
+    ensure
+      battle.pbHideAbilitySplash(user)
+    end
+  }
+)
+
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(
+  :kaito_excavator,
+  proc { |score, move, user, target, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+    next score if ai.instance_variable_get(
+      :@kaito_excavator_ai_depth
+    ).to_i > 0
+
+    battler = KaitoExcavator.real(user)
+    next score if !battler.hasActiveAbility?(:EXCAVATOR)
+    next score if !move.damagingMove?
+
+    type = move.rough_type
+    next score if type != :GROUND
+
+    next score + KaitoExcavator.ai_bonus(
+      user, move, battle, type, move.rough_damage
+    )
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoExcavator::ConstructionHook
+)
+  Battle.singleton_class.prepend(
+    KaitoExcavator::ConstructionHook
+  )
+end
+
+#===============================================================================
+# Burrow In
+# Automatically uses Dig upon entering battle.
+# Preserves its charging state and schedules the attacking turn correctly.
+#===============================================================================
+module KaitoBurrowIn
+  ABILITY = :BURROWIN
+  MOVE    = :DIG
+
+  def self.real(object)
+    object.respond_to?(:battler) ? object.battler : object
+  end
+
+  def self.charging?(b)
+    return false if !b || b.fainted?
+    return b.effects[PBEffects::TwoTurnAttack] == MOVE &&
+           b.currentMove == MOVE
+  end
+
+  def self.trigger(b, battle)
+    return if b.fainted?
+    return if !b.hasActiveAbility?(ABILITY)
+    return if b.instance_variable_get(:@kaito_burrow_used)
+    return if b.usingMultiTurnAttack?
+
+    foes = battle.allBattlers.select do |foe|
+      !foe.fainted? && foe.opposes?(b) && foe.near?(b)
+    end
+    return if foes.empty?
+
+    dig = Battle::Move.from_pokemon_move(
+      battle, Pokemon::Move.new(MOVE)
+    )
+    return if !b.pbCanChooseMove?(dig, false, false, true)
+
+    b.instance_variable_set(:@kaito_burrow_used, true)
+
+    target = foes[battle.pbRandom(foes.length)]
+    pokemon = b.pokemon
+
+    old_round   = b.lastRoundMoved
+    old_current = b.currentMove
+    old_failed  = b.lastMoveFailed
+    old_dancer  = b.effects[PBEffects::Dancer]
+    old_outrage = b.effects[PBEffects::Outrage]
+    old_lock    = b.effects[PBEffects::ChoiceBand]
+    old_mold    = battle.moldBreaker
+
+    begin
+      battle.pbShowAbilitySplash(b, true)
+      battle.pbHideAbilitySplash(b)
+
+      b.effects[PBEffects::Dancer] = true
+      if old_outrage > 0
+        b.effects[PBEffects::Outrage] = old_outrage + 1
+      end
+
+      # Use the engine's real Dig, including animation and Power Herb.
+      b.pbUseMoveSimple(MOVE, target.index)
+    ensure
+      battle.moldBreaker = old_mold
+
+      if b.pokemon.equal?(pokemon)
+        b.lastRoundMoved = old_round
+        b.lastMoveFailed = old_failed
+        b.effects[PBEffects::Dancer] = old_dancer
+        b.effects[PBEffects::Outrage] = old_outrage
+        b.effects[PBEffects::ChoiceBand] = old_lock
+
+        if charging?(b)
+          # Keep currentMove = DIG; restoring it would break the second turn.
+          b.instance_variable_set(
+            :@kaito_burrow_pending, [pokemon, target.index]
+          )
+        else
+          b.currentMove = old_current
+          b.instance_variable_set(:@kaito_burrow_pending, nil)
+        end
+      end
+    end
+  end
+
+  # Register the attacking turn at the NEXT command phase.
+  # Do not change the current switch action into an immediate extra attack.
+  def self.prepare_commands(battle)
+    battle.allBattlers.each do |b|
+      pending = b.instance_variable_get(:@kaito_burrow_pending)
+      next if !pending || !b.pokemon.equal?(pending[0])
+      next if !charging?(b)
+
+      dig = Battle::Move.from_pokemon_move(
+        battle, Pokemon::Move.new(MOVE)
+      )
+      dig.pp = -1
+
+      battle.choices[b.index] = [
+        :UseMove, -1, dig, pending[1], 0
+      ]
+
+      b.instance_variable_set(
+        :@kaito_burrow_action_round, battle.turnCount
+      )
+    end
+  end
+
+  module BattlerHook
+    def pbInitEffects(batonPass)
+      result = super
+
+      @kaito_burrow_used = false
+      @kaito_burrow_pending = nil
+      @kaito_burrow_action_round = nil
+
+      return result
+    end
+  end
+
+  module CommandHook
+    def pbCommandPhase(*args, &block)
+      KaitoBurrowIn.prepare_commands(self)
+      return super(*args, &block)
+    end
+  end
+
+  #---------------------------------------------------------------------------
+  # Advanced AI: estimate whether the target will still be underground
+  # when the proposed move is executed.
+  #---------------------------------------------------------------------------
+  def self.priority(battler, move)
+    probe = battler.dup
+    probe.instance_variable_set(:@effects, battler.effects.dup)
+    probe.instance_variable_set(:@stages, battler.stages.dup)
+
+    old_name = $aamName
+    begin
+      value = move.pbPriority(probe)
+      if probe.abilityActive?
+        value = Battle::AbilityEffects.triggerPriorityChange(
+          probe.ability, probe, move, value
+        )
+      end
+      return value
+    ensure
+      $aamName = old_name
+    end
+  end
+
+  def self.ai_penalty(user, target, move, battle)
+    user = real(user)
+    target = real(target)
+    native = move.respond_to?(:move) ? move.move : move
+
+    return 0 if !user || !target || !native
+    return 0 if !target.is_a?(Battle::Battler)
+    return 0 if !target.opposes?(user) || !charging?(target)
+
+    pending = target.instance_variable_get(:@kaito_burrow_pending)
+    return 0 if !pending || !target.pokemon.equal?(pending[0])
+    return 0 if !native.respond_to?(:hitsDiggingTargets?)
+    return 0 if native.hitsDiggingTargets?
+    return 0 if native.targetsPosition?
+    return 0 if native.pbTarget(user).num_targets <= 0
+
+    return 0 if user.hasActiveAbility?(:NOGUARD) ||
+                target.hasActiveAbility?(:NOGUARD)
+
+    # If the attacking turn has not been scheduled this round,
+    # the target remains underground for the rest of this round.
+    action_round = target.instance_variable_get(
+      :@kaito_burrow_action_round
+    )
+    return -120 if action_round != battle.turnCount
+
+    return 0 if target.movedThisRound?
+
+    dig = Battle::Move.from_pokemon_move(
+      battle, Pokemon::Move.new(MOVE)
+    )
+
+    user_priority = priority(user, native)
+    dig_priority = priority(target, dig)
+
+    # Attacker moves before Dig resolves: target is still underground.
+    return -120 if user_priority > dig_priority
+    return 0 if user_priority < dig_priority
+
+    user_speed = user.pbSpeed
+    target_speed = target.pbSpeed
+    return -60 if user_speed == target_speed
+
+    trick_room = battle.field.effects[PBEffects::TrickRoom] > 0
+    moves_first = trick_room ?
+                    user_speed < target_speed :
+                    user_speed > target_speed
+
+    return moves_first ? -120 : 0
+  end
+
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if score <= -100 || !move || !user || !target
+
+      return score + KaitoBurrowIn.ai_penalty(
+        user, target, move, @battle
+      )
+    end
+  end
+
+  # Install after all plugin aliases have loaded.
+  def self.install!
+    unless Battle::Battler.ancestors.include?(BattlerHook)
+      Battle::Battler.prepend(BattlerHook)
+    end
+
+    unless Battle.ancestors.include?(CommandHook)
+      Battle.prepend(CommandHook)
+    end
+
+    if defined?(AdvancedAI) &&
+       Battle::AI.method_defined?(:score_move_advanced) &&
+       !Battle::AI.ancestors.include?(AdvancedScoring)
+      Battle::AI.prepend(AdvancedScoring)
+    end
+  end
+
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoBurrowIn.install!
+      super(*args, &block)
+    end
+  end
+end
+
+Battle::AbilityEffects::OnSwitchIn.add(:BURROWIN,
+  proc { |ability, battler, battle, switch_in|
+    next if !switch_in
+    KaitoBurrowIn.trigger(battler, battle)
+  }
+)
+
+Battle::AI::BASE_ABILITY_RATINGS.each_value do |abilities|
+  abilities.delete(:BURROWIN)
+end
+Battle::AI::BASE_ABILITY_RATINGS[6] ||= []
+Battle::AI::BASE_ABILITY_RATINGS[6] << :BURROWIN
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoBurrowIn::ConstructionHook
+)
+  Battle.singleton_class.prepend(
+    KaitoBurrowIn::ConstructionHook
   )
 end

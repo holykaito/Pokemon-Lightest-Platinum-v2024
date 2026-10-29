@@ -619,6 +619,12 @@ Innates = SHEDSKIN,FRIENDGUARD
 [VIVILLON]
 Innates = SHIELDDUST,FRIENDGUARD
 #----------------------------------------
+[BUNNELBY]
+Innates = PICKUP,HUGEPOWER
+#----------------------------------------
+[DIGGERSBY]
+Innates = PICKUP,HUGEPOWER,CHEEKPOUCH
+#----------------------------------------
 [PANCHAM]
 Innates = IRONFIST,SCRAPPY
 #----------------------------------------

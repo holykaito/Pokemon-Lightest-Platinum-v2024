@@ -122,6 +122,10 @@ module Settings
   [:WATCHOG, 1, 15, 55],
   [:LIEPARD, 1, 35, 60],
   
+  #Kalos
+  [:BUNNELBY, 1, 15],
+  [:DIGGERSBY, 1, 15, 55],
+  
   #Alola
   [:LYCANROC, 1, 1, 60],
   [:LYCANROC_1, 1, 1, 60],
