@@ -20256,6 +20256,7 @@ Pokedex = It spits a sticky thread to stop opponents in their tracks, and then i
 Generation = 7
 Evolutions = CHARJABUG,Level,20
 RaidRanks = 1,2
+Flags = Done
 #-------------------------------
 [CHARJABUG]
 Name = Charjabug
@@ -20284,6 +20285,7 @@ Generation = 7
 WildItemUncommon = CELLBATTERY
 Evolutions = VIKAVOLT,Item,THUNDERSTONE,VIKAVOLT,LocationFlag,Magnetic
 RaidRanks = 2,3
+Flags = Done
 #-------------------------------
 [VIKAVOLT]
 Name = Vikavolt
@@ -20310,6 +20312,7 @@ Category = Stag Beetle
 Pokedex = It zips around, on sharp lookout for an opening. It concentrates electrical energy within its large jaws and uses it to zap its enemies.
 Generation = 7
 RaidRanks = 3,4,5
+Flags = Done
 #-------------------------------
 [CRABRAWLER]
 Name = Crabrawler
