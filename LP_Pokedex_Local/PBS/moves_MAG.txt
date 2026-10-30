@@ -433,8 +433,8 @@ Target = FoeSide
 FunctionCode = AddDraconicRiftToFoeSide
 Description = User opens the Dragon Force on the opposing side. This damages on switch in.
 #-------------------------------
-[DARKSMOG]
-Name = Dark Smog
+[DARKMIST]
+Name = Dark Mist
 Type = DARK
 Category = Status
 Accuracy = 0
@@ -452,7 +452,6 @@ TotalPP = 20
 Target = FoeSide
 FunctionCode = AddManaFluxToFoeSide
 Description = Use creates a magical circle which disrupts the opposing side. This lowers SpAtk on switch in.
-
 
 
 #-------------------------------

@@ -2068,3 +2068,27 @@ class Battle::Move::RaiseUserMainStats1OnceInHail <
     auroraDanceUsage[auroraDanceKey(user)] = true
   end
 end
+
+#===============================================================================
+# Uplift
+# Raises the Speed of the user and its allies by 1 stage.
+#===============================================================================
+class Battle::Move::RaiseUserAndAlliesSpeed1 < Battle::Move
+  def canSnatch?; return true; end
+
+  def pbMoveFailed?(user, targets)
+    return false if targets.any? { |b|
+      b.pbCanRaiseStatStage?(:SPEED, user, self)
+    }
+    @battle.pbDisplay(_INTL("But it failed!"))
+    return true
+  end
+
+  def pbFailsAgainstTarget?(user, target, show_message)
+    return !target.pbCanRaiseStatStage?(:SPEED, user, self, show_message)
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    target.pbRaiseStatStage(:SPEED, 1, user)
+  end
+end

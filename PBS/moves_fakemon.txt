@@ -1247,3 +1247,25 @@ Target = User
 FunctionCode = RaiseUserMainStats1OnceInHail
 Flags = Dance,Cosmic
 Description = Raises all five main stats once per battle. Only works in hail.
+#-------------------------------
+[UPLIFT]
+Name = Uplift
+Type = FAIRY
+Category = Status
+Accuracy = 0
+TotalPP = 10
+Target = UserAndAllies
+FunctionCode = RaiseUserAndAlliesSpeed1
+Description = Raises the Speed of the user and its allies.
+#-------------------------------
+[STARSTORM]
+Name = Starstorm
+Type = FAIRY
+Category = Special
+Power = 130
+Accuracy = 90
+TotalPP = 5
+Target = NearOther
+FunctionCode = LowerUserSpAtk2
+Flags = CanProtect,CanMirrorMove,Cosmic
+Description = A storm of stars strikes the target, harshly lowering the user's Sp. Atk.
