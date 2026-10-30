@@ -39,6 +39,14 @@ Description = Adds the Ghost-type to all Pokémon on the field.
 Name = Aura Manipulation
 Description = Buff damage of Aura Sphere.
 #-------------------------------
+[BADLUCK] ###
+Name = Bad Luck
+Description = Brings misfortune to opposing Pokémon.
+#-------------------------------
+[BALEFULGLOW] ###
+Name = Baleful Glow
+Description = Attacks using the target's offensive stats.
+#-------------------------------
 [BATTLEGENES] ###
 Name = Battle Genes
 Description = Powers up moves that match the target's type.
@@ -139,6 +147,10 @@ Description = When this Pokémon hits an enemy, it reduces any stat.
 Name = Dodge
 Description = User has chance to avoid any moves.
 #-------------------------------
+[DRAGONSLAYER] ###
+Name = Dragon Slayer
+Description = Hits Dragons harder and resists Dragon moves.
+#-------------------------------
 [DREAMCATCHER] ###
 Name = Dream Catcher
 Description = Boosts damage if any active Pokémon is asleep.
@@ -163,25 +175,25 @@ Description = Blocks its second type to boost Defense and neutralizes weaknesses
 Name = Eternal Dream
 Description = It recovers HP when attacking a sleeping enemy.
 #-------------------------------
+[EVEBOOSTSYNC] ###
+Name = Eveboost Sync
+Description = Party Eeveelutions grant stat boosts on entry.
+#-------------------------------
 [EXCAVATOR] ###
 Name = Excavator
 Description = Ground attacks raise Defense and clear its side's hazards.
 #-------------------------------
+[FAIRYTALES] ###
+Name = Fairy Tales
+Description = Reduces damage taken while Misty Terrain is active.
+#-------------------------------
+[FALSEFRONT]
+Name = False Front
+Description = Adds Fighting or Fairy or Dark-type when entering battle.
+#-------------------------------
 [FATALPRECISION] ###
 Name = Fatal Precision
 Description = Super-effective moves hit true and crit more often.
-#-------------------------------
-[FLORESCENCE] ###
-Name = Florescence
-Description = Gives Grass-type moves priority at high HP.
-#-------------------------------
-[FLUIDGUARD] ###
-Name = Fluid Guard
-Description = Takes less damage the faster it is than the attacker.
-#-------------------------------
-[FORTITUDE] ###
-Name = Fortitude
-Description = When a stat is lowered by an opponent, its Defense is increased.
 #-------------------------------
 [FIELDEXPLORER]
 Name = Field Explorer
@@ -191,9 +203,21 @@ Description = Powers up field moves.
 Name = Fight's Spirit
 Description = Add Fighting-type to user.
 #-------------------------------
+[FLORESCENCE] ###
+Name = Florescence
+Description = Gives Grass-type moves priority at high HP.
+#-------------------------------
+[FLUIDGUARD] ###
+Name = Fluid Guard
+Description = Takes less damage the faster it is than the attacker.
+#-------------------------------
 [FLOCK] ###
 Name = Flock
 Description = Powers up Flying-type moves when suffering.
+#-------------------------------
+[FLOODING] ###
+Name = Flooding
+Description = Swamp Terrain boosts Sp. Atk but drains HP.
 #-------------------------------
 [FLUFFUP] ###
 Name = Fluff Up
@@ -203,9 +227,13 @@ Description = Levitates and powers up moves when striking first.
 Name = Flying Nimbus
 Description = Immune to Ground-type moves and powers up moves first.
 #-------------------------------
-[FALSEFRONT]
-Name = False Front
-Description = Adds Fighting or Fairy or Dark-type when entering battle.
+[FORTITUDE] ###
+Name = Fortitude
+Description = When a stat is lowered by an opponent, its Defense is increased.
+#-------------------------------
+[FREEZEALL]
+Name = Freeze All
+Description = Each damaging hit has a 20% chance to freeze the opposing Pokémon.
 #-------------------------------
 [GIANTWINGS]
 Name = Giant Wings
@@ -247,6 +275,10 @@ Description = Boosts the user's Sp. Atk each turn spent confused.
 Name = Heartbreaker
 Description = Increases the power of moves against targets infatuated.
 #-------------------------------
+[HEATVEIL]
+Name = Heat Veil
+Description = Raises 50% Sp. Def in sunlight.
+#-------------------------------
 [HUNTEDONE] ###
 Name = Hunted One
 Description = Resistance and evasion ability is drastically reduced.
@@ -263,6 +295,10 @@ Description = Boosts Sp.Attack after knocking out any Pokémon.
 Name = Hydroponic
 Description = Boosts Grass moves in rain or Swamp Terrain.
 #-------------------------------
+[HYPERCHARGE] ###
+Name = HYPERCHARGE
+Description = Gives Electric-type moves priority at high HP.
+#-------------------------------
 [ICEDEW] ###
 Name = Ice Dew
 Description = Powers up Ice moves if hit by an Ice move.
@@ -270,6 +306,10 @@ Description = Powers up Ice moves if hit by an Ice move.
 [ICYVEINS] ###
 Name = Icy Veins
 Description = Boosts the user's Ice and Water-type moves in hail.
+#-------------------------------
+[IGNITIONCYCLE] ###
+Name = Ignition Cycle
+Description = Gains Speed at an HP cost, resetting and healing at max Speed.
 #-------------------------------
 [INFLATABLE] ###
 Name = Inflatable
@@ -323,6 +363,10 @@ Description = Normal-type moves become Dark-type moves and boosted.
 Name = Mind Insight
 Description = Normal gains Psychic's strengths and hits Ghost. Psychic gets STAB.
 #-------------------------------
+[MINDWARD] ###
+Name = Mindward
+Description = Raised 50% the Pokémon's Sp. Def while Psychic Terrain is active.
+#-------------------------------
 [MULTIHEADED] ###
 Name = Multi Headed
 Description = Hits extra times based on the Pokémon's heads.
@@ -371,6 +415,10 @@ Description = Guards against status and damage when HP is high.
 Name = Powder Burst
 Description = Gives powder moves +1 priority.
 #-------------------------------
+[PREMONITION]
+Name = Premonition
+Description = Halves the first attack hit received each time enters battle.
+#-------------------------------
 [PRETENTIOUS] ###
 Name = Pretentious
 Description = Knockouts raise its critical-hit ratio.
@@ -415,17 +463,29 @@ Description = Electric moves hit Electric super effectively and pierce absorptio
 Name = Paranoid
 Description = Doubles Sp. Def but takes double damage from Psychic-type moves.
 #-------------------------------
+[PARASITEHOST] ###
+Name = Parasite Host
+Description = Lets the Pokémon act once even after being knocked out.
+#-------------------------------
+[PARTINGQUILLS] ###
+Name = Parting Quills
+Description = Scatters opposing Spikes when switching out.
+#-------------------------------
 [PRECISEFIST]
 Name = Precise Fist
 Description = Punching moves gain crit chance and doubled secondary effect.
+#-------------------------------
+[PLAYFULAGGRO] ###
+Name = Playful Aggro
+Description = Boosts Sp. Atk by 50% while statused and ignores Frostbite.
 #-------------------------------
 [PRIDEFULGUARD]
 Name = Prideful Guard
 Description = Increases Defense and Special Defense when HP is below half.
 #-------------------------------
-[HYPERCHARGE] ###
-Name = HYPERCHARGE
-Description = Gives Electric-type moves priority at high HP.
+[RAGNAROK] ###
+Name = Ragnarok
+Description = Cures status and lowered stats when HP falls below half.
 #-------------------------------
 [RAINMIRAGE] ###
 Name = Rain Mirage
@@ -434,10 +494,6 @@ Description = Boosts the Pokémon's evasiveness in a rain.
 [RAMPAGE] ###
 Name = Rampage
 Description = No recharge move needed when K.O. target.
-#-------------------------------
-[PARASITEHOST] ###
-Name = Parasite Host
-Description = Lets the Pokémon act once even after being knocked out.
 #-------------------------------
 [REFUGE] ###
 Name = Refuge
@@ -451,9 +507,9 @@ Description = Recovers health gradually when seriously injured.
 Name = Refractive
 Description = Boosts light moves and gains their type.
 #-------------------------------
-[RAGNAROK] ###
-Name = Ragnarok
-Description = Cures status and lowered stats when HP falls below half.
+[RIMELAYER] ###
+Name = Rime Layer
+Description = Ice moves build up Defense or Sp. Def.
 #-------------------------------
 [ROLLER] ###
 Name = Roller
@@ -491,9 +547,17 @@ Description = Contact and Rock moves may inflict Splinter.
 Name = Showdown Mode
 Description = Enhance stats when in danger, but gradually weaken
 #-------------------------------
+[SIPHONLEAVES] ###
+Name = Siphon Leaves
+Description = Sharp leaves hurt contact attackers and restore HP.
+#-------------------------------
 [SLEET] ###
 Name = Sleet
 Description = During hail, opposing Pokémon at the end of each turn.
+#-------------------------------
+[SOLARPSYCHE] ###
+Name = Solar Psyche
+Description = Doubles Psychic-type damage in sunlight.
 #-------------------------------
 [SOULDEVOURING] ###
 Name = Soul Devouring

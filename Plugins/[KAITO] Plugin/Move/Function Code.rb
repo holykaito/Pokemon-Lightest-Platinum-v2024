@@ -1839,3 +1839,232 @@ Battle::AI::Handlers::MoveBasePower.add(
     )
   }
 )
+
+#===============================================================================
+# Recover HP equal to 100% of the damage dealt.
+#===============================================================================
+class Battle::Move::HealUserByAllOfDamageDone <
+      Battle::Move::HealUserByHalfOfDamageDone
+  def pbEffectAgainstTarget(user, target)
+    return if target.damageState.hpLost <= 0
+    user.pbRecoverHPFromDrain(target.damageState.hpLost, target)
+  end
+end
+
+#===============================================================================
+# Set Light Screen after successfully hitting the target.
+#===============================================================================
+class Battle::Move::DamageTargetSetUserLightScreen < Battle::Move
+  def pbEffectAfterAllHits(user, target)
+    return if target.damageState.unaffected
+    return if user.pbOwnSide.effects[PBEffects::LightScreen] > 0
+
+    duration = user.hasActiveItem?(:LIGHTCLAY) ? 8 : 5
+    user.pbOwnSide.effects[PBEffects::LightScreen] = duration
+
+    @battle.pbDisplay(
+      _INTL("Light Screen protected {1} against special moves!",
+            user.pbTeam(true))
+    )
+  end
+end
+
+#===============================================================================
+# Set Reflect after successfully hitting the target.
+#===============================================================================
+class Battle::Move::DamageTargetSetUserReflect < Battle::Move
+  def pbEffectAfterAllHits(user, target)
+    return if target.damageState.unaffected
+    return if user.pbOwnSide.effects[PBEffects::Reflect] > 0
+
+    duration = user.hasActiveItem?(:LIGHTCLAY) ? 8 : 5
+    user.pbOwnSide.effects[PBEffects::Reflect] = duration
+
+    @battle.pbDisplay(
+      _INTL("Reflect protected {1} against physical moves!",
+            user.pbTeam(true))
+    )
+  end
+end
+
+#===============================================================================
+# Deal damage, then apply Leech Seed.
+#===============================================================================
+class Battle::Move::DamageTargetApplyLeechSeed < Battle::Move
+  def pbEffectAgainstTarget(user, target)
+    return if target.fainted?
+    return if target.damageState.substitute
+    return if target.pbHasType?(:GRASS)
+    return if target.effects[PBEffects::LeechSeed] >= 0
+
+    target.effects[PBEffects::LeechSeed] = user.index
+    @battle.pbDisplay(_INTL("{1} was seeded!", target.pbThis))
+  end
+end
+
+#===============================================================================
+# Reset every battler's stat stages after successfully hitting.
+#===============================================================================
+class Battle::Move::DamageTargetResetAllStatStages < Battle::Move
+  def pbEffectAfterAllHits(user, target)
+    return if target.damageState.unaffected
+    return if @battle.allBattlers.none? { |b| b.hasAlteredStatStages? }
+
+    @battle.allBattlers.each { |b| b.pbResetStatStages }
+    @battle.pbDisplay(_INTL("All stat changes were eliminated!"))
+  end
+end
+
+#===============================================================================
+# Deal damage, then cure status conditions on the user's side and party.
+# Reuse Aromatherapy's status-curing helper.
+#===============================================================================
+class Battle::Move::DamageTargetCureUserPartyStatus <
+      Battle::Move::CureUserPartyStatus
+  def canSnatch?; return false; end
+  def worksWithNoTargets?; return false; end
+  def pbMoveFailed?(user, targets); return false; end
+  def pbFailsAgainstTarget?(user, target, show_message); return false; end
+
+  # Prevent Aromatherapy's normal effects from running before the hit.
+  def pbEffectGeneral(user); end
+  def pbEffectAgainstTarget(user, target); end
+
+  def pbEffectAfterAllHits(user, target)
+    return if target.damageState.unaffected
+
+    @battle.allSameSideBattlers(user).each do |battler|
+      next if battler.fainted? || battler.status == :NONE
+      pbAromatherapyHeal(battler.pokemon, battler)
+    end
+
+    @battle.pbParty(user.index).each_with_index do |pkmn, i|
+      next if !pkmn || !pkmn.able? || pkmn.status == :NONE
+      next if @battle.pbFindBattler(i, user)
+      pbAromatherapyHeal(pkmn)
+    end
+  end
+end
+
+#===============================================================================
+# Burn chance, additional STAB eligibility for Fire types, and hits Dig.
+#===============================================================================
+class Battle::Move::BurnTargetFireSTABHitsUnderground <
+      Battle::Move::BurnTarget
+  def hitsDiggingTargets?; return true; end
+
+  def pbCalcDamageMultipliers(user, target, numTargets, type,
+                              baseDmg, multipliers)
+    result = super
+
+    # Normal STAB is already applied if the user matches the move's type.
+    # Grant equivalent STAB to Fire types without stacking it twice.
+    if type == :WATER && user.pbHasType?(:FIRE) &&
+       !user.pbHasType?(:WATER)
+      stab = user.hasActiveAbility?(:ADAPTABILITY) ? 1.75 : 1.5
+      multipliers[:final_damage_multiplier] *= stab
+    end
+
+    return result
+  end
+end
+
+#===============================================================================
+# Two-turn attack. No charging turn in Gloom Moonlight.
+#===============================================================================
+class Battle::Move::TwoTurnAttackOneTurnInGloomMoonlight <
+      Battle::Move::TwoTurnMove
+  def pbIsChargingTurn?(user)
+    ret = super
+
+    if !user.effects[PBEffects::TwoTurnAttack] &&
+       user.effectiveWeather == :GloomMoonlight
+      @powerHerb = false
+      @chargingTurn = true
+      @damagingTurn = true
+      return false
+    end
+
+    return ret
+  end
+
+  def pbChargingTurnMessage(user, targets)
+    @battle.pbDisplay(_INTL("{1} absorbed moonlight!", user.pbThis))
+  end
+end
+
+#===============================================================================
+# Drain Brain
+# Lowers the target's Sp. Atk by 1 stage.
+# Restores 25% of the user's maximum HP.
+#===============================================================================
+class Battle::Move::LowerTargetSpAtk1HealUserQuarter < Battle::Move
+  attr_reader :statDown
+
+  def initialize(battle, move)
+    super
+    @statDown = [:SPECIAL_ATTACK, 1]
+  end
+
+  def healingMove?;  return true; end
+  def canMagicCoat?; return true; end
+
+  def pbFailsAgainstTarget?(user, target, show_message)
+    can_lower = target.pbCanLowerStatStage?(:SPECIAL_ATTACK, user, self)
+    return false if can_lower || user.canHeal?
+    @battle.pbDisplay(_INTL("But it failed!")) if show_message
+    return true
+  end
+
+  def pbEffectAgainstTarget(user, target)
+    if target.pbCanLowerStatStage?(:SPECIAL_ATTACK, user, self)
+      target.pbLowerStatStage(:SPECIAL_ATTACK, 1, user)
+    end
+
+    if user.canHeal?
+      heal_amount = [(user.totalhp / 4.0).round, 1].max
+      user.pbRecoverHP(heal_amount)
+      @battle.pbDisplay(_INTL("{1}'s HP was restored.", user.pbThis))
+    end
+  end
+end
+
+#===============================================================================
+# Aurora Dance
+# Raises all five main stats by 1 stage.
+# Requires Hail. Each Pokemon can use it successfully once per battle.
+#===============================================================================
+class Battle::Move::RaiseUserMainStats1OnceInHail <
+      Battle::Move::RaiseUserMainStats1
+  def auroraDanceUsage
+    usage = @battle.instance_variable_get(:@kaitoAuroraDanceUsage)
+    if !usage
+      usage = {}
+      @battle.instance_variable_set(:@kaitoAuroraDanceUsage, usage)
+    end
+    return usage
+  end
+
+  def auroraDanceKey(user)
+    return [user.index % 2, user.pokemonIndex]
+  end
+
+  def pbMoveFailed?(user, targets)
+    if user.effectiveWeather != :Hail
+      @battle.pbDisplay(_INTL("But it failed!"))
+      return true
+    end
+    if auroraDanceUsage[auroraDanceKey(user)]
+      @battle.pbDisplay(_INTL("{1} has already used Aurora Dance!", user.pbThis))
+      return true
+    end
+    return super
+  end
+
+  def pbEffectGeneral(user)
+    # Recheck for the actual user if Snatch changes the move's user.
+    return if pbMoveFailed?(user, [user])
+    super
+    auroraDanceUsage[auroraDanceKey(user)] = true
+  end
+end

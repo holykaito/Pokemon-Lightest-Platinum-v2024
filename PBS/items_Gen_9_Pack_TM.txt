@@ -2349,3 +2349,13 @@ FieldUse = TR
 Move = MOONYNIGHT
 Flags = Fling_10
 Description = An attack
+#-------------------------------
+[TM238]
+Name = TM238
+NamePlural = TM238s
+Pocket = 4
+Price = 3000
+FieldUse = TR
+Move = CHILLINGWHISP
+Flags = Fling_10
+Description = An attack

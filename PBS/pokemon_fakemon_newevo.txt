@@ -25,6 +25,7 @@ Category = Enchanter
 Pokedex = When Enchantow’s eyes gleam, anyone who meets its gaze becomes lost in a dream of its creation. It silently observes them to understand their minds.
 Generation = 10
 RaidRanks = 4,5
+Flags = Done
 #-------------------------------
 [AMPLIPOM]
 Name = Amplipom
