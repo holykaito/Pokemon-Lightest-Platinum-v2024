@@ -139,6 +139,10 @@ Description = Contact moves weaken targets with status conditions.
 Name = Burrow In
 Description = Automatically uses Dig upon entering battle.
 #-------------------------------
+[DEEPWOUND] ###
+Name = Deep Wound
+Description = Slicing hits have a 50% chance to cause Bleed.
+#-------------------------------
 [DISTORTION] ###
 Name = Distortion
 Description = When this Pokémon hits an enemy, it reduces any stat.
@@ -542,6 +546,10 @@ Description = Restores HP each turn, healing more below half HP.
 [SHATTERMARK] ###
 Name = Shatter Mark
 Description = Contact and Rock moves may inflict Splinter.
+#-------------------------------
+[SHORTCIRCUIT] ###
+Name = Short Circuit
+Description = Powers up Electric moves more as HP falls.
 #-------------------------------
 [SHOWDOWNMODE] ###
 Name = Showdown Mode

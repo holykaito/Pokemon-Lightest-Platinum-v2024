@@ -116,6 +116,33 @@ Innates = INTIMIDATE,STRONGJAW,MOLDBREAKER
 [LAPRAS]
 Innates = SHELLARMOR,HYDRATION
 #----------------------------------------
+[EEVEE]
+Innates = RUNAWAY,CUTECHARM
+#----------------------------------------
+[VAPOREON]
+Innates = WATERABSORB,HYDRATION,EVEBOOSTSYNC
+#----------------------------------------
+[FLAREON]
+Innates = FLASHFIRE,HEATVEIL,EVEBOOSTSYNC
+#----------------------------------------
+[JOLTEON]
+Innates = VOLTABSORB,SHORTCIRCUIT,EVEBOOSTSYNC
+#----------------------------------------
+[ESPEON]
+Innates = SYNCHRONIZE,PREMONITION,EVEBOOSTSYNC
+#----------------------------------------
+[UMBREON]
+Innates = SYNCHRONIZE,BADLUCK,EVEBOOSTSYNC
+#----------------------------------------
+[LEAFEON]
+Innates = LEAFGUARD,SHARPNESS,EVEBOOSTSYNC
+#----------------------------------------
+[GLACEON]
+Innates = ICEBODY,CLEARBODY,EVEBOOSTSYNC
+#----------------------------------------
+[SYLVEON]
+Innates = CUTECHARM,FAIRYTALES,EVEBOOSTSYNC
+#----------------------------------------
 [DRATINI]
 Innates = SHEDSKIN
 #----------------------------------------

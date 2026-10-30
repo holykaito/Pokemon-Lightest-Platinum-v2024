@@ -81,6 +81,15 @@ module Settings
   [:SEAKING, 1, 20, 55],
   [:GYARADOS, 1, 50, 70],
   [:GYARADOS_1, 1, 50, 70],
+  [:EEVEE, 1, 20],
+  [:VAPOREON, 1, 30, 60],
+  [:JOLTEON, 1, 30, 65],
+  [:FLAREON, 1, 30, 65],
+  [:ESPEON, 1, 30, 65],
+  [:UMBREON, 1, 30, 65],
+  [:LEAFEON, 1, 30, 65],
+  [:GLACEON, 1, 30, 65],
+  [:SYLVEON, 1, 30, 65],
   
   #Johto
   [:FURRET, 1, 1, 50],

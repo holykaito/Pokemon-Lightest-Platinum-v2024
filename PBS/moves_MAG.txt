@@ -433,8 +433,8 @@ Target = FoeSide
 FunctionCode = AddDraconicRiftToFoeSide
 Description = User opens the Dragon Force on the opposing side. This damages on switch in.
 #-------------------------------
-[DARKSMOG]
-Name = Dark Smog
+[DARKMIST]
+Name = Dark Mist
 Type = DARK
 Category = Status
 Accuracy = 0

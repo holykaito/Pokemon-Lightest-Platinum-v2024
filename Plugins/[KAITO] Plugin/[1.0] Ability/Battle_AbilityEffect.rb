@@ -16980,7 +16980,7 @@ end
 #===============================================================================
 module KaitoFreezeAll
   ABILITY = :FREEZEALL
-  CHANCE = 20
+  CHANCE = 25
 
   def self.real(object)
     object.respond_to?(:battler) ? object.battler : object
@@ -18077,4 +18077,182 @@ unless Battle.singleton_class.ancestors.include?(
   KaitoDragonSlayer::ConstructionHook
 )
   Battle.singleton_class.prepend(KaitoDragonSlayer::ConstructionHook)
+end
+
+#===============================================================================
+# DEEP WOUND
+# Slicing hits have a 50% chance to inflict the existing Bleed condition.
+#===============================================================================
+module KaitoDeepWound
+  ABILITY = :DEEPWOUND
+  CHANCE  = 50
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.move_data(move)
+    move = move.move if move.respond_to?(:move)
+    return nil if !move || !move.respond_to?(:id)
+    return GameData::Move.try_get(move.id)
+  end
+
+  def self.slicing?(move)
+    data = move_data(move)
+    return false if !data || data.category == 2
+    return data.flags.any? { |flag| flag.to_s.downcase == "slicing" }
+  end
+
+  # Shared by actual effects and AI; never inflicts Bleed during scoring.
+  def self.eligible?(user, target, move, battle)
+    user   = real(user)
+    target = real(target)
+    return false if !user.is_a?(Battle::Battler)
+    return false if !target.is_a?(Battle::Battler)
+    return false if user.fainted? || target.fainted?
+    return false if !user.hasActiveAbility?(ABILITY)
+    return false if !target.opposes?(user.index)
+    return false if !slicing?(move)
+    return false if !target.respond_to?(:pbCanBleed?)
+    return false if !target.respond_to?(:pbInflictBleed)
+    return false if target.hasActiveItem?(:COVERTCLOAK)
+
+    if target.hasActiveAbility?(:SHIELDDUST) && !battle.moldBreaker
+      return false
+    end
+
+    if defined?(KaitoShield) &&
+       KaitoShield.respond_to?(:blocks_secondary?) &&
+       KaitoShield.blocks_secondary?(target)
+      return false
+    end
+
+    return target.pbCanBleed?(false)
+  end
+
+  def self.trigger(user, target, move, battle)
+    return if !eligible?(user, target, move, battle)
+    return if target.damageState.substitute
+    return if target.damageState.calcDamage <= 0
+    return if battle.pbRandom(100) >= CHANCE
+
+    battle.pbShowAbilitySplash(user)
+    begin
+      target.pbInflictBleed
+    ensure
+      battle.pbHideAbilitySplash(user)
+    end
+  end
+
+  # Expected hit count for AI only. Does not roll the battle's RNG.
+  def self.expected_hits(move, user)
+    data = move_data(move)
+    return 1.0 if !data
+    code = data.function_code
+
+    if code.start_with?("HitTwoToFiveTimes")
+      return 5.0 if user.hasActiveAbility?(:SKILLLINK)
+      return 4.5 if user.hasActiveItem?(:LOADEDDICE)
+      return 3.1
+    end
+
+    return 2.0 if code.start_with?("HitTwoTimes")
+    return 3.0 if code.start_with?("HitThreeTimes")
+    return 1.0
+  end
+
+  def self.ai_bonus(user, target, move, battle)
+    user   = real(user)
+    target = real(target)
+    return 0 if !eligible?(user, target, move, battle)
+
+    # Conservative scoring while a Substitute or Shield remains.
+    return 0 if target.effects[PBEffects::Substitute] > 0
+
+    if target.respond_to?(:pbHasShield?) && target.pbHasShield?
+      return 0
+    end
+
+    hits = expected_hits(move, user)
+    chance = 1.0 - ((1.0 - CHANCE / 100.0) ** hits)
+
+    # Bleed blocks healing even when indirect damage is prevented.
+    value = target.takesIndirectDamage? ? 40 : 20
+    return (value * chance).round
+  end
+
+  # Advanced AI may call the native scoring path internally.
+  # The depth guard prevents adding the same bonus twice.
+  module AdvancedScoreHook
+    def score_move_advanced(move, user, target, skill)
+      previous_depth = @kaito_deep_wound_depth || 0
+      @kaito_deep_wound_depth = previous_depth + 1
+
+      begin
+        score = super
+        if previous_depth == 0 && score.is_a?(Numeric) && score > 0
+          score += KaitoDeepWound.ai_bonus(
+            user, target, move, @battle
+          )
+        end
+        return score
+      ensure
+        @kaito_deep_wound_depth = previous_depth
+      end
+    end
+  end
+
+  def self.install_ai!
+    return if !defined?(Battle::AI)
+    return if !Battle::AI.method_defined?(:score_move_advanced)
+    return if Battle::AI.ancestors.include?(AdvancedScoreHook)
+    Battle::AI.prepend(AdvancedScoreHook)
+  end
+
+  # Install after plugin loading to avoid alias/prepend recursion.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoDeepWound.install_ai!
+      return super
+    end
+  end
+end
+
+#===============================================================================
+# Actual effect: once per damaging hit, independently for each opposing target.
+#===============================================================================
+Battle::AbilityEffects::OnDealingHit.add(:DEEPWOUND,
+  proc { |ability, user, target, move, battle|
+    KaitoDeepWound.trigger(user, target, move, battle)
+  }
+)
+
+#===============================================================================
+# Native AI
+#===============================================================================
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:deep_wound,
+  proc { |score, move, user, target, ai, battle|
+    depth = ai.instance_variable_get(:@kaito_deep_wound_depth).to_i
+    next score if depth > 0
+    next score if !move.damagingMove?
+
+    score += KaitoDeepWound.ai_bonus(user, target, move, battle)
+    next score
+  }
+)
+
+Battle::AI::Handlers::AbilityRanking.add(:DEEPWOUND,
+  proc { |ability, score, battler, ai|
+    useful = battler.check_for_move do |move|
+      KaitoDeepWound.slicing?(move)
+    end
+    next useful ? 7 : 0
+  }
+)
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoDeepWound::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoDeepWound::ConstructionHook)
 end
