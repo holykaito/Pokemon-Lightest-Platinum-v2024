@@ -3,7 +3,7 @@
 # No graphics/audio imports or stat/HP calculation hooks are required.
 module HealingVisual
   VERSION = "1.0"
-  DURATION = 0.96
+  DURATION = 0.66
   def self.disc(b,cx,cy,r,color)
     (-r..r).each do |dy|
       dx = Math.sqrt(r*r-dy*dy).floor

@@ -97,7 +97,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = DoublePowerIfTargetPoisonedPoisonTarget
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Dart
 EffectChance = 50
 Description = Fires toxic barbs which may poison the target. Power is doubled if the target is poisoned.
 #-------------------------------
@@ -136,7 +136,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetDefense1FlinchTarget
-Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
+Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Dart
 EffectChance = 100
 Description = The user fires arrows which may lower the target’s Defense or make it flinch. Critical hits land more easily.
 #-------------------------------
@@ -271,7 +271,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = DoublePowerIfTargetStatusProblemBurnTarget
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Bullet
 EffectChance = 30
 Description = Hurls fireballs which may cause burns. Power is doubled if the target has a status condition.
 #-------------------------------
@@ -333,7 +333,7 @@ Accuracy = 100
 TotalPP = 5
 Target = NearOther
 FunctionCode = LowerUserDefSpDef1
-Flags = CanProtect,CanMirrorMove,CannotMetronome
+Flags = CanProtect,CanMirrorMove,CannotMetronome,Bullet
 EffectChance = 100
 Description = The user shoots its own armor out as blazing projectiles. This lowers the user’s Defense and Sp. Def.
 #-------------------------------

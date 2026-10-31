@@ -18256,3 +18256,1186 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(KaitoDeepWound::ConstructionHook)
 end
+
+#===============================================================================
+# POISON ABSORB - gameplay + native AI + Advanced AI
+# Essentials v21.1 / MAG / Innate Abilities
+#===============================================================================
+module KaitoPoisonAbsorb
+  ABILITY = :POISONABSORB
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  # Active battlers respect suppression; reserves use unlocked innates.
+  def self.active?(object)
+    object = real(object)
+    return false if !object
+    return false if object.respond_to?(:fainted?) && object.fainted?
+    return object.hasActiveAbility?(ABILITY) if object.respond_to?(:hasActiveAbility?)
+    return true if object.respond_to?(:ability_id) && object.ability_id == ABILITY
+    return false if !object.respond_to?(:set_innate_limits)
+    return Array(object.set_innate_limits).flatten.include?(ABILITY)
+  end
+
+  def self.toxic?(battle)
+    return battle && battle.field.terrain == :Toxic
+  end
+
+  def self.amount(battler, divisor)
+    return [battler.totalhp / divisor, 1].max
+  end
+
+  def self.spikes_amount(battler, layers)
+    return amount(battler, layers >= 2 ? 6 : 8)
+  end
+
+  def self.heal(battler, battle, amount, message)
+    return if battler.fainted? || !battler.canHeal?
+    battle.pbShowAbilitySplash(battler)
+    begin
+      recovered = battler.pbRecoverHP(amount)
+      battle.pbDisplay(_INTL(message, battler.pbThis)) if recovered > 0
+    ensure
+      battle.pbHideAbilitySplash(battler)
+    end
+  end
+
+  def self.terrain_bonus(move, user, battle)
+    move = move.move if move.respond_to?(:move)
+    return 0 if !move || !move.respond_to?(:id)
+    data = GameData::Move.try_get(move.id)
+    return 0 if !data || data.function_code != "StartToxicTerrain"
+    return 0 if toxic?(battle)
+
+    user = real(user)
+    bonus = 0
+    battle.allBattlers.each do |battler|
+      next if !active?(battler)
+	  next if !battler.affectedByTerrain?
+      next if battler.effects[PBEffects::HealBlock] > 0
+      next if battler.respond_to?(:pbBleeding?) && battler.pbBleeding?
+      value = battler.hp < battler.totalhp ? 14 : 7
+      bonus += battler.opposes?(user.index) ? -value : value
+    end
+    return bonus
+  end
+
+  # Reserve evaluation remains a heuristic, not a forced switch.
+	def self.entry_bonus(pkmn, index, battle, ai)
+	  return 0 if !active?(pkmn)
+
+	  # Advanced AI creates a simulated battler with entry conditions.
+	  # Native AI uses its existing airborne prediction for reserves.
+	  if ai.respond_to?(:switch_hazard_preview, true)
+		probe = ai.send(:switch_hazard_preview, pkmn, index)
+		return 0 if !active?(probe)
+		grounded = !probe.airborne?
+		terrain_affected = probe.affectedByTerrain?
+		boots = probe.hasActiveItem?(:HEAVYDUTYBOOTS)
+		healing_allowed =
+		  probe.effects[PBEffects::HealBlock] <= 0 &&
+		  !(probe.respond_to?(:pbBleeding?) && probe.pbBleeding?)
+	  else
+		grounded = !ai.send(:pokemon_airborne?, pkmn)
+		terrain_affected = grounded
+		boots = pkmn.hasItem?(:HEAVYDUTYBOOTS)
+		healing_allowed = true
+	  end
+
+	  bonus = toxic?(battle) && terrain_affected && healing_allowed ? 6 : 0
+	  layers = battle.sides[index & 1].effects[PBEffects::ToxicSpikes].to_i
+	  return bonus if layers <= 0 || !grounded || boots
+
+	  bonus += 15
+	  if healing_allowed
+		missing = [pkmn.totalhp - pkmn.hp, 0].max
+		healing = [spikes_amount(pkmn, layers), missing].min
+		bonus += (40.0 * healing / [pkmn.totalhp, 1].max).round
+	  end
+	  return bonus
+	end
+
+  module BattleHook
+    def pbEntryHazards(battler)
+      layers = 0
+
+      # Remove before the normal Poison-type absorption can consume them.
+      if KaitoPoisonAbsorb.active?(battler) && !battler.airborne? && !battler.hasActiveItem?(:HEAVYDUTYBOOTS)
+        layers = battler.pbOwnSide.effects[PBEffects::ToxicSpikes].to_i
+        battler.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0 if layers > 0
+      end
+
+      result = super
+
+      # Other entry hazards resolve first. This never revives a fainted Pokemon.
+      if layers > 0 && !battler.fainted?
+        pbShowAbilitySplash(battler)
+        begin
+          pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))
+          if battler.canHeal?
+            recovered = battler.pbRecoverHP(
+              KaitoPoisonAbsorb.spikes_amount(battler, layers)
+            )
+            pbDisplay(_INTL("{1}'s HP was restored.", battler.pbThis)) if recovered > 0
+          end
+        ensure
+          pbHideAbilitySplash(battler)
+        end
+      end
+      return result
+    end
+  end
+
+  module NativeAI
+    def pokemon_can_absorb_move?(pkmn, move, move_type)
+      return true if move_type == :POISON && KaitoPoisonAbsorb.active?(pkmn)
+      return true if super
+
+      # MAG's override discarded this result. Recover the older answer safely.
+      if respond_to?(:mag_pokemon_can_absorb_move?, true)
+        return !!mag_pokemon_can_absorb_move?(pkmn, move, move_type)
+      end
+      return false
+    end
+
+    def rate_replacement_pokemon(idxBattler, pkmn, score)
+      previous = @kaito_pa_candidate
+      @kaito_pa_candidate = pkmn
+      begin
+        result = super
+        result += KaitoPoisonAbsorb.entry_bonus(pkmn, idxBattler, @battle, self)
+        return result
+      ensure
+        @kaito_pa_candidate = previous
+      end
+    end
+
+    # Suppress only the Toxic Spikes penalty during reserve evaluation.
+    # This does not declare general immunity to the Poison status.
+    def pokemon_can_be_poisoned?(pkmn)
+      if @kaito_pa_candidate.equal?(pkmn) &&
+         KaitoPoisonAbsorb.active?(pkmn)
+        return false
+      end
+      return super
+    end
+  end
+
+  module ResidualAI
+    def rough_end_of_round_damage
+      value = super
+      battler = self.battler
+      return value if !KaitoPoisonAbsorb.active?(battler)
+
+      # Replace the old non-Poison Black Sludge damage prediction with healing.
+      if battler.hasActiveItem?(:BLACKSLUDGE) &&
+         !battler.pbHasType?(:POISON)
+        if battler.takesIndirectDamage?
+          value -= KaitoPoisonAbsorb.amount(battler, 8)
+        end
+        if battler.canHeal?
+          value -= KaitoPoisonAbsorb.amount(battler, 16)
+        end
+      end
+
+      if KaitoPoisonAbsorb.toxic?(@ai.battle) && battler.affectedByTerrain? && battler.canHeal?
+        value -= KaitoPoisonAbsorb.amount(battler, 16)
+      end
+      return value
+    end
+  end
+
+  module AdvancedUtilities
+    def type_absorbing_immunity?(user, target, move_type, move = nil)
+      if move_type == :POISON && KaitoPoisonAbsorb.active?(target) &&
+         !ignores_ability?(user, move, target)
+        return { ability: :POISONABSORB, effect: :heal }
+      end
+      return super
+    end
+  end
+
+  module AdvancedSwitchAI
+    # The original fast check looked only at the reserve's main ability.
+    def aai_switch_ability_immunity?(pkmn, current_user, attacker, move, move_type)
+      if move_type == :POISON && KaitoPoisonAbsorb.active?(pkmn)
+        probe = switch_hazard_preview(pkmn, get_battler_index(current_user))
+        projected_attacker = probe.battle.battlers[attacker.index]
+        projected_move = move.clone
+        projected_move.instance_variable_set(:@battle, probe.battle)
+        return !!AdvancedAI::Utilities.type_absorbing_immunity?(
+          projected_attacker, probe, move_type, projected_move
+        )
+      end
+      return super
+    end
+
+    # Only modify the simulated battler's HP; never modify the real side.
+    def switch_entry_hp_preview(pkmn, index)
+      probe = super
+      return probe if !KaitoPoisonAbsorb.active?(probe)
+	  return probe if probe.airborne? || probe.hasActiveItem?(:HEAVYDUTYBOOTS)
+      layers = @battle.sides[index & 1].effects[PBEffects::ToxicSpikes].to_i
+      if layers > 0 && probe.canHeal?
+        gain = KaitoPoisonAbsorb.spikes_amount(probe, layers)
+        probe.hp = [probe.hp + gain, probe.totalhp].min
+      end
+      return probe
+    end
+
+    def calculate_entry_hazard_damage(pkmn, current_user, damage_only = false)
+      return super if !KaitoPoisonAbsorb.active?(pkmn)
+      return super if current_user.nil?
+
+      index = get_battler_index(current_user)
+      probe = switch_entry_hp_preview(pkmn, index)
+	  return super if probe.airborne? || probe.hasActiveItem?(:HEAVYDUTYBOOTS)
+      cost = (pkmn.hp - probe.hp).to_f / [probe.totalhp, 1].max
+
+      return cost if damage_only || probe.fainted? ||
+                     probe.airborne? || probe.hasActiveItem?(:HEAVYDUTYBOOTS)
+
+      # Poison Absorb removes Toxic Spikes; retain Sticky Web's normal cost.
+      side = probe.pbOwnSide
+      if side.effects[PBEffects::StickyWeb] &&
+         probe.pbCanLowerStatStage?(:SPEED)
+        web_cost = [0.05 * probe.speed / 130.0, 0.15].min
+        if probe.hasActiveAbility?(:CONTRARY)
+          cost -= web_cost
+        elsif !probe.hasActiveItem?(:WHITEHERB)
+          cost += web_cost
+        end
+      end
+      return cost
+    end
+
+    def evaluate_switch_candidate_detailed(pkmn, current_user, skill)
+      score = super
+      score += KaitoPoisonAbsorb.entry_bonus(
+        pkmn, get_battler_index(current_user), @battle, self
+      )
+      return score
+    end
+  end
+
+  module AdvancedMoveAI
+    def score_move_advanced(move, user, target, skill)
+      previous = @kaito_pa_score_depth || 0
+      @kaito_pa_score_depth = previous + 1
+      begin
+        score = super
+        if previous == 0 && score.is_a?(Numeric) && score > 0
+          score += KaitoPoisonAbsorb.terrain_bonus(move, user, @battle)
+        end
+        return score
+      ensure
+        @kaito_pa_score_depth = previous
+      end
+    end
+  end
+
+	module AdvancedHazardAI
+	  def evaluate_toxic_spikes(battle, attacker, opp_side, skill_level)
+		score = super
+
+		count = battle.pbParty(attacker.index ^ 1).count do |pkmn|
+		  next false if !pkmn || pkmn.egg?
+		  next false if !KaitoPoisonAbsorb.active?(pkmn)
+		  next false if pkmn.hasType?(:POISON) || pkmn.hasType?(:STEEL)
+		  next false if AdvancedAI::Utilities.item_active?(
+			pkmn, :HEAVYDUTYBOOTS, battle
+		  )
+		  next false if !AdvancedAI::Utilities.grounded?(pkmn, battle)
+
+		  # The general reserve helper checks the main ability.
+		  # Also account for unlocked Levitate innates.
+		  forced_ground = battle.field.effects[PBEffects::Gravity] > 0 ||
+			AdvancedAI::Utilities.item_active?(pkmn, :IRONBALL, battle)
+
+		  if !forced_ground && pkmn.respond_to?(:set_innate_limits)
+			next false if Array(pkmn.set_innate_limits).flatten.include?(:LEVITATE)
+		  end
+		  next true
+		end
+
+		return score - count * 20
+	  end
+	end
+
+  def self.prepend_once(klass, hook)
+    klass.prepend(hook) if !klass.ancestors.include?(hook)
+  end
+
+  def self.install!
+    return if @installed
+    @installed = true
+
+    prepend_once(Battle, BattleHook)
+    prepend_once(Battle::AI, NativeAI)
+    prepend_once(Battle::AI::AIBattler, ResidualAI)
+
+    if defined?(AdvancedAI::Utilities)
+      prepend_once(AdvancedAI::Utilities.singleton_class, AdvancedUtilities)
+    end
+    if Battle::AI.method_defined?(:score_move_advanced)
+      prepend_once(Battle::AI, AdvancedMoveAI)
+    end
+    if Battle::AI.private_method_defined?(:switch_entry_hp_preview) ||
+       Battle::AI.method_defined?(:switch_entry_hp_preview)
+      prepend_once(Battle::AI, AdvancedSwitchAI)
+    end
+    if defined?(AdvancedAI::HazardControl)
+      prepend_once(AdvancedAI::HazardControl.singleton_class, AdvancedHazardAI)
+    end
+
+    # Replace the old entry callback. Hazard handling now happens above.
+    Battle::AbilityEffects::OnSwitchIn.add(ABILITY,
+      proc { |ability, battler, battle, switch_in| }
+    )
+
+    Battle::AbilityEffects::MoveImmunity.add(ABILITY,
+      proc { |ability, user, target, move, type, battle, show_message|
+        next target.pbMoveImmunityHealingAbility(
+          user, move, type, :POISON, show_message
+        )
+      }
+    )
+
+    Battle::AbilityEffects::EndOfRoundHealing.add(ABILITY,
+      proc { |ability, battler, battle|
+        next if !KaitoPoisonAbsorb.active?(battler)
+		next if !battler.affectedByTerrain?
+        next if !KaitoPoisonAbsorb.toxic?(battle)
+        KaitoPoisonAbsorb.heal(
+          battler, battle, KaitoPoisonAbsorb.amount(battler, 16),
+          "{1} absorbed the toxic terrain and restored HP!"
+        )
+      }
+    )
+
+    Battle::AI::Handlers::AbilityRanking.add(ABILITY,
+      proc { |ability, score, battler, ai|
+        next KaitoPoisonAbsorb.toxic?(ai.battle) ? 9 : 7
+      }
+    )
+
+    Battle::AI::Handlers::ItemRanking.add(:BLACKSLUDGE,
+      proc { |item, score, battler, ai|
+        next score if battler.has_type?(:POISON) ||
+                      KaitoPoisonAbsorb.active?(battler)
+        next -9
+      }
+    )
+
+    Battle::AI::Handlers::GeneralMoveScore.add(:poison_absorb_terrain,
+      proc { |score, move, user, ai, battle|
+        next score if ai.instance_variable_get(:@kaito_pa_score_depth).to_i > 0
+        next score + KaitoPoisonAbsorb.terrain_bonus(move, user, battle)
+      }
+    )
+  end
+
+  # Install after all plugins have loaded; avoid early alias/prepend loops.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoPoisonAbsorb.install!
+      return super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoPoisonAbsorb::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoPoisonAbsorb::ConstructionHook)
+end
+
+#===============================================================================
+# SWEET BLOOM
+# Automatically uses Sweet Scent on entry and when rain ends.
+#===============================================================================
+module KaitoSweetBloom
+  ABILITY = :SWEETBLOOM
+  MOVE    = :SWEETSCENT
+  RAIN    = [:Rain, :HeavyRain]
+
+  # Preserve ongoing attacks and consecutive-move counters during the extra move.
+  SAVED_EFFECTS = [
+    :TwoTurnAttack, :HyperBeam, :Outrage, :Rollout, :Uproar, :Bide,
+    :FuryCutter, :ChoiceBand, :Metronome, :ProtectRate, :Rage
+  ]
+
+  FORCING_EFFECTS = {
+    :TwoTurnAttack => nil,
+    :HyperBeam    => 0,
+    :Outrage      => 0,
+    :Rollout      => 0,
+    :Uproar       => 0,
+    :Bide         => 0,
+    :ChoiceBand   => nil
+  }
+
+  def self.state(battle)
+    value = battle.instance_variable_get(:@kaito_sweet_bloom)
+    if !value
+      value = {
+        depth: 0, weather_depth: 0, queue: [],
+        draining: false, casting: nil
+      }
+      battle.instance_variable_set(:@kaito_sweet_bloom, value)
+    end
+    return value
+  end
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.active?(object)
+    object = real(object)
+    return false if !object
+    return false if object.respond_to?(:fainted?) && object.fainted?
+    return object.hasActiveAbility?(ABILITY) if object.respond_to?(:hasActiveAbility?)
+    return true if object.respond_to?(:ability_id) && object.ability_id == ABILITY
+    return false if !object.respond_to?(:set_innate_limits)
+    return Array(object.set_innate_limits).flatten.include?(ABILITY)
+  end
+
+  def self.request(battle, battler, reason)
+    return if !active?(battler)
+    queue = state(battle)[:queue]
+    pokemon = battler.pokemon
+
+    duplicate = queue.any? do |entry|
+      entry[0].equal?(battler) && entry[1].equal?(pokemon) &&
+        entry[2] == reason
+    end
+    queue << [battler, pokemon, reason] if !duplicate
+  end
+
+  # Wait until the current move/switch finishes before using the extra move.
+  def self.boundary(battle)
+    data = state(battle)
+    data[:depth] += 1
+    begin
+      result = yield
+    ensure
+      data[:depth] -= 1
+    end
+    drain(battle)
+    return result
+  end
+
+  # Nested weather methods are treated as one weather change.
+  # Rain -> default Rain therefore does not count as rain ending.
+  def self.weather_boundary(battle)
+    data = state(battle)
+    outer = data[:weather_depth] == 0
+    if outer
+      old_weather = battle.field.weather
+      holders = battle.allBattlers.select { |b| active?(b) }.map do |b|
+        [b, b.pokemon]
+      end
+    end
+
+    data[:weather_depth] += 1
+    begin
+      result = yield
+    ensure
+      data[:weather_depth] -= 1
+    end
+
+    if outer && RAIN.include?(old_weather) &&
+       !RAIN.include?(battle.field.weather)
+      holders.each do |battler, pokemon|
+        next if !battler.pokemon.equal?(pokemon)
+        request(battle, battler, :rain_end)
+      end
+    end
+
+    drain(battle) if outer
+    return result
+  end
+
+  def self.drain(battle)
+    data = state(battle)
+    return if data[:depth] > 0 || data[:weather_depth] > 0
+    return if data[:draining]
+
+    data[:draining] = true
+    begin
+      until data[:queue].empty?
+        break if battle.decision != 0
+        battler, pokemon, reason = data[:queue].shift
+        next if !battle.battlers[battler.index].equal?(battler)
+        next if !battler.pokemon.equal?(pokemon) || !active?(battler)
+        next if !battle.allBattlers.any? { |b|
+          !b.fainted? && b.opposes?(battler.index) && battler.near?(b)
+        }
+
+        cast(battle, battler)
+      end
+      data[:queue].clear if battle.decision != 0
+    ensure
+      data[:draining] = false
+    end
+  end
+
+  def self.cast(battle, battler)
+    return if !GameData::Move.exists?(MOVE)
+
+    data = state(battle)
+    pokemon = battler.pokemon
+    old_casting = data[:casting]
+    old_round = battler.lastRoundMoved
+    old_failure = battler.lastMoveFailed
+    old_current = battler.currentMove
+    old_mold_breaker = battle.moldBreaker
+    old_choice = battle.choices[battler.index].dup
+
+    saved = {}
+    SAVED_EFFECTS.each do |name|
+      next if !PBEffects.const_defined?(name)
+      key = PBEffects.const_get(name)
+      saved[key] = battler.effects[key]
+    end
+
+    begin
+      data[:casting] = battler
+
+      FORCING_EFFECTS.each do |name, value|
+        next if !PBEffects.const_defined?(name)
+        battler.effects[PBEffects.const_get(name)] = value
+      end
+      battler.currentMove = MOVE
+
+      battle.pbShowAbilitySplash(battler)
+      battle.pbHideAbilitySplash(battler)
+
+      # Called move: no moveset requirement and no PP deduction.
+      battler.pbUseMoveSimple(MOVE, -1, -1, true)
+    ensure
+      data[:casting] = old_casting
+      battle.moldBreaker = old_mold_breaker
+
+      # Do not restore the outgoing Pokemon's state onto a replacement.
+      if battler.pokemon.equal?(pokemon)
+        battler.lastRoundMoved = old_round
+        battler.lastMoveFailed = old_failure
+        battler.currentMove = old_current
+        saved.each { |key, value| battler.effects[key] = value }
+        battle.choices[battler.index] = old_choice
+      end
+    end
+  end
+
+  module BattleHook
+    [:pbOnAllBattlersEnteringBattle, :pbOnBattlerEnteringBattle,
+     :pbRecallAndReplace].each do |method_name|
+      define_method(method_name) do |*args, &block|
+        KaitoSweetBloom.boundary(self) { super(*args, &block) }
+      end
+    end
+
+    [:pbStartWeather, :pbEndPrimordialWeather,
+     :pbEOREndWeather].each do |method_name|
+      define_method(method_name) do |*args, &block|
+        KaitoSweetBloom.weather_boundary(self) { super(*args, &block) }
+      end
+    end
+  end
+
+  module BattlerHook
+    def pbInitEffects(*args, &block)
+      result = super
+      @kaito_sweet_bloom_entry_used = false
+      return result
+    end
+
+    def pbUseMove(*args, &block)
+      KaitoSweetBloom.boundary(@battle) { super(*args, &block) }
+    end
+
+    # An extra action must not run normal-turn cleanup a second time.
+    def pbBeginTurn(*args, &block)
+      return if KaitoSweetBloom.state(@battle)[:casting].equal?(self)
+      return super
+    end
+
+    def pbEndTurn(*args, &block)
+      return if KaitoSweetBloom.state(@battle)[:casting].equal?(self)
+      return super
+    end
+  end
+
+  #===========================================================================
+  # AI: estimate Sweet Scent's value without changing actual stat stages.
+  #===========================================================================
+  def self.scent_value(user, battle)
+    user = real(user)
+    return 0 if !user.is_a?(Battle::Battler) || user.fainted?
+
+    move = Battle::Move.from_pokemon_move(
+      battle, Pokemon::Move.new(MOVE)
+    )
+
+    value = 0
+    battle.allBattlers.each do |target|
+      next if target.fainted? || !target.opposes?(user.index)
+      next if !user.near?(target)
+      next if target.semiInvulnerable?
+      next if target.effects[PBEffects::Substitute] > 0 &&
+              !move.ignoresSubstitute?(user)
+      next if target.hasActiveAbility?(:GOODASGOLD)
+
+      if target.hasActiveAbility?([:MAGICBOUNCE, :MIRRORARMOR])
+        value -= 10
+        next
+      end
+      next if !target.pbCanLowerStatStage?(:EVASION, user, move, false)
+
+      if target.hasActiveAbility?(:CONTRARY)
+        value -= 12
+      else
+        stages = [2, target.stages[:EVASION] + 6].min
+        value += stages * 6
+        value += 5 if target.stages[:EVASION] > 0
+      end
+    end
+    return value
+  end
+
+  def self.entry_value(ai, pkmn, index)
+    return 0 if !active?(pkmn)
+
+    probe = if ai.respond_to?(:switch_hazard_preview, true)
+              ai.send(:switch_hazard_preview, pkmn, index)
+            else
+              battler = Battle::Battler.new(ai.battle, index)
+              battler.pbInitialize(pkmn.clone, -1)
+              battler
+            end
+
+    return 0 if !active?(probe)
+    return scent_value(probe, ai.battle)
+  end
+
+  def self.rain_end_value(user, battle)
+    user = real(user)
+    return 0 if !RAIN.include?(battle.field.weather)
+
+    value = 0
+    battle.allBattlers.each do |battler|
+      next if !active?(battler)
+      gain = scent_value(battler, battle)
+      value += battler.opposes?(user.index) ? -gain : gain
+    end
+    return value
+  end
+
+  module NativeAI
+    def rate_replacement_pokemon(index, pkmn, score)
+      return super + KaitoSweetBloom.entry_value(self, pkmn, index)
+    end
+
+    def get_score_for_weather(weather, move_user, starting = false)
+      score = super
+      if !KaitoSweetBloom::RAIN.include?(weather)
+        score += KaitoSweetBloom.rain_end_value(move_user, @battle)
+      end
+      return score
+    end
+  end
+
+  module AdvancedAIHook
+    def evaluate_switch_candidate_detailed(pkmn, current_user, skill)
+      score = super
+      index = get_battler_index(current_user)
+      return score + KaitoSweetBloom.entry_value(self, pkmn, index)
+    end
+
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if !score.is_a?(Numeric) || score <= 0
+      return score if @battle.field.weather != :Rain
+
+      data = GameData::Move.try_get(move.id)
+      weather_moves = [
+        "StartSunWeather", "StartSandstormWeather",
+        "StartHailWeather", "StartSnowWeather"
+      ]
+      if data && weather_moves.include?(data.function_code)
+        score += KaitoSweetBloom.rain_end_value(user, @battle)
+      end
+      return score
+    end
+  end
+
+  def self.install!
+    return if @installed
+    @installed = true
+
+    Battle.prepend(BattleHook)
+    Battle::Battler.prepend(BattlerHook)
+    Battle::AI.prepend(NativeAI)
+
+    if Battle::AI.method_defined?(:evaluate_switch_candidate_detailed)
+      Battle::AI.prepend(AdvancedAIHook)
+    end
+
+    Battle::AbilityEffects::OnSwitchIn.add(ABILITY,
+      proc { |ability, battler, battle, switch_in|
+        next if !switch_in || !KaitoSweetBloom.active?(battler)
+        next if battler.instance_variable_get(:@kaito_sweet_bloom_entry_used)
+        battler.instance_variable_set(:@kaito_sweet_bloom_entry_used, true)
+        KaitoSweetBloom.request(battle, battler, :entry)
+      }
+    )
+
+    Battle::AI::Handlers::AbilityRanking.add(ABILITY,
+      proc { |ability, score, battler, ai| next 7 }
+    )
+  end
+
+  # Install only after all plugins have loaded.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoSweetBloom.install!
+      return super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoSweetBloom::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoSweetBloom::ConstructionHook)
+end
+
+#===============================================================================
+# MOLTEN DOWN
+# Fire moves are super effective against the Rock typing.
+#===============================================================================
+module KaitoMoltenDown
+  ABILITY = :MOLTENDOWN
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.active?(object)
+    object = real(object)
+    return false if !object
+    return false if object.respond_to?(:fainted?) && object.fainted?
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(ABILITY)
+    end
+
+    return true if object.respond_to?(:ability_id) &&
+                   object.ability_id == ABILITY
+
+    return false if !object.respond_to?(:set_innate_limits)
+    return Array(object.set_innate_limits).flatten.include?(ABILITY)
+  end
+
+  def self.types(object)
+    object = real(object)
+    return [] if !object
+    return object.pbTypes(true) if object.respond_to?(:pbTypes)
+    return object.types if object.respond_to?(:types)
+    return []
+  end
+
+  #===========================================================================
+  # Actual battle: replace only Fire's interaction with the Rock typing.
+  #===========================================================================
+  module MoveHook
+    def pbCalcTypeModSingle(moveType, defType, user, target)
+      if moveType == :FIRE && defType == :ROCK &&
+         KaitoMoltenDown.active?(user)
+        return Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+      end
+      return super
+    end
+  end
+
+  #===========================================================================
+  # Native AI: use the same per-type interaction.
+  #===========================================================================
+  module NativeAIHook
+    def effectiveness_of_type_against_single_battler_type(
+      type, defend_type, user = nil
+    )
+      if type == :FIRE && defend_type == :ROCK &&
+         KaitoMoltenDown.active?(user)
+        return Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+      end
+      return super
+    end
+  end
+
+  #===========================================================================
+  # Advanced AI: shared effectiveness calculation is used by both damage paths.
+  # No additional damage multiplier is applied elsewhere.
+  #===========================================================================
+  module AdvancedAIHook
+    def move_type_effectiveness(move, user, defender, effective_type = nil)
+      result = super
+      type = effective_type || resolve_move_type(user, move)
+
+      return result if type != :FIRE
+      return result if !KaitoMoltenDown.active?(user)
+      return result if !KaitoMoltenDown.types(defender).include?(:ROCK)
+
+      original = Effectiveness.calculate(:FIRE, :ROCK)
+      return result if original <= 0
+
+      replacement = Effectiveness::SUPER_EFFECTIVE_MULTIPLIER
+      return (result * replacement.to_f / original).round
+    end
+  end
+
+  def self.prepend_once(klass, hook)
+    klass.prepend(hook) if !klass.ancestors.include?(hook)
+  end
+
+  def self.install!
+    return if @installed
+    @installed = true
+
+    prepend_once(Battle::Move, MoveHook)
+    prepend_once(Battle::AI::AIBattler, NativeAIHook)
+
+    if defined?(AdvancedAI::CombatUtilities)
+      prepend_once(
+        AdvancedAI::CombatUtilities.singleton_class,
+        AdvancedAIHook
+      )
+    end
+
+    Battle::AI::Handlers::AbilityRanking.add(ABILITY,
+      proc { |ability, score, battler, ai| next 7 }
+    )
+  end
+
+  # Install after plugin loading to avoid alias/prepend recursion.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoMoltenDown.install!
+      return super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoMoltenDown::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoMoltenDown::ConstructionHook)
+end
+
+#===============================================================================
+# MARKSMAN
+# Bullet/Dart moves ignore accuracy checks and external redirection.
+#===============================================================================
+module KaitoMarksman
+  ABILITY = :MARKSMAN
+  FLAGS   = ["Bullet", "Dart", "Bomb"]
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  def self.flagged?(move)
+    move = move.move if move.respond_to?(:move)
+    return false if !move || !move.respond_to?(:id)
+    data = GameData::Move.try_get(move.id)
+    return false if !data
+    return data.flags.any? { |flag| FLAGS.include?(flag.to_s.downcase) }
+  end
+
+  def self.active?(object)
+    object = real(object)
+    return false if !object
+    return false if object.respond_to?(:fainted?) && object.fainted?
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(ABILITY)
+    end
+    return true if object.respond_to?(:ability_id) &&
+                   object.ability_id == ABILITY
+    return false if !object.respond_to?(:set_innate_limits)
+    return Array(object.set_innate_limits).flatten.include?(ABILITY)
+  end
+
+  def self.applies?(user, move)
+    return active?(user) && flagged?(move)
+  end
+
+  #===========================================================================
+  # Actual accuracy. Protection/immunity/semi-invulnerability checks are separate.
+  #===========================================================================
+  module AccuracyHook
+    def pbAccuracyCheck(user, target)
+      return true if KaitoMarksman.applies?(user, self)
+      return super
+    end
+  end
+
+  #===========================================================================
+  # Actual targeting. Preserve move-specific targeting, such as Dragon Darts.
+  #===========================================================================
+  module TargetHook
+    def pbChangeTargets(move, user, targets)
+      return super if !KaitoMarksman.applies?(user, move)
+
+      target_data = move.pbTarget(user)
+      return targets if @battle.switching
+      return targets if move.cannotRedirect? || move.targetsPosition?
+      return targets if !target_data.can_target_one_foe? ||
+                        targets.length != 1
+
+      move.pbModifyTargets(targets, user)
+      return targets
+    end
+  end
+
+  #===========================================================================
+  # Native AI
+  #===========================================================================
+  module NativeAccuracyHook
+    def rough_accuracy
+      return 100 if KaitoMarksman.applies?(@ai.user, @move)
+      return super
+    end
+  end
+
+  module NativeTargetHook
+    def get_redirected_target(target_data)
+      return nil if KaitoMarksman.applies?(@user, @move)
+      return super
+    end
+  end
+
+  #===========================================================================
+  # Advanced AI accuracy scoring
+  #===========================================================================
+  module AdvancedAccuracyHook
+    def score_accuracy(move, skill, user = nil)
+      return 0 if KaitoMarksman.applies?(user, move)
+      return super
+    end
+  end
+
+  # Reduce the value of Follow Me/Rage Powder when opponents can bypass them.
+  # This is a scoring estimate, not a prediction of their chosen move.
+  module DoublesHook
+    def score_redirection_move(user, move, battle, skill_level = 100)
+      score = super
+      return score if score <= 0
+      user = KaitoMarksman.real(user)
+
+      total = 0
+      bypassing = 0
+      battle.allOtherSideBattlers(user.index).each do |foe|
+        next if foe.fainted?
+        foe.moves.each do |attack|
+          next if !attack || !attack.damagingMove?
+          next if attack.pp == 0 && attack.total_pp > 0
+          next if !attack.pbTarget(foe).can_target_one_foe?
+          total += 1
+          bypassing += 1 if KaitoMarksman.applies?(foe, attack)
+        end
+      end
+
+      return score if total == 0 || bypassing == 0
+      return (score * (total - bypassing).to_f / total).round
+    end
+  end
+
+  def self.prepend_once(klass, hook)
+    klass.prepend(hook) if !klass.ancestors.include?(hook)
+  end
+
+  def self.install!
+    return if @installed
+    @installed = true
+
+    # Ensure the terrain AI hooks are installed before our accuracy override.
+    if defined?(ExtendedTerrains) &&
+       ExtendedTerrains.respond_to?(:install!)
+      ExtendedTerrains.install!
+    end
+
+    # Some move subclasses override pbAccuracyCheck themselves.
+    # A separate wrapper per class avoids interfering with super chains.
+    classes = [Battle::Move]
+    ObjectSpace.each_object(Class) do |klass|
+      next if klass == Battle::Move || !(klass < Battle::Move)
+      next if !klass.instance_methods(false).include?(:pbAccuracyCheck)
+      classes << klass
+    end
+    classes.each do |klass|
+      wrapper = Module.new
+      wrapper.include(AccuracyHook)
+      klass.prepend(wrapper)
+    end
+
+    prepend_once(Battle::Battler, TargetHook)
+    prepend_once(Battle::AI::AIMove, NativeAccuracyHook)
+    prepend_once(Battle::AI, NativeTargetHook)
+
+    if Battle::AI.method_defined?(:score_accuracy)
+      prepend_once(Battle::AI, AdvancedAccuracyHook)
+    end
+
+    if defined?(AdvancedAI::DoublesStrategy)
+      prepend_once(
+        AdvancedAI::DoublesStrategy.singleton_class,
+        DoublesHook
+      )
+    end
+
+    Battle::AI::Handlers::AbilityRanking.add(ABILITY,
+      proc { |ability, score, battler, ai|
+        useful = battler.check_for_move do |move|
+          KaitoMarksman.flagged?(move)
+        end
+        next useful ? 8 : 0
+      }
+    )
+  end
+
+  # Install after plugin loading to avoid early alias/prepend recursion.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoMarksman.install!
+      return super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoMarksman::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoMarksman::ConstructionHook)
+end
+
+#===============================================================================
+# BULLETPROOF - Bomb, Bullet and Dart immunity
+#===============================================================================
+module KaitoBulletproof
+  ABILITY = :BULLETPROOF
+  FLAGS   = ["bomb", "bullet", "dart"]
+
+  def self.real(object)
+    return object.battler if object.respond_to?(:battler)
+    return object
+  end
+
+  # Read PBS data safely, including Advanced AI MoveProxy objects.
+  def self.blocked_move?(move)
+    move = move.move if move.respond_to?(:move)
+    return false if !move || !move.respond_to?(:id)
+    data = GameData::Move.try_get(move.id)
+    return false if !data
+    return data.flags.any? { |flag|
+      FLAGS.include?(flag.to_s.downcase)
+    }
+  end
+
+  def self.active?(object)
+    object = real(object)
+    return false if !object
+    return false if object.respond_to?(:fainted?) && object.fainted?
+
+    if object.respond_to?(:hasActiveAbility?)
+      return object.hasActiveAbility?(ABILITY)
+    end
+
+    return true if object.respond_to?(:ability_id) &&
+                   object.ability_id == ABILITY
+    return false if !object.respond_to?(:set_innate_limits)
+    return Array(object.set_innate_limits).flatten.include?(ABILITY)
+  end
+
+  module NativeAIHook
+    def pokemon_can_absorb_move?(pkmn, move, move_type)
+      if KaitoBulletproof.active?(pkmn) &&
+         KaitoBulletproof.blocked_move?(move)
+        return true
+      end
+      return super
+    end
+  end
+
+  module AdvancedAIHook
+    def bulletproof_immune?(user, target, move)
+      return false if !target || !move
+      return false if ignores_ability?(user, move, target)
+      return false if !KaitoBulletproof.active?(target)
+      return KaitoBulletproof.blocked_move?(move)
+    end
+  end
+
+  def self.install!
+    return if @installed
+    @installed = true
+
+    # Replaces the old Bomb-only handler.
+    # The engine handles ability suppression and Mold Breaker before calling it.
+    Battle::AbilityEffects::MoveImmunity.add(ABILITY,
+      proc { |ability, user, target, move, type, battle, show_message|
+        next false if !KaitoBulletproof.blocked_move?(move)
+
+        if show_message
+          battle.pbShowAbilitySplash(target)
+          begin
+            if Battle::Scene::USE_ABILITY_SPLASH
+              battle.pbDisplay(
+                _INTL("It doesn't affect {1}...", target.pbThis(true))
+              )
+            else
+              battle.pbDisplay(
+                _INTL("{1}'s {2} made {3} ineffective!",
+                      target.pbThis, target.abilityName, move.name)
+              )
+            end
+          ensure
+            battle.pbHideAbilitySplash(target)
+          end
+        end
+        next true
+      }
+    )
+
+    if !Battle::AI.ancestors.include?(NativeAIHook)
+      Battle::AI.prepend(NativeAIHook)
+    end
+
+    if defined?(AdvancedAI::Utilities)
+      klass = AdvancedAI::Utilities.singleton_class
+      klass.prepend(AdvancedAIHook) if !klass.ancestors.include?(AdvancedAIHook)
+    end
+  end
+
+  # Install after plugin loading to avoid alias/prepend recursion.
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoBulletproof.install!
+      return super
+    end
+  end
+end
+
+unless Battle.singleton_class.ancestors.include?(
+  KaitoBulletproof::ConstructionHook
+)
+  Battle.singleton_class.prepend(KaitoBulletproof::ConstructionHook)
+end

@@ -1053,7 +1053,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoTimesTargetThenTargetAlly
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Dart
 Description = The user attacks twice using Dreepy. If there are two targets, this move hits each one once.
 #-------------------------------
 [DUALCHOP]
@@ -2018,7 +2018,7 @@ Accuracy = 0
 TotalPP = 20
 Target = Other
 FunctionCode = None
-Flags = CanProtect,CanMirrorMove,Pulse,Bomb
+Flags = CanProtect,CanMirrorMove,Pulse,Bomb,Bullet
 Description = The user looses a blast of aura power from deep within its body. This move is certain to hit.
 #-------------------------------
 [BODYPRESS]
@@ -3282,7 +3282,7 @@ Accuracy = 100
 TotalPP = 10
 Target = NearOther
 FunctionCode = TrapTargetInBattle
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Dart
 EffectChance = 100
 Description = The user attacks while also stitching the target's shadow to the ground to prevent it fleeing.
 #-------------------------------
@@ -3657,7 +3657,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = None
-Flags = CanProtect,CanMirrorMove,Bomb
+Flags = CanProtect,CanMirrorMove,Bomb,Bullet
 Description = The user slams a barrage of hard-shelled seeds down on the target from above.
 #-------------------------------
 [GIGADRAIN]
@@ -3828,7 +3828,7 @@ Accuracy = 100
 TotalPP = 30
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
-Flags = CanProtect,CanMirrorMove,Bomb
+Flags = CanProtect,CanMirrorMove,Bomb,Bullet
 Description = The user forcefully shoots seeds at the target. Two to five seeds are shot in rapid succession.
 #-------------------------------
 [ABSORB]
@@ -4104,7 +4104,7 @@ Accuracy = 100
 TotalPP = 10
 Target = AllNearFoes
 FunctionCode = HitsTargetInSkyGroundsTarget
-Flags = CanProtect,CanMirrorMove,CannotMetronome
+Flags = CanProtect,CanMirrorMove,CannotMetronome,Dart
 Description = This move also hits Pokémon that are in the air. Those Pokémon are knocked down to the ground.
 #-------------------------------
 [THOUSANDWAVES]
@@ -7969,7 +7969,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = HitsTargetInSkyGroundsTarget
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Bullet
 Description = The user throws a stone or projectile to attack. A flying Pokémon will fall to the ground when hit.
 #-------------------------------
 [ACCELEROCK]
@@ -8006,7 +8006,7 @@ Accuracy = 90
 TotalPP = 10
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
-Flags = CanProtect,CanMirrorMove,Bomb
+Flags = CanProtect,CanMirrorMove,Bomb,Bullet
 Description = The user hurls hard rocks at the target. Two to five rocks are launched in quick succession.
 #-------------------------------
 [ROCKPOLISH]
@@ -8588,7 +8588,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = CannotBeRedirected
-Flags = CanProtect,CanMirrorMove,HighCriticalHitRate
+Flags = CanProtect,CanMirrorMove,HighCriticalHitRate,Bullet
 Description = The user ignores any effects that redirect moves, allowing this move to hit the chosen target.
 #-------------------------------
 [WATERPLEDGE]

@@ -1,0 +1,8 @@
+Name = [KAITO] Ability Details
+Version = 1.0.0
+Essentials = 21.1
+Requires = Modular UI Scenes,2.0.8
+Requires = Innate Abilities,1.5.4
+Requires = Innate summary page,1.5.4
+Optional = [MUI] Enhanced Pokemon UI
+Credits = holykaito

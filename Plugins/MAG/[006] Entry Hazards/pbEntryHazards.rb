@@ -14,7 +14,7 @@ alias mag_pbEntryHazards pbEntryHazards
        end
      end
     # Toxic Spikes
-    if battler_side.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.airborne?
+    if battler_side.effects[PBEffects::ToxicSpikes] > 0 && !battler.fainted? && !battler.airborne? && !battler.hasActiveItem?(:HEAVYDUTYBOOTS)
 	  if battler.pbHasType?(:POISON)
         battler_side.effects[PBEffects::ToxicSpikes] = 0
         pbDisplay(_INTL("{1} absorbed the poison spikes!", battler.pbThis))
@@ -77,6 +77,7 @@ alias mag_pbEntryHazards pbEntryHazards
       bTypes = battler.pbTypes(true)
       eff = Effectiveness.calculate(:PSYCHIC, *bTypes)
       if !Effectiveness.ineffective?(eff)
+        @scene.pbAnimation(:MINDFIELD, battler, [battler], 1)
         battler.pbReduceHP(battler.totalhp * eff / 8, false)
         pbDisplay(_INTL("{1} was hit by a mind bomb!", battler.pbThis))
         battler.pbItemHPHealCheck
@@ -115,6 +116,7 @@ alias mag_pbEntryHazards pbEntryHazards
        !battler.hasActiveItem?(:HEAVYDUTYBOOTS)
       pbDisplay(_INTL("The smog crawled up and scared {1}!", battler.pbThis))
       if battler.pbCanLowerStatStage?(:ATTACK)
+        @scene.pbAnimation(:DARKMIST, battler, [battler], 1)
         battler.pbLowerStatStage(:ATTACK, 1, nil)
         battler.pbItemStatRestoreCheck
        end

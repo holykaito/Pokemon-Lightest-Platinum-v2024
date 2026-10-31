@@ -371,6 +371,11 @@ Description = Normal gains Psychic's strengths and hits Ghost. Psychic gets STAB
 Name = Mindward
 Description = Raised 50% the Pokémon's Sp. Def while Psychic Terrain is active.
 #-------------------------------
+[MOLTENDOWN] ###
+Name = Molten Down
+Description = Fire moves melt through Rock types.
+Detail = Fire-type moves are super effective against Rock instead of being resisted. Other typings apply normally.\n\nDoes not increase fixed damage or bypass Fire-immunity abilities.
+#-------------------------------
 [MULTIHEADED] ###
 Name = Multi Headed
 Description = Hits extra times based on the Pokémon's heads.
@@ -430,6 +435,11 @@ Description = Knockouts raise its critical-hit ratio.
 [PYROMANCY] ###
 Name = Pyromancy
 Description = Move inflicts burn x5 as often.
+#-------------------------------
+[MARKSMAN] ###
+Name = Marksman
+Description = Bullet, bomb and dart moves never miss.
+Detail = Bullet, Bomb or Dart moves ignore accuracy and evasion modifiers and cannot be redirected by effects such as Follow Me, Rage Powder, Spotlight, Lightning Rod or Storm Drain.\n\nDoes not bypass Protect, type or ability immunities, or semi-invulnerable turns.
 #-------------------------------
 [NINELIVES]
 Name = Nine Lives
@@ -610,6 +620,11 @@ Description = Lowering a foe's stats with moves raises its own.
 [SUDDENSLASH] ###
 Name = Sudden Slash
 Description = On first turn out, slicing moves gain priority.
+#-------------------------------
+[SWEETBLOOM] ###
+Name = Sweet Bloom
+Description = Uses Sweet Scent on entry and after rain ends.
+Detail = Automatically uses Sweet Scent upon entering battle, lowering nearby opposing Pokémon's Evasion by two stages if successful.\n\nAutomatically uses Sweet Scent again whenever Rain or Heavy Rain ends or changes into non-rain weather while this ability is active. Changing between Rain and Heavy Rain does not trigger it.\n\nThese extra uses require no PP or moveset slot and do not replace the Pokémon's normal action. Switching out and returning allows the entry effect to activate again.\n\nSweet Scent follows its normal targeting, protection, reflection and stat-change rules. Cloud Nine and Air Lock temporarily suppressing weather do not count as rain ending.
 #-------------------------------
 [TENACITY] ###
 Name = Tenacity

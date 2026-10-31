@@ -210,7 +210,7 @@ TotalPP = 10
 Target = NearOther
 Priority = 3
 FunctionCode = FlinchTarget1AccuracyFailsIfNotUserFirstTurn
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Bullet
 EffectChance = 100
 Description = In the first turn, User flicks a small pebble at the target making the target flinch. Raises Accuracy.
 #-------------------------------

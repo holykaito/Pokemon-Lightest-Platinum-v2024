@@ -93,7 +93,8 @@ Description = Combo of Turboblaze and Overwhelming Frost.
 #-------------------------------
 [POISONABSORB]
 Name = Poison Absorb
-Description = Restores HP if hit by a Poison-type move.
+Description = Absorbs poison to restore HP.
+Detail = Nullifies incoming Poison-type moves and restores 1/4 of its maximum HP.\n\nWhen grounded and not protected by Heavy-Duty Boots, removes Toxic Spikes upon entry. Restores 1/8 of its maximum HP for one layer or 1/6 for two layers.\n\nWhen grounded in Toxic Terrain, restores 1/16 of its maximum HP each turn, including the terrain's final turn.\n\nBlack Sludge restores 1/16 of its maximum HP each turn regardless of this Pokémon's type. This stacks with Toxic Terrain healing.\n\nHealing prevention blocks HP restoration, but does not prevent Poison-move immunity or Toxic Spikes removal.\n\nMold Breaker and similar effects can bypass its Poison-move immunity. This ability does not grant general immunity to poisoning.
 #-------------------------------
 [CRYSTALLIZE]
 Name = Crystallize

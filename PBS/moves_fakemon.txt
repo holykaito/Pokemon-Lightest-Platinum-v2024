@@ -205,7 +205,7 @@ TotalPP = 15
 Target = NearOther
 Priority = 0
 FunctionCode = HitTwoToFiveTimes
-Flags = CanProtect,CanMirrorMove,Pulse
+Flags = CanProtect,CanMirrorMove,Pulse,Bullet
 Description = Magical spheres strike the target 2 to 5 times.
 Animation = AURASPHERE,FAIRYWIND
 #-------------------------------
@@ -308,7 +308,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = SuperEffectiveAgainstWaterIgnoreDefenseStages
-Flags = Contact,CanProtect,CanMirrorMove,Horn
+Flags = Contact,CanProtect,CanMirrorMove,Drill,Dart
 Description = Pierces Defense stat changes. Super effective on Water types.
 Animation = HORNATTACK,AQUAJET
 #-------------------------------
@@ -733,7 +733,7 @@ TotalPP = 10
 Target = NearOther
 Priority = 0
 FunctionCode = SuperEffectiveAgainstFlying
-Flags = CanProtect,CanMirrorMove,Arrow
+Flags = CanProtect,CanMirrorMove,Dart
 Description = Fires a clay dart. Super effective against Flying types.
 Animation = THOUSANDARROWS,ROCKBLAST
 #-------------------------------
@@ -1157,8 +1157,8 @@ Description = Attacks with an icy crystal and eliminates all stat changes.
 Name = Sparkly Swirl
 Type = FAIRY
 Category = Special
-Power = 120
-Accuracy = 85
+Power = 110
+Accuracy = 80
 TotalPP = 5
 Target = NearOther
 Priority = 0

@@ -1,7 +1,8 @@
-#===============================================================================
-# Entry hazard. Ice Ring on the opposing side. (Ice Ring)
-#===============================================================================
 class Battle::Move::AddIceRingToFoeSide < Battle::Move
+  def initialize(battle, move)
+    super(battle, move)
+  end
+
   def canMagicCoat?; return true; end
 
   def pbMoveFailed?(user, targets)
@@ -14,9 +15,7 @@ class Battle::Move::AddIceRingToFoeSide < Battle::Move
 
   def pbEffectGeneral(user)
     user.pbOpposingSide.effects[PBEffects::IceRing] = true
-    @battle.pbDisplay(_INTL("An ice ring has been frozen over at {1}'s feet!",
+    @battle.pbDisplay(_INTL("An ice ring formed on {1}!",
                             user.pbOpposingTeam(true)))
   end
 end
-
-#===============================================================================

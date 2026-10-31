@@ -4084,7 +4084,8 @@ class Battle::AI
     # Leftovers / Black Sludge / Ingrain / Aqua Ring / Poison Heal
     passive_recovery =
       (user.hasActiveItem?(:LEFTOVERS) ||
-       (user.hasActiveItem?(:BLACKSLUDGE) && user.pbHasType?(:POISON)) ||
+       (user.hasActiveItem?(:BLACKSLUDGE) && (user.pbHasType?(:POISON) || KaitoPoisonAbsorb.active?(user))) ||
+      (KaitoPoisonAbsorb.active?(user) && KaitoPoisonAbsorb.toxic?(@battle) && real_user.affectedByTerrain?) ||
        user.effects[PBEffects::Ingrain] ||
        user.effects[PBEffects::AquaRing] ||
        (user.hasActiveAbility?(:POISONHEAL) && user.poisoned?) ||
