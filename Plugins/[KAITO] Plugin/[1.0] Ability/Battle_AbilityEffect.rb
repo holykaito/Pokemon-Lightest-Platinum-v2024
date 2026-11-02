@@ -19439,3 +19439,654 @@ unless Battle.singleton_class.ancestors.include?(
 )
   Battle.singleton_class.prepend(KaitoBulletproof::ConstructionHook)
 end
+
+
+#===============================================================================
+# CHARGED TEMPER
+#===============================================================================
+
+# Raises Attack after dealing damage with an Electric-type move.
+Battle::AbilityEffects::OnEndOfUsingMove.add(:CHARGEDTEMPER,
+  proc { |ability, user, targets, move, battle|
+    next if user.fainted? || !move.damagingMove? || move.calcType != :ELECTRIC
+    next if !targets.any? { |t| t && !t.damageState.unaffected &&
+      (t.damageState.hpLost > 0 || (t.damageState.substitute && t.damageState.calcDamage > 0)) }
+    KaitoChargedTemperDisplay.raise_attack(user) if user.pbCanRaiseStatStage?(:ATTACK, user)
+  }
+)
+
+#===============================================================================
+# CHARGED TEMPER - Z-POWER SAFE
+# Move announcement -> Charged Temper -> Lightning Rod
+#===============================================================================
+module KaitoChargedTemperOrder
+  module Targeting
+    def pbChangeTargets(move, user, targets)
+      move.instance_variable_set(:@kaito_ct_before_lr, nil)
+      move.instance_variable_set(:@kaito_ct_lr_notice, nil)
+      @battle.instance_variable_set(:@kaito_ct_pending_message, nil)
+
+      result = super
+      return result if move.calcType != :ELECTRIC
+      return result if move.chargingTurnMove? && !move.pbDamagingMove?
+
+      original = move.instance_variable_get(:@kaito_ct_before_lr) || result
+      affected = original.compact.uniq.select do |target|
+        !target.fainted? && target.opposes?(user) &&
+          target.hasActiveAbility?(:CHARGEDTEMPER)
+      end
+
+      lightning_rod = move.instance_variable_get(:@kaito_ct_lr_notice)
+      if !affected.empty? || lightning_rod
+        @battle.instance_variable_set(:@kaito_ct_pending_message, {
+          :announcer => self, :move => move,
+          :affected => affected, :lightning_rod => lightning_rod
+        })
+      end
+      return result
+    end
+
+    def pbChangeTargetByAbility(ability, type, move, user, targets, priority, near_only)
+      if ability == :LIGHTNINGROD && type == :ELECTRIC &&
+         move.calcType == :ELECTRIC && targets.length == 1 &&
+         targets[0] && targets[0].opposes?(user) &&
+         targets[0].hasActiveAbility?(:CHARGEDTEMPER) &&
+         !targets[0].hasActiveAbility?(:LIGHTNINGROD) &&
+         !(move.chargingTurnMove? && !move.pbDamagingMove?)
+
+        priority.each do |b|
+          next if b.fainted? || b.index == user.index || b.index == targets[0].index
+          next if !b.hasActiveAbility?(:LIGHTNINGROD)
+          next if near_only && !b.near?(user)
+
+          replacement = []
+          next if !pbAddTarget(replacement, user, b, move, near_only)
+
+          move.instance_variable_set(:@kaito_ct_before_lr, targets.dup)
+          move.instance_variable_set(:@kaito_ct_lr_notice, b)
+          targets.replace(replacement)
+          return targets
+        end
+      end
+      return super
+    end
+  end
+
+  # Hook battle messages instead of Battle::Move#pbDisplayUseMessage.
+  # This avoids recursive aliases from the Z-Power plugin.
+  module BattleMessage
+    def pbDisplayBrief(message)
+      result = super
+      pending = @kaito_ct_pending_message
+      return result if !pending
+
+      expected = _INTL("{1} used {2}!",
+                       pending[:announcer].pbThis, pending[:move].name)
+      return result if message != expected
+
+      # Clear first to prevent nested-message activation.
+      @kaito_ct_pending_message = nil
+
+      # Charged Temper activates after the move announcement.
+      pending[:affected].each do |target|
+        next if target.fainted? || !target.hasActiveAbility?(:CHARGEDTEMPER)
+        next if !target.pbCanRaiseStatStage?(:ATTACK, target)
+        KaitoChargedTemperDisplay.raise_attack(target)
+      end
+
+      # Lightning Rod announcement appears afterward.
+      b = pending[:lightning_rod]
+      if b && !b.fainted?
+        b.hasActiveAbility?(:LIGHTNINGROD)
+        pbShowAbilitySplash(b)
+        if Battle::Scene::USE_ABILITY_SPLASH
+          pbDisplay(_INTL("{1} took the attack!", b.pbThis))
+        else
+          pbDisplay(_INTL("{1} took the attack with its {2}!",
+                          b.pbThis, b.abilityName))
+        end
+        pbHideAbilitySplash(b)
+      end
+      return result
+    end
+  end
+end
+
+Battle::Battler.prepend(KaitoChargedTemperOrder::Targeting) unless
+  Battle::Battler.ancestors.include?(KaitoChargedTemperOrder::Targeting)
+
+Battle.prepend(KaitoChargedTemperOrder::BattleMessage) unless
+  Battle.ancestors.include?(KaitoChargedTemperOrder::BattleMessage)
+
+#===============================================================================
+# CHARGED TEMPER - Native Essentials AI + Advanced AI (AAI)
+#===============================================================================
+module KaitoChargedTemperAI
+  ABILITY = :CHARGEDTEMPER
+
+  def self.real(battler)
+    battler.respond_to?(:battler) ? battler.battler : battler
+  end
+
+  def self.active?(battler)
+    b = real(battler)
+    b && !b.fainted? && b.hasActiveAbility?(ABILITY)
+  end
+
+  def self.native_move(move)
+    move.respond_to?(:move) ? move.move : move
+  end
+
+  def self.electric?(move, user, ai = nil)
+    return false if !move
+    b = real(user)
+    m = native_move(move)
+    type = if move.respond_to?(:rough_type)
+             move.rough_type
+           elsif defined?(AdvancedAI::CombatUtilities)
+             AdvancedAI::CombatUtilities.resolve_move_type(b, m)
+           else
+             m.pbCalcType(b)
+           end
+    if m.id == :TERABLAST && ai && ai.respond_to?(:get_tera_type_for_move, true)
+      tera = ai.send(:get_tera_type_for_move, b)
+      type = tera if tera
+    end
+    return type == :ELECTRIC
+  end
+
+  def self.physical_attacker?(battler)
+    b = real(battler)
+    b.moves.any? do |m|
+      m && (m.pp > 0 || m.total_pp == 0) && m.damagingMove? && m.physicalMove?
+    end
+  end
+
+  # Expected strategic value of a one-stage Attack increase.
+  def self.stat_value(battler, battle, defensive = false)
+    b = real(battler)
+    return 0 if !active?(b) || !b.pbCanRaiseStatStage?(:ATTACK, b)
+    contrary = b.hasActiveAbility?(:CONTRARY) && !battle.moldBreaker
+    remaining = contrary ? b.stages[:ATTACK] + 6 : 6 - b.stages[:ATTACK]
+    return 0 if remaining <= 0
+    base = physical_attacker?(b) ? (defensive ? 24 : 20) : (defensive ? 6 : 5)
+    base *= 1.4 if b.hasActiveAbility?(:SIMPLE) && !battle.moldBreaker
+    base *= 0.55 if remaining == 1
+    base *= 0.8 if remaining == 2
+    base *= 0.7 if b.hp <= b.totalhp / 4
+    value = [base.round, 1].max
+    return contrary ? -value : value
+  end
+
+  # Offensive AI: reward successful Electric attacks.
+  def self.attack_bonus(move, user, target, battle, ai = nil)
+    b = real(user)
+    t = real(target)
+    m = native_move(move)
+    return 0 if !active?(b) || !m || !m.damagingMove?
+    return 0 if !electric?(move, b, ai)
+    if m.chargingTurnMove? && b.effects[PBEffects::TwoTurnAttack] != m.id &&
+       !b.hasActiveItem?(:POWERHERB)
+      return 0
+    end
+    return 0 if !t || t.fainted? || t.index == b.index
+    return 0 if m.pbImmunityByAbility(b, t, false)
+    type_mod = m.pbCalcTypeMod(:ELECTRIC, b, t)
+    return 0 if Effectiveness.ineffective?(type_mod)
+    return stat_value(b, battle)
+  end
+
+  # Defensive AI: evaluate Attack boosts caused by targeting Charged Temper.
+  def self.target_modifier(move, user, target, battle, ai = nil, estimated_damage = nil)
+    b = real(user)
+    t = real(target)
+    m = native_move(move)
+    return 0 if !b || !t || !m || t.fainted? || b.index == t.index
+    return 0 if !electric?(move, b, ai)
+    return 0 if m.pbTarget(b).num_targets == 0
+    if m.chargingTurnMove? && !m.pbDamagingMove? &&
+       b.effects[PBEffects::TwoTurnAttack] != m.id && !b.hasActiveItem?(:POWERHERB)
+      return 0
+    end
+    risk = stat_value(t, battle, true)
+    return 0 if risk == 0
+    if m.damagingMove? && estimated_damage && estimated_damage >= t.hp
+      risk = 0
+    end
+    if !t.opposes?(b) && !m.pbTarget(b).targets_foe
+      return risk
+    end
+    return -risk
+  end
+
+  def self.rough_damage_from_native_ai(move)
+    return nil if !move.respond_to?(:rough_damage) || !move.damagingMove?
+    return move.rough_damage
+  rescue StandardError
+    return nil
+  end
+
+  # Advanced AI move scoring.
+  module AdvancedScoring
+    def score_move_advanced(move, user, target, skill)
+      @kaito_charged_temper_depth = @kaito_charged_temper_depth.to_i + 1
+      begin
+        score = super
+        return score if score <= -100 || @kaito_charged_temper_depth > 1
+        return score if !move || !user
+
+        predicted_damage = nil
+        if target && move.damagingMove? && respond_to?(:calculate_rough_damage, true)
+          begin
+            predicted_damage = calculate_rough_damage(move, user, target)
+          rescue StandardError
+          end
+        end
+        bonus = KaitoChargedTemperAI.attack_bonus(move, user, target, @battle, self)
+        penalty = KaitoChargedTemperAI.target_modifier(
+          move, user, target, @battle, self, predicted_damage
+        )
+        modifier = bonus + penalty
+        if modifier != 0 && @_score_factors.is_a?(Hash)
+          @_score_factors["Charged Temper"] = modifier
+        end
+        return score + modifier
+      ensure
+        @kaito_charged_temper_depth -= 1
+      end
+    end
+  end
+
+  # Advanced AI switching evaluation.
+  module AdvancedSwitchScoring
+    def evaluate_switch_matchup_detailed(switch_pkmn, current_user)
+      score = super
+      return score if !switch_pkmn || !current_user
+      has_ability = switch_pkmn.hasAbility?(:CHARGEDTEMPER)
+      if !has_ability && switch_pkmn.respond_to?(:set_innate_limits)
+        has_ability = Array(switch_pkmn.set_innate_limits).flatten.include?(:CHARGEDTEMPER)
+      end
+      return score if !has_ability || switch_pkmn.hp < switch_pkmn.totalhp / 2
+      physical = switch_pkmn.moves.any? do |move|
+        next false if !move || (move.pp == 0 && move.total_pp > 0)
+        info = GameData::Move.try_get(move.id)
+        info && info.category == 0
+      end
+      return score if !physical
+      electric_foe = @battle.allOtherSideBattlers(current_user.index).any? do |foe|
+        !foe.fainted? && foe.moves.any? do |move|
+          move && move.damagingMove? && (move.pp > 0 || move.total_pp == 0) &&
+            move.pbCalcType(foe) == :ELECTRIC
+        end
+      end
+      return score + (electric_foe ? 10 : 0)
+    end
+  end
+
+  def self.install!
+    return if !defined?(AdvancedAI)
+    if Battle::AI.method_defined?(:score_move_advanced) &&
+       !Battle::AI.ancestors.include?(AdvancedScoring)
+      Battle::AI.prepend(AdvancedScoring)
+    end
+    if (Battle::AI.method_defined?(:evaluate_switch_matchup_detailed) ||
+        Battle::AI.private_method_defined?(:evaluate_switch_matchup_detailed)) &&
+       !Battle::AI.ancestors.include?(AdvancedSwitchScoring)
+      Battle::AI.prepend(AdvancedSwitchScoring)
+    end
+  end
+
+  module ConstructionHook
+    def new(*args, &block)
+      KaitoChargedTemperAI.install!
+      super(*args, &block)
+    end
+  end
+end
+
+#===============================================================================
+# NATIVE AI - OFFENSIVE MOVE SCORING
+#===============================================================================
+Battle::AI::Handlers::GeneralMoveScore.add(:kaito_charged_temper_attack,
+  proc { |score, move, user, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+    next score if ai.instance_variable_get(:@kaito_charged_temper_depth).to_i > 0
+    target = ai.target
+    targets = if move.pbTarget(user.battler).num_targets > 1
+                battle.allOtherSideBattlers(user.index)
+              else
+                [target]
+              end
+    gain = targets.map { |t| KaitoChargedTemperAI.attack_bonus(move, user, t, battle, ai) }.max || 0
+    next score + gain
+  }
+)
+
+#===============================================================================
+# NATIVE AI - DEFENSIVE TARGET SCORING
+#===============================================================================
+Battle::AI::Handlers::GeneralMoveAgainstTargetScore.add(:kaito_charged_temper_target,
+  proc { |score, move, user, target, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+    next score if ai.instance_variable_get(:@kaito_charged_temper_depth).to_i > 0
+    damage = KaitoChargedTemperAI.rough_damage_from_native_ai(move)
+    next score + KaitoChargedTemperAI.target_modifier(move, user, target, battle, ai, damage)
+  }
+)
+
+#===============================================================================
+# ABILITY RANKING
+#===============================================================================
+KaitoAbilitySupport.rate(:CHARGEDTEMPER, 8)
+
+Battle::AI::Handlers::AbilityRanking.add(:CHARGEDTEMPER,
+  proc { |ability, score, battler, ai|
+    b = KaitoChargedTemperAI.real(battler)
+    physical = KaitoChargedTemperAI.physical_attacker?(b)
+    has_electric = battler.check_for_move do |move|
+      move.damagingMove? && move.pbCalcType(b) == :ELECTRIC
+    end
+    next 8 if physical && has_electric
+    next 6 if physical
+    next 4 if has_electric
+    next 3
+  }
+)
+
+#===============================================================================
+# ADVANCED AI INSTALLATION
+#===============================================================================
+unless Battle.singleton_class.ancestors.include?(KaitoChargedTemperAI::ConstructionHook)
+  Battle.singleton_class.prepend(KaitoChargedTemperAI::ConstructionHook)
+end
+KaitoChargedTemperAI.install!
+
+
+#===============================================================================
+# CHARGED TEMPER - FIX INNATE ABILITY SPLASH
+#===============================================================================
+module KaitoChargedTemperDisplay
+  module BattlerName
+    def abilityName
+      return GameData::Ability.get(:CHARGEDTEMPER).name if @kaito_ct_show_name
+      super
+    end
+  end
+
+  def self.raise_attack(battler)
+    return false if !battler || battler.fainted?
+    return false if !battler.hasActiveAbility?(:CHARGEDTEMPER)
+    return false if !battler.pbCanRaiseStatStage?(:ATTACK, battler)
+
+    old_flag  = battler.instance_variable_get(:@kaito_ct_show_name)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      battler.instance_variable_set(:@kaito_ct_show_name, true)
+      name = GameData::Ability.get(:CHARGEDTEMPER).name
+      $aamName = $aamName2 = name
+      return battler.pbRaiseStatStageByAbility(:ATTACK, 1, battler)
+    ensure
+      battler.instance_variable_set(:@kaito_ct_show_name, old_flag)
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+Battle::Battler.prepend(KaitoChargedTemperDisplay::BattlerName) unless
+  Battle::Battler.ancestors.include?(KaitoChargedTemperDisplay::BattlerName)
+
+#===============================================================================
+# ELECTROFLUX
+# Levitate, but still benefits from Electric Terrain.
+#===============================================================================
+module KaitoElectroflux
+  ABILITY = :ELECTROFLUX
+
+  def self.pokemon_has?(pokemon)
+    return false if !pokemon
+    return pokemon.hasActiveAbility?(ABILITY) if pokemon.respond_to?(:hasActiveAbility?)
+    return true if pokemon.respond_to?(:hasAbility?) && pokemon.hasAbility?(ABILITY)
+    return false if !pokemon.respond_to?(:set_innate_limits)
+    return Array(pokemon.set_innate_limits).flatten.include?(ABILITY)
+  end
+
+  # Battle mechanics
+  module Battler
+    def airborne?
+      return true if super
+      return false if !hasActiveAbility?(:ELECTROFLUX) || @battle.moldBreaker
+      return false if hasActiveItem?(:IRONBALL) || @effects[PBEffects::Ingrain] ||
+                      @effects[PBEffects::SmackDown] ||
+                      @battle.field.effects[PBEffects::Gravity] > 0
+      return true
+    end
+
+    def affectedByTerrain?
+      return true if super
+      return false if @battle.field.terrain != :Electric || semiInvulnerable?
+      return hasActiveAbility?(:ELECTROFLUX)
+    end
+  end
+
+  # Native AI: recognize Electroflux as an airborne ability.
+  module NativeAI
+    def pokemon_airborne?(pokemon)
+      return true if super
+      return false if !KaitoElectroflux.pokemon_has?(pokemon)
+      return false if pokemon.respond_to?(:hasItem?) && pokemon.hasItem?(:IRONBALL)
+      return false if @battle.field.effects[PBEffects::Gravity] > 0
+      return true
+    end
+  end
+
+  # Advanced AI: distinguish being airborne from receiving Terrain effects.
+  module AdvancedHazardAI
+    def is_grounded?(battler, battle = nil)
+      return !battler.airborne? if battler.respond_to?(:airborne?)
+      return super
+    end
+
+    def is_grounded_basic?(pokemon)
+      return super if !pokemon ||
+                      (pokemon.respond_to?(:hasItem?) && pokemon.hasItem?(:IRONBALL))
+      return false if KaitoElectroflux.pokemon_has?(pokemon)
+      return super
+    end
+  end
+
+  def self.install!
+    Battle::Battler.prepend(Battler) if !Battle::Battler.ancestors.include?(Battler)
+    Battle::AI.prepend(NativeAI) if !Battle::AI.ancestors.include?(NativeAI)
+
+    if defined?(AdvancedAI::HazardControl) &&
+       !AdvancedAI::HazardControl.singleton_class.ancestors.include?(AdvancedHazardAI)
+      AdvancedAI::HazardControl.singleton_class.prepend(AdvancedHazardAI)
+    end
+  end
+end
+
+#===============================================================================
+# GROUND IMMUNITY
+#===============================================================================
+Battle::AbilityEffects::MoveImmunity.add(:ELECTROFLUX,
+  proc { |ability, user, target, move, type, battle, show_message|
+    next false if !move.damagingMove? || type != :GROUND
+    next false if battle.moldBreaker || !target.airborne? || move.hitsFlyingTargets?
+
+    if show_message
+      battle.pbShowAbilitySplash(target)
+      if Battle::Scene::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL("{1} avoided the attack!", target.pbThis))
+      else
+        battle.pbDisplay(_INTL("{1} avoided the attack with {2}!",
+                            target.pbThis, GameData::Ability.get(ability).name))
+      end
+      battle.pbHideAbilitySplash(target)
+    end
+    next true
+  }
+)
+
+#===============================================================================
+# AI ABILITY RATING
+#===============================================================================
+KaitoAbilitySupport.rate(:ELECTROFLUX, 7)
+
+Battle::AI::Handlers::AbilityRanking.add(:ELECTROFLUX,
+  proc { |ability, score, battler, ai|
+    if ai.battle.field.terrain == :Electric &&
+       battler.has_damaging_move_of_type?(:ELECTRIC)
+      next score + 1
+    end
+    next score
+  }
+)
+
+KaitoElectroflux.install!
+
+
+#===============================================================================
+# FULL MOON
+# All moves behave as if Gloom Moonlight were active.
+# Does not change the actual battlefield weather.
+#===============================================================================
+module KaitoFullMoon
+  WEATHER = :GloomMoonlight
+  ABILITY = :FULLMOON
+
+  def self.real(battler)
+    battler.respond_to?(:battler) ? battler.battler : battler
+  end
+
+  # Apply virtual weather only while resolving this Pokemon's move.
+  # Nested move calls and exceptions restore the previous context.
+  def self.with_weather(battle, battler)
+    return yield if !battle
+    previous = battle.instance_variable_get(:@kaito_fullmoon_weather)
+    user = real(battler)
+    active = user && !user.fainted? && user.hasActiveAbility?(ABILITY)
+
+    battle.instance_variable_set(:@kaito_fullmoon_weather, active)
+    begin
+      yield
+    ensure
+      battle.instance_variable_set(:@kaito_fullmoon_weather, previous)
+    end
+  end
+
+  # All weather-dependent move checks see Gloom Moonlight.
+  module Weather
+    def pbWeather
+      return KaitoFullMoon::WEATHER if @kaito_fullmoon_weather
+      super
+    end
+  end
+
+  # Gameplay: affects only moves used by the holder.
+  module MoveUse
+    def pbUseMove(choice, specialUsage = false)
+      KaitoFullMoon.with_weather(@battle, self) { super }
+    end
+  end
+
+  # Native AI evaluates the holder's moves using virtual weather.
+  module NativeAI
+    def pbGetMoveScores
+      KaitoFullMoon.with_weather(@battle, @user && @user.battler) { super }
+    end
+  end
+
+  # Advanced AI: weather-aware scoring and rough damage.
+  module AdvancedAI
+    def score_move_advanced(move, user, target, skill)
+      KaitoFullMoon.with_weather(@battle, user) { super }
+    end
+
+    def calculate_rough_damage(move, user, target, override_bp = nil)
+      KaitoFullMoon.with_weather(@battle, user) do
+        damage = super
+        holder = KaitoFullMoon.real(user)
+
+        if holder && holder.hasActiveAbility?(:FULLMOON) &&
+           move && move.damagingMove? && damage && damage > 0
+          type = ::AdvancedAI::CombatUtilities.resolve_move_type(holder, move)
+          damage = (damage * 1.5).round if type == :DARK
+        end
+        damage
+      end
+    end
+  end
+
+  # Native AI damage estimation lacks the custom Gloom Moonlight boost.
+  module NativeDamageAI
+    def rough_damage
+      damage = super
+      user = @ai.user && @ai.user.battler
+      return damage if !user || !user.hasActiveAbility?(:FULLMOON)
+      return damage if @move.is_a?(Battle::Move::FixedDamageMove)
+      return damage if !damage || damage <= 0 || rough_type != :DARK
+      return (damage * 1.5).round
+    end
+  end
+end
+
+#===============================================================================
+# INSTALLATION
+#===============================================================================
+Battle.prepend(KaitoFullMoon::Weather) unless
+  Battle.ancestors.include?(KaitoFullMoon::Weather)
+
+Battle::Battler.prepend(KaitoFullMoon::MoveUse) unless
+  Battle::Battler.ancestors.include?(KaitoFullMoon::MoveUse)
+
+Battle::AI.prepend(KaitoFullMoon::NativeAI) unless
+  Battle::AI.ancestors.include?(KaitoFullMoon::NativeAI)
+
+Battle::AI::AIMove.prepend(KaitoFullMoon::NativeDamageAI) unless
+  Battle::AI::AIMove.ancestors.include?(KaitoFullMoon::NativeDamageAI)
+
+if defined?(::AdvancedAI) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  Battle::AI.prepend(KaitoFullMoon::AdvancedAI) unless
+    Battle::AI.ancestors.include?(KaitoFullMoon::AdvancedAI)
+end
+
+#===============================================================================
+# AI ABILITY RATING
+#===============================================================================
+KaitoAbilitySupport.rate(:FULLMOON, 8)
+
+Battle::AI::Handlers::AbilityRanking.add(:FULLMOON,
+  proc { |ability, score, battler, ai|
+    user = KaitoFullMoon.real(battler)
+    useful = user.moves.any? do |move|
+      move && ((move.type == :DARK && move.damagingMove?) ||
+        [:MOONLIGHT, :NIGHTFELLING, :MIDNIGHTBEAM].include?(move.id))
+    end
+    next useful ? 8 : 7
+  }
+)
+
+#===============================================================================
+# AI MOVE UTILITY
+#===============================================================================
+Battle::AI::Handlers::GeneralMoveScore.add(:kaito_fullmoon_utility,
+  proc { |score, move, user, ai, battle|
+    next score if score <= Battle::AI::MOVE_USELESS_SCORE
+    next score if !user.has_active_ability?(:FULLMOON)
+
+    case move.id
+    when :MOONLIGHT
+      missing = user.totalhp - user.hp
+      score += 15 if missing > user.totalhp / 3
+    when :NIGHTFELLING
+      score += 8
+    when :MIDNIGHTBEAM
+      score += 15
+    end
+    next score
+  }
+)

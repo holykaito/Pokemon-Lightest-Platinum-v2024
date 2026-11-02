@@ -1269,3 +1269,80 @@ Target = NearOther
 FunctionCode = LowerUserSpAtk2
 Flags = CanProtect,CanMirrorMove,Cosmic
 Description = A storm of stars strikes the target, harshly lowering the user's Sp. Atk.
+#-------------------------------
+[SOLARGLIDE]
+Name = Solar Glide
+Type = GRASS
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = IncreasedPriorityInSunshine
+Flags = CanProtect
+Description = The user glides into the target. This move has increased priority in sunshine.
+#-------------------------------
+[VERDANTANGER]
+Name = Verdant Anger
+Type = GRASS
+Category = Special
+Power = 120
+Accuracy = 85
+TotalPP = 5
+Target = NearOther
+FunctionCode = LowerTargetSpeed2
+Flags = CanProtect,CanMirrorMove
+EffectChance = 40
+Description = A shock wave that may harshly lower the target's Speed.
+#-------------------------------
+[ROSEWHIP]
+Name = Rose Whip
+Type = GRASS
+Category = Physical
+Power = 70
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = LowerTargetDef1ParalyzePoisonOrSleep
+Flags = CanProtect,CanMirrorMove,Lash
+EffectChance = 30
+Description = May lower Defense and inflict paralysis, poison, or sleep.
+#-------------------------------
+[RAPIDRIVER]
+Name = Rapid River
+Type = WATER
+Category = Physical
+Power = 45
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = HitTwoTimesDrenchedTarget
+Flags = CanProtect,CanMirrorMove,Pulse
+EffectChance = 10
+Description = Strikes twice with rushing water. Each hit may leave the target drenched.
+#-------------------------------
+[STELLARPUNCH]
+Name = Stellar Punch
+Type = FAIRY
+Category = Physical
+Power = 75
+Accuracy = 100
+TotalPP = 15
+Target = NearOther
+FunctionCode = LowerTargetAttack1
+EffectChance = 50
+Flags = Contact,CanProtect,CanMirrorMove,Punching,Cosmic
+Description = Punches with starlight force. May lower Attack.
+#-------------------------------
+[MOONYPUNCH]
+Name = Moony Punch
+Type = DARK
+Category = Physical
+Power = 75
+Accuracy = 100
+TotalPP = 10
+Target = NearOther
+FunctionCode = LowerTargetSpAtk1
+EffectChance = 30
+Flags = Contact,CanProtect,CanMirrorMove,Punching,Cosmic
+Description = Punches with moonlight force. May lower Sp. Atk.

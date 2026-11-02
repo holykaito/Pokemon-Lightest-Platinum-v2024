@@ -221,7 +221,7 @@ Accuracy = 95
 TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Bullet
 Description = Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 #-------------------------------
 [TWINEEDLE]
@@ -1090,7 +1090,7 @@ Accuracy = 90
 TotalPP = 20
 Target = NearOther
 FunctionCode = HitTwoToFiveTimesRaiseUserSpd1LowerUserDef1
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Bullet
 Description = Attacks by shooting scales two to five times in a row. Boosts the user's Speed but lowers its Defense.
 #-------------------------------
 [DRAGONRAGE]
@@ -2607,7 +2607,7 @@ Accuracy = 100
 TotalPP = 5
 Target = AllNearOthers
 FunctionCode = BurnTarget
-Flags = CanProtect,CanMirrorMove,Bomb
+Flags = CanProtect,CanMirrorMove,Bomb,Bullet
 EffectChance = 30
 Description = An inferno of scarlet flames torches everything around the user. It may leave the foe with a burn.
 #-------------------------------
@@ -4216,7 +4216,7 @@ Accuracy = 95
 TotalPP = 15
 Target = NearOther
 FunctionCode = LowerTargetSpeed1
-Flags = CanProtect,CanMirrorMove,Mud
+Flags = CanProtect,CanMirrorMove,Mud,Bullet
 EffectChance = 100
 Description = The user attacks by hurling a blob of mud at the target. It also reduces the target's Speed.
 #-------------------------------
@@ -4587,7 +4587,7 @@ Accuracy = 100
 TotalPP = 30
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Bullet
 Description = The user launches sharp icicles at the target. It strikes two to five times in a row.
 #-------------------------------
 [TRIPLEAXEL]
@@ -5442,7 +5442,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = HitTwoToFiveTimes
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Shot
 Description = Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.
 #-------------------------------
 [COMETPUNCH]
@@ -6776,7 +6776,7 @@ Accuracy = 80
 TotalPP = 5
 Target = NearOther
 FunctionCode = PoisonTarget
-Flags = CanProtect,CanMirrorMove
+Flags = CanProtect,CanMirrorMove,Bullet
 EffectChance = 30
 Description = The user shoots filthy garbage at the target to attack. It may also poison the target.
 #-------------------------------
@@ -8050,7 +8050,7 @@ Accuracy = 100
 TotalPP = 15
 Target = NearOther
 FunctionCode = LowerTargetSpeed1MakeTargetWeakerToFire
-Flags = CanProtect,CanMirrorMove,ZPower_SPEED_1
+Flags = CanProtect,CanMirrorMove,ZPower_SPEED_1,Bullet
 Description = Pours sticky tar over the target, lowering its Speed and making it weaker to Fire-type moves.
 #-------------------------------
 [WIDEGUARD]
@@ -8172,7 +8172,7 @@ Accuracy = 100
 TotalPP = 20
 Target = NearOther
 FunctionCode = TrapTargetInBattle
-Flags = Contact,CanProtect,CanMirrorMove
+Flags = Contact,CanProtect,CanMirrorMove,Bullet
 EffectChance = 100
 Description = The user entangles the target with its anchor chain. The target becomes unable to flee.
 #-------------------------------
@@ -8249,7 +8249,7 @@ Accuracy = 85
 TotalPP = 10
 Target = NearOther
 FunctionCode = LowerTargetAccuracy1
-Flags = CanProtect,CanMirrorMove,Light
+Flags = CanProtect,CanMirrorMove,Light,Bullet
 EffectChance = 30
 Description = The user looses a flash of energy from its polished body. It may also lower the target's accuracy.
 #-------------------------------

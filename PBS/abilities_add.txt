@@ -107,6 +107,11 @@ Description = Creates Trick Room when entering battle.
 Name = Charge Rush
 Description = Boosts Attack and Speed on its first turn.
 #-------------------------------
+[CHARGEDTEMPER] ###
+Name = Charged Temper
+Description = Raises Attack when using or targeted by Electric moves.
+Detail = Raises Attack by 1 stage after dealing damage with an Electric-type move.\n\nAlso raises Attack by 1 stage when an opposing Pokémon successfully targets it with an Electric-type move, regardless of whether the move hits or deals damage.\n\nThe targeting effect activates after the move announcement but before redirection by Lightning Rod.\n\nThe targeting effect does not activate during the charging turn of a two-turn move or when targeted by an ally.\n\nEach effect can activate only once per move use, including multi-hit moves.
+#-------------------------------
 [CHEAPTACTICS] ####
 Name = Cheap Tactics
 Description = Uses Scratch when this Pokémon enters battle.
@@ -175,6 +180,11 @@ Description = The user's sound-based moves never miss.
 Name = Eco-Cloak
 Description = Blocks its second type to boost Defense and neutralizes weaknesses.
 #-------------------------------
+[ELECTROFLUX] ###
+Name = Electroflux
+Description = Evades Ground moves while benefiting from Electric Terrain.
+Detail = Grants immunity to damaging Ground-type moves, just like Levitate.\n\nThe Pokémon remains airborne, avoiding Spikes, Toxic Spikes, Sticky Web, and other effects that require it to be grounded.\n\nUnlike Levitate, the Pokémon still benefits from Electric Terrain while airborne, including increased Electric-type move power, sleep prevention, and Electric Seed activation.\n\nGround immunity is negated by Gravity, Iron Ball, Ingrain, Smack Down, and Mold Breaker. Moves capable of hitting airborne targets can still hit.
+#-------------------------------
 [ETERNALDREAM] ###
 Name = Eternal Dream
 Description = It recovers HP when attacking a sleeping enemy.
@@ -238,6 +248,11 @@ Description = When a stat is lowered by an opponent, its Defense is increased.
 [FREEZEALL]
 Name = Freeze All
 Description = Each damaging hit has a 20% chance to freeze the opposing Pokémon.
+#-------------------------------
+[FULLMOON]
+Name = Full Moon
+Description = Moves always benefit from Gloom Moonlight.
+Detail = All moves used by the Pokémon behave as though Gloom Moonlight were active, regardless of the actual weather.\n\nDark-type moves deal 1.5 times their normal damage.\n\nMoonlight restores 75% of the user's maximum HP, while Synthesis and Morning Sun restore only 25%.\n\nNightfelling always hits, and Midnight Beam can attack immediately without a charging turn.\n\nThe Ability does not summon, replace, or extend weather. Its effects apply only when the Pokémon uses a move, not during end-of-turn weather effects.
 #-------------------------------
 [GIANTWINGS]
 Name = Giant Wings

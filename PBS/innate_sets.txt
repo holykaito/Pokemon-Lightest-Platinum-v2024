@@ -35,6 +35,18 @@ Innates = RUNAWAY,GROWINGTOOTH,GNAWING
 [RATICATE_1]
 Innates = GLUTTONY,GROWINGTOOTH,BERRYBULK
 #----------------------------------------
+[CLEFFA]
+Innates = CUTECHARM
+#----------------------------------------
+[CLEFAIRY]
+Innates = CUTECHARM,FRIENDGUARD
+#----------------------------------------
+[CLEFABLE]
+Innates = CUTECHARM,FRIENDGUARD,FULLMOON
+#----------------------------------------
+[CLEFABLE_1]
+Innates = CUTECHARM,FRIENDGUARD,FULLMOON
+#----------------------------------------
 [MEOWTH]
 Innates = PICKUP,CATSLUCK
 #----------------------------------------

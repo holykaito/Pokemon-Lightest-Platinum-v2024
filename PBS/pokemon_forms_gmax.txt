@@ -5,6 +5,7 @@ FormName = Gigantamax
 Height = 24.0
 Pokedex = In battle, this Pokémon swings around two thick vines. If these vines slammed into a 10-story building, they could easily topple it.
 Generation = 8
+Flags = Done
 GmaxMove = GMAXVINELASH
 RaidRanks = 4,5
 RaidStyle = Max

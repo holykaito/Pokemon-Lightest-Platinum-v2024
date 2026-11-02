@@ -2092,3 +2092,62 @@ class Battle::Move::RaiseUserAndAlliesSpeed1 < Battle::Move
     target.pbRaiseStatStage(:SPEED, 1, user)
   end
 end
+
+#===============================================================================
+# Solar Glide
+# Priority increases by 1 in sunshine.
+#===============================================================================
+class Battle::Move::IncreasedPriorityInSunshine < Battle::Move
+  def pbPriority(user)
+    ret = super
+    ret += 1 if [:Sun, :HarshSun].include?(user.effectiveWeather)
+    return ret
+  end
+end
+
+#===============================================================================
+# Rose Whip
+# Additional effect: lowers Defense and attempts one random status.
+#===============================================================================
+class Battle::Move::LowerTargetDef1ParalyzePoisonOrSleep < Battle::Move
+  def pbAdditionalEffect(user, target)
+    return if target.fainted? || target.damageState.substitute
+
+    if target.pbCanLowerStatStage?(:DEFENSE, user, self)
+      target.pbLowerStatStage(:DEFENSE, 1, user)
+    end
+
+    case @battle.pbRandom(3)
+    when 0
+      if target.pbCanParalyze?(user, false, self)
+        target.pbParalyze(user)
+      end
+    when 1
+      if target.pbCanPoison?(user, false, self)
+        target.pbPoison(user)
+      end
+    when 2
+      if target.pbCanSleep?(user, false, self)
+        target.pbSleep
+      end
+    end
+  end
+end
+
+#===============================================================================
+# Rapid River
+# Hits twice. Each hit may inflict Drenched.
+#===============================================================================
+class Battle::Move::HitTwoTimesDrenchedTarget < Battle::Move::HitTwoTimes
+  def pbAdditionalEffect(user, target)
+    return if target.fainted? || target.damageState.substitute
+    if target.pbCanDrenched?(user, false, self)
+      target.pbDrenched(user)
+    end
+  end
+end
+
+Battle::AI::Handlers::MoveBasePower.copy(
+  "HitTwoTimes",
+  "HitTwoTimesDrenchedTarget"
+)
