@@ -1367,4 +1367,5 @@ Accuracy = 0
 TotalPP = 5
 Target = UserAndAllies
 FunctionCode = HealUserAndAlliesQuarterOfTotalHPCureStatus
+Flags = Sound
 Description = Heals HP and status of itself and allies in battle.
