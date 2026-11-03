@@ -47,6 +47,15 @@ Innates = CUTECHARM,FRIENDGUARD,FULLMOON
 [CLEFABLE_1]
 Innates = CUTECHARM,FRIENDGUARD,FULLMOON
 #----------------------------------------
+[IGGLYBUFF]
+Innates = INFLATABLE
+#----------------------------------------
+[JIGGLYPUFF]
+Innates = INFLATABLE,FRIENDGUARD
+#----------------------------------------
+[WIGGLYTUFF]
+Innates = INFLATABLE,FRISK,FLUFFY
+#----------------------------------------
 [MEOWTH]
 Innates = PICKUP,CATSLUCK
 #----------------------------------------
@@ -184,6 +193,15 @@ Innates = RUNAWAY
 #----------------------------------------
 [FURRET]
 Innates = RUNAWAY,FRISK,KINETIC
+#----------------------------------------
+[TOGEPI]
+Innates = CUTECHARM
+#----------------------------------------
+[TOGETIC]
+Innates = CUTECHARM,SERENEGRACE
+#----------------------------------------
+[TOGEKISS]
+Innates = CUTECHARM,SERENEGRACE,GIANTWINGS
 #----------------------------------------
 [HOPPIP]
 Innates = WINDRIDER

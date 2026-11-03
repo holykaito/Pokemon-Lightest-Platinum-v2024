@@ -20190,47 +20190,28 @@ module KaitoSinger
     end
   end
 
-  #=============================================================================
-  # Detect successful Sound moves.
-  #=============================================================================
-  module BattlerHooks
-    def pbEffectsAfterMove(user, targets, move, num_hits)
-      result = super
+	#===============================================================================
+	# SINGER - SAFE MOVE HOOK
+	# Avoid pbEffectsAfterMove alias recursion.
+	#===============================================================================
+	module BattlerHooks
+	  def pbUseMove(choice, specialUsage = false)
+		return super if @battle.instance_variable_get(:@kaito_singer_replaying)
 
-      if !@battle.instance_variable_get(:@kaito_singer_replaying) &&
-         user.equal?(self) &&
-         move.soundMove? &&
-         num_hits > 0 &&
-         !user.lastMoveFailed &&
-         !move.snatched &&
-         !@effects[PBEffects::Dancer] &&
-         !@battle.futureSight
-        @kaito_singer_event = move
-      end
+		result = super
+		move = choice && choice[2]
 
-      return result
-    end
+		return result if !move || !move.soundMove?
+		return result if @battle.decision > 0 || @battle.futureSight
+		return result if lastMoveFailed || @lastMoveUsed != move.id || move.snatched
+		return result if fainted? || @effects[PBEffects::Dancer]
+		return result if move.chargingTurnMove? &&
+						 @effects[PBEffects::TwoTurnAttack] == move.id
 
-    def pbUseMove(choice, specialUsage = false)
-      return super if @battle.instance_variable_get(:@kaito_singer_replaying)
-
-      previous_event = @kaito_singer_event
-      @kaito_singer_event = nil
-
-      begin
-        result = super
-        move = @kaito_singer_event
-
-        if move && !lastMoveFailed && !move.snatched
-          KaitoSinger.copy_sound_move(@battle, self, move, choice)
-        end
-
-        return result
-      ensure
-        @kaito_singer_event = previous_event
-      end
-    end
-  end
+		KaitoSinger.copy_sound_move(@battle, self, move, choice)
+		return result
+	  end
+	end
 
   #=============================================================================
   # Advanced AI: Discourage Sound moves against an opposing Singer.

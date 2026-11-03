@@ -107,6 +107,7 @@ module Settings
   #Johto
   [:FURRET, 1, 1, 50],
   [:ENCHANTOW, 1, 1, 60],
+  [:TOGEKISS, 1, 1, 65],
   [:JUMPLUFF, 1, 1, 55],
   
   #Hoenn

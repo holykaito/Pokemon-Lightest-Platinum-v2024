@@ -1347,18 +1347,6 @@ EffectChance = 50
 Flags = Contact,CanProtect,CanMirrorMove,Punching,Cosmic
 Description = Punches with moonlight force. May lower Sp. Atk.
 #-------------------------------
-[STARCRASH]
-Name = Star Crash
-Type = FAIRY
-Category = Physical
-Power = 120
-Accuracy = 100
-TotalPP = 10
-Target = NearFoe
-FunctionCode = RecoilThirdOfDamageDealt
-Flags = Contact,CanProtect,CanMirrorMove,Cosmic
-Description = Strikes the foe like a falling star. 33% recoil damage.
-#-------------------------------
 [STARLIGHTRECITAL]
 Name = Starlight Recital
 Type = FAIRY
