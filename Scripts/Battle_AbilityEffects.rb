@@ -1777,12 +1777,6 @@ Battle::AbilityEffects::DamageCalcFromTarget.add(:AQUATIC,
   }
 )
 
-Battle::AbilityEffects::DamageCalcFromTarget.add(:INFLATABLE,
-  proc { |ability, user, target, move, mults, power, type|
-    mults[:final_damage_multiplier] /= 2 if type == :FIRE || move.windMove?
-  }
-)
-
 Battle::AbilityEffects::DamageCalcFromTarget.add(:WATERBUBBLE,
   proc { |ability, user, target, move, mults, power, type|
     mults[:final_damage_multiplier] /= 2 if type == :FIRE
@@ -2181,13 +2175,6 @@ Battle::AbilityEffects::OnBeingHit.add(:RATTLED,
   proc { |ability, user, target, move, battle|
     next if ![:BUG, :DARK, :GHOST].include?(move.calcType)
     target.pbRaiseStatStageByAbility(:SPEED, 1, target)
-  }
-)
-
-Battle::AbilityEffects::OnBeingHit.add(:INFLATABLE,
-  proc { |ability, user, target, move, battle|
-    next if ![:FIRE].include?(move.calcType) || !move.windMove?
-    target.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE, 1, target)
   }
 )
 
@@ -3176,14 +3163,6 @@ Battle::AbilityEffects::OnSwitchIn.add(:ROLLER,
   proc { |ability, battler, battle, switch_in|
     battler.pbRaiseStatStageByAbility(:DEFENSE, 1, battler)
     battler.effects[PBEffects::DefenseCurl] = true
-  }
-)
-
-Battle::AbilityEffects::OnSwitchIn.add(:INFLATABLE,
-  proc { |ability, battler, battle, switch_in|
-    next if battler.pbOwnSide.effects[PBEffects::Tailwind] <= 0
-    next if !battler.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, battler)
-    battler.pbRaiseStatStageByAbility(:SPECIAL_DEFENSE, 1, battler)
   }
 )
 

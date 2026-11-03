@@ -20090,3 +20090,311 @@ Battle::AI::Handlers::GeneralMoveScore.add(:kaito_fullmoon_utility,
     next score
   }
 )
+
+
+#===============================================================================
+# SINGER
+# Repeats another Pokemon's Sound move, like Dancer.
+#===============================================================================
+module KaitoSinger
+  ABILITY = :SINGER
+
+  # Display the correct ability name, including Innate Singer.
+  module AbilityName
+    def abilityName
+      if @kaito_singer_show_name
+        return GameData::Ability.get(:SINGER).name
+      end
+      super
+    end
+  end
+
+  def self.show_splash(battle, battler)
+    old_flag  = battler.instance_variable_get(:@kaito_singer_show_name)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      battler.instance_variable_set(:@kaito_singer_show_name, true)
+      $aamName = $aamName2 = GameData::Ability.get(:SINGER).name
+
+      battle.pbShowAbilitySplash(battler, true)
+      if !Battle::Scene::USE_ABILITY_SPLASH
+        battle.pbDisplay(_INTL(
+          "{1}'s Singer echoed the sound move!", battler.pbThis
+        ))
+      end
+      battle.pbHideAbilitySplash(battler)
+    ensure
+      battler.instance_variable_set(:@kaito_singer_show_name, old_flag)
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+
+  #=============================================================================
+  # Repeat the move, following Dancer's targeting and turn mechanics.
+  #=============================================================================
+  def self.copy_sound_move(battle, source, move, choice)
+    return if battle.decision > 0
+
+    singers = battle.pbPriority(true).select do |b|
+      !b.fainted? && b.index != source.index &&
+        b.hasActiveAbility?(:SINGER)
+    end
+    return if singers.empty?
+
+    previous = battle.instance_variable_get(:@kaito_singer_replaying)
+    battle.instance_variable_set(:@kaito_singer_replaying, true)
+
+    begin
+      singers.reverse_each do |b|
+        next if b.fainted? || !b.hasActiveAbility?(:SINGER)
+        next if battle.decision > 0
+
+        old_round = b.lastRoundMoved
+        old_out   = b.effects[PBEffects::Outrage]
+        old_move  = b.currentMove
+        old_dance = b.effects[PBEffects::Dancer]
+
+        # Use the same target-selection rule as Dancer.
+        target_index = choice[3] || -1
+        if b.opposes?(source) || !b.opposes?(target_index)
+          target_index = source.index
+        end
+
+        begin
+          show_splash(battle, b)
+
+          # Prevent copied moves from causing Dancer/Singer loops.
+          b.effects[PBEffects::Dancer] = true
+
+          # Preserve multi-turn lock counters.
+          b.effects[PBEffects::Outrage] += 1 if old_out > 0
+
+          if b.pbCanChooseMove?(move, false)
+            PBDebug.logonerr do
+              b.pbUseMoveSimple(move.id, target_index)
+            end
+            battle.pbJudge
+          end
+        ensure
+          b.lastRoundMoved = old_round
+          b.effects[PBEffects::Outrage] = old_out
+          b.currentMove = old_move
+          b.effects[PBEffects::Dancer] = old_dance
+        end
+      end
+    ensure
+      battle.instance_variable_set(:@kaito_singer_replaying, previous)
+    end
+  end
+
+  #=============================================================================
+  # Detect successful Sound moves.
+  #=============================================================================
+  module BattlerHooks
+    def pbEffectsAfterMove(user, targets, move, num_hits)
+      result = super
+
+      if !@battle.instance_variable_get(:@kaito_singer_replaying) &&
+         user.equal?(self) &&
+         move.soundMove? &&
+         num_hits > 0 &&
+         !user.lastMoveFailed &&
+         !move.snatched &&
+         !@effects[PBEffects::Dancer] &&
+         !@battle.futureSight
+        @kaito_singer_event = move
+      end
+
+      return result
+    end
+
+    def pbUseMove(choice, specialUsage = false)
+      return super if @battle.instance_variable_get(:@kaito_singer_replaying)
+
+      previous_event = @kaito_singer_event
+      @kaito_singer_event = nil
+
+      begin
+        result = super
+        move = @kaito_singer_event
+
+        if move && !lastMoveFailed && !move.snatched
+          KaitoSinger.copy_sound_move(@battle, self, move, choice)
+        end
+
+        return result
+      ensure
+        @kaito_singer_event = previous_event
+      end
+    end
+  end
+
+  #=============================================================================
+  # Advanced AI: Discourage Sound moves against an opposing Singer.
+  #=============================================================================
+  module AdvancedAIScoring
+    def score_move_advanced(move, user, target, skill)
+      score = super
+      return score if !move || !move.soundMove? || score <= -900
+
+      enemies = @battle.allOtherSideBattlers(user.index)
+      return score - enemies.count { |b|
+        b.hasActiveAbility?(:SINGER)
+      } * 15
+    end
+  end
+end
+
+#===============================================================================
+# INSTALLATION
+#===============================================================================
+Battle::Battler.prepend(KaitoSinger::AbilityName) unless
+  Battle::Battler.ancestors.include?(KaitoSinger::AbilityName)
+
+Battle::Battler.prepend(KaitoSinger::BattlerHooks) unless
+  Battle::Battler.ancestors.include?(KaitoSinger::BattlerHooks)
+
+#===============================================================================
+# NATIVE AI
+#===============================================================================
+KaitoAbilitySupport.rate(:SINGER, 5)
+
+Battle::AI::Handlers::GeneralMoveScore.add(:sound_move_against_singer,
+  proc { |score, move, user, ai, battle|
+    next score if !move.move.soundMove?
+
+    ai.each_foe_battler(user.side) do |b, i|
+      score -= 15 if b.has_active_ability?(:SINGER)
+    end
+
+    next score
+  }
+)
+
+#===============================================================================
+# ADVANCED AI
+#===============================================================================
+if Battle::AI.method_defined?(:score_move_advanced)
+  Battle::AI.prepend(KaitoSinger::AdvancedAIScoring) unless
+    Battle::AI.ancestors.include?(KaitoSinger::AdvancedAIScoring)
+end
+
+
+#===============================================================================
+# INFLATABLE
+# Raises Defense and Sp. Def by 1 when hit by a Fire/Flying move.
+#===============================================================================
+module KaitoInflatable
+  module AbilityName
+    def abilityName
+      return GameData::Ability.get(:INFLATABLE).name if @kaito_inflatable_splash
+      super
+    end
+  end
+
+  def self.activate(target, battle)
+    return if target.fainted?
+
+    can_def   = target.pbCanRaiseStatStage?(:DEFENSE, target)
+    can_spdef = target.pbCanRaiseStatStage?(:SPECIAL_DEFENSE, target)
+    return if !can_def && !can_spdef
+
+    old_flag  = target.instance_variable_get(:@kaito_inflatable_splash)
+    old_name  = $aamName
+    old_name2 = $aamName2
+
+    begin
+      target.instance_variable_set(:@kaito_inflatable_splash, true)
+      name = GameData::Ability.get(:INFLATABLE).name
+      $aamName = name
+      $aamName2 = name
+
+      battle.pbShowAbilitySplash(target)
+
+      if can_def
+        target.pbRaiseStatStageByAbility(
+          :DEFENSE, 1, target, false
+        )
+      end
+
+      if can_spdef
+        target.pbRaiseStatStageByAbility(
+          :SPECIAL_DEFENSE, 1, target, false
+        )
+      end
+    ensure
+      if target.instance_variable_get(:@kaito_inflatable_splash)
+        battle.pbHideAbilitySplash(target)
+      end
+
+      target.instance_variable_set(:@kaito_inflatable_splash, old_flag)
+      $aamName  = old_name
+      $aamName2 = old_name2
+    end
+  end
+end
+
+Battle::Battler.prepend(KaitoInflatable::AbilityName) unless
+  Battle::Battler.ancestors.include?(KaitoInflatable::AbilityName)
+
+#===============================================================================
+# REMOVE OLD INFLATABLE EFFECTS
+#===============================================================================
+Battle::AbilityEffects::DamageCalcFromTarget.remove(:INFLATABLE)
+Battle::AbilityEffects::OnSwitchIn.remove(:INFLATABLE)
+
+#===============================================================================
+# ON BEING HIT
+#===============================================================================
+Battle::AbilityEffects::OnBeingHit.add(:INFLATABLE,
+  proc { |ability, user, target, move, battle|
+    next if !move || !user || target.fainted?
+    next if ![:FIRE, :FLYING].include?(move.calcType)
+
+    KaitoInflatable.activate(target, battle)
+  }
+)
+
+#===============================================================================
+# NATIVE AI
+#===============================================================================
+KaitoAbilitySupport.rate(:INFLATABLE, 6)
+
+Battle::AI::Handlers::GeneralMoveScore.add(:inflatable_fire_flying_warning,
+  proc { |score, move, user, ai, battle|
+    next score if !move.move.damagingMove?
+    next score if ![:FIRE, :FLYING].include?(move.rough_type)
+
+    ai.each_foe_battler(user.side) do |b, i|
+      score -= 8 if b.has_active_ability?(:INFLATABLE)
+    end
+
+    next score
+  }
+)
+
+#===============================================================================
+# ADVANCED AI
+#===============================================================================
+module KaitoInflatableAdvancedAI
+  def score_move_advanced(move, user, target, skill)
+    score = super
+    return score if !move || !target || !move.damagingMove?
+    return score if score <= -900
+
+    type = AdvancedAI::CombatUtilities.resolve_move_type(user, move)
+    return score if ![:FIRE, :FLYING].include?(type)
+    return score if !target.hasActiveAbility?(:INFLATABLE)
+
+    return score - 12
+  end
+end
+
+if defined?(AdvancedAI) &&
+   Battle::AI.method_defined?(:score_move_advanced)
+  Battle::AI.prepend(KaitoInflatableAdvancedAI) unless
+    Battle::AI.ancestors.include?(KaitoInflatableAdvancedAI)
+end

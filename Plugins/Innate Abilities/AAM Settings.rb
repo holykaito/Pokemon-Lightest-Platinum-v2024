@@ -83,6 +83,7 @@ module Settings
   [:RAICHU_1, 1, 25, 60],
   [:CLEFABLE, 1, 1, 60],
   [:CLEFABLE_1, 1, 1, 60],
+  [:WIGGLYTUFF, 1, 1, 60],
   [:MEOWTH, 1, 15],
   [:MEOWTH_1, 1, 15],
   [:MEOWTH_2, 1, 20],

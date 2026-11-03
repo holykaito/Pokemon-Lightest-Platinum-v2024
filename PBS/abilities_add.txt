@@ -330,9 +330,10 @@ Description = Boosts the user's Ice and Water-type moves in hail.
 Name = Ignition Cycle
 Description = Gains Speed at an HP cost, resetting and healing at max Speed.
 #-------------------------------
-[INFLATABLE] ###
+[INFLATABLE]
 Name = Inflatable
-Description = Inhales wind-based moves to expand the body & boost defense.
+Description = Raises both defenses when hit by Fire or Flying moves.
+Detail = Raises Defense and Sp. Def by 1 stage when hit by a damaging Fire-type or Flying-type move.\n\nThe effect activates after the Pokémon takes damage, regardless of whether the move makes contact.\n\nEach successful hit can activate the Ability, including individual hits of multi-hit moves.\n\nThe effect does not activate if the move misses, deals no damage, or is absorbed by a Substitute.\n\nThe Ability does not reduce incoming damage.
 #-------------------------------
 [INTOXICATE] ###
 Name = Intoxicate
@@ -579,6 +580,11 @@ Description = Powers up Electric moves more as HP falls.
 [SHOWDOWNMODE] ###
 Name = Showdown Mode
 Description = Enhance stats when in danger, but gradually weaken
+#-------------------------------
+[SINGER] ###
+Name = Singer
+Description = Immediately copies another Pokémon's sound moves.
+Detail = When another Pokémon successfully uses a Sound move, this Pokémon immediately uses the same move.\n\nThe copied move does not consume PP and does not count as the Pokémon's normal action for the turn.\n\nBoth allies' and opponents' Sound moves can trigger this Ability.\n\nThe copied move follows the targeting rules of Dancer and retains its normal effects.\n\nMoves copied through Singer cannot activate Singer again.\n\nSinger activates only if the original move was successfully executed.
 #-------------------------------
 [SIPHONLEAVES] ###
 Name = Siphon Leaves
